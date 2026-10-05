@@ -624,7 +624,9 @@ function spinGlobe(){
 
 /* ════════════════════════════ typography ════════════════════════════ */
 function fitHeadline(lines){
-  const h=$('headline'); const maxW=Math.min(innerWidth*(innerWidth<860?.9:.62),1080);
+  // 글자 칸(.chapter)의 실제 폭을 넘지 않게. 화면 폭 62%(최대 1080px)만 보면 큰 화면에서 칸(최대 980px)보다 넓어져 끝 글자가 잘렸다
+  const h=$('headline'); const box=Math.min(980,innerWidth*.68, $('chapter').getBoundingClientRect().width||Infinity);   // .chapter max-width:min(980px,68vw). 처음엔 칸이 아직 그려지지 않아 폭이 0일 수 있다
+  const maxW=Math.min(innerWidth*(innerWidth<860?.9:.62),1080,box-12);
   const probe=document.createElement('div'); probe.className='headline';
   probe.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;font-size:100px;--w:100;--g:820';
   lines.forEach(t=>{ const d=document.createElement('div'); d.innerHTML=[...t].map(c=>`<span class="ch">${c===' '?'&nbsp;':c}</span>`).join(''); d.style.display='inline-block'; probe.appendChild(d); probe.appendChild(document.createElement('br')); });
