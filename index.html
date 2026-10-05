@@ -20,7 +20,7 @@
   --sans:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo',sans-serif;
   --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
   --pad:clamp(16px,3.4vw,56px);
-  --rail-h:clamp(86px,11vh,112px);
+  --rail-h:clamp(100px,12.5vh,128px);
 }
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg)}
@@ -76,6 +76,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 /* ───────── HUD top ───────── */
 .hud{position:fixed;z-index:5;left:var(--pad);right:var(--pad);top:calc(var(--pad)*.7);display:flex;justify-content:space-between;align-items:flex-start;gap:24px;pointer-events:none}
 .brand{display:flex;flex-direction:column;gap:6px}
+.clock{font-family:var(--mono);font-size:clamp(10px,.8vw,14px);letter-spacing:.18em;color:var(--ink);font-variant-numeric:tabular-nums;opacity:.85}   /* 남은 시간(역 카운트다운) */
 .brand-mark{font-family:var(--mono);font-size:12px;letter-spacing:.24em;color:var(--ink);display:flex;align-items:center;gap:12px}
 .brand-mark i{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent),0 0 18px var(--accent);transition:background .8s,box-shadow .8s}
 .brand-sub{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted)}
@@ -119,7 +120,7 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .dossier .logo{height:54px;display:flex;align-items:center;justify-content:flex-end}
 .dossier .logo img{max-height:30px;max-width:170px;object-fit:contain}
 .dossier .logo img.mono{filter:brightness(0) invert(1)}
-.dossier .logo img.bain{width:150px;height:50px;max-height:none;object-fit:cover}
+.dossier .logo img.bain{width:120px;height:40px;max-height:none;object-fit:cover}
 .dossier .logo .wm{font-family:var(--display);font-size:26px;font-variation-settings:'wdth' 112,'wght' 800;color:var(--ink);letter-spacing:.02em}
 .era-chip{display:inline-flex;align-items:center;gap:8px;color:var(--accent);transition:color .8s}
 .era-chip::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
@@ -132,13 +133,13 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .play.on{animation:pulse 2.2s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 45%,transparent)}100%{box-shadow:0 0 0 22px transparent}}
 .steps{position:relative;flex:1;height:100%;display:flex;align-items:center}
-.track{position:absolute;left:0;right:0;top:50%;height:1px;background:#ffffff1f}
+.track{position:absolute;left:0;right:0;top:50%;height:1px;margin-top:-.5px;background:#ffffff1f}   /* 선의 중심 = 레일 가운데 */
 .track i{position:absolute;left:0;top:0;height:1px;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet) 55%,var(--lime));box-shadow:0 0 10px #ffffff40;transition:width 1s cubic-bezier(.7,0,.2,1)}
-.stops{position:relative;display:flex;justify-content:space-between;width:100%}
+.stops{position:absolute;left:0;right:0;top:50%;height:0;display:flex;justify-content:space-between}   /* 점·번호·이름의 기준선 = 선의 중심 */
 .stop{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;width:0;color:var(--dim);transition:color .4s}
-.stop .dot{width:9px;height:9px;border-radius:50%;background:#05070d;border:1px solid currentColor;transition:transform .4s,background .4s;margin-top:-4px}
-.stop .nm{position:absolute;top:calc(50% + 10px);font-family:var(--mono);font-size:clamp(11px,.9vw,15px);letter-spacing:.16em;white-space:nowrap}
-.stop .yr{position:absolute;bottom:calc(50% + 12px);font-family:var(--mono);font-size:clamp(9px,.7vw,11px);letter-spacing:.2em;white-space:nowrap;opacity:.7}
+.stop .dot{position:absolute;left:50%;top:0;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:#05070d;border:1px solid currentColor;transition:transform .4s,background .4s}
+.stop .nm{position:absolute;top:22px;font-family:var(--mono);font-size:clamp(11px,.9vw,15px);letter-spacing:.16em;white-space:nowrap}
+.stop .yr{position:absolute;bottom:22px;font-family:var(--mono);font-size:clamp(9px,.7vw,11px);letter-spacing:.2em;white-space:nowrap;opacity:.7}
 .stop.done{color:var(--c)}
 .stop.done .dot{background:var(--c)}
 .stop.now{color:var(--ink)}
@@ -183,6 +184,11 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .intro-ko em{font-style:normal;color:var(--lime)}
 .intro-tag{font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--muted);margin-top:12px}
 .big-play{position:relative;margin-top:clamp(28px,6vh,64px);width:148px;height:148px;display:grid;place-items:center}
+/* 첫 화면 전체 화면 버튼: 라임 바탕, 모서리 괄호 아이콘, F 키 표시 */
+.fs-btn{margin:clamp(18px,3vh,30px) auto 0;display:inline-flex;align-items:center;gap:10px;padding:8px 10px 8px 15px;border-radius:10px;background:var(--lime);color:#0b1209;font-family:var(--sans);font-weight:800;font-size:clamp(12px,.9vw,14px);letter-spacing:-.01em;transition:transform .2s,filter .2s}
+.fs-btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.fs-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:square}
+.fs-btn kbd{font-family:var(--sans);font-weight:800;font-size:.8em;line-height:1;padding:3px 5px;border:1.5px solid #0b120966;border-radius:5px;color:#0b1209aa;margin-left:6px}
 .big-play .core{width:84px;height:84px;border-radius:50%;background:var(--lime);display:grid;place-items:center;color:#0a1209;transition:transform .3s cubic-bezier(.2,.9,.3,1.4)}
 .big-play:hover .core{transform:scale(1.1)}
 .big-play .core svg{width:26px;height:26px;margin-left:4px}
@@ -255,6 +261,7 @@ body.beat .play.on{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 30%,tran
   <div class="brand">
     <div class="brand-mark"><i></i>JAYDEN KANG · CAREER ATLAS</div>
   </div>
+  <div class="clock" id="clock" aria-label="남은 시간">01:17</div>
   <div class="readout" aria-hidden="true">
     <span>LAT</span><b id="rLat">·</b>
     <span>LNG</span><b id="rLng">·</b>
@@ -333,6 +340,9 @@ body.beat .play.on{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 30%,tran
     <button class="big-play" id="bigPlay" type="button" aria-label="커리어 여정 재생">
       <svg class="ring" viewBox="0 0 148 148" aria-hidden="true"><defs><path id="circ" d="M74,74 m-62,0 a62,62 0 1,1 124,0 a62,62 0 1,1 -124,0"/></defs><text><textPath href="#circ" textLength="389" lengthAdjust="spacing">PLAY THE JOURNEY · PLAY THE JOURNEY · </textPath></text></svg>
       <span class="core"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+    </button>
+    <button class="fs-btn" id="introFs" type="button" aria-label="전체 화면">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg><span>전체 화면</span><kbd>F</kbd>
     </button>
   </div>
 </section>
@@ -886,6 +896,18 @@ function tripsSweep(s, tok, restore=false, total=6){   // total: 화면 전체 �
 /* ════════════════════════════ music ════════════════════════════
    오리지널 신스 비트(Web Audio로 직접 연주, 외부 음원·저작권 없음). 120 BPM, Am F C G 진행.
    장면은 이 음악 시계에 맞춘다: onBeat(tok,1)=다음 박, onBeat(tok,4)=다음 마디 첫 박. */
+/* 남은 시간: 재생 중에만 줄어들고, 요약 화면이 뜨면 00:00. RUNTIME은 실측 전체 길이(재생 버튼 → 요약 화면) */
+const RUNTIME = 77;   // 실측: 재생 버튼 → 요약 화면 시작(지구로 빠지는 순간) 77초
+let runElapsed=0, runLast=0;
+const mmss=t=>{ const v=Math.max(0,Math.ceil(t)); return pad2(Math.floor(v/60))+':'+pad2(v%60); };
+function clockTick(now){
+  if(playing && phase!=='outro' && runLast) runElapsed+=(now-runLast)/1000;
+  runLast=playing&&phase!=='outro'?now:0;
+  const txt= phase==='outro' ? '00:00' : mmss(RUNTIME-runElapsed);
+  if($('clock').textContent!==txt) $('clock').textContent=txt;
+  requestAnimationFrame(clockTick);
+}
+requestAnimationFrame(clockTick);
 const BPM = 120, SPB = 60/BPM;          // 1박 0.5초, 1마디 2초
 const Music = (()=>{
   const AC = window.AudioContext || window.webkitAudioContext;
@@ -1107,7 +1129,7 @@ function hideIntro(){
   const it=$('intro'); if(it.dataset.gone) return; it.dataset.gone='1';
   if(hasGsap && !reduced){
     gsap.to('#introName .ch',{yPercent:-120,opacity:0,duration:.6,ease:'expo.in',stagger:.025});
-    gsap.to(['.kicker','.intro-ko','.big-play'],{opacity:0,y:-14,duration:.4,stagger:.04});
+    gsap.to(['.kicker','.intro-ko','.big-play','.fs-btn'],{opacity:0,y:-14,duration:.4,stagger:.04});
     gsap.to(it,{autoAlpha:0,duration:.7,delay:.55});
   } else G.set(it,{autoAlpha:0});
 }
@@ -1137,7 +1159,7 @@ function jump(i){
   sequence(i);
 }
 function resetJourney(keepIntro){
-  token++; at=-1; target=-1; phase='intro'; eraSeen=new Set(); clearOverlays(); Music.reset();
+  token++; at=-1; target=-1; phase='intro'; eraSeen=new Set(); clearOverlays(); Music.reset(); runElapsed=0; runLast=0;
   setRoute(0); setVisited(-1); setBeacon(-1,0); setPin(-1); renderRail(); closeOutro(); setLabels(false);
   hideChapter(true); G.set($('dossier'),{autoAlpha:0});
 }
@@ -1149,6 +1171,7 @@ $('next').addEventListener('click',()=>jump(at+1));
 $('restart').addEventListener('click',()=>{ resetJourney(); start(); });
 function fullscreen(){ if(!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(()=>{}); else document.exitFullscreen?.(); }
 $('fs').addEventListener('click',fullscreen);
+$('introFs').addEventListener('click',fullscreen);
 function toggleSound(){ const m=Music.toggleMute(); $('snd').setAttribute('aria-pressed',String(m)); $('snd').setAttribute('aria-label',m?'소리 켜기':'소리 끄기'); toast(m?'소리 꺼짐 · M으로 켜기':'소리 켜짐'); }
 $('snd').addEventListener('click',toggleSound);
 document.addEventListener('keydown',e=>{
@@ -1171,7 +1194,7 @@ function introKinetics(){
   gsap.fromTo('.kicker span',{yPercent:100},{yPercent:0,duration:.9,ease:'expo.out',delay:.2});
   gsap.fromTo(chars,{yPercent:115},{yPercent:0,duration:1.3,ease:'expo.out',stagger:.05,delay:.35});
   gsap.fromTo('.intro-ko span',{yPercent:110},{yPercent:0,duration:.9,ease:'expo.out',delay:1});
-  gsap.fromTo(['.big-play'],{opacity:0,y:18},{opacity:1,y:0,duration:.9,ease:'expo.out',stagger:.12,delay:1.2});
+  gsap.fromTo(['.big-play','.fs-btn'],{opacity:0,y:18},{opacity:1,y:0,duration:.9,ease:'expo.out',stagger:.12,delay:1.2});
 }
 
 (document.fonts ? document.fonts.ready : Promise.resolve()).then(()=>{ initMap(); introKinetics(); });
