@@ -452,9 +452,11 @@
   .slide.dark .ef-seg[data-step], .slide.dark .ef-link[data-step], .slide.dark .ef-guide[data-step] { translate: none; filter: none; }
   .ef-link path { fill: none; stroke-width: 1.6; }
   .ef-link circle { stroke: #05070d; stroke-width: 2; }
-  .ef-link.ai path { stroke: #7fe0ff; } .ef-link.ai circle { fill: #7fe0ff; }
-  .ef-link.dt path { stroke: #22a6e0; } .ef-link.dt circle { fill: #22a6e0; }
-  .ef-link.pp path { stroke: #3a8fd0; } .ef-link.pp circle { fill: #3a8fd0; }
+  /* 선·점은 조각과 명도·채도를 엇갈리게: 밝은 조각엔 진한 선, 어두운 조각엔 밝은 선 */
+  .ef-link.ai path { stroke: #00a3e0; } .ef-link.ai circle { fill: #00a3e0; }
+  .ef-link.dt path { stroke: #8af0ff; } .ef-link.dt circle { fill: #8af0ff; }
+  .ef-link.pp path { stroke: #5cc8ff; } .ef-link.pp circle { fill: #5cc8ff; }
+  .ef-link circle { r: 6px; }
   .ef-card.ai { border-color: rgba(127,224,255,.55); } .ef-card.dt { border-color: rgba(34,166,224,.6); }
   .ef-center { left: 545px; top: 353px; width: 190px; height: 120px; flex-direction: column; white-space: normal; font-size: 16px; font-weight: 800; line-height: 1.32; color: #fff; letter-spacing: -.01em; }
   .ef-card { box-sizing: border-box; width: 344px; padding: 22px 26px; border-radius: 16px; background: rgba(255,255,255,.04); border: 1px solid rgba(223,229,238,.12); }
@@ -472,13 +474,15 @@
   .ef-focus.active .ef-seg.ai, .ef-focus.active .ef-seg.dt, .ef-focus.active .ef-link.ai, .ef-focus.active .ef-link.dt { animation: ef-dim .9s .8s ease forwards; }
   .ef-focus.active .ef-seg.pp { animation: ef-seg 1s .8s ease forwards; }
   .ef-focus.active .ef-link.pp path { animation: ef-line 1s .8s ease forwards; }
+  .ef-focus.active .ef-link.pp circle { animation: ef-dot 1s .8s ease forwards; }
   @keyframes ef-pop {
     to { transform: scale(1.04); border-color: #5fb4f0; background: linear-gradient(180deg, rgba(58,143,208,.34), rgba(12,111,176,.12));
          box-shadow: 0 0 0 1px rgba(95,180,240,.6), 0 24px 70px rgba(58,143,208,.45); }
   }
   @keyframes ef-dim  { to { opacity: .28; } }
   @keyframes ef-seg  { to { fill: #3aa6ee; } }
-  @keyframes ef-line { to { stroke-width: 3; } }
+  @keyframes ef-line { to { stroke-width: 3; stroke: #d6f2ff; } }
+  @keyframes ef-dot  { to { fill: #ffffff; } }
   @media print { .ef-focus .ef-card.pp { transform: scale(1.04); } }
 
   /* 인용 장(마무리 앞): 나델라 에세이 원문. 따옴표 → 본문 → 형광 밑줄(휴먼 캐피털·토큰 캐피털) → 출처 순으로 등장 */
