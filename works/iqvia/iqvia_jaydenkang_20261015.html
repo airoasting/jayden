@@ -2160,6 +2160,11 @@
   }
 
   addEventListener('resize', fit);
+  // 주소의 #번호를 직접 바꾸면 그 장으로 이동한다(go 안의 replaceState는 hashchange를 일으키지 않아 되돌이 없음)
+  addEventListener('hashchange', () => {
+    const n = parseInt(location.hash.slice(1), 10);
+    if (n >= 1 && n <= slides.length && n - 1 !== i) go(n - 1);
+  });
   addEventListener('keydown', e => {
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (handleKey(e.key)) e.preventDefault();
