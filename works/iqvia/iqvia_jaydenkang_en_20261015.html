@@ -762,6 +762,157 @@
     .slide.dark [data-step] { opacity: 1 !important; translate: none !important; filter: none !important; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  /* 올리브영 덱(2026-10-19)에서 가져온 세 장: Z세대 방해(.sb) · 시간 단축(.ts) · 개인 간 격차(.gp). 색은 IQVIA 다크 기준으로 바꿈(그린 → 시안 #00a3e0, 진한 그린 글자 → #4cc3f0, 보조 막대 → 블루 #0c7bc0, 회색 막대 → #3a4357) */
+  .ts-row { left: 76px; width: 1128px; height: 78px; display: flex; align-items: center; gap: 24px; }
+  .ts-y { width: 70px; font: 800 26px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #f4f6fc; }
+  .ts-bar { position: relative; width: 640px; height: 44px; border-radius: 10px; background: #141a27; }
+  .ts-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; border-radius: 10px; background: #3a4357; transition: width 1.1s cubic-bezier(.16,1,.3,1) .2s; }
+  .ts-row.on .ts-fill { width: var(--w); background: #00a3e0; }
+  .ts-row.es .ts-fill { background: #3a4357; } .ts-row.es.on .ts-fill { background: #4cc3f0; }
+  .slide.dark.instant .ts-fill { transition: none; }
+  .ts-min { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; font-weight: 800; color: #f4f6fc; }
+  .ts-note { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .ts-note strong { font-size: 24px; font-weight: 800; color: #4cc3f0; letter-spacing: -.01em; }
+  .ts-note small { font-size: 13px; font-weight: 600; color: #8a93a6; line-height: 1.35; word-break: keep-all; }
+  .ts-bub { right: 76px; top: 566px; margin: 0; padding: 8px 14px 9px; border-radius: 12px; background: #f4f6fc; color: #05070d; font-size: 15px; font-weight: 800; white-space: nowrap; }
+  .ts-bub::after { content: ""; position: absolute; left: -7px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 0; border-right-color: #f4f6fc; }   /* 꼬리는 왼쪽 55분 단축 쪽 */
+  .slide.dark .ts-bub.on { transition-delay: 1.1s; }
+  .ts-split { left: 76px; width: 1128px; height: 0; margin: 0; border-top: 1.5px dashed #3a4357; font-size: 12.5px; font-weight: 700; color: #6b7489; }
+  .ts-split span { position: absolute; right: 0; white-space: nowrap; } .ts-split span:first-child { bottom: 4px; } .ts-split span:last-child { top: 5px; }   /* 위 묶음 이름은 선 위, 아래 묶음 이름은 선 아래 */
+  /* 직원의 AI 반발(.sb): 왼쪽 가로 막대 둘(전체·Z세대), 오른쪽 카드(방해 행동 + 임원 인식). 진한 면은 Z세대 막대 하나 */
+  .sb-lg { left: auto; right: 488px; top: 172px; margin: 0; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: #c3c9d6; }
+  .sb-lg i { width: 12px; height: 12px; border-radius: 3px; margin-left: 12px; } .sb-lg i.y25 { background: #3a4357; } .sb-lg i.y26 { background: #00a3e0; }
+  .sb-chart { left: 76px; top: 232px; width: 640px; height: 330px; display: flex; justify-content: space-around; align-items: flex-end; border-bottom: 1.5px solid #3a4357; box-sizing: border-box; padding-bottom: 0; }
+  .sb-grp { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .sb-cols { display: flex; align-items: flex-end; gap: 18px; }
+  .sb-col { width: 96px; display: flex; flex-direction: column; align-items: center; }
+  .sb-col b { margin-bottom: 8px; font-size: 30px; font-weight: 800; letter-spacing: -.02em; color: #8a93a6; opacity: 0; transition: opacity .4s 1s; }
+  .sb-col i { display: block; width: 96px; height: 0; border-radius: 10px 10px 0 0; background: #3a4357; transition: height 1s cubic-bezier(.16,1,.3,1) .1s; }
+  .sb-col.y26 i { background: #00a3e0; } .sb-col.y26 b { color: #4cc3f0; } .sb-col.y26.all i { background: #0c7bc0; }
+  .sb-col span { position: absolute; bottom: -24px; font: 700 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8a93a6; }
+  .sb-col { position: relative; }
+  .sb-chart.on .sb-col i { height: var(--h); } .sb-chart.on .sb-col b { opacity: 1; }
+  .slide.dark.instant .sb-col i, .slide.dark.instant .sb-col b { transition: none; }
+  .sb-grp p { position: absolute; top: calc(100% + 34px); margin: 0; text-align: center; font-size: 18px; font-weight: 800; color: #f4f6fc; white-space: nowrap; }
+  .sb-grp p small { display: block; margin-top: 4px; font-size: 12px; font-weight: 600; color: #8a93a6; }
+  .sb-card { left: 760px; top: 232px; width: 444px; height: 418px; box-sizing: border-box; padding: 30px 32px; border-radius: 16px; background: #0e131f; border: 1px solid #232b3c; display: flex; flex-direction: column; }
+  .sb-card h4 { margin: 0; font-size: 18px; font-weight: 800; color: #f4f6fc; }
+  .sb-card ul { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .sb-card li { position: relative; padding-left: 14px; font-size: 16px; line-height: 1.45; color: #c3c9d6; }
+  .sb-card li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: #6b7489; }
+  .sb-exec { margin-top: auto; padding-top: 20px; border-top: 1px solid #232b3c; display: flex; align-items: center; gap: 16px; }
+  .sb-exec b { font-size: 48px; font-weight: 800; letter-spacing: -.02em; color: #f4f6fc; }
+  .sb-exec span { font-size: 14.5px; font-weight: 600; line-height: 1.45; color: #c3c9d6; word-break: keep-all; }
+  /* 개인 간 AI 격차(.gp): 카드 셋(교육 증가 → 현재 나뉜 인력 구성 → 경험 격차). 분석 시점은 필(.gp-date). 진한 강조는 3번 카드 하나 */
+  .gp-card { top: 220px; width: 352px; height: 430px; box-sizing: border-box; padding: 28px 28px 24px; border-radius: 20px; display: flex; flex-direction: column;
+    background: #0e131f; border: 1px solid #1c2333; }
+  .gp-card.hot { background: #0b1a2b; border-color: #00a3e0; box-shadow: 0 16px 40px rgba(0,163,224,.18); }
+  .gp-k { font-size: 15px; font-weight: 800; color: #4cc3f0; letter-spacing: -.01em; }
+  .gp-big { margin-top: 14px; font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -.03em; color: #f4f6fc; white-space: nowrap; }
+  .gp-big i { font-style: normal; font-size: 30px; color: #6b7489; margin: 0 8px; vertical-align: middle; }
+  .gp-card p { margin: 14px 0 0; font-size: 16px; line-height: 1.5; font-weight: 600; color: #c3c9d6; word-break: keep-all; }
+  .gp-card small { margin-top: auto; font-size: 12px; color: #6b7489; }
+  .gp-card { position: absolute; }
+  .gp-date { position: absolute; top: 24px; right: 24px; padding: 5px 11px; border-radius: 999px; border: 1px solid #2a3346; background: transparent;
+    font: 600 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8a93a6; letter-spacing: .02em; }
+  .gp-date.in { position: static; display: inline-block; margin-left: 10px; vertical-align: 2px; }
+  .gp-rows { margin: 30px 0 0; display: flex; flex-direction: column; gap: 14px; }
+  .gp-rows dt { font-size: 13px; font-weight: 700; color: #8a93a6; }
+  .gp-rows dd { margin: 4px 0 0; display: flex; align-items: center; gap: 12px; }
+  .gp-rows dd b { flex: none; min-width: 84px; font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: -.03em; color: #f4f6fc; }
+  .gp-rows dd span { font-size: 13.5px; line-height: 1.45; font-weight: 600; color: #c3c9d6; word-break: keep-all; }
+  /* 1번 카드 막대(.gp-chart): 58% = 170px 기준 비례. 카드가 뜰 때 막대가 아래에서 자란다 */
+  .gp-chart { margin-top: 30px; height: 214px; display: flex; align-items: flex-end; justify-content: center; gap: 56px; border-bottom: 1px solid #3a4357; }
+  .gp-col { width: 84px; display: flex; flex-direction: column; align-items: center; position: relative; }
+  .gp-col b { font-size: 26px; font-weight: 800; letter-spacing: -.02em; color: #8a93a6; margin-bottom: 8px; }
+  .gp-col.hot b { font-size: 34px; color: #f4f6fc; }
+  .gp-col i { display: block; width: 84px; border-radius: 6px 6px 0 0; background: #3a4357; transform-origin: bottom; transition: transform .9s cubic-bezier(.16,1,.3,1) .3s; }
+  .gp-col.hot i { background: #00a3e0; }
+  .gp-col span { position: absolute; bottom: -24px; font: 600 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8a93a6; }
+  .gp-card:not(.on) .gp-col i { transform: scaleY(0); }
+  .gp-card p.gp-lead { margin-top: 30px; }
+  .gp-lead { font-size: 18px !important; font-weight: 800 !important; color: #f4f6fc !important; line-height: 1.45 !important; }
+  .gp-segs { list-style: none; margin: 30px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .gp-segs li { display: grid; grid-template-columns: 64px 1fr; align-items: baseline; row-gap: 6px; }
+  .gp-segs b { font-size: 24px; font-weight: 800; letter-spacing: -.02em; color: #f4f6fc; }
+  .gp-segs span { font-size: 13px; font-weight: 600; color: #c3c9d6; white-space: nowrap; }
+  .gp-segs i { grid-column: 1 / -1; display: block; height: 10px; border-radius: 5px; }
+  .gp-segs .a i { background: #00a3e0; } .gp-segs .a2 i { background: #0c7bc0; } .gp-segs .b i { background: #3a4357; } .gp-segs .c i { background: #ff7878; }
+  /* 3번 카드 비교 막대(.gp-cmp): 6개월 이상(그린) 대 신규(회색), 50% = 막대 영역 전체 */
+  .gp-legend { margin: 30px 0 0 !important; display: flex; align-items: center; gap: 6px; font-size: 12.5px !important; font-weight: 700 !important; color: #c3c9d6 !important; }
+  .gp-legend i { width: 12px; height: 12px; border-radius: 3px; margin-left: 10px; } .gp-legend i:first-child { margin-left: 0; }
+  .gp-legend i.h { background: #00a3e0; } .gp-legend i.l { background: #3a4357; }
+  /* 높을수록 좋은 지표만 둔다(방향이 다른 지표를 섞으면 신규 사용자가 이긴 것처럼 읽힌다) */
+  .gp-cmp { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; gap: 24px; }
+  .gp-cmp em { display: block; margin-bottom: 6px; font-style: normal; font-size: 15px; font-weight: 700; color: #f4f6fc; }
+  /* 막대는 고정 폭 트랙(.t) 안에서 50% = 트랙 전체로 그린다. 값 글자 폭 때문에 두 막대가 같은 길이로 잘리지 않게 트랙과 값을 분리 */
+  .gp-cmp .h, .gp-cmp .l { display: flex; align-items: center; gap: 10px; height: 26px; margin-top: 6px; }
+  .gp-cmp .t { flex: none; width: 210px; }
+  .gp-cmp i { display: block; height: 20px; border-radius: 0 4px 4px 0; }
+  .gp-cmp .h i { background: #00a3e0; } .gp-cmp .l i { background: #3a4357; }
+  .gp-cmp b { font-size: 16px; font-weight: 800; color: #f4f6fc; } .gp-cmp .l b { font-weight: 600; color: #8a93a6; }
+  .gp-delta { margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: #f06464; font-size: 12.5px; font-weight: 800; color: #fff; vertical-align: 1px; }
+  .gp-band { left: 76px; top: 512px; width: 1128px; }
+  .gp-cap { margin: 0 0 12px; font-size: 17px; font-weight: 800; color: #f4f6fc; letter-spacing: -.01em; }
+  .gp-cap span { margin-left: 10px; font-size: 12px; font-weight: 600; color: #6b7489; }
+  .gp-bar { display: flex; gap: 3px; height: 64px; }
+  .gp-bar i { display: flex; align-items: center; gap: 8px; padding: 0 16px; border-radius: 8px; font-style: normal; font-size: 14px; font-weight: 600; color: #f4f6fc; white-space: nowrap; overflow: hidden; }
+  .gp-bar i b { font-size: 20px; font-weight: 800; }
+  .gp-bar .a { background: #00a3e0; } .gp-bar .b { background: #232b3c; } .gp-bar .c { background: #3a1c22; }
+  .slide.dark.gp .gp-card.on, .slide.dark.sb .sb-card.on { filter: none; }
+
+  /* 올리브영 덱에서 가져온 모델 IQ 장(.iq). 색은 IQVIA 다크 기준(그린 → 시안, 사람 분포 면 → #1a2132) */
+  .iq-chart { left: 0; top: 0; width: 1280px; height: 720px; overflow: visible; pointer-events: none; }
+  .iq-human { fill: #1a2132; }
+  .iq-base { stroke: #3a4357; stroke-width: 1; }
+  .iq-ref { stroke: #6b7489; stroke-width: 1; stroke-dasharray: 4 4; } .iq-ref.top { stroke: #4cc3f0; }
+  .iq-ref-t { font-size: 13px; font-weight: 700; fill: #8a93a6; } .iq-ref-t.top { fill: #4cc3f0; }
+  .iq-ref.kr { stroke: #f4f6fc; opacity: .55; } .iq-ref-t.kr { fill: #f4f6fc; }
+  .iq-ax { font: 500 12px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #f4f6fc; }
+  .iq-ax-t { font-size: 12px; font-weight: 600; fill: #8a93a6; }
+  .iq-dots { left: 0; top: 0; width: 1280px; height: 720px; pointer-events: none; }
+  .iq-dot { position: absolute; left: 0; top: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: #f06464; border: 1.5px solid #05070d; box-sizing: border-box;
+    transform: translate(var(--x0), var(--y0)); transition: transform 1.6s cubic-bezier(.65,0,.35,1) var(--d), background .6s ease var(--d); }
+  .iq:has(.iq-go.on) .iq-dot { transform: translate(var(--x1), var(--y1)); background: #4cc3f0; }
+  /* 2026.10 점에 마우스를 올리면 모델 이름과 점수 툴팁 */
+  .iq:has(.iq-go.on) .iq-dot { pointer-events: auto; cursor: default; }
+  .iq-dot::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); padding: 6px 10px; border-radius: 8px; background: #f4f6fc; color: #05070d; font-size: 13px; font-weight: 700; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s ease; z-index: 5; }
+  .iq:has(.iq-go.on) .iq-dot:hover { z-index: 6; box-shadow: 0 0 0 3px rgba(0,163,224,.4); }
+  .iq:has(.iq-go.on) .iq-dot:hover::after { opacity: 1; }
+  .iq-when { right: 76px; top: 160px; height: 40px; width: 300px; text-align: right; }
+  .iq-when span { position: absolute; right: 0; top: 0; font: 800 34px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: -.02em; transition: opacity .5s ease; }
+  .iq-when .a { color: #e8504f; } .iq-when .b { color: #4cc3f0; opacity: 0; }
+  .iq:has(.iq-go.on) .iq-when .a { opacity: 0; } .iq:has(.iq-go.on) .iq-when .b { opacity: 1; }
+  .iq-stat { left: 900px; width: 304px; height: 132px; box-sizing: border-box; padding: 16px 24px; border-radius: 16px; background: #0e131f; border: 1px solid #232b3c; }
+  .iq-stat .k { font-size: 14px; font-weight: 700; color: #8a93a6; }
+  .iq-stat .t { display: block; margin-top: 4px; font: 600 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #6b7489; }
+  .iq-stat .v { margin: 8px 0 0; display: flex; align-items: baseline; gap: 10px; font-weight: 800; }
+  .iq-stat .v s { font-size: 24px; color: #e8504f; text-decoration: none; }
+  .iq-stat .v i { font-style: normal; font-size: 18px; color: #6b7489; }
+  .iq-stat .v b { font-size: 40px; color: #4cc3f0; letter-spacing: -.02em; opacity: .15; transition: opacity .6s ease 1.2s; }
+  .iq:has(.iq-go.on) .iq-stat .v b { opacity: 1; }
+  .iq-stat.hot { background: #0b1a2b; border-color: #00a3e0; } .iq-stat.hot .v b { color: #4cc3f0; }
+  .iq-legend { left: 76px; top: 632px; margin: 0; width: 784px; display: flex; gap: 18px; font-size: 13px; font-weight: 600; color: #c3c9d6; justify-content: center; }
+  .iq-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+  .iq-legend i.h { border-radius: 3px; background: #1a2132; } .iq-legend i.a { background: #f06464; } .iq-legend i.b { background: #4cc3f0; }
+
+  /* AI 도입 대비 조직 성과(.og): gp 카드 문법을 그대로 쓰고, 1번 카드에만 가로 막대(.og-bars, 100% = 220px)를 둔다 */
+  .og-bars { list-style: none; margin: 34px 0 0; padding: 0; display: flex; flex-direction: column; gap: 26px; }
+  .og-bars em { display: block; margin-bottom: 8px; font-style: normal; font-size: 15px; font-weight: 700; color: #c3c9d6; }
+  .og-bars .t { display: flex; align-items: center; gap: 12px; }
+  .og-bars i { display: block; height: 28px; width: calc(var(--v) * 2.2px); border-radius: 0 6px 6px 0; background: #00a3e0; transition: width 1s cubic-bezier(.16,1,.3,1) .3s; }
+  .og-bars .lo i { background: #ff7878; }
+  .og-bars b { font-size: 28px; font-weight: 800; letter-spacing: -.02em; color: #f4f6fc; }
+  .og-bars .lo b { color: #ff7878; }
+  .gp-card:not(.on) .og-bars i { width: 0; }
+  .slide.dark.instant .og-bars i { transition: none; }
+  .og .gp-rows { gap: 22px; }
+  .og .gp-rows dd b { min-width: 104px; font-size: 44px; }
+  .og .gp-rows dd b.lo { color: #ff7878; } .og .gp-rows dd b.hi { color: #4cc3f0; }
+  .og .gp-rows dd span { font-size: 14.5px; }
+  .og .og-bars, .og .gp-rows { margin: auto 0; gap: 36px; } .og .gp-card small { margin-top: 0; }   /* 내용을 카드 머리와 출처 사이 가운데에 둔다 */
+  .og .og-bars em { margin-bottom: 10px; }
 </style>
 </head>
 <body>
@@ -968,6 +1119,64 @@
     </p>
   </section>
 
+  <!-- 리더 질문 분류: 질문 54건을 레벨 셋·카테고리 여덟으로 나누고 건수 대신 비중(%)으로 보여 준다. 레벨 비중 = 모델 17, 인프라·보안 20, 전략 24, 조직·운영 39. 직무·산업별 LLM 적용 질문은 Model로 따로 떼어 맨 위에 둔다 -->
+  <section class="slide dark" aria-label="AI questions by category: 17 percent model, 20 percent data and security, 24 percent strategy, 39 percent people and culture">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">Most AI questions are about strategy and people, not models</h2>
+    <table class="abs qs">
+      <thead><tr><th scope="col">Level</th><th scope="col">Category</th><th scope="col">Share</th><th scope="col">Representative question</th></tr></thead>
+      <tbody>
+        <tr class="md" data-step="1"><th rowspan="1" scope="rowgroup"><span>Model</span><b>17%</b></th><td class="cat">Matching models to industry and tasks</td><td class="sh"><i style="width:44px"></i><span>17%</span></td><td class="q">Which LLMs should we apply to which tasks, by function and industry, to deliver real results?</td></tr>
+        <tr class="in" data-step="2"><th rowspan="2" scope="rowgroup"><span>Data &amp; security</span><b>20%</b></th><td class="cat">Security, privacy, IP and compliance</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">How do we manage security, privacy, IP and usage policies when people and AI work side by side?</td></tr>
+        <tr class="in" data-step="2"><td class="cat">Connecting data and systems</td><td class="sh"><i style="width:18px"></i><span>7%</span></td><td class="q">How do we connect scattered data and work outputs into a system that builds organizational knowledge and context?</td></tr>
+        <tr class="st" data-step="3"><th rowspan="2" scope="rowgroup"><span>Strategy</span><b>24%</b></th><td class="cat">Strategy, ownership and scale</td><td class="sh"><i style="width:39px"></i><span>15%</span></td><td class="q">How should we set our AI transformation strategy, who should lead it, and how far should we scale it?</td></tr>
+        <tr class="st" data-step="3"><td class="cat">Measuring productivity and ROI</td><td class="sh"><i style="width:23px"></i><span>9%</span></td><td class="q">How do we measure what people and AI achieve together, and manage productivity against cost?</td></tr>
+        <tr class="og" data-step="4"><th rowspan="3" scope="rowgroup"><span>People &amp; culture</span><b>39%</b></th><td class="cat">Leading culture change and adoption</td><td class="sh"><i style="width:52px"></i><span>20%</span></td><td class="q">How can leaders embed AI-first ways of working while narrowing resistance and skill gaps?</td></tr>
+        <tr class="og" data-step="4"><td class="cat">Turning know-how into shared assets</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">How do we turn individual prompts and know-how into knowledge assets for the whole organization?</td></tr>
+        <tr class="og" data-step="4"><td class="cat">Upskilling by role and level</td><td class="sh"><i style="width:16px"></i><span>6%</span></td><td class="q">How can leaders train people by level and role, and make AI skills stick in daily work?</td></tr>
+      </tbody>
+    </table>
+    <p class="abs footnote">Share of questions by category (800+ applicants).</p>
+  </section>
+
+  <!-- 노력 배분 10-20-70: BCG "AI Fuels Field Service Transformation"(2026-01-09) Exhibit 1을 우리말 원고 기준으로 영어로 다시 썼다 -->
+  <!-- 올리브영 덱에서 가져옴: WRITER 2026 조사, AI 전략 방해 -->
+  <section class="slide dark sb" data-gap="1000" aria-label="29 percent of employees and 44 percent of Gen Z admit undermining their company's AI strategy; 76 percent of executives see it as a serious threat">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">29% of staff and 44% of Gen Z work against AI strategy</h2>
+    <p class="abs cr-sub">Share who admit undermining AI strategy</p>
+    <p class="abs sb-lg"><i class="y25"></i>2025 survey<i class="y26"></i>2026 survey</p>
+    <div class="abs sb-chart" data-step="1">
+      <div class="sb-grp"><div class="sb-cols"><div class="sb-col y25"><b>31%</b><i style="--h:186px"></i><span>2025</span></div><div class="sb-col y26 all"><b>29%</b><i style="--h:174px"></i><span>2026</span></div></div><p>All employees</p></div>
+      <div class="sb-grp"><div class="sb-cols"><div class="sb-col y25"><b>41%</b><i style="--h:246px"></i><span>2025</span></div><div class="sb-col y26"><b>44%</b><i style="--h:264px"></i><span>2026</span></div></div><p>Younger workers<small>2025: Millennials &amp; Gen Z · 2026: Gen Z</small></p></div>
+    </div>
+    <div class="abs sb-card" data-step="2">
+      <h4>What counted as undermining</h4>
+      <ul><li>Entering company data into public AI tools</li><li>Using AI tools the company has not approved</li><li>Refusing to use AI at all</li></ul>
+      <div class="sb-exec"><b>76%</b><span>of executives say employee pushback seriously threatens the company’s future</span></div>
+    </div>
+    <p class="abs footnote">Source: WRITER and Workplace Intelligence, 2026 Enterprise AI Adoption Survey (April 7, 2026; 2,400 knowledge workers, US and Europe) · 2025 edition (March 2025; 1,600, US). Regions and generation cuts differ by year</p>
+  </section>
+
+  <section class="slide dark" aria-label="AI transformation is 70 percent people and process, 20 percent data and technology, 10 percent AI">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">AI transformation is 70% about people, only 10% about AI</h2>
+    <svg class="abs ef-ring" viewBox="0 0 1280 720" aria-hidden="true"><circle class="ef-guide" data-step="1" cx="640" cy="413" r="180"/><path class="ef-seg ai" data-step="2" d="M645.5 255.1A158 158 0 0 1 728.4 282.0L704.9 316.8A116 116 0 0 0 644.0 297.1z"/><path class="ef-seg dt" data-step="3" d="M737.3 288.5A158 158 0 0 1 788.5 359.0L749.0 373.3A116 116 0 0 0 711.4 321.6z"/><path class="ef-seg dt" data-step="3" d="M791.9 369.4A158 158 0 0 1 791.9 456.6L751.5 445.0A116 116 0 0 0 751.5 381.0z"/><path class="ef-seg pp" data-step="4" d="M788.5 467.0A158 158 0 0 1 737.3 537.5L711.4 504.4A116 116 0 0 0 749.0 452.7z"/><path class="ef-seg pp" data-step="4" d="M728.4 544.0A158 158 0 0 1 645.5 570.9L644.0 528.9A116 116 0 0 0 704.9 509.2z"/><path class="ef-seg pp" data-step="4" d="M634.5 570.9A158 158 0 0 1 551.6 544.0L575.1 509.2A116 116 0 0 0 636.0 528.9z"/><path class="ef-seg pp" data-step="4" d="M542.7 537.5A158 158 0 0 1 491.5 467.0L531.0 452.7A116 116 0 0 0 568.6 504.4z"/><path class="ef-seg pp" data-step="4" d="M488.1 456.6A158 158 0 0 1 488.1 369.4L528.5 381.0A116 116 0 0 0 528.5 445.0z"/><path class="ef-seg pp" data-step="4" d="M491.5 359.0A158 158 0 0 1 542.7 288.5L568.6 321.6A116 116 0 0 0 531.0 373.3z"/><path class="ef-seg pp" data-step="4" d="M551.6 282.0A158 158 0 0 1 634.5 255.1L636.0 297.1A116 116 0 0 0 575.1 316.8z"/><g class="ef-link ai" data-step="2"><path d="M682 283H860"/><circle cx="682" cy="283" r="5"/></g><g class="ef-link dt" data-step="3"><path d="M777 413H860"/><circle cx="777" cy="413" r="5"/></g><g class="ef-link pp" data-step="4"><path d="M529 332H420"/><circle cx="529" cy="332" r="5"/></g></svg>
+    <p class="abs center ef-center" data-step="1">How to allocate effort for a successful field-service AI transformation</p>
+    <div class="abs ef-card pp" data-step="4" style="left:76px;top:176px;height:474px"><b class="pct">70%</b><h4>Focus on people and process</h4><ul>
+      <li>Lead with a clear vision and a compelling case that energizes people</li>
+      <li>Bring service teams in through co-creation and fast iteration</li>
+      <li>Redefine processes and roles to sharpen execution</li>
+      <li>Align culture with service strategy and KPIs</li>
+      <li>Upskill teams and build the capabilities they need</li></ul></div>
+    <div class="abs ef-card ai" data-step="2" style="left:860px;top:176px;height:200px"><b class="pct">10%</b><h4>Focus on AI</h4><ul>
+      <li>Apply field-service machine learning, predictive analytics and generative AI</li></ul></div>
+    <div class="abs ef-card dt" data-step="3" style="left:860px;top:396px;height:254px"><b class="pct">20%</b><h4>Focus on data and technology</h4><ul>
+      <li>Put robust technology in the hands of frontline teams</li>
+      <li>Integrate field and service systems to automate end to end</li></ul></div>
+    <p class="abs footnote">Source: BCG, “AI Fuels Field Service Transformation. Change Management Provides the Spark,” January 2026</p>
+  </section>
+
   <!-- AX Methodology 1: 좁은 의미의 AX(1→5)가 먼저, 클릭하면 10단계 전체가 펼쳐진다 -->
   <section class="slide dark" data-click="1" aria-label="AI transformation needs a full view of how work gets done, narrow view first">
     <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
@@ -1022,47 +1231,70 @@
     <div class="abs ar-box " data-step="4" style="left:692px;top:226px;width:460px;height:398px"><em>4</em><b>Hybrid Workforce Management</b><span>(Workforce design → Lifecycle management → Organizational change)</span></div>
   </section>
 
-  <!-- 리더 질문 분류: 질문 54건을 레벨 셋·카테고리 여덟으로 나누고 건수 대신 비중(%)으로 보여 준다. 레벨 비중 = 모델 17, 인프라·보안 20, 전략 24, 조직·운영 39. 직무·산업별 LLM 적용 질문은 Model로 따로 떼어 맨 위에 둔다 -->
-  <section class="slide dark" aria-label="AI questions by category: 17 percent model, 20 percent data and security, 24 percent strategy, 39 percent people and culture">
-    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
-    <h2 class="abs head-title">Most AI questions are about strategy and people, not models</h2>
-    <table class="abs qs">
-      <thead><tr><th scope="col">Level</th><th scope="col">Category</th><th scope="col">Share</th><th scope="col">Representative question</th></tr></thead>
-      <tbody>
-        <tr class="md" data-step="1"><th rowspan="1" scope="rowgroup"><span>Model</span><b>17%</b></th><td class="cat">Matching models to industry and tasks</td><td class="sh"><i style="width:44px"></i><span>17%</span></td><td class="q">Which LLMs should we apply to which tasks, by function and industry, to deliver real results?</td></tr>
-        <tr class="in" data-step="2"><th rowspan="2" scope="rowgroup"><span>Data &amp; security</span><b>20%</b></th><td class="cat">Security, privacy, IP and compliance</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">How do we manage security, privacy, IP and usage policies when people and AI work side by side?</td></tr>
-        <tr class="in" data-step="2"><td class="cat">Connecting data and systems</td><td class="sh"><i style="width:18px"></i><span>7%</span></td><td class="q">How do we connect scattered data and work outputs into a system that builds organizational knowledge and context?</td></tr>
-        <tr class="st" data-step="3"><th rowspan="2" scope="rowgroup"><span>Strategy</span><b>24%</b></th><td class="cat">Strategy, ownership and scale</td><td class="sh"><i style="width:39px"></i><span>15%</span></td><td class="q">How should we set our AI transformation strategy, who should lead it, and how far should we scale it?</td></tr>
-        <tr class="st" data-step="3"><td class="cat">Measuring productivity and ROI</td><td class="sh"><i style="width:23px"></i><span>9%</span></td><td class="q">How do we measure what people and AI achieve together, and manage productivity against cost?</td></tr>
-        <tr class="og" data-step="4"><th rowspan="3" scope="rowgroup"><span>People &amp; culture</span><b>39%</b></th><td class="cat">Leading culture change and adoption</td><td class="sh"><i style="width:52px"></i><span>20%</span></td><td class="q">How can leaders embed AI-first ways of working while narrowing resistance and skill gaps?</td></tr>
-        <tr class="og" data-step="4"><td class="cat">Turning know-how into shared assets</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">How do we turn individual prompts and know-how into knowledge assets for the whole organization?</td></tr>
-        <tr class="og" data-step="4"><td class="cat">Upskilling by role and level</td><td class="sh"><i style="width:16px"></i><span>6%</span></td><td class="q">How can leaders train people by level and role, and make AI skills stick in daily work?</td></tr>
-      </tbody>
-    </table>
-    <p class="abs footnote">Share of questions by category (800+ applicants).</p>
-  </section>
-
-  <!-- 노력 배분 10-20-70: BCG "AI Fuels Field Service Transformation"(2026-01-09) Exhibit 1을 우리말 원고 기준으로 영어로 다시 썼다 -->
-  <section class="slide dark" aria-label="AI transformation is 70 percent people and process, 20 percent data and technology, 10 percent AI">
-    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
-    <h2 class="abs head-title">AI transformation is 70% about people, only 10% about AI</h2>
-    <svg class="abs ef-ring" viewBox="0 0 1280 720" aria-hidden="true"><circle class="ef-guide" data-step="1" cx="640" cy="413" r="180"/><path class="ef-seg ai" data-step="2" d="M645.5 255.1A158 158 0 0 1 728.4 282.0L704.9 316.8A116 116 0 0 0 644.0 297.1z"/><path class="ef-seg dt" data-step="3" d="M737.3 288.5A158 158 0 0 1 788.5 359.0L749.0 373.3A116 116 0 0 0 711.4 321.6z"/><path class="ef-seg dt" data-step="3" d="M791.9 369.4A158 158 0 0 1 791.9 456.6L751.5 445.0A116 116 0 0 0 751.5 381.0z"/><path class="ef-seg pp" data-step="4" d="M788.5 467.0A158 158 0 0 1 737.3 537.5L711.4 504.4A116 116 0 0 0 749.0 452.7z"/><path class="ef-seg pp" data-step="4" d="M728.4 544.0A158 158 0 0 1 645.5 570.9L644.0 528.9A116 116 0 0 0 704.9 509.2z"/><path class="ef-seg pp" data-step="4" d="M634.5 570.9A158 158 0 0 1 551.6 544.0L575.1 509.2A116 116 0 0 0 636.0 528.9z"/><path class="ef-seg pp" data-step="4" d="M542.7 537.5A158 158 0 0 1 491.5 467.0L531.0 452.7A116 116 0 0 0 568.6 504.4z"/><path class="ef-seg pp" data-step="4" d="M488.1 456.6A158 158 0 0 1 488.1 369.4L528.5 381.0A116 116 0 0 0 528.5 445.0z"/><path class="ef-seg pp" data-step="4" d="M491.5 359.0A158 158 0 0 1 542.7 288.5L568.6 321.6A116 116 0 0 0 531.0 373.3z"/><path class="ef-seg pp" data-step="4" d="M551.6 282.0A158 158 0 0 1 634.5 255.1L636.0 297.1A116 116 0 0 0 575.1 316.8z"/><g class="ef-link ai" data-step="2"><path d="M682 283H860"/><circle cx="682" cy="283" r="5"/></g><g class="ef-link dt" data-step="3"><path d="M777 413H860"/><circle cx="777" cy="413" r="5"/></g><g class="ef-link pp" data-step="4"><path d="M529 332H420"/><circle cx="529" cy="332" r="5"/></g></svg>
-    <p class="abs center ef-center" data-step="1">How to allocate effort for a successful field-service AI transformation</p>
-    <div class="abs ef-card pp" data-step="4" style="left:76px;top:176px;height:474px"><b class="pct">70%</b><h4>Focus on people and process</h4><ul>
-      <li>Lead with a clear vision and a compelling case that energizes people</li>
-      <li>Bring service teams in through co-creation and fast iteration</li>
-      <li>Redefine processes and roles to sharpen execution</li>
-      <li>Align culture with service strategy and KPIs</li>
-      <li>Upskill teams and build the capabilities they need</li></ul></div>
-    <div class="abs ef-card ai" data-step="2" style="left:860px;top:176px;height:200px"><b class="pct">10%</b><h4>Focus on AI</h4><ul>
-      <li>Apply field-service machine learning, predictive analytics and generative AI</li></ul></div>
-    <div class="abs ef-card dt" data-step="3" style="left:860px;top:396px;height:254px"><b class="pct">20%</b><h4>Focus on data and technology</h4><ul>
-      <li>Put robust technology in the hands of frontline teams</li>
-      <li>Integrate field and service systems to automate end to end</li></ul></div>
-    <p class="abs footnote">Source: BCG, “AI Fuels Field Service Transformation. Change Management Provides the Spark,” January 2026</p>
-  </section>
-
   <!-- 4. 80명의 AI 에이전트와 팀으로 일하고 있음 (2장과 같은 다크 포맷). 5 + 50 + 25 = 80 -->
+  <!-- 올리브영 덱에서 가져옴: AI 모델 IQ 분포(TrackingAI.org, 2025.7 → 2026.10) -->
+<section class="slide dark iq" data-gap="2600" aria-label="AI model IQ scores moved from below the human average to near the top 2 percent between July 2025 and October 2026">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">In one year, AI became a new hire with top-2% intelligence</h2>
+    <p class="abs cr-sub">IQ scores by AI model (offline test with unpublished questions)</p>
+    <svg class="abs iq-chart" viewBox="0 0 1280 720" aria-hidden="true"><path class="iq-human" d="M76.0,578.9 L80.4,578.2 L84.7,577.5 L89.1,576.7 L93.4,575.9 L97.8,575.0 L102.1,574.1 L106.5,573.1 L110.8,572.0 L115.2,570.8 L119.6,569.6 L123.9,568.2 L128.3,566.8 L132.6,565.4 L137.0,563.8 L141.3,562.1 L145.7,560.3 L150.0,558.4 L154.4,556.5 L158.8,554.4 L163.1,552.2 L167.5,549.9 L171.8,547.4 L176.2,544.9 L180.5,542.2 L184.9,539.4 L189.2,536.5 L193.6,533.5 L198.0,530.3 L202.3,527.1 L206.7,523.7 L211.0,520.1 L215.4,516.5 L219.7,512.7 L224.1,508.8 L228.4,504.8 L232.8,500.7 L237.2,496.5 L241.5,492.2 L245.9,487.7 L250.2,483.2 L254.6,478.6 L258.9,473.9 L263.3,469.1 L267.6,464.3 L272.0,459.4 L276.4,454.5 L280.7,449.5 L285.1,444.5 L289.4,439.4 L293.8,434.4 L298.1,429.3 L302.5,424.3 L306.8,419.3 L311.2,414.3 L315.6,409.3 L319.9,404.5 L324.3,399.7 L328.6,394.9 L333.0,390.3 L337.3,385.8 L341.7,381.4 L346.0,377.2 L350.4,373.1 L354.8,369.1 L359.1,365.4 L363.5,361.8 L367.8,358.4 L372.2,355.2 L376.5,352.3 L380.9,349.5 L385.2,347.0 L389.6,344.7 L394.0,342.7 L398.3,341.0 L402.7,339.4 L407.0,338.2 L411.4,337.2 L415.7,336.6 L420.1,336.1 L424.4,336.0 L428.8,336.1 L433.2,336.6 L437.5,337.2 L441.9,338.2 L446.2,339.4 L450.6,341.0 L454.9,342.7 L459.3,344.7 L463.6,347.0 L468.0,349.5 L472.4,352.3 L476.7,355.2 L481.1,358.4 L485.4,361.8 L489.8,365.4 L494.1,369.1 L498.5,373.1 L502.8,377.2 L507.2,381.4 L511.6,385.8 L515.9,390.3 L520.3,394.9 L524.6,399.7 L529.0,404.5 L533.3,409.3 L537.7,414.3 L542.0,419.3 L546.4,424.3 L550.8,429.3 L555.1,434.4 L559.5,439.4 L563.8,444.5 L568.2,449.5 L572.5,454.5 L576.9,459.4 L581.2,464.3 L585.6,469.1 L590.0,473.9 L594.3,478.6 L598.7,483.2 L603.0,487.7 L607.4,492.2 L611.7,496.5 L616.1,500.7 L620.4,504.8 L624.8,508.8 L629.2,512.7 L633.5,516.5 L637.9,520.1 L642.2,523.7 L646.6,527.1 L650.9,530.3 L655.3,533.5 L659.6,536.5 L664.0,539.4 L668.4,542.2 L672.7,544.9 L677.1,547.4 L681.4,549.9 L685.8,552.2 L690.1,554.4 L694.5,556.5 L698.8,558.4 L703.2,560.3 L707.6,562.1 L711.9,563.8 L716.3,565.4 L720.6,566.8 L725.0,568.2 L729.3,569.6 L733.7,570.8 L738.0,572.0 L742.4,573.1 L746.8,574.1 L751.1,575.0 L755.5,575.9 L759.8,576.7 L764.2,577.5 L768.5,578.2 L772.9,578.9 L777.2,579.5 L781.6,580.0 L786.0,580.6 L790.3,581.0 L794.7,581.5 L799.0,581.9 L803.4,582.3 L807.7,582.6 L812.1,582.9 L816.4,583.2 L820.8,583.5 L825.2,583.7 L829.5,584.0 L833.9,584.2 L838.2,584.3 L842.6,584.5 L846.9,584.7 L851.3,584.8 L855.6,584.9 L860.0,585.0 L860.0,586 L76.0,586 Z"/><line class="iq-base" x1="76" x2="860" y1="586" y2="586"/><line class="iq-ref" x1="424.4" x2="424.4" y1="300" y2="586"/><text class="iq-ref-t" x="424.4" y="292" text-anchor="middle">Human average 100</text><line class="iq-ref kr" x1="407.0" x2="407.0" y1="352" y2="586"/><text class="iq-ref-t kr" x="401.0" y="364" text-anchor="end">US average 98</text><line class="iq-ref kr" x1="476.7" x2="476.7" y1="326" y2="586"/><text class="iq-ref-t kr" x="482.7" y="338">Korea average 106</text><line class="iq-ref top" x1="685.8" x2="685.8" y1="300" y2="586"/><text class="iq-ref-t top" x="685.8" y="292" text-anchor="middle">Top 2% 130</text><text class="iq-ax" x="76.0" y="608" text-anchor="middle">60</text><text class="iq-ax" x="163.1" y="608" text-anchor="middle">70</text><text class="iq-ax" x="250.2" y="608" text-anchor="middle">80</text><text class="iq-ax" x="337.3" y="608" text-anchor="middle">90</text><text class="iq-ax" x="424.4" y="608" text-anchor="middle">100</text><text class="iq-ax" x="511.6" y="608" text-anchor="middle">110</text><text class="iq-ax" x="598.7" y="608" text-anchor="middle">120</text><text class="iq-ax" x="685.8" y="608" text-anchor="middle">130</text><text class="iq-ax" x="772.9" y="608" text-anchor="middle">140</text><text class="iq-ax" x="860.0" y="608" text-anchor="middle">150</text></svg>
+    <div class="abs iq-dots" data-step="1"><i class="iq-dot" data-tip="Mistral Large 3 · IQ 74.9" style="--x0:154.4px;--y0:580.0px;--x1:206.7px;--y1:580.0px;--d:0.000s"></i><i class="iq-dot" data-tip="Microsoft Copilot · IQ 80.7" style="--x0:167.5px;--y0:580.0px;--x1:258.9px;--y1:580.0px;--d:0.025s"></i><i class="iq-dot" data-tip="DeepSeek V4 Pro · IQ 84.4" style="--x0:180.5px;--y0:580.0px;--x1:285.1px;--y1:580.0px;--d:0.050s"></i><i class="iq-dot" data-tip="Manus · IQ 100.1" style="--x0:193.6px;--y0:580.0px;--x1:428.8px;--y1:580.0px;--d:0.075s"></i><i class="iq-dot" data-tip="Grok 4.7 High (Vision) · IQ 111.4" style="--x0:219.7px;--y0:580.0px;--x1:520.3px;--y1:580.0px;--d:0.100s"></i><i class="iq-dot" data-tip="Claude Sonnet 5 (Vision) · IQ 111.6" style="--x0:232.8px;--y0:580.0px;--x1:520.3px;--y1:567.0px;--d:0.125s"></i><i class="iq-dot" data-tip="Claude Sonnet 5 · IQ 115.4" style="--x0:258.9px;--y0:580.0px;--x1:559.5px;--y1:580.0px;--d:0.150s"></i><i class="iq-dot" data-tip="MiMo V2.5 Pro · IQ 116.0" style="--x0:272.0px;--y0:580.0px;--x1:559.5px;--y1:567.0px;--d:0.175s"></i><i class="iq-dot" data-tip="Gemini 3.1 Pro (Vision) · IQ 120.1" style="--x0:285.1px;--y0:580.0px;--x1:598.7px;--y1:580.0px;--d:0.200s"></i><i class="iq-dot" data-tip="GLM 5.2 · IQ 123.0" style="--x0:285.1px;--y0:567.0px;--x1:624.8px;--y1:580.0px;--d:0.225s"></i><i class="iq-dot" data-tip="Meta Muse Glimmer · IQ 123.0" style="--x0:298.1px;--y0:580.0px;--x1:624.8px;--y1:567.0px;--d:0.250s"></i><i class="iq-dot" data-tip="Claude Opus 5.5 (Vision) · IQ 124.7" style="--x0:311.2px;--y0:580.0px;--x1:637.9px;--y1:580.0px;--d:0.275s"></i><i class="iq-dot" data-tip="Kimi K3 (Vision) · IQ 125.3" style="--x0:337.3px;--y0:580.0px;--x1:650.9px;--y1:580.0px;--d:0.300s"></i><i class="iq-dot" data-tip="Qwen 3.8 Max · IQ 126.1" style="--x0:337.3px;--y0:567.0px;--x1:650.9px;--y1:567.0px;--d:0.325s"></i><i class="iq-dot" data-tip="Gemini 3.8 Flash · IQ 126.9" style="--x0:337.3px;--y0:554.0px;--x1:664.0px;--y1:580.0px;--d:0.350s"></i><i class="iq-dot" data-tip="GPT-6 Luna Max · IQ 127.0" style="--x0:350.4px;--y0:580.0px;--x1:664.0px;--y1:567.0px;--d:0.375s"></i><i class="iq-dot" data-tip="Gemini 3.1 Pro · IQ 127.9" style="--x0:350.4px;--y0:567.0px;--x1:664.0px;--y1:554.0px;--d:0.400s"></i><i class="iq-dot" data-tip="Claude Opus 5.5 · IQ 128.0" style="--x0:363.5px;--y0:580.0px;--x1:664.0px;--y1:541.0px;--d:0.425s"></i><i class="iq-dot" data-tip="Grok 4.7 High · IQ 128.0" style="--x0:415.7px;--y0:580.0px;--x1:664.0px;--y1:528.0px;--d:0.450s"></i><i class="iq-dot" data-tip="Claude Fable 5.1 · IQ 128.8" style="--x0:441.9px;--y0:580.0px;--x1:677.1px;--y1:580.0px;--d:0.475s"></i><i class="iq-dot" data-tip="GPT-5.6 Terra Ultra (Vision) · IQ 129.6" style="--x0:454.9px;--y0:580.0px;--x1:677.1px;--y1:567.0px;--d:0.500s"></i><i class="iq-dot" data-tip="Claude Opus 5.5 MAX · IQ 129.7" style="--x0:454.9px;--y0:567.0px;--x1:677.1px;--y1:554.0px;--d:0.525s"></i><i class="iq-dot" data-tip="GPT-6 Luna Max (Vision) · IQ 129.8" style="--x0:468.0px;--y0:580.0px;--x1:690.1px;--y1:580.0px;--d:0.550s"></i><i class="iq-dot" data-tip="GPT-5.6 Terra Ultra · IQ 129.9" style="--x0:468.0px;--y0:567.0px;--x1:690.1px;--y1:567.0px;--d:0.575s"></i><i class="iq-dot" data-tip="Claude Fable 5.1 (Vision) · IQ 130.0" style="--x0:481.1px;--y0:580.0px;--x1:690.1px;--y1:554.0px;--d:0.600s"></i><i class="iq-dot" data-tip="GPT-6.1 Sol Ultra · IQ 130.0" style="--x0:559.5px;--y0:580.0px;--x1:690.1px;--y1:541.0px;--d:0.625s"></i><i class="iq-dot" data-tip="Kimi K3 · IQ 130.0" style="--x0:559.5px;--y0:567.0px;--x1:690.1px;--y1:528.0px;--d:0.650s"></i><i class="iq-dot" data-tip="GPT-6.1 Sol Ultra (Vision) · IQ 130.9" style="--x0:559.5px;--y0:554.0px;--x1:690.1px;--y1:515.0px;--d:0.675s"></i><i class="iq-dot" data-tip="GPT-6 Astra Ultra · IQ 131.5" style="--x0:572.5px;--y0:580.0px;--x1:703.2px;--y1:580.0px;--d:0.700s"></i><i class="iq-dot" data-tip="GPT-6 Astra Ultra (Vision) · IQ 134.0" style="--x0:572.5px;--y0:567.0px;--x1:716.3px;--y1:580.0px;--d:0.725s"></i><i class="iq-dot" data-tip="Claude Opus 5.5 MAX (Vision) · IQ 134.5" style="--x0:572.5px;--y0:554.0px;--x1:729.3px;--y1:580.0px;--d:0.750s"></i></div>
+    <i class="abs iq-go" data-step="2" aria-hidden="true"></i>
+    <div class="abs iq-stat " data-step="1" style="top:226px"><span class="k">Top score</span><p class="v"><s>117</s><i>→</i><b>135</b></p><span class="t">2025.7 → 2026.10</span></div>
+    <div class="abs iq-stat " data-step="1" style="top:372px"><span class="k">Median</span><p class="v"><s>91</s><i>→</i><b>127</b></p><span class="t">2025.7 → 2026.10</span></div>
+    <div class="abs iq-stat hot" data-step="1" style="top:518px"><span class="k">Models at IQ 130+</span><p class="v"><s>0</s><i>→</i><b>7</b></p><span class="t">2025.7 → 2026.10</span></div>
+    <p class="abs iq-legend"><span><i class="h"></i>Human IQ distribution</span><span><i class="a"></i>AI models (Jul 2025)</span><span><i class="b"></i>AI models (Oct 2026)</span></p>
+    <p class="abs footnote">Source: TrackingAI.org, AI IQ Test (offline, unpublished questions); mean of each model’s latest 7 runs, July 31, 2025 and October 11, 2026 · Korea and US averages: Lynn and Vanhanen (2006), estimates</p>
+  </section>
+
+  <!-- 올리브영 덱에서 가져옴: AI로 줄어든 업무 시간 -->
+  <section class="slide dark ts" data-gap="900" aria-label="Time to finish a 60-minute task with AI: 45 minutes in 2023, 41 in 2024, 12 in 2025, 5 in 2026">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">AI cut a one-hour task from 45 minutes to 5 in three years</h2>
+    <p class="abs cr-sub">Time to finish a 60-minute task with AI</p>
+    <div class="abs ts-row ex" data-step="1" style="top:232px"><b class="ts-y">2023</b><div class="ts-bar"><i class="ts-fill" style="--w:75.0%"></i><span class="ts-min">45 min</span></div><div class="ts-note"><strong>15 min saved</strong><small>Randomized trial, 758 BCG consultants · GPT-4</small></div></div>
+    <div class="abs ts-row ex" data-step="2" style="top:334px"><b class="ts-y">2024</b><div class="ts-bar"><i class="ts-fill" style="--w:68.3%"></i><span class="ts-min">41 min</span></div><div class="ts-note"><strong>19 min saved</strong><small>Randomized trial, 60 law students · GPT-4 (12–32% by task)</small></div></div>
+    <p class="abs ts-split" style="top:432px"><span>↑ Randomized trials: people using AI as a tool</span><span>↓ Estimates from conversations: AI doing the task</span></p>
+    <div class="abs ts-row es" data-step="3" style="top:458px"><b class="ts-y">2025</b><div class="ts-bar"><i class="ts-fill" style="--w:20.0%"></i><span class="ts-min">12 min</span></div><div class="ts-note"><strong>48 min saved</strong><small>100,000 Claude conversations · 90-minute average task</small></div></div>
+    <div class="abs ts-row es" data-step="4" style="top:560px"><b class="ts-y">2026</b><div class="ts-bar"><i class="ts-fill" style="--w:8.3%"></i><span class="ts-min">5 min</span></div><div class="ts-note"><strong>55 min saved</strong><small>College-level tasks · Claude conversation analysis</small></div></div>
+    <p class="abs ts-bub" data-step="4">Agent use surges</p>
+    <p class="abs footnote">Sources: Dell’Acqua et al., HBS (2023) · Choi et al., Minnesota Law Review (2024) · Anthropic, Estimating AI productivity gains (November 2025) and Economic Index (January 2026). 2025–26 are Claude estimates, excluding review time</p>
+  </section>
+
+  <!-- AI 도입이 조직 성과로 이어지지 못함. 출처는 한국어판 같은 장 주석 참고(McKinsey 2026-08-25, PwC 2026-01-20, BCG 2026-09-30) -->
+  <section class="slide dark gp og" aria-label="Yet AI adoption is not showing up in company results">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">Yet AI adoption is not showing up in company results</h2>
+    <div class="abs gp-card" data-step="1" style="left:76px"><span class="gp-date">Aug 2026</span><span class="gp-k">Personal vs. company gains</span>
+      <ul class="og-bars"><li><em>AI improved individual productivity</em><div class="t"><i style="--v:80"></i><b>80%</b></div></li><li class="lo"><em>AI contributed to company EBIT</em><div class="t"><i style="--v:37"></i><b>37%</b></div></li></ul>
+      <small>McKinsey · EBIT share flat year on year</small></div>
+    <div class="abs gp-card" data-step="2" style="left:464px"><span class="gp-date">Jan 2026</span><span class="gp-k">CEOs on AI’s return</span>
+      <dl class="gp-rows"><dd><b class="lo">56%</b><span>No significant financial benefit yet</span></dd><dd><b>12%</b><span>Both lower costs and higher revenue</span></dd></dl>
+      <small>PwC, 4,454 CEOs in 95 countries</small></div>
+    <div class="abs gp-card hot" data-step="3" style="left:852px"><span class="gp-date">2026</span><span class="gp-k">Value at scale</span>
+      <dl class="gp-rows"><dd><b class="hi">6%</b><span>AI high performers (5%+ of EBIT from AI), flat vs. 2025</span></dd><dd><b class="hi">7.5%</b><span>Future-built companies scaling AI value enterprise-wide</span></dd></dl>
+      <small>McKinsey (Aug 2026) · BCG (Sep 2026)</small></div>
+    <p class="abs footnote">Sources: McKinsey, The state of AI in 2026: On the road to ROI (August 25, 2026) · PwC, 2026 Global CEO Survey (January 20, 2026) · BCG, Applied AI Index 2026 (September 30, 2026; 1,330 CxOs)</p>
+  </section>
+
+  <!-- 올리브영 덱에서 가져옴: 개인 간 AI 활용 격차 -->
+  <section class="slide dark gp" aria-label="AI training is up, yet the usage gap between employees is widening">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">AI training is up, yet the gap between employees is widening</h2>
+    <div class="abs gp-card" data-step="1" style="left:76px"><span class="gp-date">Jul 2026</span><span class="gp-k">AI training offered</span><div class="gp-chart" role="img" aria-label="Share of companies offering AI training, 25 percent in 2025 and 58 percent in 2026"><div class="gp-col"><b>25%</b><i style="height:73px"></i><span>2025</span></div><div class="gp-col hot"><b>58%</b><i style="height:170px"></i><span>2026</span></div></div><small>Workera, 1,000 employees at large US companies</small></div>
+    <div class="abs gp-card" data-step="2" style="left:464px"><span class="gp-date">Sep 2026</span><span class="gp-k">AI skills by segment</span>
+      <ul class="gp-segs"><li class="a"><b>14%</b><span>Leaders · rare skills, high AI fluency</span><i style="width:25%"></i></li>
+      <li class="a2"><b>18%</b><span>Heavy users · high use, low expertise</span><i style="width:32%"></i></li>
+      <li class="b"><b>11%</b><span>Experts not yet using AI</span><i style="width:20%"></i></li>
+      <li class="c"><b>56%</b><span>Mainstream majority</span><i style="width:100%"></i></li></ul>
+      <small>PwC, 49,364 workers in 48 countries</small></div>
+    <div class="abs gp-card hot" data-step="3" style="left:852px"><span class="gp-date">Mar 2026</span><span class="gp-k">Usage gap by experience</span>
+      <p class="gp-legend"><i class="h"></i>6+ months of use<i class="l"></i>New users</p><ul class="gp-cmp"><li><em>Work-related use<span class="gp-delta">+7%p</span></em><div class="h"><span class="t"><i style="width:98.0%"></i></span><b>49%</b></div><div class="l"><span class="t"><i style="width:84.0%"></i></span><b>42%</b></div></li><li><em>Iterative work with AI<span class="gp-delta">+3.7%p</span></em><div class="h"><span class="t"><i style="width:56.4%"></i></span><b>28.2%</b></div><div class="l"><span class="t"><i style="width:49.0%"></i></span><b>24.5%</b></div></li></ul>
+      <small>Anthropic Economic Index, ~1M Claude conversations · 6+ month users vs. others</small></div>
+    <p class="abs footnote">Sources: Workera, 2026 State of Skills Intelligence Report · PwC, Global Workforce Hopes and Fears Survey 2026 · Anthropic, Economic Index report: Learning curves</p>
+  </section>
+
+
   <section class="slide dark" aria-label="Agent team">
     <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
     <h2 class="abs head-title">I work alongside a team of 80 AI agents</h2>
@@ -2346,7 +2578,7 @@
     </div>
   </section>
 
-  <!-- 11. AI 빅테크는 사업 중심을 LLM 개발에서 에이전트 제공으로 옮기는 중: 각사 에이전트 제품 타임라인(2025.1–2026.10.8 발표 기준). 강조 칸 = 사람 대신 일을 맡아 스스로 실행하는 에이전트 제품 -->
+  <!-- 11. AI 빅테크는 사업 중심을 LLM 개발에서 에이전트 제공으로 옮기는 중: 각사 에이전트 제품 타임라인(2025.1–2026.10.12 발표 기준. Meta Muse Wonder 2026-10-12: TechCrunch·CNBC). 강조 칸 = 사람 대신 일을 맡아 스스로 실행하는 에이전트 제품 -->
   <section class="slide dark" aria-label="Timeline of four AI companies' shift to agents">
     <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
     <h2 class="abs head-title">Big Tech is moving its core business from LLMs to agents</h2>
@@ -2382,35 +2614,7 @@
       <div class="tl-card" style="left:482px;width:153px"><b>Muse Spark</b><span>Reasoning model that orchestrates agents</span></div>
       <div class="tl-card" style="left:645px;width:153px"><b>Muse Code</b><span>Coding agent built on Muse Spark</span></div>
       <div class="tl-card hot" style="left:808px;width:153px"><b>Muse</b><span>Errand and scheduling agent</span></div>
-    </div>
-  </section>
-
-  <!-- 12. 에이전트의 일터가 데스크톱에서 클라우드로 이동 중: 비교 축 열 + FROM 카드(개인 책상, 09–18시 가동) → TO 카드(클라우드 서버 + 스마트폰, 24시간 가동). 두 카드의 값 행은 축 열과 같은 높이 -->
-  <section class="slide dark mig" aria-label="Agents' workplace moves from desktop to cloud">
-    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
-    <h2 class="abs head-title">Agents are moving off the desktop and into the cloud</h2>
-    <ul class="abs mig-axes" data-step="1"><li>Runs on</li><li>Uptime</li><li>Control</li></ul>
-    <div class="abs mig-card from" data-step="1">
-      <div class="mig-head"><span class="mig-tag">FROM</span><b>Desktop agent</b></div>
-      <div class="mig-art">
-        <svg class="iso mig-iso dim" viewBox="0 0 340 168" aria-hidden="true"><polygon class="iso-floor" points="145.9,24.9 290.5,108.3 194.1,164.0 49.5,80.5"/><polyline class="iso-grid" points="170.0,38.8 73.6,94.4"/><polyline class="iso-grid" points="194.1,52.7 97.7,108.3"/><polyline class="iso-grid" points="218.2,66.6 121.8,122.3"/><polyline class="iso-grid" points="242.3,80.5 145.9,136.2"/><polyline class="iso-grid" points="266.4,94.4 170.0,150.1"/><polyline class="iso-grid" points="121.8,38.8 266.4,122.3"/><polyline class="iso-grid" points="97.7,52.7 242.3,136.2"/><polyline class="iso-grid" points="73.6,66.6 218.2,150.1"/><polygon class="iso-l" points="100.1,76.3 201.3,134.8 201.3,114.7 100.1,56.3"/><polygon class="iso-r" points="242.3,111.1 201.3,134.8 201.3,114.7 242.3,91.1"/><polygon class="iso-t" points="141.1,32.7 242.3,91.1 201.3,114.7 100.1,56.3"/><polygon class="iso-l" points="172.4,68.8 179.6,73.0 179.6,62.4 172.4,58.3"/><polygon class="iso-r" points="186.9,68.8 179.6,73.0 179.6,62.4 186.9,58.3"/><polygon class="iso-t" points="179.6,54.1 186.9,58.3 179.6,62.4 172.4,58.3"/><polygon class="iso-l" points="157.0,42.1 210.0,72.7 210.0,36.6 157.0,5.9"/><polygon class="iso-r" points="213.4,70.8 210.0,72.7 210.0,36.6 213.4,34.6"/><polygon class="iso-t" points="160.4,4.0 213.4,34.6 210.0,36.6 157.0,5.9"/><polygon class="iso-scr-dark" points="159.4,40.7 207.6,68.6 207.6,37.9 159.4,10.1"/><polyline class="iso-thin sh-scr-on" points="171.4,35.2 183.5,35.2 195.5,50.5"/><circle class="iso-node sh-scr-on" cx="171.4" cy="35.2" r="0.2"/><circle class="iso-node sh-scr-on" cx="183.5" cy="35.2" r="0.2"/><circle class="iso-node sh-scr-on" cx="195.5" cy="50.5" r="0.2"/><polygon class="iso-l" points="172.4,89.7 184.5,96.7 184.5,91.7 172.4,84.7"/><polygon class="iso-r" points="196.5,89.7 184.5,96.7 184.5,91.7 196.5,84.7"/><polygon class="iso-t" points="184.5,77.7 196.5,84.7 184.5,91.7 172.4,84.7"/><polygon class="iso-l" points="131.4,68.8 162.8,86.9 162.8,85.5 131.4,67.4"/><polygon class="iso-r" points="173.6,80.7 162.8,86.9 162.8,85.5 173.6,79.3"/><polygon class="iso-t" points="142.3,61.2 173.6,79.3 162.8,85.5 131.4,67.4"/><polygon class="iso-l" points="108.5,110.4 130.2,123.0 130.2,109.6 108.5,97.1"/><polygon class="iso-r" points="147.1,113.2 130.2,123.0 130.2,109.6 147.1,99.9"/><polygon class="iso-t" points="125.4,87.3 147.1,99.9 130.2,109.6 108.5,97.1"/></svg>
-        <div class="uptime"><span>Active</span><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>09:00–18:00</span></div>
-      </div>
-      <ul class="mig-vals"><li>Local PC</li><li>Only while the PC is on</li><li>Operated hands-on at the desk</li></ul>
-    </div>
-    <svg class="abs mig-arrow" data-step="2" viewBox="0 0 120 40" aria-hidden="true">
-      <path d="M6 20H96" class="sh-shaft"/>
-      <path class="sh-chev" style="--d:0s" d="M78 9L90 20L78 31"/>
-      <path class="sh-chev" style="--d:.25s" d="M92 9L104 20L92 31"/>
-      <path class="sh-chev" style="--d:.5s" d="M106 9L118 20L106 31"/>
-    </svg>
-    <div class="abs mig-card to" data-step="3">
-      <div class="mig-head"><span class="mig-tag">TO</span><b>Cloud agent</b></div>
-      <div class="mig-art">
-        <svg class="iso mig-iso" viewBox="0 0 340 168" aria-hidden="true"><polygon class="iso-floor" points="140.4,38.7 278.5,118.4 199.6,164.0 61.5,84.3"/><polyline class="iso-grid" points="160.1,50.1 81.2,95.7"/><polyline class="iso-grid" points="179.9,61.5 101.0,107.1"/><polyline class="iso-grid" points="199.6,72.9 120.7,118.4"/><polyline class="iso-grid" points="219.3,84.3 140.4,129.8"/><polyline class="iso-grid" points="239.0,95.7 160.1,141.2"/><polyline class="iso-grid" points="258.8,107.1 179.9,152.6"/><polyline class="iso-grid" points="120.7,50.1 258.8,129.8"/><polyline class="iso-grid" points="101.0,61.5 239.0,141.2"/><polyline class="iso-grid" points="81.2,72.9 219.3,152.6"/><polygon class="iso-l" points="114.8,67.2 132.5,77.5 132.5,27.3 114.8,17.1"/><polygon class="iso-r" points="150.3,67.2 132.5,77.5 132.5,27.3 150.3,17.1"/><polygon class="iso-t" points="132.5,6.8 150.3,17.1 132.5,27.3 114.8,17.1"/><circle class="iso-led" cx="120.7" cy="60.4" r="0.1" style="--d:0.00s"/><circle class="iso-led" cx="120.7" cy="50.1" r="0.1" style="--d:0.19s"/><circle class="iso-led" cx="120.7" cy="39.9" r="0.1" style="--d:0.38s"/><circle class="iso-led" cx="120.7" cy="29.6" r="0.1" style="--d:0.57s"/><polyline class="iso-flow" points="132.5,17.1 180.8,4.0" style="--d:0.0s"/><polygon class="iso-l" points="138.4,80.9 156.2,91.1 156.2,41.0 138.4,30.8"/><polygon class="iso-r" points="173.9,80.9 156.2,91.1 156.2,41.0 173.9,30.8"/><polygon class="iso-t" points="156.2,20.5 173.9,30.8 156.2,41.0 138.4,30.8"/><circle class="iso-led" cx="144.4" cy="74.0" r="0.1" style="--d:0.76s"/><circle class="iso-led" cx="144.4" cy="63.8" r="0.1" style="--d:0.95s"/><circle class="iso-led" cx="144.4" cy="53.5" r="0.1" style="--d:1.14s"/><circle class="iso-led" cx="144.4" cy="43.3" r="0.1" style="--d:1.33s"/><polyline class="iso-flow" points="156.2,30.8 180.8,4.0" style="--d:0.3s"/><polygon class="iso-l" points="162.1,94.5 179.9,104.8 179.9,54.7 162.1,44.4"/><polygon class="iso-r" points="197.6,94.5 179.9,104.8 179.9,54.7 197.6,44.4"/><polygon class="iso-t" points="179.9,34.2 197.6,44.4 179.9,54.7 162.1,44.4"/><circle class="iso-led" cx="168.0" cy="87.7" r="0.1" style="--d:1.52s"/><circle class="iso-led" cx="168.0" cy="77.5" r="0.1" style="--d:1.71s"/><circle class="iso-led" cx="168.0" cy="67.2" r="0.1" style="--d:1.90s"/><circle class="iso-led" cx="168.0" cy="57.0" r="0.1" style="--d:2.09s"/><polyline class="iso-flow" points="179.9,44.4 180.8,4.0" style="--d:0.6s"/><polygon class="iso-l" points="185.8,108.2 203.5,118.4 203.5,68.3 185.8,58.1"/><polygon class="iso-r" points="221.3,108.2 203.5,118.4 203.5,68.3 221.3,58.1"/><polygon class="iso-t" points="203.5,47.8 221.3,58.1 203.5,68.3 185.8,58.1"/><circle class="iso-led" cx="191.7" cy="101.4" r="0.1" style="--d:2.28s"/><circle class="iso-led" cx="191.7" cy="91.1" r="0.1" style="--d:2.47s"/><circle class="iso-led" cx="191.7" cy="80.9" r="0.1" style="--d:2.66s"/><circle class="iso-led" cx="191.7" cy="70.6" r="0.1" style="--d:2.85s"/><polyline class="iso-flow" points="203.5,58.1 180.8,4.0" style="--d:0.9s"/><polygon class="iso-l" points="209.4,121.9 227.2,132.1 227.2,82.0 209.4,71.8"/><polygon class="iso-r" points="245.0,121.9 227.2,132.1 227.2,82.0 245.0,71.8"/><polygon class="iso-t" points="227.2,61.5 245.0,71.8 227.2,82.0 209.4,71.8"/><circle class="iso-led" cx="215.4" cy="115.0" r="0.1" style="--d:3.04s"/><circle class="iso-led" cx="215.4" cy="104.8" r="0.1" style="--d:3.23s"/><circle class="iso-led" cx="215.4" cy="94.5" r="0.1" style="--d:3.42s"/><circle class="iso-led" cx="215.4" cy="84.3" r="0.1" style="--d:3.61s"/><polyline class="iso-flow" points="227.2,71.8 180.8,4.0" style="--d:1.2s"/><circle class="iso-hub" cx="180.8" cy="4.0" r="0.2"/><polygon class="iso-l-phone" points="189.7,135.5 204.5,144.1 204.5,113.3 189.7,104.8"/><polygon class="iso-r-phone" points="206.5,142.9 204.5,144.1 204.5,113.3 206.5,112.2"/><polygon class="iso-t-phone" points="191.7,103.6 206.5,112.2 204.5,113.3 189.7,104.8"/><polygon class="iso-card-hot" points="192.1,114.1 202.2,119.9 202.2,115.4 192.1,109.6"/><polygon class="iso-card" points="192.1,120.5 202.2,126.3 202.2,121.8 192.1,115.9"/><polygon class="iso-card" points="192.1,126.9 202.2,132.7 202.2,128.1 192.1,122.3"/><polyline class="iso-flow" points="180.8,4.0 191.7,63.8 198.0,107.3" style="--d:.2s"/></svg>
-        <div class="uptime"><span>Active</span><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span>24/7</span></div>
-      </div>
-      <ul class="mig-vals"><li>Cloud virtual machine</li><li>Always on, 24/7</li><li>Directed and approved by phone</li></ul>
+      <div class="tl-card hot" style="left:970px;width:153px"><b>Muse Wonder</b><span>First frontier model, built for agentic work</span></div>
     </div>
   </section>
 
@@ -2611,6 +2815,7 @@
     <div class="abs cl-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
     <p class="abs cl-sub">Jayden Kang · Head of AI Strategy, Liner</p>
   </section>
+
 </main>
 <!-- ../../index.html 복사본(base64). file://로 열 때만 쓴다. 원본을 고치면 이 블록도 다시 만들어야 한다 -->
 
