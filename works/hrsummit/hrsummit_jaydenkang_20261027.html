@@ -1667,7 +1667,7 @@
   .hm-lg { top: 170px; left: auto; right: 76px; margin: 0; display: flex; gap: 16px; font-size: 14px; font-weight: 700; color: #3d434a; }
   .hm-lg span { display: flex; align-items: center; gap: 7px; }
   .hm-lg i { width: 12px; height: 12px; border-radius: 3px; }
-  .hm-lg i.c, .hm-chip.c { --hc: #3add2e; } .hm-lg i.u, .hm-chip.u { --hc: #a6ef6e; } .hm-lg i.f, .hm-chip.f { --hc: #1a1a1a; } .hm-lg i.x, .hm-chip.x { --hc: #ff7878; }
+  .hm-lg i.c, .hm-chip.c { --hc: #3add2e; } .hm-lg i.u, .hm-chip.u { --hc: #a6ef6e; } .hm-lg i.f, .hm-chip.f { --hc: #1a1a1a; } .hm-lg i.x, .hm-chip.x { --hc: #e5484d; }
   .hm-lg i { background: var(--hc); }
   .hm-lane { left: 76px; width: 1128px; height: 78px; display: flex; gap: 16px; }
   .hm-st { flex: none; width: 150px; box-sizing: border-box; padding-left: 4px; display: flex; flex-direction: column; justify-content: center; }
@@ -1677,7 +1677,7 @@
   .hm-chip { flex: 1; min-width: 0; box-sizing: border-box; padding: 0 18px; border-radius: 12px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; justify-content: center; }
   .hm-k { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: #6f7880; white-space: nowrap; }
   .hm-k em { padding: 2px 7px 3px; border-radius: 6px; background: var(--hc); font-style: normal; font-size: 11.5px; font-weight: 800; color: #1a1a1a; }
-  .hm-chip.f .hm-k em { color: #fff; }
+  .hm-chip.f .hm-k em, .hm-chip.x .hm-k em { color: #fff; }   /* 진한 바탕(찾기 잉크, 분석·실행 빨강)은 흰 글자 */
   .hm-t { margin: 7px 0 0; font-size: 16.5px; font-weight: 800; letter-spacing: -.01em; color: #1a1a1a; white-space: nowrap; }
   /* 조직과 개인의 gap(.gap): 네 관점 비교표(y 214~502, 줄 60 간격 6) + HR 해법 잉크 띠(y 518~650, 이 장의 진한 면 하나).
      열: 관점 76~196 · 조직 212~612 · 긴장 628~756 · 개인 772~1204 */
@@ -1703,7 +1703,7 @@
   .gx-hr li b { font-size: 18px; font-weight: 800; color: #fff; }
   .gx-hr li span { font-size: 13.5px; font-weight: 600; line-height: 1.45; color: rgba(255,255,255,.75); word-break: keep-all; }
   .hm-chip.law { position: relative; }
-  .hm-law { position: absolute; top: -9px; right: 10px; padding: 2px 8px 3px; border-radius: 999px; background: #ff7878; font-size: 11px; font-weight: 800; color: #1a1a1a; }   /* AI 기본법 고영향(채용 판단) 표시 */
+  .hm-law { position: absolute; top: -9px; right: 10px; padding: 2px 8px 3px; border-radius: 999px; background: #ffd84d; font-size: 11px; font-weight: 800; color: #1a1a1a; }   /* AI 기본법 고영향(채용 판단) 표시. 역할 태그(코랄 분석·실행)와 겹치지 않게 노랑 */
   /* 30장 반론과 해석(.rbt): 반론(76~600) → 해석(640~1204), y 220~500. 아래 HR 시사점 잉크 띠(y 520~650) */
   .rbt-box { top: 220px; height: 280px; box-sizing: border-box; padding: 20px 24px; border-radius: 16px; display: flex; flex-direction: column; }
   .rbt-box.c { left: 76px; width: 524px; background: #fff3f3; border: 1px solid rgba(255,120,120,.55); }
@@ -1723,9 +1723,17 @@
   .rbt-hh { flex: none; width: 96px; margin: 0; font-size: 17px; font-weight: 800; color: #3add2e; }
   .rbt-ht { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.55; color: #fff; word-break: keep-all; }
   .rbt-ht em { font-style: normal; color: #3add2e; }
-  .wf-law { position: absolute; top: -9px; left: 10px; padding: 2px 8px 3px; border-radius: 999px; background: #ff7878; font-size: 11px; font-weight: 800; line-height: 1.3; color: #1a1a1a; white-space: nowrap; }   /* AI 기본법 고영향 표시(21장과 같은 문법, AI 배지가 오른쪽이라 왼쪽 위) */
+  .wf-law { position: absolute; top: -9px; left: 10px; padding: 2px 8px 3px; border-radius: 999px; background: #ffd84d; font-size: 11px; font-weight: 800; line-height: 1.3; color: #1a1a1a; white-space: nowrap; }   /* AI 기본법 고영향 표시(21장과 같은 문법, AI 배지가 오른쪽이라 왼쪽 위) */
   .rs-link { margin: 26px 0 0; padding-top: 18px; border-top: 1px solid #e3e6ea; display: flex; flex-direction: column; gap: 6px; font-size: 16px; font-weight: 800; color: #1f9a14; }   /* 9장 이유 카드: 8장의 어떤 조건이 비었는지 */
   .rs-link span { font-size: 12.5px; font-weight: 700; color: #98a1a8; }
+  /* 마무리 장 링크드인 QR(.cl-qr): 인사 아래 왼쪽(x 76, y 470), QR 132 정사각 + 오른쪽 안내 글. QR은 https://www.linkedin.com/in/jayden-kang/ (qrcode 1.5.4, 오류 정정 M) */
+  .cl-qr { left: 76px; top: 470px; display: flex; align-items: center; gap: 20px; }
+  .cl-qr a { display: block; padding: 10px; border-radius: 12px; background: #fff; border: 1px solid #e3e6ea; line-height: 0; }
+  .cl-qr-code { width: 132px; height: 132px; display: block; }
+  .cl-qr p { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .cl-qr p b { font-size: 18px; font-weight: 800; color: #1a1a1a; }
+  .cl-qr p span { font-size: 15px; font-weight: 600; color: #6f7880; }
+  .closing.active .cl-qr { animation: cv-rise 1.2s 1.2s cubic-bezier(.16,1,.3,1) backwards; }
 </style>
 </head>
 <body>
@@ -1868,7 +1876,7 @@
     <h2 class="abs head-title">AI 교육은 늘었지만, 구성원 간 활용 격차는 오히려 벌어지는 중</h2>
     <div class="abs gp-card" data-step="1" style="left:76px"><span class="gp-date">2026.07 조사</span><span class="gp-k">AI 교육 제공 확대</span><div class="gp-chart" role="img" aria-label="AI 교육을 제공하는 기업 비율, 2025년 25%에서 2026년 58%"><div class="gp-col"><b>25%</b><i style="height:73px"></i><span>2025</span></div><div class="gp-col hot"><b>58%</b><i style="height:170px"></i><span>2026</span></div></div><small>Workera, 미국 대기업 직장인 1,000명</small></div>
     <div class="abs gp-card" data-step="2" style="left:464px"><span class="gp-date">2026.09 발표</span><span class="gp-k">인력별 AI 역량 구분</span>
-      <div class="gp-pie"><div class="dn" role="img" aria-label="인력별 AI 역량 구분: 선도 인력 14%, AI 적극 사용자 18%, AI 미도입 전문가 11%, 다수 실무층 56%"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="a" cx="60" cy="60" r="48" pathLength="100" style="--v:13.2;--o:0"/><circle class="a2" cx="60" cy="60" r="48" pathLength="100" style="--v:17.2;--o:14"/><circle class="b" cx="60" cy="60" r="48" pathLength="100" style="--v:10.2;--o:32"/><circle class="c" cx="60" cy="60" r="48" pathLength="100" style="--v:55.2;--o:43"/></svg><p><b>56%</b><span>다수 실무층</span></p></div><ul class="gp-pl"><li class="a"><i></i><b>14%</b><span>선도 인력 · 희소 역량과 높은 AI 숙련</span></li><li class="a2"><i></i><b>18%</b><span>AI 적극 사용자 · 많이 쓰지만 전문성은 낮음</span></li><li class="b"><i></i><b>11%</b><span>AI 미도입 전문가</span></li><li class="c"><i></i><b>56%</b><span>다수 실무층</span></li></ul></div>
+      <div class="gp-pie"><div class="dn" role="img" aria-label="인력별 AI 역량 구분: 선도 인력 14%, AI 적극 사용자 18%, AI 미활용 전문가 11%, AI 미활용 실무층 56%"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="a" cx="60" cy="60" r="48" pathLength="100" style="--v:13.2;--o:0"/><circle class="a2" cx="60" cy="60" r="48" pathLength="100" style="--v:17.2;--o:14"/><circle class="b" cx="60" cy="60" r="48" pathLength="100" style="--v:10.2;--o:32"/><circle class="c" cx="60" cy="60" r="48" pathLength="100" style="--v:55.2;--o:43"/></svg><p><b>56%</b><span>AI 미활용 실무층</span></p></div><ul class="gp-pl"><li class="a"><i></i><b>14%</b><span>선도 인력 · 희소 역량과 높은 AI 숙련</span></li><li class="a2"><i></i><b>18%</b><span>AI 적극 사용자 · 많이 쓰지만 전문성은 낮음</span></li><li class="b"><i></i><b>11%</b><span>AI 미활용 전문가</span></li><li class="c"><i></i><b>56%</b><span>AI 미활용 실무층</span></li></ul></div>
       <small>PwC, 48개국 직장인 49,364명</small></div>
     <div class="abs gp-card hot" data-step="3" style="left:852px"><span class="gp-date">2026.03 발표</span><span class="gp-k">사용 경험에 따른 활용 격차</span>
       <p class="gp-legend"><i class="h"></i>6개월 이상 사용자<i class="l"></i>신규 사용자</p><ul class="gp-cmp"><li><em>업무 목적 활용<span class="gp-delta">7%p 격차</span></em><div class="h"><span class="t"><i style="width:98.0%"></i></span><b>49%</b></div><div class="l"><span class="t"><i style="width:84.0%"></i></span><b>42%</b></div></li><li><em>AI와의 반복 협업<span class="gp-delta">3.7%p 격차</span></em><div class="h"><span class="t"><i style="width:56.4%"></i></span><b>28.2%</b></div><div class="l"><span class="t"><i style="width:49.0%"></i></span><b>24.5%</b></div></li></ul>
@@ -1898,25 +1906,26 @@
     <p class="abs footnote">출처: WRITER·Workplace Intelligence, 2026 Enterprise AI Adoption Survey(2026.4.7 발표, 미국·유럽 지식노동자 2,400명) · 2025년판(2025.3, 미국 1,600명). 두 해의 표본 지역과 세대 구분이 다름</p>
   </section>
 
-  <!-- 노력 배분 10-20-70: BCG "AI Fuels Field Service Transformation"(2026-01-09) Exhibit 1을 우리말 원고 기준으로 영어로 다시 썼다 -->
+  <!-- 노력 배분 10-20-70: BCG, Andy Lin 외 "AI Fuels Field Service Transformation. Change Management Provides the Spark"(2026-01-09) 원문 기준(2026-10-17 다시 번역).
+       10% 특화 머신러닝 모델 · 20% 데이터와 기술 기반(backbone) · 70% 사람과 프로세스(교육·코칭·문화·리더십). 70%의 다섯 항목은 원문의 변화관리 5원칙
+       (Activate the leadership, Engage service teams, Foster executional excellence, Create a high-performance culture, Enable and empower) -->
   <section class="slide dark" aria-label="AX 노력 배분: 사람과 프로세스 70%, 데이터와 기술 20%, AI 10%">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">AX 노력의 70%가 사람에 있어 HR의 역할이 더 중요해질 것임</h2>
     <svg class="abs ef-ring" viewBox="0 0 1280 720" aria-hidden="true"><circle class="ef-guide" data-step="1" cx="640" cy="413" r="180"/><path class="ef-seg ai" data-step="2" d="M645.5 255.1A158 158 0 0 1 728.4 282.0L704.9 316.8A116 116 0 0 0 644.0 297.1z"/><path class="ef-seg dt" data-step="3" d="M737.3 288.5A158 158 0 0 1 788.5 359.0L749.0 373.3A116 116 0 0 0 711.4 321.6z"/><path class="ef-seg dt" data-step="3" d="M791.9 369.4A158 158 0 0 1 791.9 456.6L751.5 445.0A116 116 0 0 0 751.5 381.0z"/><path class="ef-seg pp" data-step="4" d="M788.5 467.0A158 158 0 0 1 737.3 537.5L711.4 504.4A116 116 0 0 0 749.0 452.7z"/><path class="ef-seg pp" data-step="4" d="M728.4 544.0A158 158 0 0 1 645.5 570.9L644.0 528.9A116 116 0 0 0 704.9 509.2z"/><path class="ef-seg pp" data-step="4" d="M634.5 570.9A158 158 0 0 1 551.6 544.0L575.1 509.2A116 116 0 0 0 636.0 528.9z"/><path class="ef-seg pp" data-step="4" d="M542.7 537.5A158 158 0 0 1 491.5 467.0L531.0 452.7A116 116 0 0 0 568.6 504.4z"/><path class="ef-seg pp" data-step="4" d="M488.1 456.6A158 158 0 0 1 488.1 369.4L528.5 381.0A116 116 0 0 0 528.5 445.0z"/><path class="ef-seg pp" data-step="4" d="M491.5 359.0A158 158 0 0 1 542.7 288.5L568.6 321.6A116 116 0 0 0 531.0 373.3z"/><path class="ef-seg pp" data-step="4" d="M551.6 282.0A158 158 0 0 1 634.5 255.1L636.0 297.1A116 116 0 0 0 575.1 316.8z"/><g class="ef-link ai" data-step="2"><path d="M682 283H860"/><circle cx="682" cy="283" r="5"/></g><g class="ef-link dt" data-step="3"><path d="M777 413H860"/><circle cx="777" cy="413" r="5"/></g><g class="ef-link pp" data-step="4"><path d="M529 332H420"/><circle cx="529" cy="332" r="5"/></g></svg>
-    <p class="abs center ef-center" data-step="1">AX 성공을 위한 노력 배분</p>
-    <div class="abs ef-card pp" data-step="4" style="left:76px;top:176px;height:474px"><b class="pct">70%</b><h4>사람과 프로세스에 집중</h4><ul>
-      <li>구성원을 움직이는 명확한 비전과 근거 제시</li>
-      <li>HR과 현업 조직이 공동 설계, 빠른 반복</li>
-      <li>사람과 에이전트의 프로세스·역할 재정의</li>
-      <li>사업 전략·KPI와 조직문화 정렬</li>
-      <li>필요 역량 교육과 조직 역량 구축</li></ul></div>
-    <div class="abs ef-card ai" data-step="2" style="left:860px;top:176px;height:200px"><b class="pct">10%</b><h4>AI에 집중</h4><ul>
-      <li>업무 자동화, 생성형 AI·에이전트 적용</li></ul></div>
-    <div class="abs ef-card dt" data-step="3" style="left:860px;top:396px;height:254px"><b class="pct">20%</b><h4>데이터와 기술에 집중</h4><ul>
-      <li>현업 시스템에 안정적인 기술 제공</li>
-      <li>인사·업무·고객 데이터와 시스템 통합</li></ul></div>
-    <p class="abs footnote">출처: BCG 10-20-70 원칙, “AI Fuels Field Service Transformation. Change Management Provides the Spark,” 2026년 1월. 세부 항목은 HR·조직 맥락으로 재구성</p>
+    <p class="abs center ef-center" data-step="1">AI를 대규모로 도입할 때의 노력 배분</p>
+    <div class="abs ef-card pp" data-step="4" style="left:76px;top:176px;height:474px"><b class="pct">70%</b><h4>사람과 프로세스</h4><ul>
+      <li>리더가 변화를 이끌며 "AI는 사람을 대체하지 않고 돕는다"는 메시지를 분명히 전함</li>
+      <li>현장 팀과 도구를 함께 만들고, 설계부터 확산까지 피드백을 반영함</li>
+      <li>역할과 조직 구조를 AI 기반 운영 방식에 맞추고 책임을 명확히 함</li>
+      <li>반복 업무를 줄여 가치를 만드는 일에 집중하는 문화를 만듦</li>
+      <li>실습 중심 교육, AI 챔피언 지정, 사내 강사 양성으로 역량을 키움</li></ul></div>
+    <div class="abs ef-card ai" data-step="2" style="left:860px;top:176px;height:200px"><b class="pct">10%</b><h4>AI 모델</h4><ul>
+      <li>업무에 특화된 머신러닝 모델</li></ul></div>
+    <div class="abs ef-card dt" data-step="3" style="left:860px;top:396px;height:254px"><b class="pct">20%</b><h4>데이터와 기술</h4><ul>
+      <li>AI를 받쳐 주는 데이터와 기술 기반</li></ul></div>
+    <p class="abs footnote">출처: BCG, Andy Lin 외, “AI Fuels Field Service Transformation. Change Management Provides the Spark”(2026.1.9) · 10-20-70 원칙</p>
   </section>
 
   <!-- 01 묶음 연결 장: 10-20-70(사람에 70%) 다음, 본인 사례(에이전트 팀) 앞. 교육만으로는 안 되고 리더가 먼저 일하는 방식을 보여줘야 한다는 연결 -->
@@ -2004,6 +2013,20 @@
     <p class="abs footnote">출처: IBM, AskHR 사례 · Reuters·eWeek, Walmart(2025.7) · Börsen-Zeitung, McKinsey Lilli · OpenAI, Morgan Stanley 고객 사례 · 티타임즈TV, 스노우플레이크 월드투어 서울 총정리(2026.10.11) 재구성</p>
   </section>
 
+  <!-- 라이너 사례(사용자 요청 2026-10-16, 화면에는 "라이너 사례"라는 말을 쓰지 않음. 2026-10-17 02 암묵지 축적의 앞선 기업 사례 장 다음으로 옮김): 노션에 회사 지식을 쌓고, 슬랙 채널에 에이전트를 두어 일한다. 이 구조에서 ROI가 나온다.
+       ROI 수치는 아직 받지 않아 숫자 없이 이유 셋만 둔다. 슬랙 대화는 구조를 보여 주는 예시 화면이다 -->
+  <section class="slide dark ln" data-gap="800" aria-label="사내 AI 챗봇은 ROI가 검증된 영역 중 하나임: Notion(회사의 지식)과 Slack(에이전트와 일하는 곳)">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">사내 AI 챗봇은 ROI가 검증된 영역 중 하나임</h2>
+    <p class="abs cr-sub lv-sub">Notion(회사의 지식) + Slack(에이전트와 일하는 곳)</p>
+    <div class="abs ln-box" data-step="1" style="left:76px"><div class="ln-h"><i class="n">N</i><b>Notion</b><em>쌓는 곳</em></div><p class="ln-d">회사의 지식이 한곳에 모임</p><ul class="ln-docs"><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>회의록</b><span>결정과 그 맥락</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>업무 매뉴얼</b><span>일하는 방법</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>프로젝트 문서</b><span>진행과 결과</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>규정·노하우</b><span>판단의 기준</span></li></ul></div>
+    <svg class="abs ln-arr" data-step="2" style="left:434px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <div class="abs ln-box" data-step="2" style="left:464px"><div class="ln-h"><i class="s">#</i><b>Slack</b><em>일하는 곳</em></div><p class="ln-d">사람이 대화하는 채널에 에이전트를 둠</p><div class="ln-chat"><p class="ln-ch"># 팀 채널</p><div class="ln-msg p"><small>팀원</small><p><b>@에이전트</b> 지난달 회의에서 정한 것만 정리해 줘</p></div><div class="ln-msg a"><small>에이전트</small><p>노션 회의록을 찾아 결정 사항만 정리했습니다</p><span class="ln-src">근거: 노션 회의록</span></div><p class="ln-note">예시 화면</p></div></div>
+    <svg class="abs ln-arr" data-step="3" style="left:822px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <div class="abs ln-box hot" data-step="3" style="left:852px"><div class="ln-h"><i class="r">↗</i><b>ROI</b><em>남는 것</em></div><p class="ln-d">ROI가 나오는 이유</p><ol class="ln-roi"><li><small>01</small><b>새 도구가 필요 없음</b><span>이미 쓰는 노션과 슬랙 위에 에이전트를 얹음</span></li><li><small>02</small><b>쓸수록 답이 좋아짐</b><span>노션에 쌓인 맥락이 늘수록 에이전트의 결과가 나아짐</span></li><li><small>03</small><b>비용과 효과가 보임</b><span>에이전트별 사용량과 토큰 비용을 채널 단위로 확인함</span></li></ol></div>
+  </section>
+
   <!-- HR 업무 지도(2026-10-17 다시 넣음, 02 암묵지 축적의 앞선 기업 사례 장 다음): AI 활용 유형 16가지를 HR 업무 단계 다섯 줄(채용·지원·육성·평가·보상·노무·관계)에 배치.
        칩 색은 AI가 맡는 역할 넷(만들기·이해하기·찾기·분석·실행), 16가지 유형은 각각 한 번씩. 줄마다 차례로 뜬다 -->
   <section class="slide dark hm" data-gap="500" aria-label="HR 팀이 AI와 함께 할 수 있는 일: 채용부터 노무까지 업무 단계별 AI 활용 16가지">
@@ -2048,20 +2071,6 @@
     <div class="abs wf-cell a law" data-step="4" style="left:985.5px;top:388px"><i>AI</i><span class="wf-law">AI기본법: 고영향</span>이탈 위험 신호 분석<br>조치안 제안</div>
     <div class="abs wf-cell p" data-step="4" style="left:985.5px;top:548px">리텐션 조치·모니터링</div>
     <p class="abs footnote">고영향: 「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」 제2조제4호사목(채용 등 권리·의무에 중대한 영향을 미치는 판단·평가). AI 사용 사전 고지(제31조)와 사람의 관리·감독(제34조)이 필요하며, 최종 판단은 사람이 함</p>
-  </section>
-
-  <!-- 라이너 사례(사용자 요청 2026-10-16, 화면에는 "라이너 사례"라는 말을 쓰지 않음. 2026-10-17 02 암묵지 축적의 앞선 기업 사례 장 다음으로 옮김): 노션에 회사 지식을 쌓고, 슬랙 채널에 에이전트를 두어 일한다. 이 구조에서 ROI가 나온다.
-       ROI 수치는 아직 받지 않아 숫자 없이 이유 셋만 둔다. 슬랙 대화는 구조를 보여 주는 예시 화면이다 -->
-  <section class="slide dark ln" data-gap="800" aria-label="사내 챗봇은 ROI가 검증되고 있음: Notion(회사의 지식)과 Slack(에이전트와 일하는 곳)">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">사내 챗봇은 ROI가 검증되고 있음</h2>
-    <p class="abs cr-sub lv-sub">Notion(회사의 지식) + Slack(에이전트와 일하는 곳)</p>
-    <div class="abs ln-box" data-step="1" style="left:76px"><div class="ln-h"><i class="n">N</i><b>Notion</b><em>쌓는 곳</em></div><p class="ln-d">회사의 지식이 한곳에 모임</p><ul class="ln-docs"><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>회의록</b><span>결정과 그 맥락</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>업무 매뉴얼</b><span>일하는 방법</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>프로젝트 문서</b><span>진행과 결과</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>규정·노하우</b><span>판단의 기준</span></li></ul></div>
-    <svg class="abs ln-arr" data-step="2" style="left:434px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    <div class="abs ln-box" data-step="2" style="left:464px"><div class="ln-h"><i class="s">#</i><b>Slack</b><em>일하는 곳</em></div><p class="ln-d">사람이 대화하는 채널에 에이전트를 둠</p><div class="ln-chat"><p class="ln-ch"># 팀 채널</p><div class="ln-msg p"><small>팀원</small><p><b>@에이전트</b> 지난달 회의에서 정한 것만 정리해 줘</p></div><div class="ln-msg a"><small>에이전트</small><p>노션 회의록을 찾아 결정 사항만 정리했습니다</p><span class="ln-src">근거: 노션 회의록</span></div><p class="ln-note">예시 화면</p></div></div>
-    <svg class="abs ln-arr" data-step="3" style="left:822px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    <div class="abs ln-box hot" data-step="3" style="left:852px"><div class="ln-h"><i class="r">↗</i><b>ROI</b><em>남는 것</em></div><p class="ln-d">ROI가 나오는 이유</p><ol class="ln-roi"><li><small>01</small><b>새 도구가 필요 없음</b><span>이미 쓰는 노션과 슬랙 위에 에이전트를 얹음</span></li><li><small>02</small><b>쓸수록 답이 좋아짐</b><span>노션에 쌓인 맥락이 늘수록 에이전트의 결과가 나아짐</span></li><li><small>03</small><b>비용과 효과가 보임</b><span>에이전트별 사용량과 토큰 비용을 채널 단위로 확인함</span></li></ol></div>
   </section>
 
   <!-- 18. 운영 계층: 왼쪽 LLM(골라 쓰는 엔진, 계층 1~3) + 4개 계층 + 오른쪽 Control Tower(실시간 관제, 계층 전체). 관제는 모든 층을 보고 Agent OS로 개입 지시 -->
@@ -2111,7 +2120,7 @@
     <div class="abs gx-row" data-step="1" style="top:244px"><p class="gx-l">노하우를 보는 눈</p><p class="gx-c org">회사의 자산. 모아서 모두가 함께 씀</p><p class="gx-t"><b>소유</b></p><p class="gx-c per">나의 경쟁력. 넘기는 순간 대체될 수 있음</p></div>
     <div class="abs gx-row" data-step="2" style="top:310px"><p class="gx-l">행동</p><p class="gx-c org"><span>업무 기록을 모아 에이전트를 학습시킴</span><small>Meta, Model Capability Initiative(2026.4)</small></p><p class="gx-t"><b>통제</b></p><p class="gx-c per"><span>Z세대 44%가 회사의 AI 전략을 방해함</span><small>WRITER, 2026</small></p></div>
     <div class="abs gx-row" data-step="3" style="top:376px"><p class="gx-l">시장 신호</p><p class="gx-c org"><span>초급 업무 대체로 청년 일자리 <em>−28.5만</em></span><small>한국은행, 2022.6~2026.6</small></p><p class="gx-t"><b>가치</b></p><p class="gx-c per"><span>경력자의 암묵지는 보완, 50대 일자리 <em>+23만</em></span><small>한국은행, 같은 기간</small></p></div>
-    <div class="abs gx-row" data-step="4" style="top:442px"><p class="gx-l">결과 위험</p><p class="gx-c org">노하우가 모이지 않아 Company Brain이 비어 있음</p><p class="gx-t"><b>단절</b></p><p class="gx-c per">신입이 배울 일이 사라져 경력 사다리가 끊김</p></div>
+    <div class="abs gx-row" data-step="4" style="top:442px"><p class="gx-l">결과 위험</p><p class="gx-c org">데이터는 모여 있으나 일의 맥락이 연결되지 않음</p><p class="gx-t"><b>단절</b></p><p class="gx-c per">신입이 배울 일이 사라져 경력 사다리가 끊김</p></div>
     <div class="abs gx-hr" data-step="5"><p class="gx-hh">HR의 해법<span>이해를 맞추는<br>세 가지 설계</span></p><ol>
       <li><small>01 · INCENTIVE</small><b>보상 설계</b><span>노하우를 내놓아도 손해 보지 않게, 스킬 기여와 사용량을 평가·보상에 반영</span></li>
       <li><small>02 · TRUST</small><b>신뢰 설계</b><span>감시가 아니라 참여로, 무엇을 모으고 어디에 쓰지 않는지 먼저 밝히고 동의를 받음</span></li>
@@ -2211,10 +2220,10 @@
        Hyundai Motor Group CES 2026 발표(hyundainews.com 2026-01-05): Atlas를 2028년까지 미국 조지아 Metaplant America에 배치, 부품 시퀀싱부터 시작해 2030년까지 부품 조립으로 확대.
        로봇은 배치 전 RMAC(Robot Metaplant Application Center, 2026 개소)에서 학습. Automotive News: 2028년까지 연 3만 대 로봇 생산 체계 구축. 해석과 HR 시사점은 발표자 정리.
        어미 규칙(사용자 지정): 사실 ~함·발표함 / 계획 ~계획·예정·목표 / 전망 ~할 전망·가능성이 큼 / 제안 ~해야 함 -->
-  <section class="slide dark rbt" data-gap="800" aria-label="로봇은 경제 전체보다 공장의 특정 공정에 먼저 들어올 전망: 현대차 Atlas 배치 계획과 그 해석">
+  <section class="slide dark rbt" data-gap="800" aria-label="로봇은 공장의 표준화된 공정부터 먼저 들어올 전망: 현대차 Atlas 배치 계획과 그 해석">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">로봇은 경제 전체보다 공장의 특정 공정에 먼저 들어올 전망</h2>
+    <h2 class="abs head-title">로봇은 공장의 표준화된 공정부터 먼저 들어올 전망</h2>
     <p class="abs cr-sub lv-sub">반론: "현대차는 이미 공장에 로봇을 들이고 있지 않나?"</p>
     <div class="abs rbt-box c" data-step="1"><p class="rbt-k">반론</p><h4>현대차는 공장에 휴머노이드를 배치하겠다고 발표함</h4>
       <ol class="rbt-tl">
@@ -2224,7 +2233,7 @@
     <svg class="abs rbt-arr" data-step="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
     <div class="abs rbt-box i" data-step="2"><p class="rbt-k">해석</p><h4>로봇 도입 시점은 업무 종류에 따라 다를 전망</h4>
       <ol class="rbt-pt">
-        <li><small>01</small><b>미국 전체 업무 기준으로는 먼 일</b><span>로봇이 더 싼 업무가 10%에 닿는 시점은 2040~2060년대로 추정</span></li>
+        <li><small>01</small><b>전체 업무 기준으로 수십 년 내 대체가 어려울 것으로 전망</b><span>로봇이 더 싼 업무가 10%에 닿는 시점은 2040~2060년대로 추정</span></li>
         <li><small>02</small><b>표준화된 공정부터 먼저 바뀔 가능성이 큼</b><span>현대차도 반복 동작인 시퀀싱을 첫 대상으로 정함</span></li>
         <li><small>03</small><b>사무 업무는 로봇보다 에이전트가 먼저 바꿀 전망</b><span>화이트칼라는 지금 에이전트와의 공존이 현실 과제임</span></li></ol></div>
     <div class="abs rbt-hr" data-step="3"><p class="rbt-hh">HR 시사점</p><p class="rbt-ht">제조 HR은 회사 평균이 아니라 <em>공정 단위</em>로, <em>2~3년 안에</em> 고민을 시작해야 함. 로봇이 맡을 공정, 재배치·재교육 대상, 안전·노사 협의 일정을 미리 고려해 계획할 필요가 있음</p></div>
@@ -2351,10 +2360,10 @@
   <!-- 기업 AI 성숙도(2026-10-17 교체): 원래 사진 속 5단계(AI Usage → AI Native)의 원 출처를 찾지 못해, 가장 가까운 공개 프레임워크로 바꿈.
        MIT CISR Enterprise AI Maturity Model(Weill·Woerner·Sebastian, 2024-12-19 MIT Sloan 보도자료): 4단계와 기업 비중 28·34·31·7%, 1·2단계는 재무 성과 업계 평균 이하, 3·4단계는 평균보다 크게 높음.
        데이터는 2022 Future Ready Survey(N=721), 주로 분석형 AI 기준. 단계별 HR 역할은 발표자 정리 -->
-  <section class="slide dark mc" data-gap="500" aria-label="AI 성숙도 3단계로 가려면 HR의 역할이 확대되어야 함(3·4단계 기업만 재무 성과가 업계 평균을 크게 앞섬): MIT CISR 기업 AI 성숙도 4단계와 단계별 HR의 역할">
+  <section class="slide dark mc" data-gap="500" aria-label="AI 도입 ROI를 높이려면 HR의 역할 확대가 필요함(3·4단계 기업만 재무 성과가 업계 평균을 크게 앞섬): MIT CISR 기업 AI 성숙도 4단계와 단계별 HR의 역할">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">AI 성숙도 3단계로 가려면 HR의 역할이 확대되어야 함</h2>
+    <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">AI 도입 ROI를 높이려면 HR의 역할 확대가 필요함</h2>
     <p class="abs cr-sub lv-sub">기업 AI 성숙도 4단계와 단계별 HR의 역할</p>
     <div class="abs mc-box" data-step="1" style="left:76px;top:378px;height:226px"><small>STAGE 1</small><b>Experiment and Prepare</b><span>실험과 준비</span><p class="mc-pct"><em>28%</em>기업 비중</p><p class="mc-hr"><i>HR</i>구성원 AI 교육, 사용 정책·윤리 원칙 수립</p></div>
     <div class="abs mc-box" data-step="2" style="left:362px;top:326px;height:278px"><small>STAGE 2</small><b>Build Pilots and Capabilities</b><span>파일럿과 역량 구축</span><p class="mc-pct"><em>34%</em>기업 비중</p><p class="mc-hr"><i>HR</i>채용·평가 업무 파일럿, 성과 지표 정의</p></div>
@@ -2449,6 +2458,7 @@
     <h2 class="abs cl-title">감사합니다</h2>
     <div class="abs cl-bar oy-bar" aria-hidden="true"></div>
     <p class="abs cl-sub">강정구 · 라이너 AI 전략 총괄</p>
+    <div class="abs cl-qr"><a href="https://www.linkedin.com/in/jayden-kang/" target="_blank" rel="noopener"><svg class="cl-qr-code" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="링크드인 프로필 QR 코드" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#1a1a1a" d="M0 0.5h7m3 0h1m1 0h3m3 0h1m3 0h7M0 1.5h1m5 0h1m1 0h1m2 0h1m4 0h2m2 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m5 0h1m4 0h1m2 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h3m2 0h1m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h2m1 0h2m2 0h5m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h2m2 0h2m1 0h1m5 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m2 0h1m4 0h1m2 0h2M0 8.5h1m5 0h1m1 0h2m2 0h3m2 0h3m1 0h2m2 0h3M1 9.5h1m1 0h1m1 0h1m3 0h3m2 0h7m2 0h2m1 0h2M0 10.5h2m2 0h3m4 0h5m1 0h1m4 0h1M0 11.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h3m2 0h2m2 0h1m1 0h1M0 12.5h1m1 0h2m2 0h3m5 0h1m1 0h1m3 0h1m1 0h2m4 0h1M2 13.5h1m2 0h1m1 0h1m2 0h4m1 0h6m1 0h1m1 0h1m2 0h2M0 14.5h2m4 0h2m2 0h7m1 0h1m1 0h4m1 0h2M3 15.5h1m1 0h1m2 0h2m1 0h2m7 0h5m1 0h1m1 0h1M0 16.5h1m5 0h3m2 0h2m2 0h1m1 0h1m1 0h1m3 0h1m1 0h2M0 17.5h1m1 0h1m1 0h1m4 0h1m3 0h1m1 0h6m1 0h3m1 0h3M0 18.5h9m2 0h1m3 0h2m2 0h2m4 0h1m2 0h1M0 19.5h1m2 0h1m4 0h2m1 0h3m2 0h1m1 0h1m1 0h1m1 0h3M0 20.5h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h5m1 0h3M8 21.5h2m4 0h2m1 0h2m1 0h1m3 0h2M0 22.5h7m2 0h2m1 0h1m2 0h3m1 0h2m1 0h1m1 0h3M0 23.5h1m5 0h1m3 0h1m3 0h1m4 0h2m3 0h1M0 24.5h1m1 0h3m1 0h1m3 0h5m4 0h7m1 0h1M0 25.5h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m1 0h1m1 0h2m1 0h1M0 26.5h1m1 0h3m1 0h1m2 0h1m3 0h1m1 0h5m1 0h7M0 27.5h1m5 0h1m2 0h5m2 0h1m1 0h1m4 0h1m1 0h2m1 0h1M0 28.5h7m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m2 0h5"/></svg></a><p><b>LinkedIn</b><span>linkedin.com/in/jayden-kang</span></p></div>
   </section>
 </main>
 <!-- ../../index.html 복사본(base64). file://로 열 때만 쓴다. 원본을 고치면 이 블록도 다시 만들어야 한다 -->
