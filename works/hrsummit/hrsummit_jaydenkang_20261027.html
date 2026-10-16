@@ -1461,14 +1461,16 @@
   .ar-tip .ar-li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: #3add2e; }
   .mx-side .tcu { text-combine-upright: all; font-weight: inherit; }
 
-  /* AI 도입 7가지 조건(.cd): 줄 높이 54, 간격 8, y 224~650. HR 주도 줄만 옅은 그린 */
+  /* AI 도입 조건(.cd): 여섯 줄, 줄 높이 54, 층 사이 간격 14(구조 층 안 두 줄은 4), y 230~614. 왼쪽은 층 이름. HR 주도 줄만 옅은 그린 */
   .cd-lg { top: 170px; left: auto; right: 76px; margin: 0; display: flex; gap: 18px; font-size: 14px; font-weight: 700; color: #3d434a; }
   .cd-lg span { display: flex; align-items: center; gap: 7px; }
   .cd-lg i { width: 16px; height: 12px; border-radius: 3px; border: 1px solid #c3c9cf; background: #fff; }
   .cd-lg i.lead { background: #3add2e; border-color: #3add2e; }
   .cd-row { left: 76px; width: 1128px; height: 54px; box-sizing: border-box; padding: 0 22px; border-radius: 12px; background: #f7f8f9; border: 1px solid #e3e6ea;
-    display: grid; grid-template-columns: 30px 210px 330px 84px 1fr; align-items: center; column-gap: 16px; }
+    display: grid; grid-template-columns: 36px 210px 314px 84px 1fr; align-items: center; column-gap: 16px; }
   .cd-row.hr { background: #effcee; border: 1.5px solid #3add2e; }
+  .cd-ly { font-size: 13px; font-weight: 800; color: #6f7880; }   /* 층 이름(방향·사람·규칙·구조·기술). 구조 층 두 번째 줄은 비움 */
+  .cd-row.hr .cd-ly { color: #1f9a14; }
   .cd-no { font: 800 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #98a1a8; }
   .cd-row.hr .cd-no { color: #1f9a14; }
   .cd-en { font-size: 18px; font-weight: 800; letter-spacing: -.01em; color: #1a1a1a; white-space: nowrap; }
@@ -1724,8 +1726,6 @@
   .rbt-ht { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.55; color: #fff; word-break: keep-all; }
   .rbt-ht em { font-style: normal; color: #3add2e; }
   .wf-law { position: absolute; top: -9px; left: 10px; padding: 2px 8px 3px; border-radius: 999px; background: #ffd84d; font-size: 11px; font-weight: 800; line-height: 1.3; color: #1a1a1a; white-space: nowrap; }   /* AI 기본법 고영향 표시(21장과 같은 문법, AI 배지가 오른쪽이라 왼쪽 위) */
-  .rs-link { margin: 26px 0 0; padding-top: 18px; border-top: 1px solid #e3e6ea; display: flex; flex-direction: column; gap: 6px; font-size: 16px; font-weight: 800; color: #1f9a14; }   /* 9장 이유 카드: 8장의 어떤 조건이 비었는지 */
-  .rs-link span { font-size: 12.5px; font-weight: 700; color: #98a1a8; }
   /* 마무리 장 링크드인 QR(.cl-qr): 인사 아래 왼쪽(x 76, y 470), QR 132 정사각 + 오른쪽 안내 글. QR은 https://www.linkedin.com/in/jayden-kang/ (qrcode 1.5.4, 오류 정정 M) */
   .cl-qr { left: 76px; top: 470px; display: flex; align-items: center; gap: 20px; }
   .cl-qr a { display: block; padding: 10px; border-radius: 12px; background: #fff; border: 1px solid #e3e6ea; line-height: 0; }
@@ -1734,6 +1734,11 @@
   .cl-qr p b { font-size: 18px; font-weight: 800; color: #1a1a1a; }
   .cl-qr p span { font-size: 15px; font-weight: 600; color: #6f7880; }
   .closing.active .cl-qr { animation: cv-rise 1.2s 1.2s cubic-bezier(.16,1,.3,1) backwards; }
+  /* 핵심 항목 넷(Value Maxxing, Operating AI, Data → Knowledge, [Human + Agent] Team): 다섯 열이 저절로 뜬 뒤, 클릭(6단계)하면 그린으로 칠해진다 */
+  .ax5-col li { transition: background-color .7s ease, border-color .7s ease, box-shadow .7s ease, transform .5s cubic-bezier(.34,1.56,.64,1); }
+  .ax5:has(.ax5-trig.on) .ax5-col li.key { background: #effcee; border-color: #3add2e; box-shadow: 0 0 0 1px #3add2e, 0 10px 26px rgba(58,221,46,.22); transform: translateY(-2px); }
+  .ax5-trig { width: 0; height: 0; }
+  @media print { .ax5 .ax5-col li.key { background: #effcee; border-color: #3add2e; box-shadow: 0 0 0 1px #3add2e; } }
 </style>
 </head>
 <body>
@@ -1815,6 +1820,22 @@
     <p class="abs footnote">출처: Dell'Acqua 외, HBS(2023) · Choi 외, Minnesota Law Review(2024) · Anthropic, Estimating AI productivity gains(2025.11)·Economic Index(2026.1). 2025~26은 Claude 추정치(검증 시간 제외)</p>
   </section>
 
+  <!-- 2027 AX 트렌드(2026-10-17 AI 변화 묶음 끝(60분 업무 장 다음)으로 옮김, 세 묶음 전이라 내비 없음. 2026-10-16 MECE 재정리): 황재선 『AX 100배의 법칙』(좋은습관연구소, 2025, 교보·예스24 저자 표기 기준)의 전망을 운영 모델 다섯 요소로 겹침 없이 묶음(IT → Execution Builder와 AI Maturity는 사용자 의견으로 뺌, 11개).
+       Work(무엇을) · People(누가) · Capability(어떤 역량으로) · Measure(무엇으로 재나) · Foundation(무엇 위에서). 축마다 HR 레버 하나.
+       축 이름과 항목 제목은 영어, 질문·HR 레버·설명과 헤드라인은 한국어(사용자 지정) -->
+  <section class="slide dark ax5" data-gap="600" data-click="1" data-auto="5" aria-label="인당 생산성이 오르는 사이 AX 트렌드도 빠르게 바뀌는 중: 2027 AX 트렌드를 HR의 다섯 가지 레버(Work, People, Capability, Measure, Foundation)로 정리">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">인당 생산성이 오르는 사이 AX 트렌드도 빠르게 바뀌는 중</h2>
+    <p class="abs cr-sub lv-sub">2027 AX 트렌드</p>
+    <div class="abs ax5-col" data-step="1" style="left:76px"><div class="ax5-h"><small>01</small><b>WORK</b><span>무엇을 하는가</span><em>HR 레버 · 직무 설계</em></div><ul><li><b>Job → Workflow</b><p>직무 기술서보다 업무 흐름의 설계가 경쟁력이 됨</p></li><li><b>AI-enabled →<br>AI-native</b><p>기존 업무에 AI를 얹지 않고, AI를 전제로 다시 설계함</p></li></ul></div>
+    <div class="abs ax5-col" data-step="2" style="left:305px"><div class="ax5-h"><small>02</small><b>PEOPLE</b><span>누가 하는가</span><em>HR 레버 · 인력 계획</em></div><ul><li><b>Digital Workforce</b><p>에이전트를 인력 계획의 한 축으로 고려해야 함</p></li><li class="key"><b>[Human + Agent] Team</b><p>사람과 에이전트가 한 팀으로 일함</p></li></ul></div>
+    <div class="abs ax5-col" data-step="3" style="left:534px"><div class="ax5-h"><small>03</small><b>CAPABILITY</b><span>어떤 역량으로 하는가</span><em>HR 레버 · 리더·역량 육성</em></div><ul><li><b>People Leader →<br>Hybrid Leader</b><p>사람과 에이전트를 함께 이끄는 리더로</p></li><li class="key"><b>Using AI →<br>Operating AI</b><p>AI 교육의 목표가 사용해 보기에서 운영으로 바뀜</p></li></ul></div>
+    <div class="abs ax5-col" data-step="4" style="left:763px"><div class="ax5-h"><small>04</small><b>MEASURE</b><span>무엇으로 측정하는가</span><em>HR 레버 · 평가·보상</em></div><ul><li class="key"><b>Token Maxxing →<br>Value Maxxing</b><p>쓴 양보다 만든 가치로</p></li><li><b>Individual →<br>Team Productivity</b><p>생산성을 팀 단위로 측정해야 함</p></li><li><b>Agent Control ·<br>Monitoring</b><p>품질·비용·속도 상시 관제</p></li></ul></div>
+    <div class="abs ax5-col" data-step="5" style="left:992px"><div class="ax5-h"><small>05</small><b>FOUNDATION</b><span>어떤 기반으로 동작하는가</span><em>HR 레버 · 데이터·거버넌스</em></div><ul><li class="key"><b>Data → Knowledge</b><p>숫자를 쌓는 데서 일하는 노하우를 쌓는 데로</p></li><li><b>Hybrid Model Architecture</b><p>여러 모델과 사내 시스템을 섞어 쓰고, 접근 기준을 정함</p></li></ul></div>
+    <p class="abs footnote">출처: 황재선, 『AX 100배의 법칙』(좋은습관연구소, 2025) 재구성</p>
+    <i class="abs ax5-trig" data-step="6" aria-hidden="true"></i>
+  </section>
+
   <!-- AI 도입이 조직 성과로 이어지지 못함. McKinsey "The state of AI in 2026: On the road to ROI"(2026-08-25): 개인 생산성 향상 80%, EBIT 기여 37%(전년과 비슷), 고성과 기업 약 6%(2025년과 같음).
        PwC 2026 Global CEO Survey(2026-01-20, 95개국 CEO 4,454명, 2025-09-30~11-10 조사): 의미 있는 재무 효과 없음 56%, 비용·매출 모두 개선 12%. BCG Applied AI Index 2026(2026-09-30, CxO 1,330명): future-built 7.5% -->
   <section class="slide dark gp og" aria-label="하지만 AI 도입이 가시적인 조직 성과로 이어지고 있지는 못함">
@@ -1845,28 +1866,13 @@
     <div class="abs jr-band" data-step="4"><p class="jr-bh">지금 HR이<br>받는 질문</p><ul><li>교육은 시켰는데, 그다음은 뭘 해야 하지?</li><li>토큰 비용은 관리하는데, 그래서 성과는?</li><li>AI 도입 성과가 정말 나고 있는 게 맞나?</li><li>효과가 있다는데, 왜 사람은 줄지 않지?</li></ul></div>
   </section>
 
-  <!-- AI 도입의 7가지 조건(2026-10-17 "성과가 안 나는 이유" 장 앞으로 옮김: HR이 맡을 세 조건이 이유 세 가지의 복선. 세 묶음 시작 전이라 내비 없음). 외부 세미나 발표 자료의 틀 중 HR이 주도할 셋(조직, 사람·문화, 거버넌스)을 그린으로 강조. HR 역할 열은 발표자 정리 -->
-  <section class="slide dark cd" data-gap="350" aria-label="질문의 답은 HR이 설계할 세 가지 조건에 있음: AI 도입의 7가지 조건 중 조직, 사람과 문화, 거버넌스는 HR이 주도할 영역">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <h2 class="abs head-title">질문의 답은 HR이 설계할 세 가지 조건에 있음</h2>
-    <p class="abs cr-sub lv-sub">AI 도입의 기본 조건 7가지와 HR의 역할</p>
-    <p class="abs cd-lg"><span><i class="lead"></i>HR 주도</span><span><i></i>HR 협력</span></p>
-    <div class="abs cd-row" data-step="1" style="top:224px"><span class="cd-no">01</span><b class="cd-en">AI Strategy</b><span class="cd-ko">AI 통합을 위한 비전과 로드맵 수립</span><span class="cd-tag">HR 협력</span><span class="cd-hr">사업 전략과 인력 계획을 함께 연결</span></div>
-    <div class="abs cd-row" data-step="2" style="top:286px"><span class="cd-no">02</span><b class="cd-en">AI Value</b><span class="cd-ko">AI 과제의 효과를 정의하고 정량화</span><span class="cd-tag">HR 협력</span><span class="cd-hr">생산성 지표에 사람·에이전트 비용을 함께 반영</span></div>
-    <div class="abs cd-row hr" data-step="3" style="top:348px"><span class="cd-no">03</span><b class="cd-en">AI Organization</b><span class="cd-ko">AI 역량을 지원하는 조직 구조 설계</span><span class="cd-tag lead">HR 주도</span><span class="cd-hr">직무 재정의, 에이전트를 포함한 조직·R&amp;R 설계</span></div>
-    <div class="abs cd-row hr" data-step="4" style="top:410px"><span class="cd-no">04</span><b class="cd-en">AI People &amp; Culture</b><span class="cd-ko">AI와 혁신을 포용하는 문화 조성</span><span class="cd-tag lead">HR 주도</span><span class="cd-hr">리더 교육, 활용 격차 해소, 노하우 공유 보상</span></div>
-    <div class="abs cd-row hr" data-step="5" style="top:472px"><span class="cd-no">05</span><b class="cd-en">AI Governance</b><span class="cd-ko">AI 사용 정책과 책임 체계 수립</span><span class="cd-tag lead">HR 주도</span><span class="cd-hr">인사 데이터 접근 권한, 채용·평가 AI 사용 원칙</span></div>
-    <div class="abs cd-row" data-step="6" style="top:534px"><span class="cd-no">06</span><b class="cd-en">AI Engineering</b><span class="cd-ko">AI 솔루션을 구축하고 배포</span><span class="cd-tag">HR 협력</span><span class="cd-hr">HR 업무 요구를 IT와 함께 정의</span></div>
-    <div class="abs cd-row" data-step="7" style="top:596px"><span class="cd-no">07</span><b class="cd-en">AI Data</b><span class="cd-ko">데이터를 관리하고 활용해 인사이트 창출</span><span class="cd-tag">HR 협력</span><span class="cd-hr">인사 데이터 표준화와 품질 관리</span></div>
-  </section>
-
   <!-- 이유 세 가지(2026-10-15): 뒤 세 묶음(사람·문화 / 성과 축적 / 워크플로우 재설계)의 목차. 근거는 모두 덱 안 수치(격차, Z세대 방해, 질문 비중, McKinsey, 시간 단축, 에이전트 팀) -->
   <section class="slide dark rs" data-gap="900" aria-label="AI 도입이 조직 성과로 이어지지 않는 이유 세 가지: 조직문화 전환, 암묵지 축적, 하이브리드 조직 설계">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <h2 class="abs head-title">AI 도입이 조직 성과로 이어지지 않는 이유</h2>
-    <div class="abs rs-card" data-step="1" style="left:76px"><span class="rs-pill">01 조직문화 전환</span><h4>구성원이 변화를 따라오지 못함</h4><p class="rs-link"><span>비어 있는 조건</span>AI People &amp; Culture</p></div>
-    <div class="abs rs-card" data-step="2" style="left:464px"><span class="rs-pill">02 암묵지 축적</span><h4>구성원의 노하우가 조직에 축적되지 않음</h4><p class="rs-link"><span>비어 있는 조건</span>AI Data · AI Governance</p></div>
-    <div class="abs rs-card" data-step="3" style="left:852px"><span class="rs-pill">03 하이브리드 조직 설계</span><h4>하이브리드 조직 설계 없이 AI 도입에 그침</h4><p class="rs-link"><span>비어 있는 조건</span>AI Organization</p></div>
+    <div class="abs rs-card" data-step="1" style="left:76px"><span class="rs-pill">01 조직문화 전환</span><h4>구성원이 변화를 따라오지 못함</h4></div>
+    <div class="abs rs-card" data-step="2" style="left:464px"><span class="rs-pill">02 암묵지 축적</span><h4>구성원의 노하우가 조직에 축적되지 않음</h4></div>
+    <div class="abs rs-card" data-step="3" style="left:852px"><span class="rs-pill">03 하이브리드 조직 설계</span><h4>하이브리드 조직 설계 없이 AI 도입에 그침</h4></div>
   </section>
 
   <!-- 개인 간 AI 활용 격차. 2번 카드(PwC 인력 구분)는 원 차트(도넛)로 그림(사용자 요청 2026-10-16). 합계 99%는 원자료 반올림 -->
@@ -1912,7 +1918,7 @@
   <section class="slide dark" aria-label="AX 노력 배분: 사람과 프로세스 70%, 데이터와 기술 20%, AI 10%">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">AX 노력의 70%가 사람에 있어 HR의 역할이 더 중요해질 것임</h2>
+    <h2 class="abs head-title">성공적인 AX를 위해서는 사람과 프로세스에 집중해야 함</h2>
     <svg class="abs ef-ring" viewBox="0 0 1280 720" aria-hidden="true"><circle class="ef-guide" data-step="1" cx="640" cy="413" r="180"/><path class="ef-seg ai" data-step="2" d="M645.5 255.1A158 158 0 0 1 728.4 282.0L704.9 316.8A116 116 0 0 0 644.0 297.1z"/><path class="ef-seg dt" data-step="3" d="M737.3 288.5A158 158 0 0 1 788.5 359.0L749.0 373.3A116 116 0 0 0 711.4 321.6z"/><path class="ef-seg dt" data-step="3" d="M791.9 369.4A158 158 0 0 1 791.9 456.6L751.5 445.0A116 116 0 0 0 751.5 381.0z"/><path class="ef-seg pp" data-step="4" d="M788.5 467.0A158 158 0 0 1 737.3 537.5L711.4 504.4A116 116 0 0 0 749.0 452.7z"/><path class="ef-seg pp" data-step="4" d="M728.4 544.0A158 158 0 0 1 645.5 570.9L644.0 528.9A116 116 0 0 0 704.9 509.2z"/><path class="ef-seg pp" data-step="4" d="M634.5 570.9A158 158 0 0 1 551.6 544.0L575.1 509.2A116 116 0 0 0 636.0 528.9z"/><path class="ef-seg pp" data-step="4" d="M542.7 537.5A158 158 0 0 1 491.5 467.0L531.0 452.7A116 116 0 0 0 568.6 504.4z"/><path class="ef-seg pp" data-step="4" d="M488.1 456.6A158 158 0 0 1 488.1 369.4L528.5 381.0A116 116 0 0 0 528.5 445.0z"/><path class="ef-seg pp" data-step="4" d="M491.5 359.0A158 158 0 0 1 542.7 288.5L568.6 321.6A116 116 0 0 0 531.0 373.3z"/><path class="ef-seg pp" data-step="4" d="M551.6 282.0A158 158 0 0 1 634.5 255.1L636.0 297.1A116 116 0 0 0 575.1 316.8z"/><g class="ef-link ai" data-step="2"><path d="M682 283H860"/><circle cx="682" cy="283" r="5"/></g><g class="ef-link dt" data-step="3"><path d="M777 413H860"/><circle cx="777" cy="413" r="5"/></g><g class="ef-link pp" data-step="4"><path d="M529 332H420"/><circle cx="529" cy="332" r="5"/></g></svg>
     <p class="abs center ef-center" data-step="1">AI를 대규모로 도입할 때의 노력 배분</p>
     <div class="abs ef-card pp" data-step="4" style="left:76px;top:176px;height:474px"><b class="pct">70%</b><h4>사람과 프로세스</h4><ul>
@@ -2043,36 +2049,6 @@
     <p class="abs footnote">고영향: 「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」 제2조제4호사목(채용 등 권리·의무에 중대한 영향을 미치는 판단·평가). AI 사용 사전 고지(제31조)와 사람의 관리·감독(제34조)이 필요하며, 최종 판단은 사람이 함</p>
   </section>
 
-  <!-- Workflow 기반 과제 정의(2026-10-17 HR 업무 지도 다음으로 옮김. 외부 세미나 발표 자료의 재무 자금 워크플로우 예시)를 HR 4단계(채용·육성·평가·유지)로 바꿈.
-       위 두 줄은 에이전트(데이터 수집 → 분석·제안), 맨 아래 띠는 사람의 판단. 열마다 차례로 뜬다 -->
-  <section class="slide dark wf" data-gap="600" aria-label="에이전트 도입은 HR 업무 흐름을 쪼개는 데서 시작함: 채용, 육성, 평가, 유지의 데이터 에이전트, 분석 에이전트, 사람의 결정">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">에이전트 도입은 HR 업무 흐름을 쪼개는 데서 시작함</h2>
-    <p class="abs cr-sub lv-sub">Workflow 기반 과제 정의 예시: 채용부터 유지까지 사람과 에이전트의 역할 배분</p>
-    <div class="abs wf-lab a" style="top:262px"><b>Data Agent</b><span>모으고 정리</span></div>
-    <div class="abs wf-lab a" style="top:388px"><b>Analysis Agent</b><span>분석하고 제안</span></div>
-    <div class="abs wf-band"><div class="wf-lab p"><b>사람</b><span>판단하고 결정</span></div></div>
-    <svg class="abs wf-lines" viewBox="0 0 1280 720" aria-hidden="true"><g data-step="1"><path d="M326 354V384M326 480V534"/><path class="h" d="M320 377L326 384L332 377M320 527L326 534L332 527"/></g><g data-step="2"><path d="M579 354V384M579 480V534"/><path class="h" d="M573 377L579 384L585 377M573 527L579 534L585 527"/></g><g data-step="3"><path d="M832 354V384M832 480V534"/><path class="h" d="M826 377L832 384L838 377M826 527L832 534L838 527"/></g><g data-step="4"><path d="M1085 354V384M1085 480V534"/><path class="h" d="M1079 377L1085 384L1091 377M1079 527L1085 534L1091 527"/></g></svg>
-    <p class="abs wf-col-h" data-step="1" style="left:226.5px">채용</p>
-    <div class="abs wf-cell a" data-step="1" style="left:226.5px;top:262px"><i>AI</i>지원서·이력서 DB화<br>채용 채널 성과 집계</div>
-    <div class="abs wf-cell a law" data-step="1" style="left:226.5px;top:388px"><i>AI</i><span class="wf-law">AI기본법: 고영향</span>직무 요건 대비<br>적합도 검토</div>
-    <div class="abs wf-cell p" data-step="1" style="left:226.5px;top:548px">면접·최종 채용 결정</div>
-    <p class="abs wf-col-h" data-step="2" style="left:479.5px">육성</p>
-    <div class="abs wf-cell a" data-step="2" style="left:479.5px;top:262px"><i>AI</i>교육 이수·역량 진단<br>데이터 정리</div>
-    <div class="abs wf-cell a" data-step="2" style="left:479.5px;top:388px"><i>AI</i>역량 갭 분석<br>학습 경로 제안</div>
-    <div class="abs wf-cell p" data-step="2" style="left:479.5px;top:548px">육성 계획 확정</div>
-    <p class="abs wf-col-h" data-step="3" style="left:732.5px">평가</p>
-    <div class="abs wf-cell a" data-step="3" style="left:732.5px;top:262px"><i>AI</i>목표·성과 데이터<br>집계</div>
-    <div class="abs wf-cell a law" data-step="3" style="left:732.5px;top:388px"><i>AI</i><span class="wf-law">AI기본법: 고영향</span>평가 편차·누락 검토<br>근거 요약</div>
-    <div class="abs wf-cell p" data-step="3" style="left:732.5px;top:548px">평가 확정·피드백 면담</div>
-    <p class="abs wf-col-h" data-step="4" style="left:985.5px">유지</p>
-    <div class="abs wf-cell a" data-step="4" style="left:985.5px;top:262px"><i>AI</i>근태·설문·면담 기록<br>정리</div>
-    <div class="abs wf-cell a law" data-step="4" style="left:985.5px;top:388px"><i>AI</i><span class="wf-law">AI기본법: 고영향</span>이탈 위험 신호 분석<br>조치안 제안</div>
-    <div class="abs wf-cell p" data-step="4" style="left:985.5px;top:548px">리텐션 조치·모니터링</div>
-    <p class="abs footnote">고영향: 「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」 제2조제4호사목(채용 등 권리·의무에 중대한 영향을 미치는 판단·평가). AI 사용 사전 고지(제31조)와 사람의 관리·감독(제34조)이 필요하며, 최종 판단은 사람이 함</p>
-  </section>
-
   <!-- 18. 운영 계층: 왼쪽 LLM(골라 쓰는 엔진, 계층 1~3) + 4개 계층 + 오른쪽 Control Tower(실시간 관제, 계층 전체). 관제는 모든 층을 보고 Agent OS로 개입 지시 -->
   <section class="slide dark ly" data-click="1" data-auto="3" style="--bs:10px" aria-label="에이전트 조직의 운영 계층: 골라 쓰는 LLM, 직접 갖출 관제와 회사의 두뇌">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
@@ -2111,7 +2087,7 @@
        조직: Meta Model Capability Initiative(Reuters 단독 2026-04-22, Computerworld 등): 미국 직원 업무 앱의 마우스·클릭·키 입력·화면을 기록해 에이전트 학습 데이터로 씀. 성과 평가에는 쓰지 않는다고 회사가 밝힘.
        개인: WRITER·Workplace Intelligence 2026(11장과 같은 출처) Z세대 44%가 회사 AI 전략을 방해. 한국은행 고용연구팀 "변화하는 경력 사다리와 대응 과제"(2026.8 보도, 2022.6~2026.6):
        청년 일자리 28.5만 개 감소(94%가 AI 고노출 업종), 50대 23만 개 증가. AI가 초급 업무는 대체하고 경력자의 암묵지는 보완(연공편향 기술변화). 2026-10-17 컨설팅 형식으로 보강: 네 관점의 조직·개인 논리 비교표 + 긴장 이름 + HR 해법 세 가지(보상·신뢰·경력 설계). HR 해법은 발표자 정리 -->
-  <section class="slide dark gap" data-gap="700" aria-label="조직은 노하우를 모으려 하고, 개인은 노하우를 지키려 함: 네 관점의 조직과 개인의 논리, 그리고 HR의 해법 세 가지">
+  <section class="slide dark gap" data-gap="700" aria-label="조직은 노하우를 모으려 하고, 개인은 노하우를 지키려 함: 네 관점의 조직과 개인의 논리, 그리고 HR의 접근 세 가지">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">조직은 노하우를 모으려 하고, 개인은 노하우를 지키려 함</h2>
@@ -2119,9 +2095,9 @@
     <p class="abs gx-h org">조직의 논리</p><p class="abs gx-h mid">긴장</p><p class="abs gx-h per">개인의 논리</p>
     <div class="abs gx-row" data-step="1" style="top:244px"><p class="gx-l">노하우를 보는 눈</p><p class="gx-c org">회사의 자산. 모아서 모두가 함께 씀</p><p class="gx-t"><b>소유</b></p><p class="gx-c per">나의 경쟁력. 넘기는 순간 대체될 수 있음</p></div>
     <div class="abs gx-row" data-step="2" style="top:310px"><p class="gx-l">행동</p><p class="gx-c org"><span>업무 기록을 모아 에이전트를 학습시킴</span><small>Meta, Model Capability Initiative(2026.4)</small></p><p class="gx-t"><b>통제</b></p><p class="gx-c per"><span>Z세대 44%가 회사의 AI 전략을 방해함</span><small>WRITER, 2026</small></p></div>
-    <div class="abs gx-row" data-step="3" style="top:376px"><p class="gx-l">시장 신호</p><p class="gx-c org"><span>초급 업무 대체로 청년 일자리 <em>−28.5만</em></span><small>한국은행, 2022.6~2026.6</small></p><p class="gx-t"><b>가치</b></p><p class="gx-c per"><span>경력자의 암묵지는 보완, 50대 일자리 <em>+23만</em></span><small>한국은행, 같은 기간</small></p></div>
+    <div class="abs gx-row" data-step="3" style="top:376px"><p class="gx-l">시장 신호</p><p class="gx-c org"><span>초급 업무 대체로 청년 일자리 4년간 <em>−28.5만</em></span><small>한국은행, 2022.6~2026.6 누적</small></p><p class="gx-t"><b>가치</b></p><p class="gx-c per"><span>경력자의 암묵지는 보완, 50대 일자리 4년간 <em>+23만</em></span><small>한국은행, 같은 기간 누적</small></p></div>
     <div class="abs gx-row" data-step="4" style="top:442px"><p class="gx-l">결과 위험</p><p class="gx-c org">데이터는 모여 있으나 일의 맥락이 연결되지 않음</p><p class="gx-t"><b>단절</b></p><p class="gx-c per">신입이 배울 일이 사라져 경력 사다리가 끊김</p></div>
-    <div class="abs gx-hr" data-step="5"><p class="gx-hh">HR의 해법<span>이해를 맞추는<br>세 가지 설계</span></p><ol>
+    <div class="abs gx-hr" data-step="5"><p class="gx-hh">HR의 접근<span>이해를 맞추는<br>세 가지 설계</span></p><ol>
       <li><small>01 · INCENTIVE</small><b>보상 설계</b><span>노하우를 내놓아도 손해 보지 않게, 스킬 기여와 사용량을 평가·보상에 반영</span></li>
       <li><small>02 · TRUST</small><b>신뢰 설계</b><span>감시가 아니라 참여로, 무엇을 모으고 어디에 쓰지 않는지 먼저 밝히고 동의를 받음</span></li>
       <li><small>03 · CAREER</small><b>경력 설계</b><span>시니어가 스킬을 만들고, 주니어가 그 스킬로 일을 배우는 새 경력 사다리</span></li></ol></div>
@@ -2238,22 +2214,6 @@
         <li><small>03</small><b>사무 업무는 로봇보다 에이전트가 먼저 바꿀 전망</b><span>화이트칼라는 지금 에이전트와의 공존이 현실 과제임</span></li></ol></div>
     <div class="abs rbt-hr" data-step="3"><p class="rbt-hh">HR 시사점</p><p class="rbt-ht">제조 HR은 회사 평균이 아니라 <em>공정 단위</em>로, <em>2~3년 안에</em> 고민을 시작해야 함. 로봇이 맡을 공정, 재배치·재교육 대상, 안전·노사 협의 일정을 미리 고려해 계획할 필요가 있음</p></div>
     <p class="abs footnote">출처: Hyundai Motor Group, CES 2026 AI 로보틱스 전략 발표(2026.1) · Automotive News, Hyundai robotics strategy(2026.1) · Anthropic, "What work can robots do?"(2026.9.30)</p>
-  </section>
-
-  <!-- 2027 AX 트렌드(2026-10-16 MECE 재정리): 황재선 『AX 100배의 법칙』(좋은습관연구소, 2025, 교보·예스24 저자 표기 기준)의 전망을 운영 모델 다섯 요소로 겹침 없이 묶음(IT → Execution Builder와 AI Maturity는 사용자 의견으로 뺌, 11개).
-       Work(무엇을) · People(누가) · Capability(어떤 역량으로) · Measure(무엇으로 재나) · Foundation(무엇 위에서). 축마다 HR 레버 하나.
-       축 이름과 항목 제목은 영어, 질문·HR 레버·설명과 헤드라인은 한국어(사용자 지정) -->
-  <section class="slide dark ax5" data-gap="600" aria-label="2027 AX 트렌드를 HR의 다섯 가지 레버로 정리: Work, People, Capability, Measure, Foundation">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">2027년 AX의 변화는 HR의 다섯 가지 레버로 정리됨</h2>
-    <p class="abs cr-sub lv-sub">2027 AX 트렌드</p>
-    <div class="abs ax5-col" data-step="1" style="left:76px"><div class="ax5-h"><small>01</small><b>WORK</b><span>무엇을 하는가</span><em>HR 레버 · 직무 설계</em></div><ul><li><b>Job → Workflow</b><p>직무 기술서보다 업무 흐름의 설계가 경쟁력이 됨</p></li><li><b>AI-enabled →<br>AI-native</b><p>기존 업무에 AI를 얹지 않고, AI를 전제로 다시 설계함</p></li></ul></div>
-    <div class="abs ax5-col" data-step="2" style="left:305px"><div class="ax5-h"><small>02</small><b>PEOPLE</b><span>누가 하는가</span><em>HR 레버 · 인력 계획</em></div><ul><li><b>Digital Workforce</b><p>에이전트를 인력 계획의 한 축으로 고려해야 함</p></li><li><b>[Human + Agent] Team</b><p>사람과 에이전트가 한 팀으로 일함</p></li></ul></div>
-    <div class="abs ax5-col" data-step="3" style="left:534px"><div class="ax5-h"><small>03</small><b>CAPABILITY</b><span>어떤 역량으로 하는가</span><em>HR 레버 · 리더·역량 육성</em></div><ul><li><b>People Leader →<br>Hybrid Leader</b><p>사람과 에이전트를 함께 이끄는 리더로</p></li><li><b>Using AI →<br>Operating AI</b><p>AI 교육의 목표가 사용해 보기에서 운영으로 바뀜</p></li></ul></div>
-    <div class="abs ax5-col" data-step="4" style="left:763px"><div class="ax5-h"><small>04</small><b>MEASURE</b><span>무엇으로 측정하는가</span><em>HR 레버 · 평가·보상</em></div><ul><li><b>Token Maxxing →<br>Value Maxxing</b><p>쓴 양보다 만든 가치로</p></li><li><b>Individual →<br>Team Productivity</b><p>생산성을 팀 단위로 측정해야 함</p></li><li><b>Agent Control ·<br>Monitoring</b><p>품질·비용·속도 상시 관제</p></li></ul></div>
-    <div class="abs ax5-col" data-step="5" style="left:992px"><div class="ax5-h"><small>05</small><b>FOUNDATION</b><span>어떤 기반으로 동작하는가</span><em>HR 레버 · 데이터·거버넌스</em></div><ul><li><b>Data → Knowledge</b><p>숫자를 쌓는 데서 일하는 노하우를 쌓는 데로</p></li><li><b>Hybrid Model Architecture</b><p>여러 모델과 사내 시스템을 섞어 쓰고, 접근 기준을 정함</p></li></ul></div>
-    <p class="abs footnote">출처: 황재선, 『AX 100배의 법칙』(좋은습관연구소, 2025) 재구성</p>
   </section>
 
   <!-- 하이브리드 조직도(사용자 요청 2026-10-16): CEO 아래 세 갈래. ① 사람 C-level → 에이전트 ② 에이전트 C-level → 사람 ③ 에이전트 C-level → 에이전트.
