@@ -1636,7 +1636,7 @@
   .hq-fd b { font: 800 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .08em; color: #98a1a8; }
   .hq-fd span { margin-top: 6px; font-size: 17px; font-weight: 800; color: #3d434a; }
   .hq-base { top: 542px; height: 92px; width: 494px; left: 206px; background: transparent; border: 0; border-left: 1px solid #e3e6ea; border-radius: 0; }   /* 왼쪽 01 도메인 전문성(기존) */
-  .hq-base.e { top: 542px; left: 712px; width: 480px; border-left: 3px solid #3add2e; }   /* 오른쪽 02 윤리·책임 판단(새로 키울 역량) */
+  .hq-base.e { top: 542px; left: 712px; width: 480px; border-left: 1px solid #e3e6ea; }   /* 오른쪽 02 윤리·책임 판단(새로 키울 역량) */
   .hq-base.nw, .hq-base.e.nw { background: transparent; border-top: 0; border-right: 0; border-bottom: 0; }
   .slide.dark .hq-fd[data-step] { translate: none; filter: none; }
   .hq-d { font-size: 14px; font-weight: 500; color: #3d434a; }   /* 29장 설명 문장: 볼드 빼고 작게 */
@@ -1663,22 +1663,67 @@
   .hq-col.h { left: 76px; }
   .hq-col.a { left: 664px; }
   .hq-plus { left: 624px; top: 418px; width: 32px; height: 32px; border-radius: 999px; background: #1a1a1a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; line-height: 1; }
-  /* HR 업무 지도(.hm): 다섯 줄(높이 78, 간격 10, y 220~650). 왼쪽 단계 이름(76~226) · 오른쪽 칩(242~1204). 칩 왼쪽 띠 색 = AI 역할 */
+  /* HR 업무 지도(.hm): 다섯 줄(높이 78, 간격 10, y 220~650). 왼쪽 단계 이름(76~226) · 오른쪽 칩(242~1204). AI 역할은 칩 안 태그 색으로 구분(왼쪽 색 띠는 쓰지 않음) */
   .hm-lg { top: 170px; left: auto; right: 76px; margin: 0; display: flex; gap: 16px; font-size: 14px; font-weight: 700; color: #3d434a; }
   .hm-lg span { display: flex; align-items: center; gap: 7px; }
   .hm-lg i { width: 12px; height: 12px; border-radius: 3px; }
   .hm-lg i.c, .hm-chip.c { --hc: #3add2e; } .hm-lg i.u, .hm-chip.u { --hc: #a6ef6e; } .hm-lg i.f, .hm-chip.f { --hc: #1a1a1a; } .hm-lg i.x, .hm-chip.x { --hc: #ff7878; }
   .hm-lg i { background: var(--hc); }
   .hm-lane { left: 76px; width: 1128px; height: 78px; display: flex; gap: 16px; }
-  .hm-st { flex: none; width: 150px; box-sizing: border-box; padding-left: 14px; border-left: 4px solid #1a1a1a; display: flex; flex-direction: column; justify-content: center; }
+  .hm-st { flex: none; width: 150px; box-sizing: border-box; padding-left: 4px; display: flex; flex-direction: column; justify-content: center; }
   .hm-st b { font-size: 20px; font-weight: 800; letter-spacing: -.02em; color: #1a1a1a; }
   .hm-st span { margin-top: 5px; font-size: 12.5px; font-weight: 600; color: #6f7880; white-space: nowrap; }
   .hm-chips { flex: 1; display: flex; gap: 12px; }
-  .hm-chip { flex: 1; min-width: 0; box-sizing: border-box; padding: 0 18px; border-radius: 12px; background: #f7f8f9; border: 1px solid #e3e6ea; border-left: 5px solid var(--hc); display: flex; flex-direction: column; justify-content: center; }
+  .hm-chip { flex: 1; min-width: 0; box-sizing: border-box; padding: 0 18px; border-radius: 12px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; justify-content: center; }
   .hm-k { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: #6f7880; white-space: nowrap; }
   .hm-k em { padding: 2px 7px 3px; border-radius: 6px; background: var(--hc); font-style: normal; font-size: 11.5px; font-weight: 800; color: #1a1a1a; }
   .hm-chip.f .hm-k em { color: #fff; }
   .hm-t { margin: 7px 0 0; font-size: 16.5px; font-weight: 800; letter-spacing: -.01em; color: #1a1a1a; white-space: nowrap; }
+  /* 조직과 개인의 gap(.gap): 네 관점 비교표(y 214~502, 줄 60 간격 6) + HR 해법 잉크 띠(y 518~650, 이 장의 진한 면 하나).
+     열: 관점 76~196 · 조직 212~612 · 긴장 628~756 · 개인 772~1204 */
+  .gx-h { top: 214px; margin: 0; height: 24px; display: flex; align-items: center; font: 800 12.5px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .06em; }
+  .gx-h.org { left: 212px; color: #1f9a14; } .gx-h.mid { left: 628px; width: 128px; justify-content: center; color: #98a1a8; } .gx-h.per { left: 772px; color: #f06464; }
+  .gx-row { left: 76px; width: 1128px; height: 60px; display: grid; grid-template-columns: 120px 400px 128px 1fr; column-gap: 16px; align-items: stretch; }
+  .gx-l { margin: 0; display: flex; align-items: center; font-size: 15px; font-weight: 800; color: #1a1a1a; border-bottom: 1px solid #e3e6ea; }
+  .gx-c { margin: 0; padding: 0 18px; border-radius: 10px; display: flex; flex-direction: column; justify-content: center; font-size: 14.5px; font-weight: 700; line-height: 1.35; color: #1a1a1a; word-break: keep-all; }
+  .gx-c.org { background: #effcee; border: 1px solid rgba(58,221,46,.55); }
+  .gx-c.per { background: #fff3f3; border: 1px solid rgba(255,120,120,.55); }
+  .gx-c small { margin-top: 3px; font-size: 11.5px; font-weight: 600; color: #6f7880; }
+  .gx-c em { font-style: normal; font-weight: 800; color: #f06464; }
+  .gx-c.org em { color: #1f9a14; }
+  .gx-t { margin: 0; position: relative; display: flex; align-items: center; justify-content: center; }
+  .gx-t::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: #c3c9cf; }
+  .gx-t b { position: relative; padding: 4px 12px 5px; border-radius: 999px; background: #1a1a1a; font-size: 13px; font-weight: 800; color: #fff; }
+  .gx-hr { left: 76px; top: 518px; width: 1128px; height: 132px; box-sizing: border-box; padding: 0 28px; border-radius: 16px; background: #1a1a1a; display: flex; align-items: center; gap: 28px; }
+  .gx-hh { flex: none; width: 120px; margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 18px; font-weight: 800; color: #3add2e; }
+  .gx-hh span { font-size: 12.5px; font-weight: 600; line-height: 1.4; color: rgba(255,255,255,.6); }
+  .gx-hr ol { flex: 1; list-style: none; margin: 0; padding: 0; display: flex; gap: 14px; }
+  .gx-hr li { flex: 1; padding-left: 16px; border-left: 1px solid rgba(255,255,255,.18); display: flex; flex-direction: column; gap: 5px; }
+  .gx-hr li small { font: 800 11.5px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .06em; color: #3add2e; }
+  .gx-hr li b { font-size: 18px; font-weight: 800; color: #fff; }
+  .gx-hr li span { font-size: 13.5px; font-weight: 600; line-height: 1.45; color: rgba(255,255,255,.75); word-break: keep-all; }
+  .hm-chip.law { position: relative; }
+  .hm-law { position: absolute; top: -9px; right: 10px; padding: 2px 8px 3px; border-radius: 999px; background: #ff7878; font-size: 11px; font-weight: 800; color: #1a1a1a; }   /* AI 기본법 고영향(채용 판단) 표시 */
+  /* 30장 반론과 해석(.rbt): 반론(76~600) → 해석(640~1204), y 220~500. 아래 HR 시사점 잉크 띠(y 520~650) */
+  .rbt-box { top: 220px; height: 280px; box-sizing: border-box; padding: 20px 24px; border-radius: 16px; display: flex; flex-direction: column; }
+  .rbt-box.c { left: 76px; width: 524px; background: #fff3f3; border: 1px solid rgba(255,120,120,.55); }
+  .rbt-box.i { left: 640px; width: 564px; background: #effcee; border: 1px solid rgba(58,221,46,.55); }
+  .rbt-k { margin: 0; font: 800 12.5px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .08em; }
+  .rbt-box.c .rbt-k { color: #f06464; } .rbt-box.i .rbt-k { color: #1f9a14; }
+  .rbt-box h4 { margin: 8px 0 0; font-size: 21px; font-weight: 800; letter-spacing: -.02em; color: #1a1a1a; }
+  .rbt-tl, .rbt-pt { list-style: none; margin: auto 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .rbt-tl li, .rbt-pt li { height: 56px; box-sizing: border-box; padding: 0 16px; border-radius: 10px; background: #fff; display: grid; grid-template-columns: 52px 1fr; align-content: center; column-gap: 10px; row-gap: 3px; }
+  .rbt-tl time, .rbt-pt small { grid-row: 1 / 3; align-self: center; font: 800 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  .rbt-tl time { color: #f06464; } .rbt-pt small { color: #1f9a14; }
+  .rbt-pt li { grid-template-columns: 30px 1fr; }
+  .rbt-tl b, .rbt-pt b { font-size: 15px; font-weight: 800; color: #1a1a1a; }
+  .rbt-tl span, .rbt-pt span { font-size: 13px; font-weight: 600; color: #6f7880; }
+  .rbt-arr { left: 608px; top: 348px; width: 24px; height: 24px; fill: none; stroke: #98a1a8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .rbt-hr { left: 76px; top: 520px; width: 1128px; height: 130px; box-sizing: border-box; padding: 0 30px; border-radius: 16px; background: #1a1a1a; display: flex; align-items: center; gap: 28px; }
+  .rbt-hh { flex: none; width: 96px; margin: 0; font-size: 17px; font-weight: 800; color: #3add2e; }
+  .rbt-ht { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.55; color: #fff; word-break: keep-all; }
+  .rbt-ht em { font-style: normal; color: #3add2e; }
+  .wf-law { position: absolute; top: -9px; left: 10px; padding: 2px 8px 3px; border-radius: 999px; background: #ff7878; font-size: 11px; font-weight: 800; line-height: 1.3; color: #1a1a1a; white-space: nowrap; }   /* AI 기본법 고영향 표시(21장과 같은 문법, AI 배지가 오른쪽이라 왼쪽 위) */
 </style>
 </head>
 <body>
@@ -1965,19 +2010,50 @@
     <h2 class="abs head-title">HR 팀은 채용부터 노무까지 모든 업무를 AI와 함께 할 수 있음</h2>
     <p class="abs cr-sub lv-sub">HR 업무 단계별 AI 활용 16가지</p>
     <p class="abs hm-lg"><span><i class="c"></i>만들기</span><span><i class="u"></i>이해하기</span><span><i class="f"></i>찾기</span><span><i class="x"></i>분석·실행</span></p>
-    <div class="abs hm-lane" data-step="1" style="top:220px"><div class="hm-st"><b>채용</b><span>사람을 찾고 들이는 일</span></div><div class="hm-chips"><div class="hm-chip c"><p class="hm-k"><em>만들기</em>생성</p><p class="hm-t">채용 공고·직무 기술서 초안</p></div><div class="hm-chip u"><p class="hm-k"><em>이해하기</em>이미지 이해(OCR)</p><p class="hm-t">지원 서류·증빙 판독</p></div><div class="hm-chip u"><p class="hm-k"><em>이해하기</em>요약</p><p class="hm-t">면접 기록 요약</p></div><div class="hm-chip f"><p class="hm-k"><em>찾기</em>외부 데이터 정리</p><p class="hm-t">채용 시장·연봉 벤치마크</p></div></div></div>
+    <div class="abs hm-lane" data-step="1" style="top:220px"><div class="hm-st"><b>채용</b><span>사람을 찾고 들이는 일</span></div><div class="hm-chips"><div class="hm-chip c"><p class="hm-k"><em>만들기</em>생성</p><p class="hm-t">채용 공고·직무 기술서 초안</p></div><div class="hm-chip u law"><span class="hm-law">AI기본법: 고영향</span><p class="hm-k"><em>이해하기</em>이미지 이해(OCR)</p><p class="hm-t">지원 서류 정보 추출·정리</p></div><div class="hm-chip u law"><span class="hm-law">AI기본법: 고영향</span><p class="hm-k"><em>이해하기</em>요약</p><p class="hm-t">면접 기록 요약(평가는 사람)</p></div><div class="hm-chip f"><p class="hm-k"><em>찾기</em>외부 데이터 정리</p><p class="hm-t">채용 시장·연봉 벤치마크</p></div></div></div>
     <div class="abs hm-lane" data-step="2" style="top:308px"><div class="hm-st"><b>지원</b><span>입사부터 일상 문의까지</span></div><div class="hm-chips"><div class="hm-chip f"><p class="hm-k"><em>찾기</em>사내 규정 챗봇(RAG)</p><p class="hm-t">휴가·복리후생 규정 Q&amp;A</p></div><div class="hm-chip c"><p class="hm-k"><em>만들기</em>번역</p><p class="hm-t">해외 법인 인사 규정 번역</p></div><div class="hm-chip c"><p class="hm-k"><em>만들기</em>교정</p><p class="hm-t">사내 공지·인사 발령문 교정</p></div></div></div>
     <div class="abs hm-lane" data-step="3" style="top:396px"><div class="hm-st"><b>육성</b><span>역량을 키우는 일</span></div><div class="hm-chips"><div class="hm-chip u"><p class="hm-k"><em>이해하기</em>영상 이해</p><p class="hm-t">교육 영상 요약·퀴즈 생성</p></div><div class="hm-chip f"><p class="hm-k"><em>찾기</em>딥 리서치</p><p class="hm-t">타사 육성·평가 제도 조사</p></div><div class="hm-chip c"><p class="hm-k"><em>만들기</em>아이디어</p><p class="hm-t">조직문화·교육 프로그램 기획</p></div></div></div>
-    <div class="abs hm-lane" data-step="4" style="top:484px"><div class="hm-st"><b>평가·보상</b><span>성과를 재고 보상하는 일</span></div><div class="hm-chips"><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>차트 만들기</p><p class="hm-t">인력 현황·이직률 대시보드</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>예측·시뮬레이션</p><p class="hm-t">보상 시나리오·퇴직 위험 예측</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>PC 업무 자동화</p><p class="hm-t">근태·급여 반복 입력 처리</p></div></div></div>
-    <div class="abs hm-lane" data-step="5" style="top:572px"><div class="hm-st"><b>노무·관계</b><span>관계와 위험을 다루는 일</span></div><div class="hm-chips"><div class="hm-chip f"><p class="hm-k"><em>찾기</em>전문 챗봇</p><p class="hm-t">노무·법규 질의 응답</p></div><div class="hm-chip u"><p class="hm-k"><em>이해하기</em>음성 이해</p><p class="hm-t">고충 상담 녹취 정리</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>코딩</p><p class="hm-t">인사 데이터 정리 스크립트</p></div></div></div>
+    <div class="abs hm-lane" data-step="4" style="top:484px"><div class="hm-st"><b>평가·보상</b><span>성과를 재고 보상하는 일</span></div><div class="hm-chips"><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>차트 만들기</p><p class="hm-t">인력 현황·이직률 대시보드</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>예측·시뮬레이션</p><p class="hm-t">보상 시나리오·인력 수요 예측</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>PC 업무 자동화</p><p class="hm-t">근태·급여 반복 입력 처리</p></div></div></div>
+    <div class="abs hm-lane" data-step="5" style="top:572px"><div class="hm-st"><b>노무·관계</b><span>관계와 위험을 다루는 일</span></div><div class="hm-chips"><div class="hm-chip f"><p class="hm-k"><em>찾기</em>전문 챗봇</p><p class="hm-t">노무·법규 1차 질의 응답</p></div><div class="hm-chip u"><p class="hm-k"><em>이해하기</em>음성 이해</p><p class="hm-t">동의 받은 상담 기록 정리</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>코딩</p><p class="hm-t">인사 데이터 정리 스크립트</p></div></div></div>
+    <p class="abs footnote">고영향: 「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」 제2조제4호사목(채용 등 권리·의무에 중대한 영향을 미치는 판단·평가). AI 사용 사전 고지(제31조)와 사람의 관리·감독(제34조)이 필요하며, 최종 판단은 사람이 함</p>
+  </section>
+
+  <!-- Workflow 기반 과제 정의(2026-10-17 HR 업무 지도 다음으로 옮김. 외부 세미나 발표 자료의 재무 자금 워크플로우 예시)를 HR 4단계(채용·육성·평가·유지)로 바꿈.
+       위 두 줄은 에이전트(데이터 수집 → 분석·제안), 맨 아래 띠는 사람의 판단. 열마다 차례로 뜬다 -->
+  <section class="slide dark wf" data-gap="600" aria-label="에이전트 도입은 HR 업무 흐름을 쪼개는 데서 시작함: 채용, 육성, 평가, 유지의 데이터 에이전트, 분석 에이전트, 사람의 결정">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">에이전트 도입은 HR 업무 흐름을 쪼개는 데서 시작함</h2>
+    <p class="abs cr-sub lv-sub">Workflow 기반 과제 정의 예시: 채용부터 유지까지 사람과 에이전트의 역할 배분</p>
+    <div class="abs wf-lab a" style="top:262px"><b>Data Agent</b><span>모으고 정리</span></div>
+    <div class="abs wf-lab a" style="top:388px"><b>Analysis Agent</b><span>분석하고 제안</span></div>
+    <div class="abs wf-band"><div class="wf-lab p"><b>사람</b><span>판단하고 결정</span></div></div>
+    <svg class="abs wf-lines" viewBox="0 0 1280 720" aria-hidden="true"><g data-step="1"><path d="M326 354V384M326 480V534"/><path class="h" d="M320 377L326 384L332 377M320 527L326 534L332 527"/></g><g data-step="2"><path d="M579 354V384M579 480V534"/><path class="h" d="M573 377L579 384L585 377M573 527L579 534L585 527"/></g><g data-step="3"><path d="M832 354V384M832 480V534"/><path class="h" d="M826 377L832 384L838 377M826 527L832 534L838 527"/></g><g data-step="4"><path d="M1085 354V384M1085 480V534"/><path class="h" d="M1079 377L1085 384L1091 377M1079 527L1085 534L1091 527"/></g></svg>
+    <p class="abs wf-col-h" data-step="1" style="left:226.5px">채용</p>
+    <div class="abs wf-cell a" data-step="1" style="left:226.5px;top:262px"><i>AI</i>지원서·이력서 DB화<br>채용 채널 성과 집계</div>
+    <div class="abs wf-cell a law" data-step="1" style="left:226.5px;top:388px"><i>AI</i><span class="wf-law">AI기본법: 고영향</span>직무 요건 대비<br>적합도 검토</div>
+    <div class="abs wf-cell p" data-step="1" style="left:226.5px;top:548px">면접·최종 채용 결정</div>
+    <p class="abs wf-col-h" data-step="2" style="left:479.5px">육성</p>
+    <div class="abs wf-cell a" data-step="2" style="left:479.5px;top:262px"><i>AI</i>교육 이수·역량 진단<br>데이터 정리</div>
+    <div class="abs wf-cell a" data-step="2" style="left:479.5px;top:388px"><i>AI</i>역량 갭 분석<br>학습 경로 제안</div>
+    <div class="abs wf-cell p" data-step="2" style="left:479.5px;top:548px">육성 계획 확정</div>
+    <p class="abs wf-col-h" data-step="3" style="left:732.5px">평가</p>
+    <div class="abs wf-cell a" data-step="3" style="left:732.5px;top:262px"><i>AI</i>목표·성과 데이터<br>집계</div>
+    <div class="abs wf-cell a law" data-step="3" style="left:732.5px;top:388px"><i>AI</i><span class="wf-law">AI기본법: 고영향</span>평가 편차·누락 검토<br>근거 요약</div>
+    <div class="abs wf-cell p" data-step="3" style="left:732.5px;top:548px">평가 확정·피드백 면담</div>
+    <p class="abs wf-col-h" data-step="4" style="left:985.5px">유지</p>
+    <div class="abs wf-cell a" data-step="4" style="left:985.5px;top:262px"><i>AI</i>근태·설문·면담 기록<br>정리</div>
+    <div class="abs wf-cell a law" data-step="4" style="left:985.5px;top:388px"><i>AI</i><span class="wf-law">AI기본법: 고영향</span>이탈 위험 신호 분석<br>조치안 제안</div>
+    <div class="abs wf-cell p" data-step="4" style="left:985.5px;top:548px">리텐션 조치·모니터링</div>
+    <p class="abs footnote">고영향: 「인공지능 발전과 신뢰 기반 조성 등에 관한 기본법」 제2조제4호사목(채용 등 권리·의무에 중대한 영향을 미치는 판단·평가). AI 사용 사전 고지(제31조)와 사람의 관리·감독(제34조)이 필요하며, 최종 판단은 사람이 함</p>
   </section>
 
   <!-- 라이너 사례(사용자 요청 2026-10-16, 화면에는 "라이너 사례"라는 말을 쓰지 않음. 2026-10-17 02 암묵지 축적의 앞선 기업 사례 장 다음으로 옮김): 노션에 회사 지식을 쌓고, 슬랙 채널에 에이전트를 두어 일한다. 이 구조에서 ROI가 나온다.
        ROI 수치는 아직 받지 않아 숫자 없이 이유 셋만 둔다. 슬랙 대화는 구조를 보여 주는 예시 화면이다 -->
-  <section class="slide dark ln" data-gap="800" aria-label="지식이 쌓인 곳과 일하는 곳을 이어야 에이전트 ROI가 나옴: Notion(회사의 지식)과 Slack(에이전트와 일하는 곳)">
+  <section class="slide dark ln" data-gap="800" aria-label="사내 챗봇은 ROI가 검증되고 있음: Notion(회사의 지식)과 Slack(에이전트와 일하는 곳)">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">지식이 쌓인 곳과 일하는 곳을 이어야 에이전트 ROI가 나옴</h2>
+    <h2 class="abs head-title">사내 챗봇은 ROI가 검증되고 있음</h2>
     <p class="abs cr-sub lv-sub">Notion(회사의 지식) + Slack(에이전트와 일하는 곳)</p>
     <div class="abs ln-box" data-step="1" style="left:76px"><div class="ln-h"><i class="n">N</i><b>Notion</b><em>쌓는 곳</em></div><p class="ln-d">회사의 지식이 한곳에 모임</p><ul class="ln-docs"><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>회의록</b><span>결정과 그 맥락</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>업무 매뉴얼</b><span>일하는 방법</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>프로젝트 문서</b><span>진행과 결과</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8h4.5M6 10.6h4.5"/></svg><b>규정·노하우</b><span>판단의 기준</span></li></ul></div>
     <svg class="abs ln-arr" data-step="2" style="left:434px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
@@ -1990,7 +2066,7 @@
   <section class="slide dark ly" data-click="1" data-auto="3" style="--bs:10px" aria-label="에이전트 조직의 운영 계층: 골라 쓰는 LLM, 직접 갖출 관제와 회사의 두뇌">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">LLM보다 Company Brain과 관제 체계가 더 중요해지는 중</h2>
+    <h2 class="abs head-title">LLM 자체보다 Company Brain의 중요성이 더 부각되고 있음</h2>
     <div class="abs ly-model" data-step="1"><p class="ly-kicker">ENGINE</p><p class="ly-en">LLM</p><p class="ly-ko">골라 쓰는 엔진</p><ul><li>범용 LLM</li><li>도메인 특화 LLM</li><li>사내 모델</li></ul></div>
     <svg class="abs ly-wires" data-step="2" viewBox="0 0 20 330" aria-hidden="true"><line x1="0" y1="279" x2="20" y2="279"/><circle cx="1.5" cy="279" r="2.5"/></svg>
     <svg class="abs ly-wires" data-step="4" viewBox="0 0 20 330" aria-hidden="true"><line x1="0" y1="51" x2="20" y2="51"/><circle cx="1.5" cy="51" r="2.5"/><line x1="0" y1="165" x2="20" y2="165"/><circle cx="1.5" cy="165" r="2.5"/></svg>
@@ -2018,6 +2094,27 @@
       <div class="bar"><i></i><i></i><i></i><span class="url">skill.airoasting.com</span></div>
       <video src="assets/video/skill.mp4" poster="assets/video/skill.jpg" muted loop playsinline preload="auto" aria-label="AI ROASTING skill library site screen recording"></video>
     </div>
+  </section>
+
+  <!-- 조직과 개인의 gap(사용자 요청 2026-10-17): 조직은 노하우를 Company Brain으로 모으려 하고, 개인은 노하우가 곧 자기 가치라 지키려 한다.
+       조직: Meta Model Capability Initiative(Reuters 단독 2026-04-22, Computerworld 등): 미국 직원 업무 앱의 마우스·클릭·키 입력·화면을 기록해 에이전트 학습 데이터로 씀. 성과 평가에는 쓰지 않는다고 회사가 밝힘.
+       개인: WRITER·Workplace Intelligence 2026(11장과 같은 출처) Z세대 44%가 회사 AI 전략을 방해. 한국은행 고용연구팀 "변화하는 경력 사다리와 대응 과제"(2026.8 보도, 2022.6~2026.6):
+       청년 일자리 28.5만 개 감소(94%가 AI 고노출 업종), 50대 23만 개 증가. AI가 초급 업무는 대체하고 경력자의 암묵지는 보완(연공편향 기술변화). 2026-10-17 컨설팅 형식으로 보강: 네 관점의 조직·개인 논리 비교표 + 긴장 이름 + HR 해법 세 가지(보상·신뢰·경력 설계). HR 해법은 발표자 정리 -->
+  <section class="slide dark gap" data-gap="700" aria-label="조직은 노하우를 모으려 하고, 개인은 노하우를 지키려 함: 네 관점의 조직과 개인의 논리, 그리고 HR의 해법 세 가지">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">조직은 노하우를 모으려 하고, 개인은 노하우를 지키려 함</h2>
+    <p class="abs cr-sub lv-sub">Company Brain을 둘러싼 조직과 개인의 이해 상충</p>
+    <p class="abs gx-h org">조직의 논리</p><p class="abs gx-h mid">긴장</p><p class="abs gx-h per">개인의 논리</p>
+    <div class="abs gx-row" data-step="1" style="top:244px"><p class="gx-l">노하우를 보는 눈</p><p class="gx-c org">회사의 자산. 모아서 모두가 함께 씀</p><p class="gx-t"><b>소유</b></p><p class="gx-c per">나의 경쟁력. 넘기는 순간 대체될 수 있음</p></div>
+    <div class="abs gx-row" data-step="2" style="top:310px"><p class="gx-l">행동</p><p class="gx-c org"><span>업무 기록을 모아 에이전트를 학습시킴</span><small>Meta, Model Capability Initiative(2026.4)</small></p><p class="gx-t"><b>통제</b></p><p class="gx-c per"><span>Z세대 44%가 회사의 AI 전략을 방해함</span><small>WRITER, 2026</small></p></div>
+    <div class="abs gx-row" data-step="3" style="top:376px"><p class="gx-l">시장 신호</p><p class="gx-c org"><span>초급 업무 대체로 청년 일자리 <em>−28.5만</em></span><small>한국은행, 2022.6~2026.6</small></p><p class="gx-t"><b>가치</b></p><p class="gx-c per"><span>경력자의 암묵지는 보완, 50대 일자리 <em>+23만</em></span><small>한국은행, 같은 기간</small></p></div>
+    <div class="abs gx-row" data-step="4" style="top:442px"><p class="gx-l">결과 위험</p><p class="gx-c org">노하우가 모이지 않아 Company Brain이 비어 있음</p><p class="gx-t"><b>단절</b></p><p class="gx-c per">신입이 배울 일이 사라져 경력 사다리가 끊김</p></div>
+    <div class="abs gx-hr" data-step="5"><p class="gx-hh">HR의 해법<span>이해를 맞추는<br>세 가지 설계</span></p><ol>
+      <li><small>01 · INCENTIVE</small><b>보상 설계</b><span>노하우를 내놓아도 손해 보지 않게, 스킬 기여와 사용량을 평가·보상에 반영</span></li>
+      <li><small>02 · TRUST</small><b>신뢰 설계</b><span>감시가 아니라 참여로, 무엇을 모으고 어디에 쓰지 않는지 먼저 밝히고 동의를 받음</span></li>
+      <li><small>03 · CAREER</small><b>경력 설계</b><span>시니어가 스킬을 만들고, 주니어가 그 스킬로 일을 배우는 새 경력 사다리</span></li></ol></div>
+    <p class="abs footnote">출처: Reuters, Meta 직원 데이터 수집 보도(2026.4.22) · WRITER·Workplace Intelligence, 2026 Enterprise AI Adoption Survey · 한국은행 고용연구팀, 변화하는 경력 사다리와 대응 과제(2026.8)</p>
   </section>
 
   <!-- 03 묶음 여는 연결 장(12·18장 .br 형식): 바깥(시장·고객) 변화 → 안(조직·리더) 재설계 -->
@@ -2108,6 +2205,30 @@
     <p class="abs footnote">출처: Anthropic, Russell Legate-Yang·Maxim Massenkoff, "What work can robots do?", 2026.9.30<br>기본: 로봇 비용 연 3% 하락 · 급진: 하드웨어 연 12%·기타 비용 연 6% 하락 · 범위 확대: 로봇 가능 업무 연 2%(기본)·4%(급진) 확대</p>
   </section>
 
+  <!-- 30장 반론과 해석(사용자 요청 2026-10-17): "현대차는 이미 로봇을 들이고 있다"는 반론에 답한다.
+       Hyundai Motor Group CES 2026 발표(hyundainews.com 2026-01-05): Atlas를 2028년까지 미국 조지아 Metaplant America에 배치, 부품 시퀀싱부터 시작해 2030년까지 부품 조립으로 확대.
+       로봇은 배치 전 RMAC(Robot Metaplant Application Center, 2026 개소)에서 학습. Automotive News: 2028년까지 연 3만 대 로봇 생산 체계 구축. 해석과 HR 시사점은 발표자 정리.
+       어미 규칙(사용자 지정): 사실 ~함·발표함 / 계획 ~계획·예정·목표 / 전망 ~할 전망·가능성이 큼 / 제안 ~해야 함 -->
+  <section class="slide dark rbt" data-gap="800" aria-label="로봇은 경제 전체보다 공장의 특정 공정에 먼저 들어올 전망: 현대차 Atlas 배치 계획과 그 해석">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">로봇은 경제 전체보다 공장의 특정 공정에 먼저 들어올 전망</h2>
+    <p class="abs cr-sub lv-sub">반론: "현대차는 이미 공장에 로봇을 들이고 있지 않나?"</p>
+    <div class="abs rbt-box c" data-step="1"><p class="rbt-k">반론</p><h4>현대차는 공장에 휴머노이드를 배치하겠다고 발표함</h4>
+      <ol class="rbt-tl">
+        <li><time>2026</time><b>로봇 학습 센터(RMAC) 개소 예정</b><span>배치 전 로봇이 공정을 학습하는 곳</span></li>
+        <li><time>2028</time><b>미국 조지아 메타플랜트에 Atlas 배치 예정</b><span>부품 순서 정리(시퀀싱) 공정부터 시작 예정</span></li>
+        <li><time>2030</time><b>부품 조립 공정으로 확대 목표</b><span>2028년까지 연 3만 대 로봇 생산 체계 구축 목표(보도)</span></li></ol></div>
+    <svg class="abs rbt-arr" data-step="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <div class="abs rbt-box i" data-step="2"><p class="rbt-k">해석</p><h4>로봇 도입 시점은 업무 종류에 따라 다를 전망</h4>
+      <ol class="rbt-pt">
+        <li><small>01</small><b>미국 전체 업무 기준으로는 먼 일</b><span>로봇이 더 싼 업무가 10%에 닿는 시점은 2040~2060년대로 추정</span></li>
+        <li><small>02</small><b>표준화된 공정부터 먼저 바뀔 가능성이 큼</b><span>현대차도 반복 동작인 시퀀싱을 첫 대상으로 정함</span></li>
+        <li><small>03</small><b>사무 업무는 로봇보다 에이전트가 먼저 바꿀 전망</b><span>화이트칼라는 지금 에이전트와의 공존이 현실 과제임</span></li></ol></div>
+    <div class="abs rbt-hr" data-step="3"><p class="rbt-hh">HR 시사점</p><p class="rbt-ht">제조 HR은 회사 평균이 아니라 <em>공정 단위</em>로, <em>2~3년 안에</em> 고민을 시작해야 함. 로봇이 맡을 공정, 재배치·재교육 대상, 안전·노사 협의 일정을 미리 고려해 계획할 필요가 있음</p></div>
+    <p class="abs footnote">출처: Hyundai Motor Group, CES 2026 AI 로보틱스 전략 발표(2026.1) · Automotive News, Hyundai robotics strategy(2026.1) · Anthropic, "What work can robots do?"(2026.9.30)</p>
+  </section>
+
   <!-- 2027 AX 트렌드(2026-10-16 MECE 재정리): 황재선 『AX 100배의 법칙』(좋은습관연구소, 2025, 교보·예스24 저자 표기 기준)의 전망을 운영 모델 다섯 요소로 겹침 없이 묶음(IT → Execution Builder와 AI Maturity는 사용자 의견으로 뺌, 11개).
        Work(무엇을) · People(누가) · Capability(어떤 역량으로) · Measure(무엇으로 재나) · Foundation(무엇 위에서). 축마다 HR 레버 하나.
        축 이름과 항목 제목은 영어, 질문·HR 레버·설명과 헤드라인은 한국어(사용자 지정) -->
@@ -2117,10 +2238,10 @@
     <h2 class="abs head-title">2027년 AX의 변화는 HR의 다섯 가지 레버로 정리됨</h2>
     <p class="abs cr-sub lv-sub">2027 AX 트렌드</p>
     <div class="abs ax5-col" data-step="1" style="left:76px"><div class="ax5-h"><small>01</small><b>WORK</b><span>무엇을 하는가</span><em>HR 레버 · 직무 설계</em></div><ul><li><b>Job → Workflow</b><p>직무 기술서보다 업무 흐름의 설계가 경쟁력이 됨</p></li><li><b>AI-enabled →<br>AI-native</b><p>기존 업무에 AI를 얹지 않고, AI를 전제로 다시 설계함</p></li></ul></div>
-    <div class="abs ax5-col" data-step="2" style="left:305px"><div class="ax5-h"><small>02</small><b>PEOPLE</b><span>누가 하는가</span><em>HR 레버 · 인력 계획</em></div><ul><li><b>Digital Workforce</b><p>에이전트를 인력 계획의 한 축으로 셈</p></li><li><b>[Human + Agent] Team</b><p>사람과 에이전트가 한 팀으로 일함</p></li></ul></div>
+    <div class="abs ax5-col" data-step="2" style="left:305px"><div class="ax5-h"><small>02</small><b>PEOPLE</b><span>누가 하는가</span><em>HR 레버 · 인력 계획</em></div><ul><li><b>Digital Workforce</b><p>에이전트를 인력 계획의 한 축으로 고려해야 함</p></li><li><b>[Human + Agent] Team</b><p>사람과 에이전트가 한 팀으로 일함</p></li></ul></div>
     <div class="abs ax5-col" data-step="3" style="left:534px"><div class="ax5-h"><small>03</small><b>CAPABILITY</b><span>어떤 역량으로 하는가</span><em>HR 레버 · 리더·역량 육성</em></div><ul><li><b>People Leader →<br>Hybrid Leader</b><p>사람과 에이전트를 함께 이끄는 리더로</p></li><li><b>Using AI →<br>Operating AI</b><p>AI 교육의 목표가 사용해 보기에서 운영으로 바뀜</p></li></ul></div>
-    <div class="abs ax5-col" data-step="4" style="left:763px"><div class="ax5-h"><small>04</small><b>MEASURE</b><span>무엇으로 재는가</span><em>HR 레버 · 평가·보상</em></div><ul><li><b>Token Maxxing →<br>Value Maxxing</b><p>쓴 양보다 만든 가치로</p></li><li><b>Individual →<br>Team Productivity</b><p>생산성을 팀 단위로 잼</p></li><li><b>Agent Control ·<br>Monitoring</b><p>품질·비용·속도 상시 관제</p></li></ul></div>
-    <div class="abs ax5-col" data-step="5" style="left:992px"><div class="ax5-h"><small>05</small><b>FOUNDATION</b><span>무엇 위에서 하는가</span><em>HR 레버 · 데이터·거버넌스</em></div><ul><li><b>Data → Knowledge</b><p>숫자를 쌓는 데서 일하는 노하우를 쌓는 데로</p></li><li><b>Hybrid AI Architecture</b><p>여러 모델과 사내 시스템을 섞어 쓰고, 접근 기준을 정함</p></li></ul></div>
+    <div class="abs ax5-col" data-step="4" style="left:763px"><div class="ax5-h"><small>04</small><b>MEASURE</b><span>무엇으로 측정하는가</span><em>HR 레버 · 평가·보상</em></div><ul><li><b>Token Maxxing →<br>Value Maxxing</b><p>쓴 양보다 만든 가치로</p></li><li><b>Individual →<br>Team Productivity</b><p>생산성을 팀 단위로 측정해야 함</p></li><li><b>Agent Control ·<br>Monitoring</b><p>품질·비용·속도 상시 관제</p></li></ul></div>
+    <div class="abs ax5-col" data-step="5" style="left:992px"><div class="ax5-h"><small>05</small><b>FOUNDATION</b><span>어떤 기반으로 동작하는가</span><em>HR 레버 · 데이터·거버넌스</em></div><ul><li><b>Data → Knowledge</b><p>숫자를 쌓는 데서 일하는 노하우를 쌓는 데로</p></li><li><b>Hybrid Model Architecture</b><p>여러 모델과 사내 시스템을 섞어 쓰고, 접근 기준을 정함</p></li></ul></div>
     <p class="abs footnote">출처: 황재선, 『AX 100배의 법칙』(좋은습관연구소, 2025) 재구성</p>
   </section>
 
@@ -2142,6 +2263,28 @@
     <div class="abs oc-head a" data-step="3" style="left:928px"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트 C-level</div>
     <div class="abs oc-team" data-step="3" style="left:858px"><span class="oc-chip a"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트</span><span class="oc-chip a"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트</span><span class="oc-chip a"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트</span></div>
     <div class="abs oc-card hot" data-step="3" style="left:852px"><span class="oc-no">03</span><b>에이전트가 에이전트를 이끔</b><p>사람 개입 없이 돌아가는 업무 단위. 사람은 결과와 비용만 감독함</p><p class="oc-hr"><em>HR</em>책임자 지정, 감사 기록 기준, 비용 한도 설정</p></div>
+  </section>
+
+  <!-- Agent Identity Protocol(사용자 요청 2026-10-16). AIP: IETF draft-singla-agent-identity-protocol-03(2026-06-10, 개인 제출, IETF 승인 아님): did:aip 신원, Principal Token 위임 체인(최대 10단계, 위임자보다 큰 권한 불가),
+       Capability Manifest, 전체·범위·위임·위임자 폐기, 서명 Endorsement 평판. Visa TAP: 2025-10-14 Cloudflare와 발표, RFC 9421 서명 헤더.
+       NIST CAISI AI Agent Standards Initiative: 2026-02-17 착수(NCCoE 에이전트 신원·권한 콘셉트 페이퍼). Microsoft Entra Agent ID: 정식 출시, Agent 365에 포함(learn.microsoft.com). HR 대응 열은 발표자 정리 -->
+  <section class="slide dark ai-id" data-gap="500" aria-label="Agent Identity Protocol: 에이전트의 신원, 위임, 권한, 폐기, 평판과 HR의 대응">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">에이전트에게도 사원증과 인사 기록이 필요해지는 중</h2>
+    <p class="abs cr-sub lv-sub">Agent Identity Protocol: 에이전트의 신원과 권한을 확인하는 방식</p>
+    <p class="abs id-h a">AIP가 정하는 것</p><p class="abs id-h b">HR에 대응하는 것</p><p class="abs id-h c">사례</p>
+    <div class="abs id-row" data-step="1" style="top:246px"><div class="id-k"><b>신원</b><em>Identity</em></div><p class="id-d">에이전트마다 고유 ID(DID)를 발급</p><i>→</i><p class="id-hr">사번 발급, 입사 등록</p></div>
+    <div class="abs id-row" data-step="2" style="top:326px"><div class="id-k"><b>위임 기준</b><em>Delegation</em></div><p class="id-d">누구를 대신해 일하는지 사람까지 서명으로 연결</p><i>→</i><p class="id-hr">보고 라인, 결재선</p></div>
+    <div class="abs id-row" data-step="3" style="top:406px"><div class="id-k"><b>권한 범위</b><em>Capability</em></div><p class="id-d">허용된 행동만 명시, 위임자보다 큰 권한 불가</p><i>→</i><p class="id-hr">직무 권한, 위임 전결 규정</p></div>
+    <div class="abs id-row" data-step="4" style="top:486px"><div class="id-k"><b>폐기</b><em>Revocation</em></div><p class="id-d">문제가 생기면 전체 또는 일부 권한을 즉시 회수</p><i>→</i><p class="id-hr">퇴사, 징계, 권한 회수</p></div>
+    <div class="abs id-row" data-step="5" style="top:566px"><div class="id-k"><b>평판</b><em>Endorsement</em></div><p class="id-d">서명된 이력이 쌓여 신뢰도의 근거가 됨</p><i>→</i><p class="id-hr">인사 기록, 평가 이력</p></div>
+    <div class="abs id-mv" data-step="2" style="top:246px"><span class="gp-date">2025.10</span><b>Visa Trusted Agent Protocol</b><p>쇼핑 에이전트의 신원을 서명으로 확인(Cloudflare 협업)</p></div>
+    <div class="abs id-mv" data-step="3" style="top:347px"><span class="gp-date">2026.02</span><b>NIST AI Agent Standards Initiative</b><p>에이전트 신원·권한 위임 표준 연구 착수</p></div>
+    <div class="abs id-mv" data-step="4" style="top:448px"><span class="gp-date">2026</span><b>Microsoft Entra Agent ID</b><p>에이전트마다 ID를 주고 사람처럼 접근 권한 관리</p></div>
+    <div class="abs id-mv hot" data-step="5" style="top:549px"><span class="gp-date">2026.06</span><b>IETF Agent Identity Protocol 초안</b><p>신원·위임·권한·폐기를 묶은 개인 제출 초안(표준 아님)</p></div>
+    <p class="abs footnote" style="top:664px">주: NIST = 미국 국립표준기술연구소(National Institute of Standards and Technology) · IETF = 국제 인터넷 표준화 기구(Internet Engineering Task Force). 개인 제출 초안은 IETF의 공식 표준이 아님</p>
+    <p class="abs footnote">출처: IETF, draft-singla-agent-identity-protocol-03(2026.6.10, 개인 제출 초안) · Visa, Trusted Agent Protocol(2025.10.14) · NIST CAISI, AI Agent Standards Initiative(2026.2) · Microsoft Learn, Entra Agent ID</p>
   </section>
 
   <!-- 하이브리드 팀의 리더십 사이클(과거→미래가 아니라 두 팀을 함께 운영): 비전(가운데)을 중심으로 목표 수립 → 팀 구성·동원(Mobilization) → 평가·피드백이 돈다.
@@ -2203,63 +2346,13 @@
     <p class="abs footnote">출처: McKinsey, "Rethink management and talent for agentic AI", "Six shifts to build the agentic organization"(2025) · HBR, "Companies Need Agent Managers"(2026.2) · BCG·MIT SMR, "Leading in the Age of AI Agents"(2025.11)</p>
   </section>
 
-  <!-- Agent Identity Protocol(사용자 요청 2026-10-16). AIP: IETF draft-singla-agent-identity-protocol-03(2026-06-10, 개인 제출, IETF 승인 아님): did:aip 신원, Principal Token 위임 체인(최대 10단계, 위임자보다 큰 권한 불가),
-       Capability Manifest, 전체·범위·위임·위임자 폐기, 서명 Endorsement 평판. Visa TAP: 2025-10-14 Cloudflare와 발표, RFC 9421 서명 헤더.
-       NIST CAISI AI Agent Standards Initiative: 2026-02-17 착수(NCCoE 에이전트 신원·권한 콘셉트 페이퍼). Microsoft Entra Agent ID: 정식 출시, Agent 365에 포함(learn.microsoft.com). HR 대응 열은 발표자 정리 -->
-  <section class="slide dark ai-id" data-gap="500" aria-label="Agent Identity Protocol: 에이전트의 신원, 위임, 권한, 폐기, 평판과 HR의 대응">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">에이전트에게도 사원증과 인사 기록이 필요해지는 중</h2>
-    <p class="abs cr-sub lv-sub">Agent Identity Protocol: 에이전트의 신원과 권한을 확인하는 방식</p>
-    <p class="abs id-h a">AIP가 정하는 것</p><p class="abs id-h b">HR에 대응하는 것</p><p class="abs id-h c">움직이는 곳</p>
-    <div class="abs id-row" data-step="1" style="top:246px"><div class="id-k"><b>신원</b><em>Identity</em></div><p class="id-d">에이전트마다 고유 ID(DID)를 발급</p><i>→</i><p class="id-hr">사번 발급, 입사 등록</p></div>
-    <div class="abs id-row" data-step="2" style="top:326px"><div class="id-k"><b>위임 기준</b><em>Delegation</em></div><p class="id-d">누구를 대신해 일하는지 사람까지 서명으로 연결</p><i>→</i><p class="id-hr">보고 라인, 결재선</p></div>
-    <div class="abs id-row" data-step="3" style="top:406px"><div class="id-k"><b>권한 범위</b><em>Capability</em></div><p class="id-d">허용된 행동만 명시, 위임자보다 큰 권한 불가</p><i>→</i><p class="id-hr">직무 권한, 위임 전결 규정</p></div>
-    <div class="abs id-row" data-step="4" style="top:486px"><div class="id-k"><b>폐기</b><em>Revocation</em></div><p class="id-d">문제가 생기면 전체 또는 일부 권한을 즉시 회수</p><i>→</i><p class="id-hr">퇴사, 징계, 권한 회수</p></div>
-    <div class="abs id-row" data-step="5" style="top:566px"><div class="id-k"><b>평판</b><em>Endorsement</em></div><p class="id-d">서명된 이력이 쌓여 신뢰도의 근거가 됨</p><i>→</i><p class="id-hr">인사 기록, 평가 이력</p></div>
-    <div class="abs id-mv" data-step="2" style="top:246px"><span class="gp-date">2025.10</span><b>Visa Trusted Agent Protocol</b><p>쇼핑 에이전트의 신원을 서명으로 확인(Cloudflare 협업)</p></div>
-    <div class="abs id-mv" data-step="3" style="top:347px"><span class="gp-date">2026.02</span><b>NIST AI Agent Standards Initiative</b><p>에이전트 신원·권한 위임 표준 연구 착수</p></div>
-    <div class="abs id-mv" data-step="4" style="top:448px"><span class="gp-date">2026</span><b>Microsoft Entra Agent ID</b><p>에이전트마다 ID를 주고 사람처럼 접근 권한 관리</p></div>
-    <div class="abs id-mv hot" data-step="5" style="top:549px"><span class="gp-date">2026.06</span><b>IETF Agent Identity Protocol 초안</b><p>신원·위임·권한·폐기를 묶은 개인 제출 초안(표준 아님)</p></div>
-    <p class="abs footnote">출처: IETF, draft-singla-agent-identity-protocol-03(2026.6.10, 개인 제출 초안) · Visa, Trusted Agent Protocol(2025.10.14) · NIST CAISI, AI Agent Standards Initiative(2026.2) · Microsoft Learn, Entra Agent ID · HR 대응은 발표자 정리</p>
-  </section>
-
-  <!-- Workflow 기반 과제 정의(외부 세미나 발표 자료의 재무 자금 워크플로우 예시)를 HR 4단계(채용·육성·평가·유지)로 바꿈.
-       위 두 줄은 에이전트(데이터 수집 → 분석·제안), 맨 아래 띠는 사람의 판단. 열마다 차례로 뜬다 -->
-  <section class="slide dark wf" data-gap="600" aria-label="에이전트 도입은 HR 업무 흐름을 쪼개는 데서 시작함: 채용, 육성, 평가, 유지의 데이터 에이전트, 분석 에이전트, 사람의 결정">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">에이전트 도입은 HR 업무 흐름을 쪼개는 데서 시작함</h2>
-    <p class="abs cr-sub lv-sub">Workflow 기반 과제 정의 예시: 채용부터 유지까지 사람과 에이전트의 역할 배분</p>
-    <div class="abs wf-lab a" style="top:262px"><b>Data Agent</b><span>모으고 정리</span></div>
-    <div class="abs wf-lab a" style="top:388px"><b>Analysis Agent</b><span>분석하고 제안</span></div>
-    <div class="abs wf-band"><div class="wf-lab p"><b>사람</b><span>판단하고 결정</span></div></div>
-    <svg class="abs wf-lines" viewBox="0 0 1280 720" aria-hidden="true"><g data-step="1"><path d="M326 354V384M326 480V534"/><path class="h" d="M320 377L326 384L332 377M320 527L326 534L332 527"/></g><g data-step="2"><path d="M579 354V384M579 480V534"/><path class="h" d="M573 377L579 384L585 377M573 527L579 534L585 527"/></g><g data-step="3"><path d="M832 354V384M832 480V534"/><path class="h" d="M826 377L832 384L838 377M826 527L832 534L838 527"/></g><g data-step="4"><path d="M1085 354V384M1085 480V534"/><path class="h" d="M1079 377L1085 384L1091 377M1079 527L1085 534L1091 527"/></g></svg>
-    <p class="abs wf-col-h" data-step="1" style="left:226.5px">채용</p>
-    <div class="abs wf-cell a" data-step="1" style="left:226.5px;top:262px"><i>AI</i>지원서·이력서 DB화<br>채용 채널 성과 집계</div>
-    <div class="abs wf-cell a" data-step="1" style="left:226.5px;top:388px"><i>AI</i>직무 요건 대비<br>적합도 검토</div>
-    <div class="abs wf-cell p" data-step="1" style="left:226.5px;top:548px">면접·최종 채용 결정</div>
-    <p class="abs wf-col-h" data-step="2" style="left:479.5px">육성</p>
-    <div class="abs wf-cell a" data-step="2" style="left:479.5px;top:262px"><i>AI</i>교육 이수·역량 진단<br>데이터 정리</div>
-    <div class="abs wf-cell a" data-step="2" style="left:479.5px;top:388px"><i>AI</i>역량 갭 분석<br>학습 경로 제안</div>
-    <div class="abs wf-cell p" data-step="2" style="left:479.5px;top:548px">육성 계획 확정</div>
-    <p class="abs wf-col-h" data-step="3" style="left:732.5px">평가</p>
-    <div class="abs wf-cell a" data-step="3" style="left:732.5px;top:262px"><i>AI</i>목표·성과 데이터<br>집계</div>
-    <div class="abs wf-cell a" data-step="3" style="left:732.5px;top:388px"><i>AI</i>평가 편차·누락 검토<br>근거 요약</div>
-    <div class="abs wf-cell p" data-step="3" style="left:732.5px;top:548px">평가 확정·피드백 면담</div>
-    <p class="abs wf-col-h" data-step="4" style="left:985.5px">유지</p>
-    <div class="abs wf-cell a" data-step="4" style="left:985.5px;top:262px"><i>AI</i>근태·설문·면담 기록<br>정리</div>
-    <div class="abs wf-cell a" data-step="4" style="left:985.5px;top:388px"><i>AI</i>이탈 위험 신호 분석<br>조치안 제안</div>
-    <div class="abs wf-cell p" data-step="4" style="left:985.5px;top:548px">리텐션 조치·모니터링</div>
-  </section>
-
   <!-- 기업 AI 성숙도(2026-10-17 교체): 원래 사진 속 5단계(AI Usage → AI Native)의 원 출처를 찾지 못해, 가장 가까운 공개 프레임워크로 바꿈.
        MIT CISR Enterprise AI Maturity Model(Weill·Woerner·Sebastian, 2024-12-19 MIT Sloan 보도자료): 4단계와 기업 비중 28·34·31·7%, 1·2단계는 재무 성과 업계 평균 이하, 3·4단계는 평균보다 크게 높음.
        데이터는 2022 Future Ready Survey(N=721), 주로 분석형 AI 기준. 단계별 HR 역할은 발표자 정리 -->
-  <section class="slide dark mc" data-gap="500" aria-label="AI 성숙도가 3단계를 넘어야 재무 성과가 업계 평균을 앞섬: MIT CISR 기업 AI 성숙도 4단계와 단계별 HR의 역할">
+  <section class="slide dark mc" data-gap="500" aria-label="AI 성숙도 3단계로 가려면 HR의 역할이 확대되어야 함(3·4단계 기업만 재무 성과가 업계 평균을 크게 앞섬): MIT CISR 기업 AI 성숙도 4단계와 단계별 HR의 역할">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">AI 성숙도가 3단계를 넘어야 재무 성과가 업계 평균을 앞섬</h2>
+    <h2 class="abs head-title">AI 성숙도 3단계로 가려면 HR의 역할이 확대되어야 함</h2>
     <p class="abs cr-sub lv-sub">기업 AI 성숙도 4단계와 단계별 HR의 역할</p>
     <div class="abs mc-box" data-step="1" style="left:76px;top:378px;height:226px"><small>STAGE 1</small><b>Experiment and Prepare</b><span>실험과 준비</span><p class="mc-pct"><em>28%</em>기업 비중</p><p class="mc-hr"><i>HR</i>구성원 AI 교육, 사용 정책·윤리 원칙 수립</p></div>
     <div class="abs mc-box" data-step="2" style="left:362px;top:326px;height:278px"><small>STAGE 2</small><b>Build Pilots and Capabilities</b><span>파일럿과 역량 구축</span><p class="mc-pct"><em>34%</em>기업 비중</p><p class="mc-hr"><i>HR</i>채용·평가 업무 파일럿, 성과 지표 정의</p></div>
@@ -2267,7 +2360,7 @@
     <div class="abs mc-box up hot" data-step="4" style="left:934px;top:222px;height:382px"><small>STAGE 4</small><b>Become AI Future Ready</b><span>AI 퓨처 레디</span><p class="mc-pct"><em>7%</em>기업 비중</p><p class="mc-hr"><i>HR</i>사람과 에이전트의 인력 계획·평가 통합</p></div>
     <div class="abs mc-perf lo" data-step="2"><b>재무 성과</b> 업계 평균 이하</div>
     <div class="abs mc-perf hi" data-step="4"><b>재무 성과</b> 업계 평균보다 크게 높음</div>
-    <p class="abs footnote">출처: MIT CISR, Peter Weill·Stephanie Woerner·Ina Sebastian, "Building Enterprise AI Maturity"(2024.12), 2022 Future Ready Survey(N=721, 주로 분석형 AI 기준) · HR 역할은 발표자 정리</p>
+    <p class="abs footnote">출처: MIT CISR, Peter Weill·Stephanie Woerner·Ina Sebastian, "Building Enterprise AI Maturity"(2024.12), 2022 Future Ready Survey(N=721, 주로 분석형 AI 기준)</p>
   </section>
 
   <!-- AX Methodology 1: 좁은 의미의 AX(1→5)가 먼저, 클릭하면 10단계 전체가 펼쳐진다 -->
