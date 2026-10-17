@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>고객문의 대시보드 킥오프 결과</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1d2330;--sub:#667085;--line:#e4e7ec;--acc:#3b5bdb;--hi:#d92d20;--mid:#dc6803;--lo:#079455}
+@media (prefers-color-scheme:dark){:root{--bg:#12151c;--card:#1b2030;--text:#e8eaf0;--sub:#98a2b3;--line:#2b3245;--acc:#8fa6ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 system-ui,'Noto Sans KR',sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:22px;margin:0 0 4px}.meta{color:var(--sub);font-size:13px;margin-bottom:20px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.card,section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card b{display:block;font-size:28px;color:var(--acc)}.card span{color:var(--sub);font-size:13px}
+section{margin-bottom:16px}h2{font-size:16px;margin:0 0 10px}
+ul{margin:0;padding-left:20px}li{margin:4px 0}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}th{color:var(--sub);font-weight:600;font-size:12px}
+.p{font-weight:600}.p.h{color:var(--hi)}.p.m{color:var(--mid)}.p.l{color:var(--lo)}.tbd{color:var(--mid);font-style:italic}
+.q{border-left:3px solid var(--mid)}
+.arch{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:13px}.arch div{border:1px solid var(--line);border-radius:8px;padding:8px}.arch b{display:block;color:var(--acc)}
+@media(max-width:560px){.cards,.arch{grid-template-columns:1fr}}
+</style></head><body><main>
+<h1>고객문의 대시보드 개선 킥오프</h1>
+<div class="meta">2026-10-16(금) 14:00 · 참석: 한기획, 정개발, 오QA, 윤디자인 · 원문: sample-minutes.txt</div>
+<div class="cards"><div class="card"><b>3</b><span>결정사항</span></div><div class="card"><b>5</b><span>액션아이템</span></div><div class="card"><b>2</b><span>미정 항목</span></div></div>
+
+<section><h2>안건별 요약</h2><ul>
+<li><b>일정</b>: 1차 배포 목표일을 확정하고 필터 UI 일정을 합의했다.</li>
+<li><b>범위</b>: 기존 차트 라이브러리를 유지하고 자동 메일 발송은 2차로 미뤘다.</li>
+<li><b>품질/기타</b>: QA 시나리오, 사용자 인터뷰, 서버 비용 확인이 필요하다.</li></ul></section>
+
+<section><h2>결정사항</h2><ul>
+<li>1차 배포일은 <b>11월 6일(금)</b>로 확정한다.</li>
+<li>차트 라이브러리는 <b>기존 것을 유지</b>한다.</li>
+<li>월간 리포트 자동 메일 발송은 <b>2차로 연기</b>한다.</li></ul></section>
+
+<section><h2>액션아이템</h2><div class="tw"><table>
+<tr><th>#</th><th>할 일</th><th>담당</th><th>기한</th><th>우선순위</th><th>근거</th></tr>
+<tr><td>1</td><td>문의 카테고리 정의서 정리</td><td>한기획</td><td>2026-10-19</td><td class="p h">상</td><td>"월요일까지 정리", 개발 착수 전 필수</td></tr>
+<tr><td>2</td><td>필터 UI 개발</td><td>정개발</td><td>2026-10-21</td><td class="p h">상</td><td>"다음 주 수요일까지"</td></tr>
+<tr><td>3</td><td>사용자 인터뷰 3건 진행</td><td>한기획</td><td>2026-10-30</td><td class="p m">중</td><td>"10월 30일까지"</td></tr>
+<tr><td>4</td><td>QA 테스트 시나리오 작성</td><td class="tbd">미정</td><td class="tbd">미정</td><td class="p m">중</td><td>오QA 언급, 담당·기한 미합의</td></tr>
+<tr><td>5</td><td>서버 비용 증가분 확인</td><td class="tbd">미정</td><td>2026-11-06 이전</td><td class="p m">중</td><td>"배포 전에는 알아야 함"</td></tr>
+</table></div></section>
+
+<section><h2>미결 이슈</h2><ul><li>모바일 대응 여부 (의견 갈림, 결론 없음)</li><li>권한별 조회 범위(팀장/일반) &mdash; 다음 회의에서 재논의</li></ul></section>
+
+<section class="q"><h2>확인이 필요해요</h2><ul><li>#4 QA 테스트 시나리오는 누가, 언제까지 작성하나요? (오QA가 맞나요?)</li><li>#5 서버 비용 확인은 누가 담당하나요?</li></ul></section>
+
+<section><h2>설계 구조 (하네스 6요소)</h2><div class="arch">
+<div><b>1. 역할</b>회의 후속 조치 PM 어시스턴트</div><div><b>2. 입력</b>회의록 원문 + 선택 메타정보</div><div><b>3. 절차</b>메타→요약→결정→액션→미결</div>
+<div><b>4. 도구</b>파일 읽기/쓰기, 날짜 계산</div><div><b>5. 검증</b>근거 확인, 미정 처리, 중복 제거</div><div><b>6. 출력</b>채팅 요약 + 표 + HTML</div></div></section>
+</main></body></html>

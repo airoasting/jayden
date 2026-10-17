@@ -1,0 +1,443 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>MX 티켓 샘플</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--ink:#172b4d;--muted:#5e6c84;--line:#dfe1e6;--accent:#0c66e4;--soft:#e9f2ff;
+--bug:#c9372c;--review:#946f00;--improve:#1f845a;--new:#6e5dc6;--need:#fff4e5;--needink:#a54800;--code:#f1f2f4}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1d2125;--card:#22272b;--ink:#dee4ea;--muted:#9fadbc;--line:#38414a;--accent:#579dff;--soft:#1c2b41;--need:#3d2a12;--needink:#fea362;--code:#2c333a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1d2125;--card:#22272b;--ink:#dee4ea;--muted:#9fadbc;--line:#38414a;--accent:#579dff;--soft:#1c2b41;--need:#3d2a12;--needink:#fea362;--code:#2c333a;color-scheme:dark}
+*{box-sizing:border-box}.title,.desc,.input,.after,.memo{overflow-wrap:anywhere}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 -apple-system,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+header{padding-block:28px 12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1240px;margin:auto}h1{margin:0 0 6px;font-size:22px}header p{margin:0;color:var(--muted)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav a{display:inline-flex;flex-direction:column;margin-right:6px;padding:6px 12px;border-radius:8px;color:var(--ink);text-decoration:none;font-weight:600;font-size:13px}
+nav a small{font-weight:400;color:var(--muted);font-size:11px}nav a:hover{background:var(--soft)}
+main{max-width:1240px;margin:auto;padding-block:0 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}.col-in,.col-out{min-width:0}.copy:focus-visible,nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.ex{margin-top:28px}.ex h2{font-size:17px;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:16px}@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.label{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px}.muted{font-weight:400}
+.input{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:8px;padding:12px 14px;white-space:normal}
+.memo{margin-top:10px;font-size:13px;color:var(--muted);background:var(--soft);border-radius:8px;padding:10px 12px}
+.ticket{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px;box-shadow:0 1px 2px rgba(9,30,66,.08)}
+.thead{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}.tno{margin-left:auto;color:var(--muted);font-size:12px}
+.type{color:#fff;font-weight:700;font-size:12px;padding:2px 8px;border-radius:4px;background:var(--accent)}
+.type.bug{background:var(--bug)}.type.review{background:var(--review)}.type.improve{background:var(--improve)}.type.new{background:var(--new)}
+.chip{font-size:12px;border:1px solid var(--line);border-radius:4px;padding:1px 7px;color:var(--muted)}
+.field{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;margin:8px 0 4px}
+.title,.desc{position:relative;border:1px solid var(--line);border-radius:6px;padding:10px 64px 10px 12px}.title{font-size:16px;font-weight:700}
+.desc h4{font-size:14px;margin:14px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}.desc h4:first-child{margin-top:0}
+p{margin:4px 0}ul,ol{margin:4px 0;padding-left:22px}li.chk{list-style:none;margin-left:-18px}.box{display:inline-block;width:13px;height:13px;border:1.5px solid var(--muted);border-radius:3px;margin-right:7px;vertical-align:-2px}
+.tw{overflow-x:auto;margin:6px 0}table{border-collapse:collapse;font-size:13px}th,td{border:1px solid var(--line);padding:5px 9px;text-align:left;vertical-align:top}th{background:var(--code)}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:12.5px}a{color:var(--accent)}
+.tag-need{background:var(--need);color:var(--needink);border-radius:4px;padding:0 4px;font-weight:600}.tag-later{color:var(--muted);font-style:italic}.tag-sug{color:var(--accent);font-size:12px}
+.q-req,.q-opt{font-size:11px;font-weight:700;border-radius:4px;padding:1px 6px;margin-right:2px}.q-req{background:var(--bug);color:#fff}.q-opt{border:1px solid var(--line);color:var(--muted)}
+.after{font-size:13px;background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:10px 14px;margin-bottom:12px}.after h5{margin:0}
+.copy{position:absolute;top:8px;right:8px;font:12px inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:5px;padding:2px 8px;cursor:pointer}.copy:hover{background:var(--soft)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:12px;color:var(--muted)}
+</style>
+
+<header><h1>JIRA 티켓 자동 작성 · 샘플</h1>
+<p><code>jira-ticket</code> skill이 요청 텍스트를 MX 티켓(제목·본문)으로 바꾼 결과 예시입니다. 모든 요청·링크·수치는 설명용 가상 데이터입니다.</p>
+<div class="legend"><span><span class="type bug">오류 수정</span></span><span><span class="type review">검토 요청</span></span><span><span class="type improve">기능 개선</span></span><span><span class="type new">신규 기능</span></span>
+<span><span class="tag-need">[확인 필요]</span> 입력에 없어 확인할 내용</span><span><span class="tag-sug">(제안)</span> skill의 판단</span><span><span class="tag-later">(확정 후 채움)</span> 답을 받은 뒤 채울 항목</span><span><span class="q-req">필수</span> 답이 올 때까지 '작업 대기'</span></div></header>
+<nav><a href='#ex1'>예시 1<small>오류 수정 (집계 오류, 기대값/실제값)</small></a><a href='#ex2'>예시 2<small>오류 수정 (퍼블리싱, 시안과 다른 구현)</small></a><a href='#ex3'>예시 3<small>기능 개선 (툴팁 문구 1줄)</small></a><a href='#ex4'>예시 4<small>기능 개선 (슬랙, 새 컴포넌트·시안 일부)</small></a><a href='#ex5'>예시 5<small>검토 요청 (권한 의심 &quot;??&quot;)</small></a><a href='#ex6'>예시 6<small>신규 기능 (새 탭, 첨부 자료)</small></a><a href='#ex7'>예시 7<small>초안 모드 (한 줄짜리 엉성한 입력)</small></a><a href='#ex8'>예시 8<small>회의록 → 티켓 2건</small></a></nav>
+<main><section class='ex' id='ex1'><h2>예시 1 — 오류 수정 (집계 오류, 기대값/실제값)</h2>
+<div class='grid'><div class='col-in'><div class='label'>입력 <span class='muted'>(메시지 날짜 2026-10-16 금)</span></div>
+<div class='input'>운영계 GMA에서 9월 One Month, 법인 전체로 보면 E/R이 Metric Card엔 4.2%인데 아래 상세 테이블 합계 행은 3.8%예요. Excel 받아도 3.8%. 어느 게 맞는지 모르겠어요, 다음 주 월요일 법인 보고에 써야 해요.</div>
+<div class='memo'><strong>판단 근거</strong> 외부 보고에 쓰는 수치라 긴급. 입력에 '긴급'이라는 말은 없어 태그는 <code>[집계 오류]</code>.</div>
+</div><div class='col-out'>
+<article class='ticket'><div class='thead'><span class='type bug'>오류 수정</span><span class='chip'>제목 26자</span><span class='chip'>우선순위: Highest <span class="tag-sug">(제안)</span></span><span class='tno'>티켓 1</span></div>
+<div class='field'>요약</div><div class='title'>[집계 오류] GMA &gt; E/R 카드·표 불일치<button class='copy' data-copy='[집계 오류] GMA &gt; E/R 카드·표 불일치'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>이슈 유형:</strong> 오류 수정</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> GMA에서 같은 조건의 E/R(Engagement Rate)이 Metric Card와 상세 테이블 합계에서 다르게 나와, 법인 보고에 쓸 값을 정할 수 없습니다.</li></ul>
+<h4>요청사항</h4>
+<p><strong>재현 조건</strong></p>
+<ul><li>환경: 운영계(PROD, 실제 사용자가 쓰는 서버)</li><li>메뉴 경로: GMA / 기간: 2026-09, One Month / 법인: 전체 / 지표: E/R</li></ul>
+<p><strong>실제 결과</strong></p>
+<div class='tw'><table><thead><tr><th>위치</th><th>E/R</th></tr></thead><tbody><tr><td>Metric Card</td><td>4.2%</td></tr><tr><td>상세 테이블 합계 행</td><td>3.8%</td></tr><tr><td>Excel 다운로드</td><td>3.8%</td></tr></tbody></table></div>
+<p><strong>기대 결과:</strong> 세 곳의 E/R이 같은 산식으로 계산되어 같은 값 <span class="tag-need">[확인 필요: 기준 산식]</span></p>
+<p><strong>적용 범위:</strong> 화면(Metric Card·상세 테이블), Excel, PDF <span class="tag-sug">(제안)</span></p>
+<p><strong>디자인:</strong> 필요 없음 — 화면 구성은 그대로</p>
+<h4>검증 항목</h4>
+<ul><li class='chk'><span class='box'></span>위 재현 조건에서 Metric Card, 상세 테이블 합계 행, Excel의 E/R이 같다</li><li class='chk'><span class='box'></span>그 값이 <span class="tag-need">[확인 필요: 기준 산식]</span>으로 직접 계산한 값과 같다 <span class="tag-later">(확정 후 채움)</span></li><li class='chk'><span class='box'></span>기간을 2026-08로 바꿔도 세 곳의 E/R이 같다</li></ul>
+<h4>비고</h4>
+<ul><li><strong>긴급:</strong> 2026-10-19(월) 법인 보고에 쓸 수치 (원문: 다음 주 월요일)</li><li>개발 확인: Metric Card와 테이블 합계가 각각 어떤 산식(분자·분모)으로 계산되는지 댓글 부탁드립니다</li></ul><button class='copy' data-copy='**이슈 유형:** 오류 수정
+
+## 요청 배경
+- **문제:** GMA에서 같은 조건의 E/R(Engagement Rate)이 Metric Card와 상세 테이블 합계에서 다르게 나와, 법인 보고에 쓸 값을 정할 수 없습니다.
+
+## 요청사항
+**재현 조건**
+- 환경: 운영계(PROD, 실제 사용자가 쓰는 서버)
+- 메뉴 경로: GMA / 기간: 2026-09, One Month / 법인: 전체 / 지표: E/R
+
+**실제 결과**
+| 위치 | E/R |
+|---|---|
+| Metric Card | 4.2% |
+| 상세 테이블 합계 행 | 3.8% |
+| Excel 다운로드 | 3.8% |
+
+**기대 결과:** 세 곳의 E/R이 같은 산식으로 계산되어 같은 값 [확인 필요: 기준 산식]
+**적용 범위:** 화면(Metric Card·상세 테이블), Excel, PDF (제안)
+**디자인:** 필요 없음 — 화면 구성은 그대로
+
+## 검증 항목
+- [ ] 위 재현 조건에서 Metric Card, 상세 테이블 합계 행, Excel의 E/R이 같다
+- [ ] 그 값이 [확인 필요: 기준 산식]으로 직접 계산한 값과 같다 (확정 후 채움)
+- [ ] 기간을 2026-08로 바꿔도 세 곳의 E/R이 같다
+
+## 비고
+- **긴급:** 2026-10-19(월) 법인 보고에 쓸 수치 (원문: 다음 주 월요일)
+- 개발 확인: Metric Card와 테이블 합계가 각각 어떤 산식(분자·분모)으로 계산되는지 댓글 부탁드립니다'>복사</button></div>
+</article>
+<div class='after'><p><strong>확인 질문</strong> (기획자용 — JIRA에 붙여넣지 않음)</p>
+<ol><li><span class="q-req">필수·기획</span> E/R은 어떤 방식으로 계산하는 게 맞나요? 예: 전체 참여 수 ÷ 전체 노출 수 (모르면: 등록 후 개발 담당자에게 두 산식을 댓글로 확인)</li></ol>
+<p><strong>다음 행동:</strong> 등록하셔도 되지만, [필수]에 답이 올 때까지 상태를 '작업 대기'로 두세요. 답을 받으면 '<span class="tag-later">(확정 후 채움)</span>' 항목을 JIRA 본문에서 직접 고쳐 주세요.</p>
+<p><strong>JIRA 등록:</strong> 첫 번째 회색 상자 → '요약' 칸, 두 번째 회색 상자 → '설명' 칸, '이슈 유형' 칸에서 헤더에 적힌 유형을 고르세요.</p></div>
+</div></div></section>
+<section class='ex' id='ex2'><h2>예시 2 — 오류 수정 (퍼블리싱, 시안과 다른 구현)</h2>
+<div class='grid'><div class='col-in'><div class='label'>입력 </div>
+<div class='input'>Social Marketing &gt; Performance Trend 탭에서 LNB 펼치고 챗봇까지 열면 차트 범례가 차트 위로 겹쳐요. 1440px 노트북 크롬이고 스샷 trend_legend.png 첨부해요. 시안엔 이 폭에선 범례가 차트 아래로 내려가요 figma.com/design/mx/trend?node-id=12-88</div>
+<div class='memo'><strong>판단 근거</strong> <code>[퍼블리싱] Social &gt; Performance Trend &gt; 범례 겹침</code>은 41자 → ② 탭 축약 P.Trend<span class="tag-sug">(제안)</span>(31자) → ⑤ 태그를 헤더·본문 첫 줄로(24자). 퍼블리싱 버그라 재현 조건은 화면 조건만.</div>
+</div><div class='col-out'>
+<article class='ticket'><div class='thead'><span class='type bug'>오류 수정</span><span class='chip'>제목 24자</span><span class='chip'>말머리: [퍼블리싱] (제목에서 뺌)</span><span class='tno'>티켓 1</span></div>
+<div class='field'>요약</div><div class='title'>Social &gt; P.Trend &gt; 범례 겹침<button class='copy' data-copy='Social &gt; P.Trend &gt; 범례 겹침'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>말머리:</strong> [퍼블리싱]</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> LNB와 Chatbot을 함께 열면 Performance Trend 차트 위에 범례가 겹쳐 차트를 읽기 어렵습니다.</li></ul>
+<h4>요청사항</h4>
+<p><strong>재현 조건</strong></p>
+<ul><li>메뉴 경로: Social Marketing &gt; Performance Trend</li><li>화면: 1440px 노트북, Chrome, LNB 펼침, Chatbot 열림</li><li>스크린샷: 첨부 'trend_legend.png'</li></ul>
+<p><strong>실제 결과:</strong> 범례가 차트 위에 겹쳐 보임</p>
+<p><strong>기대 결과:</strong> 이 화면 조건에서는 범례가 차트 아래로 내려감 <a href="https://figma.com/design/mx/trend?node-id=12-88" target="_blank" rel="noopener">(피그마 시안)</a></p>
+<p><strong>디자인:</strong> 위 시안 기준 (시안과 다르게 구현됨)</p>
+<h4>검증 항목</h4>
+<ul><li class='chk'><span class='box'></span>1440px, LNB 펼침, Chatbot 열림 상태에서 범례가 차트 아래에 보이고 차트와 겹치지 않는다</li><li class='chk'><span class='box'></span>같은 조건에서 범례 위치와 간격이 시안 프레임(node-id=12-88)과 같다 — 디자이너 확인</li><li class='chk'><span class='box'></span>LNB 접힘, Chatbot 닫힘 상태에서는 범례가 기존 위치에 그대로 보인다</li></ul>
+<h4>비고</h4>
+<ul><li>개발 확인: 같은 차트를 쓰는 다른 탭에도 같은 문제가 있는지</li></ul><button class='copy' data-copy='**말머리:** [퍼블리싱]
+
+## 요청 배경
+- **문제:** LNB와 Chatbot을 함께 열면 Performance Trend 차트 위에 범례가 겹쳐 차트를 읽기 어렵습니다.
+
+## 요청사항
+**재현 조건**
+- 메뉴 경로: Social Marketing &gt; Performance Trend
+- 화면: 1440px 노트북, Chrome, LNB 펼침, Chatbot 열림
+- 스크린샷: 첨부 &#x27;trend_legend.png&#x27;
+
+**실제 결과:** 범례가 차트 위에 겹쳐 보임
+**기대 결과:** 이 화면 조건에서는 범례가 차트 아래로 내려감 [(피그마 시안)](figma.com/design/mx/trend?node-id=12-88)
+**디자인:** 위 시안 기준 (시안과 다르게 구현됨)
+
+## 검증 항목
+- [ ] 1440px, LNB 펼침, Chatbot 열림 상태에서 범례가 차트 아래에 보이고 차트와 겹치지 않는다
+- [ ] 같은 조건에서 범례 위치와 간격이 시안 프레임(node-id=12-88)과 같다 — 디자이너 확인
+- [ ] LNB 접힘, Chatbot 닫힘 상태에서는 범례가 기존 위치에 그대로 보인다
+
+## 비고
+- 개발 확인: 같은 차트를 쓰는 다른 탭에도 같은 문제가 있는지'>복사</button></div>
+</article>
+<div class='after'><p><strong>확인 질문</strong> (기획자용 — JIRA에 붙여넣지 않음)</p>
+<ol><li><span class="q-opt">선택·기획</span> 제목에서 Performance Trend를 P.Trend로 줄여도 될까요? (모르면: P.Trend로 등록)</li></ol>
+<p><strong>다음 행동:</strong> 바로 등록하셔도 됩니다.</p>
+<p><strong>JIRA 등록:</strong> 첫 번째 회색 상자 → '요약' 칸, 두 번째 회색 상자 → '설명' 칸, '이슈 유형' 칸에서 헤더에 적힌 유형을 고르세요. 'trend_legend.png'는 파일로 첨부.</p></div>
+</div></div></section>
+<section class='ex' id='ex3'><h2>예시 3 — 기능 개선 (툴팁 문구 1줄)</h2>
+<div class='grid'><div class='col-in'><div class='label'>입력 </div>
+<div class='input'>GMA Metric Card의 E/R 툴팁 설명을 'Engagement / Impression'에서 '(좋아요+댓글+공유) ÷ 노출수'로 바꿔주세요. 법인 담당자들이 산식 문의를 계속 해요.</div>
+<div class='memo'><strong>판단 근거</strong> 원래 문구가 잘못 구현된 게 아니라 설명을 바꾸는 요청이라 기능 개선. 문구만 바뀌어 디자인은 한 줄.</div>
+</div><div class='col-out'>
+<article class='ticket'><div class='thead'><span class='type improve'>기능 개선</span><span class='chip'>제목 18자</span><span class='tno'>티켓 1</span></div>
+<div class='field'>요약</div><div class='title'>GMA &gt; E/R 툴팁 문구 변경<button class='copy' data-copy='GMA &gt; E/R 툴팁 문구 변경'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>이슈 유형:</strong> 기능 개선</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> 법인 담당자들이 E/R(Engagement Rate) 산식을 계속 문의합니다.</li><li><strong>목적:</strong> 툴팁만 보고 E/R 산식을 이해할 수 있게 합니다.</li></ul>
+<h4>요청사항</h4>
+<ul><li><strong>위치:</strong> GMA &gt; Metric Card &gt; E/R 툴팁</li></ul>
+<div class='tw'><table><thead><tr><th>구분</th><th>ASIS</th><th>TOBE</th></tr></thead><tbody><tr><td>E/R 툴팁</td><td>"Engagement / Impression"</td><td>"(좋아요+댓글+공유) ÷ 노출수"</td></tr></tbody></table></div>
+<ul><li><strong>디자인:</strong> 필요 없음 — 문구 길이 변화만 확인</li></ul>
+<h4>검증 항목</h4>
+<ul><li class='chk'><span class='box'></span>GMA의 E/R Metric Card에 마우스를 올리면 툴팁에 "(좋아요+댓글+공유) ÷ 노출수"가 보인다</li><li class='chk'><span class='box'></span>툴팁 문구가 잘리거나 화면 밖으로 넘치지 않고 전부 보인다 — 디자이너 확인</li></ul>
+<h4>비고</h4>
+<ul><li>개발 확인: 실제 E/R 계산 방식이 새 문구와 같은지</li></ul><button class='copy' data-copy='**이슈 유형:** 기능 개선
+
+## 요청 배경
+- **문제:** 법인 담당자들이 E/R(Engagement Rate) 산식을 계속 문의합니다.
+- **목적:** 툴팁만 보고 E/R 산식을 이해할 수 있게 합니다.
+
+## 요청사항
+- **위치:** GMA &gt; Metric Card &gt; E/R 툴팁
+
+| 구분 | ASIS | TOBE |
+|---|---|---|
+| E/R 툴팁 | &quot;Engagement / Impression&quot; | &quot;(좋아요+댓글+공유) ÷ 노출수&quot; |
+
+- **디자인:** 필요 없음 — 문구 길이 변화만 확인
+
+## 검증 항목
+- [ ] GMA의 E/R Metric Card에 마우스를 올리면 툴팁에 &quot;(좋아요+댓글+공유) ÷ 노출수&quot;가 보인다
+- [ ] 툴팁 문구가 잘리거나 화면 밖으로 넘치지 않고 전부 보인다 — 디자이너 확인
+
+## 비고
+- 개발 확인: 실제 E/R 계산 방식이 새 문구와 같은지'>복사</button></div>
+</article>
+<div class='after'><p><strong>확인 질문</strong> (기획자용 — JIRA에 붙여넣지 않음)</p>
+<ol><li><span class="q-opt">선택·기획</span> 다른 메뉴의 E/R 툴팁도 같이 바꿀까요? (모르면: GMA만 바꾸고, 같은 문구를 쓰는 곳은 개발자 댓글로 확인)</li></ol>
+<p><strong>다음 행동:</strong> [필수] 질문이 없으니 바로 등록하셔도 됩니다.</p>
+<p><strong>JIRA 등록:</strong> 첫 번째 회색 상자 → '요약' 칸, 두 번째 회색 상자 → '설명' 칸, '이슈 유형' 칸에서 헤더에 적힌 유형을 고르세요.</p></div>
+</div></div></section>
+<section class='ex' id='ex4'><h2>예시 4 — 기능 개선 (슬랙, 새 컴포넌트·시안 일부)</h2>
+<div class='grid'><div class='col-in'><div class='label'>입력 </div>
+<div class='input'>박기획: Social Marketing &gt; Performance Trend 탭 Channel 필터를 다중 선택으로 바꿔주세요. 지금은 하나만 골라져서 법인 담당자들이 채널 비교하려고 매번 Excel 받아서 합친대요.<br>김디자인: 시안 figma.com/design/mx/filter?node-id=40-12 올렸어요. 체크박스 드롭다운은 새 컴포넌트예요. 아무것도 선택 안 했을 때는 아직 못 그렸어요.<br>박기획: 기본은 전체 선택으로요. Excel·PDF도 고른 채널대로 나와야 해요.</div>
+<div class='memo'><strong>판단 근거</strong> <code>Social &gt; Performance Trend &gt; 채널 다중 선택</code>은 37자 → ② 탭 축약 P.Trend<span class="tag-sug">(제안)</span>(27자). 새 컴포넌트·디자이너 발언이 있어 디자인 블록을 펼친다.</div>
+</div><div class='col-out'>
+<article class='ticket'><div class='thead'><span class='type improve'>기능 개선</span><span class='chip'>제목 27자</span><span class='tno'>티켓 1</span></div>
+<div class='field'>요약</div><div class='title'>Social &gt; P.Trend &gt; 채널 다중 선택<button class='copy' data-copy='Social &gt; P.Trend &gt; 채널 다중 선택'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>이슈 유형:</strong> 기능 개선</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> Channel 필터가 하나만 선택돼, 법인 담당자들이 채널을 비교하려고 매번 Excel을 받아 직접 합칩니다.</li><li><strong>목적:</strong> 화면에서 여러 채널을 함께 골라 비교할 수 있게 합니다.</li></ul>
+<h4>요청사항</h4>
+<ul><li><strong>위치:</strong> Social Marketing &gt; Performance Trend &gt; 필터 영역의 Channel 필터</li></ul>
+<div class='tw'><table><thead><tr><th>구분</th><th>ASIS</th><th>TOBE</th></tr></thead><tbody><tr><td>선택 방식</td><td>1개만 선택</td><td>여러 개 선택(체크박스 드롭다운) <a href="https://figma.com/design/mx/filter?node-id=40-12" target="_blank" rel="noopener">(피그마 시안)</a></td></tr><tr><td>기본값</td><td><span class="tag-need">[확인 필요: 현재 기본값]</span></td><td>전체 선택</td></tr></tbody></table></div>
+<ul><li><strong>적용 범위:</strong> 화면, Excel, PDF 모두 선택한 채널 기준</li></ul>
+<p><strong>디자인</strong></p>
+<ul><li>컴포넌트(공통 버튼·입력칸): 체크박스 드롭다운 신규</li><li>디자이너 할 일: 선택 0개 상태 시안</li></ul>
+<div class='tw'><table><thead><tr><th>화면 상태</th><th>표시 내용</th><th>시안</th></tr></thead><tbody><tr><td>선택 0개</td><td><span class="tag-need">[확인 필요: 선택 0개 동작]</span></td><td>디자이너 작업 예정</td></tr></tbody></table></div>
+<h4>검증 항목</h4>
+<ul><li class='chk'><span class='box'></span>Performance Trend에 처음 들어가면 Channel 필터가 전체 선택되어 있다</li><li class='chk'><span class='box'></span>채널 2개를 고르고 Apply를 누르면 차트에 두 채널 값만 보인다</li><li class='chk'><span class='box'></span>같은 선택으로 받은 Excel·PDF에도 두 채널 값만 들어 있다</li><li class='chk'><span class='box'></span>드롭다운 모양과 선택 표시가 시안 프레임(node-id=40-12)과 같다 — 디자이너 확인</li><li class='chk'><span class='box'></span>아무것도 선택하지 않으면 <span class="tag-need">[확인 필요: 선택 0개 동작]</span>대로 보인다 <span class="tag-later">(확정 후 채움)</span></li></ul>
+<h4>비고</h4>
+<ul><li>개발 확인: 현재 Channel 필터 기본값, 다른 탭의 Channel 필터도 같은 컴포넌트를 쓰는지</li></ul><button class='copy' data-copy='**이슈 유형:** 기능 개선
+
+## 요청 배경
+- **문제:** Channel 필터가 하나만 선택돼, 법인 담당자들이 채널을 비교하려고 매번 Excel을 받아 직접 합칩니다.
+- **목적:** 화면에서 여러 채널을 함께 골라 비교할 수 있게 합니다.
+
+## 요청사항
+- **위치:** Social Marketing &gt; Performance Trend &gt; 필터 영역의 Channel 필터
+
+| 구분 | ASIS | TOBE |
+|---|---|---|
+| 선택 방식 | 1개만 선택 | 여러 개 선택(체크박스 드롭다운) [(피그마 시안)](figma.com/design/mx/filter?node-id=40-12) |
+| 기본값 | [확인 필요: 현재 기본값] | 전체 선택 |
+
+- **적용 범위:** 화면, Excel, PDF 모두 선택한 채널 기준
+
+**디자인**
+- 컴포넌트(공통 버튼·입력칸): 체크박스 드롭다운 신규
+- 디자이너 할 일: 선택 0개 상태 시안
+
+| 화면 상태 | 표시 내용 | 시안 |
+|---|---|---|
+| 선택 0개 | [확인 필요: 선택 0개 동작] | 디자이너 작업 예정 |
+
+## 검증 항목
+- [ ] Performance Trend에 처음 들어가면 Channel 필터가 전체 선택되어 있다
+- [ ] 채널 2개를 고르고 Apply를 누르면 차트에 두 채널 값만 보인다
+- [ ] 같은 선택으로 받은 Excel·PDF에도 두 채널 값만 들어 있다
+- [ ] 드롭다운 모양과 선택 표시가 시안 프레임(node-id=40-12)과 같다 — 디자이너 확인
+- [ ] 아무것도 선택하지 않으면 [확인 필요: 선택 0개 동작]대로 보인다 (확정 후 채움)
+
+## 비고
+- 개발 확인: 현재 Channel 필터 기본값, 다른 탭의 Channel 필터도 같은 컴포넌트를 쓰는지'>복사</button></div>
+</article>
+<div class='after'><p><strong>확인 질문</strong> (기획자용 — JIRA에 붙여넣지 않음)</p>
+<ol><li><span class="q-opt">선택·디자인</span> 아무것도 선택하지 않으면 Apply를 막나요, 전체로 보여 주나요? (모르면: 김디자인님 답을 받아 붙여 주세요)</li><li><span class="q-opt">선택·기획</span> 다른 탭의 Channel 필터도 함께 바꾸나요? (모르면: Performance Trend만 바꾸기)</li><li><span class="q-req">필수·기획</span> 채널을 여러 개 고르면 차트는 채널별 선인가요, 합계 한 선인가요? E/R 같은 비율은 분자·분모를 합쳐 다시 계산하나요? (모르면: 등록 후 개발 담당자에게 현재 합산 방식을 댓글로 확인 — 답이 올 때까지 '작업 대기')</li><li><span class="q-opt">선택·기획</span> 제목에서 Performance Trend를 P.Trend로 줄여도 될까요? (모르면: P.Trend로 등록)</li></ol>
+<p><strong>다음 행동:</strong> 등록하셔도 되지만, [필수] 3번에 답이 올 때까지 상태를 '작업 대기'로 두세요.</p>
+<p><strong>JIRA 등록:</strong> 첫 번째 회색 상자 → '요약' 칸, 두 번째 회색 상자 → '설명' 칸, '이슈 유형' 칸에서 헤더에 적힌 유형을 고르세요.</p></div>
+</div></div></section>
+<section class='ex' id='ex5'><h2>예시 5 — 검토 요청 (권한 의심 "??")</h2>
+<div class='grid'><div class='col-in'><div class='label'>입력 </div>
+<div class='input'>Admin 권한 없는 일반 계정으로 주소창에 Admin 사용자 관리 페이지 URL을 직접 치면 사용자 목록이 보이는 것 같아요?? 다른 팀에서 들은 거라 저는 확인 못 했어요.</div>
+<div class='memo'><strong>판단 근거</strong> 확인되지 않은 문제("??")라 검토 요청(원인 확인). 권한 의심이라 <code>[보안]</code> + 긴급이며 절대 빼지 않는다.</div>
+</div><div class='col-out'>
+<article class='ticket'><div class='thead'><span class='type review'>검토 요청</span><span class='chip'>제목 28자</span><span class='chip'>우선순위: Highest <span class="tag-sug">(제안)</span></span><span class='tno'>티켓 1</span></div>
+<div class='field'>요약</div><div class='title'>[보안] Admin &gt; 사용자 목록 접근 권한 검토<button class='copy' data-copy='[보안] Admin &gt; 사용자 목록 접근 권한 검토'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>이슈 유형:</strong> 검토 요청</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> Admin 권한이 없는 계정도 Admin 사용자 관리 URL을 직접 입력하면 사용자 목록이 보인다는 제보가 있습니다. 아직 확인되지 않았습니다.</li><li><strong>목적:</strong> 실제 접근 여부와 범위를 확인해 권한 밖 정보 노출을 막습니다.</li></ul>
+<h4>요청사항</h4>
+<p><strong>검토 대상:</strong> Admin &gt; 사용자 관리, Admin 권한 없는 계정의 접근</p>
+<p><strong>검토 질문</strong></p>
+<ol><li>Admin 권한 없는 계정으로 URL을 직접 입력하면 사용자 목록이 보이나요? (예/아니오)</li><li>보인다면 어디까지 되나요? (화면 조회 / 수정 / Excel 다운로드 / API(화면 뒤에서 데이터를 주고받는 통로) 응답)</li><li>원인과 수정 공수(작업에 드는 시간)는 어느 정도인가요?</li></ol>
+<p>확인 후 댓글 부탁드립니다.</p>
+<h4>검증 항목</h4>
+<ul><li class='chk'><span class='box'></span>질문 1~3의 답변이 댓글로 남겨졌다</li><li class='chk'><span class='box'></span>접근이 확인되면 막아야 할 범위(화면·수정·다운로드·API)가 댓글에 정리되고 수정 티켓이 만들어졌다</li></ul>
+<h4>비고</h4>
+<ul><li><strong>긴급:</strong> 권한 밖 정보 노출 의심</li></ul><button class='copy' data-copy='**이슈 유형:** 검토 요청
+
+## 요청 배경
+- **문제:** Admin 권한이 없는 계정도 Admin 사용자 관리 URL을 직접 입력하면 사용자 목록이 보인다는 제보가 있습니다. 아직 확인되지 않았습니다.
+- **목적:** 실제 접근 여부와 범위를 확인해 권한 밖 정보 노출을 막습니다.
+
+## 요청사항
+**검토 대상:** Admin &gt; 사용자 관리, Admin 권한 없는 계정의 접근
+**검토 질문**
+1. Admin 권한 없는 계정으로 URL을 직접 입력하면 사용자 목록이 보이나요? (예/아니오)
+2. 보인다면 어디까지 되나요? (화면 조회 / 수정 / Excel 다운로드 / API(화면 뒤에서 데이터를 주고받는 통로) 응답)
+3. 원인과 수정 공수(작업에 드는 시간)는 어느 정도인가요?
+
+확인 후 댓글 부탁드립니다.
+
+## 검증 항목
+- [ ] 질문 1~3의 답변이 댓글로 남겨졌다
+- [ ] 접근이 확인되면 막아야 할 범위(화면·수정·다운로드·API)가 댓글에 정리되고 수정 티켓이 만들어졌다
+
+## 비고
+- **긴급:** 권한 밖 정보 노출 의심'>복사</button></div>
+</article>
+<div class='after'><p><strong>다음 행동:</strong> 바로 등록하고, 담당 개발자를 멘션하거나 팀 채널에 티켓 링크를 공유해 주세요.</p>
+<p><strong>JIRA 등록:</strong> 첫 번째 회색 상자 → '요약' 칸, 두 번째 회색 상자 → '설명' 칸, '이슈 유형' 칸에서 헤더에 적힌 유형을 고르세요.</p></div>
+</div></div></section>
+<section class='ex' id='ex6'><h2>예시 6 — 신규 기능 (새 탭, 첨부 자료)</h2>
+<div class='grid'><div class='col-in'><div class='label'>입력 <span class='muted'>(메시지 날짜 2026-10-16 금)</span></div>
+<div class='input'>Methodology에 Search 탭 새로 추가해 주세요. 다른 탭처럼 지표 정의 표 형태고, 내용은 첨부한 search_metrics.xlsx 그대로 넣으면 돼요. 다음 달 Search 메뉴 오픈 전에 있어야 해요.</div>
+</div><div class='col-out'>
+<article class='ticket'><div class='thead'><span class='type new'>신규 기능</span><span class='chip'>제목 25자</span><span class='tno'>티켓 1</span></div>
+<div class='field'>요약</div><div class='title'>Methodology &gt; Search 탭 신규<button class='copy' data-copy='Methodology &gt; Search 탭 신규'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>이슈 유형:</strong> 신규 기능</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> 다음 달 Search 메뉴가 열리는데, Methodology에 Search 지표 정의가 없습니다.</li><li><strong>목적:</strong> 사용자가 Search 지표의 뜻을 Methodology에서 확인할 수 있게 합니다.</li></ul>
+<h4>요청사항</h4>
+<ul><li><strong>위치·진입 경로:</strong> Methodology &gt; Search 탭(신규), 탭 순서 <span class="tag-need">[확인 필요: 탭 위치]</span></li><li><strong>구성 요소:</strong> 지표 정의 표 — 기존 Methodology 탭과 같은 형태, 내용은 첨부 'search_metrics.xlsx' 그대로</li><li><strong>동작 흐름:</strong> Search 탭을 누르면 지표 정의 표가 보인다</li><li><strong>디자인:</strong> 필요 없음 — 기존 Methodology 탭 형태 재사용</li></ul>
+<h4>검증 항목</h4>
+<ul><li class='chk'><span class='box'></span>Methodology에 Search 탭이 보이고, 누르면 지표 정의 표가 열린다</li><li class='chk'><span class='box'></span>표의 지표 수와 각 지표의 이름·정의가 'search_metrics.xlsx'와 같다</li><li class='chk'><span class='box'></span>표 스타일이 기존 Methodology 탭과 같다 — 디자이너 확인</li><li class='chk'><span class='box'></span>기존 Methodology 탭들은 기존처럼 보인다</li></ul>
+<h4>비고</h4>
+<ul><li><strong>일정:</strong> 2026-11 Search 메뉴 오픈 전까지 <span class="tag-need">[확인 필요: 오픈 날짜]</span> (원문: 다음 달)</li></ul><button class='copy' data-copy='**이슈 유형:** 신규 기능
+
+## 요청 배경
+- **문제:** 다음 달 Search 메뉴가 열리는데, Methodology에 Search 지표 정의가 없습니다.
+- **목적:** 사용자가 Search 지표의 뜻을 Methodology에서 확인할 수 있게 합니다.
+
+## 요청사항
+- **위치·진입 경로:** Methodology &gt; Search 탭(신규), 탭 순서 [확인 필요: 탭 위치]
+- **구성 요소:** 지표 정의 표 — 기존 Methodology 탭과 같은 형태, 내용은 첨부 &#x27;search_metrics.xlsx&#x27; 그대로
+- **동작 흐름:** Search 탭을 누르면 지표 정의 표가 보인다
+- **디자인:** 필요 없음 — 기존 Methodology 탭 형태 재사용
+
+## 검증 항목
+- [ ] Methodology에 Search 탭이 보이고, 누르면 지표 정의 표가 열린다
+- [ ] 표의 지표 수와 각 지표의 이름·정의가 &#x27;search_metrics.xlsx&#x27;와 같다
+- [ ] 표 스타일이 기존 Methodology 탭과 같다 — 디자이너 확인
+- [ ] 기존 Methodology 탭들은 기존처럼 보인다
+
+## 비고
+- **일정:** 2026-11 Search 메뉴 오픈 전까지 [확인 필요: 오픈 날짜] (원문: 다음 달)'>복사</button></div>
+</article>
+<div class='after'><p><strong>확인 질문</strong> (기획자용 — JIRA에 붙여넣지 않음)</p>
+<ol><li><span class="q-opt">선택·기획</span> Search 탭은 몇 번째에 두나요? (모르면: 맨 뒤에 추가)</li><li><span class="q-opt">선택·기획</span> Search 메뉴 오픈 날짜가 정해졌나요? (모르면: 비워 두고 등록)</li></ol>
+<p><strong>다음 행동:</strong> [필수] 질문이 없으니 바로 등록하셔도 됩니다.</p>
+<p><strong>JIRA 등록:</strong> 첫 번째 회색 상자 → '요약' 칸, 두 번째 회색 상자 → '설명' 칸, '이슈 유형' 칸에서 헤더에 적힌 유형을 고르세요. 'search_metrics.xlsx'는 파일로 첨부.</p></div>
+</div></div></section>
+<section class='ex' id='ex7'><h2>예시 7 — 초안 모드 (한 줄짜리 엉성한 입력)</h2>
+<div class='grid'><div class='col-in'><div class='label'>입력 </div>
+<div class='input'>차트 숫자 이상해요 빨리요</div>
+<div class='memo'><strong>판단 근거</strong> 메뉴·증상·맞는 값의 기준이 모두 없어 초안 모드. "빨리"만으로는 긴급(보안·외부 보고 수치)이 아니다.</div>
+</div><div class='col-out'>
+<article class='ticket'><div class='thead'><span class='type bug'>오류 수정</span><span class='chip'>제목 18자 (초안)</span><span class='tno'>티켓 1</span></div>
+<div class='field'>요약</div><div class='title'><span class="tag-need">[확인 필요]</span> &gt; 차트 수치 오류<button class='copy' data-copy='[확인 필요] &gt; 차트 수치 오류'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>이슈 유형:</strong> 오류 수정</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> <span class="tag-need">[확인 필요: 메뉴]</span>의 차트 수치가 <span class="tag-need">[확인 필요: 증상]</span> 상태입니다.</li></ul>
+<h4>요청사항</h4>
+<ul><li>차트 수치가 <span class="tag-need">[확인 필요: 맞는 값의 기준]</span>과 같아지도록 수정 부탁드립니다.</li></ul><button class='copy' data-copy='**이슈 유형:** 오류 수정
+
+## 요청 배경
+- **문제:** [확인 필요: 메뉴]의 차트 수치가 [확인 필요: 증상] 상태입니다.
+
+## 요청사항
+- 차트 수치가 [확인 필요: 맞는 값의 기준]과 같아지도록 수정 부탁드립니다.'>복사</button></div>
+</article>
+<div class='after'><p><strong>확인 질문</strong> (기획자용 — JIRA에 붙여넣지 않음)</p>
+<ol><li><span class="q-req">필수·기획</span> 어느 메뉴·탭의 어떤 차트인가요? (모르면: 문제를 본 화면의 스크린샷을 붙여 주세요)</li><li><span class="q-req">필수·기획</span> 어떤 기간·법인·지표를 골랐을 때 어떤 값이 나왔나요? 맞는 값은 어디서 확인하셨나요? 예: Excel, 다른 리포트 (모르면: 화면 스크린샷과 고른 필터만 있어도 됩니다)</li><li><span class="q-opt">선택·기획</span> 급한 이유가 있나요? 예: 외부 보고 일정 (모르면: 일반 우선순위로 등록)</li></ol>
+<p><strong>다음 행동:</strong> 답해 주시면 티켓을 완성해 드립니다. 지금 상태로는 등록하지 마세요.</p>
+<p><strong>JIRA 등록:</strong> 완성본을 받은 뒤 첫 번째 회색 상자 → '요약' 칸, 두 번째 회색 상자 → '설명' 칸에 붙여넣으세요.</p></div>
+</div></div></section>
+<section class='ex' id='ex8'><h2>예시 8 — 회의록 → 티켓 2건</h2>
+<div class='grid'><div class='col-in'><div class='label'>입력 </div>
+<div class='input'>[10/16(금) 주간 회의]<br>- Social Marketing &gt; Performance Detail: YoY 토글 켜고 Excel 받으면 YoY 값이 아니라 원래 값이 나옴 → 화면이랑 똑같이 (지난주 법인 보고서 수치 틀림)<br>- CMA에 경쟁사 추가할 수 있는지? → 개발 공수 보고 결정<br>- 법인 담당자: 대시보드 다크모드 있으면 좋겠다는 의견<br>- 디자인팀 P.Detail 리뉴얼 시안 11월 초<br>- 개발팀 다음 주 화요일까지 일정 공유</div>
+<div class='memo'><strong>판단 근거</strong> 1번은 화면과 Excel이 다른 고장이라 오류 수정. <code>[엑셀 집계 오류] Social &gt; P.Detail &gt; 엑셀 YoY 미반영</code>은 41자 → ⑤ 태그를 헤더·본문 첫 줄로(30자). 2번은 "공수 보고 결정"이라 검토 요청. 3번은 참석자 의견, 4·5번은 티켓이 아닌 할 일.</div>
+</div><div class='col-out'>
+<article class='ticket'><div class='thead'><span class='type bug'>오류 수정</span><span class='chip'>제목 30자</span><span class='chip'>우선순위: Highest <span class="tag-sug">(제안)</span></span><span class='chip'>말머리: [엑셀 집계 오류] (제목에서 뺌)</span><span class='tno'>티켓 1</span></div>
+<div class='field'>요약</div><div class='title'>Social &gt; P.Detail &gt; 엑셀 YoY 미반영<button class='copy' data-copy='Social &gt; P.Detail &gt; 엑셀 YoY 미반영'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>말머리:</strong> [엑셀 집계 오류]</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> YoY 토글을 켜고 Excel을 받으면 YoY 값이 아닌 원래 값이 들어가, 지난주 법인 보고서 수치가 틀렸습니다.</li></ul>
+<h4>요청사항</h4>
+<p><strong>재현 절차</strong></p>
+<ol><li>Social Marketing &gt; Performance Detail에서 YoY(전년 대비) 토글을 켠다</li><li>Excel을 다운로드한다</li></ol>
+<p><strong>실제 결과:</strong> Excel에 YoY 값이 아닌 원래 값이 들어감</p>
+<p><strong>기대 결과:</strong> Excel 값이 화면 값과 같음</p>
+<div class='tw'><table><thead><tr><th>토글 상태</th><th>화면</th><th>Excel (수정 후)</th></tr></thead><tbody><tr><td>YoY 켬</td><td>YoY 값</td><td>YoY 값 (지금은 원래 값)</td></tr><tr><td>꺼짐</td><td>원래 값</td><td>원래 값 (지금과 같음)</td></tr><tr><td>그 외 토글(MoM 등)</td><td>토글 값</td><td>화면과 같음 <span class="tag-sug">(제안)</span></td></tr></tbody></table></div>
+<h4>검증 항목</h4>
+<ul><li class='chk'><span class='box'></span>YoY 토글을 켜고 받은 Excel의 값이 같은 조건의 화면 값과 같다</li><li class='chk'><span class='box'></span>토글을 끄고 받은 Excel에는 기존처럼 원래 값이 들어간다</li><li class='chk'><span class='box'></span>다른 토글을 켜고 받은 Excel의 값도 화면 값과 같다 <span class="tag-sug">(제안)</span></li></ul>
+<h4>비고</h4>
+<ul><li><strong>긴급:</strong> 법인 보고서 수치 오류</li><li>개발 확인: PDF 다운로드에도 같은 문제가 있는지, MoM 등 다른 토글이 있는지</li></ul><button class='copy' data-copy='**말머리:** [엑셀 집계 오류]
+
+## 요청 배경
+- **문제:** YoY 토글을 켜고 Excel을 받으면 YoY 값이 아닌 원래 값이 들어가, 지난주 법인 보고서 수치가 틀렸습니다.
+
+## 요청사항
+**재현 절차**
+1. Social Marketing &gt; Performance Detail에서 YoY(전년 대비) 토글을 켠다
+2. Excel을 다운로드한다
+
+**실제 결과:** Excel에 YoY 값이 아닌 원래 값이 들어감
+**기대 결과:** Excel 값이 화면 값과 같음
+
+| 토글 상태 | 화면 | Excel (수정 후) |
+|---|---|---|
+| YoY 켬 | YoY 값 | YoY 값 (지금은 원래 값) |
+| 꺼짐 | 원래 값 | 원래 값 (지금과 같음) |
+| 그 외 토글(MoM 등) | 토글 값 | 화면과 같음 (제안) |
+
+## 검증 항목
+- [ ] YoY 토글을 켜고 받은 Excel의 값이 같은 조건의 화면 값과 같다
+- [ ] 토글을 끄고 받은 Excel에는 기존처럼 원래 값이 들어간다
+- [ ] 다른 토글을 켜고 받은 Excel의 값도 화면 값과 같다 (제안)
+
+## 비고
+- **긴급:** 법인 보고서 수치 오류
+- 개발 확인: PDF 다운로드에도 같은 문제가 있는지, MoM 등 다른 토글이 있는지'>복사</button></div>
+</article>
+<article class='ticket'><div class='thead'><span class='type review'>검토 요청</span><span class='chip'>제목 21자</span><span class='tno'>티켓 2</span></div>
+<div class='field'>요약</div><div class='title'>CMA &gt; 경쟁사 추가 가능 여부 검토<button class='copy' data-copy='CMA &gt; 경쟁사 추가 가능 여부 검토'>복사</button></div>
+<div class='field'>설명</div><div class='desc'><p><strong>이슈 유형:</strong> 검토 요청</p>
+<h4>요청 배경</h4>
+<ul><li><strong>문제:</strong> CMA에 경쟁사를 추가할 수 있는지, 개발 공수를 보고 정하기로 했습니다.</li><li><strong>목적:</strong> <span class="tag-need">[확인 필요: 경쟁사 추가가 필요한 이유]</span></li></ul>
+<h4>요청사항</h4>
+<p><strong>검토 대상:</strong> CMA(Competitive SOS)의 비교 경쟁사 추가</p>
+<p><strong>검토 질문</strong></p>
+<ol><li>경쟁사를 추가할 수 있나요? (가능/불가)</li><li>가능하다면 공수(작업에 드는 시간)는 며칠인가요?</li><li>추가하면 기존 수치나 화면에 영향이 있나요?</li></ol>
+<p>확인 후 댓글 부탁드립니다.</p>
+<h4>검증 항목</h4>
+<ul><li class='chk'><span class='box'></span>질문 1~3의 답변이 댓글로 남겨졌다</li></ul><button class='copy' data-copy='**이슈 유형:** 검토 요청
+
+## 요청 배경
+- **문제:** CMA에 경쟁사를 추가할 수 있는지, 개발 공수를 보고 정하기로 했습니다.
+- **목적:** [확인 필요: 경쟁사 추가가 필요한 이유]
+
+## 요청사항
+**검토 대상:** CMA(Competitive SOS)의 비교 경쟁사 추가
+**검토 질문**
+1. 경쟁사를 추가할 수 있나요? (가능/불가)
+2. 가능하다면 공수(작업에 드는 시간)는 며칠인가요?
+3. 추가하면 기존 수치나 화면에 영향이 있나요?
+
+확인 후 댓글 부탁드립니다.
+
+## 검증 항목
+- [ ] 질문 1~3의 답변이 댓글로 남겨졌다'>복사</button></div>
+</article>
+<div class='after'><p><strong>확인 질문</strong> (기획자용 — JIRA에 붙여넣지 않음)</p>
+<ol><li><span class="q-opt">선택·기획</span> 어떤 경쟁사를 왜 추가하려는 건가요? (모르면: 비워 두고 등록)</li></ol>
+<hr>
+<p><strong>티켓화하지 않은 항목</strong></p>
+<ul><li>대시보드 다크모드 — 법인 담당자 의견(참석자 의견). 진행하기로 하면 말씀해 주세요.</li><li>P.Detail 리뉴얼 시안(11월 초) — 디자인팀 할 일</li><li>개발 일정 공유, 2026-10-20(화)까지 (원문: 다음 주 화요일) — 개발팀 할 일</li></ul>
+<p><strong>다음 행동:</strong> [필수] 질문이 없으니 두 티켓 모두 바로 등록하셔도 됩니다. 티켓 1은 긴급입니다.</p>
+<p><strong>JIRA 등록:</strong> 첫 번째 회색 상자 → '요약' 칸, 두 번째 회색 상자 → '설명' 칸, '이슈 유형' 칸에서 헤더에 적힌 유형을 고르세요.</p></div>
+</div></div></section></main>
+<script>
+document.addEventListener('click',e=>{const b=e.target.closest('.copy');if(!b)return;
+navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(()=>{b.textContent='복사됨';setTimeout(()=>b.textContent='복사',1200)}).catch(()=>{});});
+</script>
+</body></html>

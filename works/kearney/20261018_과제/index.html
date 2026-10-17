@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill 과제 모음</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap">
+<style>
+  /*
+    Kearney 워크숍 Skill 만들기 과제 인덱스 (콜라주).
+    갱신 기준: 과제가 추가되면 아래 SKILLS 배열에 한 줄을 더한다.
+    정렬 규칙: 소개 띠와 그룹 제목은 전체 폭, 과제 카드 너비는 모두 같다(1열씩). 카드는 GROUPS 순서로 묶어 놓는다. 버튼은 카드 맨 아래에 고정해 같은 행의 버튼이 한 줄로 맞는다.
+    기울기·테이프·스티커는 장식 요소에만 주고 카드 자체와 버튼은 기울이지 않는다.
+  */
+  :root {
+    --bg: #ece6da;
+    --bg-dot: rgba(60, 40, 20, .07);
+    --ink: #1e1e1e;
+    --ink-soft: #4f4b45;
+    --muted: #8a847a;
+    --accent: #7823dc;
+    --accent-ink: #ffffff;
+    --lav: #d2cfff;
+    --paper-1: #fffdf8;
+    --paper-2: #efeaff;
+    --paper-3: #e9dcc3;
+    --paper-4: #fbfbf7;
+    --rule: rgba(120, 35, 220, .10);
+    --tape: rgba(210, 207, 255, .78);
+    --tape-2: rgba(255, 233, 160, .75);
+    --hero: #1e1e1e;
+    --hero-ink: #ffffff;
+    --hero-soft: #c9c4bb;
+    --line: rgba(30, 30, 30, .14);
+    --shadow: 0 1px 2px rgba(40, 30, 10, .10), 0 8px 22px rgba(40, 30, 10, .10);
+    --chip: rgba(30, 30, 30, .06);
+    --disabled: #b8b2a7;
+    --c-meet: #7823dc;
+    --c-case: #9a8cff;
+    --c-deep: #3d1f73;
+    --c-auto: #1e1e1e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1815; --bg-dot: rgba(255, 240, 220, .05); --ink: #f2efe8; --ink-soft: #cdc7bc; --muted: #968f83;
+      --accent: #a774ef; --accent-ink: #160f22; --lav: #4a3d6e;
+      --paper-1: #26241f; --paper-2: #2a2338; --paper-3: #2f2a20; --paper-4: #232320; --rule: rgba(167, 116, 239, .14);
+      --tape: rgba(120, 100, 190, .55); --tape-2: rgba(170, 140, 60, .5);
+      --hero: #0f0e0c; --hero-ink: #ffffff; --hero-soft: #b9b2a6; --line: rgba(255, 255, 255, .14);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 22px rgba(0, 0, 0, .35); --chip: rgba(255, 255, 255, .07);
+      --disabled: #5a554c; --c-meet: #a774ef; --c-case: #9a8cff; --c-deep: #d2cfff; --c-auto: #e6e4ee;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1815; --bg-dot: rgba(255, 240, 220, .05); --ink: #f2efe8; --ink-soft: #cdc7bc; --muted: #968f83;
+    --accent: #a774ef; --accent-ink: #160f22; --lav: #4a3d6e;
+    --paper-1: #26241f; --paper-2: #2a2338; --paper-3: #2f2a20; --paper-4: #232320; --rule: rgba(167, 116, 239, .14);
+    --tape: rgba(120, 100, 190, .55); --tape-2: rgba(170, 140, 60, .5);
+    --hero: #0f0e0c; --hero-ink: #ffffff; --hero-soft: #b9b2a6; --line: rgba(255, 255, 255, .14);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 22px rgba(0, 0, 0, .35); --chip: rgba(255, 255, 255, .07);
+    --disabled: #5a554c; --c-meet: #a774ef; --c-case: #9a8cff; --c-deep: #d2cfff; --c-auto: #e6e4ee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--ink); line-height: 1.5; -webkit-font-smoothing: antialiased;
+    word-break: keep-all; overflow-wrap: break-word; /* 한국어 단어 중간에서 줄을 바꾸지 않는다 */
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background-color: var(--bg);
+    background-image: radial-gradient(var(--bg-dot) 1px, transparent 1.2px);
+    background-size: 14px 14px;
+  }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 44px 28px 72px; }
+
+  /* 카드 너비는 모두 같다. 행 높이는 행마다 같아지고 카드가 행을 꽉 채운다. */
+  .board {
+    display: grid; gap: 30px 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+  .card {
+    position: relative; min-width: 0;
+    background: var(--paper); box-shadow: var(--shadow);
+    border-radius: 3px; padding: 22px 18px 18px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .card[hidden] { display: none; }
+  /* 종이 종류 4가지를 돌려 쓴다 */
+  .paper-1 { --paper: var(--paper-1); }
+  .paper-2 { --paper: var(--paper-2); }
+  .paper-3 { --paper: var(--paper-3); }
+  .paper-4 {
+    --paper: var(--paper-4);
+    background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+  /* 마스킹 테이프 */
+  .tape {
+    position: absolute; top: -11px; left: 50%; width: 92px; height: 24px; z-index: 2;
+    background: var(--tape); transform: translateX(-50%) rotate(var(--tt, -3deg));
+    clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%);
+  }
+  .card:nth-child(3n) .tape { background: var(--tape-2); }
+  /* 번호 스티커 */
+  .sticker {
+    position: absolute; top: 12px; right: -8px; z-index: 3;
+    width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--accent); color: var(--accent-ink); font-weight: 800; font-size: 15px;
+    transform: rotate(var(--st, 8deg)); box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
+  }
+
+  /* 폴라로이드 사진: 결과 HTML 첫 화면 캡처(_thumbs/번호.jpg, 1280px 폭에서 찍어 640px로 줄임) */
+  .photo {
+    margin: 0; background: #fff; padding: 7px 7px 26px; box-shadow: 0 2px 8px rgba(0, 0, 0, .14);
+    transform: rotate(var(--pt, -1.5deg)); position: relative;
+  }
+  .photo img { display: block; width: 100%; height: 210px; object-fit: cover; object-position: top center; background: #f3f3f3; }
+  .photo figcaption {
+    position: absolute; left: 0; right: 0; bottom: 3px; text-align: center;
+    font-family: "Nanum Pen Script", cursive; font-size: 20px; color: #3c3a36; line-height: 1;
+  }
+  .photo a.cover { position: absolute; inset: 0; z-index: 1; }
+  /* HTML이 없는 과제는 메모지로 대신한다 */
+  .memo {
+    margin: 0; height: 243px; padding: 16px 16px 14px; background: #fff6b8; color: #3c3a36;
+    transform: rotate(var(--pt, 1.5deg)); box-shadow: 0 2px 8px rgba(0, 0, 0, .14);
+    font-family: "SF Mono", Menlo, monospace; font-size: 12.5px; line-height: 1.6; overflow: hidden;
+  }
+  .memo b { font-family: "Nanum Pen Script", cursive; font-size: 23px; font-weight: 400; display: block; margin-bottom: 4px; }
+
+  .who { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .name {
+    font-family: "Nanum Pen Script", cursive; font-size: 27px; line-height: 1;
+    background: var(--lav); color: var(--ink); padding: 2px 10px 0; transform: rotate(-2deg);
+  }
+  .cat { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--ink-soft); }
+  .cat::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--dot); }
+  .card h3 { font-size: 18px; line-height: 1.35; margin: 0; letter-spacing: -0.015em; }
+  .slug { font-family: "SF Mono", Menlo, monospace; font-size: 12.5px; color: var(--muted); margin-top: -6px; }
+  .sum { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tags span { font-size: 12.5px; background: var(--chip); color: var(--ink-soft); padding: 2px 7px; border-radius: 4px; }
+  .extra { display: flex; flex-wrap: wrap; gap: 3px 10px; font-size: 13.5px; }
+  .extra a { color: var(--ink-soft); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  .extra a:hover { color: var(--accent); }
+
+  /* 버튼은 항상 카드 맨 아래. 높이 고정. */
+  .links { margin-top: auto; padding-top: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .links a, .links .off {
+    height: 40px; display: flex; align-items: center; justify-content: center; text-decoration: none; white-space: nowrap;
+    font-size: 14.5px; font-weight: 700; border-radius: 4px; border: 1.5px solid var(--ink);
+  }
+  .links a.html { background: var(--ink); color: var(--paper-1); }
+  .links a.md { background: transparent; color: var(--ink); }
+  .links a.html:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .links a.md:hover { border-color: var(--accent); color: var(--accent); }
+  .links .off { color: var(--disabled); border: 1.5px dashed var(--disabled); }
+
+  /* 그룹 제목: 보드 전체 폭. 종이 띠 라벨 + 설명 한 줄 */
+  .group-head { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; margin: 22px 0 -6px; }
+  .group-head h2 {
+    margin: 0; font-size: 21px; letter-spacing: -0.02em; background: var(--paper-1); color: var(--ink);
+    padding: 6px 16px 7px 14px; border-left: 7px solid var(--dot); box-shadow: var(--shadow); transform: rotate(-1.2deg);
+  }
+  .group-head .count { font-family: "Nanum Pen Script", cursive; font-size: 27px; line-height: 1; color: var(--accent); }
+  .group-head p { margin: 0; font-size: 15px; color: var(--ink-soft); }
+  .group-head[hidden] { display: none; }
+
+  /* 소개 카드: 보드 맨 위에 가로로 긴 한 줄 띠. 좁아지면 단계적으로 쌓는다. */
+  .hero { grid-column: 1 / -1; --paper: var(--hero); color: var(--hero-ink); padding: 26px 28px 24px; container-type: inline-size; }
+  .hero .tape { background: var(--tape-2); left: 72px; }
+  .hero-in {
+    display: grid; align-items: center; column-gap: 24px; row-gap: 14px;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas: "eyebrow eyebrow" "title filters";
+  }
+  .hero .eyebrow { grid-area: eyebrow; font-family: "SF Mono", Menlo, monospace; font-size: 13.5px; letter-spacing: .06em; color: var(--hero-soft); }
+  .hero h1 { grid-area: title; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 32px; line-height: 1.05; letter-spacing: -0.03em; }
+  .hero h1 span { display: inline-block; padding: 6px 12px 7px; box-shadow: 0 2px 6px rgba(0, 0, 0, .3); white-space: nowrap; }
+  .hero h1 .s1 { background: #7823dc; color: #fff; transform: rotate(-3deg); }
+  .hero h1 .s2 { background: #fffdf8; color: #1e1e1e; transform: rotate(2deg); }
+  .hero h1 .s3 { background: #d2cfff; color: #1e1e1e; transform: rotate(-1.5deg); font-family: "Nanum Pen Script", cursive; font-size: 38px; font-weight: 400; }
+  .filters { grid-area: filters; justify-self: end; width: min(100%, 680px); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+  .filters button {
+    font: inherit; font-size: 14.5px; cursor: pointer; height: 40px; padding: 0 6px; border-radius: 4px; white-space: nowrap;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+    border: 1.5px solid rgba(255, 255, 255, .3); background: transparent; color: var(--hero-ink);
+  }
+  .filters button small { opacity: .6; }
+  .filters button i { width: 7px; height: 7px; border-radius: 50%; background: var(--dot); flex: none; box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .5); }
+  .filters button[aria-pressed="true"] { background: var(--hero-ink); color: #1e1e1e; border-color: var(--hero-ink); }
+  @container (max-width: 940px) {
+    .hero-in { grid-template-columns: minmax(0, 1fr); grid-template-areas: "eyebrow" "title" "filters"; }
+    .filters { justify-self: stretch; width: auto; }
+  }
+  @container (max-width: 640px) {
+    .filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @container (max-width: 420px) {
+    .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @container (max-width: 300px) { .filters { grid-template-columns: 1fr; } }
+
+  @media (max-width: 900px) { .board { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 540px) {
+    .wrap { padding: 28px 16px 56px; }
+    .board { grid-template-columns: 1fr; gap: 30px; }
+    .sticker { right: -4px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .photo, .memo { transition: transform .2s ease; }
+    .card:hover .photo, .card:hover .memo { transform: rotate(0deg) scale(1.02); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <main class="board" id="board">
+    <section class="card hero">
+      <span class="tape" style="--tt:2deg"></span>
+      <div class="hero-in">
+        <div class="eyebrow">KEARNEY AX WORKSHOP · 2026.10.18</div>
+        <h1><span class="s1">Skill</span><span class="s2">만들기</span><span class="s3">과제 모음</span></h1>
+        <nav class="filters" id="filters" aria-label="분류 필터"></nav>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+// 과제 목록. 제출 순서(패들렛 게시 시각) 기준. 경로는 이 index.html 기준 상대 경로.
+const SKILLS = [
+  {
+    name: "박종필", group: "meet",
+    title: "회의록 → 액션아이템 정리", slug: "meeting-action-items",
+    sum: "회의록 원문에서 결정사항, 액션아이템(담당자·기한·우선순위), 미결 이슈를 분리해 HTML 결과 페이지로 만듭니다. 원문에 없는 담당자·기한은 '미정'으로 남깁니다.",
+    tags: ["역할·입력·절차·도구·검증·출력 6구조", "환각 방지 체크리스트"],
+    html: "SKILL/meeting-result-sample.html", md: "SKILL/SKILL.md",
+    extra: [["결과 페이지 2", "SKILL/meeting-result.html"], ["샘플 회의록", "SKILL/sample-minutes.txt"]]
+  },
+  {
+    name: "신현재", group: "auto",
+    title: "슬랙 대화 → JIRA 티켓 본문", slug: "jira-ticket",
+    sum: "기획자의 메모·슬랙 대화를 MX MAP 개발자용 JIRA 티켓으로 옮깁니다. 오류 수정, 검토 요청, 기능 개선, 신규 기능으로 분류하고 '메뉴 > 탭 > 이슈' 30자 제목과 배경·요청·검증 항목을 씁니다.",
+    tags: ["이슈 유형 4분류", "지어내지 않기 원칙", "3줄 입력 → 20줄 본문"],
+    html: "JIRA_SKILL/JIRA 티켓 샘플.html", md: "JIRA_SKILL/SKILL.md"
+  },
+  {
+    name: "김지은", group: "case",
+    title: "국내외 사례조사", slug: "case-research",
+    sum: "주제 하나에 대해 국내 사례 5개, 해외 사례 5개를 조사합니다. Black이 사실 후보를 모으고, Red가 URL을 다시 열어 통과·보류·탈락을 판정하고, Blue가 트렌드와 시사점을 뽑습니다.",
+    tags: ["Black → Red → Blue", "국내 5 + 해외 5", "예시: 공항 AX"],
+    html: "SKILL (1)/공항AX_국내외_사례조사.html", md: "SKILL (1)/SKILL.md"
+  },
+  {
+    name: "안주영", group: "case",
+    title: "주제별 벤치마크 사례 조사·비교", slug: "benchmark-case-compiler",
+    sum: "둘 이상의 대상을 같은 축으로 비교하는 매트릭스 HTML 한 장을 만듭니다. 최근 24개월 이내 공신력 있는 자료만 쓰고, 채울 수 없는 칸은 '미확인'으로 둡니다.",
+    tags: ["5 페르소나(알렉스·힘찬·르네·마벨·쫄랑)", "6개 영역 9.5점 이상", "셀별 출처 링크"],
+    html: "benchmark-case-compiler/examples/benchmark-genai-enterprise-adoption-2026-10-17.html", md: "benchmark-case-compiler/SKILL.md",
+    extra: [["README", "benchmark-case-compiler/README.md"], ["HTML 템플릿", "benchmark-case-compiler/assets/template.html"], ["채점표", "benchmark-case-compiler/references/rubric.md"], ["GitHub", "https://github.com/er2d/bm"]]
+  },
+  {
+    name: "정경헌", group: "meet",
+    title: "인터뷰 노트 작성", slug: "interview-note",
+    sum: "전문가·현업 인터뷰 전사록을 진행 순서가 아닌 주제별로 재구조화해 컨설팅용 노트로 만듭니다. 참석하지 않은 팀원이 노트만 읽고 보고서에 쓸 수 있는 수준을 목표로 합니다.",
+    tags: ["Black → Red → Blue", "Excel + txt 산출", "Review Log 시트"],
+    html: "files/interview-note-sample.html", md: "files/SKILL.md"
+  },
+  {
+    name: "하현종", group: "case",
+    title: "이번 달 AI 트렌드 10선", slug: "ai-trend-research",
+    sum: "이번 달 공신력 있는 출처에서 AI 전환·기술 사례 10개를 골라 카툰 스타일 HTML로 정리합니다. 원문을 직접 열어 날짜와 수치를 확인합니다.",
+    tags: ["5기준 채점(공신력·최신성·구체성·시사점·다양성)", "기업 도입 사례 6개 이상"],
+    html: "ai-trend-research/assets/template.html", htmlLabel: "HTML 템플릿", md: "ai-trend-research/SKILL.md"
+  },
+  {
+    name: "최수연", group: "deep",
+    title: "휴머노이드 로봇 시장 조사", slug: "humanoid-robot-market-research",
+    sum: "휴머노이드 로봇 시장을 현황, 전망·성장성, 경쟁 구도 순서로 조사해 초보자도 읽을 수 있는 플루언트 디자인 HTML 보고서(도표 포함)로 냅니다.",
+    tags: ["기획자 → 생성자 → 평가자", "출처 유형 교차검증"],
+    html: "Claude skill/humanoid-robot-market-report_2026-10-17.html", md: "Claude skill/SKILL.md"
+  },
+  {
+    name: "장연우", group: "deep",
+    title: "근거 기반 리서치와 다중 관점 검토", slug: "ax-research",
+    sum: "제공 자료와 확인 가능한 출처로 리서치·벤치마킹·시사점을 쓰고, Black 작성자와 여러 Red 리뷰어가 통과할 때까지 반복 검토합니다. report.json을 스크립트로 HTML로 렌더링합니다.",
+    tags: ["5항목 × 0~2점 채점", "check_pass.py 통과 판정", "예시: 나스닥·반도체 급락"],
+    html: "ax-research/results/2026-10-17-nasdaq-semis-selloff/report.html", md: "ax-research/SKILL.md",
+    extra: [["아티팩트판 HTML", "ax-research/results/2026-10-17-nasdaq-semis-selloff/report-artifact.html"], ["채점표", "ax-research/references/04-rubric.md"], ["리뷰 루프", "ax-research/references/05-review-loop.md"]]
+  },
+  {
+    name: "조광은", group: "auto",
+    title: "개발용 Deep Interview 워크플로", slug: "dev-workflow",
+    sum: "개발 작업을 Repo Check, Plan(최소 3라운드 Deep Interview), Plan Review, Code, Code Review 단계로 나누고 각 단계의 승인과 독립 리뷰를 조율합니다.",
+    tags: ["4관점 리뷰(구조·안정성·검증·성능)", "승인 없이 구현 금지", "Codex·Claude Code 공용"],
+    html: null, md: "SKILL.md"
+  },
+  {
+    name: "조서현", group: "meet",
+    title: "현황분석 인터뷰 시사점 장표화", slug: "kearney-interview-report",
+    sum: "STT 회의록, 현장 손그림 노트, RFP를 받아 인터뷰 정리, 시사점, 도식 장표까지 만듭니다. 결과는 Kearney 스타일 HTML 보고서와 장표용 PNG입니다.",
+    tags: ["팬아웃 → 파이프라인", "적대적 검증 + 완전성 비평", "멀티 에이전트"],
+    html: "Interview_report/XV1_interview_report.html", md: "Interview_report/SKILL.md"
+  },
+  {
+    name: "김영민", group: "deep",
+    title: "솔루션 딥리서치 및 적용 사례 도식화", slug: "solution-deep-research",
+    sum: "솔루션 이름 하나로 개요, 기능과 제공 방식, FDE용 플레이북, 고객 적용 사례 도식, 객관식 퀴즈까지 담은 인터랙티브 HTML을 만듭니다.",
+    tags: ["6인 역할(블랙·레드·블루·실버·골드·화이트)", "9.5점 이상까지 반복", "예시: Palantir AIP"],
+    html: "솔루션 딥리서치 및 적용 사례/palantir-aip.html", md: "솔루션 딥리서치 및 적용 사례/SKILL - 복사본.md"
+  }
+];
+
+// 카테고리. 비슷한 일을 하는 Skill끼리 묶고, 이 순서대로 보드에 놓는다.
+const GROUPS = [
+  { key: "meet", short: "회의·인터뷰", title: "회의·인터뷰 정리", desc: "말로 오간 내용을 결정, 할 일, 시사점으로 바꿉니다.", dot: "var(--c-meet)" },
+  { key: "case", short: "사례 조사", title: "사례·벤치마킹 조사", desc: "여러 사례를 같은 기준으로 모으고 비교합니다.", dot: "var(--c-case)" },
+  { key: "deep", short: "딥리서치", title: "시장·솔루션 딥리서치", desc: "한 주제를 깊게 파고들어 근거 있는 보고서로 만듭니다.", dot: "var(--c-deep)" },
+  { key: "auto", short: "업무 자동화", title: "개발·업무 자동화", desc: "팀이 반복하는 업무 절차를 Skill로 고정합니다.", dot: "var(--c-auto)" }
+];
+// 콜라주 장식용 기울기. 카드 순서대로 돌려 쓴다(카드와 버튼은 기울이지 않는다).
+const TILT = [-2, 1.5, -1, 2.2, -1.8, 1, -2.4, 1.8, -1.2, 2, -1.6];
+
+// 공백·괄호가 들어간 폴더명을 안전한 href로 바꾼다. 외부 URL은 그대로 둔다.
+const href = p => /^https?:/.test(p) ? p : p.split("/").map(encodeURIComponent).join("/");
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const link = (cls, p, label) => `<a class="${cls}" href="${href(p)}" target="_blank" rel="noopener">${esc(label)} ↗</a>`;
+const pad = n => String(n).padStart(2, "0");
+
+// 결과 HTML은 캡처 사진(폴라로이드)으로, HTML이 없으면 메모지로 보여 준다.
+// 캡처 파일 이름은 제출 순서 번호(_thumbs/01.jpg ...)다.
+const visual = (s, thumb) => s.html
+  ? `<figure class="photo">
+       <img src="_thumbs/${thumb}.jpg" alt="" loading="lazy">
+       <figcaption>${esc(s.title)}</figcaption>
+       <a class="cover" href="${href(s.html)}" target="_blank" rel="noopener" aria-label="${esc(s.title)} 결과 HTML 열기"></a>
+     </figure>`
+  : `<div class="memo"><b>SKILL.md만 제출</b>${esc(s.slug)}<br>${esc(s.sum)}</div>`;
+
+const card = (s, n, g) => {
+  const t = TILT[n % TILT.length], thumb = pad(SKILLS.indexOf(s) + 1);
+  return `
+  <article class="card skill paper-${(n % 4) + 1}" data-group="${g.key}"
+           style="--dot:${g.dot}; --pt:${t}deg; --tt:${-t * 1.5}deg; --st:${t * 4}deg">
+    <span class="tape"></span>
+    <span class="sticker">${pad(n + 1)}</span>
+    ${visual(s, thumb)}
+    <div class="who"><span class="name">${esc(s.name)}</span><span class="cat">${esc(g.title)}</span></div>
+    <h3>${esc(s.title)}</h3>
+    <div class="slug">${esc(s.slug)}</div>
+    <p class="sum">${esc(s.sum)}</p>
+    <div class="tags">${s.tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+    ${s.extra ? `<div class="extra">${s.extra.map(([l, p]) => `<a href="${href(p)}" target="_blank" rel="noopener">${esc(l)}</a>`).join("")}</div>` : ""}
+    <div class="links">
+      ${s.html ? link("html", s.html, s.htmlLabel || "결과 HTML") : `<span class="off" title="이 과제는 SKILL.md만 제출됐습니다">HTML 없음</span>`}
+      ${link("md", s.md, "SKILL.md")}
+    </div>
+  </article>`;
+};
+
+// 그룹 제목 → 그 그룹 카드 순으로 붙인다. 카드 번호는 보드에 놓인 순서다.
+const board = document.getElementById("board");
+let n = 0;
+board.insertAdjacentHTML("beforeend", GROUPS.map(g => {
+  const items = SKILLS.filter(s => s.group === g.key);
+  return `
+  <header class="group-head" data-group="${g.key}" style="--dot:${g.dot}">
+    <h2>${esc(g.title)}</h2><span class="count">${items.length}개</span><p>${esc(g.desc)}</p>
+  </header>` + items.map(s => card(s, n++, g)).join("");
+}).join(""));
+
+// 분류 필터
+const opts = [{ key: "all", short: "전체" }, ...GROUPS];
+const filters = document.getElementById("filters");
+filters.innerHTML = opts.map((o, i) =>
+  `<button type="button" aria-pressed="${i === 0}"${o.dot ? ` style="--dot:${o.dot}"` : ""}>${o.dot ? "<i></i>" : ""}${esc(o.short)}<small>${o.key === "all" ? SKILLS.length : SKILLS.filter(s => s.group === o.key).length}</small></button>`).join("");
+filters.addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  const key = opts[[...filters.children].indexOf(b)].key;
+  [...filters.children].forEach(x => x.setAttribute("aria-pressed", x === b));
+  board.querySelectorAll("[data-group]").forEach(el => el.hidden = key !== "all" && el.dataset.group !== key);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XV1 PM 인터뷰 분석</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1E1E1E; --sub:#5A5A5A; --mute:#A0A0A0; --line:#D2D2D2; --bg:#F4F4F4; --paper:#FFFFFF;
+  --k:#7823DC; --k2:#9B59E8; --k3:#E6D2FA; --k4:#F5EEFD; --red:#D4351C; --amber:#E8A33D; --green:#2E8B57;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ink:#F0F0F0; --sub:#C4C4C4; --mute:#8A8A8A; --line:#444; --bg:#121212; --paper:#1C1C1C;
+  --k:#A66BF0; --k2:#B98AF3; --k3:#3A2560; --k4:#26193D;
+}}
+:root[data-theme="dark"]{
+  --ink:#F0F0F0; --sub:#C4C4C4; --mute:#8A8A8A; --line:#444; --bg:#121212; --paper:#1C1C1C;
+  --k:#A66BF0; --k2:#B98AF3; --k3:#3A2560; --k4:#26193D;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",Arial,sans-serif;font-size:14px;line-height:1.5}
+.deck{max-width:1180px;margin:0 auto;padding:24px 16px 64px}
+.slide{background:var(--paper);margin:0 0 28px;padding:36px 44px 52px;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden}
+.slide:before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:var(--k)}
+.tracker{font-size:11px;letter-spacing:.08em;color:var(--k);font-weight:700;text-transform:uppercase;margin-bottom:6px}
+h1.title{font-size:22px;font-weight:700;margin:0 0 4px;line-height:1.35}
+.lead{color:var(--sub);font-size:13px;margin:0 0 22px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.foot{position:absolute;left:44px;right:44px;bottom:14px;display:flex;justify-content:space-between;font-size:10px;color:var(--mute)}
+.foot b{color:var(--ink);letter-spacing:.25em;font-weight:500}
+.cover{min-height:520px;display:flex;flex-direction:column;justify-content:center;background:var(--paper)}
+.cover .brand{position:absolute;top:36px;right:44px;letter-spacing:.35em;font-weight:500;font-size:20px}
+.cover h1{font-size:34px;font-weight:300;margin:0 0 10px;line-height:1.3}
+.cover h1 b{font-weight:700;color:var(--k)}
+.cover .meta{color:var(--sub);font-size:13px}
+.bar{width:80px;height:6px;background:var(--k);margin:0 0 24px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:760px){.grid2,.grid3{grid-template-columns:1fr}.slide{padding:28px 16px 52px}.foot{left:16px;right:16px}}
+.kpi{border-top:3px solid var(--k);padding:10px 0 0}
+.kpi .n{font-size:30px;font-weight:900;color:var(--k);line-height:1}
+.kpi .l{font-size:12px;color:var(--sub);margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:var(--ink);color:var(--paper);text-align:left;padding:8px 10px;font-weight:500}
+td{border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top}
+td.h{font-weight:700;color:var(--k);white-space:nowrap}
+.q{color:var(--sub);font-style:italic;font-size:12px}
+.tag{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:2px;font-weight:700}
+.t-q{background:var(--k);color:#fff}.t-m{background:var(--k3);color:var(--ink)}
+.box{border:1px solid var(--line);padding:14px 16px}
+.box h3{margin:0 0 6px;font-size:14px;color:var(--k)}
+ul{margin:4px 0;padding-left:18px}li{margin:2px 0}
+.gov{background:var(--k4);border-left:5px solid var(--k);padding:12px 16px;font-weight:700;margin-bottom:18px}
+svg{width:100%;height:auto;display:block}
+svg text{font-family:"Noto Sans KR",Arial,sans-serif;fill:var(--ink)}
+.s-ink{stroke:var(--ink)}.f-paper{fill:var(--paper)}.f-k{fill:var(--k)}.s-k{stroke:var(--k)}.f-k3{fill:var(--k3)}.f-k4{fill:var(--k4)}
+.f-mute{fill:var(--mute)}.s-line{stroke:var(--line)}.s-mute{stroke:var(--mute)}.f-red{fill:var(--red)}.s-red{stroke:var(--red)}
+.f-bg{fill:var(--bg)}
+svg text.w{fill:#fff}svg text.k{fill:var(--k)}svg text.sub{fill:var(--sub)}svg text.r{fill:var(--red)}
+.note{font-size:11px;color:var(--sub);margin-top:10px}
+.pill{display:inline-block;border:1px solid var(--k);color:var(--k);padding:1px 8px;border-radius:10px;font-size:11px;margin-right:4px}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- 1 COVER -->
+<section class="slide cover">
+  <div class="brand">KEARNEY</div>
+  <div class="bar"></div>
+  <h1>42dot 개발 프로세스 구축 컨설팅<br><b>현황분석 인터뷰 결과 — XV1 Vehicle Program PM</b></h1>
+  <div class="meta">인터뷰 일시: 2026.10.08(목) 17:58, 43분 · 대상: XV1 Vehicle Program PM · 작성: Kearney 프로젝트팀<br>Draft for discussion — 확인필요 항목 포함</div>
+  <div class="foot"><span>CONFIDENTIAL · 42dot 내부용</span><b>KEARNEY</b></div>
+</section>
+
+<!-- EXEC SUMMARY -->
+<section class="slide">
+  <div class="tracker">Executive Summary</div>
+  <h1 class="title">XV1 양산 대응의 핵심 병목은 기술이 아닌 ‘정보 흐름’ — Program PM 중심 Bridge와 E2E Traceability 확보가 선결 과제</h1>
+  <p class="lead">조직은 Product PM / Program PM으로 분리되었으나, 정보·의사결정은 여전히 개인 간 바이패스 경로로 흐름</p>
+  <div class="grid3" style="margin-bottom:22px">
+    <div class="kpi"><div class="n">&lt;40%</div><div class="l">사양서 작성률 — 사양 없이 개발 진행</div></div>
+    <div class="kpi"><div class="n">~1개월</div><div class="l">진척 수치(%) 근거 확인 1 사이클 소요</div></div>
+    <div class="kpi"><div class="n">4 → 21명</div><div class="l">전체 PM 4명(’25.11) → 현재 Product PM 21명 — 소통 경로 미정립</div></div>
+  </div>
+  <table>
+    <tr><th style="width:20%">주제</th><th style="width:48%">인터뷰 핵심 내용</th><th>대표 발언</th></tr>
+    <tr><td class="h">조직 / R&amp;R</td><td>Program Manager(To-Be: 차종 적용성·일정·FP&amp;A 등 총괄)와 Project Manager(기능 전문성) 역할이 명칭만 구분되고 실제 운영은 미분리. Vehicle PM은 Product 조직 ‘옆·백단’에서 조율</td><td class="q">“그분들이 … 지식과 일정과 이슈들을 정확하게 알려주시지 못하면 프로그램을 매니징 할 수가 없습니다”</td></tr>
+    <tr><td class="h">HMC 협업</td><td>(인터뷰어 정리·인터뷰이 확인) 주간회의 → HMC Confluence 회의록 → 사양서 → HMC Jira 태스크 → 42dot Git 개발 → HMC 재업데이트의 이중 입력. 2주 1회 PM 전체회의에서도 Product 측 공유 부재</td><td class="q">“그렇게 했으면 좋겠는데 그렇게 안 하고 있죠”</td></tr>
+    <tr><td class="h">진척 관리</td><td>14개 V-Squad가 201(주요)/446(신규) 기능을 2주 단위 % 수치로만 관리. 근거 문의 시 Squad·Product PM 모두 답변 불가</td><td class="q">“한 사이클 도는데 딱 원 먼스 걸려”</td></tr>
+    <tr><td class="h">One-image</td><td>차종별 커스터마이징이 아닌 Configuration(VIN 기반 자동 전환)이 회사 원칙. 차종별 빌드 시 RM팀(4명)이 10개+ 차종 감당 불가</td><td class="q">“configuration으로 변경할 수 있는 정도다”</td></tr>
+    <tr><td class="h">Bridge / PLM</td><td>Product PM이 진척·이슈·배포 시점을 올려두는 중간 Layer(‘Rainbow Bridge’) 필요. 추진 중인 PLM에 대한 기대 높음</td><td class="q">“구축만 빨리 되면 잘 쓸 수 있어서”</td></tr>
+    <tr><td class="h">이슈 거버넌스</td><td>Red 이슈 발생 시 Owner 조직 상위로 즉시 Escalation되는 장치 필요(인터뷰이 제안)</td><td class="q">“이슈가 생성되는 순간 … 올라가세요”</td></tr>
+  </table>
+  <div class="foot"><span>Source: XV1 Vehicle PM 인터뷰(2026.10.08, 43분), 현장 노트, Kearney 분석</span><b>KEARNEY</b></div>
+</section>
+
+<!-- TIMELINE -->
+<section class="slide">
+  <div class="tracker">01 · XV1 프로그램 현황</div>
+  <h1 class="title">XV1은 HW Tier 선정 지연으로 SW가 병렬 개발 중이며, Wire-car(’26.12)–Proto(’27 1Q)로 이어지는 빠듯한 일정에 직면</h1>
+  <p class="lead">현대차 신차 개발 Gate에 연동된 42dot의 ‘첫 번째’ 차종 — 통합빌드는 ’27.1월부터 HMC 인프라(Mono-repo)로 이관</p>
+  <svg viewBox="0 0 1090 360" role="img" aria-label="XV1 개발 일정 타임라인">
+    <line x1="40" y1="150" x2="1050" y2="150" class="s-ink" stroke-width="2"/>
+    <polygon points="1050,144 1062,150 1050,156" class="f-k" style="fill:var(--ink)"/>
+    <!-- milestones -->
+    <g>
+      <circle cx="110" cy="150" r="9" class="f-k"/><text x="110" y="125" text-anchor="middle" font-size="13" font-weight="700">현재</text><text x="110" y="185" text-anchor="middle" font-size="11" class="sub">’26.10</text>
+      <circle cx="270" cy="150" r="9" class="f-k"/><text x="270" y="125" text-anchor="middle" font-size="13" font-weight="700">Wire-car</text><text x="270" y="185" text-anchor="middle" font-size="11" class="sub">’26.12 (Proto 안정화)</text>
+      <circle cx="430" cy="150" r="9" class="f-k"/><text x="430" y="125" text-anchor="middle" font-size="13" font-weight="700">Mono-repo 오픈</text><text x="430" y="185" text-anchor="middle" font-size="11" class="sub">’27.01 HMC 서버 통합빌드</text>
+      <circle cx="560" cy="150" r="11" style="fill:var(--red)"/><text x="560" y="120" text-anchor="middle" font-size="14" font-weight="900" class="r">Proto</text><text x="560" y="185" text-anchor="middle" font-size="11" class="sub">’27 1Q · 기능 93% 목표</text>
+      <circle cx="700" cy="150" r="9" class="f-paper s-ink" stroke-width="2"/><text x="700" y="125" text-anchor="middle" font-size="13" font-weight="700">P1</text><text x="700" y="185" text-anchor="middle" font-size="11" class="sub">HW/SW 형상 Fix → 변경관리</text>
+      <circle cx="840" cy="150" r="9" class="f-paper s-ink" stroke-width="2"/><text x="840" y="125" text-anchor="middle" font-size="13" font-weight="700">M-car</text><text x="840" y="185" text-anchor="middle" font-size="11" class="sub">이후 HW 수정·보완 불가</text>
+      <circle cx="990" cy="150" r="9" class="f-paper s-ink" stroke-width="2"/><text x="990" y="125" text-anchor="middle" font-size="13" font-weight="700">인증 목표</text><text x="990" y="185" text-anchor="middle" font-size="11" class="sub">’28.09 A-SPICE CL (PI 목표·확인필요)</text>
+    </g>
+    <!-- bands -->
+    <rect x="110" y="215" width="450" height="30" class="f-k3"/><text x="335" y="235" text-anchor="middle" font-size="12" font-weight="700">HW 개발 지연 ↔ SW 개발 병렬 진행 (기능 개발 + 사양 개발 동시)</text>
+    <rect x="430" y="252" width="410" height="30" class="f-k4 s-k" stroke-width="1" stroke-dasharray="4 3"/><text x="635" y="272" text-anchor="middle" font-size="12">Validation 인증: M1 전 완료 / M-car 이후 HW 변경 불가 (확인필요)</text>
+    <rect x="560" y="289" width="430" height="30" class="f-bg"/><text x="775" y="309" text-anchor="middle" font-size="12">SW/HW 통합테스트: 42dot(선행) → HMC 시험팀 → HMC 품질 Gate</text>
+    <!-- callouts -->
+    <rect x="40" y="20" width="300" height="60" class="f-paper s-red" stroke-width="1.5"/>
+    <text x="54" y="44" font-size="12" font-weight="700" class="r">사양서 작성률 &lt; 40%</text>
+    <text x="54" y="64" font-size="11" class="sub">“사양이 없이 개발이 되고 있습니다”</text>
+    <rect x="370" y="20" width="330" height="60" class="f-paper s-k" stroke-width="1.5"/>
+    <text x="384" y="44" font-size="12" font-weight="700" class="k">14개 V-Squad · 주요 201 / 신규 446 기능*</text>
+    <text x="384" y="64" font-size="11" class="sub">2주 단위, 숫자(%)로만 진척 공유</text>
+    <rect x="730" y="20" width="320" height="60" class="f-paper s-ink" stroke-width="1.5"/>
+    <text x="744" y="44" font-size="12" font-weight="700">통합빌드 주체: 42dot (Release)</text>
+    <text x="744" y="64" font-size="11" class="sub">빌드 인프라는 HMC Mono-repo로 이관(’27.1, 확인필요)</text>
+  </svg>
+  <div class="note">주: STT 기반 회의록으로 일부 용어(CL 인증 명칭, M1/M-car 구분 등)는 확인 필요 · *201/446 관계(부분집합 여부) 확인 필요</div>
+  <div class="foot"><span>Source: XV1 PM 인터뷰(2026.10.08), Kearney 분석</span><b>KEARNEY</b></div>
+</section>
+
+<!-- AS-IS STRUCTURE -->
+<section class="slide">
+  <div class="tracker">02 · As-Is 협업 구조</div>
+  <h1 class="title">Product PM–R&D 간 직접 연결과 HMC V-Squad의 바이패스로, Vehicle PM은 정보 없이 ‘양쪽에서 치이는’ 구조</h1>
+  <p class="lead">조직은 Product(21명) / Vehicle PM으로 분리했으나 “원팀” 운영 지시로 공식 채널이 우회되고, 정보 공유 Layer(Bridge)가 부재</p>
+  <svg viewBox="0 0 1090 470" role="img" aria-label="As-Is 협업 구조도">
+    <!-- column headers -->
+    <text x="110" y="28" text-anchor="middle" font-size="13" font-weight="700">R&amp;D (개발자)</text>
+    <text x="400" y="28" text-anchor="middle" font-size="13" font-weight="700">Project Manager (Product PM)</text>
+    <text x="400" y="46" text-anchor="middle" font-size="11" class="sub">전체 PM 4명(’25.11) → Product PM 21명</text>
+    <text x="640" y="28" text-anchor="middle" font-size="13" font-weight="700" class="r">Bridge 부재</text>
+    <text x="830" y="28" text-anchor="middle" font-size="13" font-weight="700">Program Manager (Vehicle PM)</text>
+    <text x="1010" y="28" text-anchor="middle" font-size="13" font-weight="700">HMC</text>
+    <!-- R&D -->
+    <g font-size="12">
+      <rect x="30" y="70" width="160" height="40" class="f-k"/><text x="110" y="95" text-anchor="middle" class="w" font-weight="700">42dot R&amp;D</text>
+      <rect x="30" y="122" width="160" height="40" class="f-ink" style="fill:var(--ink)"/><text x="110" y="147" text-anchor="middle" class="w" font-weight="700" style="fill:var(--paper)">HMC R&amp;D (App 중심)</text>
+      <rect x="30" y="174" width="160" height="40" class="f-bg s-line"/><text x="110" y="199" text-anchor="middle" class="sub">…</text>
+      <rect x="30" y="226" width="160" height="40" class="f-bg s-line"/><text x="110" y="251" text-anchor="middle" class="sub">…</text>
+    </g>
+    <!-- Product PM -->
+    <g font-size="12">
+      <rect x="320" y="70" width="160" height="40" class="f-paper s-ink" stroke-width="1.5"/><text x="400" y="95" text-anchor="middle">Product PM · SDV OS</text>
+      <rect x="320" y="122" width="160" height="40" class="f-paper s-ink" stroke-width="1.5"/><text x="400" y="147" text-anchor="middle">Product PM · 자율주행</text>
+      <rect x="320" y="174" width="160" height="40" class="f-paper s-ink" stroke-width="1.5"/><text x="400" y="199" text-anchor="middle">Product PM · Security</text>
+      <rect x="320" y="226" width="160" height="40" class="f-paper s-ink" stroke-width="1.5"/><text x="400" y="251" text-anchor="middle">Product PM · …</text>
+    </g>
+    <!-- spaghetti -->
+    <g class="s-mute" stroke-width="1.2" fill="none">
+      <path d="M190 90 C255 90 255 194 320 194"/><path d="M190 90 C255 90 255 142 320 142"/><path d="M190 142 C255 142 255 90 320 90"/>
+      <path d="M190 142 C255 142 255 246 320 246"/><path d="M190 194 C255 194 255 142 320 142"/><path d="M190 246 C255 246 255 90 320 90"/>
+      <path d="M190 246 C255 246 255 194 320 194"/><path d="M190 194 C255 194 255 246 320 246"/>
+    </g>
+    <text x="255" y="292" text-anchor="middle" font-size="11" class="sub">N:N 직접 소통</text>
+    <!-- missing bridge -->
+    <rect x="590" y="62" width="100" height="212" fill="none" class="s-red" stroke-width="2" stroke-dasharray="6 5"/>
+    <text x="640" y="160" text-anchor="middle" font-size="12" class="r" font-weight="700">PLM /</text>
+    <text x="640" y="178" text-anchor="middle" font-size="12" class="r" font-weight="700">Dashboard</text>
+    <text x="640" y="196" text-anchor="middle" font-size="12" class="r">없음</text>
+    <!-- Vehicle PM -->
+    <rect x="740" y="60" width="180" height="216" class="f-k4"/>
+    <g font-size="12">
+      <rect x="752" y="70" width="156" height="40" class="f-k"/><text x="830" y="95" text-anchor="middle" class="w" font-weight="700">Program Manager</text>
+      <rect x="752" y="122" width="156" height="40" class="f-paper s-k"/><text x="830" y="147" text-anchor="middle">차종 PM – 1 (XV1)</text>
+      <rect x="752" y="174" width="156" height="40" class="f-paper s-k"/><text x="830" y="199" text-anchor="middle">차종 PM – 2</text>
+      <rect x="752" y="226" width="156" height="40" class="f-paper s-k"/><text x="830" y="251" text-anchor="middle">차종 PM – 3</text>
+    </g>
+    <!-- each vehicle PM must meet all product PMs -->
+    <g class="s-k" stroke-width="1" fill="none" stroke-dasharray="3 3">
+      <path d="M480 90 L752 142"/><path d="M480 142 L752 142"/><path d="M480 194 L752 142"/><path d="M480 246 L752 142"/>
+    </g>
+    <!-- HMC -->
+    <rect x="950" y="70" width="120" height="70" style="fill:#E8F53A"/><text x="1010" y="98" text-anchor="middle" font-size="12" font-weight="700" style="fill:#1E1E1E">42dot</text><text x="1010" y="118" text-anchor="middle" font-size="11" style="fill:#1E1E1E">FP&amp;A·Legal·BD</text>
+    <rect x="950" y="160" width="120" height="70" style="fill:#E8F53A"/><text x="1010" y="188" text-anchor="middle" font-size="12" font-weight="700" style="fill:#1E1E1E">HMC V-Squad</text><text x="1010" y="208" text-anchor="middle" font-size="11" style="fill:#1E1E1E">14개 · 숫자(%) 관리</text>
+    <rect x="950" y="250" width="120" height="50" style="fill:#E8F53A"/><text x="1010" y="280" text-anchor="middle" font-size="12" font-weight="700" style="fill:#1E1E1E">HMC 차종 PM</text>
+    <!-- bypass -->
+    <path d="M1010 230 L1010 250" class="s-ink" stroke-width="1.5"/>
+    <path d="M950 190 C 700 380, 300 380, 190 145" fill="none" class="s-red" stroke-width="2.2"/>
+    <polygon points="190,145 186,160 198,154" style="fill:var(--red)"/>
+    <text x="560" y="350" text-anchor="middle" font-size="12" font-weight="700" class="r">② V-Squad ↔ Product PM/R&amp;D 직접 소통 (Vehicle PM 바이패스)</text>
+    <path d="M950 275 L920 230" class="s-ink" stroke-width="1.5" fill="none"/>
+    <text x="880" y="300" text-anchor="middle" font-size="11" class="sub">HMC 차종 PM은 42dot 차종 PM에게 문의</text>
+    <!-- legend pain -->
+    <g font-size="12">
+      <rect x="30" y="385" width="1040" height="72" class="f-bg"/>
+      <text x="46" y="408" font-weight="700" class="k">① 진척 불투명</text><text x="46" y="428" class="sub">Squad가 % 수치로만 관리·공유,</text><text x="46" y="446" class="sub">상세 내역은 미공유</text>
+      <text x="300" y="408" font-weight="700" class="k">② 채널 바이패스</text><text x="300" y="428" class="sub">Product PM이 기존 방식대로 HMC와 직접 소통,</text><text x="300" y="446" class="sub">Program Manager에게 공유 안 됨</text>
+      <text x="610" y="408" font-weight="700" class="k">③ 1:N 반복 공유 비효율</text><text x="610" y="428" class="sub">SDV 특성상 모든 SW가 전 차종에 탑재 →</text><text x="610" y="446" class="sub">각 Project Manager가 모든 차종 PM에게 반복 설명</text>
+    </g>
+  </svg>
+  <div class="foot"><span>Source: XV1 PM 인터뷰 및 현장 노트(2026.10.08), Kearney 분석</span><b>KEARNEY</b></div>
+</section>
+
+<!-- 1-MONTH LOOP -->
+<section class="slide">
+  <div class="tracker">03 · 정보 순환 Pain Point</div>
+  <h1 class="title">수치(%) 기반 보고로 “숫자의 근거” 확인에만 1개월이 소요되는 비효율적 정보 순환 고리가 형성</h1>
+  <p class="lead">“이슈 없네 가자”로 보고되는 막대그래프 → Vehicle PM에게 검증 숙제 → Squad·Product PM 모두 “모른다” → 원점 회귀</p>
+  <div class="grid2">
+  <svg viewBox="0 0 520 380" role="img" aria-label="1개월 정보 순환 루프">
+    <circle cx="260" cy="190" r="128" fill="none" class="s-k" stroke-width="2" stroke-dasharray="2 6"/>
+    <circle cx="260" cy="190" r="58" class="f-k"/>
+    <text x="260" y="186" text-anchor="middle" font-size="22" font-weight="900" class="w">1 Month</text>
+    <text x="260" y="208" text-anchor="middle" font-size="11" class="w">/ 1 cycle</text>
+    <g font-size="12">
+      <rect x="185" y="30" width="150" height="50" class="f-paper s-ink" stroke-width="1.5"/><text x="260" y="52" text-anchor="middle" font-weight="700">HMC 경영진 보고</text><text x="260" y="70" text-anchor="middle" font-size="11" class="sub">막대그래프·% 수치</text>
+      <rect x="370" y="165" width="140" height="50" class="f-paper s-ink" stroke-width="1.5"/><text x="440" y="187" text-anchor="middle" font-weight="700">Vehicle PM</text><text x="440" y="205" text-anchor="middle" font-size="11" class="sub">“숫자 맞아?” 숙제</text>
+      <rect x="185" y="300" width="150" height="50" class="f-paper s-ink" stroke-width="1.5"/><text x="260" y="322" text-anchor="middle" font-weight="700">HMC V-Squad</text><text x="260" y="340" text-anchor="middle" font-size="11" class="r">“모른다”</text>
+      <rect x="10" y="165" width="140" height="50" class="f-paper s-ink" stroke-width="1.5"/><text x="80" y="187" text-anchor="middle" font-weight="700">Product PM</text><text x="80" y="205" text-anchor="middle" font-size="11" class="r">“모른다” → 재문의</text>
+    </g>
+    <g class="s-k" stroke-width="2" fill="none">
+      <path d="M335 62 Q420 90 440 160"/><path d="M440 218 Q420 300 340 322"/><path d="M182 322 Q100 300 80 220"/><path d="M80 160 Q100 90 182 58"/>
+    </g>
+    <g style="fill:var(--k)"><polygon points="440,163 434,150 447,152"/><polygon points="337,323 350,315 349,328"/><polygon points="80,223 74,210 87,211"/><polygon points="185,57 172,57 178,68"/></g>
+  </svg>
+  <div>
+    <div class="box" style="margin-bottom:12px"><h3>현상</h3><ul>
+      <li>14개 V-Squad가 기능 개발률을 2주 단위 <b>% 수치로만</b> AVP본부 내 공유</li>
+      <li>기능 개발과 <b>사양 개발이 동시 진행</b> → 사양 검증 레이트도 숫자로만 확인</li>
+      <li>Squad ↔ Product PM이 직접 일하며 Vehicle PM은 상세 내용 지속 요청</li></ul></div>
+    <div class="box" style="margin-bottom:12px"><h3>원인</h3><ul>
+      <li>기능–사양–개발–검증을 잇는 <b>Traceability 부재</b></li>
+      <li>Product별 진척·이슈·배포시점을 보여주는 <b>단일 정보 Layer(PLM/Dashboard) 부재</b></li>
+      <li>Confluence 등 정보가 개인/팀별로 분산</li></ul></div>
+    <p class="q">“이렇게 한 사이클 도는데 딱 원 먼스 걸려.” — Vehicle PM이 양측 사이에서 확인 업무를 떠안는 구조</p>
+  </div>
+  </div>
+  <div class="foot"><span>Source: XV1 PM 인터뷰(2026.10.08), Kearney 분석</span><b>KEARNEY</b></div>
+</section>
+
+<!-- TO-BE BRIDGE -->
+<section class="slide">
+  <div class="tracker">04 · To-Be 방향 (가설)</div>
+  <h1 class="title">Product PM이 진척·이슈·배포계획을 등록하는 ‘Rainbow Bridge’형 중간 Layer로 1:N 반복 소통을 N:1 Pull 구조로 전환</h1>
+  <p class="lead">해외 업체 사례(인터뷰이 언급): Product가 결과물을 Bridge에 올리고 Program이 필요한 것을 가져가는 구조 — 인터뷰 대상자의 최우선 요청사항(“빨리 구축되면 잘 쓸 수 있다”)</p>
+  <svg viewBox="0 0 1090 400" role="img" aria-label="To-Be Rainbow Bridge 구조">
+    <text x="150" y="30" text-anchor="middle" font-size="13" font-weight="700">Project Manager (Product)</text>
+    <text x="545" y="30" text-anchor="middle" font-size="13" font-weight="700" class="k">Rainbow Bridge (PLM / Dashboard)</text>
+    <text x="930" y="30" text-anchor="middle" font-size="13" font-weight="700">Program Manager (Vehicle)</text>
+    <g font-size="12">
+      <rect x="60" y="60" width="180" height="44" class="f-paper s-ink" stroke-width="1.5"/><text x="150" y="87" text-anchor="middle">SDV OS</text>
+      <rect x="60" y="116" width="180" height="44" class="f-paper s-ink" stroke-width="1.5"/><text x="150" y="143" text-anchor="middle">자율주행 (Atria)</text>
+      <rect x="60" y="172" width="180" height="44" class="f-paper s-ink" stroke-width="1.5"/><text x="150" y="199" text-anchor="middle">Cybersecurity</text>
+      <rect x="60" y="228" width="180" height="44" class="f-paper s-ink" stroke-width="1.5"/><text x="150" y="255" text-anchor="middle">Connect / …</text>
+    </g>
+    <rect x="390" y="50" width="310" height="232" class="f-k"/>
+    <g font-size="12" class="w">
+      <text x="545" y="80" text-anchor="middle" class="w" font-weight="700" font-size="13">Single Source of Truth</text>
+      <rect x="410" y="94" width="270" height="34" fill="rgba(255,255,255,.15)"/><text x="545" y="116" text-anchor="middle" class="w">기능·사양 진척 (Feature/Spec Traceability)</text>
+      <rect x="410" y="134" width="270" height="34" fill="rgba(255,255,255,.15)"/><text x="545" y="156" text-anchor="middle" class="w">이슈 · RAG 상태 · Owner</text>
+      <rect x="410" y="174" width="270" height="34" fill="rgba(255,255,255,.15)"/><text x="545" y="196" text-anchor="middle" class="w">Release 버전 · 배포 가능 시점</text>
+      <rect x="410" y="214" width="270" height="34" fill="rgba(255,255,255,.15)"/><text x="545" y="236" text-anchor="middle" class="w">차종별 Configuration (One-image)</text>
+    </g>
+    <g font-size="12">
+      <rect x="840" y="60" width="180" height="44" class="f-k3"/><text x="930" y="87" text-anchor="middle">차종 PM – 1 (XV1)</text>
+      <rect x="840" y="116" width="180" height="44" class="f-k3"/><text x="930" y="143" text-anchor="middle">차종 PM – 2</text>
+      <rect x="840" y="172" width="180" height="44" class="f-k3"/><text x="930" y="199" text-anchor="middle">차종 PM – 3</text>
+      <rect x="840" y="228" width="180" height="44" class="f-k3"/><text x="930" y="255" text-anchor="middle">차종 PM – n</text>
+    </g>
+    <g class="s-ink" stroke-width="2" fill="none">
+      <path d="M240 82 L390 120"/><path d="M240 138 L390 150"/><path d="M240 194 L390 185"/><path d="M240 250 L390 220"/>
+      <path d="M700 120 L840 82"/><path d="M700 150 L840 138"/><path d="M700 185 L840 194"/><path d="M700 220 L840 250"/>
+    </g>
+    <text x="315" y="300" text-anchor="middle" font-size="12" font-weight="700">Push · 1회 등록</text>
+    <text x="770" y="300" text-anchor="middle" font-size="12" font-weight="700">Pull · 필요 시 조회</text>
+    <!-- HMC single channel -->
+    <rect x="390" y="320" width="310" height="56" class="f-paper s-k" stroke-width="2"/>
+    <text x="545" y="344" text-anchor="middle" font-size="12" font-weight="700" class="k">HMC 단일 협업 채널</text>
+    <text x="545" y="364" text-anchor="middle" font-size="11" class="sub">V-Squad 수치 → Bridge 상세와 자동 연계</text>
+    <path d="M545 282 L545 320" class="s-k" stroke-width="2" stroke-dasharray="4 3"/>
+    <rect x="780" y="320" width="300" height="56" class="f-bg"/>
+    <text x="930" y="344" text-anchor="middle" font-size="12" font-weight="700">Red 이슈 에스컬레이션</text>
+    <text x="930" y="364" text-anchor="middle" font-size="11" class="sub">Red 등록 시 Owner 조직 상위로 즉시 Escalation</text>
+    <rect x="10" y="320" width="300" height="56" class="f-bg"/>
+    <text x="160" y="344" text-anchor="middle" font-size="12" font-weight="700">소통 횟수 (개념)</text>
+    <text x="160" y="364" text-anchor="middle" font-size="11" class="sub">As-Is N×M 반복 설명 → To-Be N+M 등록/조회</text>
+  </svg>
+  <div class="foot"><span>Source: XV1 PM 인터뷰(인터뷰이 전 직장 ‘Rainbow Bridge’ 사례 언급), 현장 노트, Kearney 분석</span><b>KEARNEY</b></div>
+</section>
+
+<!-- IMPLICATIONS -->
+<section class="slide">
+  <div class="tracker">05 · Key Implications</div>
+  <h1 class="title">7대 시사점 — Proto(’27 1Q) 이전 Quick-win을 선적용하고, PLM·Traceability 기반 체계는 중기 과제로 연계</h1>
+  <div class="gov">Governing message: 사양–진척–이슈를 하나의 Bridge 위에서 추적 가능하게 만들어, Program PM이 ‘묻지 않고도 아는’ 구조로 전환</div>
+  <table>
+    <tr><th style="width:4%">#</th><th style="width:28%">시사점</th><th style="width:34%">To-Be 방향</th><th style="width:22%">RFP 연계</th><th>우선순위</th></tr>
+    <tr><td class="h">1</td><td><b>Program–Project PM R&amp;R 재정의 및 Bridge Layer 공식화</b></td><td>역할 명문화 + Product PM의 진척·이슈·배포시점 의무 등록 → 차종 PM은 Pull 방식 소비</td><td>A-SPICE MAN.3, Master Data(Program–Product–Feature)</td><td><span class="tag t-q">Quick-win</span> <span class="tag t-m">중기</span></td></tr>
+    <tr><td class="h">2</td><td><b>진척 관리: % 수치 → Feature 단위 근거 기반 가시성</b></td><td>사양–개발–검증 상태를 동일 Feature ID로 연결, 수치와 근거(티켓·산출물) 동시 노출</td><td>E2E Traceability, Work Product</td><td><span class="tag t-q">Quick-win</span> <span class="tag t-m">중기</span></td></tr>
+    <tr><td class="h">3</td><td><b>사양 선행 Gate 도입으로 ‘사양 없는 개발’ 차단</b></td><td>HMC 개발 단계(P1 형상 Fix, M-car 이후 HW 수정불가)에 맞춘 사양 Baseline·변경관리, Sprint DoR</td><td>A-SPICE SYS.2/SWE.1, Agile–V 연계</td><td><span class="tag t-m">중기</span></td></tr>
+    <tr><td class="h">4</td><td><b>One-image 원칙의 Configuration 관리 체계 구체화</b></td><td>HMC 요구 → Configuration Parameter 매핑, VIN 기반 적용, 차종별 Branch/Build 금지 가이드</td><td>Master Data(Variant), SUP.8/SUP.10</td><td><span class="tag t-q">Quick-win</span> <span class="tag t-m">중기</span></td></tr>
+    <tr><td class="h">5</td><td><b>HMC 협업 채널 단일화 및 Tool 이중작업 해소</b></td><td>사양·일정·이슈별 RACI, System of Record 지정, SW/HW 통합테스트(42dot→HMC 시험→품질) 책임 구분</td><td>Engineering Platform, Traceability</td><td><span class="tag t-q">Quick-win</span> <span class="tag t-m">중기</span></td></tr>
+    <tr><td class="h">6</td><td><b>Red 이슈 Owner·Escalation 거버넌스 구축</b></td><td>RAG·Owner·Due date 의무화, Red 발생 시 Product Head–Program Manager 에스컬레이션 Rule/SLA</td><td>A-SPICE MAN.3/MAN.5, Issue Log</td><td><span class="tag t-q">Quick-win</span></td></tr>
+      <tr><td class="h">7</td><td><b>Mono-repo·통합빌드 HMC 이관(’27.1)을 전제로 Platform·Traceability 재설계</b></td><td>42dot 보유 산출물·툴체인 범위, Release 책임, HMC↔42dot 데이터 연계 기준 정의</td><td>Engineering Platform, E2E Traceability, SUP.8</td><td><span class="tag t-q">Quick-win</span></td></tr>
+  </table>
+  <div class="foot"><span>Source: XV1 PM 인터뷰, 42dot 개발 프로세스 구축 컨설팅 RFP(v1.0), Kearney 분석</span><b>KEARNEY</b></div>
+</section>
+
+<!-- VERIFY & NEXT -->
+<section class="slide">
+  <div class="tracker">06 · 검증 결과 &amp; Next Steps</div>
+  <h1 class="title">적대적 검증(15건)과 완전성 비평 결과, 추가 확인 항목과 후속 인터뷰로 As-Is를 확정할 필요</h1>
+  <p class="lead">Multi-agent workflow: 팬아웃(인터뷰 정리 · 시사점) → 파이프라인 → 적대적 검증 · 완전성 비평 → 반영</p>
+  <div class="grid2">
+    <div>
+      <div class="box" style="margin-bottom:12px"><h3>확인필요 (원문 대조 결과)</h3><ul>
+        <li>’28.09 CL 목표: 인증 명칭(A-SPICE CL 추정)·발언 주체가 PI 담당자임</li>
+        <li>4명은 ‘전체 PM’ 수, 21명은 Product PM 수 — 비교 기준이 다름</li>
+        <li>Validation 인증 시점: M1 전 vs M-car 전 — STT상 혼재</li>
+        <li>주요 201 / 신규 446 기능의 관계(부분집합 여부)</li>
+        <li>Mono-repo 이관 지시 주체, IP 귀속은 보류 발언(“나중에 따로”)</li>
+        <li>Jira/Confluence 이중 입력 패턴은 인터뷰어가 정리하고 인터뷰이가 확인한 내용</li></ul></div>
+      <div class="box"><h3>추가 Gap (완전성 비평)</h3><ul>
+        <li><b>Mono-repo·통합빌드 HMC 이관(’27.1)</b>이 Engineering Platform·Traceability 설계 전제를 바꿈 → 별도 시사점 필요</li>
+        <li>ISO 26262 / 21434: 칩셋 변경에 따른 Security 기능 영향 미반영</li>
+        <li>공식 보고 체인(Squad % → HMC → HMC 차종 PM → 42dot Program Manager) 정의 필요</li>
+        <li>SW/HW 통합테스트 42dot·HMC 중복 범위, Technical PM 그룹 Mandate</li></ul></div>
+    </div>
+    <div>
+      <div class="box" style="margin-bottom:12px"><h3>후속 인터뷰 질문</h3><ul>
+        <li><span class="pill">Product PMO</span>Product PM의 진척·이슈 공유 공식 채널·주기·템플릿</li>
+        <li><span class="pill">Product PMO</span>차종별 Configuration 요구 처리 기준과 예외 사례</li>
+        <li><span class="pill">Technical PM</span>Program/Project PM과의 결정권 경계</li>
+        <li><span class="pill">경영진</span>Program Manager 조직의 Mandate·Go/No-go 권한</li>
+        <li><span class="pill">RM팀</span>Mono-repo 이관 후 42dot 산출물·툴체인 범위, RM 부하</li>
+        <li><span class="pill">HMC Squad</span>진척 % 산정 기준과 원천 데이터</li>
+        <li><span class="pill">검증/품질</span>통합테스트 범위 중복, 인증 완료 시점 기준</li>
+        <li><span class="pill">Security</span>제어기·칩셋 변경이 21434 산출물에 미치는 영향</li></ul></div>
+      <div class="box"><h3>요청 자료</h3><ul>
+        <li>XV1 마스터 일정(HMC Gate) · V-Squad 14개 기능 리스트 및 2주 진척 원본</li>
+        <li>사양서 작성 현황(40% 산정 근거) · PM 조직도/R&amp;R · PM 전체회의 회의록</li>
+        <li>Mono-repo 이관 계획 · One-image/Configuration 설계 원칙 · PLM 추진 범위</li></ul></div>
+    </div>
+  </div>
+  <div class="note">민감도 처리: 특정 조직 비하로 읽힐 수 있는 표현과 실명은 장표에서 제외하고 직책·중립 표현으로 대체함</div>
+  <div class="foot"><span>Source: XV1 PM 인터뷰, 현장 노트, RFP(v1.0), Kearney 분석</span><b>KEARNEY</b></div>
+</section>
+
+</div>
+</body>
+</html>

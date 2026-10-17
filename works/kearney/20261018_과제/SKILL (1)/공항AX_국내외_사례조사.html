@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>공항 AX 국내외 사례조사</title>
+<style>
+:root{
+  --bg:#070b1a; --text:#e8ecf8; --muted:#9aa5c4;
+  --glass:rgba(255,255,255,.06); --glass-b:rgba(255,255,255,.14);
+  --a:#5eead4; --b:#818cf8; --c:#f0abfc; --d:#67e8f9;
+  --ok:#5eead4; --warn:#fcd34d; --bad:#fda4af;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:"Pretendard","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  line-height:1.7; min-height:100vh; overflow-x:hidden;
+}
+/* Aurora background */
+.aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--bg)}
+.aurora i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;mix-blend-mode:screen;animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:60vw;height:60vw;left:-15vw;top:-20vw;background:radial-gradient(circle,#14b8a6,transparent 65%)}
+.aurora i:nth-child(2){width:55vw;height:55vw;right:-15vw;top:5vh;background:radial-gradient(circle,#6366f1,transparent 65%);animation-duration:28s;animation-delay:-6s}
+.aurora i:nth-child(3){width:50vw;height:50vw;left:25vw;bottom:-25vw;background:radial-gradient(circle,#d946ef,transparent 65%);animation-duration:32s;animation-delay:-12s;opacity:.4}
+.aurora i:nth-child(4){width:35vw;height:35vw;right:10vw;bottom:10vh;background:radial-gradient(circle,#22d3ee,transparent 65%);animation-duration:25s;animation-delay:-3s;opacity:.35}
+@keyframes drift{
+  0%{transform:translate(0,0) scale(1) rotate(0)}
+  50%{transform:translate(6vw,4vh) scale(1.15) rotate(30deg)}
+  100%{transform:translate(-5vw,8vh) scale(.95) rotate(-20deg)}
+}
+@media (prefers-reduced-motion:reduce){.aurora i{animation:none}}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+header.hero{padding:88px 0 40px;text-align:center}
+.chip{display:inline-block;padding:6px 14px;border:1px solid var(--glass-b);border-radius:999px;background:var(--glass);backdrop-filter:blur(12px);font-size:13px;color:var(--muted);letter-spacing:.02em}
+h1{
+  font-size:clamp(34px,6vw,64px);line-height:1.15;margin:20px 0 14px;font-weight:800;letter-spacing:-.02em;
+  background:linear-gradient(100deg,var(--a),var(--b) 45%,var(--c));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sub{color:var(--muted);font-size:17px;max-width:620px;margin:0 auto}
+
+nav.toc{
+  position:sticky;top:12px;z-index:10;margin:28px auto 0;max-width:max-content;
+  display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:8px;
+  background:rgba(10,14,30,.55);border:1px solid var(--glass-b);border-radius:999px;backdrop-filter:blur(18px);
+}
+nav.toc a{color:var(--muted);text-decoration:none;font-size:13px;padding:6px 14px;border-radius:999px;transition:.2s}
+nav.toc a:hover{color:#fff;background:rgba(255,255,255,.1)}
+
+section{margin-top:64px}
+h2{font-size:26px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+h2 .num{
+  display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;font-size:15px;
+  background:linear-gradient(135deg,var(--a),var(--b));color:#06101e;font-weight:800;
+}
+.role{font-size:13px;color:var(--muted);margin-bottom:20px}
+h3{font-size:18px;margin:26px 0 12px;color:var(--d)}
+
+.card{
+  background:var(--glass);border:1px solid var(--glass-b);border-radius:20px;padding:24px;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 10px 40px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+
+.stat{text-align:center}
+.stat b{display:block;font-size:42px;font-weight:800;line-height:1.1;
+  background:linear-gradient(120deg,var(--a),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--muted);font-size:14px}
+
+ul{padding-left:20px}
+li{margin:6px 0}
+li::marker{color:var(--a)}
+.ref{color:var(--b);font-size:.85em;white-space:nowrap}
+a{color:var(--d);text-underline-offset:3px}
+a:hover{color:#fff}
+
+/* Case cards */
+.case{position:relative;display:flex;flex-direction:column;gap:10px;transition:transform .25s, border-color .25s}
+.case:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.3)}
+.case .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.id{font-weight:800;font-size:13px;padding:3px 10px;border-radius:8px;background:rgba(255,255,255,.1)}
+.badge{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px}
+.A{background:rgba(94,234,212,.18);color:var(--ok);border:1px solid rgba(94,234,212,.4)}
+.B{background:rgba(252,211,77,.14);color:var(--warn);border:1px solid rgba(252,211,77,.4)}
+.case h4{font-size:18px;line-height:1.35}
+.case .yr{color:var(--muted);font-size:13px}
+.case dl{display:grid;gap:8px;font-size:14px}
+.case dt{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.case dd{color:#dfe5f7}
+.case .src{margin-top:auto;font-size:13px;display:flex;flex-wrap:wrap;gap:6px 12px;padding-top:8px;border-top:1px dashed var(--glass-b)}
+.note{font-size:13px;color:var(--warn)}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:8px}
+.tag{padding:4px 12px;border-radius:999px;font-size:13px;background:rgba(129,140,248,.15);border:1px solid rgba(129,140,248,.35)}
+
+.trend{border-left:3px solid var(--a);padding-left:16px}
+.trend:nth-child(2){border-color:var(--b)}
+.trend:nth-child(3){border-color:var(--c)}
+.trend h4{margin-bottom:4px}
+
+/* tables */
+.tbl{overflow-x:auto;border-radius:16px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--glass-b)}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;background:rgba(255,255,255,.04)}
+tr:last-child td{border-bottom:0}
+.st{font-weight:700;white-space:nowrap}
+.st.hold{color:var(--warn)} .st.pass{color:var(--ok)} .st.unk{color:var(--bad)}
+
+.sug{counter-reset:s;display:grid;gap:12px}
+.sug div{counter-increment:s;display:flex;gap:14px;align-items:flex-start;padding:14px 18px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--glass-b)}
+.sug div::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:linear-gradient(135deg,var(--a),var(--c));color:#06101e}
+
+.warnbox{border-color:rgba(252,211,77,.4);background:rgba(252,211,77,.07)}
+footer{margin-top:72px;text-align:center;color:var(--muted);font-size:13px}
+
+@media (max-width:640px){
+  header.hero{padding-top:56px}
+  .card{padding:18px}
+  nav.toc{border-radius:20px}
+}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+<header class="hero">
+  <span class="chip">기준일 2026-10-17 · Black → Red → Blue 검증 조사</span>
+  <h1>공항 AX<br>국내외 사례조사</h1>
+  <p class="sub">공항 운영·승객 서비스·안전보안에 AI와 데이터를 적용한 전환 사례를 조사하고 출처를 검증했습니다.</p>
+  <nav class="toc">
+    <a href="#summary">요약</a><a href="#overview">개요</a><a href="#cases">사례표</a><a href="#insight">인사이트</a><a href="#log">검증 로그</a>
+  </nav>
+</header>
+
+<section id="summary">
+  <h2><span class="num">1</span>Executive Summary</h2>
+  <p class="role">Blue · 트렌드·인사이트 분석</p>
+  <div class="grid g3" style="margin-bottom:16px">
+    <div class="card stat"><b>4</b><span>국내 검증 통과 (목표 5, 1건 부족)</span></div>
+    <div class="card stat"><b>5</b><span>해외 검증 통과</span></div>
+    <div class="card stat"><b>1</b><span>해외 A등급 (나머지는 단일 출처 B)</span></div>
+  </div>
+  <div class="card">
+    <ul>
+      <li>검증을 통과한 사례는 국내 4건, 해외 5건으로 총 9건입니다. 국내 1건이 부족하며, 개수를 채우려고 미검증 사례를 넣지 않았습니다.</li>
+      <li>관찰된 경향은 세 가지입니다. 승객 접점의 생체인식·로봇, 운영 측 예측·영상분석, 전사 AI 로드맵입니다. <span class="ref">D1·D2·D3, O1·O2·O4·O5</span></li>
+      <li>정량 성과를 공개한 곳은 해외 일부(Changi, Schiphol, Digi Yatra)뿐입니다. 국내 4건은 모두 계획이나 도입 사실만 있고 실측 성과 수치가 없습니다. <span class="ref">D1~D4</span></li>
+      <li>부진·실패 교훈은 해외 사례가 알려줍니다. 남아공은 시스템 불안정, 직원 숙련 부족, 벤더 갈등이 겹쳤고, Changi는 범용 솔루션에 맞춤 개발이 필요했습니다. <span class="ref">O1·O3</span></li>
+      <li>제안: 데이터 통합과 KPI를 먼저 정하고, 도입 전에 직원 교육과 수기 대체 절차를 준비하며, 사례마다 전후 성과를 측정해 공개합니다.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="overview">
+  <h2><span class="num">2</span>조사 개요</h2>
+  <p class="role">Black · 조사</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="margin-top:0">주제와 가정</h3>
+      <p><b>주제:</b> 공항 운영·승객 서비스·안전보안에 AI와 데이터를 적용한 전환(AX)</p>
+      <p><b>가정:</b> 공항 운영자(공사·공항그룹)가 주체인 사례를 우선했습니다.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">검색 키워드</h3>
+      <div class="tag-row">
+        <span class="tag">인천공항 AI 스마트공항</span><span class="tag">한국공항공사 AI 디지털트윈</span><span class="tag">스마트패스</span>
+        <span class="tag">airport AI case study</span><span class="tag">airport biometric failure</span><span class="tag">Digi Yatra</span><span class="tag">Schiphol AI</span><span class="tag">Heathrow AI</span>
+      </div>
+    </div>
+  </div>
+  <div class="card warnbox" style="margin-top:16px">
+    <b>한계</b> · 검색은 standard 모드로 진행했습니다. 국내 1건은 3회 반려 한도 전에 중단했으므로 추가 탐색 여지가 있습니다.
+  </div>
+</section>
+
+<section id="cases">
+  <h2><span class="num">3</span>검증 통과 사례표</h2>
+  <p class="role">Black + Red · A등급 = 교차 확인 완료, B등급 = 단일 출처</p>
+
+  <h3>🇰🇷 국내 4건</h3>
+  <div class="grid g2">
+    <article class="card case">
+      <div class="top"><span class="id">D1</span><span class="badge A">A</span></div>
+      <h4>인천국제공항공사 스마트패스</h4><div class="yr">2023~2025</div>
+      <dl>
+        <div><dt>요약</dt><dd>얼굴인식 출국 서비스. 출국장에서 시작해 전체 탑승구 158곳으로 확대</dd></div>
+        <div><dt>핵심 성과</dt><dd>출국 대기 최대 31분 단축은 "각 단계 최장 시간 가정" 공사 추정치. 탑승구는 11개 항공사 사전인증분만 이용 가능</dd></div>
+      </dl>
+      <div class="src"><a href="https://www.khan.co.kr/article/202509232004015" target="_blank" rel="noopener">경향신문 2025-09-23</a><a href="https://www.newstomato.com/ReadNews.aspx?no=1242726" target="_blank" rel="noopener">뉴스토마토</a></div>
+    </article>
+    <article class="card case">
+      <div class="top"><span class="id">D2</span><span class="badge A">A</span></div>
+      <h4>인천국제공항공사 AI·자율주행 로봇</h4><div class="yr">2026</div>
+      <dl>
+        <div><dt>요약</dt><dd>셀프체크인·안내순찰(생성형 AI 탑재)·도슨트 로봇 3종 31대. 5G 특화망과 디지털트윈 관제 플랫폼 구축</dd></div>
+        <div><dt>핵심 성과</dt><dd>성과 수치 없음. 대기 단축은 "기대" 수준</dd></div>
+      </dl>
+      <div class="src"><a href="https://www.hankyung.com/article/2026051969971" target="_blank" rel="noopener">한국경제</a><a href="https://www.kyeonggi.com/article/20260518580276" target="_blank" rel="noopener">경기일보</a></div>
+    </article>
+    <article class="card case">
+      <div class="top"><span class="id">D3</span><span class="badge A">A</span></div>
+      <h4>한국공항공사 AI 마스터플랜</h4><div class="yr">2026</div>
+      <dl>
+        <div><dt>요약</dt><dd>LG CNS가 전국 14개 공항 AI 전략·로드맵 수립 사업 수주. 에이전틱 AI 안전관리 PoC 포함. 기재부 AI 선도기관으로 2025년부터 50개 과제 추진</dd></div>
+        <div><dt>핵심 성과</dt><dd>성과 수치 없음. 계약금액·기간 미공개</dd></div>
+      </dl>
+      <div class="src"><a href="https://www.segye.com/newsView/20260805519775" target="_blank" rel="noopener">세계일보</a><a href="https://www.sidae.com/article/2026080514473540205" target="_blank" rel="noopener">시사저널e</a><a href="https://hellot.net/news/article.html?no=114180" target="_blank" rel="noopener">헬로티</a></div>
+    </article>
+    <article class="card case">
+      <div class="top"><span class="id">D4</span><span class="badge B">B · 단일 출처</span></div>
+      <h4>인천국제공항공사 AI 항공통신 모니터링</h4><div class="yr">2019</div>
+      <dl>
+        <div><dt>요약</dt><dd>관제사·조종사 교신을 음성인식·딥러닝으로 분석해 항공기 위치와 결합</dd></div>
+        <div><dt>핵심 성과</dt><dd>정량 성과 없음. 2019년 ICAO 박람회 전시</dd></div>
+      </dl>
+      <div class="note">최신성 한계 (2019년 자료)</div>
+      <div class="src"><a href="http://www.boannews.com/news/articleView.html?idxno=83265" target="_blank" rel="noopener">보안뉴스</a></div>
+    </article>
+  </div>
+
+  <h3>🌏 해외 5건</h3>
+  <div class="grid g2">
+    <article class="card case">
+      <div class="top"><span class="id">O1</span><span class="badge B">B · 단일 출처</span></div>
+      <h4>Changi Airport Group (싱가포르)</h4><div class="yr">2017~2019</div>
+      <dl>
+        <div><dt>요약</dt><dd>SITA Lab과 도착시각 예측, 활주로 이물질(FOD) 탐지, 탑승구 보안대기열 모니터링, 챗봇 등 AI 파일럿</dd></div>
+        <div><dt>핵심 성과</dt><dd>장거리 항공편 도착시각 예측 정확도 약 95%, FOD 오탐률 35% 감소 (CIO 보고, 기업 발표). 15개 벤더 벤치마크에서 기성품 모두 기준 미달이라 맞춤화</dd></div>
+      </dl>
+      <div class="note">2019년 자료 · 기업 발표 수치</div>
+      <div class="src"><a href="https://ccx.smu.edu.sg/ami/issues/volume-06-issue-1/vantage-point/ai-gets-real-singapores-changi-airport-part-1-learning" target="_blank" rel="noopener">SMU Asian Management Insights 2019</a></div>
+    </article>
+    <article class="card case">
+      <div class="top"><span class="id">O2</span><span class="badge A">A</span></div>
+      <h4>Digi Yatra Foundation (인도)</h4><div class="yr">2022~2025</div>
+      <dl>
+        <div><dt>요약</dt><dd>안면인식 비접촉 탑승 서비스. 2022년 12월 시작</dd></div>
+        <div><dt>핵심 성과</dt><dd>앱 다운로드 1,500만 이상, 누적 6,000만 이상 이용, 24개 공항(재단 발표 2025-07). 2025-12 하원 서면답변은 다운로드 1.9천만(1.9 crore), 24개 공항으로 일치</dd></div>
+      </dl>
+      <div class="src"><a href="https://ianslive.in/digi-yatra-hits-15-million-downloads-aims-to-serve-80-pc-of-air-travellers-by-2028--20250718104633" target="_blank" rel="noopener">IANS 2025-07-18</a><a href="https://swarajyamag.com/amp/story/infrastructure/hassle-free-air-travel-digi-yatra-facility-now-available-at-24-airports-in-india-says-centre" target="_blank" rel="noopener">Swarajya 2025-12-19</a></div>
+    </article>
+    <article class="card case">
+      <div class="top"><span class="id">O3</span><span class="badge B">B · 독립성 제한</span></div>
+      <h4>ACSA / Idemia (남아공) · 실패·부진</h4><div class="yr">2022~2024</div>
+      <dl>
+        <div><dt>요약</dt><dd>출입국 생체인증 R380 million 사업. OR Tambo, Cape Town, King Shaka 적용</dd></div>
+        <div><dt>핵심 성과</dt><dd>반복 장애와 지연. ACSA는 문제를 인정하고 2024-11 신규 솔루션을 예고. 벤더 파트너 InfoVerge와 갈등</dd></div>
+      </dl>
+      <div class="note">두 매체 모두 IOL 보도 기반</div>
+      <div class="src"><a href="https://www.travelnews.co.za/article/delays-disruptions-sa-airports" target="_blank" rel="noopener">Travel News 2024-08-04</a><a href="https://capeargus.co.za/news/south-africa/kwazulu-natal/2024-07-30-chaos-as-airport-system-flops" target="_blank" rel="noopener">Cape Argus</a></div>
+    </article>
+    <article class="card case">
+      <div class="top"><span class="id">O4</span><span class="badge B">B · 단일 출처</span></div>
+      <h4>Schiphol (네덜란드)</h4><div class="yr">2024~2025</div>
+      <dl>
+        <div><dt>요약</dt><dd>보안검색 시간 사전예약(Dynamic Time Slots) 알고리즘, 디지털트윈 기반 승객 흐름 조정</dd></div>
+        <div><dt>핵심 성과</dt><dd>피크 시간대 승객 평균 7.5% 분산(위험일 22%), 99.6%가 10분 내 보안검색. 2024년 4,000분 이상 혼잡 방지 (담당자 발언, 미검증)</dd></div>
+      </dl>
+      <div class="note">2차 매체 단일 출처</div>
+      <div class="src"><a href="https://www.eplaneai.com/news/schiphol-uses-technology-and-ai-to-improve-airport-capacity-and-flow" target="_blank" rel="noopener">ePlane AI 2025-07-31</a></div>
+    </article>
+    <article class="card case">
+      <div class="top"><span class="id">O5</span><span class="badge B">B · 단일 출처</span></div>
+      <h4>Heathrow (영국)</h4><div class="yr">2025</div>
+      <dl>
+        <div><dt>요약</dt><dd>Assaia ApronAI 영상분석으로 항공기 지상조업(턴어라운드) 추적. T2·T3·T5 게이트 116곳</dd></div>
+        <div><dt>핵심 성과</dt><dd>540여 개 카메라 설치. 정시성·게이트 용량 개선은 벤더 주장이며 정량 성과 없음</dd></div>
+      </dl>
+      <div class="note">2차 매체 단일 출처 · 벤더 주장</div>
+      <div class="src"><a href="https://www.eplaneai.com/news/ai-companies-partner-with-heathrow-to-improve-operations" target="_blank" rel="noopener">ePlane AI 2025-07-09</a></div>
+    </article>
+  </div>
+</section>
+
+<section id="insight">
+  <h2><span class="num">4</span>트렌드와 인사이트</h2>
+  <p class="role">Blue · 이 사례들에서 관찰된 경향이며, 표본 9건이라 일반화하지 않습니다</p>
+
+  <div class="grid g3">
+    <div class="card trend"><h4>① 승객 접점 자동화</h4><p>안면인식 탑승과 이동형 로봇·생성형 AI 안내가 확산되고 있습니다. <span class="ref">D1·D2·O2</span></p></div>
+    <div class="card trend"><h4>② 운영 최적화</h4><p>도착 예측·FOD 탐지, 승객 흐름 예약, 지상조업 영상분석이 나타납니다. <span class="ref">O1·O4·O5</span></p></div>
+    <div class="card trend"><h4>③ 전사 로드맵화</h4><p>한국공항공사는 개별 과제에서 AI 마스터플랜으로, 인천은 로봇에 5G·디지털트윈 관제를 함께 구축했습니다. <span class="ref">D2·D3</span></p></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3 style="margin-top:0">성공 요인</h3>
+      <ul>
+        <li>사용자를 모으는 설계: Digi Yatra는 공항 24곳과 대규모 앱 다운로드를 확보 <span class="ref">O2</span></li>
+        <li>과거 데이터와 도메인 지식 활용: Changi는 FOD 개선의 핵심 요인으로 이력 데이터를 꼽음 <span class="ref">O1</span></li>
+        <li>명확한 운영지표 설정: Schiphol의 7.5%, 22% <span class="ref">O4</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">실패·부진 교훈</h3>
+      <ul>
+        <li>시스템 안정성, 직원 숙련, 벤더 관계가 무너지면 지연이 반복됨 <span class="ref">O3</span></li>
+        <li>범용 솔루션은 현장 맞춤화 없이는 성능 기준을 넘지 못함 <span class="ref">O1</span></li>
+        <li>스마트패스는 항공사 인증에 의존해 이용 범위가 제한됨 <span class="ref">D1</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="margin-top:0">국내외 격차</h3>
+    <p>해외 사례 중 O1, O2, O4는 정량 지표를 공개했지만 국내 4건은 정량 실측치가 없습니다. <span class="ref">D1~D4 vs O1·O2·O4</span><br>
+    다만 검증을 통과한 자료 범위 안에서만 비교했으며, 비공개 자료가 있을 가능성은 배제할 수 없습니다.</p>
+  </div>
+
+  <h3>사례별 시사점</h3>
+  <div class="card tbl" style="padding:0">
+    <table>
+      <thead><tr><th>No</th><th>시사점</th></tr></thead>
+      <tbody>
+        <tr><td>D1</td><td>항공사 인증 확대 계획과 이용률 공개 지표가 필요</td></tr>
+        <tr><td>D2</td><td>도입 후 대기시간·이용 건수를 측정해야 기대를 성과로 바꿀 수 있음</td></tr>
+        <tr><td>D3</td><td>50개 과제의 우선순위와 KPI 기준을 마스터플랜에서 먼저 정해야 함</td></tr>
+        <tr><td>D4</td><td>정량 성과가 확인되지 않아 후속 효과 측정이 필요</td></tr>
+        <tr><td>O1</td><td>기성품 도입 전 자사 영상·데이터로 벤더를 비교 검증</td></tr>
+        <tr><td>O2</td><td>사용자 확대 전략과 개인정보 최소 보관 원칙을 함께 설계</td></tr>
+        <tr><td>O3</td><td>파일럿 규모, 직원 훈련, 수기 대체 절차를 먼저 마련</td></tr>
+        <tr><td>O4</td><td>승객 행동을 바꾸는 예약·인센티브 설계가 효과를 냄</td></tr>
+        <tr><td>O5</td><td>벤더 성과 주장은 도입 전에 자체 지표로 재검증</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>종합 시사점·제안</h3>
+  <div class="sug">
+    <div><span>도입 전에 KPI와 측정 방법을 정한다. <span class="ref">D1·D2·D3·O4</span></span></div>
+    <div><span>데이터 통합과 이력 데이터 확보를 선행한다. <span class="ref">O1·O4</span></span></div>
+    <div><span>직원 교육과 장애 시 대체 절차를 파일럿에 포함한다. <span class="ref">O3·O1</span></span></div>
+    <div><span>벤더 주장은 독립 검증하고 단계적으로 확대한다. <span class="ref">O1·O5</span></span></div>
+  </div>
+</section>
+
+<section id="log">
+  <h2><span class="num">5</span>부록: 검증 로그</h2>
+  <p class="role">Red · 검증</p>
+  <div class="card tbl" style="padding:0">
+    <table>
+      <thead><tr><th>항목</th><th>판정</th><th>사유</th></tr></thead>
+      <tbody>
+        <tr><td>한국공항공사 디지털트윈·AI 안전관리 시연 (재정경제부 현장방문, 2026-06-22 표기)</td><td class="st hold">보류 (C)</td><td>검색 요약과 카페 게시물에서만 확인했고 원문 보도자료는 열지 못했습니다. LG CNS 기사에는 디지털트윈 언급이 없습니다. 표에서 제외</td></tr>
+        <tr><td>한국공항공사 김포 AI 로봇주차</td><td class="st hold">보류 (C)</td><td>운영 성과 자료가 없고 실증은 2026년 말까지 진행 중입니다. 표에서 제외</td></tr>
+        <tr><td>인천공항 AI 보안검색기 국산화</td><td class="st unk">미확인</td><td>열어본 항공보안주간 기사에는 인천공항 자체 개발 내용이 없습니다. 표에서 제외</td></tr>
+        <tr><td>Hong Kong International Airport AI</td><td class="st hold">보류</td><td>공항 CEO가 쓴 행사 사전 홍보 글이고 성과 수치와 시기가 없습니다. 표에서 제외</td></tr>
+        <tr><td>Digi Yatra "38개 공항·2.4 crore", 뭄바이 쌍둥이 오인식</td><td class="st unk">미확인</td><td>검색 요약에만 있고 원문을 열지 못했습니다. 표에 사용하지 않음</td></tr>
+        <tr><td>인천공항 스마트패스 "31분 단축"</td><td class="st pass">통과 (추정치)</td><td>뉴스토마토 원문에서 "최장 시간 가정, 공사 추정"을 확인했습니다. IATA 10%·40% 수치는 업체 블로그 인용이라 사용하지 않음</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3 style="margin-top:0">단일 출처·한계 표시</h3>
+      <ul>
+        <li>D4(2019, 보안뉴스 단일), O1(2019, SMU 단일, 기업 발표), O4·O5(ePlane AI 2차 매체 단일, 기업 발표), O3(IOL 계열 보도 기반)</li>
+        <li>D2 원문 간 차이: 도슨트 로봇 배치 장소가 한국경제는 "제2계류장관제탑", 경기일보는 "제1계류장관제탑"으로 달라 본문에는 쓰지 않았습니다.</li>
+        <li>같은 기업 3건 이하 규칙은 충족했습니다. 인천공항공사 3건(D1·D2·D4)은 1개로 카운트되므로 국내 독립 주체는 인천공항공사와 한국공항공사 2곳입니다.</li>
+      </ul>
+    </div>
+    <div class="card warnbox">
+      <h3 style="margin-top:0;color:var(--warn)">미충족 사항</h3>
+      <ul>
+        <li>국내 5건 중 1건 부족 (통과 4건)</li>
+        <li>국내 부진·실패 사례 최소 1건 미충족 (D1은 확대 한계만 있어 완전한 실패 사례가 아님)</li>
+        <li>3회 반려 사이클을 모두 소진하지 못함</li>
+        <li>일부 사이트(UCL, McKinsey)는 접속 불가·시간초과</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>공항 AX 국내외 사례조사 · 기준일 2026-10-17</footer>
+</div>
+</body>
+</html>

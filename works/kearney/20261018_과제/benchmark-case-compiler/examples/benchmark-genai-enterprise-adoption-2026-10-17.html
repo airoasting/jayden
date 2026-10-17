@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>벤치마크 비교 매트릭스</title>
+<style>
+  /* Paperlogy (페이퍼로지) — jsDelivr / projectnoonnu */
+  @font-face { font-family: "Paperlogy"; font-weight: 400; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2") format("woff2"); }
+  @font-face { font-family: "Paperlogy"; font-weight: 500; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2") format("woff2"); }
+  @font-face { font-family: "Paperlogy"; font-weight: 600; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2") format("woff2"); }
+  @font-face { font-family: "Paperlogy"; font-weight: 700; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2") format("woff2"); }
+  @font-face { font-family: "Paperlogy"; font-weight: 800; font-display: swap; src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2") format("woff2"); }  :root {
+    --paper: #ece4d6; --paper-2: #e3d9c7; --card: rgba(250, 246, 238, .82); --ink: #2a2520; --ink-2: #5e554a; --ink-3: #8f8475;
+    --line: rgba(60, 45, 30, .16); --line-strong: rgba(60, 45, 30, .34);
+    --rust: #b4532a; --rust-soft: rgba(180, 83, 42, .12); --olive: #5f6b3a; --olive-soft: rgba(95, 107, 58, .14);
+    --ochre: #9a6b12; --ochre-soft: rgba(201, 150, 40, .2);
+    --blob-1: rgba(196, 98, 52, .38); --blob-2: rgba(118, 132, 74, .30); --blob-3: rgba(214, 170, 92, .34);
+    --grain-opacity: .42; --grain-blend: multiply; --hover: rgba(255, 255, 255, .3);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1d1a17; --paper-2: #26221d; --card: rgba(40, 35, 30, .86); --ink: #efe7da; --ink-2: #c3b8a7; --ink-3: #8f8475;
+      --line: rgba(240, 225, 200, .12); --line-strong: rgba(240, 225, 200, .26);
+      --rust: #e58a5f; --rust-soft: rgba(229, 138, 95, .14); --olive: #b4c184; --olive-soft: rgba(180, 193, 132, .14);
+      --ochre: #e8bd62; --ochre-soft: rgba(232, 189, 98, .16);
+      --blob-1: rgba(196, 98, 52, .26); --blob-2: rgba(118, 132, 74, .20); --blob-3: rgba(214, 170, 92, .16);
+      --grain-opacity: .22; --grain-blend: screen; --hover: rgba(255, 240, 220, .045);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1d1a17; --paper-2: #26221d; --card: rgba(40, 35, 30, .86); --ink: #efe7da; --ink-2: #c3b8a7; --ink-3: #8f8475;
+    --line: rgba(240, 225, 200, .12); --line-strong: rgba(240, 225, 200, .26);
+    --rust: #e58a5f; --rust-soft: rgba(229, 138, 95, .14); --olive: #b4c184; --olive-soft: rgba(180, 193, 132, .14);
+    --ochre: #e8bd62; --ochre-soft: rgba(232, 189, 98, .16);
+    --blob-1: rgba(196, 98, 52, .26); --blob-2: rgba(118, 132, 74, .20); --blob-3: rgba(214, 170, 92, .16);
+    --grain-opacity: .22; --grain-blend: screen; --hover: rgba(255, 240, 220, .045);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; min-height: 100vh; color: var(--ink); background: var(--paper);
+    font-family: "Paperlogy", -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 14.5px; line-height: 1.62; word-break: keep-all; overflow-wrap: anywhere;
+    position: relative; overflow-x: hidden;
+  }
+  /* soft color fields */
+  .fields { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .fields i { position: absolute; border-radius: 50%; filter: blur(70px); }
+  .fields i:nth-child(1) { width: 52vw; height: 52vw; left: -14vw; top: -18vw; background: var(--blob-1); }
+  .fields i:nth-child(2) { width: 46vw; height: 46vw; right: -12vw; top: 18vh; background: var(--blob-2); }
+  .fields i:nth-child(3) { width: 40vw; height: 40vw; left: 30vw; bottom: -22vw; background: var(--blob-3); }
+  /* film grain */
+  body::after {
+    content: ""; position: fixed; inset: -50%; z-index: 1; pointer-events: none;
+    opacity: var(--grain-opacity); mix-blend-mode: var(--grain-blend);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.38  0 0 0 0 0.3  0 0 0 1.1 -0.1'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+  }
+
+  .wrap { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; padding: 56px 28px 72px; }
+  .eyebrow { font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+  h1 {
+    font-family: "Paperlogy", "Malgun Gothic", sans-serif;
+    font-weight: 800; font-size: clamp(28px, 4.4vw, 46px); line-height: 1.18; letter-spacing: -.02em; margin: 10px 0 18px;
+  }
+  .question {
+    max-width: 820px; margin: 0 0 20px; font-size: 16.5px; color: var(--ink);
+    padding: 14px 18px; border-radius: 4px 14px 14px 4px; background: var(--card); border-left: 3px solid var(--rust);
+  }
+  .question b { color: var(--rust); font-weight: 700; margin-right: 6px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+  .chip { font-size: 12px; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-2); background: var(--card); }
+  .chip.ok { border-color: transparent; background: var(--olive-soft); color: var(--olive); font-weight: 700; }
+
+  .board {
+    border: 1px solid var(--line-strong); border-radius: 18px; background: var(--card);
+    box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 18px 50px -30px rgba(60, 40, 20, .45);
+    overflow: hidden;
+  }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 980px; table-layout: fixed; }
+  th, td { text-align: left; vertical-align: top; padding: 16px 16px; border-bottom: 1px solid var(--line); }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+  td + td, th + td, thead th + th { border-left: 1px dashed var(--line); }
+  thead th { padding: 18px 16px 16px; border-bottom: 1px solid var(--line-strong); vertical-align: bottom; }
+  thead .tname {
+    display: block; font-family: "Paperlogy", "Malgun Gothic", sans-serif;
+    font-size: 18px; font-weight: 800; letter-spacing: -.01em; line-height: 1.25;
+  }
+  thead .tsub { display: block; font-size: 12.5px; color: var(--ink-2); margin-top: 2px; font-weight: 500; }
+  thead .ttag { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--ink-3); border: 1px solid var(--line-strong); border-radius: 999px; padding: 1px 8px; font-weight: 500; }
+  .corner { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+
+  th.axis, .corner {
+    position: sticky; left: 0; z-index: 1; width: 158px; min-width: 158px;
+    background: var(--paper-2); border-right: 1px solid var(--line-strong);
+  }
+  th.axis { font-size: 13.5px; font-weight: 700; }
+  th.axis .ax-no { display: block; font-size: 11px; color: var(--rust); font-weight: 700; letter-spacing: .06em; margin-bottom: 2px; font-variant-numeric: tabular-nums; }
+  th.axis .extra { display: inline-block; margin-top: 6px; font-size: 10.5px; font-weight: 600; color: var(--olive); background: var(--olive-soft); padding: 1px 7px; border-radius: 6px; }
+  td { font-size: 13.5px; color: var(--ink); }
+  td b { font-weight: 700; }
+  tbody tr:hover td { background: var(--hover); }
+
+  .refs { display: inline-flex; gap: 3px; margin-left: 3px; vertical-align: 1px; }
+  .refs a {
+    font-size: 10.5px; font-weight: 700; color: var(--rust); text-decoration: none; line-height: 1;
+    padding: 3px 5px 2px; border-radius: 5px; background: var(--rust-soft); font-variant-numeric: tabular-nums;
+  }
+  .refs a:hover, .refs a:focus-visible { background: var(--rust); color: var(--paper); outline: none; }
+  .when { display: inline-block; margin-left: 4px; font-size: 11px; color: var(--ink-3); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .na { display: inline-block; font-size: 11px; font-weight: 700; color: var(--ochre); background: var(--ochre-soft); padding: 0 6px; border-radius: 5px; }
+
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; margin-top: 16px; font-size: 12px; color: var(--ink-3); }
+  .foot .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+  .empty { padding: 40px; text-align: center; color: var(--ink-2); }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 36px 16px 56px; }
+    .question { font-size: 15px; }
+    th.axis, .corner { width: 116px; min-width: 116px; }
+    table { min-width: 880px; }
+  }
+  @media print {
+    .fields, body::after { display: none; }
+    body { background: #fff; }
+    .board { box-shadow: none; }
+    table { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="fields" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="wrap">
+  <div class="eyebrow">Benchmark Matrix</div>
+  <h1 id="title">벤치마크 비교 매트릭스</h1>
+  <p class="question" id="question" hidden></p>
+  <div class="meta" id="meta"></div>
+  <div class="board"><div class="scroll" id="matrix"><div class="empty">데이터가 없습니다.</div></div></div>
+  <div class="foot">
+    <div class="legend">
+      <span><span class="refs"><a tabindex="-1">1</a></span> 출처 링크 (마우스를 올리면 출처명·시점)</span>
+      <span><span class="na">미확인</span> 보완 조사 후에도 확인하지 못한 항목</span>
+      <span><span class="extra-l" style="color:var(--olive);font-weight:700">추가 축</span> 분야별 추가 비교 축</span>
+    </div>
+    <div id="stamp"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  "title": "생성형 AI 사내 도입 벤치마킹",
+  "question": "전사 생성형 AI 어시스턴트를 도입할 때 어떤 구축 방식·확산 순서·데이터 통제 체계를 택할 것인가?",
+  "date": "2026-10-17",
+  "verdict": "검증 통과 · 6개 영역 9.5+ · 2회차",
+  "sourcePolicy": "공신력 자료 · 2024-10-17 이후 발행",
+  "targets": [
+    {"name": "JPMorgan Chase", "sub": "LLM Suite", "tag": "금융 · 미국"},
+    {"name": "Morgan Stanley", "sub": "AI @ MS Assistant · Debrief · AskResearchGPT", "tag": "금융 · 미국"},
+    {"name": "Walmart", "sub": "Element 기반 직원용 AI · ChatGPT Enterprise", "tag": "유통 · 미국"},
+    {"name": "LG", "sub": "챗엑사원 (ChatEXAONE)", "tag": "제조 그룹 · 한국"}
+  ],
+  "axes": [
+    {"name": "개요·추진 배경", "extra": false, "cells": [
+      {"text": "최고분석책임자 Derek Waldron 팀이 약 2년 전부터 사내에서 직접 구축한 AI 포털", "refs": [1], "when": "2025-05"},
+      {"text": "2023년 초 재무 상담사용 Assistant로 시작, 2024년 여름 기관 영업·트레이딩 부문에 AskResearchGPT 도입", "refs": [3], "when": "2024-10"},
+      {"text": "자체 머신러닝 플랫폼 Element 위에 직원용 AI 도구를 운영. 본사 직원용 My Assistant에 이어 매장 직원용 도구로 확대", "refs": [5], "when": "2025-06"},
+      {"text": "LG AI연구원이 자체 모델 엑사원 기반 임직원용 AI 에이전트로 2024년 12월 9일 정식 서비스 개시", "refs": [8], "when": "2024-12"}
+    ]},
+    {"name": "전략·포지셔닝", "extra": false, "cells": [
+      {"text": "특정 모델에 묶이지 않는 **모델 교체형 레이어**로 설계. 다음 단계는 직원마다 AI 에이전트를 붙여 다단계 업무를 자동화하는 것", "refs": [1, 2], "when": "2025-05 · 2025-11"},
+      {"text": "OpenAI 기반 도구를 **직무별로 특화**해 확산 — 재무 상담(Assistant·Debrief), 리서치 검색(AskResearchGPT)", "refs": [3, 4], "when": "2024-10 · 2025-07"},
+      {"text": "'사람 중심, 기술 지원(people-led, tech-powered)'을 원칙으로 매장·본사 직원 도구와 AI 교육을 함께 추진", "refs": [6, 7], "when": "2025-09 · 2025-10"},
+      {"text": "**자체 파운데이션 모델**을 그룹 임직원용 에이전트로 쓰고, 보안 수요가 큰 외부 기업 서비스로 확장 가능성 제시", "refs": [8, 9], "when": "2024-12 · 2025-07"}
+    ]},
+    {"name": "핵심 제공물", "extra": false, "cells": [
+      {"text": "문서 작성·요약 등 범용 업무 지원. 에이전트 시연에서 투자은행 발표 자료 5쪽을 약 30초에 작성(분석 업무의 약 80% 수준, 선임 판단 필요)", "refs": [1, 2], "when": "2025-05 · 2025-11"},
+      {"text": "Assistant(사내 지식 질의응답), Debrief(AI 회의록), AskResearchGPT(연 7만 건 이상 리서치 보고서 검색, 브라우저·Teams·Outlook에 내장)", "refs": [3, 4], "when": "2024-10 · 2025-07"},
+      {"text": "업무 우선순위 추천, 44개 언어 실시간 통역, 업무 매뉴얼을 단계별 안내로 바꾸는 대화형 AI. 본사 팀에는 ChatGPT Enterprise 도입", "refs": [5, 7], "when": "2025-06 · 2025-10"},
+      {"text": "웹 검색·문서 질의응답, 요약, 번역, 보고서, 데이터 분석, 코딩. 심층 분석·출처 선택 모드, 14개 직무 133개 업무 프롬프트 추천", "refs": [8], "when": "2024-12"}
+    ]},
+    {"name": "운영 방식·조직·재원", "extra": false, "cells": [
+      {"text": "최고데이터·분석책임자(CDAO)와 최고분석책임자가 주도. 기술 리더십이 경영진 직속. 생성형 AI 전용 재원 미확인", "refs": [1, 2], "when": "2025-05 · 2025-11"},
+      {"text": "자산관리 부문 생성형 AI 총괄(Koren Maranca) 등 부문별 책임자 운영, 튜토리얼·교육 제공. 재원 미확인", "refs": [4], "when": "2025-07"},
+      {"text": "직원 앱으로 배포. OpenAI와 맞춤 AI 자격 과정을 만들어 2026년부터 미국 매장·본사 직원에게 무료 제공(2026년까지 약 10억 달러 교육 투자의 일부)", "refs": [5, 6], "when": "2025-06 · 2025-09"},
+      {"text": "LG AI연구원이 개발·운영. 재원 미확인", "refs": [8], "when": "2024-12"}
+    ]},
+    {"name": "성과 지표", "extra": false, "cells": [
+      {"text": "**이용자 수** 약 20만 명(2025년 5월 중순, Bloomberg 인용), 25만 명으로 확대 중. **생산성** 1인당 주 1~2시간(회사 발표)", "refs": [1], "when": "2025-05"},
+      {"text": "**이용 비율** 전체 약 8만 명 중 절반가량이 생성형 AI 도구 사용. 영업 담당의 고객 문의 응답 시간이 약 10분의 1로 줄었다는 보도", "refs": [3], "when": "2024-10"},
+      {"text": "**이용 규모** 매장용 대화형 AI 주간 이용자 90만 명 이상, 하루 질의 300만 건 이상. 근무 계획 시간 90분 → 30분(현장 관리자 추정). 본사 생성형 AI 활용률 미확인", "refs": [5], "when": "2025-06"},
+      {"text": "이용자 수·활용률·효과 미확인 (공식 자료 2건에 수치 없음)", "refs": [8, 9], "when": "2024-12 · 2025-07"}
+    ]},
+    {"name": "이용자 접점", "extra": true, "cells": [
+      {"text": "별도 사내 포털로 접속. 변호사는 계약 검토, 여신 담당은 약정 비교, 은행가는 미팅 준비 등 직무별로 활용", "refs": [2], "when": "2025-11"},
+      {"text": "기존 업무 도구(브라우저·Teams·Outlook, 고객 미팅)에 내장. Debrief는 현장 요청으로 모바일·외부 미팅까지 확대", "refs": [3, 4], "when": "2024-10 · 2025-07"},
+      {"text": "기존 직원 앱 안에서 제공. 통역은 자체 브랜드명 등 월마트 고유 용어를 인식", "refs": [5], "when": "2025-06"},
+      {"text": "전용 웹페이지 가입 방식. 직무별 프롬프트 추천으로 초보 이용자 진입 장벽을 낮춤", "refs": [8], "when": "2024-12"}
+    ]},
+    {"name": "품질 관리 체계", "extra": true, "cells": [
+      {"text": "새 모델은 안전·보안 검증 후 투입, 연결 데이터마다 책임자 지정. 사내 데이터·프롬프트로 외부 모델 학습 금지. 주요 판단은 설명 가능해야 하며 최종 책임은 사람에게", "refs": [1, 2], "when": "2025-05 · 2025-11"},
+      {"text": "직원에게 준법·윤리적 사용 지침 준수를 요구하는 내부 공지와 교육 병행. 출력 품질 평가 체계 미확인", "refs": [4], "when": "2025-07"},
+      {"text": "Element가 데이터 거버넌스·보안을 원칙으로 둠. 통역 정확도는 반복 피드백으로 개선. 생성형 AI 이용 지침 운영", "refs": [5, 7], "when": "2025-06 · 2025-10"},
+      {"text": "암호화·개인정보 보호 기술 적용, 그룹 내부 검증 거침. ISO 인증으로 국가 핵심기술 문서에도 사용 가능", "refs": [8, 9], "when": "2024-12 · 2025-07"}
+    ]}
+  ],
+  "sources": [
+    {"id": 1, "name": "American Banker", "title": "How JPMorganChase democratized employee access to gen AI", "date": "2025-05-22", "type": "B · 전문지", "url": "https://www.americanbanker.com/news/how-jpmorganchase-democratized-employee-access-to-gen-ai"},
+    {"id": 2, "name": "WBUR On Point (NPR)", "title": "How JPMorgan's embrace of AI could change banking for us all", "date": "2025-11-19", "type": "B · 공영방송", "url": "https://www.wbur.org/onpoint/2025/11/19/jpmorgan-embrace-of-ai-banking-future"},
+    {"id": 3, "name": "NBC News (CNBC)", "title": "AI on the trading floor: Morgan Stanley expands OpenAI-powered chatbot tools to Wall Street division", "date": "2024-10-23", "type": "B · 언론 보도", "url": "https://www.nbcnews.com/business/business-news/ai-trading-floor-morgan-stanley-expands-openai-powered-chatbot-tools-rcna176800"},
+    {"id": 4, "name": "InvestmentNews", "title": "Morgan Stanley rolls out AI tools throughout its wealth management division", "date": "2025-07-22", "type": "B · 전문지", "url": "https://www.investmentnews.com/fintech/morgan-stanley-rolls-out-ai-tools-throughout-its-wealth-management-division/261418"},
+    {"id": 5, "name": "Walmart Corporate", "title": "Walmart Unveils New AI-Powered Tools To Empower 1.5 Million Associates", "date": "2025-06-24", "type": "A · 공식 자료", "url": "https://corporate.walmart.com/news/2025/06/24/walmart-unveils-new-ai-powered-tools-to-empower-1-5-million-associates"},
+    {"id": 6, "name": "Walmart Corporate", "title": "Donna Morris to Associates: Being People-Led Means Investing in You", "date": "2025-09-04", "type": "A · 공식 자료", "url": "https://corporate.walmart.com/news/2025/09/04/donna-morris-to-associates-being-people-led-means-investing-in-you"},
+    {"id": 7, "name": "Walmart Corporate", "title": "Walmart Partners with OpenAI to Create AI-First Shopping Experiences", "date": "2025-10-14", "type": "A · 공식 자료", "url": "https://corporate.walmart.com/news/2025/10/14/walmart-partners-with-openai-to-create-ai-first-shopping-experiences"},
+    {"id": 8, "name": "LG 보도자료", "title": "생성형 AI '엑사원' 4개월 만에 새 버전 공개", "date": "2024-12-09", "type": "A · 공식 자료", "url": "https://www.lg.co.kr/media/release/28438"},
+    {"id": 9, "name": "LG 보도자료", "title": "'AI 토크 콘서트 2025'서 '엑사원 생태계' 공개", "date": "2025-07-22", "type": "A · 공식 자료", "url": "https://lg.co.kr/media/release/29178"}
+  ]
+}
+;
+
+(function () {
+  if (!DATA) return;
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // allow **bold**, then badge every "미확인"
+  const fmt = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/미확인/g, '<span class="na">미확인</span>');
+  const src = {};
+  (DATA.sources || []).forEach(s => { src[s.id] = s; });
+
+  document.title = DATA.title || document.title;
+  document.getElementById("title").textContent = DATA.title || "벤치마크 비교 매트릭스";
+  if (DATA.question) {
+    const q = document.getElementById("question");
+    q.innerHTML = "<b>질문</b>" + esc(DATA.question);
+    q.hidden = false;
+  }
+
+  const targets = DATA.targets || [];
+  const axes = DATA.axes || [];
+  const extraCount = axes.filter(a => a.extra).length;
+  const meta = [];
+  meta.push(`대상 ${targets.length}곳`);
+  meta.push(`비교 축 ${axes.length}개` + (extraCount ? ` (기본 ${axes.length - extraCount} + 추가 ${extraCount})` : ""));
+  if (DATA.sources) meta.push(`출처 ${DATA.sources.length}건`);
+  let metaHtml = meta.map(m => `<span class="chip">${esc(m)}</span>`).join("");
+  if (DATA.sourcePolicy) metaHtml += `<span class="chip">${esc(DATA.sourcePolicy)}</span>`;
+  if (DATA.verdict) metaHtml += `<span class="chip ok">${esc(DATA.verdict)}</span>`;
+  document.getElementById("meta").innerHTML = metaHtml;
+
+  let h = "<table><thead><tr><th class='corner'>비교 축</th>";
+  targets.forEach(t => {
+    h += `<th><span class="tname">${esc(t.name)}</span>`;
+    if (t.sub) h += `<span class="tsub">${esc(t.sub)}</span>`;
+    if (t.tag) h += `<span class="ttag">${esc(t.tag)}</span>`;
+    h += "</th>";
+  });
+  h += "</tr></thead><tbody>";
+  axes.forEach((a, i) => {
+    h += `<tr><th class="axis" scope="row"><span class="ax-no">${String(i + 1).padStart(2, "0")}</span>${esc(a.name)}`;
+    if (a.extra) h += `<br><span class="extra">추가 축</span>`;
+    h += "</th>";
+    targets.forEach((_, j) => {
+      const c = (a.cells || [])[j] || { text: "미확인" };
+      h += `<td>${fmt(c.text)}`;
+      if (c.refs && c.refs.length) {
+        h += `<span class="refs">` + c.refs.map(r => {
+          const s = src[r];
+          if (!s) return `<a>${esc(r)}</a>`;
+          const tip = `[${r}] ${s.name} — ${s.title} (${s.date}${s.type ? ", " + s.type : ""})`;
+          return `<a href="${esc(s.url)}" target="_blank" rel="noopener" title="${esc(tip)}">${esc(r)}</a>`;
+        }).join("") + `</span>`;
+      }
+      if (c.when) h += `<span class="when">${esc(c.when)}</span>`;
+      h += "</td>";
+    });
+    h += "</tr>";
+  });
+  h += "</tbody></table>";
+  document.getElementById("matrix").innerHTML = h;
+  document.getElementById("stamp").textContent = DATA.date ? `작성 ${DATA.date}` : "";
+})();
+</script>
+</body>
+</html>

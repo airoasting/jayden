@@ -1,0 +1,5 @@
+{"version":"v4","target":9.5,"unresolved_blocking_or_major":5,
+ "reviewers":[
+  {"name":"Red 1","version":"v4","items":[1.9,1.8,1.8,1.8,1.8]},
+  {"name":"Red 2","version":"v4","items":[1.8,1.8,1.6,1.7,1.8]},
+  {"name":"Red 3","version":"v4","items":[1.8,1.8,1.8,1.7,1.7]}]}

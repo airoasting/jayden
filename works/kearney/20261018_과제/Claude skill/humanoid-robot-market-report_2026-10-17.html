@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>휴머노이드 로봇 시장 조사 보고서</title>
+<style>
+/* Fluent 2 (Windows 11) — 토큰은 :root 에서만 바꾼다. 다크 모드 자동 대응 */
+:root{
+  --surface:#FAFAFA; --surface-low:#FFFFFF; --surface-var:#F5F5F5; --surface-high:#EBEBEB;
+  --on-surface:#242424; --on-surface-var:#616161; --outline:#8A8A8A; --outline-var:#E0E0E0;
+  --primary:#0F6CBD; --on-primary:#FFFFFF; --primary-c:#EBF3FC; --on-primary-c:#0C3B5E;
+  --secondary-c:#F5F5F5; --tertiary:#BC4B09; --tertiary-c:#FDCFB4;
+  --us:#0F6CBD; --cn:#C50F1F; --kr:#107C10; --jp:#CA5010; --eu:#8764B8; --etc:#69797E;
+  --good:#107C10; --warn:#BC4B09; --bad:#C50F1F;
+  --acrylic:rgba(255,255,255,.72);
+  --shadow2:0 0 2px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.14);
+  --shadow8:0 0 2px rgba(0,0,0,.12),0 4px 8px rgba(0,0,0,.14);
+  --shadow16:0 0 2px rgba(0,0,0,.12),0 8px 16px rgba(0,0,0,.14);
+  --radius:8px;
+}
+@media (prefers-color-scheme:dark){:root{
+  --surface:#1F1F1F; --surface-low:#292929; --surface-var:#333333; --surface-high:#3D3D3D;
+  --on-surface:#FFFFFF; --on-surface-var:#D1D1D1; --outline:#9E9E9E; --outline-var:#424242;
+  --primary:#479EF5; --on-primary:#0A2E4A; --primary-c:#0C3B5E; --on-primary-c:#CFE4FA;
+  --secondary-c:#333333; --tertiary:#F7924B; --tertiary-c:#6E3A12;
+  --us:#479EF5; --cn:#F1707B; --kr:#54B054; --jp:#F7924B; --eu:#B59DD9; --etc:#9AA7AB;
+  --good:#54B054; --warn:#F7924B; --bad:#F1707B;
+  --acrylic:rgba(41,41,41,.72);
+}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--on-surface); line-height:1.7; min-height:100vh; overflow-x:hidden;
+  font-family:"Segoe UI Variable","Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",-apple-system,BlinkMacSystemFont,sans-serif;
+  /* Mica: 은은한 브랜드 색 번짐이 있는 베이스 배경 */
+  background:radial-gradient(900px 500px at 0% -10%,color-mix(in srgb,var(--primary) 10%,transparent),transparent 60%),
+             radial-gradient(800px 500px at 100% 0%,color-mix(in srgb,var(--eu) 8%,transparent),transparent 60%),var(--surface);
+  background-attachment:fixed;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:16px 16px 80px}
+/* Pivot(탭) 내비게이션 + Acrylic */
+nav{position:sticky;top:8px;z-index:10;margin-bottom:24px}
+nav .bar{display:flex;gap:2px;overflow-x:auto;padding:4px 8px;border-radius:var(--radius);scrollbar-width:none;
+  background:var(--acrylic);-webkit-backdrop-filter:blur(24px) saturate(125%);backdrop-filter:blur(24px) saturate(125%);
+  border:1px solid var(--outline-var);box-shadow:var(--shadow8)}
+nav a{white-space:nowrap;color:var(--on-surface-var);text-decoration:none;font-size:14px;padding:8px 14px;border-radius:4px;position:relative}
+nav a:hover{background:var(--surface-high);color:var(--on-surface)}
+nav a:hover:after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;border-radius:1px;background:var(--primary)}
+nav a:focus-visible{outline:2px solid var(--primary);outline-offset:-2px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){nav .bar{background:var(--surface-low)}}
+
+/* 카드: 1px 스트로크 + shadow2, 호버 시 Reveal 느낌의 강조. 클래스명 .glass 는 호환용 */
+.glass{background:var(--surface-low);border:1px solid var(--outline-var);border-radius:var(--radius);box-shadow:var(--shadow2);color:var(--on-surface)}
+.card{padding:24px}
+header.glass{background:var(--primary-c);border-color:color-mix(in srgb,var(--primary) 25%,var(--outline-var));border-left:4px solid var(--primary);color:var(--on-primary-c)}
+header.glass p,header.glass .eyebrow{color:var(--on-primary-c)}
+section{margin-bottom:36px;scroll-margin-top:80px}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.25;margin:8px 0 12px;font-weight:600;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3.4vw,28px);margin:0 0 6px;font-weight:600}
+h3{font-size:18px;margin:0 0 8px;font-weight:600}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--on-surface-var);font-weight:600}
+.lead{color:var(--on-primary-c);font-size:17px;max-width:760px}
+p{margin:.4em 0 .8em;color:var(--on-surface-var)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:820px){.g4{grid-template-columns:repeat(2,1fr)}.g3,.g2{grid-template-columns:1fr}}
+@media(max-width:560px){.g4{grid-template-columns:1fr}.card{padding:20px}}
+.grid>*,.gauto>*{min-width:0}
+.gauto{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+
+/* Badge */
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:4px;vertical-align:middle;border:1px solid transparent}
+.b-fact{background:#DFF6DD;color:#0B5A0B} .b-fc{background:#FDE7D3;color:#7A3205} .b-op{background:#E9E3F5;color:#4B3480}
+.kpi .num{font-size:clamp(24px,3.6vw,34px);font-weight:600;line-height:1.15;color:var(--primary);overflow-wrap:anywhere}
+.kpi .lab{font-size:14px;color:var(--on-surface);margin-top:6px} .kpi .src{font-size:12px;color:var(--on-surface-var)}
+.insight{margin-top:14px;padding:12px 16px;border-radius:4px;background:var(--secondary-c);border-left:3px solid var(--tertiary);color:var(--on-surface);font-size:15px}
+.insight b{color:var(--tertiary)}
+.analogy{border-radius:4px;padding:12px 16px;background:var(--primary-c);color:var(--on-primary-c);border-left:3px solid var(--primary)}
+.action{font-size:clamp(17px,2.4vw,21px);font-weight:600;color:var(--primary);line-height:1.45;margin:2px 0 14px;max-width:860px}
+.srcline{margin-top:12px;font-size:12px;color:var(--on-surface-var);border-top:1px solid var(--outline-var);padding-top:8px}
+
+.chart{width:100%;height:auto;display:block}
+.chart text{fill:var(--on-surface);font-family:inherit}
+.chart .axis{stroke:var(--outline)}
+.chart .grid-l{stroke:var(--outline-var)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--on-surface-var);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+.tablewrap{overflow-x:auto;border-radius:4px;border:1px solid var(--outline-var)}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--outline-var);vertical-align:top}
+tr:last-child td{border-bottom:none}
+th{font-size:13px;color:var(--on-surface);font-weight:600;background:var(--surface-var)}
+td{color:var(--on-surface-var)} td b{color:var(--on-surface)}
+tbody tr:hover td,tr:hover>td{background:color-mix(in srgb,var(--primary) 5%,transparent)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px}
+
+ul.clean{list-style:none;margin:0;padding:0}
+ul.clean li{padding:8px 0 8px 24px;position:relative;color:var(--on-surface-var)}
+ul.clean li:before{content:"";position:absolute;left:4px;top:17px;width:8px;height:8px;border-radius:2px}
+.up li:before{background:var(--good)} .down li:before{background:var(--bad)}
+dl.terms dt{font-weight:600;color:var(--on-surface);margin-top:12px} dl.terms dd{margin:2px 0 0;color:var(--on-surface-var)}
+ol.sources{padding-left:22px;margin:0;color:var(--on-surface-var);font-size:14px}
+ol.sources li{margin-bottom:6px;word-break:break-word}
+a{color:var(--primary)}
+.tier{font-size:11px;font-weight:600;padding:1px 7px;border-radius:4px;border:1px solid var(--outline);margin-right:6px;color:var(--on-surface)}
+footer{text-align:center;color:var(--on-surface-var);font-size:13px;margin-top:30px}
+sup a{text-decoration:none;font-size:11px}
+
+.hbar{display:grid;grid-template-columns:96px 1fr;gap:4px 10px;align-items:center;margin:9px 0;font-size:14px}
+.hbar .k{color:var(--on-surface);font-weight:600}
+.hbar .track{height:10px;border-radius:5px;background:var(--surface-high);overflow:hidden}
+.hbar .fill{height:100%;border-radius:5px;background:var(--primary);min-width:4px}
+.hbar .meta{grid-column:2;font-size:12px;color:var(--on-surface-var);margin-top:-2px}
+.scn{border-top:3px solid var(--c,var(--primary))}
+.scn .big{font-size:26px;font-weight:600}
+.scn h4{margin:10px 0 4px;font-size:13px;color:var(--on-surface-var);font-weight:600}
+@media (prefers-reduced-motion:no-preference){.card{transition:box-shadow .15s ease,border-color .15s ease}.card:hover{box-shadow:var(--shadow16);border-color:color-mix(in srgb,var(--primary) 45%,var(--outline-var))}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav><div class="bar glass">
+    <a href="#overview">한눈에</a><a href="#what">로봇이란?</a><a href="#status">현황</a><a href="#segment">세분화</a>
+    <a href="#outlook">전망</a><a href="#scenario">시나리오</a><a href="#compete">경쟁 구도</a><a href="#watch">체크포인트</a>
+    <a href="#terms">용어</a><a href="#sources">출처</a>
+  </div></nav>
+
+  <header class="glass card" id="top">
+    <div class="eyebrow">Humanoid Robot Market Report · 조사 기준일 <span data-bind="asOf"></span></div>
+    <h1 data-bind="title"></h1>
+    <p class="lead" data-bind="subtitle"></p>
+  </header>
+
+  <section id="overview" style="margin-top:34px">
+    <h2>한눈에 보기</h2>
+    <p>바쁘다면 이 부분만 읽어도 됩니다.</p>
+    <div class="grid g4" id="kpis"></div>
+    <div class="grid g3" style="margin-top:16px" id="takeaways"></div>
+  </section>
+
+  <section id="what">
+    <h2>휴머노이드 로봇이란?</h2>
+    <div class="glass card">
+      <p data-bind="whatIs"></p>
+      <div class="analogy" data-bind="analogy"></div>
+      <h3 style="margin-top:18px">왜 지금 주목받을까?</h3>
+      <ul class="clean up" id="whyNow"></ul>
+    </div>
+  </section>
+
+  <section id="status">
+    <h2>시장 현황 <span class="badge b-fact">FACT</span></h2>
+    <p class="action" data-bind="act_status"></p>
+    <div class="grid g2">
+      <div class="glass card">
+        <h3>2025년 시장 규모, 기관별 추정</h3>
+        <svg class="chart" id="chartSize" viewBox="0 0 520 300" role="img" aria-label="시장 규모 추이 막대·선 차트"></svg>
+        <div class="insight" data-bind="sizeInsight"></div>
+        <div class="srcline" data-bind="src_size"></div>
+      </div>
+      <div class="glass card">
+        <h3>업체 국적별 출하 비중 (2025, 생산 기준)</h3>
+        <svg class="chart" id="chartShare" viewBox="0 0 520 300" role="img" aria-label="국가별 출하 비중 도넛 차트"></svg>
+        <div class="legend" id="shareLegend"></div>
+        <div class="insight" data-bind="shareInsight"></div>
+        <div class="srcline" data-bind="src_share"></div>
+      </div>
+    </div>
+    <div class="glass card" style="margin-top:16px">
+      <h3>어디에 쓰이나? (현재 용도)</h3>
+      <div class="grid g3" id="usecases"></div>
+    </div>
+  </section>
+
+  <section id="segment">
+    <h2>시장 세분화 <span class="badge b-fact">FACT</span> <span class="badge b-fc">FORECAST</span></h2>
+    <p class="action" data-bind="act_segment"></p>
+    <p>같은 "휴머노이드 시장"도 어디에 쓰이는지, 어느 지역인지, 무엇을 파는지에 따라 크기와 성장 속도가 다릅니다. 막대는 비중, 아래 줄은 규모와 성장률입니다.</p>
+    <div class="gauto" id="segCards"></div>
+    <div class="glass card" style="margin-top:16px"><div class="insight" style="margin-top:0" data-bind="segInsight"></div><div class="srcline" data-bind="src_segment"></div></div>
+  </section>
+
+  <section id="outlook">
+    <h2>미래 전망과 성장성 <span class="badge b-fc">FORECAST</span></h2>
+    <p class="action" data-bind="act_outlook"></p>
+    <p>전망은 "예측"입니다. 기관마다 숫자가 크게 다른 이유(정의·범위·가정)를 함께 봐야 합니다.</p>
+    <div class="glass card">
+      <h3>기관별 전망 비교</h3>
+      <svg class="chart" id="chartForecast" viewBox="0 0 760 320" role="img" aria-label="기관별 시장 전망 범위 차트"></svg>
+      <div class="insight" data-bind="forecastInsight"></div>
+      <div class="srcline" data-bind="src_forecast"></div>
+      <div class="tablewrap" style="margin-top:14px"><table id="forecastTable"></table></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="glass card"><h3>성장 동력 🚀</h3><ul class="clean up" id="drivers"></ul></div>
+      <div class="glass card"><h3>걸림돌 🧱</h3><ul class="clean down" id="barriers"></ul></div>
+    </div>
+  </section>
+
+  <section id="scenario">
+    <h2>시나리오 분석 <span class="badge b-fc">FORECAST</span></h2>
+    <p class="action" data-bind="act_scenario"></p>
+    <p>미래는 하나가 아닙니다. 어떤 조건이 맞아떨어지느냐에 따라 Bear(보수) · Base(기준) · Bull(낙관) 세 갈래로 나누어 봅니다.</p>
+    <div class="glass card">
+      <svg class="chart" id="chartScenario" viewBox="0 0 760 340" role="img" aria-label="시나리오별 시장 규모 전망 선 그래프"></svg>
+      <div class="legend" id="scenarioLegend"></div>
+      <div class="insight" data-bind="scenarioInsight"></div>
+      <div class="srcline" data-bind="src_scenario"></div>
+    </div>
+    <div class="gauto" style="margin-top:16px" id="scenarioCards"></div>
+  </section>
+
+  <section id="compete">
+    <h2>경쟁 구도 <span class="badge b-fact">FACT</span></h2>
+    <p class="action" data-bind="act_compete"></p>
+    <div class="glass card">
+      <h3>주요 기업 비교</h3>
+      <div class="tablewrap"><table id="playerTable"></table></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="glass card">
+        <h3>포지셔닝 맵</h3>
+        <p style="font-size:14px">가로: 대당 가격(왼쪽이 저렴) · 세로: 양산·상용화 성숙도(위쪽이 앞섬)</p>
+        <svg class="chart" id="chartMap" viewBox="0 0 520 380" role="img" aria-label="기업 포지셔닝 맵"></svg>
+        <div class="legend" id="mapLegend"></div>
+        <div class="insight" data-bind="mapInsight"></div>
+        <div class="srcline" data-bind="src_map"></div>
+      </div>
+      <div class="glass card">
+        <h3>가치사슬: 누가 어디서 돈을 버나</h3>
+        <div class="tablewrap"><table id="valueChain"></table></div>
+        <div class="insight" data-bind="chainInsight"></div>
+      </div>
+    </div>
+    <div class="gauto" style="margin-top:16px" id="compNotes"></div>
+  </section>
+
+  <section id="watch">
+    <h2>체크포인트 <span class="badge b-op">OPINION</span></h2>
+    <div class="glass card">
+      <p>앞으로 시장이 어느 방향으로 가는지 알려 주는 신호들입니다. (투자 권유가 아닙니다.)</p>
+      <ul class="clean up" id="signals"></ul>
+    </div>
+  </section>
+
+  <section id="terms">
+    <h2>용어 사전</h2>
+    <div class="glass card"><dl class="terms" id="termList"></dl></div>
+  </section>
+
+  <section id="sources">
+    <h2>출처</h2>
+    <div class="glass card">
+      <p style="font-size:14px">등급: <span class="tier">S</span>정부·국제기구 <span class="tier">A</span>기업공시·IB리서치 <span class="tier">B</span>시장조사·컨설팅·학술 <span class="tier">C</span>전문언론·블로그 · 오른쪽 문구는 검증 수준</p>
+      <ol class="sources" id="sourceList"></ol>
+      <h3 style="margin-top:20px">한계와 미확인 사항</h3>
+      <ul class="clean down" id="limits"></ul>
+      <p style="font-size:13px;color:var(--text-mute);margin-top:16px">본 보고서는 공개 자료에 기반한 산업 분석이며 투자 자문이 아닙니다. 투자 판단과 책임은 본인에게 있습니다.</p>
+    </div>
+  </section>
+  <footer>조사 기준일 <span data-bind="asOf"></span> · 수치는 시간이 지나면 달라질 수 있습니다.</footer>
+</div>
+
+<script id="data">
+const DATA = {
+  asOf: "2026-10-17",
+  title: "휴머노이드 로봇 시장 기초 조사: 현황·세분화·전망·경쟁 구도",
+  subtitle: "공개 자료만 사용했고, 출처 간 수치 차이는 숨기지 않고 범위로 표기했습니다. 휴머노이드 시장을 처음 보는 독자도 읽을 수 있게 풀어 썼습니다.",
+  whatIs: "휴머노이드 로봇은 사람처럼 두 다리로 걷고 두 팔과 손으로 물건을 다루도록 만든 로봇입니다. 사람이 쓰는 공장, 창고, 사무 공간을 고치지 않고 그대로 투입할 수 있다는 점이 가장 큰 특징입니다. 바퀴형이나 로봇팔처럼 한 가지 작업에 맞춘 기계와는 목표가 다릅니다.",
+  analogy: "비유: 지금까지의 산업용 로봇이 '한 가지 일만 하는 전문 기계(자동판매기)'였다면, 휴머노이드는 '사람이 쓰던 도구와 공간을 그대로 쓰는 만능 직원'을 목표로 합니다. 다만 아직은 신입 직원 연수 단계로, 시범 투입이 대부분입니다.",
+  whyNow: [
+    "AI 모델의 발전: 로봇용 AI가 '말귀를 알아듣고 동작을 계획하는' 수준에 가까워지고 있습니다. Boston Dynamics는 Google DeepMind 모델을 Atlas에 통합한다고 밝혔습니다 [16].",
+    "원가 하락 기대: Bank of America는 중국 공급망 기준 부품 원가(BOM)가 2025년 약 $3.5만에서 2030년 $1.7만 미만으로 내려갈 것으로 봤습니다(2차 인용, 원문 미확인) [12].",
+    "중국의 정책·표준 정비: 2026년 2월 휴머노이드·체화지능 국가 표준체계가 발표됐습니다 [15].",
+    "자본시장 개방: Unitree가 2026년 8월 상하이 STAR 시장에 상장했고 [18], Agility Robotics는 SPAC 합병을 추진 중입니다 [21]."
+  ],
+  kpis: [
+    {num: "0.7만~2만+ 대", lab: "2025년 글로벌 출하(생산) 대수, 기관별 범위", src: "[1][13][27]"},
+    {num: "$1.9B~$4.9B", lab: "2025년 시장 규모, 기관별 추정", src: "[3][4][10]"},
+    {num: "$15B~$300B", lab: "2035년 전망 범위 (정의 차이로 약 20배 격차)", src: "[1][6][8]"},
+    {num: "90% 이상", lab: "중국 업체의 2025년 출하 비중", src: "[1][11]"}
+  ],
+  takeaways: [
+    {t: "현황", d: "아직 '초기 시장'입니다. 2025년 출하는 약 1.6~2만 대로 대부분 연구·데이터 수집·엔터테인먼트용이고, 생산량 중 실제 현장 적용은 약 10%로 추정됩니다 [1]."},
+    {t: "전망", d: "모든 기관이 고성장을 말하지만, 2035년 규모 전망은 $15B에서 $300B 이상까지 갈립니다. 격차의 대부분은 '무엇을 시장에 포함하느냐'의 차이입니다 [1][8]."},
+    {t: "경쟁", d: "출하량은 중국(Unitree, AgiBot)이, 자본과 AI는 미국(Figure, Tesla 등)이 앞섭니다. 한국은 현대차그룹(Boston Dynamics)과 부품 쪽에 접점이 있습니다 [11][16][20]."}
+  ],
+  act_status: "시장은 아직 초기 단계입니다. 출하는 매년 크게 늘지만(2026 상반기 +300% 안팎), 숫자 자체는 연 2~5만 대 수준이고 기관마다 정의가 달라 단일 수치로 확정하기 어렵습니다.",
+  act_segment: "현재 출하의 60% 이상이 연구·엔터·데이터 수집용이고, 제조·물류는 합쳐 약 18%입니다. 돈이 되는 '산업 현장 수요'는 아직 초입입니다.",
+  act_outlook: "모든 전망이 고성장이지만 2035년 기준 $15B와 $300B 이상으로 20배 가까이 벌어집니다. 숫자보다 그 숫자가 전제한 정의와 가정을 봐야 합니다.",
+  act_scenario: "2035년 시장은 Bear 약 $15B와 Bull 약 $138B 사이에서 9배 안팎으로 갈립니다. 갈림길은 가격 하락 속도, 실사용 전환율, 안전 인증입니다.",
+  act_compete: "출하는 중국, 자본과 AI는 미국이 쥐고 있고, 5개사 중 외부 출하가 확인된 곳은 Unitree와 AgiBot뿐입니다. Tesla는 목표와 실적의 괴리가 가장 큽니다.",
+  src_size: "출처: BCC [10], MarketsandMarkets 2026.7판 [4]·2025.4판 [5], Fortune BI [3]. 모두 2025년 시장 규모 추정치이며 정의가 다름. 같은 기관(MnM)도 판이 바뀌며 2.92→1.95로 수정됨.",
+  src_share: "출처: Interact Analysis [1](생산 기준, 업체 국적), Rest of World [11](판매 기준 '거의 90%'). 2025년. 중국 내 인도 비중은 약 75% [1].",
+  src_segment: "출처: 용도별 Counterpoint [2](2026 H1 출하 대수), 지역별·구성별 Fortune BI [3](시장 금액). 기관·기준이 서로 달라 축 간 직접 비교 불가. 달러 규모와 CAGR은 대부분 유료 구간이라 '미공개'.",
+  src_forecast: "출처: 표의 기관별 자료. 대부분 보도자료·요약 페이지 기반이며 원문 전체는 확인하지 못함. 정의·범위가 달라 직접 비교에 한계.",
+  src_scenario: "출처: 조사자 자체 추정. 2025 기준값 약 $2.0B는 [4][10]. 2035년 Bear=[1] $15B, Base=조사자 설정 약 $40B([6] $38B, [4] $50.3B 참고), Bull=GS 2026-08 2차 보도 $138B([32], 원문 미확인). 2030년 값은 연평균 일정 성장을 가정한 보간.",
+  src_map: "출처: 기업 공시·공식 발표 [16][18][21], 보도 [17][20][24]. 위치는 조사자 판단이며 가격 미공개 기업은 제품 포지션으로 추정(OPINION).",
+  sizeUnit: "십억 달러",
+  marketSize: [
+    {year: "BCC", v: 1.9, actual: true},
+    {year: "MnM 신판", v: 1.95, actual: true},
+    {year: "MnM 구판", v: 2.92, actual: true},
+    {year: "Fortune BI", v: 4.89, actual: true}
+  ],
+  sizeInsight: "<b>해석:</b> 같은 2025년인데 추정치가 2.5배(1.9~4.9) 차이 납니다. 서비스·소프트웨어 포함 여부와 가격 가정이 달라서이고, 2026년 값도 MnM 5.4, Fortune 6.2로 갈립니다 [3][4]. 시장 규모는 '하나의 숫자'가 아니라 범위로 읽어야 합니다.",
+  share: [
+    {k: "중국 업체", v: 90, c: "cn"},
+    {k: "미국·기타 업체", v: 10, c: "us"}
+  ],
+  shareInsight: "<b>해석:</b> 2025년 출하는 중국 업체가 90% 이상입니다. 미국 3사(Tesla, Figure, Agility)는 각각 약 150대 수준으로 추정됩니다 [11]. 2026년 상반기에도 IDC는 중국 업체 95% 이상으로 보도됐습니다(2차 인용).",
+  usecases: [
+    {t: "엔터·연구·데이터 수집", d: "2026 상반기 출하의 60% 이상 [2]. 대학·연구소 구매, 공연·전시, AI 학습용 데이터 수집이 중심입니다."},
+    {t: "서비스·안내", d: "출하의 약 19% [2]. 안내, 접객, 전시장 등. Fortune BI는 금액 기준 서비스 비중이 가장 크다고 봅니다(2026E 49.5%) [3]."},
+    {t: "제조·물류", d: "출하의 약 13%(제조), 5%(물류) [2]. 시범 도입이 대부분이며, 생산량 중 실사용은 약 10%로 추정됩니다 [1]. 기업 수주액(예: UBTech 8억 위안+)은 홍보 수치로 구분해야 합니다 [29]."}
+  ],
+  segments: [
+    {dim: "용도별 (2026 H1 출하 대수)", items: [
+      {k: "엔터·연구·데이터 수집", share: 60, size: "60% 초과", cagr: "미공개"},
+      {k: "서비스·안내", share: 19, size: "약 19%", cagr: "미공개"},
+      {k: "지능형 제조", share: 13, size: "약 13%", cagr: "미공개"},
+      {k: "물류·창고", share: 5, size: "약 5%", cagr: "미공개"}]},
+    {dim: "지역별 (2025 시장 금액)", items: [
+      {k: "아시아태평양", share: 42.6, size: "$1.91B", cagr: "미공개"},
+      {k: "북미", share: 29.3, size: "$1.31B", cagr: "미공개"},
+      {k: "유럽", share: 17.1, size: "$0.77B", cagr: "미공개"},
+      {k: "중동·아프리카", share: 6.1, size: "$0.27B", cagr: "미공개"},
+      {k: "남미", share: 5.0, size: "$0.22B", cagr: "미공개"}]},
+    {dim: "구성별 (2026E 시장 금액)", items: [
+      {k: "하드웨어", share: 69.6, size: "69.55%", cagr: "미공개"},
+      {k: "소프트웨어 등 (역산)", share: 30.4, size: "100%에서 역산", cagr: "소프트웨어가 최고 성장"}]}
+  ],
+  segInsight: "<b>해석:</b> 축마다 기준이 달라 겹쳐 읽으면 안 됩니다. 출하 대수로는 연구·엔터가 압도적이지만(용도별 [2]), 금액으로는 서비스가 가장 크다고 보는 기관도 있습니다(2026E 49.5% [3]). 지역별은 금액 기준 아시아태평양 42.6%지만 출하 대수 기준 중국 업체는 90% 이상입니다 [1][3]. 개별 국가로는 중국 $0.40B→$2.80B(2025→2030, CAGR 47.6%), 한국 $113M→$584M(CAGR 39.0%)로 MnM이 추정합니다 [4]. 핵심 부품 단독 비중과 용도별 달러 규모는 공개 자료에서 찾지 못했습니다.",
+  forecastUnit: "십억 달러",
+  forecasts: [
+    {org: "Interact Analysis", year: 2035, low: 15, high: 15, cagr: "미공개", scope: "로봇 매출(본체 중심), 출하 70만 대+. 상업 변곡점은 2032년 이후 [1]", tier: "B"},
+    {org: "IDTechEx", year: 2036, low: 29.5, high: 29.5, cagr: "미공개", scope: "본체 중심, 자동차·물류 선도, 가정용은 제한적 [9]", tier: "B"},
+    {org: "Goldman Sachs", year: 2035, low: 38, high: 38, cagr: "미공개", scope: "TAM(2024.2), 출하 140만 대. 2026-08 $138B 상향 보도는 2차·미검증 [6][32]", tier: "A"},
+    {org: "MarketsandMarkets", year: 2035, low: 50.27, high: 50.27, cagr: "28.1%", scope: "하드웨어+SW+서비스, 2026.7판 [4]", tier: "B"},
+    {org: "Fortune BI", year: 2034, low: 165.13, high: 165.13, cagr: "50.6%", scope: "하드웨어+소프트웨어, 정의 모호 [3]", tier: "B"},
+    {org: "Roland Berger", year: 2035, low: 300, high: 750, cagr: "미공개", scope: "제조사 매출, 광의 가치사슬(기본 $300B, 낙관 $750B) [8]", tier: "B"}
+  ],
+  forecastInsight: "<b>해석:</b> 2035년 전망은 $15B(Interact)부터 $300B 이상(Roland Berger)까지 약 20배 벌어집니다. 원인은 ① 본체 매출만 보는지 서비스·부품까지 보는지, ② 연간 출하(flow)인지 누적 보급(stock)인지, ③ 가격 하락 가정입니다. 장기(2050)로는 Morgan Stanley가 $5조를 제시했으나 공급망·서비스 매출을 포함한 값입니다 [7].",
+  drivers: [
+    "AI(체화 AI) 성능 향상: 범용 동작·작업 계획 모델이 실사용 가능성을 높임 [16]",
+    "부품 원가 하락: 감속기 단가가 2023→2026년 RMB 1,280→410으로 하락했다는 업계 자료(모터 제조사 자료라 이해관계 있음) [25], BofA는 BOM 2030년 $17K 미만 전망(2차 인용) [12]",
+    "중국의 정책·표준·자본 지원: 표준체계(2026-02) [15], Unitree STAR 상장 [18]",
+    "인력난·고령화에 따른 자동화 수요(구조적 요인, 정량 근거는 본 조사에서 확보하지 못함)"
+  ],
+  barriers: [
+    "안전 인증 공백: 이족 보행 로봇 안전 표준 ISO 25785-1은 위원회 초안 단계, 발간일 미확인 [14]",
+    "실사용 검증 부족: 2025년 생산분 중 현장 적용은 약 10%, 대부분 소규모 PoC·보조금 주도 [1]",
+    "배터리·열관리로 가동 시간이 제한됨 [9]",
+    "공급망·규제 리스크: 중국의 희토류 자석 수출통제가 Tesla Optimus에 영향 [28], 미국 FCC가 중국산 신규 휴머노이드 수입을 제한하는 규칙을 발표했다는 보도(2차, 원문 확인 필요) [30]",
+    "높은 가격과 불분명한 투자 회수: 대당 가격이 $5K(소형)에서 $15만 이상(추정)까지 큰 편차 [23]"
+  ],
+  scenarioUnit: "십억 달러",
+  scenarios: [
+    {name: "Bear (보수)", c: "var(--bad)", cagr: "약 22%", points: [{year: 2025, v: 2.0}, {year: 2030, v: 5.5}, {year: 2035, v: 15}],
+     assumptions: ["가격·BOM 하락이 더딤(GS 인용 BOM $5만→$3.3만 수준에 그침)", "실사용 전환율이 10% 안팎에 머물고 시범 도입이 정식 계약으로 이어지지 않음", "ISO 25785-1 등 안전 인증 지연, 수출통제·관세 부담"],
+     trigger: "2026~2027년 생산 대비 실배치 비율이 오르지 않고, 기업의 생산 목표(AgiBot 1만 대, UBTech 5천 대 등) 달성률이 낮음"},
+    {name: "Base (기준)", c: "var(--us)", cagr: "약 35%", points: [{year: 2025, v: 2.0}, {year: 2030, v: 9}, {year: 2035, v: 40}],
+     assumptions: ["가격이 꾸준히 하락해 2032년경 제조·물류에서 경제성 확보(Interact 변곡점 전망)", "자동차·물류 현장 중심으로 정식 도입 확대", "표준·인증이 2027~2028년 정비"],
+     trigger: "시범 도입 고객의 재주문 증가, 상장사 공시상 평균판매단가 하락과 매출 증가"},
+    {name: "Bull (낙관)", c: "var(--good)", cagr: "약 53%", points: [{year: 2025, v: 2.0}, {year: 2030, v: 16.6}, {year: 2035, v: 138}],
+     assumptions: ["범용 AI 모델 돌파구로 실사용 업무 범위가 급확대", "BOM이 BofA 전망($1.7만 미만)대로 급락", "서비스·가정용으로 수요가 확장되어 연 출하 수백만 대(GS 2026 보도 648만 대는 미검증)"],
+     trigger: "Tesla·Figure의 실제 대량 출하 확인, 기관 전망의 추가 상향이 이어짐(2026년 들어 GS·MS·IDC가 단기간 연속 상향)"}
+  ],
+  scenarioInsight: "<b>해석:</b> 세 시나리오를 가르는 가장 큰 변수는 가격 하락 속도입니다. 2030년까지는 격차가 3배(5.5 vs 16.6)지만 2035년에는 9배로 벌어집니다. 시나리오 수치는 조사자 추정이며 출처 기관의 예측이 아닙니다.",
+  players: [
+    {name: "Tesla (Optimus)", country: "미국", c: "us", product: "Optimus (V3 준비 중)", price: "판매가 없음. 장기 원가 목표 약 $2만(기업 목표)", status: "개발·양산 준비. 외부 출하 확인 안 됨. 2025년 약 1만 대 목표는 미달 [17]", funding: "Tesla 내부 사업. 머스크는 초기 생산이 '매우 느릴 것'이라 발언 [17]", x: 30, y: 15, ref: "[17]"},
+    {name: "Figure AI", country: "미국", c: "us", product: "Figure 03, 자체 AI 'Helix'", price: "미공개", status: "시범·초기 상용(BMW 파일럿). 350대+ 인도는 단일 2차 출처라 미검증", funding: "Series C $1B+, post-money $39B(2025-09) [24]. 매출 확인 불가", x: 75, y: 30, ref: "[24]"},
+    {name: "Boston Dynamics", country: "미국(현대차 계열)", c: "us", product: "양산형 Atlas", price: "미공개", status: "2026-01 양산형 공개, 2026년 물량 전량 배정. 출하 대수 미공개. 연 3만 대 생산능력은 기업 목표 [16]", funding: "현대차그룹 미국 투자 $26B(로봇 공장 포함, 분리 불가) [16]", x: 85, y: 25, ref: "[16]"},
+    {name: "Unitree", country: "중국", c: "cn", product: "G1, R1, H1 등", price: "R1 $4.9~5.9K, G1 $13.5K~, H1 약 $9만 [23]", status: "양산·판매. 2025년 휴머노이드 5,511대 출하 [18][19]. 2026 H1 약 5,900대(제3자 추정) [20]", funding: "2026-08 STAR 상장. 2025 매출 RMB 16.99억 [18]. 공모 조달액은 출처별로 RMB 42~61억", x: 15, y: 80, ref: "[18]"},
+    {name: "AgiBot (智元)", country: "중국", c: "cn", product: "X2 등", price: "X2 $24,240 [23]", status: "양산·판매. 2025년 5,168대(Omdia) [11], 2026 H1 약 8,400~9,700대(기관별 상이) [2][20][31]", funding: "홍콩 IPO 추진. 목표 밸류 약 $6.4B는 단일 출처, 미검증. 2025 매출 RMB 10억+(회장 발언) [20]", x: 35, y: 80, ref: "[20]"}
+  ],
+  mapInsight: "<b>해석:</b> 저가·고출하의 중국형(왼쪽 위)과 고가·AI 중심의 미국형(오른쪽 아래)으로 갈립니다. 맵 위치는 조사자 추정입니다. 가격이 공개된 곳은 Unitree와 AgiBot뿐이며, 나머지는 제품 포지션으로 가정했습니다.",
+  compNotes: [
+    {h: "5개사 선정 이유", items: [
+      "Tesla: 영향력은 최대이나 양산 목표와 실제 출하의 괴리가 가장 커서 비교 기준점으로 적합 [17]",
+      "Figure AI: 민간 최고 밸류에이션($39B)과 자체 AI·자체 생산시설을 가진 미국 대표 [24]",
+      "Boston Dynamics: 현대차그룹 계열로 한국 연결고리가 있고, 양산형 Atlas와 DeepMind 제휴를 공개 [16]",
+      "Unitree: 2025년 출하 1위권, 상장으로 공시 자료가 가장 풍부 [18][19]",
+      "AgiBot: 2026년 상반기 출하 1위권(기관별 추정), 홍콩 IPO 추진 [2][20]"]},
+    {h: "그 외 주목 기업 (조사 대상 5곳에는 미포함)", items: [
+      "Agility Robotics: SPAC 합병(pre-money $25억, 티커 AGLT) 추진. Schaeffler·GXO 등 상용 고객, 9개 사업장 [21]. 상용 검증을 중시하면 Figure와 교체 후보",
+      "UBTech: 홍콩 상장. 2026 상반기 풀사이즈 휴머노이드 921대 판매, 순손실 RMB 3.39억 [22]"]},
+    {h: "국가별 구도", items: [
+      "중국: 출하의 90% 이상. 가격 경쟁력과 정부·지자체 지원이 강점, 미국 FCC 규제가 변수 [1][30]",
+      "미국: 자본과 AI 모델 중심. 출하량은 중국에 크게 못 미치나 밸류에이션은 최고 수준",
+      "한국: 현대차그룹(Boston Dynamics 모회사, 현대모비스가 액추에이터 공급) [16]. 삼성은 레인보우로보틱스 최대주주이나 휴머노이드 상용화 시점은 확정 공시 없음(2차 자료). 한국 시장 규모는 2025년 약 $113M→2030년 $584M(MnM, CAGR 39%) [4]",
+      "일본·유럽: 완제품보다 핵심 부품(Harmonic Drive 감속기, SKF 롤러 스크류)에 강점. 완제품 출하 데이터는 확인하지 못함"]}
+  ],
+  valueChain: [
+    {layer: "핵심 부품 (감속기·롤러 스크류)", who: "Harmonic Drive(일본), Leader Harmonious(중국), SKF(스웨덴)", note: "공급이 제약되는 병목. 액추에이터가 BOM의 50% 초과라는 업계 추정 [25]"},
+    {layer: "액추에이터·모터", who: "Hyundai Mobis, Unitree 자체 개발", note: "완제품 기업의 수직통합 경향 [16][19]"},
+    {layer: "AI 칩·소프트웨어", who: "Nvidia, Google DeepMind (미국)", note: "미국 집중. 이익 풀이 가장 클 것으로 보이나 정량 검증은 못함 [16]"},
+    {layer: "완제품", who: "중국(출하), 미국(자본·AI)", note: "Unitree 매출총이익률은 높지만 UBTech은 영업 적자 [18][22]"}
+  ],
+  chainInsight: "<b>해석:</b> 로봇 한 대가 팔릴 때 돈이 모이는 곳은 AI와 병목 부품입니다(조사자 판단, 정량 검증 안 됨). 완제품 마진은 업체별 편차가 큽니다. 중국 공급망 기준 BOM은 비중국 부품 대비 크게 낮다는 Morgan Stanley 추정이 있으나 원문은 확인하지 못했습니다.",
+  signals: [
+    "생산 대비 실배치 비율(2025년 약 10% [1])이 상승하는가: 시범에서 정식 계약으로의 전환 신호",
+    "대당 가격과 BOM: 상장사(Unitree 등) 공시의 평균판매단가 추이와 BofA의 $1.7만 전망 대비 [12][18]",
+    "ISO 25785-1이 초안(CD)에서 DIS, FDIS로 진행되는지, 중국 표준 100여 개 정비 속도 [14][15]",
+    "2026년 연간 출하 실적이 각 기관 전망(Counterpoint 5만 대+, BofA 9만 대 등)에 근접하는지 [2][12]",
+    "Tesla의 Fremont 양산 착수 여부와 실제 외부 출하(2026년 7~8월 목표, 10월 현재 확인 불가) [17]",
+    "Goldman Sachs 등 기관 전망의 다음 개정 방향(추가 상향 또는 하향) [6][32]"
+  ],
+  terms: [
+    {t: "CAGR (연평균 성장률)", d: "여러 해 동안 매년 평균 몇 %씩 성장하는지 보여 주는 값."},
+    {t: "TAM (전체 시장 규모)", d: "이 제품이 이론적으로 팔릴 수 있는 시장 전체의 크기."},
+    {t: "BOM (부품 원가)", d: "로봇 한 대를 만드는 데 드는 부품 비용의 합계."},
+    {t: "액추에이터", d: "로봇의 관절을 움직이는 '근육' 역할의 부품(모터, 감속기 등의 묶음)."},
+    {t: "체화 AI / 피지컬 AI", d: "화면 속이 아니라 현실 세계에서 몸을 가지고 일하는 AI."},
+    {t: "PoC (개념 검증, 시범 도입)", d: "본격 도입 전에 작은 규모로 되는지 시험해 보는 단계."},
+    {t: "SPAC", d: "상장을 목적으로 먼저 만든 '빈 껍데기 회사'와 합병해 상장하는 방식."},
+    {t: "출하 vs 생산 vs 판매", d: "공장에서 만든 대수(생산), 공장을 떠난 대수(출하), 고객이 산 대수(판매)가 서로 다르다. 기관마다 쓰는 기준이 달라 수치가 갈린다."}
+  ],
+  sources: [
+    {n: 1, tier: "B", name: "Interact Analysis — Humanoid robot production surges", url: "https://interactanalysis.com/insight/humanoid-robot-production-surges/", date: "원문 확인"},
+    {n: 2, tier: "B", name: "Counterpoint Research — Global humanoid robot shipments H1 2026", url: "https://counterpointresearch.com/en/insights/global-humanoid-robot-shipments-soar-nearly-300-percent-yoy-in-h1-2026", date: "원문 확인"},
+    {n: 3, tier: "B", name: "Fortune Business Insights — Humanoid Robots Market", url: "https://www.fortunebusinessinsights.com/humanoid-robots-market-110188", date: "원문 확인"},
+    {n: 4, tier: "B", name: "MarketsandMarkets — Humanoid Robot Market (2026.7판)", url: "https://www.marketsandmarkets.com/Market-Reports/humanoid-robot-market-99567653.html", date: "원문 확인"},
+    {n: 5, tier: "B", name: "MarketsandMarkets — Humanoid Robot Market (2025.4판, PR Newswire)", url: "https://www.prnewswire.com/news-releases/humanoid-robot-market-worth-15-26-billion-in-2030---exclusive-report-by-marketsandmarkets-302434062.html", date: "검색 요약"},
+    {n: 6, tier: "A", name: "Goldman Sachs Research — The global market for robots could reach $38 billion by 2035", url: "https://goldmansachs.com/insights/articles/the-global-market-for-robots-could-reach-38-billion-by-2035", date: "검색 요약(원문 403)"},
+    {n: 7, tier: "A", name: "Morgan Stanley — Humanoid robot market $5 trillion by 2050", url: "https://www.morganstanley.com/insights/articles/humanoid-robot-market-5-trillion-by-2050", date: "검색 요약·2차 인용"},
+    {n: 8, tier: "B", name: "Roland Berger — Humanoid Robots 2026", url: "https://content.rolandberger.com/hubfs/07_presse/Roland_Berger_Humanoid_Robots_2026.pdf", date: "검색 요약"},
+    {n: 9, tier: "B", name: "IDTechEx — Humanoid Robots 2026-2036", url: "https://idtechex.com/en/research-report/humanoid-robots/1149", date: "검색 요약"},
+    {n: 10, tier: "B", name: "BCC Research — Humanoid robot market to grow at 42.8% CAGR", url: "https://www.bccresearch.com/pressroom/ias/humanoid-robot-market-to-grow-at-428-cagr", date: "검색 요약"},
+    {n: 11, tier: "C", name: "Rest of World — China humanoid robots: Unitree, AgiBot, Tesla Optimus", url: "https://restofworld.org/2026/china-humanoid-robots-unitree-agibot-tesla-optimus/", date: "원문 확인"},
+    {n: 12, tier: "C", name: "Fortune — Bank of America humanoid robot forecast (2026-03-13)", url: "https://fortune.com/2026/03/13/bank-of-america-humanoid-robot-forecast-3-billion-2060", date: "2차 인용(BOM·출하 수치는 타 매체 인용)"},
+    {n: 13, tier: "S", name: "IFR — Humanoid Robots: Vision and Reality (paper)", url: "https://ifr.org/ifr-press-releases/news/humanoid-robots-vision-and-reality-paper-published-by-ifr", date: "원문 확인(페이지 자체에 수치 없음, 7천 대는 2차 인용)"},
+    {n: 14, tier: "S", name: "ISO 25785-1 — 동적 안정 다리·바퀴 로봇 안전", url: "https://www.iso.org/standard/91469.html", date: "검색 요약"},
+    {n: 15, tier: "B", name: "SESEC — China's first standards system for humanoid robots and embodied intelligence", url: "https://sesec.eu/chinas-first-standards-system-for-humanoid-robots-and-embodied-intelligence/", date: "검색 요약"},
+    {n: 16, tier: "A", name: "Boston Dynamics — New Atlas unveiled (2026-01-05)", url: "https://bostondynamics.com/blog/boston-dynamics-unveils-new-atlas-robot-to-revolutionize-industry/", date: "원문 확인"},
+    {n: 17, tier: "C", name: "Electrek — Tesla Optimus production (2026-04-22, Q1 실적콜 보도)", url: "https://electrek.co/2026/04/22/tesla-optimus-production/", date: "원문 확인"},
+    {n: 18, tier: "C", name: "Gasgoo — Unitree STAR Market IPO", url: "https://autonews.gasgoo.com/articles/news/unitree-launches-star-market-ipo-issuance-process-subscriptions-open-august-10-2083181368883253248", date: "원문 일부 확인"},
+    {n: 19, tier: "C", name: "KrASIA — Unitree targets IPO after revenue quadruples", url: "https://amp.kr-asia.com/unitree-targets-ipo-after-revenue-quadruples-on-robotics-demand", date: "검색 요약"},
+    {n: 20, tier: "B", name: "humanoid.guide — AgiBot overtakes Unitree in humanoid shipments (SAG 추정 인용)", url: "https://humanoid.guide/agibot-overtakes-unitree-in-humanoid-shipments-before-ipos/", date: "원문 확인(제3자 추정)"},
+    {n: 21, tier: "A", name: "Churchill Capital XI 8-K 보도자료(SEC) — Agility Robotics SPAC 합병", url: "https://www.sec.gov/Archives/edgar/data/0002074973/000121390026071287/ea029548401ex99-1.htm", date: "원문 확인"},
+    {n: 22, tier: "C", name: "KrASIA — UBTech 2026 상반기 실적", url: "https://kr-asia.com/ubtechs-full-size-humanoid-robot-revenue-jumps-1445-in-h1-2026", date: "원문 확인"},
+    {n: 23, tier: "C", name: "RobotSourced — Humanoid robot pricing", url: "https://robotsourced.com/pricing/humanoid-robots/", date: "원문 확인(정가·추정 혼재)"},
+    {n: 24, tier: "C", name: "TechBuzz — Figure AI raises $1B Series C at $39B valuation", url: "https://www.techbuzz.ai/articles/figure-ai-raises-1b-series-c-at-39b-valuation", date: "검색 요약"},
+    {n: 25, tier: "C", name: "Nimotion — Humanoid robot BOM cost breakdown 2026 (모터 제조사 자료)", url: "https://www.nimotion.com/news/detail/humanoid-robot-bom-cost-breakdown-2026", date: "원문 확인(이해관계 있음)"},
+    {n: 26, tier: "C", name: "SCMP — Morgan Stanley raises China humanoid shipment forecast", url: "https://www.scmp.com/tech/article/3358210/morgan-stanley-raises-china-humanoid-robot-shipment-forecast-50000-units", date: "검색 요약"},
+    {n: 27, tier: "B", name: "Yano Research — 2025 글로벌 휴머노이드 출하 16,580대", url: "https://www.yanoresearch.com/press/press.php/4111", date: "검색 요약"},
+    {n: 28, tier: "B", name: "Adamas Intelligence — Musk on rare earth export restrictions", url: "https://www.adamasintel.com/musk-on-rare-earth-export-restrictions-optimus-was-affected/", date: "검색 요약"},
+    {n: 29, tier: "A", name: "UBTech 보도자료(PR Newswire) — Walker S2 양산·인도, 수주 8억 위안 초과", url: "https://www.prnewswire.com/news-releases/ubtech-humanoid-robot-walker-s2-begins-mass-production-and-delivery-with-orders-exceeding-800-million-yuan-302616924.html", date: "기업 홍보 수치, 검색 요약"},
+    {n: 30, tier: "C", name: "SCMP — AgiBot overtakes Unitree (FCC 규칙 보도 포함)", url: "https://www.scmp.com/tech/tech-trends/article/3363544/agibot-overtakes-unitree-top-global-humanoid-robot-vendor-first-half-amid-ipo-push", date: "검색 요약(FCC 규칙은 2차 보도)"},
+    {n: 31, tier: "C", name: "Robotics & Automation News — IDC: AgiBot led H1 2026 shipments", url: "https://roboticsandautomationnews.com/2026/10/02/idc-data-shows-agibot-led-global-humanoid-robot-shipments-in-h1-2026/105463/", date: "2차 인용(IDC 원문 미확인)"},
+    {n: 32, tier: "C", name: "Origin of Bots — Goldman Sachs raises humanoid forecast (2026-08-31 보도)", url: "https://www.originofbots.com/news/goldman-sachs-supercharges-global-humanoid-robot-forecast-nearly-5x-to-65-million-annual-units-by-2035", date: "2차 보도, GS 원문 미확인"}
+  ],
+  limits: [
+    "원문을 직접 열어 확인한 출처는 약 12곳이고, 나머지는 검색 요약·보도자료·2차 인용입니다. 출처 표의 '검증 수준' 열을 참고하세요. 특히 Goldman Sachs 2026 상향(1,380억 달러), BofA 출하·BOM, IDC·Omdia·TrendForce, Morgan Stanley의 원문은 확인하지 못했습니다.",
+    "2025년 출하는 기관별로 7천 대(IFR, 산업·전문서비스용만)에서 2만 대 이상(Interact, 생산 기준)까지 퍼져 있습니다. 정의가 달라 단일 값으로 확정하지 않았습니다.",
+    "용도별·구성별 달러 규모와 CAGR, 한국·일본·유럽의 출하 비중, 핵심 부품 단독 비중은 공개 자료에서 찾지 못해 '미공개'로 두었습니다. 세분화 3개 축은 기준(출하 대수 vs 시장 금액)이 서로 다릅니다.",
+    "시나리오 수치(Bear/Base/Bull)는 기관 전망을 앵커로 삼은 조사자 추정이며, 2030년 값은 일정 성장 가정의 보간입니다. Bull의 $138B는 2차 보도에 의존합니다.",
+    "포지셔닝 맵 점수와 가치사슬 부가가치 판단은 조사자 추정입니다. Tesla의 7~10월 실제 진행 상황, Figure의 2026년 라운드, Unitree 상장 후 시가총액은 확인하지 못했습니다.",
+    "기업이 밝힌 생산 목표·수주액(AgiBot 1만 대, UBTech 5천 대·수주 8억 위안, Tesla 등)은 '기업 목표·홍보 수치'이며 실제 출하와 구분해 읽어야 합니다."
+  ]
+};
+
+/* ============ 렌더러 (수정 불필요) ============ */
+const $=s=>document.querySelector(s), NS="http://www.w3.org/2000/svg";
+const COL={us:"var(--us)",cn:"var(--cn)",kr:"var(--kr)",jp:"var(--jp)",eu:"var(--eu)",etc:"var(--etc)"};
+const el=(t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+const txt=(p,x,y,s,a={})=>{const e=el("text",{x,y,"font-size":12,...a},p);e.textContent=s;return e};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const li=(id,arr)=>$(id).innerHTML=arr.map(x=>`<li>${x}</li>`).join("");
+
+document.querySelectorAll("[data-bind]").forEach(n=>{const v=DATA[n.dataset.bind];n.innerHTML=v;});
+$("#kpis").innerHTML=DATA.kpis.map(k=>`<div class="glass card kpi"><div class="num">${k.num}</div><div class="lab">${k.lab}</div><div class="src">${k.src}</div></div>`).join("");
+$("#takeaways").innerHTML=DATA.takeaways.map(t=>`<div class="glass card"><h3>${t.t}</h3><p>${t.d}</p></div>`).join("");
+li("#whyNow",DATA.whyNow); li("#drivers",DATA.drivers); li("#barriers",DATA.barriers); li("#signals",DATA.signals); li("#limits",DATA.limits);
+$("#usecases").innerHTML=DATA.usecases.map(u=>`<div><h3>${u.t}</h3><p>${u.d}</p></div>`).join("");
+$("#termList").innerHTML=DATA.terms.map(t=>`<dt>${t.t}</dt><dd>${t.d}</dd>`).join("");
+$("#sourceList").innerHTML=DATA.sources.map(s=>`<li id="s${s.n}"><span class="tier">${s.tier}</span>${esc(s.name)} · ${s.date} · <a href="${s.url}" target="_blank" rel="noopener noreferrer">${esc(s.url)}</a></li>`).join("");
+
+/* 1) 시장 규모: 막대 + 전망은 반투명 */
+(function(){
+  const svg=$("#chartSize"),d=DATA.marketSize,W=520,H=300,L=44,B=34,T=20,R=10;
+  const max=Math.max(...d.map(x=>x.v))*1.15, bw=(W-L-R)/d.length;
+  for(let i=0;i<=4;i++){const y=T+(H-T-B)*i/4;el("line",{x1:L,x2:W-R,y1:y,y2:y,class:"grid-l"},svg);txt(svg,L-6,y+4,(max*(1-i/4)).toFixed(1),{"text-anchor":"end","font-size":11})}
+  txt(svg,L,12,"단위: "+DATA.sizeUnit,{"font-size":11});
+  d.forEach((x,i)=>{const h=(H-T-B)*x.v/max,bx=L+i*bw+bw*.18,y=H-B-h;
+    el("rect",{x:bx,y,width:bw*.64,height:h,rx:6,fill:x.actual?"var(--primary)":"var(--tertiary-c)",stroke:x.actual?"none":"var(--tertiary)","stroke-dasharray":x.actual?"":"4 3"},svg);
+    txt(svg,bx+bw*.32,y-6,x.v,{"text-anchor":"middle","font-weight":700});
+    txt(svg,bx+bw*.32,H-B+18,x.year+(x.actual?"":"E"),{"text-anchor":"middle"})});
+  txt(svg,W-R,H-2,"E = 전망(예측)",{"text-anchor":"end","font-size":11});
+})();
+
+/* 2) 국가별 비중 도넛 */
+(function(){
+  const svg=$("#chartShare"),cx=170,cy=150,r=105,ir=62,tot=DATA.share.reduce((a,b)=>a+b.v,0);let a0=-Math.PI/2;
+  DATA.share.forEach(s=>{const a1=a0+2*Math.PI*s.v/tot,lg=a1-a0>Math.PI?1:0,P=(a,R)=>[cx+R*Math.cos(a),cy+R*Math.sin(a)];
+    const [x1,y1]=P(a0,r),[x2,y2]=P(a1,r),[x3,y3]=P(a1,ir),[x4,y4]=P(a0,ir);
+    el("path",{d:`M${x1} ${y1}A${r} ${r} 0 ${lg} 1 ${x2} ${y2}L${x3} ${y3}A${ir} ${ir} 0 ${lg} 0 ${x4} ${y4}Z`,fill:COL[s.c],stroke:"var(--surface)","stroke-width":2},svg);
+    if(s.v/tot>.06){const m=(a0+a1)/2,[tx,ty]=P(m,(r+ir)/2);txt(svg,tx,ty+4,Math.round(s.v/tot*100)+"%",{"text-anchor":"middle","font-weight":700,fill:"#fff"})}
+    a0=a1});
+  txt(svg,cx,cy-2,"출하 비중",{"text-anchor":"middle","font-size":14,"font-weight":700});
+  txt(svg,cx,cy+16,"(대수 기준)",{"text-anchor":"middle","font-size":11});
+  $("#shareLegend").innerHTML=DATA.share.map(s=>`<span><i style="background:${COL[s.c]}"></i>${s.k} ${s.v}%</span>`).join("");
+  DATA.share.forEach((s,i)=>{const y=60+i*30;el("rect",{x:330,y:y-11,width:12,height:12,rx:3,fill:COL[s.c]},svg);txt(svg,350,y,`${s.k}  ${s.v}%`,{"font-size":14})});
+})();
+
+/* 3) 기관별 전망: 범위 막대(가로) */
+(function(){
+  const svg=$("#chartForecast"),d=DATA.forecasts,W=760,L=210,R=40,T=30,rowH=Math.min(60,(320-T-20)/d.length);
+  svg.setAttribute("viewBox",`0 0 ${W} ${T+rowH*d.length+30}`);
+  const max=Math.max(...d.map(x=>x.high))*1.15,sx=v=>L+(W-L-R)*v/max;
+  for(let i=0;i<=4;i++){const x=L+(W-L-R)*i/4;el("line",{x1:x,x2:x,y1:T-6,y2:T+rowH*d.length,class:"grid-l"},svg);txt(svg,x,T+rowH*d.length+16,(max*i/4).toFixed(0),{"text-anchor":"middle","font-size":11})}
+  txt(svg,W-R,T+rowH*d.length+30,"단위: "+DATA.forecastUnit,{"text-anchor":"end","font-size":11});
+  d.forEach((x,i)=>{const y=T+i*rowH+rowH*.2,h=rowH*.5;
+    txt(svg,L-12,y+h/2-2,x.org,{"text-anchor":"end","font-size":13,"font-weight":700});
+    txt(svg,L-12,y+h/2+13,x.year+"년 전망",{"text-anchor":"end","font-size":11,fill:"var(--on-surface-var)"});
+    const w=Math.max(8,sx(x.high)-sx(x.low));
+    el("rect",{x:sx(x.low),y,width:w,height:h,rx:h/2,fill:"var(--tertiary-c)",stroke:"var(--tertiary)"},svg);
+    txt(svg,sx(x.high)+8,y+h/2+4,x.low===x.high?x.low:`${x.low}–${x.high}`,{"font-weight":700})});
+  $("#forecastTable").innerHTML=`<tr><th>기관</th><th>목표연도</th><th>CAGR</th><th>시장 정의/범위</th><th>등급</th></tr>`+
+    d.map(x=>`<tr><td><b>${x.org}</b></td><td>${x.year}</td><td>${x.cagr}</td><td>${x.scope}</td><td>${x.tier}</td></tr>`).join("");
+})();
+
+/* 세분화: 가로 막대 카드 */
+$("#segCards").innerHTML=DATA.segments.map(g=>{const mx=Math.max(...g.items.map(i=>i.share));
+  return `<div class="glass card"><h3>${g.dim}</h3>`+g.items.map(i=>`<div class="hbar"><span class="k">${i.k}</span><div class="track"><div class="fill" style="width:${i.share/mx*100}%"></div></div><span class="meta">비중 ${i.share}% · 규모 ${i.size} · CAGR ${i.cagr}</span></div>`).join("")+`</div>`}).join("");
+
+/* 시나리오: 선 그래프 + 카드 */
+(function(){
+  const svg=$("#chartScenario"),S=DATA.scenarios,W=760,H=340,L=50,R=110,T=24,B=34;
+  const yrs=[...new Set(S.flatMap(s=>s.points.map(p=>p.year)))].sort(),max=Math.max(...S.flatMap(s=>s.points.map(p=>p.v)))*1.1;
+  const sx=y=>L+(W-L-R)*(y-yrs[0])/(yrs[yrs.length-1]-yrs[0]),sy=v=>H-B-(H-T-B)*v/max;
+  for(let i=0;i<=4;i++){const y=T+(H-T-B)*i/4;el("line",{x1:L,x2:W-R,y1:y,y2:y,class:"grid-l"},svg);txt(svg,L-6,y+4,(max*(1-i/4)).toFixed(0),{"text-anchor":"end","font-size":11})}
+  txt(svg,L,14,"단위: "+DATA.scenarioUnit,{"font-size":11});
+  yrs.forEach(y=>txt(svg,sx(y),H-B+18,y+(y>2025?"E":""),{"text-anchor":"middle"}));
+  S.forEach(s=>{el("polyline",{points:s.points.map(p=>sx(p.year)+","+sy(p.v)).join(" "),fill:"none",stroke:s.c,"stroke-width":3,"stroke-linejoin":"round","stroke-dasharray":s.name.startsWith("Base")?"":"7 4"},svg);
+    s.points.forEach(p=>el("circle",{cx:sx(p.year),cy:sy(p.v),r:4,fill:s.c},svg));
+    const e=s.points[s.points.length-1];txt(svg,sx(e.year)+10,sy(e.v)+4,s.name.split(" ")[0]+" "+e.v,{"font-weight":700,fill:s.c})});
+  $("#scenarioLegend").innerHTML=S.map(s=>`<span><i style="background:${s.c}"></i>${s.name}</span>`).join("")+"<span>실선=Base, 점선=Bear·Bull</span>";
+  $("#scenarioCards").innerHTML=S.map(s=>{const e=s.points[s.points.length-1];return `<div class="glass card scn" style="--c:${s.c}"><h3>${s.name}</h3><div class="big">${e.v} <small style="font-size:13px;font-weight:400">${DATA.scenarioUnit} (${e.year}E)</small></div><div style="font-size:13px;color:var(--text-mute)">CAGR ${s.cagr}</div><h4>핵심 가정</h4><ul class="clean up">${s.assumptions.map(a=>`<li>${a}</li>`).join("")}</ul><h4>이 시나리오로 가는 신호</h4><p style="font-size:14px;margin:0">${s.trigger}</p></div>`}).join("");
+})();
+
+$("#compNotes").innerHTML=DATA.compNotes.map(n=>`<div class="glass card"><h3>${n.h}</h3><ul class="clean up">${n.items.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("");
+
+/* 4) 기업 표 + 포지셔닝 맵 + 가치사슬 */
+(function(){
+  $("#playerTable").innerHTML=`<tr><th>기업</th><th>국가</th><th>주력 제품</th><th>가격</th><th>상태</th><th>투자/규모</th></tr>`+
+    DATA.players.map(p=>`<tr><td><b>${p.name}</b> <sup><a href="#s${(p.ref||"").replace(/\D/g,"")}">${p.ref||""}</a></sup></td><td><span class="dot" style="background:${COL[p.c]}"></span>${p.country}</td><td>${p.product}</td><td>${p.price}</td><td>${p.status}</td><td>${p.funding}</td></tr>`).join("");
+  const svg=$("#chartMap"),W=520,H=380,L=36,B=36,T=14,R=14;
+  el("rect",{x:L,y:T,width:W-L-R,height:H-T-B,rx:10,fill:"var(--surface-var)"},svg);
+  el("line",{x1:L+(W-L-R)/2,x2:L+(W-L-R)/2,y1:T,y2:H-B,class:"grid-l"},svg);el("line",{x1:L,x2:W-R,y1:T+(H-T-B)/2,y2:T+(H-T-B)/2,class:"grid-l"},svg);
+  txt(svg,W/2,H-8,"저렴 ← 대당 가격 → 비쌈",{"text-anchor":"middle","font-size":12});
+  const yl=txt(svg,12,H/2,"성숙도 ↑",{"text-anchor":"middle","font-size":12});yl.setAttribute("transform",`rotate(-90 12 ${H/2})`);
+  DATA.players.forEach(p=>{const x=L+(W-L-R)*p.x/100,y=H-B-(H-T-B)*p.y/100;
+    el("circle",{cx:x,cy:y,r:9,fill:COL[p.c],stroke:"var(--surface)","stroke-width":2},svg);
+    txt(svg,x,y-14,p.name.replace("[예시] ",""),{"text-anchor":"middle","font-size":11,"font-weight":700})});
+  const seen={};DATA.players.forEach(p=>seen[p.c]=p.country);
+  $("#mapLegend").innerHTML=Object.keys(seen).map(c=>`<span><i style="background:${COL[c]}"></i>${seen[c]}</span>`).join("");
+  $("#valueChain").innerHTML=`<tr><th>단계</th><th>주요 플레이어</th><th>설명</th></tr>`+DATA.valueChain.map(v=>`<tr><td><b>${v.layer}</b></td><td>${v.who}</td><td>${v.note}</td></tr>`).join("");
+})();
+
+/* [n] 표기를 출처 목록으로 연결 */
+(function(){
+  const root=document.querySelector(".wrap"),tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),list=[];
+  while(tw.nextNode()){const n=tw.currentNode;if(/\[\d+\]/.test(n.nodeValue)&&!n.parentElement.closest("svg,a,#sourceList,script,style"))list.push(n)}
+  list.forEach(n=>{const f=document.createDocumentFragment();let last=0;n.nodeValue.replace(/\[(\d+)\]/g,(m,d,idx)=>{
+    f.appendChild(document.createTextNode(n.nodeValue.slice(last,idx)));last=idx+m.length;
+    if(document.getElementById("s"+d)){const sup=document.createElement("sup"),a=document.createElement("a");a.href="#s"+d;a.textContent=m;sup.appendChild(a);f.appendChild(sup)}else f.appendChild(document.createTextNode(m));return m});
+    f.appendChild(document.createTextNode(n.nodeValue.slice(last)));n.parentNode.replaceChild(f,n)});
+})();
+</script>
+</body>
+</html>
