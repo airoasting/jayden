@@ -160,8 +160,10 @@
   .group-head { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; margin: 22px 0 -6px; }
   .group-head h2 {
     margin: 0; font-size: 21px; letter-spacing: -0.02em; background: var(--paper-1); color: var(--ink);
-    padding: 6px 16px 7px 14px; border-left: 7px solid var(--dot); box-shadow: var(--shadow); transform: rotate(-1.2deg);
+    padding: 6px 16px 7px; box-shadow: var(--shadow); transform: rotate(-1.2deg);
+    display: inline-flex; align-items: center; gap: 10px;
   }
+  .group-head h2::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--dot); flex: none; }
   .group-head .count { font-family: "Nanum Pen Script", cursive; font-size: 27px; line-height: 1; color: var(--accent); }
   .group-head p { margin: 0; font-size: 15px; color: var(--ink-soft); }
   .group-head[hidden] { display: none; }
@@ -309,6 +311,13 @@ const SKILLS = [
     sum: "솔루션 이름 하나로 개요, 기능과 제공 방식, FDE용 플레이북, 고객 적용 사례 도식, 객관식 퀴즈까지 담은 인터랙티브 HTML을 만듭니다.",
     tags: ["6인 역할(블랙·레드·블루·실버·골드·화이트)", "9.5점 이상까지 반복", "예시: Palantir AIP"],
     html: "솔루션 딥리서치 및 적용 사례/palantir-aip.html", md: "솔루션 딥리서치 및 적용 사례/SKILL - 복사본.md"
+  },
+  {
+    name: "김혜승", group: "deep",
+    title: "개념 리서치 브리프", slug: "concept-research",
+    sum: "낯선 기술·산업 용어를 1차 출처로 확인해, 처음 보는 대학생도 10분 안에 설명할 수 있는 단일 HTML 리포트로 만듭니다. 비유, 인터랙티브 도식, 용어집, 꼬리질문 Q&A와 팀장 논의용 So-what을 함께 담습니다.",
+    tags: ["독자 2명(대학생·8년차 팀장)", "10항목 채점, 9점 미만 재작성", "출처 없는 수치 금지"],
+    html: "concept-research-2/concept-research-2.html", htmlLabel: "Skill 소개 HTML", md: "concept-research-2/concept-research-2.md"
   }
 ];
 
