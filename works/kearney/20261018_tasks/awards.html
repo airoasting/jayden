@@ -8,6 +8,7 @@
   사용법
   - → 키: 3등 → 2등 → 1등 → 전체 결과 순으로 공개. 공개마다 스포트라이트가 카드 위를 돌다 수상 조에 멈추고 폭죽이 터진다.
   - 클릭은 시상을 넘기지 않는다. 카드의 "결과물 보기"를 누르면 그 조의 페이지가 새 탭으로 열린다.
+  - Esc: 떠 있는 공개 카드 닫기(폭죽 없이 메달만 붙는다). 1등 뒤에 누르면 보드로 돌아간다.
   - R: 처음부터 다시. F 또는 오른쪽 아래 버튼: 전체 화면. M: 소리 켜고 끄기.
   - 소리: 카드 고를 때 딸깍 소리와 드럼롤, 3등 짧은 빵빠레, 2등 더 크고 긴 빵빠레, 1등 피날레 빵빠레와 폭죽 소리. 파일 없이 브라우저에서 합성한다.
   - 순위 바꾸기: awards.html?first=1&second=8&third=7 (기본값은 아래 RANK)
@@ -756,11 +757,7 @@ canvas#fx{position:fixed;inset:0;z-index:30;pointer-events:none;width:100%;heigh
   async function next() {
     if (busy || step > 3) return;
     busy = true;
-    if (step >= 1) {
-      await closeStage();
-      const prev = ORDER[step - 1];
-      markWon(prev, RANK_OF[prev]);
-    }
+    if (step >= 1) await dismissStage();
     if (step < 3) {
       const n = ORDER[step];
       await roulette(n);
@@ -772,6 +769,20 @@ canvas#fx{position:fixed;inset:0;z-index:30;pointer-events:none;width:100%;heigh
     }
     step++;
     setHint();
+    busy = false;
+  }
+
+  // 떠 있는 공개 카드를 닫고 수상 조에 메달을 붙인다. → 키로 넘어갈 때와 Esc로 닫을 때 함께 쓴다.
+  async function dismissStage() {
+    if ($("stage").hidden) return;
+    await closeStage();
+    const prev = ORDER[step - 1];
+    if (!slots[prev].classList.contains("won")) markWon(prev, RANK_OF[prev]);
+  }
+  async function escape() {
+    if (busy || step < 1) return;
+    busy = true;
+    await dismissStage();
     busy = false;
   }
 
@@ -795,6 +806,7 @@ canvas#fx{position:fixed;inset:0;z-index:30;pointer-events:none;width:100%;heigh
   $("snd").addEventListener("click", toggleSound);
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+    else if (e.key === "Escape") { e.preventDefault(); escape(); }
     else if (e.key === "r" || e.key === "R") reset();
     else if (e.key === "f" || e.key === "F") fs();
     else if (e.key === "m" || e.key === "M") toggleSound();
@@ -806,7 +818,11 @@ canvas#fx{position:fixed;inset:0;z-index:30;pointer-events:none;width:100%;heigh
     else document.documentElement.requestFullscreen?.().catch(() => {});
   }
   $("fs").addEventListener("click", fs);
-  document.addEventListener("fullscreenchange", () => document.body.classList.toggle("is-fs", !!document.fullscreenElement));
+  // 전체 화면에서는 브라우저가 Esc를 먼저 가져가 화면을 빠져나간다. Chrome·Edge는 Esc를 페이지에 넘기도록 잠그고, 길게 누르면 전체 화면이 풀린다.
+  document.addEventListener("fullscreenchange", () => {
+    document.body.classList.toggle("is-fs", !!document.fullscreenElement);
+    if (document.fullscreenElement) navigator.keyboard?.lock?.(["Escape"]).catch(() => {});
+  });
 
   let idleTimer;
   const wake = () => { document.body.classList.remove("idle"); clearTimeout(idleTimer); idleTimer = setTimeout(() => document.body.classList.add("idle"), 3000); };
