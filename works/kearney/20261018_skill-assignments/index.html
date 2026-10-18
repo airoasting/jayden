@@ -109,7 +109,7 @@
     transform: rotate(var(--st, 8deg)); box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
   }
 
-  /* 폴라로이드 사진: 결과 HTML 첫 화면 캡처(_썸네일/번호.jpg, 1280px 폭에서 찍어 640px로 줄임) */
+  /* 폴라로이드 사진: 결과 HTML 첫 화면 캡처(_thumbs/번호.jpg, 1280px 폭에서 찍어 640px로 줄임) */
   .photo {
     margin: 0; background: #fff; padding: 7px 7px 26px; box-shadow: 0 2px 8px rgba(0, 0, 0, .14);
     transform: rotate(var(--pt, -1.5deg)); position: relative;
@@ -237,87 +237,87 @@ const SKILLS = [
     title: "회의록 → 액션아이템 정리", slug: "meeting-action-items",
     sum: "회의록 원문에서 결정사항, 액션아이템(담당자·기한·우선순위), 미결 이슈를 분리해 HTML 결과 페이지로 만듭니다. 원문에 없는 담당자·기한은 '미정'으로 남깁니다.",
     tags: ["역할·입력·절차·도구·검증·출력 6구조", "환각 방지 체크리스트"],
-    html: "박종필_회의록액션아이템/meeting-result-sample.html", md: "박종필_회의록액션아이템/SKILL.md",
-    extra: [["결과 페이지 2", "박종필_회의록액션아이템/meeting-result.html"], ["샘플 회의록", "박종필_회의록액션아이템/sample-minutes.txt"]]
+    html: "meeting-action-items/meeting-result-sample.html", md: "meeting-action-items/SKILL.md",
+    extra: [["결과 페이지 2", "meeting-action-items/meeting-result.html"], ["샘플 회의록", "meeting-action-items/sample-minutes.txt"]]
   },
   {
     name: "신현재", group: "auto",
     title: "슬랙 대화 → JIRA 티켓 본문", slug: "jira-ticket",
     sum: "기획자의 메모·슬랙 대화를 MX MAP 개발자용 JIRA 티켓으로 옮깁니다. 오류 수정, 검토 요청, 기능 개선, 신규 기능으로 분류하고 '메뉴 > 탭 > 이슈' 30자 제목과 배경·요청·검증 항목을 씁니다.",
     tags: ["이슈 유형 4분류", "지어내지 않기 원칙", "3줄 입력 → 20줄 본문"],
-    html: "신현재_JIRA티켓/JIRA 티켓 샘플.html", md: "신현재_JIRA티켓/SKILL.md"
+    html: "jira-ticket/jira-ticket-sample.html", md: "jira-ticket/SKILL.md"
   },
   {
     name: "김지은", group: "case",
     title: "국내외 사례조사", slug: "case-research",
     sum: "주제 하나에 대해 국내 사례 5개, 해외 사례 5개를 조사합니다. Black이 사실 후보를 모으고, Red가 URL을 다시 열어 통과·보류·탈락을 판정하고, Blue가 트렌드와 시사점을 뽑습니다.",
     tags: ["Black → Red → Blue", "국내 5 + 해외 5", "예시: 공항 AX"],
-    html: "김지은_국내외사례조사/공항AX_국내외_사례조사.html", md: "김지은_국내외사례조사/SKILL.md"
+    html: "case-research/airport-ax-case-research.html", md: "case-research/SKILL.md"
   },
   {
     name: "안주영", group: "case",
     title: "주제별 벤치마크 사례 조사·비교", slug: "benchmark-case-compiler",
     sum: "둘 이상의 대상을 같은 축으로 비교하는 매트릭스 HTML 한 장을 만듭니다. 최근 24개월 이내 공신력 있는 자료만 쓰고, 채울 수 없는 칸은 '미확인'으로 둡니다.",
     tags: ["5 페르소나(알렉스·힘찬·르네·마벨·쫄랑)", "6개 영역 9.5점 이상", "셀별 출처 링크"],
-    html: "안주영_벤치마크비교/examples/benchmark-genai-enterprise-adoption-2026-10-17.html", md: "안주영_벤치마크비교/SKILL.md",
-    extra: [["README", "안주영_벤치마크비교/README.md"], ["HTML 템플릿", "안주영_벤치마크비교/assets/template.html"], ["채점표", "안주영_벤치마크비교/references/rubric.md"], ["GitHub", "https://github.com/er2d/bm"]]
+    html: "benchmark-case-compiler/examples/benchmark-genai-enterprise-adoption-2026-10-17.html", md: "benchmark-case-compiler/SKILL.md",
+    extra: [["README", "benchmark-case-compiler/README.md"], ["HTML 템플릿", "benchmark-case-compiler/assets/template.html"], ["채점표", "benchmark-case-compiler/references/rubric.md"], ["GitHub", "https://github.com/er2d/bm"]]
   },
   {
     name: "정경헌", group: "meet",
     title: "인터뷰 노트 작성", slug: "interview-note",
     sum: "전문가·현업 인터뷰 전사록을 진행 순서가 아닌 주제별로 재구조화해 컨설팅용 노트로 만듭니다. 참석하지 않은 팀원이 노트만 읽고 보고서에 쓸 수 있는 수준을 목표로 합니다.",
     tags: ["Black → Red → Blue", "Excel + txt 산출", "Review Log 시트"],
-    html: "정경헌_인터뷰노트/interview-note-sample.html", md: "정경헌_인터뷰노트/SKILL.md"
+    html: "interview-note/interview-note-sample.html", md: "interview-note/SKILL.md"
   },
   {
     name: "하현종", group: "case",
     title: "이번 달 AI 트렌드 10선", slug: "ai-trend-research",
     sum: "이번 달 공신력 있는 출처에서 AI 전환·기술 사례 10개를 골라 카툰 스타일 HTML로 정리합니다. 원문을 직접 열어 날짜와 수치를 확인합니다.",
     tags: ["5기준 채점(공신력·최신성·구체성·시사점·다양성)", "기업 도입 사례 6개 이상"],
-    html: "하현종_AI트렌드리서치/assets/template.html", htmlLabel: "HTML 템플릿", md: "하현종_AI트렌드리서치/SKILL.md"
+    html: "ai-trend-research/assets/template.html", htmlLabel: "HTML 템플릿", md: "ai-trend-research/SKILL.md"
   },
   {
     name: "최수연", group: "deep",
     title: "휴머노이드 로봇 시장 조사", slug: "humanoid-robot-market-research",
     sum: "휴머노이드 로봇 시장을 현황, 전망·성장성, 경쟁 구도 순서로 조사해 초보자도 읽을 수 있는 플루언트 디자인 HTML 보고서(도표 포함)로 냅니다.",
     tags: ["기획자 → 생성자 → 평가자", "출처 유형 교차검증"],
-    html: "최수연_휴머노이드시장조사/humanoid-robot-market-report_2026-10-17.html", md: "최수연_휴머노이드시장조사/SKILL.md"
+    html: "humanoid-robot-market-research/humanoid-robot-market-report_2026-10-17.html", md: "humanoid-robot-market-research/SKILL.md"
   },
   {
     name: "장연우", group: "deep",
     title: "근거 기반 리서치와 다중 관점 검토", slug: "ax-research",
     sum: "제공 자료와 확인 가능한 출처로 리서치·벤치마킹·시사점을 쓰고, Black 작성자와 여러 Red 리뷰어가 통과할 때까지 반복 검토합니다. report.json을 스크립트로 HTML로 렌더링합니다.",
     tags: ["5항목 × 0~2점 채점", "check_pass.py 통과 판정", "예시: 나스닥·반도체 급락"],
-    html: "장연우_근거기반리서치/results/2026-10-17-nasdaq-semis-selloff/report.html", md: "장연우_근거기반리서치/SKILL.md",
-    extra: [["아티팩트판 HTML", "장연우_근거기반리서치/results/2026-10-17-nasdaq-semis-selloff/report-artifact.html"], ["채점표", "장연우_근거기반리서치/references/04-rubric.md"], ["리뷰 루프", "장연우_근거기반리서치/references/05-review-loop.md"]]
+    html: "ax-research/results/2026-10-17-nasdaq-semis-selloff/report.html", md: "ax-research/SKILL.md",
+    extra: [["아티팩트판 HTML", "ax-research/results/2026-10-17-nasdaq-semis-selloff/report-artifact.html"], ["채점표", "ax-research/references/04-rubric.md"], ["리뷰 루프", "ax-research/references/05-review-loop.md"]]
   },
   {
     name: "조광은", group: "auto",
     title: "개발용 Deep Interview 워크플로", slug: "dev-workflow",
     sum: "개발 작업을 Repo Check, Plan(최소 3라운드 Deep Interview), Plan Review, Code, Code Review 단계로 나누고 각 단계의 승인과 독립 리뷰를 조율합니다.",
     tags: ["4관점 리뷰(구조·안정성·검증·성능)", "승인 없이 구현 금지", "Codex·Claude Code 공용"],
-    html: null, md: "조광은_개발워크플로/SKILL.md"
+    html: null, md: "dev-workflow/SKILL.md"
   },
   {
     name: "조서현", group: "meet",
     title: "현황분석 인터뷰 시사점 장표화", slug: "kearney-interview-report",
     sum: "STT 회의록, 현장 손그림 노트, RFP를 받아 인터뷰 정리, 시사점, 도식 장표까지 만듭니다. 결과는 Kearney 스타일 HTML 보고서와 장표용 PNG입니다.",
     tags: ["팬아웃 → 파이프라인", "적대적 검증 + 완전성 비평", "멀티 에이전트"],
-    html: "조서현_인터뷰시사점장표/XV1_interview_report.html", md: "조서현_인터뷰시사점장표/SKILL.md"
+    html: "kearney-interview-report/XV1_interview_report.html", md: "kearney-interview-report/SKILL.md"
   },
   {
     name: "김영민", group: "deep",
     title: "솔루션 딥리서치 및 적용 사례 도식화", slug: "solution-deep-research",
     sum: "솔루션 이름 하나로 개요, 기능과 제공 방식, FDE용 플레이북, 고객 적용 사례 도식, 객관식 퀴즈까지 담은 인터랙티브 HTML을 만듭니다.",
     tags: ["6인 역할(블랙·레드·블루·실버·골드·화이트)", "9.5점 이상까지 반복", "예시: Palantir AIP"],
-    html: "김영민_솔루션딥리서치/palantir-aip.html", md: "김영민_솔루션딥리서치/SKILL - 복사본.md"
+    html: "solution-deep-research/palantir-aip.html", md: "solution-deep-research/SKILL.md"
   },
   {
     name: "김혜승", group: "deep",
     title: "개념 리서치 브리프", slug: "concept-research",
     sum: "낯선 기술·산업 용어를 1차 출처로 확인해, 처음 보는 대학생도 10분 안에 설명할 수 있는 단일 HTML 리포트로 만듭니다. 비유, 인터랙티브 도식, 용어집, 꼬리질문 Q&A와 팀장 논의용 So-what을 함께 담습니다.",
     tags: ["독자 2명(대학생·8년차 팀장)", "10항목 채점, 9점 미만 재작성", "출처 없는 수치 금지"],
-    html: "김혜승_개념리서치/concept-research-2.html", htmlLabel: "Skill 소개 HTML", md: "김혜승_개념리서치/concept-research-2.md"
+    html: "concept-research/concept-research-2.html", htmlLabel: "Skill 소개 HTML", md: "concept-research/concept-research-2.md"
   }
 ];
 
@@ -338,10 +338,10 @@ const link = (cls, p, label) => `<a class="${cls}" href="${href(p)}" target="_bl
 const pad = n => String(n).padStart(2, "0");
 
 // 결과 HTML은 캡처 사진(폴라로이드)으로, HTML이 없으면 메모지로 보여 준다.
-// 캡처 파일 이름은 제출 순서 번호(_썸네일/01.jpg ...)다.
+// 캡처 파일 이름은 제출 순서 번호(_thumbs/01.jpg ...)다.
 const visual = (s, thumb) => s.html
   ? `<figure class="photo">
-       <img src="_썸네일/${thumb}.jpg" alt="" loading="lazy">
+       <img src="_thumbs/${thumb}.jpg" alt="" loading="lazy">
        <figcaption>${esc(s.title)}</figcaption>
        <a class="cover" href="${href(s.html)}" target="_blank" rel="noopener" aria-label="${esc(s.title)} 결과 HTML 열기"></a>
      </figure>`
