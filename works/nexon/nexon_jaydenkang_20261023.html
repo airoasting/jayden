@@ -1923,16 +1923,17 @@
   /* 게임 업계 CEO 장(.ex2): 두 칸(552 폭, y 220~650), 회사·날짜 → 조치 → 발언/설명 → 근거 불릿 */
   .ex2-card { top: 220px; width: 552px; height: 430px; box-sizing: border-box; padding: 30px 32px 28px; border-radius: 20px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; }
   .ex2-card > * { flex-shrink: 0; }
-  .ex2-card.hot { background: #e7f6fb; border: 1.5px solid #0aa0d2; }
   .ex2-top { display: flex; align-items: center; justify-content: space-between; }
-  .ex2-top b { font-size: 24px; font-weight: 800; color: #1a1a1a; }
+  .ex2-top b { padding: 7px 18px 8px; border-radius: 999px; background: #0a3255; font-size: 18px; font-weight: 800; line-height: 1.2; color: #fff; }
   .ex2-top span { padding: 4px 11px; border-radius: 999px; background: #fff; border: 1px solid #d5dade; font: 800 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #0a3255; }
-  .ex2-what { margin: 14px 0 0; font-size: 34px; font-weight: 800; letter-spacing: -.02em; color: #0a3255; }
-  .ex2-q { margin: 16px 0 0; padding: 16px 18px; border-radius: 12px; background: #fff; border: 1px solid #e3e6ea; min-height: 96px; box-sizing: border-box; }
+  .ex2-what { margin: 12px 0 0; font-size: 30px; font-weight: 800; letter-spacing: -.02em; color: #0a3255; }
+  .ex2-q { margin: 14px 0 0; padding: 16px 18px; border-radius: 12px; background: #fff; border: 1px solid #e3e6ea; height: 112px; box-sizing: border-box; }
   .ex2-q p { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.5; color: #1a1a1a; word-break: keep-all; }
   .ex2-q cite { display: block; margin-top: 8px; font-style: normal; font-size: 13px; font-weight: 700; color: #6f7880; }
-  .ex2-card ul { margin: auto 0 0; padding: 16px 0 0; border-top: 1px solid #e3e6ea; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .ex2-card ul { margin: 18px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .ex2-card li { position: relative; padding-left: 14px; font-size: 15.5px; font-weight: 600; line-height: 1.45; color: #3d434a; word-break: keep-all; }
+  .ex2-card li { display: grid; grid-template-columns: 42px 1fr; }
+  .ex2-card li b { font-weight: 800; color: #0a3255; }
   .ex2-card li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: #0aa0d2; }
 </style>
 </head>
@@ -2299,9 +2300,9 @@
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">게임 업계 CEO들이 직접 AI 전환을 지휘하기 시작함</h2>
-    <div class="abs ex2-card hot" data-step="1" style="left:76px"><div class="ex2-top"><b>Epic Games</b><span>2026.10.12</span></div><p class="ex2-what">AI 가속 대전환</p><blockquote class="ex2-q"><p>“AI로 최대한 속도를 내도록 개발자를 재배치하는 큰 방향 전환이 진행 중입니다”</p><cite>팀 스위니 CEO · X</cite></blockquote><ul><li>디즈니와 함께 만들던 게임의 출시를 미루고, 남은 개발은 AI 도구로 끝내도록 지시</li><li>게임 실행 프로그램(런처)을 AI로 새로 만들어, 스팀보다 46% 빨리 뜬다고 발표</li><li>사람을 줄이려는 것이 아니라, 같은 인원으로 더 많은 게임을 더 좋게 만들려는 것이라고 설명</li></ul></div>
-    <div class="abs ex2-card" data-step="2" style="left:652px"><div class="ex2-top"><b>Xbox</b><span>2026.10.13</span></div><p class="ex2-what">Xbox Labs 신설</p><blockquote class="ex2-q"><p>AI로 게임을 이식·재구성하는 흐름에 맞춰 CTO 직속 실험 조직을 만듦</p><cite>애샤 샤르마 CEO 발표</cite></blockquote><ul><li>스콧 반 블리엣 CTO가 직접 이끄는 작은 팀으로 시작</li><li>기존 게임을 웹 브라우저와 맥에서 돌아가게 옮기고, 모드 제작 도구를 만드는 실험을 실제 제품으로 연결</li><li>AI를 쓰더라도 게임 IP(지식재산)는 지금처럼 보호한다는 원칙 유지</li></ul></div>
-    <p class="abs footnote">출처: Tim Sweeney, X(2026.10.12) · Bloomberg, "Epic Games Delays Disney Project, Asks Developers to Use More AI"(2026.10.12) · Windows Central·Forbes, Xbox Labs(2026.10.13~14)</p>
+    <div class="abs ex2-card" data-step="1" style="left:76px"><div class="ex2-top"><b>Epic Games</b><span>2026.10.12</span></div><p class="ex2-what">AI 가속 대전환</p><blockquote class="ex2-q"><p>“AI 기반으로 최대한의 속도를 내기 위해 개발 인력을 재배치하는 대규모 전환이 진행 중입니다”</p><cite>팀 스위니 CEO · X</cite></blockquote><ul><li><b>배경</b>디즈니 협업 타이틀의 출시를 연기하고, 잔여 개발 공정을 AI 툴 중심으로 전환하도록 지시</li><li><b>성과</b>AI로 재개발한 런처 프리뷰 공개, 스팀 대비 구동 속도 46% 개선</li><li><b>원칙</b>인력 감축이 아니라 동일 인력으로 생산성과 퀄리티를 동시에 끌어올리는 것이 목표</li></ul></div>
+    <div class="abs ex2-card" data-step="2" style="left:652px"><div class="ex2-top"><b>Xbox</b><span>2026.10.13</span></div><p class="ex2-what">Xbox Labs 신설</p><blockquote class="ex2-q"><p>“게임 접근성을 높이고, 오래된 게임에 새 생명을 불어넣고, 플레이어를 크리에이터로 만드는 가능성이 분명히 보입니다”</p><cite>애샤 샤르마 CEO · 사내 메일</cite></blockquote><ul><li><b>배경</b>AI로 게임을 디컴파일·리빌드해 레트로 타이틀을 복원하고, 애플 실리콘과 웹 브라우저로 포팅하는 사례가 급증</li><li><b>조직</b>CTO 직속으로 게임 메이커·엔지니어·사이언티스트로 구성한 소규모 랩</li><li><b>원칙</b>기존 비즈니스 모델과 충돌해도 플레이어 가치를 우선, 성과 지표는 플레이·창작 참여 확대</li></ul></div>
+    <p class="abs footnote">출처: Tim Sweeney, X(2026.10.12) · Bloomberg, "Epic Games Delays Disney Project, Asks Developers to Use More AI"(2026.10.12) · Asha Sharma 사내 메일(Thurrott, 2026.10.13) · Windows Central·Forbes, Xbox Labs(2026.10.13~14)</p>
   </section>
 
   <!-- 01 묶음 연결 장: 10-20-70(사람에 70%) 다음, 본인 사례(에이전트 팀) 앞. 교육만으로는 안 되고 리더가 먼저 일하는 방식을 보여줘야 한다는 연결 -->
@@ -2602,7 +2603,7 @@
       <div class="ac-bar b" data-step="2"><b>약 7%</b><i style="height:300px"></i><span>2025.7</span></div>
       <p class="ac-x">스팀 전체 게임 중 비중</p>
     </div>
-    <p class="abs ac-h l">AI가 바꾸는 제작 방식</p><p class="abs ac-h r">게임사의 대응 (과거 → 향후)</p><p class="abs ac-h k">핵심 역량</p>
+    <p class="abs ac-h l">AI가 바꾸는 제작 방식</p><p class="abs ac-h r">게임사의 대응 (현재 → 향후)</p><p class="abs ac-h k">핵심 역량</p>
     <div class="abs ac-row" data-step="3" style="top:220px"><div class="ac-c"><b>아트·에셋을 대량 생성</b><span>AI 공개 게임의 약 60%가 시각 요소에 사용</span></div><i>→</i><div class="ac-r"><em>아트 (수작업 → AI 초안·검수)</em><s>전부 손으로 제작</s><b>→ AI 초안을 아티스트가 다듬음</b></div><i>→</i><div class="ac-k"><b>아트 디렉션·IP 일관성 관리</b></div></div>
     <div class="abs ac-row" data-step="4" style="top:308px"><div class="ac-c"><b>코드와 빌드를 자동화</b><span>개발자 87%가 AI 에이전트로 반복 업무 자동화</span></div><i>→</i><div class="ac-r"><em>개발 (코딩 → 에이전트 협업)</em><s>사람이 모든 코드 작성</s><b>→ 에이전트가 짜고 사람이 리뷰</b></div><i>→</i><div class="ac-k"><b>코드 리뷰·아키텍처 설계</b></div></div>
     <div class="abs ac-row" data-step="5" style="top:396px"><div class="ac-c"><b>테스트를 대신 수행</b><span>스퀘어에닉스, QA·디버깅 70% 자동화 목표</span></div><i>→</i><div class="ac-r"><em>QA (수동 테스트 → 에이전트 테스트)</em><s>사람이 반복 플레이</s><b>→ 에이전트가 반복 테스트</b></div><i>→</i><div class="ac-k"><b>테스트 설계·버그 판단</b></div></div>
