@@ -76,9 +76,11 @@ body.idle{cursor:none}
   transform:rotate(-1.5deg);font-size:clamp(calc(16px + 2pt),calc(2.6vh + 2pt),calc(34px + 2pt));
   clip-path:polygon(0 6%,3% 0,97% 4%,100% 0,99% 94%,96% 100%,2% 95%);
 }
-.title .tape{top:-.55em;left:40%;transform:rotate(-4deg)}
+.title .tape{top:-.35em;left:-1.4em;transform:rotate(-32deg)}
 .hand{font-family:var(--f-hand);font-size:1.2em;line-height:1;white-space:nowrap}
-.words{display:flex;gap:.08em;font-size:1.25em}
+/* 제목은 오린 글자 대신 한 서체로 쓴다. 강조는 시상식 한 단어만. */
+.words{margin:0;font:400 1.5em/1 var(--f-ko);letter-spacing:-.01em;white-space:nowrap}
+.words em{font-style:normal;color:var(--red)}
 .hint{
   position:relative;padding:.55em 1em .5em;background:var(--yellow);transform:rotate(2deg);
   font-size:clamp(15px,2.3vh,30px);clip-path:polygon(0 0,100% 3%,98% 100%,2% 96%);
@@ -256,7 +258,7 @@ canvas#fx{position:fixed;inset:0;z-index:30;pointer-events:none;width:100%;heigh
 <body>
 <main class="board">
   <header class="top">
-    <div class="lift"><div class="title"><span class="tape"></span><span class="hand">11개 조 발표</span><span id="titleWords" class="words"></span><span class="hand date">2026.10.18</span></div></div>
+    <div class="lift"><div class="title"><span class="tape"></span><span class="hand">11개 조 발표</span><h1 class="words">Kearney Hotspot <em>시상식</em></h1><span class="hand date">2026.10.18</span></div></div>
     <div class="lift"><div class="hint"><span class="tape"></span><span id="hint"><b>→</b> 누르면 <b>3등</b> 공개</span></div></div>
   </header>
   <section id="grid" class="grid" aria-label="11개 조 카드"></section>
@@ -393,7 +395,6 @@ canvas#fx{position:fixed;inset:0;z-index:30;pointer-events:none;width:100%;heigh
   }
 
   // 격자 만들기
-  $("titleWords").append(chips("Kearney Hotspot 시상식", 3));
   const grid = $("grid");
   const slots = {};
   TEAMS.forEach((t) => {
