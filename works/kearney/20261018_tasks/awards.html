@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kearney Hotspot 시상식</title>
+<!--
+  사용법
+  - → 키: 3등 → 2등 → 1등 → 전체 결과 순으로 공개. 공개마다 스포트라이트가 카드 위를 돌다 수상 조에 멈추고 폭죽이 터진다.
+  - 클릭은 시상을 넘기지 않는다. 카드의 "결과물 보기"를 누르면 그 조의 페이지가 새 탭으로 열린다.
+  - R: 처음부터 다시. F 또는 오른쪽 아래 버튼: 전체 화면. M: 소리 켜고 끄기.
+  - 소리: 카드 고를 때 딸깍 소리와 드럼롤, 3등 짧은 빵빠레, 2등 더 크고 긴 빵빠레, 1등 피날레 빵빠레와 폭죽 소리. 파일 없이 브라우저에서 합성한다.
+  - 순위 바꾸기: awards.html?first=1&second=8&third=7 (기본값은 아래 RANK)
+  - 카드 내용은 아래 TEAMS 배열에서 고친다.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=Black+Han+Sans&family=Bungee&family=DM+Serif+Display:ital@0;1&family=Do+Hyeon&family=Nanum+Pen+Script&family=Song+Myung&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+/* Layout: 크라프트 보드에 11개 조의 종이 카드를 4열로 붙이고, 공개 순간에는 한 장을 떼어 가운데 크게 띄운다. */
+:root{
+  --board:#b48a58;
+  --paper:#f3eee1;
+  --ink:#1c1916;
+  --red:#d23a26;
+  --blue:#2b57a6;
+  --yellow:#f2c432;
+  --pink:#f0a2b6;
+  --green:#3a8956;
+  --mint:#bfe3cf;
+  --sky:#bcd3f0;
+  --gold:#e7b230;
+  --silver:#c4ccd5;
+  --bronze:#c47f45;
+  --tape:rgba(250,246,214,.66);
+  --shadow:rgba(28,25,22,.32);
+
+  --f-display:"Abril Fatface","Song Myung",Georgia,serif;
+  --f-ko:"Black Han Sans","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-hand:"Nanum Pen Script","Apple SD Gothic Neo",cursive;
+  --f-mono:"Space Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  overflow:hidden;color:var(--ink);font-family:var(--f-ko);user-select:none;
+  word-break:keep-all;overflow-wrap:break-word;
+  background:
+    radial-gradient(ellipse at 18% 22%, rgba(255,240,210,.18), transparent 45%),
+    radial-gradient(ellipse at 82% 78%, rgba(60,35,10,.18), transparent 50%),
+    repeating-linear-gradient(83deg, rgba(60,35,10,.05) 0 2px, transparent 2px 7px),
+    repeating-linear-gradient(-12deg, rgba(255,240,210,.05) 0 1px, transparent 1px 5px),
+    var(--board);
+}
+body.idle{cursor:none}
+
+.board{
+  height:100%;display:grid;grid-template-rows:auto 1fr;gap:2vh;
+  padding-block:max(2vh, env(safe-area-inset-top, 0px)) max(2.4vh, env(safe-area-inset-bottom, 0px));
+  padding-left:max(16px, 2.4vw, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, 2.4vw, env(safe-area-inset-right, 0px));
+}
+.lift{filter:drop-shadow(3px 5px 0 var(--shadow))}
+.tape{
+  position:absolute;width:5.2em;height:1.4em;background:var(--tape);z-index:2;
+  box-shadow:0 1px 2px rgba(0,0,0,.12);
+  clip-path:polygon(3% 8%,8% 0,92% 4%,97% 0,100% 92%,95% 100%,6% 96%,0 100%);
+}
+
+/* 위 */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.title{
+  position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:.3em .6em;padding:.45em .9em .4em;background:var(--paper);
+  transform:rotate(-1.5deg);font-size:clamp(calc(16px + 2pt),calc(2.6vh + 2pt),calc(34px + 2pt));
+  clip-path:polygon(0 6%,3% 0,97% 4%,100% 0,99% 94%,96% 100%,2% 95%);
+}
+.title .tape{top:-.55em;left:40%;transform:rotate(-4deg)}
+.hand{font-family:var(--f-hand);font-size:1.2em;line-height:1;white-space:nowrap}
+.words{display:flex;gap:.08em;font-size:1.25em}
+.hint{
+  position:relative;padding:.55em 1em .5em;background:var(--yellow);transform:rotate(2deg);
+  font-size:clamp(15px,2.3vh,30px);clip-path:polygon(0 0,100% 3%,98% 100%,2% 96%);
+}
+.hint .tape{top:-.55em;right:1em;transform:rotate(6deg)}
+.hint b{color:var(--red);font-weight:400}
+
+/* 카드 격자 */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:2.2vh 1.8vw;min-height:0}
+.slot{position:relative;min-width:0;min-height:0;transition:transform .4s ease, opacity .5s ease, filter .5s ease}
+.slot > .lift{height:100%}
+
+.card{
+  position:relative;height:100%;display:flex;flex-direction:column;gap:.45em;
+  padding:.85em 1em .8em;font-size:min(2.15vh,1.25vw);
+  background:var(--paper);transform:rotate(var(--r,0deg));
+  clip-path:var(--clip);
+}
+.card .tape{top:-.4em;left:calc(50% - 2.6em);transform:rotate(var(--tr,-3deg))}
+.c0{background:repeating-linear-gradient(0deg, rgba(28,25,22,.07) 0 1px, transparent 1px 5px), var(--paper)}
+.c1{background:var(--yellow)}
+.c2{background:radial-gradient(rgba(28,25,22,.16) 1px, transparent 1.6px) 0 0/6px 6px, var(--pink)}
+.c3{background:var(--mint)}
+.c4{background:var(--sky)}
+.k0{--clip:polygon(1% 2%,99% 0,100% 97%,0 100%)}
+.k1{--clip:polygon(0 3%,40% 0,100% 2%,98% 100%,55% 97%,2% 100%)}
+.k2{--clip:polygon(2% 0,100% 3%,97% 98%,0 100%)}
+
+.row{display:flex;align-items:center;gap:.25em .6em;flex-wrap:wrap}
+.team{display:flex;align-items:center;font-size:2.3em;line-height:1}
+.members{margin:0;font-family:var(--f-hand);font-size:1.6em;line-height:1}
+.head{
+  margin:0;font:400 1.75em/1.24 var(--f-ko);letter-spacing:-.01em;text-wrap:balance;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.head mark{background:var(--red);color:var(--paper);padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.c0 .head mark,.c3 .head mark{background:var(--ink)}
+.sub{margin:0;min-width:0;font:italic 400 1.05em/1.2 "DM Serif Display","Song Myung",serif;opacity:.8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.place-tag{margin:0;font:400 1.6em/1 var(--f-ko)}
+.place-tag span{display:inline-block;background:var(--red);color:var(--paper);padding:.12em .35em .08em;transform:rotate(-1.5deg);box-shadow:2px 3px 0 var(--shadow)}
+
+/* 매장 이름과 링크는 장식 없이 글자로만 둔다. 카드의 장식은 조 번호와 상권 강조 하나로 충분하다. */
+.store{margin:0;min-width:0;font:400 1.3em/1.2 var(--f-ko);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kind{opacity:.55}
+.tagline{margin:0;font:400 1.5em/1.15 var(--f-hand)}
+.stats{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.2em 0;font:400 .95em/1.3 var(--f-ko)}
+.stats li{white-space:nowrap}
+.stats li + li::before{content:"·";margin:0 .5em;opacity:.5}
+.foot{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:.8em;min-width:0}
+.open{flex:none;color:inherit;font:400 .9em/1 var(--f-ko);opacity:.65;text-decoration:underline;text-underline-offset:.2em;cursor:pointer}
+.open:hover{opacity:1;color:var(--red)}
+.open:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+/* 격자 카드에는 제목, 매장 이름, 링크만 둔다. 한 줄 설명과 근거 숫자는 공개 무대에서만 보인다. */
+.grid .tagline,.grid .stats,.grid .sub{display:none}
+.grid .card{gap:.35em}
+.grid .team{font-size:2em}
+.grid .head{font-size:1.5em}
+.grid .store{font-size:1.05em}
+.grid .members{font-size:1.3em}
+.grid .place-tag{font-size:1.3em}
+.grid .foot{justify-content:flex-end}
+
+/* 시작 카드 (12번째 칸) */
+.start-card{
+  height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4em;
+  background:var(--ink);color:var(--paper);transform:rotate(2.5deg);font-size:min(2.15vh,1.25vw);
+  clip-path:polygon(0 4%,100% 0,98% 100%,3% 96%);text-align:center;
+}
+.start-card .big{font:400 3.2em/1 var(--f-display);color:var(--yellow)}
+.start-card .hand{font-size:2em}
+
+/* 랜섬 노트 글자 */
+.cut{display:inline-block;transform:rotate(var(--r,0deg)) translateY(var(--y,0));filter:drop-shadow(2px 3px 0 var(--shadow))}
+.chip{display:flex;align-items:center;justify-content:center;line-height:1;padding:.08em .16em .04em}
+.v0{background:repeating-linear-gradient(0deg, rgba(28,25,22,.08) 0 1px, transparent 1px 4px), var(--paper);color:var(--ink);font-family:"DM Serif Display","Song Myung",Georgia,serif}
+.v1{background:var(--red);color:var(--paper);font-family:"Archivo Black","Black Han Sans",sans-serif}
+.v2{background:var(--yellow);color:var(--ink);font-family:"Bungee","Do Hyeon",sans-serif}
+.v3{background:var(--ink);color:var(--paper);font-family:"Abril Fatface","Song Myung",Georgia,serif}
+.v4{background:var(--blue);color:var(--paper);font-family:"DM Serif Display","Song Myung",Georgia,serif;font-style:italic}
+.v5{background:radial-gradient(rgba(28,25,22,.2) 1px, transparent 1.6px) 0 0/6px 6px, var(--pink);color:var(--ink);font-family:"Abril Fatface","Black Han Sans",serif}
+.v6{background:repeating-linear-gradient(0deg, rgba(28,25,22,.08) 0 1px, transparent 1px 4px), var(--paper);color:var(--red);font-family:"Bungee","Do Hyeon",sans-serif}
+.v7{background:var(--green);color:var(--paper);font-family:"Archivo Black","Do Hyeon",sans-serif}
+.s0{clip-path:polygon(2% 4%,97% 0,100% 93%,4% 100%)}
+.s1{clip-path:polygon(0 8%,30% 2%,62% 6%,100% 0,96% 52%,100% 97%,58% 93%,22% 100%,3% 94%,5% 48%)}
+.s2{clip-path:polygon(5% 0,100% 6%,94% 100%,0 92%)}
+.s3{clip-path:polygon(0 0,48% 4%,100% 1%,98% 100%,52% 95%,2% 99%)}
+
+/* 스포트라이트 룰렛 */
+.slot.spot{transform:translateY(-6px) scale(1.04);z-index:3}
+.slot.spot::after{
+  content:"";position:absolute;inset:-10px;border:5px solid var(--yellow);pointer-events:none;
+  box-shadow:0 0 0 4px var(--ink), 0 0 40px 10px rgba(242,196,50,.65);
+  transform:rotate(-1deg);
+}
+.rolling .slot:not(.spot):not(.won){opacity:.55;filter:saturate(.6)}
+
+/* 수상 카드 */
+.slot.won{z-index:2}
+.slot.won .medal{position:absolute;top:-1.6vh;right:-.6vw;z-index:4;font-size:min(2vh,1.15vw)}
+.final .slot:not(.won){opacity:.42;filter:grayscale(.7)}
+.final .slot.won{transform:scale(1.05)}
+.final .slot.won.r1{transform:scale(1.1) rotate(-1deg)}
+
+/* 로제트 메달 */
+.rosette{position:relative;width:6.4em;height:8em;display:block}
+.rosette .tail{position:absolute;top:3.6em;width:2.2em;height:4.4em;background:var(--red);clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%)}
+.rosette .tail.l{left:1.1em;transform:rotate(14deg)}
+.rosette .tail.r{right:1.1em;transform:rotate(-14deg);background:var(--blue)}
+.rosette .disc{
+  position:absolute;top:0;left:0;width:6.4em;height:6.4em;border-radius:50%;display:grid;place-items:center;
+  background:repeating-conic-gradient(var(--m) 0 9deg, color-mix(in srgb, var(--m) 65%, white) 9deg 18deg);
+  box-shadow:3px 5px 0 var(--shadow);
+}
+.rosette .disc span{
+  width:4.4em;height:4.4em;border-radius:50%;display:grid;place-items:center;background:var(--m);
+  border:.18em solid var(--paper);font:400 1.5em/1 var(--f-ko);color:var(--ink);
+}
+.m1{--m:var(--gold)} .m2{--m:var(--silver)} .m3{--m:var(--bronze)}
+
+/* 공개 무대 */
+.stage{
+  position:fixed;inset:0;z-index:20;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 45%, rgba(28,25,22,.35), rgba(28,25,22,.82));
+  padding:4vh max(16px,4vw);opacity:0;transition:opacity .35s ease;
+}
+.stage[hidden]{display:none}
+.stage:not(.show){pointer-events:none}
+.stage.show{opacity:1}
+.stage-inner{display:flex;flex-direction:column;align-items:center;gap:3vh;width:min(86vw,1200px)}
+.rank-words{display:flex;align-items:center;gap:.12em;font-size:min(13vh,9vw)}
+.rank-words .rosette{font-size:.16em;margin-right:.4em}
+.feature{width:100%;height:min(62vh,760px)}
+.feature .card{font-size:min(3.2vh,1.9vw);gap:.55em;padding:1.1em 1.3em 1em}
+.stage.show .rank-words{animation:stamp .55s cubic-bezier(.2,1.6,.4,1) both}
+.stage.show .feature{animation:fly .75s .15s cubic-bezier(.2,1.4,.35,1) both}
+@keyframes stamp{from{transform:scale(2.6) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes fly{from{transform:translateY(40vh) scale(.35) rotate(-18deg);opacity:0}to{transform:none;opacity:1}}
+
+canvas#fx{position:fixed;inset:0;z-index:30;pointer-events:none;width:100%;height:100%}
+#flash{position:fixed;inset:0;z-index:29;background:#fff6d6;opacity:0;pointer-events:none}
+#flash.on{animation:flash .7s ease-out}
+@keyframes flash{from{opacity:.8}to{opacity:0}}
+.stage::before{content:"";position:absolute;inset:-60%;opacity:0;pointer-events:none;background:repeating-conic-gradient(from 0deg, var(--ray,transparent) 0 6deg, transparent 6deg 18deg);animation:spin 26s linear infinite;transition:opacity .6s}
+.stage.r2::before{--ray:rgba(196,204,213,.18);opacity:1}
+.stage.r1::before{--ray:rgba(231,178,48,.3);opacity:1}
+.stage-inner{position:relative}
+@keyframes spin{to{transform:rotate(1turn)}}
+
+.fs-tag{
+  position:fixed;z-index:40;border:0;cursor:pointer;
+  right:calc(max(16px, 2vw) + env(safe-area-inset-right, 0px));
+  bottom:calc(max(12px, 2vh) + env(safe-area-inset-bottom, 0px));
+  padding:.5em .9em;background:var(--paper);color:var(--ink);font:400 15px/1 var(--f-ko);
+  transform:rotate(-3deg);box-shadow:2px 4px 0 var(--shadow);transition:opacity .3s;
+}
+.fs-tag kbd{font:700 12px/1 var(--f-mono);padding:.15em .35em;margin-left:.3em;border:1.5px solid var(--ink)}
+.fs-tag:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.is-fs.idle .fs-tag{opacity:0;pointer-events:none}
+.fs-tag.snd{right:calc(max(16px, 2vw) + env(safe-area-inset-right, 0px) + 130px);transform:rotate(2deg);background:var(--yellow)}
+
+@media (max-width:760px){
+  body{overflow:auto}
+  .board{height:auto;min-height:100%}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:minmax(190px,auto)}
+  .card,.start-card,.slot.won .medal{font-size:14px}
+  .feature .card{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){
+  .stage.show .rank-words,.stage.show .feature{animation:none}
+  .stage::before{animation:none}
+  .slot{transition:none}
+}
+</style>
+</head>
+<body>
+<main class="board">
+  <header class="top">
+    <div class="lift"><div class="title"><span class="tape"></span><span class="hand">11개 조 발표</span><span id="titleWords" class="words"></span><span class="hand date">2026.10.18</span></div></div>
+    <div class="lift"><div class="hint"><span class="tape"></span><span id="hint"><b>→</b> 누르면 <b>3등</b> 공개</span></div></div>
+  </header>
+  <section id="grid" class="grid" aria-label="11개 조 카드"></section>
+</main>
+
+<div id="stage" class="stage" hidden>
+  <div class="stage-inner">
+    <div id="rankWords" class="rank-words"></div>
+    <div id="feature" class="feature"></div>
+  </div>
+</div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="flash" aria-hidden="true"></div>
+<button id="snd" class="fs-tag snd" type="button">소리 켬<kbd>M</kbd></button>
+<button id="fs" class="fs-tag" type="button">전체 화면<kbd>F</kbd></button>
+
+<script>
+(() => {
+  // 카드 내용. 패들렛 게시물과 각 조 페이지(2026-10-18 확인)에 적힌 것만 넣었다. 비어 있는 칸은 확인하지 못한 정보다.
+  // kind: 카페·베이커리 구분, store: 페이지에 적힌 매장 이름(없으면 컨셉 한 줄), tag: 매장 한 줄 설명, stats: 근거 숫자 두 개, url: 결과물 링크
+  const TEAMS = [
+    { n: 1,  members: "이윤희 · 신현재", head: "서울의 다음 핫플레이스는 퇴계로 5가", place: "퇴계로 5가", sub: "스페셜티 카페 · 1순위 상권 제안",
+      kind: "카페", store: "HANJAN Coffee Seoul", tag: "가배 한 잔, 백 년 전 서울로",
+      stats: ["외국인 카드 지출 약 6.5배", "개인 카페 9곳 · 프랜차이즈 0%"],
+      url: "https://tzc75787cv-hub.github.io/kearney-hotspot-1-cafe/" },
+    { n: 2,  members: "김영민 · 박종필", head: "성수 다음은, 동묘까지 이어지는 디깅 벨트다", place: "동묘", sub: "서울 상권 레이더 2029",
+      kind: "카페", store: "황학 디깅하우스", tag: "득템을 펼쳐 보고 자랑하는 카페",
+      stats: ["후보 17곳 중 1위 · 82점", "동묘 검색량, 성수 첫 추월"],
+      url: "https://nfgerjskngliesurghleirusj.github.io/kearney-hotspot-2-coffee_V2/" },
+    { n: 3,  members: "김기완 · 김혜승", head: "향후 3년, 다음은 군자", place: "군자", sub: "Seoul Specialty Coffee",
+      kind: "카페", store: "군자 테이스팅 룸", tag: "낮엔 에스프레소 바, 밤엔 예약제 커피 코스",
+      stats: ["점포당 월매출 2년 +38.2%", "영업 중 카페 +89% (2017→2020)"],
+      url: "https://oscarkiwankim.github.io/seoul-specialty-coffee/" },
+    { n: 4,  members: "김다현 · 하현종", head: "핫플은 옆으로 번지거나, 한 점에서 터진다", place: "부암동", sub: "서울 핫플레이스 지도",
+      kind: "카페", store: "숲과 책이 있는 체류형 카페", tag: "좌석 회전보다 디저트·원두로 버는 구조",
+      stats: ["유튜버 66명 · 영상 10.8만 개", "동네 61곳 → 10곳 → 1순위"],
+      url: "https://darakroom-kr.github.io/stopwatch/seoul-hotplace.html" },
+    { n: 5,  members: "이서현 · 정하영", head: "3년 안에 뜰 곳은 효창·청파, 후암, 성산", place: "효창·청파", sub: "다음 성수 브리핑",
+      kind: "카페", store: "효창 워크업 로스터스", tag: "평일엔 빠른 한 잔, 주말엔 공원으로 가는 한 바구니",
+      stats: ["효창·청파 89점 / 100", "2030 생활인구 46%"],
+      url: "https://yoojeongkim0721-collab.github.io/kearney-hotspot-5jo-coffee/#s1" },
+    { n: 6,  members: "조선근", head: "명동 옆 회현역, 수요가 먼저 늘고 있습니다", place: "회현역", sub: "서울 핫플레이스 제안",
+      kind: "카페", store: "회현 로스터스", tag: "프랜차이즈 사이의 독립 로스터리 바",
+      stats: ["카페 결제 건수 3년 +121%", "프랜차이즈 비중 13%"],
+      url: "https://sk37025.github.io/kearney-hotspot-6-coffee/" },
+    { n: 7,  members: "인준수", head: "사람은 늘고 월세는 쉬는 곳, 둔촌에서 매일 아침 빵을", place: "둔촌", sub: "둔촌 아침빵 사업계획서",
+      kind: "베이커리", store: "둔촌 아침빵", tag: "아침 7시 식사빵 · 줄 없이 · 동네 가격",
+      stats: ["사람 +45.5% · 소비 +18.6%", "1층 월세 평당 90→60만 원"],
+      url: "https://junsuyoung96-lang.github.io/stopwatch/bakery/" },
+    { n: 8,  members: "김지은 · 안주영", head: "매 시간 정각에 내놓을 에그타르트", place: "문래예술촌", sub: "엠폰투 상권 분석 보고서",
+      kind: "베이커리", store: "엠폰투 em ponto", tag: "매 정각 갓 구운 에그타르트",
+      stats: ["진입적기 지수 84.5 · 281곳 중 1위", "프랜차이즈 비중 5%"],
+      url: "https://jek-wa.github.io/kearney-hotsopt-8-bakery/" },
+    { n: 9,  members: "조서현 · 정경현 · 백지웅", head: "2030 타깃 베이커리, 동대문구 이문1동에 내야 함", place: "이문1동", sub: "2030 베이커리 입지 보고서",
+      kind: "베이커리", store: "이문 시그니처 라인", tag: "매일 사 먹고, 사진은 자랑하고 싶은 빵집",
+      stats: ["종합 점수 94점 · 서울 2위", "외식 매출 2030 비중 45.7%"],
+      url: "https://richardbaek1.github.io/firstanalysis/2030_%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC_%EC%9E%85%EC%A7%80_%EB%B3%B4%EA%B3%A0%EC%84%9C.html" },
+    { n: 10, members: "조광은 · 전미리 · 최수연", head: "오늘의 2차는 술 대신, 갓 구운 빵으로", place: "화양동", sub: "Sober Night Bakery",
+      kind: "베이커리", store: "BAKE AFTER 화양", tag: "자정까지 오븐을 켜는 논알콜 나이트 베이커리",
+      stats: ["20·30대 밀도 서울 2위", "밤 오븐 19 · 21 · 23시"],
+      url: "https://kwangeuncho.github.io/kearney-hotspot-10-bakery/index-motion.html" },
+    { n: 11, members: "장연우 · 한나현", head: "다음 베이커리 핫플은 강동구 천호3동입니다", place: "천호3동", sub: "Kearney Hotspot 11",
+      kind: "베이커리", store: "천호 소금빵 & 베이글", tag: "아침 8시에 여는 하루 한 번 빵 루틴",
+      stats: ["점포당 매출 1년 +30%", "베이커리 매출 2배 (2024→2025)"],
+      url: "https://offthemenu.github.io/kearney-hotspot-11-bakery/" },
+  ];
+  const RANK = { first: 1, second: 8, third: 7 };
+
+  const q = new URLSearchParams(location.search);
+  const pick = (k) => { const v = Number(q.get(k)); return v >= 1 && v <= 11 ? v : RANK[k]; };
+  const ORDER = [pick("third"), pick("second"), pick("first")]; // 공개 순서: 3등, 2등, 1등
+  const RANK_OF = { [ORDER[0]]: 3, [ORDER[1]]: 2, [ORDER[2]]: 1 };
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // 잡지에서 오려 낸 글자 조각
+  function chips(text, seed = 0) {
+    const wrap = document.createElement("span");
+    wrap.style.display = "inline-flex";
+    wrap.style.gap = ".06em";
+    let prev = -1;
+    [...text].forEach((ch, i) => {
+      if (ch === " ") { const g = document.createElement("span"); g.style.width = ".3em"; wrap.append(g); return; }
+      const code = ch.codePointAt(0) + seed;
+      let v = (code * 7 + i * 3) % 8;
+      if (v === prev) v = (v + 1) % 8;
+      prev = v;
+      const cut = document.createElement("span");
+      cut.className = "cut";
+      cut.style.setProperty("--r", (((code * 13 + i * 29) % 9) - 4) * 1.1 + "deg");
+      cut.style.setProperty("--y", (((code * 5 + i * 11) % 5) - 2) * 0.03 + "em");
+      const c = document.createElement("span");
+      c.className = `chip v${v} s${(code + i * 2) % 4}`;
+      c.textContent = ch;
+      cut.append(c);
+      wrap.append(cut);
+    });
+    return wrap;
+  }
+
+  function rosette(rank) {
+    const r = document.createElement("span");
+    r.className = `rosette m${rank}`;
+    r.innerHTML = `<span class="tail l"></span><span class="tail r"></span><span class="disc"><span>${rank}등</span></span>`;
+    return r;
+  }
+
+  function headHTML(t) {
+    const h = esc(t.head);
+    return t.place ? h.replace(esc(t.place), `<mark>${esc(t.place)}</mark>`) : h;
+  }
+
+  function cardNode(t) {
+    const c = document.createElement("article");
+    c.className = `card c${t.n % 5} k${t.n % 3}`;
+    c.style.setProperty("--r", (((t.n * 37) % 7) - 3) * 0.6 + "deg");
+    c.style.setProperty("--tr", (((t.n * 53) % 9) - 4) + "deg");
+    c.innerHTML = `
+      <span class="tape"></span>
+      <div class="row"><div class="team"></div>${t.members ? `<p class="members">${esc(t.members)}</p>` : ""}</div>
+      ${t.place && !t.head.includes(t.place) ? `<p class="place-tag"><span>${esc(t.place)}</span></p>` : ""}
+      <h2 class="head">${headHTML(t)}</h2>
+      ${t.store ? `<p class="store"><span class="kind">${esc(t.kind)} · </span>${esc(t.store)}</p>` : ""}
+      ${t.tag ? `<p class="tagline">${esc(t.tag)}</p>` : ""}
+      ${t.stats?.length ? `<ul class="stats">${t.stats.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
+      <div class="foot">
+        ${t.sub ? `<p class="sub">${esc(t.sub)}</p>` : ""}
+        ${t.url ? `<a class="open" href="${esc(t.url)}" target="_blank" rel="noopener">결과물 보기 ↗</a>` : ""}
+      </div>`;
+    c.querySelector(".team").append(chips(`${t.n}조`, t.n));
+    return c;
+  }
+
+  // 격자 만들기
+  $("titleWords").append(chips("Kearney Hotspot 시상식", 3));
+  const grid = $("grid");
+  const slots = {};
+  TEAMS.forEach((t) => {
+    const s = document.createElement("div");
+    s.className = "slot";
+    s.dataset.n = t.n;
+    const lift = document.createElement("div");
+    lift.className = "lift";
+    lift.append(cardNode(t));
+    s.append(lift);
+    grid.append(s);
+    slots[t.n] = s;
+  });
+  const startSlot = document.createElement("div");
+  startSlot.className = "slot";
+  startSlot.innerHTML = `<div class="lift" style="height:100%"><div class="start-card"><span class="hand">두구두구</span><span class="big">3 · 2 · 1</span><span class="hand">→ 키를 눌러 시상 시작</span></div></div>`;
+  grid.append(startSlot);
+
+  // 소리: 파일 없이 Web Audio로 합성한다. 브라우저 정책상 첫 키 입력 뒤부터 난다.
+  let AC = null, master = null, noiseBuf = null, muted = false;
+  function audio() {
+    if (muted) return null;
+    if (!AC) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return null;
+      AC = new Ctx();
+      const comp = AC.createDynamicsCompressor();
+      comp.threshold.value = -14; comp.ratio.value = 6;
+      master = AC.createGain(); master.gain.value = 0.75;
+      master.connect(comp); comp.connect(AC.destination);
+      noiseBuf = AC.createBuffer(1, AC.sampleRate, AC.sampleRate);
+      const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    if (AC.state === "suspended") AC.resume();
+    return AC;
+  }
+  const live = () => AC && !muted;
+  const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
+  function brass(m, t, dur, vol = 0.16) {
+    const f = hz(m);
+    const g = AC.createGain(), lp = AC.createBiquadFilter();
+    lp.type = "lowpass"; lp.Q.value = 2;
+    lp.frequency.setValueAtTime(500, t);
+    lp.frequency.exponentialRampToValueAtTime(Math.min(f * 7, 5200), t + 0.05);
+    lp.frequency.exponentialRampToValueAtTime(Math.min(f * 4, 3200), t + 0.05 + dur);
+    for (const det of [-7, 7]) {
+      const o = AC.createOscillator();
+      o.type = "sawtooth"; o.detune.value = det;
+      o.frequency.setValueAtTime(f * 0.97, t);
+      o.frequency.exponentialRampToValueAtTime(f, t + 0.04);
+      o.connect(lp); o.start(t); o.stop(t + dur + 0.35);
+    }
+    lp.connect(g); g.connect(master);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.025);
+    g.gain.setValueAtTime(vol, t + Math.max(0.03, dur));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + Math.max(0.03, dur) + 0.18);
+  }
+  const chord = (ms, t, dur, vol) => ms.forEach((m) => brass(m, t, dur, vol));
+  function noise(t, type, freq, vol, decay) {
+    const s = AC.createBufferSource(); s.buffer = noiseBuf;
+    const f = AC.createBiquadFilter(); f.type = type; f.frequency.value = freq;
+    const g = AC.createGain();
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + decay);
+    s.connect(f); f.connect(g); g.connect(master);
+    s.start(t, Math.random() * 0.4); s.stop(t + decay + 0.05);
+  }
+  function tone(t, f, dur, vol, type = "sine", f2) {
+    const o = AC.createOscillator(), g = AC.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.02);
+  }
+  const snare = (t, vol = 0.35) => { noise(t, "highpass", 1800, vol, 0.13); tone(t, 190, 0.08, vol * 0.5, "triangle"); };
+  const cymbal = (t, vol = 0.3, len = 1.8) => noise(t, "highpass", 6000, vol, len);
+  const timpani = (t, m, vol = 0.6) => { tone(t, hz(m) * 1.06, 0.9, vol, "sine", hz(m)); noise(t, "lowpass", 300, vol * 0.5, 0.18); };
+  function drumroll(t, dur, from, to) {
+    const n = Math.floor(dur / 0.045);
+    for (let i = 0; i < n; i++) snare(t + i * 0.045, (from + (to - from) * (i / n)) * (0.85 + Math.random() * 0.3));
+  }
+
+  const SFX = {
+    // 카드 고르기: 스포트라이트가 옮길 때마다 딸깍, 밑에는 점점 커지는 드럼롤, 멈출 때 딩
+    pick(rank, sec) { if (!audio()) return; drumroll(AC.currentTime, sec, 0.03, rank === 1 ? 0.38 : rank === 2 ? 0.3 : 0.22); },
+    tick(i, n) { if (!live()) return; const t = AC.currentTime; tone(t, 700 + (i / n) * 700, 0.05, 0.2, "square"); tone(t, 1400 + (i / n) * 1400, 0.03, 0.08, "sine"); },
+    land() { if (!live()) return; const t = AC.currentTime; tone(t, 1760, 0.35, 0.22, "triangle"); tone(t, 2640, 0.3, 0.12, "sine"); snare(t, 0.45); },
+    boom(power) { if (!live()) return; const t = AC.currentTime; noise(t, "lowpass", 450 + power * 250, 0.4 * power, 0.75); tone(t, 95, 0.5, 0.3 * power, "sine", 35); },
+    crackle() { if (!live()) return; const t = AC.currentTime + 0.3; for (let i = 0; i < 22; i++) noise(t + Math.random() * 0.9, "highpass", 3200, 0.1, 0.03); },
+    whistle() { if (!live()) return; tone(AC.currentTime, 800, 0.8, 0.045, "sine", 2400); },
+    fanfare(rank) {
+      if (!audio()) return;
+      const t = AC.currentTime + 0.05;
+      if (rank === 3) {
+        // 짧은 빵빠레: 셋잇단 솔솔솔, 이어서 도미솔 화음
+        [0, 0.12, 0.24].forEach((d) => { brass(67, t + d, 0.09, 0.16); snare(t + d, 0.2); });
+        chord([60, 64, 67, 72], t + 0.38, 0.9, 0.11);
+        timpani(t + 0.38, 48, 0.5); cymbal(t + 0.38, 0.18, 1.2);
+      } else if (rank === 2) {
+        // 더 크고 다른 빵빠레: 라 장조로 올리고, 저음 겹치기, 드럼롤, 심벌 두 번
+        [0, 0.11, 0.22].forEach((d) => { brass(69, t + d, 0.09, 0.16); brass(57, t + d, 0.09, 0.1); snare(t + d, 0.22); });
+        brass(74, t + 0.34, 0.3, 0.17); brass(62, t + 0.34, 0.3, 0.12); timpani(t + 0.34, 50); cymbal(t + 0.34, 0.2, 1);
+        brass(69, t + 0.7, 0.13, 0.15); brass(74, t + 0.86, 0.13, 0.15);
+        drumroll(t + 0.6, 0.4, 0.05, 0.25);
+        chord([50, 62, 66, 69, 74, 78], t + 1.02, 1.6, 0.1);
+        timpani(t + 1.02, 38, 0.7); cymbal(t + 1.02, 0.35, 2.2);
+      } else {
+        // 완전 화려한 빵빠레: 드럼롤, 상승 선율, 큰 화음, 팀파니 연타, 마지막 피날레 화음
+        drumroll(t, 0.9, 0.05, 0.42);
+        [[67, 0.9, 0.17], [72, 1.08, 0.17], [76, 1.26, 0.17], [79, 1.44, 0.4], [76, 1.9, 0.15], [79, 2.06, 0.15]]
+          .forEach(([m, d, len]) => { brass(m, t + d, len, 0.17); brass(m - 12, t + d, len, 0.11); });
+        timpani(t + 0.9, 43, 0.6); timpani(t + 1.44, 48, 0.75); cymbal(t + 1.44, 0.3, 1.5);
+        chord([48, 60, 64, 67, 72, 76, 79, 84], t + 2.24, 1.2, 0.085);
+        timpani(t + 2.24, 36, 0.9); cymbal(t + 2.24, 0.45, 2.4);
+        [2.64, 2.84, 3.04].forEach((d) => { timpani(t + d, 43, 0.55); snare(t + d, 0.35); });
+        chord([53, 65, 69, 72, 77], t + 3.3, 0.22, 0.08);
+        chord([48, 60, 64, 67, 72, 79, 84], t + 3.6, 2.2, 0.09);
+        timpani(t + 3.6, 36, 0.95); cymbal(t + 3.6, 0.45, 3);
+      }
+    },
+    finale() {
+      if (!audio()) return;
+      const t = AC.currentTime + 0.05;
+      [0, 0.14].forEach((d) => brass(72, t + d, 0.1, 0.14));
+      chord([48, 60, 64, 67, 72, 76], t + 0.3, 1.4, 0.09);
+      timpani(t + 0.3, 36, 0.7); cymbal(t + 0.3, 0.3, 2);
+    },
+  };
+
+  // 폭죽과 색종이
+  const cv = $("fx"), ctx = cv.getContext("2d");
+  let W = 0, H = 0;
+  function size() {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = innerWidth; H = innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  size();
+  addEventListener("resize", size);
+
+  const COLORS = ["#d23a26", "#f2c432", "#2b57a6", "#f0a2b6", "#3a8956", "#f3eee1", "#e7b230", "#bfe3cf"];
+  const GOLD = ["#f7d774", "#e7b230", "#fff2b8"];
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const pickc = () => COLORS[(Math.random() * COLORS.length) | 0];
+  const G = 0.11;
+  let parts = [], raf = 0, lastBoom = 0;
+  const timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  const P = (x, y, vx, vy, life, c) => ({ k: "p", x, y, px: x, py: y, vx, vy, life, max: life, c, drag: 0.985, g: 0.55, w: 2.4 });
+
+  function rocket(power, type = "peony") {
+    const ty = rnd(H * 0.1, H * 0.42);
+    parts.push({ k: "r", x: rnd(W * 0.1, W * 0.9), y: H + 10, px: 0, py: 0, vx: rnd(-1, 1), vy: -Math.sqrt(2 * G * (H - ty)), power, type, c: type === "willow" ? GOLD[0] : pickc() });
+    if (type !== "peony") SFX.whistle();
+    run();
+  }
+  function burst(x, y, power, c, type) {
+    const now = performance.now();
+    if (now - lastBoom > 70) { SFX.boom(Math.min(1.4, power)); lastBoom = now; }
+    if (type === "willow") {
+      const n = Math.round(90 * power);
+      for (let i = 0; i < n; i++) {
+        const a = Math.random() * Math.PI * 2, sp = rnd(1, 4.2) * Math.sqrt(power);
+        const p = P(x, y, Math.cos(a) * sp, Math.sin(a) * sp, rnd(110, 150), GOLD[i % 3]);
+        p.drag = 0.975; p.g = 0.5; p.w = 1.8; p.twinkle = true;
+        parts.push(p);
+      }
+      SFX.crackle();
+      return;
+    }
+    if (type === "crossette") {
+      for (let i = 0; i < 14; i++) {
+        const a = (i / 14) * Math.PI * 2, sp = 3.8 * Math.sqrt(power);
+        const p = P(x, y, Math.cos(a) * sp, Math.sin(a) * sp, 30, c);
+        p.split = true; p.w = 3;
+        parts.push(p);
+      }
+      return;
+    }
+    if (type === "ring") {
+      const n = Math.round(48 * power), sp = 4.2 * Math.sqrt(power);
+      for (let i = 0; i < n; i++) { const a = (i / n) * Math.PI * 2; parts.push(P(x, y, Math.cos(a) * sp, Math.sin(a) * sp, rnd(55, 75), c)); }
+      power *= 0.6;
+    }
+    const n = Math.round(70 * power), c2 = pickc();
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, sp = rnd(1.5, 5.5) * Math.sqrt(power);
+      parts.push(P(x, y, Math.cos(a) * sp, Math.sin(a) * sp, rnd(50, 85), Math.random() < 0.6 ? c : c2));
+    }
+  }
+  function confetti(n, fromTop = true) {
+    for (let i = 0; i < n; i++) {
+      parts.push({
+        k: "c", x: rnd(0, W), y: fromTop ? rnd(-H * 0.6, -10) : rnd(H * 0.2, H * 0.6),
+        vx: rnd(-1.2, 1.2), vy: fromTop ? rnd(1.6, 3.6) : rnd(-7, -3),
+        rot: rnd(0, Math.PI), vr: rnd(-0.15, 0.15), w: rnd(7, 13), h: rnd(10, 20), ph: rnd(0, 6), c: pickc(),
+      });
+    }
+    run();
+  }
+  function run() { if (!raf) raf = requestAnimationFrame(frame); }
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    const next = [];
+    for (const p of parts) {
+      if (p.k === "r") {
+        p.px = p.x; p.py = p.y;
+        p.x += p.vx; p.y += p.vy; p.vy += G;
+        ctx.strokeStyle = p.c; ctx.lineWidth = 3; ctx.globalAlpha = 1;
+        ctx.beginPath(); ctx.moveTo(p.px, p.py + 14); ctx.lineTo(p.x, p.y); ctx.stroke();
+        if (p.vy >= -0.6) burst(p.x, p.y, p.power, p.c, p.type); else next.push(p);
+      } else if (p.k === "p") {
+        p.px = p.x; p.py = p.y;
+        p.vx *= p.drag; p.vy = p.vy * p.drag + G * p.g;
+        p.x += p.vx; p.y += p.vy; p.life--;
+        let a = Math.max(0, p.life / p.max);
+        if (p.twinkle) a *= 0.55 + Math.random() * 0.45;
+        ctx.globalAlpha = a;
+        ctx.strokeStyle = p.c; ctx.lineWidth = p.w;
+        ctx.beginPath(); ctx.moveTo(p.px, p.py); ctx.lineTo(p.x, p.y); ctx.stroke();
+        if (p.life > 0) next.push(p);
+        else if (p.split) {
+          for (let i = 0; i < 4; i++) { const a2 = Math.random() * Math.PI * 2; next.push(P(p.x, p.y, Math.cos(a2) * 2.4, Math.sin(a2) * 2.4, 38, pickc())); }
+          if (Math.random() < 0.3) SFX.crackle();
+        }
+      } else {
+        p.ph += 0.05; p.vy = Math.min(p.vy + 0.08, 3.8);
+        p.x += p.vx + Math.sin(p.ph) * 0.8; p.y += p.vy; p.rot += p.vr;
+        ctx.globalAlpha = 1; ctx.fillStyle = p.c;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+        ctx.fillRect(-p.w / 2, (-p.h / 2) * Math.abs(Math.cos(p.ph * 1.7)), p.w, p.h * Math.abs(Math.cos(p.ph * 1.7)) + 1);
+        ctx.restore();
+        if (p.y < H + 30) next.push(p);
+      }
+    }
+    ctx.globalAlpha = 1;
+    parts = next;
+    raf = parts.length ? requestAnimationFrame(frame) : 0;
+    if (!raf) ctx.clearRect(0, 0, W, H);
+  }
+
+  function flash() {
+    if (reduce) return;
+    const f = $("flash");
+    f.classList.remove("on"); void f.offsetWidth; f.classList.add("on");
+  }
+
+  let rainTimer = 0;
+  function rain(ticks, n) {
+    clearInterval(rainTimer);
+    let k = 0;
+    rainTimer = setInterval(() => { confetti(n); if (++k > ticks) clearInterval(rainTimer); }, 200);
+  }
+  function celebrate(rank) {
+    SFX.fanfare(rank);
+    if (reduce) { confetti(rank === 1 ? 90 : 40, true); return; }
+    if (rank === 3) {
+      [0, 350, 700, 1000, 1300].forEach((d) => later(() => rocket(1), d));
+      confetti(60, false); confetti(40, true);
+    } else if (rank === 2) {
+      [[0, "ring", 1.2], [250, "peony", 1.2], [600, "ring", 1.3], [1000, "peony", 1.3], [1050, "crossette", 1.2],
+       [1400, "ring", 1.4], [1700, "peony", 1.3], [2000, "crossette", 1.3], [2300, "ring", 1.5], [2400, "peony", 1.4]]
+        .forEach(([d, ty, p]) => later(() => rocket(p, ty), d));
+      confetti(110, false); confetti(70, true);
+    } else {
+      const types = ["peony", "ring", "willow", "crossette"];
+      flash();
+      for (let i = 0; i < 6; i++) later(() => rocket(1.5, types[i % 4]), i * 80);
+      for (let i = 0; i < 24; i++) later(() => rocket(rnd(1.2, 1.7), types[(Math.random() * 4) | 0]), 600 + i * 125);
+      later(flash, 2290);
+      later(() => { flash(); for (let i = 0; i < 12; i++) later(() => rocket(1.8, i % 2 ? "willow" : "ring"), i * 60); }, 3650);
+      confetti(160, false); confetti(120, true);
+      rain(50, 8);
+    }
+  }
+  function celebrateFinal() {
+    SFX.finale();
+    if (reduce) { confetti(60, true); return; }
+    ["ring", "willow", "peony", "crossette", "ring", "willow"].forEach((ty, i) => later(() => rocket(1.4, ty), i * 220));
+    confetti(100, false);
+    rain(30, 6);
+  }
+
+  // 진행: 0 대기 → 3등 → 2등 → 1등 → 전체 결과
+  let step = 0, busy = false;
+  const HINTS = [
+    "<b>→</b> 누르면 <b>3등</b> 공개",
+    "<b>→</b> 누르면 <b>2등</b> 공개",
+    "<b>→</b> 누르면 <b>1등</b> 공개",
+    "<b>→</b> 누르면 <b>전체 결과</b>",
+    "축하합니다! <b>R</b> 처음부터",
+  ];
+  const setHint = () => { $("hint").innerHTML = HINTS[step]; };
+
+  function roulette(winner) {
+    return new Promise((done) => {
+      const pool = TEAMS.map((t) => t.n).filter((n) => !slots[n].classList.contains("won"));
+      if (reduce) { done(); return; }
+      document.body.classList.add("rolling");
+      const steps = 18;
+      const seq = [];
+      for (let i = 0; i < steps - 1; i++) {
+        let n;
+        do { n = pool[(Math.random() * pool.length) | 0]; } while (n === seq[seq.length - 1] || (i === steps - 2 && n === winner));
+        seq.push(n);
+      }
+      seq.push(winner);
+      const delay = (k) => 50 + k * k * 0.75;
+      let total = 0;
+      for (let k = 1; k < seq.length; k++) total += delay(k);
+      SFX.pick(RANK_OF[winner], total / 1000);
+      let i = 0;
+      const tickOne = () => {
+        Object.values(slots).forEach((s) => s.classList.remove("spot"));
+        slots[seq[i]].classList.add("spot");
+        if (i === seq.length - 1) SFX.land(); else SFX.tick(i, seq.length);
+        if (innerWidth <= 760) slots[seq[i]].scrollIntoView({ block: "nearest" });
+        i++;
+        if (i < seq.length) setTimeout(tickOne, delay(i));
+        else setTimeout(() => { document.body.classList.remove("rolling"); done(); }, 500);
+      };
+      tickOne();
+    });
+  }
+
+  function openStage(n, rank) {
+    const t = TEAMS.find((x) => x.n === n);
+    const rw = $("rankWords");
+    rw.replaceChildren(rosette(rank), chips(`${rank}등`, rank * 5));
+    const f = $("feature");
+    f.replaceChildren();
+    const lift = document.createElement("div");
+    lift.className = "lift";
+    lift.style.height = "100%";
+    lift.append(cardNode(t));
+    f.append(lift);
+    const st = $("stage");
+    st.classList.remove("r1", "r2", "r3");
+    st.classList.add("r" + rank);
+    st.hidden = false;
+    requestAnimationFrame(() => st.classList.add("show"));
+    celebrate(rank);
+  }
+  function closeStage() {
+    const st = $("stage");
+    st.classList.remove("show");
+    return new Promise((r) => setTimeout(() => { st.hidden = true; r(); }, reduce ? 0 : 350));
+  }
+  function markWon(n, rank) {
+    const s = slots[n];
+    s.classList.remove("spot");
+    s.classList.add("won", "r" + rank);
+    const m = document.createElement("span");
+    m.className = "medal";
+    m.append(rosette(rank));
+    s.append(m);
+  }
+
+  async function next() {
+    if (busy || step > 3) return;
+    busy = true;
+    if (step >= 1) {
+      await closeStage();
+      const prev = ORDER[step - 1];
+      markWon(prev, RANK_OF[prev]);
+    }
+    if (step < 3) {
+      const n = ORDER[step];
+      await roulette(n);
+      openStage(n, RANK_OF[n]);
+    } else {
+      document.body.classList.add("final");
+      Object.values(slots).forEach((s) => s.classList.remove("spot"));
+      celebrateFinal();
+    }
+    step++;
+    setHint();
+    busy = false;
+  }
+
+  function reset() {
+    if (busy) return;
+    step = 0;
+    clearInterval(rainTimer);
+    timers.splice(0).forEach(clearTimeout);
+    parts = [];
+    document.body.classList.remove("final", "rolling");
+    Object.values(slots).forEach((s) => { s.classList.remove("won", "r1", "r2", "r3", "spot"); s.querySelector(".medal")?.remove(); });
+    const st = $("stage"); st.classList.remove("show"); st.hidden = true;
+    setHint();
+  }
+
+  function toggleSound() {
+    muted = !muted;
+    if (AC) master.gain.value = muted ? 0 : 0.75;
+    $("snd").firstChild.textContent = muted ? "소리 끔" : "소리 켬";
+  }
+  $("snd").addEventListener("click", toggleSound);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+    else if (e.key === "r" || e.key === "R") reset();
+    else if (e.key === "f" || e.key === "F") fs();
+    else if (e.key === "m" || e.key === "M") toggleSound();
+  });
+
+  // 전체 화면
+  function fs() {
+    if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+    else document.documentElement.requestFullscreen?.().catch(() => {});
+  }
+  $("fs").addEventListener("click", fs);
+  document.addEventListener("fullscreenchange", () => document.body.classList.toggle("is-fs", !!document.fullscreenElement));
+
+  let idleTimer;
+  const wake = () => { document.body.classList.remove("idle"); clearTimeout(idleTimer); idleTimer = setTimeout(() => document.body.classList.add("idle"), 3000); };
+  ["mousemove", "pointerdown", "keydown"].forEach((ev) => document.addEventListener(ev, wake));
+  wake();
+  setHint();
+})();
+</script>
+</body>
+</html>
