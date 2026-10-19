@@ -712,11 +712,13 @@
     transform: translateX(-16px);
   }
   .browser video { display: block; width: 1040px; height: 585px; object-fit: cover; background: #0b0f17; }
+  /* 검은 바탕 시연 장(넥슨 덱에서 가져온 마인크래프트 영상) */
+  .slide.demo-bk, .slide.dark.demo-bk { background: #000 !important; }
+  .demo-bk .browser { background: #000; border-color: #000; box-shadow: none; }
+  .demo-bk .browser video { background: #000; }
 
   /* 3. 시대별 커리어: 시대 띠(인터넷·모바일·AI) 아래 회사 카드 여섯 장, 카드 사이 아래에 학력, AI 카드 아래에 대외 활동.
      카드 1장 = 173×290, 간격 18. 인터넷 시대는 Freechal·Kearney, 모바일 시대는 Bain부터. 시대 색은 2장 패러다임 장과 맞춘다(인터넷 블루, 모바일 바이올렛, AI 그린) */
-  .cr-sub { left: 76px; top: 160px; font-size: 20px; font-weight: 600; color: #8a93a6; letter-spacing: -.01em; }
-  .cr-sub b { color: #f4f6fc; font-weight: 700; }
   .cr-era { top: 222px; height: 28px; display: flex; align-items: center; gap: 14px; }
   .cr-era i { flex: 1; height: 2px; background: currentColor; opacity: .55; border-radius: 1px; position: relative; }
   .cr-era i:last-child::after { content: ""; position: absolute; right: -2px; top: -5px; border-left: 9px solid currentColor; border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
@@ -733,11 +735,13 @@
   .cr-card {
     top: 268px; width: 173px; height: 290px; border-radius: 18px; padding: 84px 12px 0;
     display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 4px; text-align: center;
-    color: #fff; border: 1px solid rgba(255,255,255,.10);
+    color: #fff;
   }
   .cr-card.net { background: linear-gradient(160deg, #2c5fd6 0%, #15307a 55%, #0b1638 100%); }
   .cr-card.mob { background: linear-gradient(160deg, #7a45c9 0%, #3b2272 55%, #1a1233 100%); }
-  .cr-card.ai  { background: linear-gradient(160deg, #2f9a4a 0%, #1c6a31 55%, #0e3519 100%); border-color: rgba(111,220,140,.45); box-shadow: 0 0 40px rgba(111,220,140,.18); }
+  /* 컨설팅(Kearney·Bain)은 시대와 상관없이 한 색으로 묶는다 */
+  .cr-card.consult { background: linear-gradient(160deg, #3f5a78 0%, #22344a 55%, #111b28 100%); }
+  .cr-card.ai  { background: linear-gradient(160deg, #2f9a4a 0%, #1c6a31 55%, #0e3519 100%); box-shadow: 0 0 40px rgba(111,220,140,.18); }
   .cr-card h3 { font-size: 23px; font-weight: 800; line-height: 1.15; letter-spacing: -.01em; }
   /* 이미지 로고도 NAVER·kakao 글자 로고와 같은 줄(아래 46px)에 가운데로 둔다 */
   .cr-card img.wm { left: 50%; right: auto; height: auto; transform: translateX(-50%); }
@@ -866,6 +870,167 @@
     .slide.dark [data-step] { opacity: 1 !important; translate: none !important; filter: none !important; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  /* ===== 올리브영 덱(20261019) 5~9장에서 가져온 장(2026-10-19): IQ 분포 · 결과물 변곡점 · 60분 업무 · 조직 성과 · 현장 질문.
+     올리브영 밝은 바탕 색을 삼성물산 다크 팔레트로 옮겼다(글자 #f4f6fc, 카드 반투명 흰 면, 강조 시안 #00a3e0·#3aa6ee). 서브타이틀은 .cr-sub.lv-sub ===== */
+  .cr-sub { left: 76px; top: 160px; font-size: 20px; font-weight: 600; color: #8a93a6; letter-spacing: -.01em; }
+  .lv-sub { color: #f4f6fc; font-weight: 800; }
+  /* AI IQ 분포(.iq): 사람 IQ 분포(평균 100, 표준편차 15) 위에 AI 모델 점수를 점으로 쌓는다. 2025.7 자리에서 2026.10 자리로 점이 이동(--x0/--y0 → --x1/--y1).
+     데이터: TrackingAI 오프라인 테스트(미공개 문항), 모델별 최근 7회 평균, 최근 60일 안에 응시한 모델만. 2025.7은 31개(가장 낮은 1개 제외), 2026.10은 31개 */
+  .iq-chart { left: 0; top: 0; width: 1280px; height: 720px; overflow: visible; pointer-events: none; }
+  .iq-human { fill: rgba(255,255,255,.07); }
+  .iq-base { stroke: rgba(255,255,255,.22); stroke-width: 1; }
+  .iq-ref { stroke: #6b7489; stroke-width: 1; stroke-dasharray: 4 4; } .iq-ref.top { stroke: #3aa6ee; }
+  .iq-ref-t { font-size: 13px; font-weight: 700; fill: #8a93a6; } .iq-ref-t.top { fill: #3aa6ee; }
+  .iq-ref.kr { stroke: #f4f6fc; opacity: .55; } .iq-ref-t.kr { fill: #f4f6fc; }
+  .iq-ax { font: 500 12px ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #f4f6fc; }
+  .iq-ax-t { font-size: 12px; font-weight: 600; fill: #8a93a6; }
+  .iq-dots { left: 0; top: 0; width: 1280px; height: 720px; pointer-events: none; }
+  .iq-dot { position: absolute; left: 0; top: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: #f06464; border: 1.5px solid #fff; box-sizing: border-box;
+    transform: translate(var(--x0), var(--y0)); transition: transform 1.6s cubic-bezier(.65,0,.35,1) var(--d), background .6s ease var(--d); }
+  .iq:has(.iq-go.on) .iq-dot { transform: translate(var(--x1), var(--y1)); background: #3aa6ee; }
+  /* 2026.10 점에 마우스를 올리면 모델 이름과 점수 툴팁 */
+  .iq:has(.iq-go.on) .iq-dot { pointer-events: auto; cursor: default; }
+  .iq-dot::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); padding: 6px 10px; border-radius: 8px; background: #0d121b; color: #fff; font-size: 13px; font-weight: 700; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .15s ease; z-index: 5; }
+  .iq:has(.iq-go.on) .iq-dot:hover { z-index: 6; box-shadow: 0 0 0 3px rgba(0,163,224,.35); }
+  .iq:has(.iq-go.on) .iq-dot:hover::after { opacity: 1; }
+  .iq-when { right: 76px; top: 160px; height: 40px; width: 300px; text-align: right; }
+  .iq-when span { position: absolute; right: 0; top: 0; font: 800 34px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: -.02em; transition: opacity .5s ease; }
+  .iq-when .a { color: #e8504f; } .iq-when .b { color: #3aa6ee; opacity: 0; }
+  .iq:has(.iq-go.on) .iq-when .a { opacity: 0; } .iq:has(.iq-go.on) .iq-when .b { opacity: 1; }
+  .iq-stat { left: 900px; width: 304px; height: 132px; box-sizing: border-box; padding: 16px 24px; border-radius: 16px; background: rgba(255,255,255,.04); border: 1px solid rgba(223,229,238,.12); }
+  .iq-stat .k { font-size: 14px; font-weight: 700; color: #8a93a6; }
+  .iq-stat .t { display: block; margin-top: 4px; font: 600 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #6b7489; }
+  .iq-stat .v { margin: 8px 0 0; display: flex; align-items: baseline; gap: 10px; font-weight: 800; }
+  .iq-stat .v s { font-size: 24px; color: #e8504f; text-decoration: none; }
+  .iq-stat .v i { font-style: normal; font-size: 18px; color: #6b7489; }
+  .iq-stat .v b { font-size: 40px; color: #3aa6ee; letter-spacing: -.02em; opacity: .15; transition: opacity .6s ease 1.2s; }
+  .iq:has(.iq-go.on) .iq-stat .v b { opacity: 1; }
+  .iq-stat.hot { background: rgba(12,111,176,.16); border-color: #00a3e0; } .iq-stat.hot .v b { color: #3aa6ee; }
+  .iq-legend { left: 76px; top: 632px; margin: 0; width: 784px; display: flex; gap: 18px; font-size: 13px; font-weight: 600; color: #cfd6e0; justify-content: center; }
+  .iq-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+  .iq-legend i.h { border-radius: 3px; background: rgba(255,255,255,.07); } .iq-legend i.a { background: #f06464; } .iq-legend i.b { background: #3aa6ee; }
+  /* 모델 변곡점 장(.ip): 세 열(352 폭, y 220~650), 이미지 → 큰 결과물 이름 → 모델·날짜. 3번(파워포인트)만 시안 면 */
+  .ip-col { top: 220px; width: 352px; height: 430px; box-sizing: border-box; padding: 30px 28px 26px; border-radius: 20px; background: rgba(255,255,255,.04); border: 1px solid rgba(223,229,238,.12); display: flex; flex-direction: column; }
+  .ip-col > * { flex-shrink: 0; }
+  .ip-col.hot { background: rgba(12,111,176,.16); border: 1.5px solid #00a3e0; box-shadow: 0 16px 40px rgba(0,163,224,.16); }
+  .ip-ico { width: 120px; height: 96px; display: block; }
+  .ip-date { margin-top: 22px; align-self: flex-start; padding: 4px 11px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(223,229,238,.2); font: 800 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #3aa6ee; }
+  .ip-big { margin-top: 12px; height: 54px; font-size: 46px; font-weight: 800; line-height: 54px; letter-spacing: -.03em; color: #f4f6fc; }
+  .ip-model { margin-top: 4px; font-size: 15px; font-weight: 700; color: #8a93a6; }
+  .ip-msg { margin: auto 0 0; padding-top: 16px; border-top: 1px solid rgba(223,229,238,.12); min-height: 64px; box-sizing: content-box; font-size: 19px; font-weight: 800; line-height: 1.4; color: #f4f6fc; word-break: keep-all; }
+  .ip-col.hot .ip-msg { border-top-color: rgba(0,163,224,.45); }
+  .ip-fact { margin: 10px 0 0; font-size: 13.5px; font-weight: 600; color: #8a93a6; }
+  .ip-arr { top: 423px; width: 24px; height: 24px; fill: none; stroke: #6b7489; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .ip-col { justify-content: center; align-items: flex-start; }   /* 메시지·근거 줄을 빼서 남은 아이콘·날짜·이름·모델을 카드 세로 가운데에 둔다 */
+  .ip-big { margin-top: 22px; }
+  .ip-mrow { margin-top: 8px; display: flex; align-items: center; gap: 10px; }
+  .ip-mrow .ip-model { margin-top: 0; }
+  .ip-mrow .ip-date { margin-top: 0; }   /* 날짜 필을 모델 이름 오른쪽에 */
+  .ip-model { white-space: nowrap; }
+  /* 모델 변곡점 장: 아이콘 대신 실제 이미지(16:9, 카드 안쪽 폭 296) */
+  .ip-pic { position: relative; margin: 0; width: 296px; height: 166px; border-radius: 12px; overflow: hidden; background: rgba(223,229,238,.12); border: 1px solid rgba(223,229,238,.12); }
+  .ip-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ip-play { position: absolute; left: 50%; top: 50%; width: 52px; height: 36px; transform: translate(-50%,-50%); border-radius: 10px; background: rgba(5,7,13,.78); }
+  .ip-play::after { content: ""; position: absolute; left: 21px; top: 10px; border-left: 14px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+  /* 업무 시간 단축(.ts): 60분 막대 안에서 AI와 함께 걸리는 시간만 그린으로 채움. 2025~26은 측정 방법이 달라(대화 분석 추정) 구분선 아래에 둠 */
+  .ts-row { left: 76px; width: 1128px; height: 78px; display: flex; align-items: center; gap: 24px; }
+  .ts-y { width: 70px; font: 800 26px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #f4f6fc; }
+  .ts-bar { position: relative; width: 640px; height: 44px; border-radius: 10px; background: rgba(255,255,255,.07); }
+  .ts-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; border-radius: 10px; background: rgba(255,255,255,.22); transition: width 1.1s cubic-bezier(.16,1,.3,1) .2s; }
+  .ts-row.on .ts-fill { width: var(--w); background: #00a3e0; }
+  .ts-row.es .ts-fill { background: rgba(255,255,255,.22); } .ts-row.es.on .ts-fill { background: #3aa6ee; }
+  .slide.dark.instant .ts-fill { transition: none; }
+  .ts-min { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; font-weight: 800; color: #f4f6fc; }
+  .ts-note { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .ts-note strong { font-size: 24px; font-weight: 800; color: #3aa6ee; letter-spacing: -.01em; }
+  .ts-note small { font-size: 13px; font-weight: 600; color: #8a93a6; line-height: 1.35; word-break: keep-all; }
+  .ts-bub { right: 76px; top: 566px; margin: 0; padding: 8px 14px 9px; border-radius: 12px; background: #0d121b; color: #fff; font-size: 15px; font-weight: 800; white-space: nowrap; }
+  .ts-bub::after { content: ""; position: absolute; left: -7px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 0; border-right-color: #f4f6fc; }   /* 꼬리는 왼쪽 55분 단축 쪽 */
+  .slide.dark .ts-bub.on { transition-delay: 1.1s; }
+  .ts-split { left: 76px; width: 1128px; height: 0; margin: 0; border-top: 1.5px dashed rgba(255,255,255,.22); font-size: 12.5px; font-weight: 700; color: #6b7489; }
+  .ts-split span { position: absolute; right: 0; white-space: nowrap; } .ts-split span:first-child { bottom: 4px; } .ts-split span:last-child { top: 5px; }   /* 위 묶음 이름은 선 위, 아래 묶음 이름은 선 아래 */
+  /* 개인 간 AI 격차(.gp): 카드 셋(교육 증가 → 현재 나뉜 인력 구성 → 경험 격차). 분석 시점은 필(.gp-date). 진한 강조는 3번 카드 하나 */
+  .gp-card { top: 220px; width: 352px; height: 430px; box-sizing: border-box; padding: 28px 28px 24px; border-radius: 20px; display: flex; flex-direction: column;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(223,229,238,.12); }
+  .gp-card.hot { background: rgba(12,111,176,.16); border-color: #00a3e0; box-shadow: 0 16px 40px rgba(0,163,224,.16); }
+  .gp-k { font-size: 15px; font-weight: 800; color: #3aa6ee; letter-spacing: -.01em; }
+  .gp-big { margin-top: 14px; font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -.03em; color: #f4f6fc; white-space: nowrap; }
+  .gp-big i { font-style: normal; font-size: 30px; color: #6b7489; margin: 0 8px; vertical-align: middle; }
+  .gp-card p { margin: 14px 0 0; font-size: 16px; line-height: 1.5; font-weight: 600; color: #cfd6e0; word-break: keep-all; }
+  .gp-card small { margin-top: auto; font-size: 12px; color: #6b7489; }
+  .gp-card { position: absolute; }
+  .gp-date { position: absolute; top: 24px; right: 24px; padding: 5px 11px; border-radius: 999px; border: 1px solid rgba(223,229,238,.2); background: rgba(255,255,255,.06);
+    font: 600 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8a93a6; letter-spacing: .02em; }
+  .gp-date.in { position: static; display: inline-block; margin-left: 10px; vertical-align: 2px; }
+  .gp-rows { margin: 30px 0 0; display: flex; flex-direction: column; gap: 14px; }
+  .gp-rows dt { font-size: 13px; font-weight: 700; color: #8a93a6; }
+  .gp-rows dd { margin: 4px 0 0; display: flex; align-items: center; gap: 12px; }
+  .gp-rows dd b { flex: none; min-width: 84px; font-size: 36px; font-weight: 800; line-height: 1; letter-spacing: -.03em; color: #f4f6fc; }
+  .gp-rows dd span { font-size: 13.5px; line-height: 1.45; font-weight: 600; color: #cfd6e0; word-break: keep-all; }
+  /* AI 성과 격차(.gp.og) */
+  .slide.dark.gp .gp-card.on, .slide.dark.sb .sb-card.on { filter: none; }
+  .og-bars { list-style: none; margin: 34px 0 0; padding: 0; display: flex; flex-direction: column; gap: 26px; }
+  .og-bars em { display: block; margin-bottom: 8px; font-style: normal; font-size: 15px; font-weight: 700; color: #8a93a6; }
+  .og-bars .t { display: flex; align-items: center; gap: 12px; }
+  .og-bars i { display: block; height: 28px; width: calc(var(--v) * 2.2px); border-radius: 0 6px 6px 0; background: #00a3e0; transition: width 1s cubic-bezier(.16,1,.3,1) .3s; }
+  .og-bars .lo i { background: #ff7878; }
+  .og-bars b { font-size: 28px; font-weight: 800; letter-spacing: -.02em; color: #f4f6fc; }
+  .og-bars .lo b { color: #ff7878; }
+  .gp-card:not(.on) .og-bars i { width: 0; }
+  .slide.dark.instant .og-bars i { transition: none; }
+  .og .gp-rows { gap: 22px; }
+  .og .gp-rows dd b { min-width: 104px; font-size: 44px; }
+  .og .gp-rows dd b.lo { color: #ff7878; } .og .gp-rows dd b.hi { color: #3aa6ee; }
+  .og .gp-rows dd span { font-size: 14.5px; }
+  .og .og-bars, .og .gp-rows { margin: auto 0; gap: 36px; } .og .gp-card small { margin-top: 0; }   /* 내용을 카드 머리와 출처 사이 가운데에 둔다 */
+  .og .og-bars em { margin-bottom: 10px; }
+  /* HR 서밋 덱에서 가져온 공감 장(.jr): 세 단계 카드(y 196~474, 352 폭) + 화살표 + 아래 잉크 띠(지금의 질문, y 498~650). 진한 면은 띠 하나 */
+  .jr-card { top: 196px; width: 352px; height: 278px; box-sizing: border-box; padding: 24px 26px 22px; border-radius: 18px; background: rgba(255,255,255,.04); border: 1px solid rgba(223,229,238,.12); display: flex; flex-direction: column; }
+  .jr-card.hot { background: rgba(12,111,176,.16); border-color: #00a3e0; }
+  .jr-k { font: 800 12.5px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .04em; color: #3aa6ee; }
+  .jr-q { margin: 14px 0 0; font-size: 21px; font-weight: 800; line-height: 1.38; letter-spacing: -.02em; color: #f4f6fc; word-break: keep-all; }
+  .jr-b { margin: 12px 0 0; font-size: 14.5px; font-weight: 600; line-height: 1.5; color: #cfd6e0; word-break: keep-all; }
+  .jr-r { margin: auto 0 0; padding-top: 12px; border-top: 1px solid rgba(223,229,238,.12); display: flex; gap: 8px; font-size: 15px; font-weight: 800; line-height: 1.45; color: #f4f6fc; word-break: keep-all; }
+  .jr-card.hot .jr-r { border-top-color: rgba(0,163,224,.45); }
+  .jr-r i { font-style: normal; color: #3aa6ee; }
+  .jr-arr { top: 323px; width: 24px; height: 24px; fill: none; stroke: #6b7489; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .jr-band { left: 76px; top: 498px; width: 1128px; height: 152px; box-sizing: border-box; padding: 0 30px; border-radius: 18px; background: #0d121b; display: flex; align-items: center; gap: 28px; }
+  .jr-bh { flex: none; width: 110px; margin: 0; font-size: 17px; font-weight: 800; line-height: 1.35; color: #00a3e0; }
+  .jr-band ul { list-style: none; margin: 0; padding: 0; flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+  .jr-band li { height: 50px; box-sizing: border-box; padding: 0 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); display: flex; align-items: center; font-size: 17px; font-weight: 700; color: #fff; white-space: nowrap; }
+  /* 8장(.jr) 글자 키움(2026-10-18): 카드 y 196~496(300 높이), 아래 띠 y 516~650(134 높이). 본문 아래 끝 650은 그대로 */
+  .jr-card { height: 300px; padding: 24px 26px 22px; }
+  .jr-k { font-size: 14px; }
+  .jr-q { font-size: 24px; line-height: 1.34; }
+  .jr-b { font-size: 16px; line-height: 1.5; }
+  .jr-r { font-size: 16.5px; }
+  .jr-arr { top: 334px; }
+  .jr-band { top: 516px; height: 134px; }
+  .jr-bh { width: 124px; font-size: 19px; }
+  .jr-band ul { gap: 10px 16px; }
+  .jr-band li { height: 52px; font-size: 19px; }
+  .jr-r { min-height: 62px; box-sizing: border-box; align-items: flex-start; }   /* 결론이 한 줄이든 두 줄이든 구분선 높이를 세 카드에서 같게 둔다 */
+  /* ===== 2026-10-19 넥슨 덱에서 가져온 장의 부품 ===== */
+  /* 책상 장 왼쪽 모니터: 사진 속 2026을 2027로 덮는다(.desk-yr). 오른쪽 모니터: 에이전트 플로어 정지 화면(.desk-mon2),
+     클릭하면 같은 자리에서 플로어 영상 창(.desk-zoom)이 시연 장 크기(120,50 · 1040 폭)로 커진다. 0.344 = 358/1040 */
+  .desk-yr { position: absolute; display: flex; align-items: center; justify-content: flex-start; line-height: 1; letter-spacing: -.02em; white-space: nowrap; font-family: "Pretendard", sans-serif; }
+  .desk-mon2 { position: absolute; left: 687px; top: 227px; width: 358px; height: 213px; border-radius: 2px; overflow: hidden; background: #0b0f17; box-shadow: 0 0 18px rgba(120,170,255,.12); }
+  .desk-mon2 img { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.0667); transform-origin: right center; }
+  .desk-zoom .dz-clip { overflow: hidden; }
+  .desk-dim { left: 0; top: 0; width: 1280px; height: 720px; background: rgba(5,7,13,.72); }
+  .slide.dark .desk-dim[data-step] { translate: none; filter: none; transition: opacity .6s ease; }
+  .slide.dark .desk-zoom[data-step] { translate: none; filter: none; transform-origin: 0 0; transform: translate(567px, 177px) scale(.344);
+    transition: transform .9s cubic-bezier(.16,1,.3,1), opacity .25s ease; }
+  .slide.dark .desk-zoom[data-step].on { transform: none; }
+  /* 5사 타임라인(.tl5): 넥슨판 줄 높이 90 · 간격 96(188~662)에 넥슨의 본문 내림(--bs 18)을 더한다 */
+  .tl5 .tl-head { top: 178px; } .tl5 .tl-span { top: 199px; }
+  .tl5 .tl-row { height: 90px; margin-top: 18px; } .tl5 .tl-co { height: 90px; } .tl5 .tl-card { top: 5px; }
+  /* 브릿지(.br): 헤드라인 없이 두 줄. 강조 낱말 하나만 시안 면 */
+  .br-text { left: 76px; top: 292px; width: 1128px; margin: 0; display: flex; flex-direction: column; align-items: center; gap: 30px; text-align: center; word-break: keep-all; }
+  .br-l1 { font-size: 30px; font-weight: 700; letter-spacing: -.02em; color: #8a93a6; }
+  .br-l2 { font-size: 44px; font-weight: 800; letter-spacing: -.03em; line-height: 1.4; color: #f4f6fc; }
+  .br-l2 em { font-style: normal; padding: 0 16px; border-radius: 999px; background: #0c7bc0; color: #fff; }
 </style>
 </head>
 <body>
@@ -1170,15 +1335,14 @@
       <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark2)"/>
     </svg>
     <h2 class="abs head-title">글로벌·테크 경험 기반, K-AI 업계 최전선에서 혁신을 추진하고 있음</h2>
-    <p class="abs cr-sub"><b>강정구</b>, 라이너 AI 전략 총괄</p>
 
     <div class="abs cr-era net" data-step="0" style="left:76px;width:364px"><i></i><span data-morph-dst="net">인터넷 시대</span><i></i></div>
     <div class="abs cr-era mob" data-step="0" style="left:458px;width:555px"><i></i><span data-morph-dst="mob">모바일 시대</span><i></i></div>
     <div class="abs cr-era ai" data-step="0" style="left:1031px;width:173px"><span data-morph-dst="ai">AI 시대</span><i></i></div>
 
     <div class="abs cr-card net" data-step="1" style="left:76px"><h3>Freechal</h3></div>
-    <div class="abs cr-card net" data-step="1" style="left:267px"><h3>Kearney<br>Korea</h3><img class="wm lg lg-kearney" src="assets/logo-kearney-white.svg" alt="Kearney logo"></div>
-    <div class="abs cr-card mob" data-step="2" style="left:458px"><h3>Bain &amp;<br>Company</h3><img class="wm lg lg-bain" src="assets/logo-bain-stacked-white.svg" alt="Bain &amp; Company logo"></div>
+    <div class="abs cr-card consult" data-step="1" style="left:267px"><h3>Kearney<br>Korea</h3><img class="wm lg lg-kearney" src="assets/logo-kearney-white.svg" alt="Kearney logo"></div>
+    <div class="abs cr-card consult" data-step="2" style="left:458px"><h3>Bain &amp;<br>Company</h3><img class="wm lg lg-bain" src="assets/logo-bain-stacked-white.svg" alt="Bain &amp; Company logo"></div>
     <div class="abs cr-card mob" data-step="2" style="left:649px"><h3>LINE<br>Thailand</h3><p class="wm naver">NAVER</p></div>
     <div class="abs cr-card mob" data-step="2" style="left:840px"><h3>kakao</h3><p class="sm">Entertainment</p><p class="wm kakao">kakao</p></div>
     <div class="abs cr-card ai" data-step="3" style="left:1031px"><h3>Liner</h3><p class="sm">AI Agents</p><img class="wm lg lg-liner" src="assets/logo-liner-white.svg" alt="Liner logo"></div>
@@ -1197,210 +1361,154 @@
     </p>
   </section>
 
-  <!-- AX Methodology 1: 좁은 의미의 AX(1→5)가 먼저, 클릭하면 10단계 전체가 펼쳐진다 -->
-  <section class="slide dark" data-click="1" aria-label="AX에는 업무 전체를 보는 관점이 필요함(좁은 의미의 AX부터)">
+  <!-- ===== 올리브영 덱(20261019) 5~9장에서 가져옴(2026-10-19) ===== -->
+  <section class="slide dark iq" data-gap="2600" aria-label="AI 모델 IQ 점수 분포가 2025년 7월에서 2026년 10월 사이 사람 평균 아래에서 상위 2% 근처로 이동">
     <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
       <defs>
-        <linearGradient id="hmLine3" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow3" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan3" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot3"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark3"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+        <linearGradient id="hmLine101" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow101" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan101" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot101"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark101"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
       </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow3)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine3)"/>
-      <g class="hm-fans" stroke="url(#hmFan3)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot3)"/>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow101)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine101)"/>
+      <g class="hm-fans" stroke="url(#hmFan101)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot101)"/>
       <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark3)"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark101)"/>
     </svg>
-    <h2 class="abs head-title" data-step="2">AX 성공을 위해서는 조직의 업무 구조를 폭넓게 조망해야 함</h2>
-    <div class="abs mx-axis l" data-step="2" style="left:76px;width:446px"><svg viewBox="0 0 10 10"><path d="M10 1L1 5l9 4z"/></svg><i></i><span>업무 구조 (What)</span><i></i></div>
-    <div class="abs mx-axis r" data-step="2" style="left:700px;width:446px"><i></i><span>AI 전환 (Why)</span><i></i><svg viewBox="0 0 10 10"><path d="M0 1l9 4-9 4z"/></svg></div>
-    <div class="abs mx-card" data-step="2" style="left:76px;top:236px;width:134px;height:206px"><b>4</b><h4>업무 입출력 구조</h4><p>각 업무별 필요 정보와 결과물은 무엇인가</p></div>
-    <div class="abs mx-card" data-step="2" style="left:232px;top:236px;width:134px;height:206px"><b>3</b><h4>시간 배분 현황</h4><p>각 업무에 실제로 얼마나 시간이 투입되는가</p></div>
-    <div class="abs mx-card" data-step="2" style="left:388px;top:236px;width:134px;height:206px"><b>2</b><h4>핵심 업무 목록</h4><p>해당 역할이 수행하는 모든 업무를 열거</p></div>
-    <div class="abs mx-card hot" data-step="1" style="left:544px;top:236px;width:134px;height:206px"><b>1</b><h4>업무 역할 정의</h4><p>이 업무가 조직에 창출하는 핵심 가치는 무엇인가</p></div>
-    <div class="abs mx-card" data-step="1" style="left:700px;top:236px;width:134px;height:206px"><b>5</b><h4>AI 대체 가능성</h4><p>어떤 업무를 AI가 대신할 수 있는가</p></div>
-    <div class="abs mx-card" data-step="2" style="left:856px;top:236px;width:134px;height:206px"><b>6</b><h4>협업 구조</h4><p>누구와 어떻게 협업하며 정보는 어떻게 흐르는가</p></div>
-    <div class="abs mx-card" data-step="2" style="left:1012px;top:236px;width:134px;height:206px"><b>7</b><h4>성과 기준</h4><p>이 업무의 성공은 무엇으로 측정되는가</p></div>
-    <svg class="abs mx-arrows" viewBox="0 0 1280 720" aria-hidden="true"><g class="mx-arr" data-step="2"><line x1="229" y1="339.0" x2="208" y2="339.0"/><path d="M213 339.0l7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="385" y1="339.0" x2="364" y2="339.0"/><path d="M369 339.0l7 -5v10z"/></g><g class="mx-arr s" data-step="2"><line x1="541" y1="339.0" x2="520" y2="339.0"/><path d="M525 339.0l7 -5v10z"/></g><g class="mx-arr s" data-step="1"><line x1="681" y1="339.0" x2="702" y2="339.0"/><path d="M697 339.0l-7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="837" y1="339.0" x2="858" y2="339.0"/><path d="M853 339.0l-7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="993" y1="339.0" x2="1014" y2="339.0"/><path d="M1009 339.0l-7 -5v10z"/></g><path class="mx-up" data-step="2" d="M599.0 464h24l-12 -16z"/></svg>
-    <div class="abs mx-card wide" data-step="2" style="left:76px;top:470px;width:340px;height:150px"><b>9</b><h4>AI 가드레일</h4><p>해당 에이전트의 책임자는 누구이며,<br>보안, 통제를 어떻게 할 것인가</p></div>
-    <div class="abs mx-card wide" data-step="2" style="left:440px;top:470px;width:340px;height:150px"><b>8</b><h4>AI 모델 매핑</h4><p>이 업무에<br>어떤 AI 모델을 연결할 것인가</p></div>
-    <div class="abs mx-card wide" data-step="2" style="left:804px;top:470px;width:340px;height:150px"><b>10</b><h4>성장 방향</h4><p>AI가 반복 업무를 자동화한다면,<br>담당자는 무엇에 집중할 것인가</p></div>
-    <div class="abs mx-plus" data-step="2" style="left:415px;top:532.0px">+</div>
-    <div class="abs mx-plus" data-step="2" style="left:779px;top:532.0px">+</div>
-    <div class="abs mx-side g" data-step="2" style="top:236px;height:206px"><i></i><span>현황 진단</span></div>
-    <div class="abs mx-side o" data-step="2" style="top:470px;height:150px"><i></i><span>AI 전환</span></div>
-    <div class="abs mx-narrow" data-step="1" aria-hidden="true"></div>
-    <p class="abs mx-narrow-label" data-step="1">좁은 의미의 AX</p>
+    <h2 class="abs head-title">1년 만에 AI는 상위 2% 수준의 지능을 갖춘 신입사원이 되었음</h2>
+    <p class="abs cr-sub lv-sub">AI 모델별 IQ 점수(미공개 문항 테스트, 가로축 IQ)</p>
+    <svg class="abs iq-chart" viewBox="0 0 1280 720" aria-hidden="true"><path class="iq-human" d="M76.0,578.9 L80.4,578.2 L84.7,577.5 L89.1,576.7 L93.4,575.9 L97.8,575.0 L102.1,574.1 L106.5,573.1 L110.8,572.0 L115.2,570.8 L119.6,569.6 L123.9,568.2 L128.3,566.8 L132.6,565.4 L137.0,563.8 L141.3,562.1 L145.7,560.3 L150.0,558.4 L154.4,556.5 L158.8,554.4 L163.1,552.2 L167.5,549.9 L171.8,547.4 L176.2,544.9 L180.5,542.2 L184.9,539.4 L189.2,536.5 L193.6,533.5 L198.0,530.3 L202.3,527.1 L206.7,523.7 L211.0,520.1 L215.4,516.5 L219.7,512.7 L224.1,508.8 L228.4,504.8 L232.8,500.7 L237.2,496.5 L241.5,492.2 L245.9,487.7 L250.2,483.2 L254.6,478.6 L258.9,473.9 L263.3,469.1 L267.6,464.3 L272.0,459.4 L276.4,454.5 L280.7,449.5 L285.1,444.5 L289.4,439.4 L293.8,434.4 L298.1,429.3 L302.5,424.3 L306.8,419.3 L311.2,414.3 L315.6,409.3 L319.9,404.5 L324.3,399.7 L328.6,394.9 L333.0,390.3 L337.3,385.8 L341.7,381.4 L346.0,377.2 L350.4,373.1 L354.8,369.1 L359.1,365.4 L363.5,361.8 L367.8,358.4 L372.2,355.2 L376.5,352.3 L380.9,349.5 L385.2,347.0 L389.6,344.7 L394.0,342.7 L398.3,341.0 L402.7,339.4 L407.0,338.2 L411.4,337.2 L415.7,336.6 L420.1,336.1 L424.4,336.0 L428.8,336.1 L433.2,336.6 L437.5,337.2 L441.9,338.2 L446.2,339.4 L450.6,341.0 L454.9,342.7 L459.3,344.7 L463.6,347.0 L468.0,349.5 L472.4,352.3 L476.7,355.2 L481.1,358.4 L485.4,361.8 L489.8,365.4 L494.1,369.1 L498.5,373.1 L502.8,377.2 L507.2,381.4 L511.6,385.8 L515.9,390.3 L520.3,394.9 L524.6,399.7 L529.0,404.5 L533.3,409.3 L537.7,414.3 L542.0,419.3 L546.4,424.3 L550.8,429.3 L555.1,434.4 L559.5,439.4 L563.8,444.5 L568.2,449.5 L572.5,454.5 L576.9,459.4 L581.2,464.3 L585.6,469.1 L590.0,473.9 L594.3,478.6 L598.7,483.2 L603.0,487.7 L607.4,492.2 L611.7,496.5 L616.1,500.7 L620.4,504.8 L624.8,508.8 L629.2,512.7 L633.5,516.5 L637.9,520.1 L642.2,523.7 L646.6,527.1 L650.9,530.3 L655.3,533.5 L659.6,536.5 L664.0,539.4 L668.4,542.2 L672.7,544.9 L677.1,547.4 L681.4,549.9 L685.8,552.2 L690.1,554.4 L694.5,556.5 L698.8,558.4 L703.2,560.3 L707.6,562.1 L711.9,563.8 L716.3,565.4 L720.6,566.8 L725.0,568.2 L729.3,569.6 L733.7,570.8 L738.0,572.0 L742.4,573.1 L746.8,574.1 L751.1,575.0 L755.5,575.9 L759.8,576.7 L764.2,577.5 L768.5,578.2 L772.9,578.9 L777.2,579.5 L781.6,580.0 L786.0,580.6 L790.3,581.0 L794.7,581.5 L799.0,581.9 L803.4,582.3 L807.7,582.6 L812.1,582.9 L816.4,583.2 L820.8,583.5 L825.2,583.7 L829.5,584.0 L833.9,584.2 L838.2,584.3 L842.6,584.5 L846.9,584.7 L851.3,584.8 L855.6,584.9 L860.0,585.0 L860.0,586 L76.0,586 Z"/><line class="iq-base" x1="76" x2="860" y1="586" y2="586"/><line class="iq-ref" x1="424.4" x2="424.4" y1="300" y2="586"/><text class="iq-ref-t" x="424.4" y="292" text-anchor="middle">사람 평균 100</text><line class="iq-ref kr" x1="407.0" x2="407.0" y1="352" y2="586"/><text class="iq-ref-t kr" x="401.0" y="364" text-anchor="end">미국 평균 98</text><line class="iq-ref kr" x1="476.7" x2="476.7" y1="326" y2="586"/><text class="iq-ref-t kr" x="482.7" y="338">한국인 평균 106</text><line class="iq-ref top" x1="685.8" x2="685.8" y1="300" y2="586"/><text class="iq-ref-t top" x="685.8" y="292" text-anchor="middle">상위 2% 130</text><text class="iq-ax" x="76.0" y="608" text-anchor="middle">60</text><text class="iq-ax" x="163.1" y="608" text-anchor="middle">70</text><text class="iq-ax" x="250.2" y="608" text-anchor="middle">80</text><text class="iq-ax" x="337.3" y="608" text-anchor="middle">90</text><text class="iq-ax" x="424.4" y="608" text-anchor="middle">100</text><text class="iq-ax" x="511.6" y="608" text-anchor="middle">110</text><text class="iq-ax" x="598.7" y="608" text-anchor="middle">120</text><text class="iq-ax" x="685.8" y="608" text-anchor="middle">130</text><text class="iq-ax" x="772.9" y="608" text-anchor="middle">140</text><text class="iq-ax" x="860.0" y="608" text-anchor="middle">150</text></svg>
+    <div class="abs iq-dots" data-step="1"><i class="iq-dot" data-tip="Mistral Large 3 · IQ 74.9" style="--x0:154.4px;--y0:580.0px;--x1:206.7px;--y1:580.0px;--d:0.000s"></i><i class="iq-dot" data-tip="Microsoft Copilot · IQ 80.7" style="--x0:167.5px;--y0:580.0px;--x1:258.9px;--y1:580.0px;--d:0.025s"></i><i class="iq-dot" data-tip="DeepSeek V4 Pro · IQ 84.4" style="--x0:180.5px;--y0:580.0px;--x1:285.1px;--y1:580.0px;--d:0.050s"></i><i class="iq-dot" data-tip="Manus · IQ 100.1" style="--x0:193.6px;--y0:580.0px;--x1:428.8px;--y1:580.0px;--d:0.075s"></i><i class="iq-dot" data-tip="Grok 4.7 High (Vision) · IQ 111.4" style="--x0:219.7px;--y0:580.0px;--x1:520.3px;--y1:580.0px;--d:0.100s"></i><i class="iq-dot" data-tip="Claude Sonnet 5 (Vision) · IQ 111.6" style="--x0:232.8px;--y0:580.0px;--x1:520.3px;--y1:567.0px;--d:0.125s"></i><i class="iq-dot" data-tip="Claude Sonnet 5 · IQ 115.4" style="--x0:258.9px;--y0:580.0px;--x1:559.5px;--y1:580.0px;--d:0.150s"></i><i class="iq-dot" data-tip="MiMo V2.5 Pro · IQ 116.0" style="--x0:272.0px;--y0:580.0px;--x1:559.5px;--y1:567.0px;--d:0.175s"></i><i class="iq-dot" data-tip="Gemini 3.1 Pro (Vision) · IQ 120.1" style="--x0:285.1px;--y0:580.0px;--x1:598.7px;--y1:580.0px;--d:0.200s"></i><i class="iq-dot" data-tip="GLM 5.2 · IQ 123.0" style="--x0:285.1px;--y0:567.0px;--x1:624.8px;--y1:580.0px;--d:0.225s"></i><i class="iq-dot" data-tip="Meta Muse Glimmer · IQ 123.0" style="--x0:298.1px;--y0:580.0px;--x1:624.8px;--y1:567.0px;--d:0.250s"></i><i class="iq-dot" data-tip="Claude Opus 5.5 (Vision) · IQ 124.7" style="--x0:311.2px;--y0:580.0px;--x1:637.9px;--y1:580.0px;--d:0.275s"></i><i class="iq-dot" data-tip="Kimi K3 (Vision) · IQ 125.3" style="--x0:337.3px;--y0:580.0px;--x1:650.9px;--y1:580.0px;--d:0.300s"></i><i class="iq-dot" data-tip="Qwen 3.8 Max · IQ 126.1" style="--x0:337.3px;--y0:567.0px;--x1:650.9px;--y1:567.0px;--d:0.325s"></i><i class="iq-dot" data-tip="Gemini 3.8 Flash · IQ 126.9" style="--x0:337.3px;--y0:554.0px;--x1:664.0px;--y1:580.0px;--d:0.350s"></i><i class="iq-dot" data-tip="GPT-6 Luna Max · IQ 127.0" style="--x0:350.4px;--y0:580.0px;--x1:664.0px;--y1:567.0px;--d:0.375s"></i><i class="iq-dot" data-tip="Gemini 3.1 Pro · IQ 127.9" style="--x0:350.4px;--y0:567.0px;--x1:664.0px;--y1:554.0px;--d:0.400s"></i><i class="iq-dot" data-tip="Claude Opus 5.5 · IQ 128.0" style="--x0:363.5px;--y0:580.0px;--x1:664.0px;--y1:541.0px;--d:0.425s"></i><i class="iq-dot" data-tip="Grok 4.7 High · IQ 128.0" style="--x0:415.7px;--y0:580.0px;--x1:664.0px;--y1:528.0px;--d:0.450s"></i><i class="iq-dot" data-tip="Claude Fable 5.1 · IQ 128.8" style="--x0:441.9px;--y0:580.0px;--x1:677.1px;--y1:580.0px;--d:0.475s"></i><i class="iq-dot" data-tip="GPT-5.6 Terra Ultra (Vision) · IQ 129.6" style="--x0:454.9px;--y0:580.0px;--x1:677.1px;--y1:567.0px;--d:0.500s"></i><i class="iq-dot" data-tip="Claude Opus 5.5 MAX · IQ 129.7" style="--x0:454.9px;--y0:567.0px;--x1:677.1px;--y1:554.0px;--d:0.525s"></i><i class="iq-dot" data-tip="GPT-6 Luna Max (Vision) · IQ 129.8" style="--x0:468.0px;--y0:580.0px;--x1:690.1px;--y1:580.0px;--d:0.550s"></i><i class="iq-dot" data-tip="GPT-5.6 Terra Ultra · IQ 129.9" style="--x0:468.0px;--y0:567.0px;--x1:690.1px;--y1:567.0px;--d:0.575s"></i><i class="iq-dot" data-tip="Claude Fable 5.1 (Vision) · IQ 130.0" style="--x0:481.1px;--y0:580.0px;--x1:690.1px;--y1:554.0px;--d:0.600s"></i><i class="iq-dot" data-tip="GPT-6.1 Sol Ultra · IQ 130.0" style="--x0:559.5px;--y0:580.0px;--x1:690.1px;--y1:541.0px;--d:0.625s"></i><i class="iq-dot" data-tip="Kimi K3 · IQ 130.0" style="--x0:559.5px;--y0:567.0px;--x1:690.1px;--y1:528.0px;--d:0.650s"></i><i class="iq-dot" data-tip="GPT-6.1 Sol Ultra (Vision) · IQ 130.9" style="--x0:559.5px;--y0:554.0px;--x1:690.1px;--y1:515.0px;--d:0.675s"></i><i class="iq-dot" data-tip="GPT-6 Astra Ultra · IQ 131.5" style="--x0:572.5px;--y0:580.0px;--x1:703.2px;--y1:580.0px;--d:0.700s"></i><i class="iq-dot" data-tip="GPT-6 Astra Ultra (Vision) · IQ 134.0" style="--x0:572.5px;--y0:567.0px;--x1:716.3px;--y1:580.0px;--d:0.725s"></i><i class="iq-dot" data-tip="Claude Opus 5.5 MAX (Vision) · IQ 134.5" style="--x0:572.5px;--y0:554.0px;--x1:729.3px;--y1:580.0px;--d:0.750s"></i></div>
+    <i class="abs iq-go" data-step="2" aria-hidden="true"></i>
+    <div class="abs iq-stat " data-step="1" style="top:226px"><span class="k">최고 점수</span><p class="v"><s>117</s><i>→</i><b>135</b></p><span class="t">2025.7 → 2026.10</span></div>
+    <div class="abs iq-stat " data-step="1" style="top:372px"><span class="k">중앙값</span><p class="v"><s>91</s><i>→</i><b>127</b></p><span class="t">2025.7 → 2026.10</span></div>
+    <div class="abs iq-stat hot" data-step="1" style="top:518px"><span class="k">IQ 130 이상 모델</span><p class="v"><s>0개</s><i>→</i><b>7개</b></p><span class="t">2025.7 → 2026.10</span></div>
+    <p class="abs iq-legend"><span><i class="h"></i>사람 IQ 분포</span><span><i class="a"></i>AI 모델(2025.7)</span><span><i class="b"></i>AI 모델(2026.10)</span></p>
+    <p class="abs footnote">출처: TrackingAI.org, AI IQ Test(오프라인 테스트, 미공개 문항) 일별 기록으로 계산. 모델별 최근 7회 평균, 2025.7.31·2026.10.18 기준 · 한국인·미국 평균: Lynn·Vanhanen, IQ and Global Inequality(2006) 추정치</p>
   </section>
 
-  <!-- AX Methodology 2: 같은 틀을 흐리게 깔고 고민 영역 4개를 번호 순으로 클릭해 올린다 -->
-  <section class="slide dark" data-click="1" aria-label="AX의 네 단계">
+  <!-- 모델 변곡점 셋(2026-10-18 사용자 제안): AI가 만드는 결과물이 이미지 → 영상 → 파워포인트로 넓어짐. IQ(지능) 장과 60분 업무(생산성) 장 사이에서 지능이 산출물로 바뀌는 과정을 보여 준다.
+       Gemini 3 Pro 2025-11-18, Nano Banana Pro(Gemini 3 Pro Image) 2025-11-20(BGR·iThome). Seedance 2.0 2026-02-12(ByteDance Seed 공식 블로그, 글·이미지·소리·영상 입력, 소리까지 맞춘 최대 15초 영상).
+       Claude Opus 5.5 2026-09-22(Anthropic): "built a financial model in Excel, then turned it into an executive presentation". 아이콘은 직접 그린 SVG -->
+  <section class="slide dark ip" data-gap="900" aria-label="AI가 이미지·영상을 넘어 화이트칼라 업무를 빠르게 대체하기 시작함: Gemini 3 Pro(2025.11), Seedance 2.0(2026.2), Claude Opus 5.5(2026.9)">
     <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
       <defs>
-        <linearGradient id="hmLine4" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow4" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan4" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot4"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark4"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+        <linearGradient id="hmLine102" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow102" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan102" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot102"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark102"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
       </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow4)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine4)"/>
-      <g class="hm-fans" stroke="url(#hmFan4)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot4)"/>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow102)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine102)"/>
+      <g class="hm-fans" stroke="url(#hmFan102)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot102)"/>
       <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark4)"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark102)"/>
     </svg>
-    <h2 class="abs head-title">AX는 네 단계로 전개됨</h2>
-    <div class="mx-dim" aria-hidden="true">
-    <div class="abs mx-axis l" style="left:76px;width:446px"><svg viewBox="0 0 10 10"><path d="M10 1L1 5l9 4z"/></svg><i></i><span>업무 구조 (What)</span><i></i></div>
-    <div class="abs mx-axis r" style="left:700px;width:446px"><i></i><span>AI 전환 (Why)</span><i></i><svg viewBox="0 0 10 10"><path d="M0 1l9 4-9 4z"/></svg></div>
-    <div class="abs mx-card" style="left:76px;top:236px;width:134px;height:206px"><b>4</b><h4>업무 입출력 구조</h4><p>각 업무별 필요 정보와 결과물은 무엇인가</p></div>
-    <div class="abs mx-card" style="left:232px;top:236px;width:134px;height:206px"><b>3</b><h4>시간 배분 현황</h4><p>각 업무에 실제로 얼마나 시간이 투입되는가</p></div>
-    <div class="abs mx-card" style="left:388px;top:236px;width:134px;height:206px"><b>2</b><h4>핵심 업무 목록</h4><p>해당 역할이 수행하는 모든 업무를 열거</p></div>
-    <div class="abs mx-card hot" style="left:544px;top:236px;width:134px;height:206px"><b>1</b><h4>업무 역할 정의</h4><p>이 업무가 조직에 창출하는 핵심 가치는 무엇인가</p></div>
-    <div class="abs mx-card" style="left:700px;top:236px;width:134px;height:206px"><b>5</b><h4>AI 대체 가능성</h4><p>어떤 업무를 AI가 대신할 수 있는가</p></div>
-    <div class="abs mx-card" style="left:856px;top:236px;width:134px;height:206px"><b>6</b><h4>협업 구조</h4><p>누구와 어떻게 협업하며 정보는 어떻게 흐르는가</p></div>
-    <div class="abs mx-card" style="left:1012px;top:236px;width:134px;height:206px"><b>7</b><h4>성과 기준</h4><p>이 업무의 성공은 무엇으로 측정되는가</p></div>
-    <svg class="abs mx-arrows" viewBox="0 0 1280 720" aria-hidden="true"><g class="mx-arr"><line x1="229" y1="339.0" x2="208" y2="339.0"/><path d="M213 339.0l7 -5v10z"/></g><g class="mx-arr"><line x1="385" y1="339.0" x2="364" y2="339.0"/><path d="M369 339.0l7 -5v10z"/></g><g class="mx-arr s"><line x1="541" y1="339.0" x2="520" y2="339.0"/><path d="M525 339.0l7 -5v10z"/></g><g class="mx-arr s"><line x1="681" y1="339.0" x2="702" y2="339.0"/><path d="M697 339.0l-7 -5v10z"/></g><g class="mx-arr"><line x1="837" y1="339.0" x2="858" y2="339.0"/><path d="M853 339.0l-7 -5v10z"/></g><g class="mx-arr"><line x1="993" y1="339.0" x2="1014" y2="339.0"/><path d="M1009 339.0l-7 -5v10z"/></g><path class="mx-up" d="M599.0 464h24l-12 -16z"/></svg>
-    <div class="abs mx-card wide" style="left:76px;top:470px;width:340px;height:150px"><b>9</b><h4>AI 가드레일</h4><p>해당 에이전트의 책임자는 누구이며,<br>보안, 통제를 어떻게 할 것인가</p></div>
-    <div class="abs mx-card wide" style="left:440px;top:470px;width:340px;height:150px"><b>8</b><h4>AI 모델 매핑</h4><p>이 업무에<br>어떤 AI 모델을 연결할 것인가</p></div>
-    <div class="abs mx-card wide" style="left:804px;top:470px;width:340px;height:150px"><b>10</b><h4>성장 방향</h4><p>AI가 반복 업무를 자동화한다면,<br>담당자는 무엇에 집중할 것인가</p></div>
-    <div class="abs mx-plus" style="left:415px;top:532.0px">+</div>
-    <div class="abs mx-plus" style="left:779px;top:532.0px">+</div>
-    <div class="abs mx-side g" style="top:236px;height:206px"><i></i><span>현황 진단</span></div>
-    <div class="abs mx-side o" style="top:470px;height:150px"><i></i><span>AI 전환</span></div>
-    </div>
-    <div class="abs ar-box sm" data-step="1" style="left:538px;top:462px;width:146px;height:162px"><em>1</em><b>AI 모델</b></div>
-    <div class="abs ar-box sm" data-step="2" style="left:538px;top:226px;width:146px;height:228px"><em>2</em><b>에이전트<br>리더</b></div>
-    <div class="abs ar-box " data-step="3" style="left:70px;top:226px;width:460px;height:398px"><em>3</em><b>Company Brain</b><span>(지식 레이어 → MCP 허브 → 스킬 라이브러리)</span></div>
-    <div class="abs ar-box " data-step="4" style="left:692px;top:226px;width:460px;height:398px"><em>4</em><b>하이브리드 리소스 관리</b><span>(워크포스 설계 → 라이프사이클 관리 → 조직 전환)</span></div>
+    <h2 class="abs head-title">AI가 이미지·영상을 넘어 화이트칼라 업무를 빠르게 대체하기 시작함</h2>
+    <p class="abs cr-sub lv-sub">AI 결과물의 세 가지 변곡점</p>
+    <div class="abs ip-col" data-step="1" style="left:76px"><figure class="ip-pic nb"><img src="assets/nanobanana-1280.jpg" alt="Nano Banana Pro로 만든 이미지: 고딕풍 방의 탁자 위에 앉은 점토 인형 바나나"></figure><b class="ip-big">이미지</b><div class="ip-mrow"><span class="ip-model">Gemini 3 Pro · Google</span><span class="ip-date">2025.11</span></div></div>
+    <div class="abs ip-col" data-step="2" style="left:464px"><figure class="ip-pic"><img src="assets/seedance-cruise-pitt.jpg" alt="AI로 만든 탐 크루즈와 브래드 피트 격투 장면 보도 영상 썸네일"><span class="ip-play" aria-hidden="true"></span></figure><b class="ip-big">영상</b><div class="ip-mrow"><span class="ip-model">Seedance 2.0 · ByteDance</span><span class="ip-date">2026.02</span></div></div>
+    <div class="abs ip-col hot" data-step="3" style="left:852px"><figure class="ip-pic"><img src="assets/claude-in-powerpoint.png" alt="파워포인트에서 Claude가 슬라이드를 만드는 화면(The Decoder 보도 이미지)"></figure><b class="ip-big">파워포인트</b><div class="ip-mrow"><span class="ip-model">Claude Opus 5.5 · Anthropic</span><span class="ip-date">2026.09</span></div></div>
+    <svg class="abs ip-arr" data-step="2" style="left:428px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <svg class="abs ip-arr" data-step="3" style="left:816px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <p class="abs footnote">출처: Google, Nano Banana Pro(2025.11.20) · ByteDance Seed, Seedance 2.0(2026.2.12) · Anthropic, Claude Opus 5.5(2026.9.22) · 이미지: YouTube, The Decoder(Claude in PowerPoint)</p>
   </section>
 
-  <!-- 리더 질문 분류: 질문 54건을 레벨 셋·카테고리 여덟으로 나누고 건수 대신 비중(%)으로 보여 준다. 레벨 비중 = 모델 17, 인프라·보안 20, 전략 24, 조직·운영 39. 직무·산업별 LLM 적용 질문은 Model로 따로 떼어 맨 위에 둔다 -->
-  <section class="slide dark" aria-label="카테고리별 AI 질문 비중: 모델 17%, 데이터·보안 20%, 전략 24%, 사람·문화 39%">
-    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
-      <defs>
-        <linearGradient id="hmLine5" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow5" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan5" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot5"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark5"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
-      </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow5)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine5)"/>
-      <g class="hm-fans" stroke="url(#hmFan5)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot5)"/>
-      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark5)"/>
-    </svg>
-    <h2 class="abs head-title">비즈니스 리더들이 물어보시는 질문들</h2>
-    <table class="abs qs">
-      <thead><tr><th scope="col">레벨</th><th scope="col">세부 카테고리</th><th scope="col">질문 비중</th><th scope="col">대표 질문</th></tr></thead>
-      <tbody>
-        <tr class="md" data-step="1"><th rowspan="1" scope="rowgroup"><span>모델</span><b>17%</b></th><td class="cat">직무·산업별 모델 적용</td><td class="sh"><i style="width:44px"></i><span>17%</span></td><td class="q">직무와 업종별로 어떤 LLM을 어떤 업무에 적용해야 실질적인 성과를 만들 수 있는가?</td></tr>
-        <tr class="in" data-step="2"><th rowspan="2" scope="rowgroup"><span>데이터·보안</span><b>20%</b></th><td class="cat">보안·개인정보·법적 권리·규정</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">사람과 AI가 함께 일하는 환경에서 보안, 개인정보, 지식재산권, 이용 기준을 어떻게 관리해야 하는가?</td></tr>
-        <tr class="in" data-step="2"><td class="cat">데이터·시스템 연결</td><td class="sh"><i style="width:18px"></i><span>7%</span></td><td class="q">흩어진 데이터와 업무 결과물을 연결해 조직의 지식과 맥락을 축적하는 시스템을 어떻게 구축해야 하는가?</td></tr>
-        <tr class="st" data-step="3"><th rowspan="2" scope="rowgroup"><span>전략</span><b>24%</b></th><td class="cat">AX 전략·추진체계</td><td class="sh"><i style="width:39px"></i><span>15%</span></td><td class="q">우리 조직의 AI 전환 전략을 어떻게 수립하고, 누가 주도하며, 어디까지 확장해야 하는가?</td></tr>
-        <tr class="st" data-step="3"><td class="cat">성과·생산성·경제성</td><td class="sh"><i style="width:23px"></i><span>9%</span></td><td class="q">사람과 AI의 협업 성과를 어떻게 측정하고, 투입 비용 대비 생산성을 어떻게 관리해야 하는가?</td></tr>
-        <tr class="og" data-step="4"><th rowspan="3" scope="rowgroup"><span>사람·문화</span><b>39%</b></th><td class="cat">조직문화·리더십·변화관리</td><td class="sh"><i style="width:52px"></i><span>20%</span></td><td class="q">리더는 구성원의 저항과 역량 격차를 줄이면서 AI 중심의 업무 방식과 조직문화를 어떻게 정착시켜야 하는가?</td></tr>
-        <tr class="og" data-step="4"><td class="cat">지식 공유·암묵지 자산화</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">개인의 프롬프트와 업무 노하우를 어떻게 공유하고 조직 전체의 지식 자산으로 전환할 수 있는가?</td></tr>
-        <tr class="og" data-step="4"><td class="cat">교육·역량 개발</td><td class="sh"><i style="width:16px"></i><span>6%</span></td><td class="q">리더는 구성원의 수준과 업무 특성에 맞춰 AI 활용 역량을 어떻게 교육하고 실무에 정착시켜야 하는가?</td></tr>
-      </tbody>
-    </table>
-    <p class="abs footnote">카테고리별 질문 비중 (전체 신청자 800명+ 기준)</p>
-  </section>
-
-  <!-- 노력 배분 10-20-70: BCG "AI Fuels Field Service Transformation"(2026-01-09) Exhibit 1을 우리말 원고 기준으로 영어로 다시 썼다 -->
-  <section class="slide dark" aria-label="AX 노력 배분: 사람과 프로세스 70%, 데이터와 기술 20%, AI 10%">
-    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
-      <defs>
-        <linearGradient id="hmLine6" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow6" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan6" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot6"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark6"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
-      </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow6)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine6)"/>
-      <g class="hm-fans" stroke="url(#hmFan6)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot6)"/>
-      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark6)"/>
-    </svg>
-    <h2 class="abs head-title">AX가 성공하려면 노력의 70%를 사람에 집중해야 함</h2>
-    <svg class="abs ef-ring" viewBox="0 0 1280 720" aria-hidden="true"><circle class="ef-guide" data-step="1" cx="640" cy="413" r="180"/><path class="ef-seg ai" data-step="2" d="M645.5 255.1A158 158 0 0 1 728.4 282.0L704.9 316.8A116 116 0 0 0 644.0 297.1z"/><path class="ef-seg dt" data-step="3" d="M737.3 288.5A158 158 0 0 1 788.5 359.0L749.0 373.3A116 116 0 0 0 711.4 321.6z"/><path class="ef-seg dt" data-step="3" d="M791.9 369.4A158 158 0 0 1 791.9 456.6L751.5 445.0A116 116 0 0 0 751.5 381.0z"/><path class="ef-seg pp" data-step="4" d="M788.5 467.0A158 158 0 0 1 737.3 537.5L711.4 504.4A116 116 0 0 0 749.0 452.7z"/><path class="ef-seg pp" data-step="4" d="M728.4 544.0A158 158 0 0 1 645.5 570.9L644.0 528.9A116 116 0 0 0 704.9 509.2z"/><path class="ef-seg pp" data-step="4" d="M634.5 570.9A158 158 0 0 1 551.6 544.0L575.1 509.2A116 116 0 0 0 636.0 528.9z"/><path class="ef-seg pp" data-step="4" d="M542.7 537.5A158 158 0 0 1 491.5 467.0L531.0 452.7A116 116 0 0 0 568.6 504.4z"/><path class="ef-seg pp" data-step="4" d="M488.1 456.6A158 158 0 0 1 488.1 369.4L528.5 381.0A116 116 0 0 0 528.5 445.0z"/><path class="ef-seg pp" data-step="4" d="M491.5 359.0A158 158 0 0 1 542.7 288.5L568.6 321.6A116 116 0 0 0 531.0 373.3z"/><path class="ef-seg pp" data-step="4" d="M551.6 282.0A158 158 0 0 1 634.5 255.1L636.0 297.1A116 116 0 0 0 575.1 316.8z"/><g class="ef-link ai" data-step="2"><path d="M682 283H860"/><circle cx="682" cy="283" r="5"/></g><g class="ef-link dt" data-step="3"><path d="M777 413H860"/><circle cx="777" cy="413" r="5"/></g><g class="ef-link pp" data-step="4"><path d="M529 332H420"/><circle cx="529" cy="332" r="5"/></g></svg>
-    <p class="abs center ef-center" data-step="1">현장 서비스 AX 성공을 위한 노력 배분</p>
-    <div class="abs ef-card pp" data-step="4" style="left:76px;top:176px;height:474px"><b class="pct">70%</b><h4>사람과 프로세스에 집중</h4><ul>
-      <li>구성원을 움직이는 명확한 비전과 근거 제시</li>
-      <li>공동 설계와 빠른 반복으로 서비스 조직 참여 유도</li>
-      <li>실행력을 높이는 프로세스와 역할 재정의</li>
-      <li>서비스 전략·KPI와 조직문화 정렬</li>
-      <li>필요 역량 교육과 조직 역량 구축</li></ul></div>
-    <div class="abs ef-card ai" data-step="2" style="left:860px;top:176px;height:200px"><b class="pct">10%</b><h4>AI에 집중</h4><ul>
-      <li>현장 서비스 머신러닝, 예측 분석, 생성형 AI 적용</li></ul></div>
-    <div class="abs ef-card dt" data-step="3" style="left:860px;top:396px;height:254px"><b class="pct">20%</b><h4>데이터와 기술에 집중</h4><ul>
-      <li>현장 조직에 안정적인 기술 제공</li>
-      <li>현장·서비스 시스템 통합으로 전 과정 자동화</li></ul></div>
-    <p class="abs footnote">출처: BCG, “AI Fuels Field Service Transformation. Change Management Provides the Spark,” 2026년 1월</p>
-  </section>
-
-  <!-- 4. 80명의 AI 에이전트와 팀으로 일하고 있음 (2장과 같은 다크 포맷). 5 + 50 + 25 = 80 -->
-  <section class="slide dark" aria-label="에이전트 팀">
-    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
-      <defs>
-        <linearGradient id="hmLine7" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow7" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan7" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot7"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark7"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
-      </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow7)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine7)"/>
-      <g class="hm-fans" stroke="url(#hmFan7)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot7)"/>
-      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark7)"/>
-    </svg>
-    <h2 class="abs head-title">80명의 AI 에이전트와 팀으로 일하고 있음</h2>
-    <div class="abs agent" data-step="1" style="left:160px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="5">5</b></span></div>
-      <p class="cmd"><span>/</span>5color</p>
-    </div>
-    <div class="abs agent" data-step="2" style="left:520px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="50">50</b></span></div>
-      <p class="cmd"><span>/</span>casting</p>
-    </div>
-    <div class="abs agent" data-step="3" style="left:880px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="25">25</b></span></div>
-      <p class="cmd"><span>/</span>council</p>
-    </div>
-  </section>
-
-  <!-- 5. 시연 영상: 5color.airoasting.com -->
-  <section class="slide dark demo" aria-label="5-Color Harness 사이트 화면 녹화">
+  <!-- 시연 영상: Claude Code로 만든 복셀 게임 MindCraft Temple(airoasting.com/assets/claudecode/07_minecraft). 넥슨 덱(20261023)에서 가져옴(2026-10-19).
+       2026-10-19 CDP 스크린캐스트 1920x1080·60fps 원본 프레임 녹화(타이틀 → 참배길·연못·사원 제단 구슬 3개). 걷기만, 플레이 구간 0.5배속, 막힌 4초 컷. 18.3초 -->
+  <section class="slide dark demo demo-bk" aria-label="Claude Code로 만든 복셀 게임 MindCraft Temple 화면 녹화">
     <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">5color.airoasting.com</span></div>
-      <video src="assets/video/5color.mp4" poster="assets/video/5color.jpg" muted loop playsinline preload="auto" aria-label="5-Color Harness site screen recording"></video>
+      <div class="bar"><i></i><i></i><i></i><span class="url">airoasting.com/assets/claudecode/07_minecraft</span></div>
+      <video src="assets/video/minecraft.mp4" poster="assets/video/minecraft.jpg" muted loop playsinline preload="auto" aria-label="MindCraft Temple game screen recording"></video>
     </div>
   </section>
 
-  <!-- 6. 시연 영상: 50agents.airoasting.com -->
-  <section class="slide dark demo" aria-label="에이전트 팀 빌더 사이트 화면 녹화">
-    <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">50agents.airoasting.com</span></div>
-      <video src="assets/video/50agents.mp4" poster="assets/video/50agents.jpg" muted loop playsinline preload="auto" aria-label="Agent team builder site screen recording"></video>
-    </div>
+  <!-- AI를 잘 썼을 때 60분 업무를 끝내는 시간(연도별 대표 연구, 2026-10-14 확인).
+       2023: Dell'Acqua 외(BCG·하버드, 2023.9) 컨설턴트 758명 무작위 실험, GPT-4 사용 시 25.1% 빨리 완료 → 45분.
+       2024: Choi·Monahan·Schwarcz, Minnesota Law Review 109(2024) 로스쿨 학생 60명 무작위 실험, GPT-4로 과제별 12~32% 빨라짐 → 최대치 기준 41분.
+       2025: Anthropic "Estimating AI productivity gains"(2025.11) Claude.ai 대화 10만 건, 업무당 평균 약 90분, 약 80% 단축 → 12분(Claude가 추정, 검증 시간 제외).
+       2026: Anthropic Economic Index(2026.1.15) 대학 수준 과제 12배 속도 → 5분. 2025~26은 측정 방법이 달라(모델 추정) 회색 선으로 구분 -->
+  <section class="slide dark ts" data-gap="900" aria-label="AI를 잘 썼을 때 60분 업무를 끝내는 시간: 2023년 45분, 2024년 41분, 2025년 12분, 2026년 5분">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine103" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow103" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan103" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot103"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark103"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow103)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine103)"/>
+      <g class="hm-fans" stroke="url(#hmFan103)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot103)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark103)"/>
+    </svg>
+    <h2 class="abs head-title">AI를 통해 1시간 업무 소요 시간이 3년 새 45분에서 5분으로 단축됨</h2>
+    <p class="abs cr-sub lv-sub">60분짜리 업무를 AI와 함께 끝내는 데 걸리는 시간</p>
+    <div class="abs ts-row ex" data-step="1" style="top:232px"><b class="ts-y">2023</b><div class="ts-bar"><i class="ts-fill" style="--w:75.0%"></i><span class="ts-min">45분</span></div><div class="ts-note"><strong>15분 단축</strong><small>BCG 컨설턴트 758명 무작위 실험 · GPT-4</small></div></div>
+    <div class="abs ts-row ex" data-step="2" style="top:334px"><b class="ts-y">2024</b><div class="ts-bar"><i class="ts-fill" style="--w:68.3%"></i><span class="ts-min">41분</span></div><div class="ts-note"><strong>19분 단축</strong><small>로스쿨 학생 60명 무작위 실험 · GPT-4 (과제별 12~32%)</small></div></div>
+    <p class="abs ts-split" style="top:432px"><span>↑ 사람이 AI를 도구로 쓴 무작위 실험</span><span>↓ AI가 일을 맡은 대화 분석 추정</span></p>
+    <div class="abs ts-row es" data-step="3" style="top:458px"><b class="ts-y">2025</b><div class="ts-bar"><i class="ts-fill" style="--w:20.0%"></i><span class="ts-min">12분</span></div><div class="ts-note"><strong>48분 단축</strong><small>Claude 대화 10만 건 분석 · 업무당 평균 90분 기준</small></div></div>
+    <div class="abs ts-row es" data-step="4" style="top:560px"><b class="ts-y">2026</b><div class="ts-bar"><i class="ts-fill" style="--w:8.3%"></i><span class="ts-min">5분</span></div><div class="ts-note"><strong>55분 단축</strong><small>대학 수준 과제 기준 · Claude 대화 분석</small></div></div>
+    <p class="abs ts-bub" data-step="4">에이전트 활용 급증</p>
+    <p class="abs footnote">출처: Dell'Acqua 외, HBS(2023) · Choi 외, Minnesota Law Review(2024) · Anthropic, Estimating AI productivity gains(2025.11)·Economic Index(2026.1). 2025~26은 Claude 추정치(검증 시간 제외)</p>
   </section>
 
-  <!-- 7. 시연 영상: council.airoasting.com -->
-  <section class="slide dark demo" aria-label="AI ROASTING 자문단 사이트 화면 녹화">
-    <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">council.airoasting.com</span></div>
-      <video src="assets/video/council.mp4" poster="assets/video/council.jpg" muted loop playsinline preload="auto" aria-label="AI ROASTING council site screen recording"></video>
-    </div>
+  <!-- AI 도입이 조직 성과로 이어지지 못함. McKinsey "The state of AI in 2026: On the road to ROI"(2026-08-25): 개인 생산성 향상 80%, EBIT 기여 37%(전년과 비슷), 고성과 기업 약 6%(2025년과 같음).
+       PwC 2026 Global CEO Survey(2026-01-20, 95개국 CEO 4,454명, 2025-09-30~11-10 조사): 의미 있는 재무 효과 없음 56%, 비용·매출 모두 개선 12%. BCG Applied AI Index 2026(2026-09-30, CxO 1,330명): future-built 7.5% -->
+  <section class="slide dark gp og" aria-label="하지만 AI 도입이 가시적인 조직 성과로 이어지고 있지는 못함">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine104" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow104" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan104" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot104"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark104"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow104)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine104)"/>
+      <g class="hm-fans" stroke="url(#hmFan104)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot104)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark104)"/>
+    </svg>
+    <h2 class="abs head-title">하지만 AI 도입이 가시적인 조직 성과로 이어지고 있지는 못함</h2>
+    <div class="abs gp-card" data-step="1" style="left:76px"><span class="gp-date">2026.08 발표</span><span class="gp-k">개인 생산성과 회사 이익의 차이</span>
+      <ul class="og-bars"><li><em>AI로 개인 생산성 향상</em><div class="t"><i style="--v:80"></i><b>80%</b></div></li><li class="lo"><em>AI가 회사 이익(EBIT)에 기여</em><div class="t"><i style="--v:37"></i><b>37%</b></div></li></ul>
+      <small>McKinsey, 응답 기업 기준 · EBIT 기여는 전년과 비슷</small></div>
+    <div class="abs gp-card" data-step="2" style="left:464px"><span class="gp-date">2026.01 발표</span><span class="gp-k">CEO가 본 AI의 재무 효과</span>
+      <dl class="gp-rows"><dd><b class="lo">56%</b><span>아직 의미 있는 재무 효과 없음</span></dd><dd><b>12%</b><span>비용 절감과 매출 증대 모두 달성</span></dd></dl>
+      <small>PwC, 95개국 CEO 4,454명</small></div>
+    <div class="abs gp-card hot" data-step="3" style="left:852px"><span class="gp-date">2026 발표</span><span class="gp-k">AI로 의미 있는 성과를 내는 기업</span>
+      <dl class="gp-rows"><dd><b class="hi">6%</b><span>이익(EBIT)의 5% 이상을 AI로 창출(McKinsey)</span></dd><dd><b class="hi">7.5%</b><span>AI 성과를 전사로 확장한 기업(BCG)</span></dd></dl>
+      <small>McKinsey(2026.8) · BCG(2026.9)</small></div>
+    <p class="abs footnote">출처: McKinsey, The state of AI in 2026: On the road to ROI(2026.8.25) · PwC, 2026 Global CEO Survey(2026.1.20, 2025.9~11 조사) · BCG, Applied AI Index 2026(2026.9.30, CxO 1,330명)</p>
+  </section>
+
+  <!-- 브릿지(2026-10-19): 9장 "AI 도입이 조직 성과로 이어지지 못함" → 10장 "하이브리드 업무 환경의 세 가지 변화". 올리브영·넥슨 덱 .br 형식 -->
+  <section class="slide dark br" data-gap="1400" aria-label="AI는 도구에서 동료가 되고 있음, 사람과 에이전트가 함께 일하는 환경을 설계해야 함">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine107" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow107" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan107" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot107"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark107"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow107)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine107)"/>
+      <g class="hm-fans" stroke="url(#hmFan107)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot107)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark107)"/>
+    </svg>
+    <p class="abs br-text"><span class="br-l1" data-step="1">AI는 도구에서 동료가 되고 있습니다.</span><span class="br-l2" data-step="2">사람과 에이전트가 <em>함께 일하는 환경</em>을 설계해야 합니다.</span></p>
   </section>
 
   <!-- 8. 휴먼-에이전트 하이브리드 업무 환경의 세 가지 변화 (에이전트·사람·조직) -->
@@ -1441,22 +1549,10 @@
     </div>
   </section>
 
-  <!-- 9. 내 책상: 모니터 1 아래 맥북(사람의 자리), 모니터 2 아래 맥 미니와 4분할 터미널(에이전트의 자리). 헤드라인 없음.
-       한국어판은 일러스트 대신 AI 생성 실사 이미지(Higgsfield gpt_image_2_5 고품질 2K, 서울 야경, 화면은 한국어: 맥북 파워포인트·왼쪽 모니터 워드·오른쪽 모니터 Claude 터미널 4개)를 쓴다 -->
-  <section class="slide dark desk-slide" aria-label="내 책상(서울 야경 배경 실사 이미지): 모니터 두 대, 모니터 1 아래 거치대 위 맥북, 모니터 2 아래 맥 미니, 키보드와 마우스 두 벌, 두 키보드 사이 커피잔">
-    <div class="desk-scene"><img class="desk-photo" src="assets/desk-seoul.jpg" alt=""><svg class="desk-lights" viewBox="0 0 1280 720" aria-hidden="true"><defs><radialGradient id="dkBeacon"><stop offset="0" stop-color="#ff5a4a" stop-opacity="1"/><stop offset="1" stop-color="#ff5a4a" stop-opacity="0"/></radialGradient><radialGradient id="dkPod"><stop offset="0" stop-color="#bfe3ff" stop-opacity=".9"/><stop offset="1" stop-color="#bfe3ff" stop-opacity="0"/></radialGradient><radialGradient id="dkLamp"><stop offset="0" stop-color="#ffcf8a" stop-opacity=".55"/><stop offset="1" stop-color="#ffcf8a" stop-opacity="0"/></radialGradient><path id="dkBridge" d="M1056 241 L1172 236 M1236 233 L1280 231"/></defs><circle class="beacon" cx="1023" cy="51" r="7" fill="url(#dkBeacon)"/><circle class="pod" cx="1023" cy="101" r="13" fill="url(#dkPod)"/><ellipse class="lamp" cx="34" cy="300" rx="70" ry="48" fill="url(#dkLamp)"/><circle class="tw" cx="579.0" cy="219.9" r="1.44" fill="#ffffff" style="--t:3.69s;--d:-4.28s"/><circle class="tw" cx="238.3" cy="199.3" r="0.81" fill="#ffb36b" style="--t:4.87s;--d:-3.47s"/><circle class="tw" cx="787.9" cy="146.7" r="0.71" fill="#ffb36b" style="--t:2.41s;--d:-0.18s"/><circle class="tw" cx="1125.8" cy="227.1" r="1.32" fill="#cfe6ff" style="--t:3.65s;--d:-4.21s"/><circle class="tw" cx="585.4" cy="168.6" r="1.50" fill="#ffe2a8" style="--t:4.54s;--d:-1.58s"/><circle class="tw" cx="294.0" cy="170.6" r="0.76" fill="#ffe2a8" style="--t:3.52s;--d:-4.23s"/><circle class="tw" cx="1084.6" cy="118.1" r="0.87" fill="#ffe2a8" style="--t:3.75s;--d:-4.90s"/><circle class="tw" cx="508.7" cy="131.3" r="1.20" fill="#cfe6ff" style="--t:3.31s;--d:-1.56s"/><circle class="tw" cx="19.4" cy="192.6" r="1.44" fill="#ffd28a" style="--t:3.01s;--d:-0.51s"/><circle class="tw" cx="572.7" cy="152.7" r="1.29" fill="#ffd28a" style="--t:3.58s;--d:-1.92s"/><circle class="tw" cx="1247.8" cy="225.9" r="1.50" fill="#ffe2a8" style="--t:2.90s;--d:-1.97s"/><circle class="tw" cx="1093.6" cy="234.8" r="0.78" fill="#ffd28a" style="--t:2.90s;--d:-1.29s"/><circle class="tw" cx="989.0" cy="177.9" r="0.94" fill="#ffe2a8" style="--t:2.45s;--d:-1.04s"/><circle class="tw" cx="814.8" cy="120.8" r="0.99" fill="#ffb36b" style="--t:3.70s;--d:-4.80s"/><circle class="tw" cx="1109.2" cy="151.3" r="0.82" fill="#ffd28a" style="--t:4.90s;--d:-1.25s"/><circle class="tw" cx="132.9" cy="125.0" r="1.47" fill="#ffd28a" style="--t:4.64s;--d:-1.96s"/><circle class="tw" cx="628.5" cy="212.7" r="1.44" fill="#ffe2a8" style="--t:2.62s;--d:-2.40s"/><circle class="tw" cx="94.9" cy="156.7" r="1.43" fill="#ffe2a8" style="--t:2.43s;--d:-2.06s"/><circle class="tw" cx="318.8" cy="126.5" r="0.93" fill="#ffb36b" style="--t:4.09s;--d:-0.66s"/><circle class="tw" cx="1255.0" cy="237.6" r="1.25" fill="#ffb36b" style="--t:5.32s;--d:-2.95s"/><circle class="tw" cx="457.6" cy="174.7" r="0.73" fill="#ffb36b" style="--t:4.30s;--d:-2.41s"/><circle class="tw" cx="935.0" cy="176.0" r="1.50" fill="#ffe2a8" style="--t:3.70s;--d:-1.84s"/><circle class="tw" cx="943.6" cy="141.6" r="1.47" fill="#cfe6ff" style="--t:3.36s;--d:-3.43s"/><circle class="tw" cx="1153.1" cy="276.5" r="1.03" fill="#ffe2a8" style="--t:5.05s;--d:-2.86s"/><circle class="tw" cx="799.9" cy="187.6" r="1.17" fill="#ffb36b" style="--t:2.44s;--d:-0.45s"/><circle class="tw" cx="147.9" cy="164.8" r="1.03" fill="#cfe6ff" style="--t:3.48s;--d:-3.68s"/><circle class="tw" cx="1073.1" cy="133.2" r="1.30" fill="#ffe2a8" style="--t:3.22s;--d:-0.44s"/><circle class="tw" cx="845.0" cy="206.5" r="1.42" fill="#cfe6ff" style="--t:3.19s;--d:-3.39s"/><circle class="tw" cx="259.3" cy="148.9" r="1.42" fill="#ffffff" style="--t:3.84s;--d:-1.21s"/><circle class="tw" cx="518.1" cy="163.6" r="1.21" fill="#ffd28a" style="--t:5.10s;--d:-1.92s"/><circle class="tw" cx="174.3" cy="208.4" r="1.37" fill="#ffe2a8" style="--t:4.55s;--d:-4.75s"/><circle class="tw" cx="354.3" cy="148.8" r="1.06" fill="#cfe6ff" style="--t:5.25s;--d:-4.15s"/><circle class="tw" cx="489.7" cy="212.6" r="1.24" fill="#ffb36b" style="--t:3.69s;--d:-0.37s"/><circle class="tw" cx="730.3" cy="174.2" r="1.33" fill="#ffe2a8" style="--t:4.32s;--d:-2.03s"/><circle class="tw" cx="147.6" cy="137.8" r="1.13" fill="#cfe6ff" style="--t:5.36s;--d:-3.42s"/><circle class="tw" cx="255.2" cy="204.5" r="0.84" fill="#ffe2a8" style="--t:4.69s;--d:-2.67s"/><circle class="tw" cx="46.3" cy="159.2" r="1.32" fill="#ffb36b" style="--t:4.50s;--d:-2.60s"/><circle class="tw" cx="1160.0" cy="133.9" r="1.45" fill="#ffffff" style="--t:2.63s;--d:-2.27s"/><circle class="tw" cx="482.3" cy="221.5" r="1.40" fill="#cfe6ff" style="--t:3.73s;--d:-3.26s"/><circle class="tw" cx="918.6" cy="156.8" r="1.42" fill="#ffe2a8" style="--t:5.43s;--d:-2.68s"/><circle class="tw" cx="1012.2" cy="176.3" r="1.43" fill="#ffe2a8" style="--t:3.35s;--d:-0.41s"/><circle class="tw" cx="564.4" cy="218.2" r="1.31" fill="#ffffff" style="--t:5.24s;--d:-1.09s"/><circle class="tw" cx="1110.5" cy="196.1" r="0.73" fill="#ffb36b" style="--t:3.31s;--d:-3.94s"/><circle class="tw" cx="1075.2" cy="243.5" r="1.46" fill="#ffffff" style="--t:4.11s;--d:-3.45s"/><circle class="tw" cx="970.0" cy="198.0" r="1.15" fill="#ffb36b" style="--t:4.31s;--d:-2.61s"/><circle class="tw" cx="1079.8" cy="219.9" r="0.95" fill="#ffffff" style="--t:5.35s;--d:-4.35s"/><g class="cars"><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:0.0s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ffd9a0" style="--d:-1.9s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:-3.8s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ffd9a0" style="--d:-5.7s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:-7.6s"/></g></svg><svg class="desk-steam" viewBox="0 0 60 110" aria-hidden="true"><path style="--k:0" d="M30 108c-6-10 6-18 0-28s6-18 0-28 6-16 0-26"/><path style="--k:1" d="M22 108c-5-9 5-16 0-25s5-16 0-25 5-14 0-22"/><path style="--k:2" d="M38 108c-5-9 5-16 0-25s5-16 0-25 5-14 0-22"/></svg><div class="desk-term" aria-hidden="true"><div class="dt-bar"><i></i><i></i><i></i><em>Claude Code</em></div><div class="dt-grid"><div class="dt-pane"><p class="dt-h"><span>에이전트 1 · 리서치</span><i>○ ×</i></p><div class="dt-body"><div class="dt-scroll" style="--d:0.0s"><b class="u">&gt; 경쟁사 AX 사례 5건 조사해 줘</b><b class="c">Claude</b><b>✓ 핵심 내용을 정리했습니다</b><b>✓ 자료를 수집하고 있습니다</b><b>✓ 결과를 저장했습니다</b><b>✓ 요약본을 만들었습니다</b><b class="u">&gt; 글로벌 제약사 에이전트 도입 현황 정리해 줘</b><b class="c">Claude</b><b>✓ 표로 정리했습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>✓ 표로 정리했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>✓ 요약본을 만들었습니다</b><b class="u">&gt; 최근 3개월 보도자료 요약해 줘</b><b class="c">Claude</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>· 자료를 수집하고 있습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b class="u">&gt; 경쟁사 AX 사례 5건 조사해 줘</b><b class="c">Claude</b><b>· 자료를 수집하고 있습니다</b><b>✓ 핵심 내용을 정리했습니다</b><b>· 핵심 내용을 정리했습니다</b><b class="u">&gt; 글로벌 제약사 에이전트 도입 현황 정리해 줘</b><b class="c">Claude</b><b>· 출처를 대조했습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>· 요약본을 만들었습니다</b><b>✓ 표로 정리했습니다</b><b>· 결과를 저장했습니다</b><b class="u">&gt; 최근 3개월 보도자료 요약해 줘</b><b class="c">Claude</b><b>· 자료를 수집하고 있습니다</b><b>· 다음 단계로 넘어갑니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 다음 단계로 넘어갑니다</b><b>✓ 다음 단계로 넘어갑니다</b><b class="u">&gt; 경쟁사 AX 사례 5건 조사해 줘</b><b class="c">Claude</b><b>✓ 분석을 완료했습니다</b><b>✓ 분석을 완료했습니다</b><b>✓ 요약본을 만들었습니다</b><b class="u">&gt; 글로벌 제약사 에이전트 도입 현황 정리해 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 출처를 대조했습니다</b><b>✓ 3건 확인했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b class="u">&gt; 최근 3개월 보도자료 요약해 줘</b><b class="c">Claude</b><b>· 핵심 내용을 정리했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>· 결과를 저장했습니다</b><b class="u">&gt; 경쟁사 AX 사례 5건 조사해 줘</b><b class="c">Claude</b><b>✓ 핵심 내용을 정리했습니다</b><b>✓ 자료를 수집하고 있습니다</b><b>✓ 결과를 저장했습니다</b><b>✓ 요약본을 만들었습니다</b><b class="u">&gt; 글로벌 제약사 에이전트 도입 현황 정리해 줘</b><b class="c">Claude</b><b>✓ 표로 정리했습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>✓ 표로 정리했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>✓ 요약본을 만들었습니다</b><b class="u">&gt; 최근 3개월 보도자료 요약해 줘</b><b class="c">Claude</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>· 자료를 수집하고 있습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b class="u">&gt; 경쟁사 AX 사례 5건 조사해 줘</b><b class="c">Claude</b><b>· 자료를 수집하고 있습니다</b><b>✓ 핵심 내용을 정리했습니다</b><b>· 핵심 내용을 정리했습니다</b><b class="u">&gt; 글로벌 제약사 에이전트 도입 현황 정리해 줘</b><b class="c">Claude</b><b>· 출처를 대조했습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>· 요약본을 만들었습니다</b><b>✓ 표로 정리했습니다</b><b>· 결과를 저장했습니다</b><b class="u">&gt; 최근 3개월 보도자료 요약해 줘</b><b class="c">Claude</b><b>· 자료를 수집하고 있습니다</b><b>· 다음 단계로 넘어갑니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 다음 단계로 넘어갑니다</b><b>✓ 다음 단계로 넘어갑니다</b><b class="u">&gt; 경쟁사 AX 사례 5건 조사해 줘</b><b class="c">Claude</b><b>✓ 분석을 완료했습니다</b><b>✓ 분석을 완료했습니다</b><b>✓ 요약본을 만들었습니다</b><b class="u">&gt; 글로벌 제약사 에이전트 도입 현황 정리해 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 출처를 대조했습니다</b><b>✓ 3건 확인했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b class="u">&gt; 최근 3개월 보도자료 요약해 줘</b><b class="c">Claude</b><b>· 핵심 내용을 정리했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>· 결과를 저장했습니다</b></div></div></div><div class="dt-pane"><p class="dt-h"><span>에이전트 2 · 분석</span><i>○ ×</i></p><div class="dt-body"><div class="dt-scroll" style="--d:-3.7s"><b class="u">&gt; 부서별 업무 시간 데이터 분석해 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 요약본을 만들었습니다</b><b>· 분석을 완료했습니다</b><b>✓ 그래프를 생성했습니다</b><b class="u">&gt; 자동화 가능 업무 비율 계산해 줘</b><b class="c">Claude</b><b>· 다음 단계로 넘어갑니다</b><b>✓ 3건 확인했습니다</b><b>✓ 수정 사항을 반영했습니다</b><b>· 요약본을 만들었습니다</b><b class="u">&gt; 분기별 비용 추이 비교해 줘</b><b class="c">Claude</b><b>· 출처를 대조했습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>✓ 다음 단계로 넘어갑니다</b><b>✓ 요약본을 만들었습니다</b><b class="u">&gt; 부서별 업무 시간 데이터 분석해 줘</b><b class="c">Claude</b><b>· 표로 정리했습니다</b><b>· 핵심 내용을 정리했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b class="u">&gt; 자동화 가능 업무 비율 계산해 줘</b><b class="c">Claude</b><b>✓ 3건 확인했습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 핵심 내용을 정리했습니다</b><b>· 그래프를 생성했습니다</b><b class="u">&gt; 분기별 비용 추이 비교해 줘</b><b class="c">Claude</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>✓ 표로 정리했습니다</b><b>✓ 핵심 내용을 정리했습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b class="u">&gt; 부서별 업무 시간 데이터 분석해 줘</b><b class="c">Claude</b><b>· 그래프를 생성했습니다</b><b>✓ 출처를 대조했습니다</b><b>· 핵심 내용을 정리했습니다</b><b>· 초안을 작성하고 있습니다</b><b class="u">&gt; 자동화 가능 업무 비율 계산해 줘</b><b class="c">Claude</b><b>· 핵심 내용을 정리했습니다</b><b>· 결과를 저장했습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>· 자료를 수집하고 있습니다</b><b class="u">&gt; 분기별 비용 추이 비교해 줘</b><b class="c">Claude</b><b>· 분석을 완료했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>· 3건 확인했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>· 3건 확인했습니다</b><b class="u">&gt; 부서별 업무 시간 데이터 분석해 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 요약본을 만들었습니다</b><b>· 분석을 완료했습니다</b><b>✓ 그래프를 생성했습니다</b><b class="u">&gt; 자동화 가능 업무 비율 계산해 줘</b><b class="c">Claude</b><b>· 다음 단계로 넘어갑니다</b><b>✓ 3건 확인했습니다</b><b>✓ 수정 사항을 반영했습니다</b><b>· 요약본을 만들었습니다</b><b class="u">&gt; 분기별 비용 추이 비교해 줘</b><b class="c">Claude</b><b>· 출처를 대조했습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>✓ 다음 단계로 넘어갑니다</b><b>✓ 요약본을 만들었습니다</b><b class="u">&gt; 부서별 업무 시간 데이터 분석해 줘</b><b class="c">Claude</b><b>· 표로 정리했습니다</b><b>· 핵심 내용을 정리했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b class="u">&gt; 자동화 가능 업무 비율 계산해 줘</b><b class="c">Claude</b><b>✓ 3건 확인했습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 핵심 내용을 정리했습니다</b><b>· 그래프를 생성했습니다</b><b class="u">&gt; 분기별 비용 추이 비교해 줘</b><b class="c">Claude</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>✓ 표로 정리했습니다</b><b>✓ 핵심 내용을 정리했습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b class="u">&gt; 부서별 업무 시간 데이터 분석해 줘</b><b class="c">Claude</b><b>· 그래프를 생성했습니다</b><b>✓ 출처를 대조했습니다</b><b>· 핵심 내용을 정리했습니다</b><b>· 초안을 작성하고 있습니다</b><b class="u">&gt; 자동화 가능 업무 비율 계산해 줘</b><b class="c">Claude</b><b>· 핵심 내용을 정리했습니다</b><b>· 결과를 저장했습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>· 자료를 수집하고 있습니다</b><b class="u">&gt; 분기별 비용 추이 비교해 줘</b><b class="c">Claude</b><b>· 분석을 완료했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>· 3건 확인했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>· 3건 확인했습니다</b></div></div></div><div class="dt-pane"><p class="dt-h"><span>에이전트 3 · 문서 작성</span><i>○ ×</i></p><div class="dt-body"><div class="dt-scroll" style="--d:-7.4s"><b class="u">&gt; AX 추진 계획 초안 써 줘</b><b class="c">Claude</b><b>✓ 핵심 내용을 정리했습니다</b><b>✓ 요약본을 만들었습니다</b><b>· 자료를 수집하고 있습니다</b><b>✓ 결과를 저장했습니다</b><b class="u">&gt; 경영진 보고용 요약 1장 만들어 줘</b><b class="c">Claude</b><b>✓ 요약본을 만들었습니다</b><b>✓ 그래프를 생성했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>· 출처를 대조했습니다</b><b class="u">&gt; 부록 표 정리해 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 3건 확인했습니다</b><b>· 다음 단계로 넘어갑니다</b><b>✓ 출처를 대조했습니다</b><b>· 3건 확인했습니다</b><b class="u">&gt; AX 추진 계획 초안 써 줘</b><b class="c">Claude</b><b>· 출처를 대조했습니다</b><b>✓ 수정 사항을 반영했습니다</b><b>✓ 자료를 수집하고 있습니다</b><b>✓ 결과를 저장했습니다</b><b>· 수정 사항을 반영했습니다</b><b class="u">&gt; 경영진 보고용 요약 1장 만들어 줘</b><b class="c">Claude</b><b>· 분석을 완료했습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>· 수정 사항을 반영했습니다</b><b class="u">&gt; 부록 표 정리해 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 초안을 작성하고 있습니다</b><b>· 결과를 저장했습니다</b><b>✓ 결과를 저장했습니다</b><b>· 표로 정리했습니다</b><b class="u">&gt; AX 추진 계획 초안 써 줘</b><b class="c">Claude</b><b>✓ 분석을 완료했습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>✓ 표로 정리했습니다</b><b class="u">&gt; 경영진 보고용 요약 1장 만들어 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 자료를 수집하고 있습니다</b><b>✓ 다음 단계로 넘어갑니다</b><b>· 수정 사항을 반영했습니다</b><b class="u">&gt; 부록 표 정리해 줘</b><b class="c">Claude</b><b>· 다음 단계로 넘어갑니다</b><b>· 수정 사항을 반영했습니다</b><b>✓ 초안을 작성하고 있습니다</b><b>✓ 3건 확인했습니다</b><b class="u">&gt; AX 추진 계획 초안 써 줘</b><b class="c">Claude</b><b>✓ 핵심 내용을 정리했습니다</b><b>✓ 요약본을 만들었습니다</b><b>· 자료를 수집하고 있습니다</b><b>✓ 결과를 저장했습니다</b><b class="u">&gt; 경영진 보고용 요약 1장 만들어 줘</b><b class="c">Claude</b><b>✓ 요약본을 만들었습니다</b><b>✓ 그래프를 생성했습니다</b><b>✓ 검토 의견 4건을 남겼습니다</b><b>· 출처를 대조했습니다</b><b class="u">&gt; 부록 표 정리해 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 3건 확인했습니다</b><b>· 다음 단계로 넘어갑니다</b><b>✓ 출처를 대조했습니다</b><b>· 3건 확인했습니다</b><b class="u">&gt; AX 추진 계획 초안 써 줘</b><b class="c">Claude</b><b>· 출처를 대조했습니다</b><b>✓ 수정 사항을 반영했습니다</b><b>✓ 자료를 수집하고 있습니다</b><b>✓ 결과를 저장했습니다</b><b>· 수정 사항을 반영했습니다</b><b class="u">&gt; 경영진 보고용 요약 1장 만들어 줘</b><b class="c">Claude</b><b>· 분석을 완료했습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>· 수정 사항을 반영했습니다</b><b class="u">&gt; 부록 표 정리해 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 초안을 작성하고 있습니다</b><b>· 결과를 저장했습니다</b><b>✓ 결과를 저장했습니다</b><b>· 표로 정리했습니다</b><b class="u">&gt; AX 추진 계획 초안 써 줘</b><b class="c">Claude</b><b>✓ 분석을 완료했습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>✓ 표로 정리했습니다</b><b class="u">&gt; 경영진 보고용 요약 1장 만들어 줘</b><b class="c">Claude</b><b>· 초안을 작성하고 있습니다</b><b>· 자료를 수집하고 있습니다</b><b>✓ 다음 단계로 넘어갑니다</b><b>· 수정 사항을 반영했습니다</b><b class="u">&gt; 부록 표 정리해 줘</b><b class="c">Claude</b><b>· 다음 단계로 넘어갑니다</b><b>· 수정 사항을 반영했습니다</b><b>✓ 초안을 작성하고 있습니다</b><b>✓ 3건 확인했습니다</b></div></div></div><div class="dt-pane"><p class="dt-h"><span>에이전트 4 · 검토</span><i>○ ×</i></p><div class="dt-body"><div class="dt-scroll" style="--d:-11.100000000000001s"><b class="u">&gt; 초안 논리 흐름 검토해 줘</b><b class="c">Claude</b><b>✓ 초안을 작성하고 있습니다</b><b>· 요약본을 만들었습니다</b><b>· 요약본을 만들었습니다</b><b class="u">&gt; 수치와 출처 대조해 줘</b><b class="c">Claude</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b class="u">&gt; 개선 사항 우선순위 매겨 줘</b><b class="c">Claude</b><b>· 다음 단계로 넘어갑니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>✓ 초안을 작성하고 있습니다</b><b class="u">&gt; 초안 논리 흐름 검토해 줘</b><b class="c">Claude</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 수정 사항을 반영했습니다</b><b>✓ 수정 사항을 반영했습니다</b><b>✓ 핵심 내용을 정리했습니다</b><b>· 요약본을 만들었습니다</b><b class="u">&gt; 수치와 출처 대조해 줘</b><b class="c">Claude</b><b>· 핵심 내용을 정리했습니다</b><b>· 요약본을 만들었습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>· 핵심 내용을 정리했습니다</b><b>✓ 핵심 내용을 정리했습니다</b><b class="u">&gt; 개선 사항 우선순위 매겨 줘</b><b class="c">Claude</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>· 수정 사항을 반영했습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 표로 정리했습니다</b><b>✓ 표로 정리했습니다</b><b class="u">&gt; 초안 논리 흐름 검토해 줘</b><b class="c">Claude</b><b>· 출처를 대조했습니다</b><b>· 분석을 완료했습니다</b><b>· 출처를 대조했습니다</b><b class="u">&gt; 수치와 출처 대조해 줘</b><b class="c">Claude</b><b>· 자료를 수집하고 있습니다</b><b>· 초안을 작성하고 있습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b class="u">&gt; 개선 사항 우선순위 매겨 줘</b><b class="c">Claude</b><b>· 검토 의견 4건을 남겼습니다</b><b>✓ 결과를 저장했습니다</b><b>· 핵심 내용을 정리했습니다</b><b>· 자료를 수집하고 있습니다</b><b>✓ 분석을 완료했습니다</b><b class="u">&gt; 초안 논리 흐름 검토해 줘</b><b class="c">Claude</b><b>✓ 초안을 작성하고 있습니다</b><b>· 요약본을 만들었습니다</b><b>· 요약본을 만들었습니다</b><b class="u">&gt; 수치와 출처 대조해 줘</b><b class="c">Claude</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b class="u">&gt; 개선 사항 우선순위 매겨 줘</b><b class="c">Claude</b><b>· 다음 단계로 넘어갑니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>✓ 초안을 작성하고 있습니다</b><b class="u">&gt; 초안 논리 흐름 검토해 줘</b><b class="c">Claude</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 수정 사항을 반영했습니다</b><b>✓ 수정 사항을 반영했습니다</b><b>✓ 핵심 내용을 정리했습니다</b><b>· 요약본을 만들었습니다</b><b class="u">&gt; 수치와 출처 대조해 줘</b><b class="c">Claude</b><b>· 핵심 내용을 정리했습니다</b><b>· 요약본을 만들었습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b>· 핵심 내용을 정리했습니다</b><b>✓ 핵심 내용을 정리했습니다</b><b class="u">&gt; 개선 사항 우선순위 매겨 줘</b><b class="c">Claude</b><b>✓ 추가 확인이 필요한 항목이 있습니다</b><b>· 수정 사항을 반영했습니다</b><b>· 검토 의견 4건을 남겼습니다</b><b>· 표로 정리했습니다</b><b>✓ 표로 정리했습니다</b><b class="u">&gt; 초안 논리 흐름 검토해 줘</b><b class="c">Claude</b><b>· 출처를 대조했습니다</b><b>· 분석을 완료했습니다</b><b>· 출처를 대조했습니다</b><b class="u">&gt; 수치와 출처 대조해 줘</b><b class="c">Claude</b><b>· 자료를 수집하고 있습니다</b><b>· 초안을 작성하고 있습니다</b><b>· 추가 확인이 필요한 항목이 있습니다</b><b class="u">&gt; 개선 사항 우선순위 매겨 줘</b><b class="c">Claude</b><b>· 검토 의견 4건을 남겼습니다</b><b>✓ 결과를 저장했습니다</b><b>· 핵심 내용을 정리했습니다</b><b>· 자료를 수집하고 있습니다</b><b>✓ 분석을 완료했습니다</b></div></div></div></div></div></div>
-  </section>
-
-  <!-- 10. 시연 영상: 에이전트 오피스 데모 -->
-  <section class="slide dark demo" aria-label="에이전트 플로어 데모 화면 녹화">
-    <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">에이전트 오피스</span></div>
-      <video src="assets/video/floor.mp4" poster="assets/video/floor.jpg" muted playsinline preload="auto" aria-label="Agent floor demo screen recording"></video>
-    </div>
-  </section>
-
-  <!-- 11. AI 빅테크는 사업 중심을 LLM 개발에서 에이전트 서비스로 옮기는 중: 각사 에이전트 제품 타임라인(2025.1–2026.10.8 발표 기준). 강조 칸 = 사람 대신 일을 맡아 스스로 실행하는 에이전트 제품 -->
-  <section class="slide dark" aria-label="AI 기업 4사의 에이전트 기업 전환 타임라인">
+  <!-- 넥슨 덱(20261023) 35장에서 가져옴(2026-10-19, 4사 → 5사). AI 빅테크는 사업 중심을 LLM 개발에서 에이전트 서비스로 옮기는 중: 각사 에이전트 제품 타임라인(2025.1–2026.10.12 발표 기준. Meta Muse Wonder 2026-10-12: TechCrunch·CNBC. xAI Grok Build 2026-05-14·Grok Bot 2026-08-11: Bloomberg·xAI 공식 글, 2026 중반부터 보도상 사명 SpaceXAI.
+       2026-10-19 보강: OpenAI Workspace Agents 2026-04-22(OpenAI)·ChatGPT Work 2026-07-09(TNW)·dots 2026-09-29(SF Standard), Anthropic Claude Code Projects 2026-09-17(The New Stack, 1차 출처 미확인),
+       Google Chrome Auto Browse 2026-01-28(SiliconANGLE)·Call for Me 2026-09-24(TechCrunch), Meta Manus My Computer 2026-03-16(9to5Mac). Managed Agents(개발자 인프라)·Muse Wonder(모델)는 강조 해제). 강조 칸 = 에이전트 제품(사용자 요청 2026-10-19: 에이전트에만 색), 회색 칸 = 모델(Muse Spark·Muse Wonder)·개발자 인프라(Managed Agents) -->
+  <section class="slide dark tl5" aria-label="AI 기업 5사의 에이전트 기업 전환 타임라인">
     <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
       <defs>
         <linearGradient id="hmLine9" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
@@ -1484,27 +1580,39 @@
     <div class="abs tl-span" style="left:722px;width:313px"></div>
     <p class="abs tl-head" style="left:1047px">2026 Q4</p>
     <div class="abs tl-span" style="left:1047px;width:151px"></div>
-    <div class="abs tl-row" data-step="2" style="top:314px">
+    <div class="abs tl-row" data-step="2" style="top:284px">
       <p class="tl-co">OpenAI</p>
-      <div class="tl-card" style="left:157px;width:315px"><b>Operator · Agents SDK · Codex</b><span>브라우저 조작, 에이전트 개발 키트, 클라우드 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:157px;width:315px"><b>Operator · Agents SDK · Codex</b><span>브라우저 조작, 에이전트 개발 키트, 클라우드 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:482px;width:153px"><b style="font-size:14px;letter-spacing:-.02em">Workspace Agents</b><span>팀 공유형 클라우드 업무 에이전트</span></div>
+      <div class="tl-card hot" style="left:645px;width:153px"><b>ChatGPT Work</b><span>앱을 넘나드는 장시간 업무 에이전트</span></div>
       <div class="tl-card hot" style="left:808px;width:153px"><b>dots</b><span>자체 클라우드 컴퓨터 기반 상시 가동 에이전트</span></div>
     </div>
-    <div class="abs tl-row" data-step="1" style="top:204px">
+    <div class="abs tl-row" data-step="1" style="top:188px">
       <p class="tl-co">Anthropic</p>
-      <div class="tl-card" style="left:157px;width:153px"><b>Claude Code</b><span>터미널 기반 코딩 에이전트</span></div>
-      <div class="tl-card" style="left:320px;width:153px"><b>Cowork</b><span>데스크톱 파일·앱 작업 에이전트</span></div>
-      <div class="tl-card hot" style="left:482px;width:153px"><b>Managed Agents</b><span>수 시간 단위 장기 실행 관리형 인프라</span></div>
+      <div class="tl-card hot" style="left:157px;width:153px"><b>Claude Code</b><span>터미널 기반 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:320px;width:153px"><b>Cowork</b><span>데스크톱 파일·앱 작업 에이전트</span></div>
+      <div class="tl-card" style="left:482px;width:153px"><b>Managed Agents</b><span>수 시간 단위 장기 실행 관리형 인프라</span></div>
+      <div class="tl-card hot" style="left:808px;width:153px"><b>Projects</b><span>Claude Code 병렬 클라우드 세션 지휘</span></div>
     </div>
-    <div class="abs tl-row" data-step="4" style="top:534px">
+    <div class="abs tl-row" data-step="4" style="top:476px">
       <p class="tl-co">Google</p>
+      <div class="tl-card hot" style="left:320px;width:153px"><b>Auto Browse</b><span>크롬에서 웹 작업 대행 에이전트</span></div>
       <div class="tl-card hot" style="left:482px;width:153px"><b>Gemini Spark</b><span>Gmail 연동 24시간 개인 에이전트</span></div>
+      <div class="tl-card hot" style="left:808px;width:153px"><b>Call for Me</b><span>사업장에 대신 전화 거는 에이전트</span></div>
       <div class="tl-card hot" style="left:970px;width:153px"><b>Gemini agent</b><span>하위 에이전트, 모델 선택</span></div>
     </div>
-    <div class="abs tl-row" data-step="3" style="top:424px">
+    <div class="abs tl-row" data-step="3" style="top:380px">
       <p class="tl-co">Meta</p>
+      <div class="tl-card hot" style="left:320px;width:153px"><b>Manus Desktop</b><span>내 PC를 조작하는 데스크톱 에이전트</span></div>
       <div class="tl-card" style="left:482px;width:153px"><b>Muse Spark</b><span>멀티 에이전트 조율 추론 모델</span></div>
-      <div class="tl-card" style="left:645px;width:153px"><b>Muse Code</b><span>Muse Spark 연동 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:645px;width:153px"><b>Muse Code</b><span>Muse Spark 연동 코딩 에이전트</span></div>
       <div class="tl-card hot" style="left:808px;width:153px"><b>Muse</b><span>일정·심부름 대행 개인 에이전트</span></div>
+      <div class="tl-card" style="left:970px;width:153px"><b>Muse Wonder</b><span>에이전트 작업 특화 최상위 모델</span></div>
+    </div>
+    <div class="abs tl-row" data-step="5" style="top:572px">
+      <p class="tl-co">xAI</p>
+      <div class="tl-card hot" style="left:482px;width:153px"><b>Grok Build</b><span>터미널 기반 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:645px;width:153px"><b>Grok Bot</b><span>앱에 로그인해 일하는 상시 에이전트 팀</span></div>
     </div>
   </section>
 
@@ -1548,6 +1656,18 @@
         <div class="uptime"><span>가동</span><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span>24시간</span></div>
       </div>
       <ul class="mig-vals"><li>클라우드 가상 컴퓨터</li><li>24시간 상시 가동</li><li>스마트폰 원격 지시·승인</li></ul>
+    </div>
+  </section>
+
+  <!-- 넥슨 덱(20261023) 21장에서 가져옴(2026-10-19). 맥북 화면 제목 덮개는 뺐다(사진 속 "에이전트 시대의 업무 공간"이 이 강연 주제와 맞음).
+       내 책상: 모니터 1 아래 맥북(사람의 자리), 모니터 2 아래 맥 미니와 4분할 터미널(에이전트의 자리). 헤드라인 없음.
+       한국어판은 일러스트 대신 AI 생성 실사 이미지(Higgsfield gpt_image_2_5 고품질 2K, 서울 야경, 화면은 한국어: 맥북 파워포인트·왼쪽 모니터 워드·오른쪽 모니터 Claude 터미널 4개)를 쓴다 -->
+  <section class="slide dark desk-slide" data-click="1" aria-label="내 책상(서울 야경 배경 실사 이미지): 모니터 두 대, 모니터 1 아래 거치대 위 맥북, 모니터 2 아래 맥 미니, 키보드와 마우스 두 벌, 두 키보드 사이 커피잔">
+    <div class="desk-scene"><img class="desk-photo" src="assets/desk-seoul.jpg" alt=""><div class="desk-yrs" aria-hidden="true"><span class="desk-yr t" style="left:349.0px;top:268.3px;width:29.5px;height:10.5px;font-size:11.6px;font-weight:800;color:#141a2e;background:#e4effa">2027</span><span class="desk-yr b" style="left:355.0px;top:307.3px;width:15.5px;height:6.5px;font-size:6.2px;font-weight:600;color:#333d51;background:#e2eefa">2027</span><span class="desk-yr r" style="left:484.5px;top:390.8px;width:14.0px;height:5.0px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dfecf9">2027.</span><span class="desk-yr r" style="left:484.5px;top:399.8px;width:14.0px;height:5.5px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dbebfa">2027.</span><span class="desk-yr r" style="left:484.5px;top:409.8px;width:14.0px;height:5.0px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dae9f7">2027.</span><span class="desk-yr r" style="left:484.5px;top:418.8px;width:14.0px;height:5.5px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dceaf8">2027.</span></div><svg class="desk-lights" viewBox="0 0 1280 720" aria-hidden="true"><defs><radialGradient id="dkBeacon"><stop offset="0" stop-color="#ff5a4a" stop-opacity="1"/><stop offset="1" stop-color="#ff5a4a" stop-opacity="0"/></radialGradient><radialGradient id="dkPod"><stop offset="0" stop-color="#bfe3ff" stop-opacity=".9"/><stop offset="1" stop-color="#bfe3ff" stop-opacity="0"/></radialGradient><radialGradient id="dkLamp"><stop offset="0" stop-color="#ffcf8a" stop-opacity=".55"/><stop offset="1" stop-color="#ffcf8a" stop-opacity="0"/></radialGradient><path id="dkBridge" d="M1056 241 L1172 236 M1236 233 L1280 231"/></defs><circle class="beacon" cx="1023" cy="51" r="7" fill="url(#dkBeacon)"/><circle class="pod" cx="1023" cy="101" r="13" fill="url(#dkPod)"/><ellipse class="lamp" cx="34" cy="300" rx="70" ry="48" fill="url(#dkLamp)"/><circle class="tw" cx="579.0" cy="219.9" r="1.44" fill="#ffffff" style="--t:3.69s;--d:-4.28s"/><circle class="tw" cx="238.3" cy="199.3" r="0.81" fill="#ffb36b" style="--t:4.87s;--d:-3.47s"/><circle class="tw" cx="787.9" cy="146.7" r="0.71" fill="#ffb36b" style="--t:2.41s;--d:-0.18s"/><circle class="tw" cx="1125.8" cy="227.1" r="1.32" fill="#cfe6ff" style="--t:3.65s;--d:-4.21s"/><circle class="tw" cx="585.4" cy="168.6" r="1.50" fill="#ffe2a8" style="--t:4.54s;--d:-1.58s"/><circle class="tw" cx="294.0" cy="170.6" r="0.76" fill="#ffe2a8" style="--t:3.52s;--d:-4.23s"/><circle class="tw" cx="1084.6" cy="118.1" r="0.87" fill="#ffe2a8" style="--t:3.75s;--d:-4.90s"/><circle class="tw" cx="508.7" cy="131.3" r="1.20" fill="#cfe6ff" style="--t:3.31s;--d:-1.56s"/><circle class="tw" cx="19.4" cy="192.6" r="1.44" fill="#ffd28a" style="--t:3.01s;--d:-0.51s"/><circle class="tw" cx="572.7" cy="152.7" r="1.29" fill="#ffd28a" style="--t:3.58s;--d:-1.92s"/><circle class="tw" cx="1247.8" cy="225.9" r="1.50" fill="#ffe2a8" style="--t:2.90s;--d:-1.97s"/><circle class="tw" cx="1093.6" cy="234.8" r="0.78" fill="#ffd28a" style="--t:2.90s;--d:-1.29s"/><circle class="tw" cx="989.0" cy="177.9" r="0.94" fill="#ffe2a8" style="--t:2.45s;--d:-1.04s"/><circle class="tw" cx="814.8" cy="120.8" r="0.99" fill="#ffb36b" style="--t:3.70s;--d:-4.80s"/><circle class="tw" cx="1109.2" cy="151.3" r="0.82" fill="#ffd28a" style="--t:4.90s;--d:-1.25s"/><circle class="tw" cx="132.9" cy="125.0" r="1.47" fill="#ffd28a" style="--t:4.64s;--d:-1.96s"/><circle class="tw" cx="628.5" cy="212.7" r="1.44" fill="#ffe2a8" style="--t:2.62s;--d:-2.40s"/><circle class="tw" cx="94.9" cy="156.7" r="1.43" fill="#ffe2a8" style="--t:2.43s;--d:-2.06s"/><circle class="tw" cx="318.8" cy="126.5" r="0.93" fill="#ffb36b" style="--t:4.09s;--d:-0.66s"/><circle class="tw" cx="1255.0" cy="237.6" r="1.25" fill="#ffb36b" style="--t:5.32s;--d:-2.95s"/><circle class="tw" cx="457.6" cy="174.7" r="0.73" fill="#ffb36b" style="--t:4.30s;--d:-2.41s"/><circle class="tw" cx="935.0" cy="176.0" r="1.50" fill="#ffe2a8" style="--t:3.70s;--d:-1.84s"/><circle class="tw" cx="943.6" cy="141.6" r="1.47" fill="#cfe6ff" style="--t:3.36s;--d:-3.43s"/><circle class="tw" cx="1153.1" cy="276.5" r="1.03" fill="#ffe2a8" style="--t:5.05s;--d:-2.86s"/><circle class="tw" cx="799.9" cy="187.6" r="1.17" fill="#ffb36b" style="--t:2.44s;--d:-0.45s"/><circle class="tw" cx="147.9" cy="164.8" r="1.03" fill="#cfe6ff" style="--t:3.48s;--d:-3.68s"/><circle class="tw" cx="1073.1" cy="133.2" r="1.30" fill="#ffe2a8" style="--t:3.22s;--d:-0.44s"/><circle class="tw" cx="845.0" cy="206.5" r="1.42" fill="#cfe6ff" style="--t:3.19s;--d:-3.39s"/><circle class="tw" cx="259.3" cy="148.9" r="1.42" fill="#ffffff" style="--t:3.84s;--d:-1.21s"/><circle class="tw" cx="518.1" cy="163.6" r="1.21" fill="#ffd28a" style="--t:5.10s;--d:-1.92s"/><circle class="tw" cx="174.3" cy="208.4" r="1.37" fill="#ffe2a8" style="--t:4.55s;--d:-4.75s"/><circle class="tw" cx="354.3" cy="148.8" r="1.06" fill="#cfe6ff" style="--t:5.25s;--d:-4.15s"/><circle class="tw" cx="489.7" cy="212.6" r="1.24" fill="#ffb36b" style="--t:3.69s;--d:-0.37s"/><circle class="tw" cx="730.3" cy="174.2" r="1.33" fill="#ffe2a8" style="--t:4.32s;--d:-2.03s"/><circle class="tw" cx="147.6" cy="137.8" r="1.13" fill="#cfe6ff" style="--t:5.36s;--d:-3.42s"/><circle class="tw" cx="255.2" cy="204.5" r="0.84" fill="#ffe2a8" style="--t:4.69s;--d:-2.67s"/><circle class="tw" cx="46.3" cy="159.2" r="1.32" fill="#ffb36b" style="--t:4.50s;--d:-2.60s"/><circle class="tw" cx="1160.0" cy="133.9" r="1.45" fill="#ffffff" style="--t:2.63s;--d:-2.27s"/><circle class="tw" cx="482.3" cy="221.5" r="1.40" fill="#cfe6ff" style="--t:3.73s;--d:-3.26s"/><circle class="tw" cx="918.6" cy="156.8" r="1.42" fill="#ffe2a8" style="--t:5.43s;--d:-2.68s"/><circle class="tw" cx="1012.2" cy="176.3" r="1.43" fill="#ffe2a8" style="--t:3.35s;--d:-0.41s"/><circle class="tw" cx="564.4" cy="218.2" r="1.31" fill="#ffffff" style="--t:5.24s;--d:-1.09s"/><circle class="tw" cx="1110.5" cy="196.1" r="0.73" fill="#ffb36b" style="--t:3.31s;--d:-3.94s"/><circle class="tw" cx="1075.2" cy="243.5" r="1.46" fill="#ffffff" style="--t:4.11s;--d:-3.45s"/><circle class="tw" cx="970.0" cy="198.0" r="1.15" fill="#ffb36b" style="--t:4.31s;--d:-2.61s"/><circle class="tw" cx="1079.8" cy="219.9" r="0.95" fill="#ffffff" style="--t:5.35s;--d:-4.35s"/><g class="cars"><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:0.0s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ffd9a0" style="--d:-1.9s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:-3.8s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ffd9a0" style="--d:-5.7s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:-7.6s"/></g></svg><svg class="desk-steam" viewBox="0 0 60 110" aria-hidden="true"><path style="--k:0" d="M30 108c-6-10 6-18 0-28s6-18 0-28 6-16 0-26"/><path style="--k:1" d="M22 108c-5-9 5-16 0-25s5-16 0-25 5-14 0-22"/><path style="--k:2" d="M38 108c-5-9 5-16 0-25s5-16 0-25 5-14 0-22"/></svg><div class="desk-mon2" aria-hidden="true"><img src="assets/video/floor-desk.jpg" alt=""></div></div>
+    <div class="abs desk-dim" data-step="2" aria-hidden="true"></div>
+    <div class="abs browser desk-zoom" data-step="2">
+      <div class="bar"><i></i><i></i><i></i><span class="url">에이전트 오피스</span></div>
+      <div class="dz-clip"><video src="assets/video/floor.mp4" poster="assets/video/floor-desk.jpg" muted playsinline preload="auto" aria-label="에이전트 플로어 데모 화면 녹화"></video></div>
     </div>
   </section>
 
@@ -1912,6 +2032,242 @@
     <h2 class="abs cl-title">SIGNAL 2026</h2>
     <p class="abs cl-sub">강정구 · 라이너 AI 전략 총괄</p>
   </section>
+
+  <!-- ===== 원래 10~18장(현장 질문 ~ 자문단 시연). 2026-10-19 사용자 요청으로 맨 뒤로 옮김 ===== -->
+  <!-- HR 서밋 덱(hrsummit_jaydenkang_20261027) 8장을 그대로 가져옴(2026-10-18). 공감대 장(사용자 요청 2026-10-16): HR이 지나온 AI 도입 세 단계(커스텀 AI 구축 → SOTA 교육 → 토큰 관리)와 지금 HR이 받는 질문 넷.
+       03 카드 수치(2026-10-18 교체): Accenture 내부 메모 보도(최초 404 Media 2026-10-15, 주석은 tier 1 매체인 Forbes 2026-10-16 인용). 2026-10-01부터 Claude 비용을 회사가 인당 월 $29까지만 부담하고 초과분은 프로젝트 예산(WBS)으로 청구, 일부 직원의 Claude Code 사용액은 월 $500~1,000. 앞 장(성과 미흡 데이터) 뒤에서 HR의 현실로 공감대를 만들고, 다음 장(이유 세 가지)으로 넘어간다 -->
+  <section class="slide dark jr" data-gap="900" aria-label="일선 현장에서도 AI 도입 성과에 대한 질문이 커지는 중: 커스텀 AI 구축, AI 교육, 토큰 관리를 지나 경영진이 갖는 의구심">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine105" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow105" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan105" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot105"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark105"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow105)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine105)"/>
+      <g class="hm-fans" stroke="url(#hmFan105)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot105)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark105)"/>
+    </svg>
+    <h2 class="abs head-title">일선 현장에서도 AI 도입 성과에 대한 질문이 커지는 중</h2>
+    <div class="abs jr-card" data-step="1" style="left:76px"><span class="jr-k">01 · 커스텀 AI 구축</span><p class="jr-q">“우리 회사도 AI를<br>도입해야 하지 않을까?”</p><p class="jr-b">많은 회사가 자체 AI 모델(커스텀 AI) 구축에 돈을 씀</p><p class="jr-r"><i>→</i>구축하는 사이 더 좋은 모델이 나와 성능 격차가 커짐</p></div>
+    <svg class="abs jr-arr" data-step="2" style="left:432px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <div class="abs jr-card" data-step="2" style="left:464px"><span class="jr-k">02 · AI 교육</span><p class="jr-q">“모델이 이렇게 빠르면<br>무엇부터 해야 하지?”</p><p class="jr-b">내부망 모델과 별개로 최신(SOTA) 모델을 쓰는 교육 수요가 급증함</p><p class="jr-r"><i>→</i>회사마다 전사 AI 교육을 서둘러 시작함</p></div>
+    <svg class="abs jr-arr" data-step="3" style="left:820px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <div class="abs jr-card hot" data-step="3" style="left:852px"><span class="jr-k">03 · 토큰 관리</span><p class="jr-q">“늘어나는 토큰 비용은<br>누가 관리하지?”</p><p class="jr-b">Accenture는 일부 직원의 Claude 사용액이 월 $500~1,000에 이르자, 인당 월 $29로 제한함(2026.10)</p><p class="jr-r"><i>→</i>토큰비도 인건비처럼 관리해야 한다는 인식이 생김</p></div>
+    <div class="abs jr-band" data-step="4"><p class="jr-bh">경영진이<br>갖는 의구심</p><ul><li>교육은 시켰는데, 그다음은 뭘 해야 하지?</li><li>토큰 비용은 계속 증가하는데, 그래서 성과는?</li><li>AI 도입 성과가 정말 나고 있는 게 맞나?</li><li>효과가 있다는데, 왜 비용은 줄지 않지?</li></ul></div>
+    <p class="abs footnote">출처: Forbes, "Accenture Clarifies Claude Spending Limits As AI Cost Questions Grow"(2026.10.16)</p>
+  </section>
+
+
+  <!-- AX Methodology 1: 좁은 의미의 AX(1→5)가 먼저, 클릭하면 10단계 전체가 펼쳐진다 -->
+  <section class="slide dark" data-click="1" aria-label="AX에는 업무 전체를 보는 관점이 필요함(좁은 의미의 AX부터)">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine3" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow3" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan3" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot3"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark3"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow3)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine3)"/>
+      <g class="hm-fans" stroke="url(#hmFan3)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot3)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark3)"/>
+    </svg>
+    <h2 class="abs head-title" data-step="2">AX 성공을 위해서는 조직의 업무 구조를 폭넓게 조망해야 함</h2>
+    <div class="abs mx-axis l" data-step="2" style="left:76px;width:446px"><svg viewBox="0 0 10 10"><path d="M10 1L1 5l9 4z"/></svg><i></i><span>업무 구조 (What)</span><i></i></div>
+    <div class="abs mx-axis r" data-step="2" style="left:700px;width:446px"><i></i><span>AI 전환 (Why)</span><i></i><svg viewBox="0 0 10 10"><path d="M0 1l9 4-9 4z"/></svg></div>
+    <div class="abs mx-card" data-step="2" style="left:76px;top:236px;width:134px;height:206px"><b>4</b><h4>업무 입출력 구조</h4><p>각 업무별 필요 정보와 결과물은 무엇인가</p></div>
+    <div class="abs mx-card" data-step="2" style="left:232px;top:236px;width:134px;height:206px"><b>3</b><h4>시간 배분 현황</h4><p>각 업무에 실제로 얼마나 시간이 투입되는가</p></div>
+    <div class="abs mx-card" data-step="2" style="left:388px;top:236px;width:134px;height:206px"><b>2</b><h4>핵심 업무 목록</h4><p>해당 역할이 수행하는 모든 업무를 열거</p></div>
+    <div class="abs mx-card hot" data-step="1" style="left:544px;top:236px;width:134px;height:206px"><b>1</b><h4>업무 역할 정의</h4><p>이 업무가 조직에 창출하는 핵심 가치는 무엇인가</p></div>
+    <div class="abs mx-card" data-step="1" style="left:700px;top:236px;width:134px;height:206px"><b>5</b><h4>AI 대체 가능성</h4><p>어떤 업무를 AI가 대신할 수 있는가</p></div>
+    <div class="abs mx-card" data-step="2" style="left:856px;top:236px;width:134px;height:206px"><b>6</b><h4>협업 구조</h4><p>누구와 어떻게 협업하며 정보는 어떻게 흐르는가</p></div>
+    <div class="abs mx-card" data-step="2" style="left:1012px;top:236px;width:134px;height:206px"><b>7</b><h4>성과 기준</h4><p>이 업무의 성공은 무엇으로 측정되는가</p></div>
+    <svg class="abs mx-arrows" viewBox="0 0 1280 720" aria-hidden="true"><g class="mx-arr" data-step="2"><line x1="229" y1="339.0" x2="208" y2="339.0"/><path d="M213 339.0l7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="385" y1="339.0" x2="364" y2="339.0"/><path d="M369 339.0l7 -5v10z"/></g><g class="mx-arr s" data-step="2"><line x1="541" y1="339.0" x2="520" y2="339.0"/><path d="M525 339.0l7 -5v10z"/></g><g class="mx-arr s" data-step="1"><line x1="681" y1="339.0" x2="702" y2="339.0"/><path d="M697 339.0l-7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="837" y1="339.0" x2="858" y2="339.0"/><path d="M853 339.0l-7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="993" y1="339.0" x2="1014" y2="339.0"/><path d="M1009 339.0l-7 -5v10z"/></g><path class="mx-up" data-step="2" d="M599.0 464h24l-12 -16z"/></svg>
+    <div class="abs mx-card wide" data-step="2" style="left:76px;top:470px;width:340px;height:150px"><b>9</b><h4>AI 가드레일</h4><p>해당 에이전트의 책임자는 누구이며,<br>보안, 통제를 어떻게 할 것인가</p></div>
+    <div class="abs mx-card wide" data-step="2" style="left:440px;top:470px;width:340px;height:150px"><b>8</b><h4>AI 모델 매핑</h4><p>이 업무에<br>어떤 AI 모델을 연결할 것인가</p></div>
+    <div class="abs mx-card wide" data-step="2" style="left:804px;top:470px;width:340px;height:150px"><b>10</b><h4>성장 방향</h4><p>AI가 반복 업무를 자동화한다면,<br>담당자는 무엇에 집중할 것인가</p></div>
+    <div class="abs mx-plus" data-step="2" style="left:415px;top:532.0px">+</div>
+    <div class="abs mx-plus" data-step="2" style="left:779px;top:532.0px">+</div>
+    <div class="abs mx-side g" data-step="2" style="top:236px;height:206px"><i></i><span>현황 진단</span></div>
+    <div class="abs mx-side o" data-step="2" style="top:470px;height:150px"><i></i><span>AI 전환</span></div>
+    <div class="abs mx-narrow" data-step="1" aria-hidden="true"></div>
+    <p class="abs mx-narrow-label" data-step="1">좁은 의미의 AX</p>
+  </section>
+
+  <!-- AX Methodology 2: 같은 틀을 흐리게 깔고 고민 영역 4개를 번호 순으로 클릭해 올린다 -->
+  <section class="slide dark" data-click="1" aria-label="AX의 네 단계">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine4" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow4" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan4" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot4"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark4"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow4)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine4)"/>
+      <g class="hm-fans" stroke="url(#hmFan4)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot4)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark4)"/>
+    </svg>
+    <h2 class="abs head-title">AX는 네 단계로 전개됨</h2>
+    <div class="mx-dim" aria-hidden="true">
+    <div class="abs mx-axis l" style="left:76px;width:446px"><svg viewBox="0 0 10 10"><path d="M10 1L1 5l9 4z"/></svg><i></i><span>업무 구조 (What)</span><i></i></div>
+    <div class="abs mx-axis r" style="left:700px;width:446px"><i></i><span>AI 전환 (Why)</span><i></i><svg viewBox="0 0 10 10"><path d="M0 1l9 4-9 4z"/></svg></div>
+    <div class="abs mx-card" style="left:76px;top:236px;width:134px;height:206px"><b>4</b><h4>업무 입출력 구조</h4><p>각 업무별 필요 정보와 결과물은 무엇인가</p></div>
+    <div class="abs mx-card" style="left:232px;top:236px;width:134px;height:206px"><b>3</b><h4>시간 배분 현황</h4><p>각 업무에 실제로 얼마나 시간이 투입되는가</p></div>
+    <div class="abs mx-card" style="left:388px;top:236px;width:134px;height:206px"><b>2</b><h4>핵심 업무 목록</h4><p>해당 역할이 수행하는 모든 업무를 열거</p></div>
+    <div class="abs mx-card hot" style="left:544px;top:236px;width:134px;height:206px"><b>1</b><h4>업무 역할 정의</h4><p>이 업무가 조직에 창출하는 핵심 가치는 무엇인가</p></div>
+    <div class="abs mx-card" style="left:700px;top:236px;width:134px;height:206px"><b>5</b><h4>AI 대체 가능성</h4><p>어떤 업무를 AI가 대신할 수 있는가</p></div>
+    <div class="abs mx-card" style="left:856px;top:236px;width:134px;height:206px"><b>6</b><h4>협업 구조</h4><p>누구와 어떻게 협업하며 정보는 어떻게 흐르는가</p></div>
+    <div class="abs mx-card" style="left:1012px;top:236px;width:134px;height:206px"><b>7</b><h4>성과 기준</h4><p>이 업무의 성공은 무엇으로 측정되는가</p></div>
+    <svg class="abs mx-arrows" viewBox="0 0 1280 720" aria-hidden="true"><g class="mx-arr"><line x1="229" y1="339.0" x2="208" y2="339.0"/><path d="M213 339.0l7 -5v10z"/></g><g class="mx-arr"><line x1="385" y1="339.0" x2="364" y2="339.0"/><path d="M369 339.0l7 -5v10z"/></g><g class="mx-arr s"><line x1="541" y1="339.0" x2="520" y2="339.0"/><path d="M525 339.0l7 -5v10z"/></g><g class="mx-arr s"><line x1="681" y1="339.0" x2="702" y2="339.0"/><path d="M697 339.0l-7 -5v10z"/></g><g class="mx-arr"><line x1="837" y1="339.0" x2="858" y2="339.0"/><path d="M853 339.0l-7 -5v10z"/></g><g class="mx-arr"><line x1="993" y1="339.0" x2="1014" y2="339.0"/><path d="M1009 339.0l-7 -5v10z"/></g><path class="mx-up" d="M599.0 464h24l-12 -16z"/></svg>
+    <div class="abs mx-card wide" style="left:76px;top:470px;width:340px;height:150px"><b>9</b><h4>AI 가드레일</h4><p>해당 에이전트의 책임자는 누구이며,<br>보안, 통제를 어떻게 할 것인가</p></div>
+    <div class="abs mx-card wide" style="left:440px;top:470px;width:340px;height:150px"><b>8</b><h4>AI 모델 매핑</h4><p>이 업무에<br>어떤 AI 모델을 연결할 것인가</p></div>
+    <div class="abs mx-card wide" style="left:804px;top:470px;width:340px;height:150px"><b>10</b><h4>성장 방향</h4><p>AI가 반복 업무를 자동화한다면,<br>담당자는 무엇에 집중할 것인가</p></div>
+    <div class="abs mx-plus" style="left:415px;top:532.0px">+</div>
+    <div class="abs mx-plus" style="left:779px;top:532.0px">+</div>
+    <div class="abs mx-side g" style="top:236px;height:206px"><i></i><span>현황 진단</span></div>
+    <div class="abs mx-side o" style="top:470px;height:150px"><i></i><span>AI 전환</span></div>
+    </div>
+    <div class="abs ar-box sm" data-step="1" style="left:538px;top:462px;width:146px;height:162px"><em>1</em><b>AI 모델</b></div>
+    <div class="abs ar-box sm" data-step="2" style="left:538px;top:226px;width:146px;height:228px"><em>2</em><b>에이전트<br>리더</b></div>
+    <div class="abs ar-box " data-step="3" style="left:70px;top:226px;width:460px;height:398px"><em>3</em><b>Company Brain</b><span>(지식 레이어 → MCP 허브 → 스킬 라이브러리)</span></div>
+    <div class="abs ar-box " data-step="4" style="left:692px;top:226px;width:460px;height:398px"><em>4</em><b>하이브리드 리소스 관리</b><span>(워크포스 설계 → 라이프사이클 관리 → 조직 전환)</span></div>
+  </section>
+
+  <!-- 리더 질문 분류: 질문 54건을 레벨 셋·카테고리 여덟으로 나누고 건수 대신 비중(%)으로 보여 준다. 레벨 비중 = 모델 17, 인프라·보안 20, 전략 24, 조직·운영 39. 직무·산업별 LLM 적용 질문은 Model로 따로 떼어 맨 위에 둔다 -->
+  <section class="slide dark" aria-label="카테고리별 AI 질문 비중: 모델 17%, 데이터·보안 20%, 전략 24%, 사람·문화 39%">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine5" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow5" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan5" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot5"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark5"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow5)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine5)"/>
+      <g class="hm-fans" stroke="url(#hmFan5)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot5)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark5)"/>
+    </svg>
+    <h2 class="abs head-title">비즈니스 리더들이 물어보시는 질문들</h2>
+    <table class="abs qs">
+      <thead><tr><th scope="col">레벨</th><th scope="col">세부 카테고리</th><th scope="col">질문 비중</th><th scope="col">대표 질문</th></tr></thead>
+      <tbody>
+        <tr class="md" data-step="1"><th rowspan="1" scope="rowgroup"><span>모델</span><b>17%</b></th><td class="cat">직무·산업별 모델 적용</td><td class="sh"><i style="width:44px"></i><span>17%</span></td><td class="q">직무와 업종별로 어떤 LLM을 어떤 업무에 적용해야 실질적인 성과를 만들 수 있는가?</td></tr>
+        <tr class="in" data-step="2"><th rowspan="2" scope="rowgroup"><span>데이터·보안</span><b>20%</b></th><td class="cat">보안·개인정보·법적 권리·규정</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">사람과 AI가 함께 일하는 환경에서 보안, 개인정보, 지식재산권, 이용 기준을 어떻게 관리해야 하는가?</td></tr>
+        <tr class="in" data-step="2"><td class="cat">데이터·시스템 연결</td><td class="sh"><i style="width:18px"></i><span>7%</span></td><td class="q">흩어진 데이터와 업무 결과물을 연결해 조직의 지식과 맥락을 축적하는 시스템을 어떻게 구축해야 하는가?</td></tr>
+        <tr class="st" data-step="3"><th rowspan="2" scope="rowgroup"><span>전략</span><b>24%</b></th><td class="cat">AX 전략·추진체계</td><td class="sh"><i style="width:39px"></i><span>15%</span></td><td class="q">우리 조직의 AI 전환 전략을 어떻게 수립하고, 누가 주도하며, 어디까지 확장해야 하는가?</td></tr>
+        <tr class="st" data-step="3"><td class="cat">성과·생산성·경제성</td><td class="sh"><i style="width:23px"></i><span>9%</span></td><td class="q">사람과 AI의 협업 성과를 어떻게 측정하고, 투입 비용 대비 생산성을 어떻게 관리해야 하는가?</td></tr>
+        <tr class="og" data-step="4"><th rowspan="3" scope="rowgroup"><span>사람·문화</span><b>39%</b></th><td class="cat">조직문화·리더십·변화관리</td><td class="sh"><i style="width:52px"></i><span>20%</span></td><td class="q">리더는 구성원의 저항과 역량 격차를 줄이면서 AI 중심의 업무 방식과 조직문화를 어떻게 정착시켜야 하는가?</td></tr>
+        <tr class="og" data-step="4"><td class="cat">지식 공유·암묵지 자산화</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">개인의 프롬프트와 업무 노하우를 어떻게 공유하고 조직 전체의 지식 자산으로 전환할 수 있는가?</td></tr>
+        <tr class="og" data-step="4"><td class="cat">교육·역량 개발</td><td class="sh"><i style="width:16px"></i><span>6%</span></td><td class="q">리더는 구성원의 수준과 업무 특성에 맞춰 AI 활용 역량을 어떻게 교육하고 실무에 정착시켜야 하는가?</td></tr>
+      </tbody>
+    </table>
+    <p class="abs footnote">카테고리별 질문 비중 (전체 신청자 800명+ 기준)</p>
+  </section>
+
+  <!-- 노력 배분 10-20-70: BCG "AI Fuels Field Service Transformation"(2026-01-09) Exhibit 1을 우리말 원고 기준으로 영어로 다시 썼다 -->
+  <section class="slide dark" aria-label="AX 노력 배분: 사람과 프로세스 70%, 데이터와 기술 20%, AI 10%">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine6" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow6" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan6" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot6"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark6"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow6)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine6)"/>
+      <g class="hm-fans" stroke="url(#hmFan6)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot6)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark6)"/>
+    </svg>
+    <h2 class="abs head-title">AX가 성공하려면 노력의 70%를 사람에 집중해야 함</h2>
+    <svg class="abs ef-ring" viewBox="0 0 1280 720" aria-hidden="true"><circle class="ef-guide" data-step="1" cx="640" cy="413" r="180"/><path class="ef-seg ai" data-step="2" d="M645.5 255.1A158 158 0 0 1 728.4 282.0L704.9 316.8A116 116 0 0 0 644.0 297.1z"/><path class="ef-seg dt" data-step="3" d="M737.3 288.5A158 158 0 0 1 788.5 359.0L749.0 373.3A116 116 0 0 0 711.4 321.6z"/><path class="ef-seg dt" data-step="3" d="M791.9 369.4A158 158 0 0 1 791.9 456.6L751.5 445.0A116 116 0 0 0 751.5 381.0z"/><path class="ef-seg pp" data-step="4" d="M788.5 467.0A158 158 0 0 1 737.3 537.5L711.4 504.4A116 116 0 0 0 749.0 452.7z"/><path class="ef-seg pp" data-step="4" d="M728.4 544.0A158 158 0 0 1 645.5 570.9L644.0 528.9A116 116 0 0 0 704.9 509.2z"/><path class="ef-seg pp" data-step="4" d="M634.5 570.9A158 158 0 0 1 551.6 544.0L575.1 509.2A116 116 0 0 0 636.0 528.9z"/><path class="ef-seg pp" data-step="4" d="M542.7 537.5A158 158 0 0 1 491.5 467.0L531.0 452.7A116 116 0 0 0 568.6 504.4z"/><path class="ef-seg pp" data-step="4" d="M488.1 456.6A158 158 0 0 1 488.1 369.4L528.5 381.0A116 116 0 0 0 528.5 445.0z"/><path class="ef-seg pp" data-step="4" d="M491.5 359.0A158 158 0 0 1 542.7 288.5L568.6 321.6A116 116 0 0 0 531.0 373.3z"/><path class="ef-seg pp" data-step="4" d="M551.6 282.0A158 158 0 0 1 634.5 255.1L636.0 297.1A116 116 0 0 0 575.1 316.8z"/><g class="ef-link ai" data-step="2"><path d="M682 283H860"/><circle cx="682" cy="283" r="5"/></g><g class="ef-link dt" data-step="3"><path d="M777 413H860"/><circle cx="777" cy="413" r="5"/></g><g class="ef-link pp" data-step="4"><path d="M529 332H420"/><circle cx="529" cy="332" r="5"/></g></svg>
+    <p class="abs center ef-center" data-step="1">현장 서비스 AX 성공을 위한 노력 배분</p>
+    <div class="abs ef-card pp" data-step="4" style="left:76px;top:176px;height:474px"><b class="pct">70%</b><h4>사람과 프로세스에 집중</h4><ul>
+      <li>구성원을 움직이는 명확한 비전과 근거 제시</li>
+      <li>공동 설계와 빠른 반복으로 서비스 조직 참여 유도</li>
+      <li>실행력을 높이는 프로세스와 역할 재정의</li>
+      <li>서비스 전략·KPI와 조직문화 정렬</li>
+      <li>필요 역량 교육과 조직 역량 구축</li></ul></div>
+    <div class="abs ef-card ai" data-step="2" style="left:860px;top:176px;height:200px"><b class="pct">10%</b><h4>AI에 집중</h4><ul>
+      <li>현장 서비스 머신러닝, 예측 분석, 생성형 AI 적용</li></ul></div>
+    <div class="abs ef-card dt" data-step="3" style="left:860px;top:396px;height:254px"><b class="pct">20%</b><h4>데이터와 기술에 집중</h4><ul>
+      <li>현장 조직에 안정적인 기술 제공</li>
+      <li>현장·서비스 시스템 통합으로 전 과정 자동화</li></ul></div>
+    <p class="abs footnote">출처: BCG, “AI Fuels Field Service Transformation. Change Management Provides the Spark,” 2026년 1월</p>
+  </section>
+
+  <!-- 4. 80명의 AI 에이전트와 팀으로 일하고 있음 (2장과 같은 다크 포맷). 5 + 50 + 25 = 80 -->
+  <section class="slide dark" aria-label="에이전트 팀">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine7" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow7" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan7" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot7"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark7"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow7)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine7)"/>
+      <g class="hm-fans" stroke="url(#hmFan7)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot7)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark7)"/>
+    </svg>
+    <h2 class="abs head-title">80명의 AI 에이전트와 팀으로 일하고 있음</h2>
+    <div class="abs agent" data-step="1" style="left:160px">
+      <div class="ring"><span class="mult"><i>×</i><b data-count="5">5</b></span></div>
+      <p class="cmd"><span>/</span>5color</p>
+    </div>
+    <div class="abs agent" data-step="2" style="left:520px">
+      <div class="ring"><span class="mult"><i>×</i><b data-count="50">50</b></span></div>
+      <p class="cmd"><span>/</span>casting</p>
+    </div>
+    <div class="abs agent" data-step="3" style="left:880px">
+      <div class="ring"><span class="mult"><i>×</i><b data-count="25">25</b></span></div>
+      <p class="cmd"><span>/</span>council</p>
+    </div>
+  </section>
+
+  <!-- 5. 시연 영상: 5color.airoasting.com -->
+  <section class="slide dark demo" aria-label="5-Color Harness 사이트 화면 녹화">
+    <div class="abs browser" data-step="1">
+      <div class="bar"><i></i><i></i><i></i><span class="url">5color.airoasting.com</span></div>
+      <video src="assets/video/5color.mp4" poster="assets/video/5color.jpg" muted loop playsinline preload="auto" aria-label="5-Color Harness site screen recording"></video>
+    </div>
+  </section>
+
+  <!-- 6. 시연 영상: 50agents.airoasting.com -->
+  <section class="slide dark demo" aria-label="에이전트 팀 빌더 사이트 화면 녹화">
+    <div class="abs browser" data-step="1">
+      <div class="bar"><i></i><i></i><i></i><span class="url">50agents.airoasting.com</span></div>
+      <video src="assets/video/50agents.mp4" poster="assets/video/50agents.jpg" muted loop playsinline preload="auto" aria-label="Agent team builder site screen recording"></video>
+    </div>
+  </section>
+
+  <!-- 7. 시연 영상: council.airoasting.com -->
+  <section class="slide dark demo" aria-label="AI ROASTING 자문단 사이트 화면 녹화">
+    <div class="abs browser" data-step="1">
+      <div class="bar"><i></i><i></i><i></i><span class="url">council.airoasting.com</span></div>
+      <video src="assets/video/council.mp4" poster="assets/video/council.jpg" muted loop playsinline preload="auto" aria-label="AI ROASTING council site screen recording"></video>
+    </div>
+  </section>
 </main>
 <!-- ../../index.html 복사본(base64). file://로 열 때만 쓴다. 원본을 고치면 이 블록도 다시 만들어야 한다 -->
 
@@ -2125,6 +2481,15 @@
     e.clientX > innerWidth / 2 ? next() : prev();
   });
   fit(); go(i);
+  // 책상 장: 플로어 영상 창이 커질 때 영상을 처음부터 재생한다(IQVIA판에서 가져옴)
+  const deskZoom = document.querySelector('.desk-zoom');
+  // 영상 첫 1초는 캐릭터가 눌렸다 펴지는 등장 동작이라, 모니터 정지 화면(1.2초 프레임)과 같은 지점부터 재생하고 반복도 그 지점으로 돌아간다
+  const DESK_T0 = 1.2;
+  if (deskZoom) {
+    const v = deskZoom.querySelector('video');
+    v.addEventListener('ended', () => { v.currentTime = DESK_T0; v.play().catch(() => {}); });
+    new MutationObserver(() => { if (deskZoom.classList.contains('on')) { v.currentTime = DESK_T0; v.play().catch(() => {}); } }).observe(deskZoom, { attributes: true, attributeFilter: ['class'] });
+  }
 </script>
 </body>
 </html>
