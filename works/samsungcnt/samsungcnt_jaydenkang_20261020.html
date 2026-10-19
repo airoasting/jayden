@@ -1031,6 +1031,23 @@
   .br-l1 { font-size: 30px; font-weight: 700; letter-spacing: -.02em; color: #8a93a6; }
   .br-l2 { font-size: 44px; font-weight: 800; letter-spacing: -.03em; line-height: 1.4; color: #f4f6fc; }
   .br-l2 em { font-style: normal; padding: 0 16px; border-radius: 999px; background: #0c7bc0; color: #fff; }
+  /* 2027 AX 다섯 축(.ax5): 넥슨 덱에서 가져와 다크 팔레트로. 212 폭 다섯 열(간격 17), 머리(y 212~338) + 항목 카드(y 350~650). 클릭하면 이 덱에서 다룬 항목(.key)만 시안으로 */
+  .ax5-col { top: 212px; width: 212px; height: 438px; display: flex; flex-direction: column; gap: 12px; }
+  .ax5-h { flex: none; height: 126px; box-sizing: border-box; padding: 16px 18px 0; background: rgba(255,255,255,.07); border-radius: 12px; display: flex; flex-direction: column; }
+  .ax5-h small { font: 800 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #9fd8f2; }
+  .ax5-h b { margin-top: 8px; font-size: 22px; font-weight: 800; letter-spacing: .01em; color: #f4f6fc; line-height: 1; }
+  .ax5-h span { margin-top: 6px; font-size: 14px; font-weight: 700; color: #aab4c4; }
+  .ax5-h em { align-self: flex-start; margin-top: 10px; padding: 3px 9px 4px; border-radius: 999px; background: #0c7bc0; font-style: normal; font-size: 12px; font-weight: 800; color: #fff; white-space: nowrap; }
+  .ax5-col ul { flex: 1; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .ax5-col li { flex: 1; box-sizing: border-box; padding: 0 16px; border-radius: 12px; border: 1px solid rgba(223,229,238,.12); background: rgba(255,255,255,.03); display: flex; flex-direction: column; justify-content: center;
+    transition: background-color .7s ease, border-color .7s ease, box-shadow .7s ease, transform .5s cubic-bezier(.34,1.56,.64,1); }
+  .ax5-col li b { font-size: 15px; font-weight: 800; letter-spacing: -.01em; line-height: 1.3; color: #f4f6fc; }
+  .ax5-col li p { margin: 6px 0 0; font-size: 13.5px; font-weight: 600; line-height: 1.45; color: #cfd6e0; word-break: keep-all; }
+  .ax5:has(.ax5-trig.on) .ax5-col li.key { background: rgba(12,111,176,.24); border-color: #00a3e0; box-shadow: 0 0 0 1px #00a3e0, 0 10px 26px rgba(0,163,224,.25); transform: translateY(-2px); }
+  .ax5-trig { width: 0; height: 0; }
+  .ax5-legend { right: 76px; top: 166px; margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #9fd8f2; }
+  .ax5-legend i { width: 14px; height: 14px; border-radius: 4px; background: rgba(12,111,176,.24); box-shadow: 0 0 0 1.5px #00a3e0; }
+  @media print { .ax5 .ax5-col li.key { background: rgba(12,111,176,.24); border-color: #00a3e0; box-shadow: 0 0 0 1px #00a3e0; } }
 </style>
 </head>
 <body>
@@ -1966,6 +1983,36 @@
     <div class="abs tw-panel new" data-step="2" style="left:804px"><div class="tw-head"><p class="tw-kicker">WORK TWIN</p><span class="tw-tag">신규</span></div><p class="tw-title">업무 관제</p><div class="tw-art"><svg class="iso sp-iso" viewBox="0 0 352 214" aria-hidden="true"><polygon class="iso-floor" points="154.8,8.9 346.0,119.3 197.3,205.1 6.0,94.7"/><polyline class="iso-grid" points="176.0,21.1 27.3,107.0"/><polyline class="iso-grid" points="197.3,33.4 48.5,119.3"/><polyline class="iso-grid" points="218.5,45.7 69.8,131.5"/><polyline class="iso-grid" points="239.8,57.9 91.0,143.8"/><polyline class="iso-grid" points="261.0,70.2 112.3,156.1"/><polyline class="iso-grid" points="282.2,82.5 133.5,168.3"/><polyline class="iso-grid" points="303.5,94.7 154.8,180.6"/><polyline class="iso-grid" points="324.8,107.0 176.0,192.9"/><polyline class="iso-grid" points="133.5,21.1 324.8,131.5"/><polyline class="iso-grid" points="112.3,33.4 303.5,143.8"/><polyline class="iso-grid" points="91.0,45.7 282.2,156.1"/><polyline class="iso-grid" points="69.8,57.9 261.0,168.3"/><polyline class="iso-grid" points="48.5,70.2 239.8,180.6"/><polyline class="iso-grid" points="27.3,82.5 218.5,192.9"/><polyline class="iso-flow" points="156.9,39.5 176.0,99.6" style="--d:0.0s"/><polyline class="iso-flow" points="231.3,72.6 176.0,99.6" style="--d:0.3s"/><polyline class="iso-flow" points="282.2,116.8 176.0,99.6" style="--d:0.6s"/><polyline class="iso-flow" points="82.5,75.1 176.0,99.6" style="--d:0.9s"/><polyline class="iso-flow" points="218.5,158.5 176.0,99.6" style="--d:1.2s"/><polyline class="iso-flow" points="91.0,119.3 176.0,99.6" style="--d:1.5s"/><polyline class="iso-flow" points="154.8,156.1 176.0,99.6" style="--d:1.8s"/><polygon class="iso-l-cloud" points="146.3,107.0 176.0,124.2 176.0,118.0 146.3,100.9"/><polygon class="iso-r-cloud" points="205.8,107.0 176.0,124.2 176.0,118.0 205.8,100.9"/><polygon class="iso-t-cloud" points="176.0,83.7 205.8,100.9 176.0,118.0 146.3,100.9"/><circle class="iso-led" cx="176.0" cy="84.9" r="0.3"/><polyline class="iso-thin" points="176.0,100.9 176.0,87.4"/><polygon class="iso-l-human" points="148.4,46.9 156.9,51.8 156.9,39.5 148.4,34.6"/><polygon class="iso-r-human" points="165.4,46.9 156.9,51.8 156.9,39.5 165.4,34.6"/><polygon class="iso-t-human" points="156.9,29.7 165.4,34.6 156.9,39.5 148.4,34.6"/><circle class="iso-human-head" cx="156.9" cy="26.8" r="6.9"/><polygon class="iso-l-agent" points="218.5,80.0 231.3,87.4 231.3,72.6 218.5,65.3"/><polygon class="iso-r-agent" points="244.0,80.0 231.3,87.4 231.3,72.6 244.0,65.3"/><polygon class="iso-t-agent" points="231.3,57.9 244.0,65.3 231.3,72.6 218.5,65.3"/><circle class="iso-led" cx="224.9" cy="76.3" r="0.1"/><polygon class="iso-l-agent" points="269.5,124.2 282.2,131.5 282.2,116.8 269.5,109.5"/><polygon class="iso-r-agent" points="295.0,124.2 282.2,131.5 282.2,116.8 295.0,109.5"/><polygon class="iso-t-agent" points="282.2,102.1 295.0,109.5 282.2,116.8 269.5,109.5"/><circle class="iso-led" cx="275.9" cy="120.5" r="0.1"/><polygon class="iso-l-agent" points="69.8,82.5 82.5,89.8 82.5,75.1 69.8,67.7"/><polygon class="iso-r-agent" points="95.3,82.5 82.5,89.8 82.5,75.1 95.3,67.7"/><polygon class="iso-t-agent" points="82.5,60.4 95.3,67.7 82.5,75.1 69.8,67.7"/><circle class="iso-led" cx="76.1" cy="78.8" r="0.1"/><polygon class="iso-l-human" points="210.0,165.9 218.5,170.8 218.5,158.5 210.0,153.6"/><polygon class="iso-r-human" points="227.0,165.9 218.5,170.8 218.5,158.5 227.0,153.6"/><polygon class="iso-t-human" points="218.5,148.7 227.0,153.6 218.5,158.5 210.0,153.6"/><circle class="iso-human-head" cx="218.5" cy="145.8" r="6.9"/><polygon class="iso-l-agent" points="78.3,126.6 91.0,134.0 91.0,119.3 78.3,111.9"/><polygon class="iso-r-agent" points="103.8,126.6 91.0,134.0 91.0,119.3 103.8,111.9"/><polygon class="iso-t-agent" points="91.0,104.5 103.8,111.9 91.0,119.3 78.3,111.9"/><circle class="iso-led" cx="84.6" cy="122.9" r="0.1"/><polygon class="iso-l-human" points="146.3,163.4 154.8,168.3 154.8,156.1 146.3,151.2"/><polygon class="iso-r-human" points="163.3,163.4 154.8,168.3 154.8,156.1 163.3,151.2"/><polygon class="iso-t-human" points="154.8,146.3 163.3,151.2 154.8,156.1 146.3,151.2"/><circle class="iso-human-head" cx="154.8" cy="143.3" r="6.9"/></svg></div><dl><div class="tw-kv"><dt>대상</dt><dd>사람 · 에이전트 · 작업 · 비용</dd></div><div class="tw-kv"><dt>관리 부서</dt><dd>하이브리드 리소스 관리 팀</dd></div><div class="tw-kv"><dt>핵심 질문</dt><dd>인력·에이전트 생산성은 최적인가</dd></div></dl></div>
   </section>
 
+  <!-- 2027 AX 트렌드(넥슨 덱 44장에서 가져옴, 2026-10-19). 황재선 『AX 100배의 법칙』(2025) 전망을 다섯 축으로 묶은 원판에서
+       항목 일부를 이 덱 본론으로 바꿨다: Desktop → Cloud(13장), Writing → Directing(개인 데스크), Human Connection(사람이 모이는 이유), Badge → Work Data(공간 운영 기준).
+       클릭하면 이 덱에서 다룬 항목(.key)이 강조되고 오른쪽 위에 "오늘 다룬 변화" 범례가 뜬다. 노력 배분 다시 보기 장 앞에서 본론을 정리한다 -->
+  <section class="slide dark ax5" data-gap="600" data-click="1" aria-label="2027년 AX는 기반·업무·사람·역량·측정 다섯 축에서 바뀔 것임: 오늘 다룬 변화는 Agent OS, 데스크톱에서 클라우드로, 작성에서 지시로, 사람 사이 연결, AI 운영 역량, 출입 데이터에서 업무 데이터로">
+    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
+      <defs>
+        <linearGradient id="hmLine108" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <linearGradient id="hmGlow108" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+        <linearGradient id="hmFan108" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
+        <radialGradient id="hmDot108"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmSpark108"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
+      </defs>
+      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow108)"/>
+      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine108)"/>
+      <g class="hm-fans" stroke="url(#hmFan108)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
+      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot108)"/>
+      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
+      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark108)"/>
+    </svg>
+    <h2 class="abs head-title">2027년 AX는 기반·업무·사람·역량·측정 다섯 축에서 바뀔 것임</h2>
+    <p class="abs cr-sub lv-sub">2027 AX 트렌드</p>
+    <p class="abs ax5-legend" data-step="6"><i></i>오늘 다룬 변화</p>
+    <div class="abs ax5-col" data-step="1" style="left:76px"><div class="ax5-h"><small>01</small><b>FOUNDATION</b><span>어떤 기반으로 동작하는가</span><em>데이터·거버넌스</em></div><ul><li><b>Company Brain ·<br>Skill Library</b><p>데이터 축적에서 업무 노하우 축적으로 전환</p></li><li class="key"><b>Agent OS</b><p>에이전트가 일할 신원·실행·관제 기반 구축</p></li><li class="key"><b>Desktop → Cloud</b><p>에이전트 실행 환경이 개인 PC에서 클라우드로 이동</p></li></ul></div>
+    <div class="abs ax5-col" data-step="2" style="left:305px"><div class="ax5-h"><small>02</small><b>WORK</b><span>무엇을 하는가</span><em>직무 설계</em></div><ul><li><b>AI-enabled →<br>AI-native</b><p>AI를 덧붙이는 대신 AI 전제로 업무 재설계</p></li><li class="key"><b>Writing →<br>Directing</b><p>직접 작성에서 에이전트 지시·검토로 전환</p></li></ul></div>
+    <div class="abs ax5-col" data-step="3" style="left:534px"><div class="ax5-h"><small>03</small><b>PEOPLE</b><span>누가 하는가</span><em>인력 계획</em></div><ul><li><b>[Human + Agent] Team</b><p>사람과 에이전트가 한 팀으로 협업</p></li><li class="key"><b>Human Connection</b><p>에이전트와 일할수록 사람 사이 연결이 핵심</p></li></ul></div>
+    <div class="abs ax5-col" data-step="4" style="left:763px"><div class="ax5-h"><small>04</small><b>CAPABILITY</b><span>어떤 역량으로 하는가</span><em>리더·역량 육성</em></div><ul><li class="key"><b>Using AI →<br>Operating AI</b><p>AI 교육 목표를 체험에서 운영으로 전환</p></li><li><b>People Leader →<br>Hybrid Leader</b><p>사람과 에이전트를 함께 이끄는 리더로 전환</p></li></ul></div>
+    <div class="abs ax5-col" data-step="5" style="left:992px"><div class="ax5-h"><small>05</small><b>MEASURE</b><span>무엇으로 측정하는가</span><em>평가·운영</em></div><ul><li><b>Token Maxxing →<br>Value Maxxing</b><p>사용량보다 창출 가치 중심으로 평가</p></li><li class="key"><b>Badge Data →<br>Work Data</b><p>출입 대신 업무 데이터로 공간 수요 예측</p></li></ul></div>
+    <i class="abs ax5-trig" data-step="6" aria-hidden="true"></i>
+  </section>
+
   <!-- 20. 마무리: 왼쪽에서 모인 빛줄기가 한 줄로 이어지는 엔딩 화면 -->
   <!-- 10-20-70 다시 보기: 7장과 같은 장을 한 번에 띄운 뒤 70% 박스만 앞으로 끌어낸다 -->
   <section class="slide dark ef-focus" aria-label="다시 보기: AX 노력 배분, 사람과 프로세스 70% 강조">
@@ -2060,213 +2107,6 @@
     <div class="abs jr-card hot" data-step="3" style="left:852px"><span class="jr-k">03 · 토큰 관리</span><p class="jr-q">“늘어나는 토큰 비용은<br>누가 관리하지?”</p><p class="jr-b">Accenture는 일부 직원의 Claude 사용액이 월 $500~1,000에 이르자, 인당 월 $29로 제한함(2026.10)</p><p class="jr-r"><i>→</i>토큰비도 인건비처럼 관리해야 한다는 인식이 생김</p></div>
     <div class="abs jr-band" data-step="4"><p class="jr-bh">경영진이<br>갖는 의구심</p><ul><li>교육은 시켰는데, 그다음은 뭘 해야 하지?</li><li>토큰 비용은 계속 증가하는데, 그래서 성과는?</li><li>AI 도입 성과가 정말 나고 있는 게 맞나?</li><li>효과가 있다는데, 왜 비용은 줄지 않지?</li></ul></div>
     <p class="abs footnote">출처: Forbes, "Accenture Clarifies Claude Spending Limits As AI Cost Questions Grow"(2026.10.16)</p>
-  </section>
-
-
-  <!-- AX Methodology 1: 좁은 의미의 AX(1→5)가 먼저, 클릭하면 10단계 전체가 펼쳐진다 -->
-  <section class="slide dark" data-click="1" aria-label="AX에는 업무 전체를 보는 관점이 필요함(좁은 의미의 AX부터)">
-    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
-      <defs>
-        <linearGradient id="hmLine3" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow3" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan3" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot3"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark3"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
-      </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow3)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine3)"/>
-      <g class="hm-fans" stroke="url(#hmFan3)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot3)"/>
-      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark3)"/>
-    </svg>
-    <h2 class="abs head-title" data-step="2">AX 성공을 위해서는 조직의 업무 구조를 폭넓게 조망해야 함</h2>
-    <div class="abs mx-axis l" data-step="2" style="left:76px;width:446px"><svg viewBox="0 0 10 10"><path d="M10 1L1 5l9 4z"/></svg><i></i><span>업무 구조 (What)</span><i></i></div>
-    <div class="abs mx-axis r" data-step="2" style="left:700px;width:446px"><i></i><span>AI 전환 (Why)</span><i></i><svg viewBox="0 0 10 10"><path d="M0 1l9 4-9 4z"/></svg></div>
-    <div class="abs mx-card" data-step="2" style="left:76px;top:236px;width:134px;height:206px"><b>4</b><h4>업무 입출력 구조</h4><p>각 업무별 필요 정보와 결과물은 무엇인가</p></div>
-    <div class="abs mx-card" data-step="2" style="left:232px;top:236px;width:134px;height:206px"><b>3</b><h4>시간 배분 현황</h4><p>각 업무에 실제로 얼마나 시간이 투입되는가</p></div>
-    <div class="abs mx-card" data-step="2" style="left:388px;top:236px;width:134px;height:206px"><b>2</b><h4>핵심 업무 목록</h4><p>해당 역할이 수행하는 모든 업무를 열거</p></div>
-    <div class="abs mx-card hot" data-step="1" style="left:544px;top:236px;width:134px;height:206px"><b>1</b><h4>업무 역할 정의</h4><p>이 업무가 조직에 창출하는 핵심 가치는 무엇인가</p></div>
-    <div class="abs mx-card" data-step="1" style="left:700px;top:236px;width:134px;height:206px"><b>5</b><h4>AI 대체 가능성</h4><p>어떤 업무를 AI가 대신할 수 있는가</p></div>
-    <div class="abs mx-card" data-step="2" style="left:856px;top:236px;width:134px;height:206px"><b>6</b><h4>협업 구조</h4><p>누구와 어떻게 협업하며 정보는 어떻게 흐르는가</p></div>
-    <div class="abs mx-card" data-step="2" style="left:1012px;top:236px;width:134px;height:206px"><b>7</b><h4>성과 기준</h4><p>이 업무의 성공은 무엇으로 측정되는가</p></div>
-    <svg class="abs mx-arrows" viewBox="0 0 1280 720" aria-hidden="true"><g class="mx-arr" data-step="2"><line x1="229" y1="339.0" x2="208" y2="339.0"/><path d="M213 339.0l7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="385" y1="339.0" x2="364" y2="339.0"/><path d="M369 339.0l7 -5v10z"/></g><g class="mx-arr s" data-step="2"><line x1="541" y1="339.0" x2="520" y2="339.0"/><path d="M525 339.0l7 -5v10z"/></g><g class="mx-arr s" data-step="1"><line x1="681" y1="339.0" x2="702" y2="339.0"/><path d="M697 339.0l-7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="837" y1="339.0" x2="858" y2="339.0"/><path d="M853 339.0l-7 -5v10z"/></g><g class="mx-arr" data-step="2"><line x1="993" y1="339.0" x2="1014" y2="339.0"/><path d="M1009 339.0l-7 -5v10z"/></g><path class="mx-up" data-step="2" d="M599.0 464h24l-12 -16z"/></svg>
-    <div class="abs mx-card wide" data-step="2" style="left:76px;top:470px;width:340px;height:150px"><b>9</b><h4>AI 가드레일</h4><p>해당 에이전트의 책임자는 누구이며,<br>보안, 통제를 어떻게 할 것인가</p></div>
-    <div class="abs mx-card wide" data-step="2" style="left:440px;top:470px;width:340px;height:150px"><b>8</b><h4>AI 모델 매핑</h4><p>이 업무에<br>어떤 AI 모델을 연결할 것인가</p></div>
-    <div class="abs mx-card wide" data-step="2" style="left:804px;top:470px;width:340px;height:150px"><b>10</b><h4>성장 방향</h4><p>AI가 반복 업무를 자동화한다면,<br>담당자는 무엇에 집중할 것인가</p></div>
-    <div class="abs mx-plus" data-step="2" style="left:415px;top:532.0px">+</div>
-    <div class="abs mx-plus" data-step="2" style="left:779px;top:532.0px">+</div>
-    <div class="abs mx-side g" data-step="2" style="top:236px;height:206px"><i></i><span>현황 진단</span></div>
-    <div class="abs mx-side o" data-step="2" style="top:470px;height:150px"><i></i><span>AI 전환</span></div>
-    <div class="abs mx-narrow" data-step="1" aria-hidden="true"></div>
-    <p class="abs mx-narrow-label" data-step="1">좁은 의미의 AX</p>
-  </section>
-
-  <!-- AX Methodology 2: 같은 틀을 흐리게 깔고 고민 영역 4개를 번호 순으로 클릭해 올린다 -->
-  <section class="slide dark" data-click="1" aria-label="AX의 네 단계">
-    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
-      <defs>
-        <linearGradient id="hmLine4" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow4" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan4" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot4"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark4"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
-      </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow4)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine4)"/>
-      <g class="hm-fans" stroke="url(#hmFan4)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot4)"/>
-      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark4)"/>
-    </svg>
-    <h2 class="abs head-title">AX는 네 단계로 전개됨</h2>
-    <div class="mx-dim" aria-hidden="true">
-    <div class="abs mx-axis l" style="left:76px;width:446px"><svg viewBox="0 0 10 10"><path d="M10 1L1 5l9 4z"/></svg><i></i><span>업무 구조 (What)</span><i></i></div>
-    <div class="abs mx-axis r" style="left:700px;width:446px"><i></i><span>AI 전환 (Why)</span><i></i><svg viewBox="0 0 10 10"><path d="M0 1l9 4-9 4z"/></svg></div>
-    <div class="abs mx-card" style="left:76px;top:236px;width:134px;height:206px"><b>4</b><h4>업무 입출력 구조</h4><p>각 업무별 필요 정보와 결과물은 무엇인가</p></div>
-    <div class="abs mx-card" style="left:232px;top:236px;width:134px;height:206px"><b>3</b><h4>시간 배분 현황</h4><p>각 업무에 실제로 얼마나 시간이 투입되는가</p></div>
-    <div class="abs mx-card" style="left:388px;top:236px;width:134px;height:206px"><b>2</b><h4>핵심 업무 목록</h4><p>해당 역할이 수행하는 모든 업무를 열거</p></div>
-    <div class="abs mx-card hot" style="left:544px;top:236px;width:134px;height:206px"><b>1</b><h4>업무 역할 정의</h4><p>이 업무가 조직에 창출하는 핵심 가치는 무엇인가</p></div>
-    <div class="abs mx-card" style="left:700px;top:236px;width:134px;height:206px"><b>5</b><h4>AI 대체 가능성</h4><p>어떤 업무를 AI가 대신할 수 있는가</p></div>
-    <div class="abs mx-card" style="left:856px;top:236px;width:134px;height:206px"><b>6</b><h4>협업 구조</h4><p>누구와 어떻게 협업하며 정보는 어떻게 흐르는가</p></div>
-    <div class="abs mx-card" style="left:1012px;top:236px;width:134px;height:206px"><b>7</b><h4>성과 기준</h4><p>이 업무의 성공은 무엇으로 측정되는가</p></div>
-    <svg class="abs mx-arrows" viewBox="0 0 1280 720" aria-hidden="true"><g class="mx-arr"><line x1="229" y1="339.0" x2="208" y2="339.0"/><path d="M213 339.0l7 -5v10z"/></g><g class="mx-arr"><line x1="385" y1="339.0" x2="364" y2="339.0"/><path d="M369 339.0l7 -5v10z"/></g><g class="mx-arr s"><line x1="541" y1="339.0" x2="520" y2="339.0"/><path d="M525 339.0l7 -5v10z"/></g><g class="mx-arr s"><line x1="681" y1="339.0" x2="702" y2="339.0"/><path d="M697 339.0l-7 -5v10z"/></g><g class="mx-arr"><line x1="837" y1="339.0" x2="858" y2="339.0"/><path d="M853 339.0l-7 -5v10z"/></g><g class="mx-arr"><line x1="993" y1="339.0" x2="1014" y2="339.0"/><path d="M1009 339.0l-7 -5v10z"/></g><path class="mx-up" d="M599.0 464h24l-12 -16z"/></svg>
-    <div class="abs mx-card wide" style="left:76px;top:470px;width:340px;height:150px"><b>9</b><h4>AI 가드레일</h4><p>해당 에이전트의 책임자는 누구이며,<br>보안, 통제를 어떻게 할 것인가</p></div>
-    <div class="abs mx-card wide" style="left:440px;top:470px;width:340px;height:150px"><b>8</b><h4>AI 모델 매핑</h4><p>이 업무에<br>어떤 AI 모델을 연결할 것인가</p></div>
-    <div class="abs mx-card wide" style="left:804px;top:470px;width:340px;height:150px"><b>10</b><h4>성장 방향</h4><p>AI가 반복 업무를 자동화한다면,<br>담당자는 무엇에 집중할 것인가</p></div>
-    <div class="abs mx-plus" style="left:415px;top:532.0px">+</div>
-    <div class="abs mx-plus" style="left:779px;top:532.0px">+</div>
-    <div class="abs mx-side g" style="top:236px;height:206px"><i></i><span>현황 진단</span></div>
-    <div class="abs mx-side o" style="top:470px;height:150px"><i></i><span>AI 전환</span></div>
-    </div>
-    <div class="abs ar-box sm" data-step="1" style="left:538px;top:462px;width:146px;height:162px"><em>1</em><b>AI 모델</b></div>
-    <div class="abs ar-box sm" data-step="2" style="left:538px;top:226px;width:146px;height:228px"><em>2</em><b>에이전트<br>리더</b></div>
-    <div class="abs ar-box " data-step="3" style="left:70px;top:226px;width:460px;height:398px"><em>3</em><b>Company Brain</b><span>(지식 레이어 → MCP 허브 → 스킬 라이브러리)</span></div>
-    <div class="abs ar-box " data-step="4" style="left:692px;top:226px;width:460px;height:398px"><em>4</em><b>하이브리드 리소스 관리</b><span>(워크포스 설계 → 라이프사이클 관리 → 조직 전환)</span></div>
-  </section>
-
-  <!-- 리더 질문 분류: 질문 54건을 레벨 셋·카테고리 여덟으로 나누고 건수 대신 비중(%)으로 보여 준다. 레벨 비중 = 모델 17, 인프라·보안 20, 전략 24, 조직·운영 39. 직무·산업별 LLM 적용 질문은 Model로 따로 떼어 맨 위에 둔다 -->
-  <section class="slide dark" aria-label="카테고리별 AI 질문 비중: 모델 17%, 데이터·보안 20%, 전략 24%, 사람·문화 39%">
-    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
-      <defs>
-        <linearGradient id="hmLine5" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow5" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan5" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot5"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark5"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
-      </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow5)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine5)"/>
-      <g class="hm-fans" stroke="url(#hmFan5)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot5)"/>
-      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark5)"/>
-    </svg>
-    <h2 class="abs head-title">비즈니스 리더들이 물어보시는 질문들</h2>
-    <table class="abs qs">
-      <thead><tr><th scope="col">레벨</th><th scope="col">세부 카테고리</th><th scope="col">질문 비중</th><th scope="col">대표 질문</th></tr></thead>
-      <tbody>
-        <tr class="md" data-step="1"><th rowspan="1" scope="rowgroup"><span>모델</span><b>17%</b></th><td class="cat">직무·산업별 모델 적용</td><td class="sh"><i style="width:44px"></i><span>17%</span></td><td class="q">직무와 업종별로 어떤 LLM을 어떤 업무에 적용해야 실질적인 성과를 만들 수 있는가?</td></tr>
-        <tr class="in" data-step="2"><th rowspan="2" scope="rowgroup"><span>데이터·보안</span><b>20%</b></th><td class="cat">보안·개인정보·법적 권리·규정</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">사람과 AI가 함께 일하는 환경에서 보안, 개인정보, 지식재산권, 이용 기준을 어떻게 관리해야 하는가?</td></tr>
-        <tr class="in" data-step="2"><td class="cat">데이터·시스템 연결</td><td class="sh"><i style="width:18px"></i><span>7%</span></td><td class="q">흩어진 데이터와 업무 결과물을 연결해 조직의 지식과 맥락을 축적하는 시스템을 어떻게 구축해야 하는가?</td></tr>
-        <tr class="st" data-step="3"><th rowspan="2" scope="rowgroup"><span>전략</span><b>24%</b></th><td class="cat">AX 전략·추진체계</td><td class="sh"><i style="width:39px"></i><span>15%</span></td><td class="q">우리 조직의 AI 전환 전략을 어떻게 수립하고, 누가 주도하며, 어디까지 확장해야 하는가?</td></tr>
-        <tr class="st" data-step="3"><td class="cat">성과·생산성·경제성</td><td class="sh"><i style="width:23px"></i><span>9%</span></td><td class="q">사람과 AI의 협업 성과를 어떻게 측정하고, 투입 비용 대비 생산성을 어떻게 관리해야 하는가?</td></tr>
-        <tr class="og" data-step="4"><th rowspan="3" scope="rowgroup"><span>사람·문화</span><b>39%</b></th><td class="cat">조직문화·리더십·변화관리</td><td class="sh"><i style="width:52px"></i><span>20%</span></td><td class="q">리더는 구성원의 저항과 역량 격차를 줄이면서 AI 중심의 업무 방식과 조직문화를 어떻게 정착시켜야 하는가?</td></tr>
-        <tr class="og" data-step="4"><td class="cat">지식 공유·암묵지 자산화</td><td class="sh"><i style="width:34px"></i><span>13%</span></td><td class="q">개인의 프롬프트와 업무 노하우를 어떻게 공유하고 조직 전체의 지식 자산으로 전환할 수 있는가?</td></tr>
-        <tr class="og" data-step="4"><td class="cat">교육·역량 개발</td><td class="sh"><i style="width:16px"></i><span>6%</span></td><td class="q">리더는 구성원의 수준과 업무 특성에 맞춰 AI 활용 역량을 어떻게 교육하고 실무에 정착시켜야 하는가?</td></tr>
-      </tbody>
-    </table>
-    <p class="abs footnote">카테고리별 질문 비중 (전체 신청자 800명+ 기준)</p>
-  </section>
-
-  <!-- 노력 배분 10-20-70: BCG "AI Fuels Field Service Transformation"(2026-01-09) Exhibit 1을 우리말 원고 기준으로 영어로 다시 썼다 -->
-  <section class="slide dark" aria-label="AX 노력 배분: 사람과 프로세스 70%, 데이터와 기술 20%, AI 10%">
-    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
-      <defs>
-        <linearGradient id="hmLine6" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow6" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan6" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot6"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark6"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
-      </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow6)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine6)"/>
-      <g class="hm-fans" stroke="url(#hmFan6)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot6)"/>
-      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark6)"/>
-    </svg>
-    <h2 class="abs head-title">AX가 성공하려면 노력의 70%를 사람에 집중해야 함</h2>
-    <svg class="abs ef-ring" viewBox="0 0 1280 720" aria-hidden="true"><circle class="ef-guide" data-step="1" cx="640" cy="413" r="180"/><path class="ef-seg ai" data-step="2" d="M645.5 255.1A158 158 0 0 1 728.4 282.0L704.9 316.8A116 116 0 0 0 644.0 297.1z"/><path class="ef-seg dt" data-step="3" d="M737.3 288.5A158 158 0 0 1 788.5 359.0L749.0 373.3A116 116 0 0 0 711.4 321.6z"/><path class="ef-seg dt" data-step="3" d="M791.9 369.4A158 158 0 0 1 791.9 456.6L751.5 445.0A116 116 0 0 0 751.5 381.0z"/><path class="ef-seg pp" data-step="4" d="M788.5 467.0A158 158 0 0 1 737.3 537.5L711.4 504.4A116 116 0 0 0 749.0 452.7z"/><path class="ef-seg pp" data-step="4" d="M728.4 544.0A158 158 0 0 1 645.5 570.9L644.0 528.9A116 116 0 0 0 704.9 509.2z"/><path class="ef-seg pp" data-step="4" d="M634.5 570.9A158 158 0 0 1 551.6 544.0L575.1 509.2A116 116 0 0 0 636.0 528.9z"/><path class="ef-seg pp" data-step="4" d="M542.7 537.5A158 158 0 0 1 491.5 467.0L531.0 452.7A116 116 0 0 0 568.6 504.4z"/><path class="ef-seg pp" data-step="4" d="M488.1 456.6A158 158 0 0 1 488.1 369.4L528.5 381.0A116 116 0 0 0 528.5 445.0z"/><path class="ef-seg pp" data-step="4" d="M491.5 359.0A158 158 0 0 1 542.7 288.5L568.6 321.6A116 116 0 0 0 531.0 373.3z"/><path class="ef-seg pp" data-step="4" d="M551.6 282.0A158 158 0 0 1 634.5 255.1L636.0 297.1A116 116 0 0 0 575.1 316.8z"/><g class="ef-link ai" data-step="2"><path d="M682 283H860"/><circle cx="682" cy="283" r="5"/></g><g class="ef-link dt" data-step="3"><path d="M777 413H860"/><circle cx="777" cy="413" r="5"/></g><g class="ef-link pp" data-step="4"><path d="M529 332H420"/><circle cx="529" cy="332" r="5"/></g></svg>
-    <p class="abs center ef-center" data-step="1">현장 서비스 AX 성공을 위한 노력 배분</p>
-    <div class="abs ef-card pp" data-step="4" style="left:76px;top:176px;height:474px"><b class="pct">70%</b><h4>사람과 프로세스에 집중</h4><ul>
-      <li>구성원을 움직이는 명확한 비전과 근거 제시</li>
-      <li>공동 설계와 빠른 반복으로 서비스 조직 참여 유도</li>
-      <li>실행력을 높이는 프로세스와 역할 재정의</li>
-      <li>서비스 전략·KPI와 조직문화 정렬</li>
-      <li>필요 역량 교육과 조직 역량 구축</li></ul></div>
-    <div class="abs ef-card ai" data-step="2" style="left:860px;top:176px;height:200px"><b class="pct">10%</b><h4>AI에 집중</h4><ul>
-      <li>현장 서비스 머신러닝, 예측 분석, 생성형 AI 적용</li></ul></div>
-    <div class="abs ef-card dt" data-step="3" style="left:860px;top:396px;height:254px"><b class="pct">20%</b><h4>데이터와 기술에 집중</h4><ul>
-      <li>현장 조직에 안정적인 기술 제공</li>
-      <li>현장·서비스 시스템 통합으로 전 과정 자동화</li></ul></div>
-    <p class="abs footnote">출처: BCG, “AI Fuels Field Service Transformation. Change Management Provides the Spark,” 2026년 1월</p>
-  </section>
-
-  <!-- 4. 80명의 AI 에이전트와 팀으로 일하고 있음 (2장과 같은 다크 포맷). 5 + 50 + 25 = 80 -->
-  <section class="slide dark" aria-label="에이전트 팀">
-    <svg class="abs head-mark" viewBox="0 0 1280 60" aria-hidden="true">
-      <defs>
-        <linearGradient id="hmLine7" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#cfe0ec" stop-opacity=".9"/><stop offset=".08" stop-color="#8fb0cc" stop-opacity=".55"/><stop offset=".55" stop-color="#9fbcd4" stop-opacity=".6"/><stop offset=".86" stop-color="#e6f0f8"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <linearGradient id="hmGlow7" x1="76" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset=".5" stop-color="#8fb0cc" stop-opacity="0"/><stop offset=".78" stop-color="#d6e6f2" stop-opacity=".9"/><stop offset=".92" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
-        <linearGradient id="hmFan7" x1="1140" y1="0" x2="1280" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e6f0f8" stop-opacity="0"/><stop offset=".3" stop-color="#e6f0f8" stop-opacity=".15"/><stop offset=".6" stop-color="#e6f0f8" stop-opacity=".85"/><stop offset="1" stop-color="#b9cfe2" stop-opacity=".6"/></linearGradient>
-        <radialGradient id="hmDot7"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#cfe4f5" stop-opacity=".8"/><stop offset="1" stop-color="#4d88ff" stop-opacity="0"/></radialGradient>
-        <radialGradient id="hmSpark7"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#cfe4f5" stop-opacity=".7"/><stop offset="1" stop-color="#cfe4f5" stop-opacity="0"/></radialGradient>
-      </defs>
-      <path class="hm-glow" pathLength="1" d="M76 30H1280" stroke="url(#hmGlow7)"/>
-      <path class="hm-line" pathLength="1" d="M76 30H1280" stroke="url(#hmLine7)"/>
-      <g class="hm-fans" stroke="url(#hmFan7)"><path class="hm-fan" style="--k:0" pathLength="1" d="M1140 30C1210 30 1256 27.60 1280 10.0"/><path class="hm-fan" style="--k:1" pathLength="1" d="M1140 30C1210 30 1256 28.40 1280 16.7"/><path class="hm-fan" style="--k:2" pathLength="1" d="M1140 30C1210 30 1256 29.20 1280 23.3"/><path class="hm-fan" style="--k:3" pathLength="1" d="M1140 30C1210 30 1256 30.80 1280 36.7"/><path class="hm-fan" style="--k:4" pathLength="1" d="M1140 30C1210 30 1256 31.60 1280 43.3"/><path class="hm-fan" style="--k:5" pathLength="1" d="M1140 30C1210 30 1256 32.40 1280 50.0"/></g>
-      <circle class="hm-dot-glow" cx="76" cy="30" r="9" fill="url(#hmDot7)"/>
-      <circle class="hm-dot" cx="76" cy="30" r="2.2"/>
-      <ellipse class="hm-spark" cx="76" cy="30" rx="60" ry="3" fill="url(#hmSpark7)"/>
-    </svg>
-    <h2 class="abs head-title">80명의 AI 에이전트와 팀으로 일하고 있음</h2>
-    <div class="abs agent" data-step="1" style="left:160px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="5">5</b></span></div>
-      <p class="cmd"><span>/</span>5color</p>
-    </div>
-    <div class="abs agent" data-step="2" style="left:520px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="50">50</b></span></div>
-      <p class="cmd"><span>/</span>casting</p>
-    </div>
-    <div class="abs agent" data-step="3" style="left:880px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="25">25</b></span></div>
-      <p class="cmd"><span>/</span>council</p>
-    </div>
-  </section>
-
-  <!-- 5. 시연 영상: 5color.airoasting.com -->
-  <section class="slide dark demo" aria-label="5-Color Harness 사이트 화면 녹화">
-    <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">5color.airoasting.com</span></div>
-      <video src="assets/video/5color.mp4" poster="assets/video/5color.jpg" muted loop playsinline preload="auto" aria-label="5-Color Harness site screen recording"></video>
-    </div>
-  </section>
-
-  <!-- 6. 시연 영상: 50agents.airoasting.com -->
-  <section class="slide dark demo" aria-label="에이전트 팀 빌더 사이트 화면 녹화">
-    <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">50agents.airoasting.com</span></div>
-      <video src="assets/video/50agents.mp4" poster="assets/video/50agents.jpg" muted loop playsinline preload="auto" aria-label="Agent team builder site screen recording"></video>
-    </div>
-  </section>
-
-  <!-- 7. 시연 영상: council.airoasting.com -->
-  <section class="slide dark demo" aria-label="AI ROASTING 자문단 사이트 화면 녹화">
-    <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">council.airoasting.com</span></div>
-      <video src="assets/video/council.mp4" poster="assets/video/council.jpg" muted loop playsinline preload="auto" aria-label="AI ROASTING council site screen recording"></video>
-    </div>
   </section>
 </main>
 <!-- ../../index.html 복사본(base64). file://로 열 때만 쓴다. 원본을 고치면 이 블록도 다시 만들어야 한다 -->
