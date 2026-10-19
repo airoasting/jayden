@@ -308,16 +308,16 @@
   @keyframes dk-steam { 0% { opacity: 0; transform: translateY(8px); } 40% { opacity: .35; } 100% { opacity: 0; transform: translateY(-16px); } }
   @media (prefers-reduced-motion: reduce) { .desk * { animation: none !important; } .dk-steam path { opacity: .2; } }
 
-  /* 11. 에이전트 전환 타임라인: 기업 열(76~216) + 시점 6칸(228~1204, 칸 폭 162.7). 머리글은 분기 단위(Q3는 8월·9월 두 칸). 줄은 순차 등장 */
-  .tl-head { top: 174px; font: 600 14px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #6f7880; letter-spacing: .02em; }
-  .tl-span { top: 195px; height: 1px; background: linear-gradient(90deg, rgba(40,48,56,.45), rgba(40,48,56,.08)); }
+  /* 11. 에이전트 전환 타임라인: 기업 열(76~216) + 시점 6칸(228~1204, 칸 폭 162.7). 머리글은 분기 단위(Q3는 8월·9월 두 칸). 5개 사(줄 높이 90, 간격 96, 188~662). 줄은 순차 등장 */
+  .tl-head { top: 160px; font: 600 14px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #6f7880; letter-spacing: .02em; }
+  .tl-span { top: 181px; height: 1px; background: linear-gradient(90deg, rgba(40,48,56,.45), rgba(40,48,56,.08)); }
   .tl-row {
-    left: 76px; width: 1128px; height: 98px; border-radius: 14px;
+    left: 76px; width: 1128px; height: 90px; border-radius: 14px;
     background: rgba(26,26,26,.025); border: 1px solid rgba(26,26,26,.07);
   }
-  .tl-co { position: absolute; left: 20px; top: 0; height: 98px; display: flex; align-items: center; font-size: 22px; font-weight: 800; color: #1a1a1a; letter-spacing: -.01em; }
+  .tl-co { position: absolute; left: 20px; top: 0; height: 90px; display: flex; align-items: center; font-size: 22px; font-weight: 800; color: #1a1a1a; letter-spacing: -.01em; }
   .tl-card {
-    position: absolute; top: 9px; height: 80px; padding: 11px 14px; border-radius: 10px;
+    position: absolute; top: 5px; height: 80px; padding: 11px 14px; border-radius: 10px;
     border: 1px solid rgba(26,26,26,.26); background: rgba(26,26,26,.02);
     display: flex; flex-direction: column; gap: 5px; word-break: keep-all;
   }
@@ -714,6 +714,10 @@
     transform: translateX(-16px);
   }
   .browser video { display: block; width: 1040px; height: 585px; object-fit: cover; background: #f4f5f7; }
+  /* 검정 배경 시연 장(7장 게임 영상, 사용자 요청 2026-10-19): 슬라이드·틀·영상 바탕을 모두 검정으로 */
+  .slide.demo-bk, .slide.dark.demo-bk { background: #000 !important; }
+  .demo-bk .browser { background: #000; border-color: #000; box-shadow: none; }
+  .demo-bk .browser video { background: #000; }
 
   /* 3. 시대별 커리어: 시대 띠(인터넷·모바일·AI) 아래 회사 카드 여섯 장, 카드 사이 아래에 학력, AI 카드 아래에 대외 활동.
      카드 1장 = 173×290, 간격 18. 인터넷 시대는 Freechal·Kearney, 모바일 시대는 Bain부터. 카드 색은 시대로 나눈다(IQVIA판과 같은 값): 인터넷 블루, 모바일 퍼플, AI 그린 그라디언트. 단 컨설팅(Kearney·Bain)은 차콜로 따로 묶는다. 글자와 로고는 흰색, NAVER·kakao 글자 로고만 브랜드 색(#03C75A·#FFCD00). 시대 띠는 인터넷·모바일 회색, AI만 그린 */
@@ -1095,11 +1099,11 @@
   .rx-after b { display: block; margin-bottom: 4px; font: 700 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .06em; color: #98a1a8; }
   /* 에이전트 고객(.ac): 왼쪽 막대 두 개(76~300), 오른쪽 다섯 줄(324~1204) = 구매 특성 290 → 대응 342 → 핵심 역량 200. 줄 높이 78, 간격 10. y 220~650 */
   .ac-bars { left: 76px; top: 220px; width: 224px; height: 430px; box-sizing: border-box; border-radius: 16px; background: #f7f8f9; border: 1px solid #e3e6ea; }
-  .ac-bar { position: absolute; bottom: 44px; width: 72px; display: flex; flex-direction: column; align-items: center; }
-  .ac-bar.a { left: 28px; } .ac-bar.b { left: 122px; }
-  .ac-bar i { display: block; width: 72px; border-radius: 8px 8px 0 0; background: #c3c9cf; transform-origin: bottom; }
-  .ac-bar.b i { background: #0aa0d2; }
-  .ac-bar b { margin-bottom: 8px; font-size: 22px; font-weight: 800; color: #1a1a1a; } .ac-bar.b b { color: #0a3255; font-size: 26px; }
+  .ac-bar { position: absolute; bottom: 44px; width: 56px; display: flex; flex-direction: column; align-items: center; }
+  .ac-bar.a { left: 20px; } .ac-bar.b { left: 84px; } .ac-bar.c { left: 148px; }   /* 막대 3개: 56 + 간격 8 */
+  .ac-bar i { display: block; width: 56px; border-radius: 8px 8px 0 0; background: #c3c9cf; transform-origin: bottom; }
+  .ac-bar.b i { background: #8fcfe6; } .ac-bar.c i { background: #0aa0d2; }
+  .ac-bar b { margin-bottom: 8px; font-size: 17px; font-weight: 800; color: #1a1a1a; white-space: nowrap; } .ac-bar.c b { color: #0a3255; font-size: 22px; }
   .ac-bar span { position: absolute; bottom: -28px; font: 700 14px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #1a1a1a; }
   .ac-bar.on i { animation: ac-grow 1s cubic-bezier(.16,1,.3,1) backwards; }
   @keyframes ac-grow { from { transform: scaleY(0); } }
@@ -1331,6 +1335,18 @@
   .gp-segs span { font-size: 13px; font-weight: 600; color: #3d434a; white-space: nowrap; }
   .gp-segs i { grid-column: 1 / -1; display: block; height: 10px; border-radius: 5px; }
   .gp-segs .a i { background: #0aa0d2; } .gp-segs .a2 i { background: #7ccde8; } .gp-segs .b i { background: #c3c9cf; } .gp-segs .c i { background: #b4e114; }
+  /* 2번 카드 파이(.gp-pie, 2026-10-19 사용자 요청: 막대 → 파이). 12시부터 시계 방향, 조각 사이 2px 카드색 간격. 합계 99%(반올림) */
+  .gp-pie { display: block; width: 172px; height: 172px; margin: 22px auto 0; overflow: visible; }
+  .gp-pie path { stroke: #f7f8f9; stroke-width: 2; stroke-linejoin: round; }
+  .gp-pie text { font-size: 14px; font-weight: 800; letter-spacing: -.02em; text-anchor: middle; dominant-baseline: central; fill: #fff; pointer-events: none; } .gp-pie text.dk { font-size: 18px; fill: #1a1a1a; }   /* 조각 안 비율 라벨(사용자 요청) */
+  .gp-pie .a, .gp-pleg .a i { fill: #0aa0d2; background: #0aa0d2; } .gp-pie .a2, .gp-pleg .a2 i { fill: #0a3255; background: #0a3255; }
+  .gp-pie .b, .gp-pleg .b i { fill: #98a1a8; background: #98a1a8; } .gp-pie .c, .gp-pleg .c i { fill: #b4e114; background: #b4e114; }
+  .gp-pleg { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  .gp-pleg li { display: grid; grid-template-columns: 12px 44px 1fr; column-gap: 8px; align-items: baseline; }
+  .gp-pleg i { width: 10px; height: 10px; border-radius: 3px; align-self: center; }
+  .gp-pleg b { font-size: 18px; font-weight: 800; letter-spacing: -.02em; color: #1a1a1a; }
+  .gp-pleg span { font-size: 14px; font-weight: 700; color: #1a1a1a; white-space: nowrap; }
+  .gp-pleg span small { margin-left: 6px; font-size: 12px; font-weight: 600; color: #6f7880; }
   /* 3번 카드 비교 막대(.gp-cmp): 6개월 이상(그린) 대 신규(회색), 50% = 막대 영역 전체 */
   .gp-legend { margin: 30px 0 0 !important; display: flex; align-items: center; gap: 6px; font-size: 12.5px !important; font-weight: 700 !important; color: #3d434a !important; }
   .gp-legend i { width: 12px; height: 12px; border-radius: 3px; margin-left: 10px; } .gp-legend i:first-child { margin-left: 0; }
@@ -1406,6 +1422,25 @@
   .br-l1 { font-size: 30px; font-weight: 700; letter-spacing: -.02em; color: #98a1a8; }
   .br-l2 { font-size: 44px; font-weight: 800; letter-spacing: -.03em; line-height: 1.4; color: #1a1a1a; }
   .br-l2 em { font-style: normal; padding: 0 16px; border-radius: 999px; background: #0aa0d2; color: #1a1a1a; }
+
+  /* Agent OS 키워드 장(2026-10-19 사용자 요청, 에이전트 타임라인 다음): AI > Data(회색) > Knowledge → Agent OS. Knowledge와 Agent OS는 같은 넥슨 블루 알약(사용자 요청 2026-10-19).
+     격자 7열(키워드 4 + 화살표 3). 1행 묶음 괄호, 2행 키워드, 3행 구성 */
+  .aos-grid { left: 0; top: 196px; width: 1280px; display: grid; grid-template-columns: repeat(7, auto); justify-content: center; align-items: center; column-gap: 26px; row-gap: 18px; }
+  .aos-grp { position: relative; height: 14px; margin-bottom: 30px; border: 2px solid #c3c9cf; border-bottom: none; border-radius: 8px 8px 0 0; }
+  .aos-grp span { position: absolute; left: 50%; bottom: 22px; translate: -50% 0; white-space: nowrap; font-size: 18px; font-weight: 800; letter-spacing: -.01em; color: #8a939b; }
+  .aos-grp.a { grid-column: 5; } .aos-grp.b { grid-column: 7; } .aos-grp.a, .aos-grp.b { border-color: #0aa0d2; } .aos-grp.a span, .aos-grp.b span { color: #0a3255; }   /* 괄호는 알약 두 개 위에만 */
+  .aos-kw { grid-row: 2; justify-self: center; font-size: 54px; font-weight: 800; letter-spacing: -.03em; line-height: 1.2; color: #98a1a8; white-space: nowrap; }
+  .aos-kw.hl { padding: 4px 30px; border-radius: 999px; background: #0aa0d2; color: #fff; box-shadow: 0 12px 30px rgba(10,160,210,.25); }
+  .aos-ar { grid-row: 2; font-size: 44px; font-weight: 700; color: #c3c9cf; }
+  .aos-sub { grid-row: 3; justify-self: center; font: 600 16px/1.3 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #8a939b; white-space: nowrap; }
+  .aos-sub.hl { font-weight: 800; color: #0a3255; }
+  .aos-def { left: 76px; top: 470px; width: 1128px; margin: 0; text-align: center; font-size: 34px; font-weight: 800; letter-spacing: -.03em; color: #1a1a1a; word-break: keep-all; }
+  .aos-def em { font-style: normal; color: #0aa0d2; }
+  /* 넥슨 시사점 한 줄(2026-10-19 사용자 요청): 모델은 바뀌고, 바뀌지 않는 노하우를 쌓고, Agent OS는 사내 시스템에 붙여 실험 */
+  .aos-imp { left: 76px; top: 596px; width: 1128px; height: 64px; box-sizing: border-box; padding: 0 24px; border-radius: 16px; background: #e7f6fb; border: 1.5px solid #0aa0d2; display: flex; align-items: center; gap: 18px; }
+  .aos-imp b { flex: none; padding: 7px 14px; border-radius: 999px; background: #0a3255; font-size: 15px; font-weight: 800; line-height: 1; color: #fff; }
+  .aos-imp p { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.02em; color: #1a1a1a; white-space: nowrap; }
+  .aos-imp em { font-style: normal; font-weight: 800; color: #0a3255; }
 
   /* AI 성과 격차(.gp.og) */
   .slide.dark.gp .gp-card.on, .slide.dark.sb .sb-card.on { filter: none; }
@@ -1540,6 +1575,8 @@
   .ln-roi small { grid-row: 1 / 3; padding-top: 3px; font: 800 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #0a3255; }
   .ln-roi b { font-size: 17px; font-weight: 800; color: #1a1a1a; }
   .ln-roi span { font-size: 13.5px; font-weight: 600; line-height: 1.45; color: #3d434a; word-break: keep-all; }
+  .ln-roi li.hot { background: #0aa0d2; border-color: #0aa0d2; box-shadow: 0 10px 26px rgba(10,160,210,.28); }   /* 03 가드레일 강조(사용자 요청 2026-10-19), 넥슨 블루 면 위 글자는 흰색 */
+  .ln-roi li.hot small, .ln-roi li.hot b, .ln-roi li.hot span { color: #fff; }
   .ln-arr { top: 423px; width: 24px; height: 24px; fill: none; stroke: #98a1a8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .oc-lines { left: 0; top: 0; width: 1280px; height: 720px; }
   .oc-lines path { fill: none; stroke: #c3c9cf; stroke-width: 1.5; }
@@ -1904,6 +1941,10 @@
   .ip-pic { position: relative; margin: 0; width: 296px; height: 166px; border-radius: 12px; overflow: hidden; background: #e3e6ea; border: 1px solid #e3e6ea; }
   .ip-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .ip-play { position: absolute; left: 50%; top: 50%; width: 52px; height: 36px; transform: translate(-50%,-50%); border-radius: 10px; background: rgba(26,26,26,.82); }
+  /* 세 번째 칸을 '업무 전반'으로 넓히고 칩(파워포인트·게임…)을 더함(2026-10-19). 칸마다 높이가 달라져도 그림·키워드 줄이 맞도록 위에서부터 쌓는다 */
+  .slide.ip .ip-col { justify-content: flex-start; padding-top: 50px; }
+  .ip-tags { margin-top: 14px; display: flex; gap: 8px; }
+  .ip-tags span { padding: 6px 13px; border-radius: 999px; background: #fff; border: 1px solid rgba(10,160,210,.55); font-size: 14px; font-weight: 800; line-height: 1; color: #0a3255; }
   .ip-play::after { content: ""; position: absolute; left: 21px; top: 10px; border-left: 14px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
 
   /* 넥슨판(2026-10-18): 표지·마무리 로고는 넥슨 브랜드 가이드의 공식 시그니처 가로조합 이미지(assets/logo-nexon.png),
@@ -1921,17 +1962,32 @@
   .oc-head.a svg { stroke: #fff; }
 
   /* 게임 업계 CEO 장(.ex2): 두 칸(552 폭, y 220~650), 회사·날짜 → 조치 → 발언/설명 → 근거 불릿 */
-  .ex2-card { top: 220px; width: 552px; height: 430px; box-sizing: border-box; padding: 30px 32px 28px; border-radius: 20px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; }
+  /* 급진적 ↔ 점진적 축(2026-10-19 사용자 요청): 카드 아래 한 줄(카드를 160으로 올림). 왼쪽 Epic(전사 전환), 오른쪽 Xbox(별도 랩 실험) */
+  .ex2-axis { left: 76px; top: 612px; width: 1128px; height: 40px; display: flex; align-items: center; gap: 14px; }
+  .slide.ex2 .ex2-card { top: 160px; }
+  .ex2-axis b { flex: none; font-size: 26px; font-weight: 800; letter-spacing: -.02em; color: #6f7880; }
+  .ex2-axis b.r { color: #0aa0d2; }   /* 선택한 Xbox 쪽(점진적)을 블루로 */
+  .ex2-axis span { flex: none; font-size: 16px; font-weight: 700; color: #3d434a; }
+  .ex2-axis i { position: relative; flex: 1; height: 3px; margin: 0 10px; background: linear-gradient(90deg, #c3c9cf, #0aa0d2); }
+  .ex2-axis i::before, .ex2-axis i::after { content: ""; position: absolute; top: -6px; border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+  .ex2-axis i::before { left: -10px; border-right: 11px solid #c3c9cf; }
+  .ex2-axis i::after { right: -10px; border-left: 11px solid #0aa0d2; }
+  .ex2-card { top: 220px; width: 552px; height: 430px; box-sizing: border-box; padding: 26px 32px 24px; border-radius: 20px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; }
   .ex2-card > * { flex-shrink: 0; }
+  .ex2-card.hot { background: #e7f6fb; border: 1.5px solid #0aa0d2; box-shadow: 0 16px 40px rgba(10,160,210,.16); }   /* 선택한 쪽: Xbox(점진적), 사용자 요청 2026-10-19 */
   .ex2-top { display: flex; align-items: center; justify-content: space-between; }
   .ex2-top b { padding: 7px 18px 8px; border-radius: 999px; background: #0a3255; font-size: 18px; font-weight: 800; line-height: 1.2; color: #fff; }
   .ex2-top span { padding: 4px 11px; border-radius: 999px; background: #fff; border: 1px solid #d5dade; font: 800 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #0a3255; }
-  .ex2-what { margin: 12px 0 0; font-size: 30px; font-weight: 800; letter-spacing: -.02em; color: #0a3255; }
-  .ex2-q { margin: 14px 0 0; padding: 16px 18px; border-radius: 12px; background: #fff; border: 1px solid #e3e6ea; height: 112px; box-sizing: border-box; }
+  .ex2-what { margin: 10px 0 0; font-size: 28px; font-weight: 800; letter-spacing: -.02em; color: #0a3255; }
+  .ex2-q { margin: 12px 0 0; padding: 14px 18px; border-radius: 12px; background: #fff; border: 1px solid #e3e6ea; height: 104px; box-sizing: border-box; }
   .ex2-q p { margin: 0; font-size: 17px; font-weight: 700; line-height: 1.5; color: #1a1a1a; word-break: keep-all; }
   .ex2-q cite { display: block; margin-top: 8px; font-style: normal; font-size: 13px; font-weight: 700; color: #6f7880; }
-  .ex2-card ul { margin: 18px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .ex2-card li { position: relative; padding-left: 14px; font-size: 15.5px; font-weight: 600; line-height: 1.45; color: #3d434a; word-break: keep-all; }
+  .ex2-card ul { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  /* 전환 속도를 가른 조건 셋(상장 여부·본업·규모, 발표자 해석). 두 카드 같은 순서 */
+  .ex2-why { margin: 10px 0 0; display: flex; gap: 6px; }
+  .ex2-why span { padding: 6px 11px; border-radius: 999px; background: #fff; border: 1px solid #d5dade; font-size: 14px; font-weight: 800; line-height: 1.2; color: #1a1a1a; white-space: nowrap; }
+  .ex2-why i { margin-right: 5px; font-style: normal; font-weight: 700; color: #6f7880; }
+  .ex2-card li { position: relative; padding-left: 14px; font-size: 14.5px; font-weight: 600; line-height: 1.45; color: #3d434a; word-break: keep-all; }
   .ex2-card li { display: grid; grid-template-columns: 42px 1fr; }
   .ex2-card li b { font-weight: 800; color: #0a3255; }
   .ex2-card li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: #0aa0d2; }
@@ -2159,17 +2215,28 @@
 
   <!-- 모델 변곡점 셋(2026-10-18 사용자 제안): AI가 만드는 결과물이 이미지 → 영상 → 파워포인트로 넓어짐. IQ(지능) 장과 60분 업무(생산성) 장 사이에서 지능이 산출물로 바뀌는 과정을 보여 준다.
        Gemini 3 Pro 2025-11-18, Nano Banana Pro(Gemini 3 Pro Image) 2025-11-20(BGR·iThome). Seedance 2.0 2026-02-12(ByteDance Seed 공식 블로그, 글·이미지·소리·영상 입력, 소리까지 맞춘 최대 15초 영상).
-       Claude Opus 5.5 2026-09-22(Anthropic): "built a financial model in Excel, then turned it into an executive presentation". 아이콘은 직접 그린 SVG -->
-  <section class="slide dark ip" data-gap="900" aria-label="AI가 이미지·영상을 넘어 화이트칼라 업무를 빠르게 대체하기 시작함: Gemini 3 Pro(2025.11), Seedance 2.0(2026.2), Claude Opus 5.5(2026.9)">
+       Claude Opus 5.5 2026-09-22(Anthropic): "built a financial model in Excel, then turned it into an executive presentation".
+       게임(2026-10-19 추가): 같은 출시 글 "had several Claude models build a game from a single prompt; Opus 5.5 scored higher than any other model on the strength of its graphics and polish". 세 번째 칸 키워드는 파워포인트 → 업무 전반.
+       영상: 공식 기능 아님. 출시 직후 Opus 5.5가 애니메이션 코드(JS canvas·p5.js·Remotion)를 써서 MP4로 렌더링한 모션그래픽이 X에서 확산(Latent Space AINews 2026-09-29 "Opus 5.5 is good at explainer videos", @stephanlivera 쇼릴 약 200만 회). 아이콘은 직접 그린 SVG -->
+  <section class="slide dark ip" data-gap="900" aria-label="AI가 이미지·영상을 넘어 화이트칼라 업무를 빠르게 대체하기 시작함: Gemini 3 Pro(2025.11), Seedance 2.0(2026.2), Claude Opus 5.5(2026.9) 파워포인트·게임·영상">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <h2 class="abs head-title">AI가 이미지·영상을 넘어 화이트칼라 업무를 빠르게 대체하기 시작함</h2>
     <p class="abs cr-sub lv-sub">AI 결과물의 세 가지 변곡점</p>
     <div class="abs ip-col" data-step="1" style="left:76px"><figure class="ip-pic nb"><img src="assets/nanobanana-1280.jpg" alt="Nano Banana Pro로 만든 이미지: 고딕풍 방의 탁자 위에 앉은 점토 인형 바나나"></figure><b class="ip-big">이미지</b><div class="ip-mrow"><span class="ip-model">Gemini 3 Pro · Google</span><span class="ip-date">2025.11</span></div></div>
     <div class="abs ip-col" data-step="2" style="left:464px"><figure class="ip-pic"><img src="assets/seedance-cruise-pitt.jpg" alt="AI로 만든 탐 크루즈와 브래드 피트 격투 장면 보도 영상 썸네일"><span class="ip-play" aria-hidden="true"></span></figure><b class="ip-big">영상</b><div class="ip-mrow"><span class="ip-model">Seedance 2.0 · ByteDance</span><span class="ip-date">2026.02</span></div></div>
-    <div class="abs ip-col hot" data-step="3" style="left:852px"><figure class="ip-pic"><img src="assets/claude-in-powerpoint.png" alt="파워포인트에서 Claude가 슬라이드를 만드는 화면(The Decoder 보도 이미지)"></figure><b class="ip-big">파워포인트</b><div class="ip-mrow"><span class="ip-model">Claude Opus 5.5 · Anthropic</span><span class="ip-date">2026.09</span></div></div>
+    <div class="abs ip-col hot" data-step="3" style="left:852px"><figure class="ip-pic"><img src="assets/claude-in-powerpoint.png" alt="파워포인트에서 Claude가 슬라이드를 만드는 화면(The Decoder 보도 이미지)"></figure><b class="ip-big">업무 전반</b><div class="ip-mrow"><span class="ip-model">Claude Opus 5.5 · Anthropic</span><span class="ip-date">2026.09</span></div><div class="ip-tags"><span>파워포인트</span><span>게임</span><span>영상</span></div></div>
     <svg class="abs ip-arr" data-step="2" style="left:428px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
     <svg class="abs ip-arr" data-step="3" style="left:816px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    <p class="abs footnote">출처: Google, Nano Banana Pro(2025.11.20) · ByteDance Seed, Seedance 2.0(2026.2.12) · Anthropic, Claude Opus 5.5(2026.9.22) · 이미지: YouTube, The Decoder(Claude in PowerPoint)</p>
+    <p class="abs footnote">출처: Google, Nano Banana Pro(2025.11.20) · ByteDance Seed, Seedance 2.0(2026.2.12) · Anthropic, Claude Opus 5.5(2026.9.22)</p>
+  </section>
+
+  <!-- 시연 영상: Claude Code로 만든 복셀 게임 MindCraft Temple(airoasting.com/assets/claudecode/07_minecraft). 6장 '업무 전반 · 게임' 칩의 실물.
+       2026-10-19 CDP 스크린캐스트 1920x1080·60fps 원본 프레임 녹화(타이틀 → 참배길·연못·사원 제단 구슬 3개). 걷기만, 플레이 구간 0.5배속, 막힌 4초 컷. 18.3초 -->
+  <section class="slide dark demo demo-bk" aria-label="Claude Code로 만든 복셀 게임 MindCraft Temple 화면 녹화">
+    <div class="abs browser" data-step="1">
+      <div class="bar"><i></i><i></i><i></i><span class="url">airoasting.com/assets/claudecode/07_minecraft</span></div>
+      <video src="assets/video/minecraft.mp4" poster="assets/video/minecraft.jpg" muted loop playsinline preload="auto" aria-label="MindCraft Temple game screen recording"></video>
+    </div>
   </section>
 
   <!-- AI를 잘 썼을 때 60분 업무를 끝내는 시간(연도별 대표 연구, 2026-10-14 확인).
@@ -2237,16 +2304,14 @@
     <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">AI 교육은 늘었지만, 구성원 간 활용 격차는 오히려 벌어지는 중</h2>
     <div class="abs gp-card" data-step="1" style="left:76px"><span class="gp-date">2026.07 조사</span><span class="gp-k">AI 교육 제공 확대</span><div class="gp-chart" role="img" aria-label="AI 교육을 제공하는 기업 비율, 2025년 25%에서 2026년 58%"><div class="gp-col"><b>25%</b><i style="height:73px"></i><span>2025</span></div><div class="gp-col hot"><b>58%</b><i style="height:170px"></i><span>2026</span></div></div><small>Workera, 미국 대기업 직장인 1,000명</small></div>
-    <div class="abs gp-card" data-step="2" style="left:464px"><span class="gp-date">2026.09 발표</span><span class="gp-k">인력별 AI 역량 구분</span>
-      <ul class="gp-segs"><li class="a"><b>14%</b><span>선도 인력 · 희소 역량과 높은 AI 숙련</span><i style="width:25%"></i></li>
-      <li class="a2"><b>18%</b><span>AI 적극 사용자 · 많이 쓰지만 전문성은 낮음</span><i style="width:32%"></i></li>
-      <li class="b"><b>11%</b><span>AI 미도입 전문가</span><i style="width:20%"></i></li>
-      <li class="c"><b>56%</b><span>다수 실무층</span><i style="width:100%"></i></li></ul>
+    <div class="abs gp-card" data-step="3" style="left:852px"><span class="gp-date">2026.09 발표</span><span class="gp-k">인력별 AI 역량 구분</span>
+      <svg class="gp-pie" viewBox="-2 -2 154 154" role="img" aria-label="PwC 인력별 AI 역량 구분: 선도 인력 14%, AI 적극 사용자 18%, AI 미도입 전문가 11%, 다수 실무층 56%"><path class="a" d="M75 75L75.00 0.00A75 75 0 0 1 133.21 27.71Z"><title>선도 인력 14%</title></path><path class="a2" d="M75 75L133.21 27.71A75 75 0 0 1 142.20 108.30Z"><title>AI 적극 사용자 18%</title></path><path class="b" d="M75 75L142.20 108.30A75 75 0 0 1 105.07 143.71Z"><title>AI 미도입 전문가 11%</title></path><path class="c" d="M75 75L105.07 143.71A75 75 0 1 1 75.00 0.00Z"><title>다수 실무층 56%</title></path><text x="96.5" y="29.9">14%</text><text x="124.7" y="69.5">18%</text><text x="109.5" y="111.2">11%</text><text class="dk" x="30.0" y="84.4">56%</text></svg>
+      <ul class="gp-pleg"><li class="a"><i></i><b>14%</b><span>선도 인력<small>희소 역량과 높은 AI 숙련</small></span></li><li class="a2"><i></i><b>18%</b><span>AI 적극 사용자<small>많이 쓰지만 전문성은 낮음</small></span></li><li class="b"><i></i><b>11%</b><span>AI 미도입 전문가</span></li><li class="c"><i></i><b>56%</b><span>다수 실무층</span></li></ul>
       <small>PwC, 48개국 직장인 49,364명</small></div>
-    <div class="abs gp-card hot" data-step="3" style="left:852px"><span class="gp-date">2026.03 발표</span><span class="gp-k">사용 경험에 따른 활용 격차</span>
+    <div class="abs gp-card" data-step="2" style="left:464px"><span class="gp-date">2026.03 발표</span><span class="gp-k">사용 경험에 따른 활용 격차</span>
       <p class="gp-legend"><i class="h"></i>6개월 이상 사용자<i class="l"></i>신규 사용자</p><ul class="gp-cmp"><li><em>업무 목적 활용<span class="gp-delta">7%p 격차</span></em><div class="h"><span class="t"><i style="width:98.0%"></i></span><b>49%</b></div><div class="l"><span class="t"><i style="width:84.0%"></i></span><b>42%</b></div></li><li><em>AI와의 반복 협업<span class="gp-delta">3.7%p 격차</span></em><div class="h"><span class="t"><i style="width:56.4%"></i></span><b>28.2%</b></div><div class="l"><span class="t"><i style="width:49.0%"></i></span><b>24.5%</b></div></li></ul>
       <small>Anthropic Economic Index, Claude 대화 약 100만 건 · 6개월 이상 사용자 vs 그 외</small></div>
-    <p class="abs footnote">출처: Workera, 2026 State of Skills Intelligence Report · PwC, Global Workforce Hopes and Fears Survey 2026 · Anthropic, Economic Index report: Learning curves</p>
+    <p class="abs footnote">출처: Workera, 2026 State of Skills Intelligence Report · Anthropic, Economic Index report: Learning curves · PwC, Global Workforce Hopes and Fears Survey 2026</p>
   </section>
 
   <!-- 직원의 AI 반발: WRITER × Workplace Intelligence 2026 enterprise AI adoption survey(2026.4.7 발표, 2025.12.17~2026.1.25 조사,
@@ -2293,16 +2358,18 @@
   </section>
 
   <!-- 게임 업계 CEO가 직접 지휘하는 AI 전환(2026-10-18 넥슨판 추가, 10-20-70 다음·리더 시범 연결 장 앞).
+       급진적↔점진적 축과 조건 칩(2026-10-19): Epic은 스위니가 의결권 과반을 쥔 비상장사(Tencent·Disney·Sony 등 외부 지분), 언리얼 엔진이 본업. Xbox는 Microsoft(상장) 사업부, Bethesda·Activision Blizzard 등 다수 스튜디오. 칩은 발표자 해석.
        Epic Games: 2026-10-12 팀 스위니 X "a huge pivot underway here at Epic, moving developers around to retool for maximum AI acceleration", 감원이 아니라 더 많이·더 좋게 만드는 것이 목표.
        Bloomberg(2026-10-12) 디즈니 협업 게임 출시 연기·AI 활용 지시. 2026-10-14 AI로 다시 만든 런처 미리보기, 스팀보다 46% 빠른 실행(회사 주장).
        Xbox: 2026-10-13 애샤 샤르마 CEO, CTO 스콧 반 블리엣이 이끄는 Xbox Labs 신설(AI 활용 이식·재구성 흐름 대응, 지식재산 보호 원칙 유지. Windows Central·Forbes) -->
-  <section class="slide dark ex2" data-gap="700" aria-label="게임 업계 CEO들이 직접 AI 전환을 지휘하기 시작함: 에픽게임즈의 AI 가속 대전환과 Xbox Labs 신설">
+  <section class="slide dark ex2" data-gap="700" aria-label="게임 업계 CEO들이 직접 AI 전환을 지휘하기 시작함: 급진적인 에픽게임즈의 AI 가속 대전환과 점진적인 Xbox Labs 신설">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">게임 업계 CEO들이 직접 AI 전환을 지휘하기 시작함</h2>
-    <div class="abs ex2-card" data-step="1" style="left:76px"><div class="ex2-top"><b>Epic Games</b><span>2026.10.12</span></div><p class="ex2-what">AI 가속 대전환</p><blockquote class="ex2-q"><p>“AI 기반으로 최대한의 속도를 내기 위해 개발 인력을 재배치하는 대규모 전환이 진행 중입니다”</p><cite>팀 스위니 CEO · X</cite></blockquote><ul><li><b>배경</b>디즈니 협업 타이틀의 출시를 연기하고, 잔여 개발 공정을 AI 툴 중심으로 전환하도록 지시</li><li><b>성과</b>AI로 재개발한 런처 프리뷰 공개, 스팀 대비 구동 속도 46% 개선</li><li><b>원칙</b>인력 감축이 아니라 동일 인력으로 생산성과 퀄리티를 동시에 끌어올리는 것이 목표</li></ul></div>
-    <div class="abs ex2-card" data-step="2" style="left:652px"><div class="ex2-top"><b>Xbox</b><span>2026.10.13</span></div><p class="ex2-what">Xbox Labs 신설</p><blockquote class="ex2-q"><p>“게임 접근성을 높이고, 오래된 게임에 새 생명을 불어넣고, 플레이어를 크리에이터로 만드는 가능성이 분명히 보입니다”</p><cite>애샤 샤르마 CEO · 사내 메일</cite></blockquote><ul><li><b>배경</b>AI로 게임을 디컴파일·리빌드해 레트로 타이틀을 복원하고, 애플 실리콘과 웹 브라우저로 포팅하는 사례가 급증</li><li><b>조직</b>CTO 직속으로 게임 메이커·엔지니어·사이언티스트로 구성한 소규모 랩</li><li><b>원칙</b>기존 비즈니스 모델과 충돌해도 플레이어 가치를 우선, 성과 지표는 플레이·창작 참여 확대</li></ul></div>
-    <p class="abs footnote">출처: Tim Sweeney, X(2026.10.12) · Bloomberg, "Epic Games Delays Disney Project, Asks Developers to Use More AI"(2026.10.12) · Asha Sharma 사내 메일(Thurrott, 2026.10.13) · Windows Central·Forbes, Xbox Labs(2026.10.13~14)</p>
+    <div class="abs ex2-card" data-step="1" style="left:76px"><div class="ex2-top"><b>Epic Games</b><span>2026.10.12</span></div><p class="ex2-what">AI 가속 대전환</p><p class="ex2-why"><span><i>상장 여부</i>비상장·창업자 지배</span><span><i>본업</i>언리얼 엔진</span><span><i>규모</i>자체 IP 중심</span></p><blockquote class="ex2-q"><p>“AI 기반으로 최대한의 속도를 내기 위해 개발 인력을 재배치하는 대규모 전환이 진행 중입니다”</p><cite>팀 스위니 CEO · X</cite></blockquote><ul><li><b>배경</b>디즈니 협업 타이틀의 출시를 연기하고, 잔여 개발 공정을 AI 툴 중심으로 전환하도록 지시</li><li><b>성과</b>AI로 재개발한 런처 프리뷰 공개, 스팀 대비 구동 속도 46% 개선</li><li><b>원칙</b>인력 감축이 아니라 동일 인력으로 생산성과 퀄리티를 동시에 끌어올리는 것이 목표</li></ul></div>
+    <div class="abs ex2-card hot" data-step="2" style="left:652px"><div class="ex2-top"><b>Xbox</b><span>2026.10.13</span></div><p class="ex2-what">Xbox Labs 신설</p><p class="ex2-why"><span><i>상장 여부</i>상장(Microsoft)</span><span><i>본업</i>콘텐츠·플랫폼</span><span><i>규모</i>다수 스튜디오</span></p><blockquote class="ex2-q"><p>“게임 접근성을 높이고, 오래된 게임에 새 생명을 불어넣고, 플레이어를 크리에이터로 만드는 가능성이 분명히 보입니다”</p><cite>애샤 샤르마 CEO · 사내 메일</cite></blockquote><ul><li><b>배경</b>AI로 게임을 디컴파일·리빌드해 레트로 타이틀을 복원하고, 애플 실리콘과 웹 브라우저로 포팅하는 사례가 급증</li><li><b>조직</b>CTO 직속으로 게임 메이커·엔지니어·사이언티스트로 구성한 소규모 랩</li><li><b>원칙</b>기존 비즈니스 모델과 충돌해도 플레이어 가치를 우선, 성과 지표는 플레이·창작 참여 확대</li></ul></div>
+    <div class="abs ex2-axis" data-step="3" aria-label="전환 방식: 급진적(회사 전체를 한 번에)에서 점진적(작은 조직에서 먼저)까지"><b>급진적</b><span>회사 전체를 한 번에 전환</span><i aria-hidden="true"></i><span>작은 조직에서 먼저 실험</span><b class="r">점진적</b></div>
+    <p class="abs footnote">출처: Tim Sweeney, X(2026.10.12) · Bloomberg(2026.10.12) · Asha Sharma 사내 메일(Thurrott, 2026.10.13) · Windows Central·Forbes, Xbox Labs(2026.10.13~14)</p>
   </section>
 
   <!-- 01 묶음 연결 장: 10-20-70(사람에 70%) 다음, 본인 사례(에이전트 팀) 앞. 교육만으로는 안 되고 리더가 먼저 일하는 방식을 보여줘야 한다는 연결 -->
@@ -2495,7 +2562,7 @@
     <svg class="abs ln-arr" data-step="2" style="left:434px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
     <div class="abs ln-box hot" data-step="2" style="left:464px"><div class="ln-h"><i class="s">#</i><b>Slack</b><em>일하는 곳</em></div><p class="ln-d">사람이 대화하는 채널에서 에이전트를 부름</p><div class="ln-chat"><p class="ln-ch"># 팀 채널</p><div class="ln-msg p"><small>팀원</small><p><b>@Hermes</b> 지난달 회의에서 정한 것만 정리해 줘</p></div><div class="ln-msg a"><small>Hermes</small><p>노션 회의록과 슬랙 대화 기록을 찾아 결정 사항만 정리했습니다</p><span class="ln-src">근거: 노션 회의록 · 슬랙 대화 기록</span></div><p class="ln-note">예시 화면</p></div></div>
     <svg class="abs ln-arr" data-step="3" style="left:822px" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg>
-    <div class="abs ln-box" data-step="3" style="left:852px"><div class="ln-h"><i class="r">H</i><b>Hermes</b><em>일하는 에이전트</em></div><p class="ln-d">DevOps 리더가 설정한 환경에서 에이전트 구동</p><ol class="ln-roi"><li><small>01</small><b>기억이 축적됨</b><span>대화가 끝나도 프로젝트와 사람을 기억함</span></li><li><small>02</small><b>스킬을 축적하고 조직에 확산함</b><span>한 사람이 만든 스킬을 팀 전체가 함께 씀</span></li><li><small>03</small><b>가드레일을 명확히 강화함</b><span>격리된 샌드박스 안에서만 작업을 실행함</span></li></ol></div>
+    <div class="abs ln-box" data-step="3" style="left:852px"><div class="ln-h"><i class="r">H</i><b>Hermes</b><em>일하는 에이전트</em></div><p class="ln-d">DevOps 리더가 설정한 환경에서 에이전트 구동</p><ol class="ln-roi"><li><small>01</small><b>기억이 축적됨</b><span>대화가 끝나도 프로젝트와 사람을 기억함</span></li><li><small>02</small><b>스킬을 축적하고 조직에 확산함</b><span>한 사람이 만든 스킬을 팀 전체가 함께 씀</span></li><li class="hot"><small>03</small><b>가드레일을 명확히 강화함</b><span>격리된 샌드박스 안에서만 작업을 실행함</span></li></ol></div>
   </section>
 
   <!-- 업무 지도(2026-10-18 HR 서밋 덱 22장 구조로 다시 씀): HR 대신 일반 업무 다섯 줄(MD·상품기획, 마케팅, 고객 응대, 재무·경영지원, 보고·협업)에
@@ -2550,8 +2617,10 @@
     <p class="abs footnote">출처: Rachel Metz, "OpenAI Sets Levels to Track Progress Toward Superintelligent AI", Bloomberg, 2024.7.11 · Lv.4 사례: OpenAI, 미공개 내부 모델의 수학 논문 722편 GitHub 공개(2026.10.6, 동료 검증 전)</p>
   </section>
 
-  <!-- 11. AI 빅테크는 사업 중심을 LLM 개발에서 에이전트 서비스로 옮기는 중: 각사 에이전트 제품 타임라인(2025.1–2026.10.12 발표 기준. Meta Muse Wonder 2026-10-12: TechCrunch·CNBC). 강조 칸 = 사람 대신 일을 맡아 스스로 실행하는 에이전트 제품 -->
-  <section class="slide dark" style="--bs:18px" aria-label="AI 기업 4사의 에이전트 기업 전환 타임라인">
+  <!-- 11. AI 빅테크는 사업 중심을 LLM 개발에서 에이전트 서비스로 옮기는 중: 각사 에이전트 제품 타임라인(2025.1–2026.10.12 발표 기준. Meta Muse Wonder 2026-10-12: TechCrunch·CNBC. xAI Grok Build 2026-05-14·Grok Bot 2026-08-11: Bloomberg·xAI 공식 글, 2026 중반부터 보도상 사명 SpaceXAI.
+       2026-10-19 보강: OpenAI Workspace Agents 2026-04-22(OpenAI)·ChatGPT Work 2026-07-09(TNW)·dots 2026-09-29(SF Standard), Anthropic Claude Code Projects 2026-09-17(The New Stack, 1차 출처 미확인),
+       Google Chrome Auto Browse 2026-01-28(SiliconANGLE)·Call for Me 2026-09-24(TechCrunch), Meta Manus My Computer 2026-03-16(9to5Mac). Managed Agents(개발자 인프라)·Muse Wonder(모델)는 강조 해제). 강조 칸 = 에이전트 제품(사용자 요청 2026-10-19: 에이전트에만 색), 회색 칸 = 모델(Muse Spark·Muse Wonder)·개발자 인프라(Managed Agents) -->
+  <section class="slide dark" style="--bs:18px" aria-label="AI 기업 5사의 에이전트 기업 전환 타임라인">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">AI 빅테크는 사업 중심을 LLM 개발에서 에이전트 서비스로 옮기는 중</h2>
@@ -2566,42 +2635,54 @@
     <div class="abs tl-span" style="left:722px;width:313px"></div>
     <p class="abs tl-head" style="left:1047px">2026 Q4</p>
     <div class="abs tl-span" style="left:1047px;width:151px"></div>
-    <div class="abs tl-row" data-step="2" style="top:314px">
+    <div class="abs tl-row" data-step="2" style="top:284px">
       <p class="tl-co">OpenAI</p>
-      <div class="tl-card" style="left:157px;width:315px"><b>Operator · Agents SDK · Codex</b><span>브라우저 조작, 에이전트 개발 키트, 클라우드 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:157px;width:315px"><b>Operator · Agents SDK · Codex</b><span>브라우저 조작, 에이전트 개발 키트, 클라우드 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:482px;width:153px"><b style="font-size:14px;letter-spacing:-.02em">Workspace Agents</b><span>팀 공유형 클라우드 업무 에이전트</span></div>
+      <div class="tl-card hot" style="left:645px;width:153px"><b>ChatGPT Work</b><span>앱을 넘나드는 장시간 업무 에이전트</span></div>
       <div class="tl-card hot" style="left:808px;width:153px"><b>dots</b><span>자체 클라우드 컴퓨터 기반 상시 가동 에이전트</span></div>
     </div>
-    <div class="abs tl-row" data-step="1" style="top:204px">
+    <div class="abs tl-row" data-step="1" style="top:188px">
       <p class="tl-co">Anthropic</p>
-      <div class="tl-card" style="left:157px;width:153px"><b>Claude Code</b><span>터미널 기반 코딩 에이전트</span></div>
-      <div class="tl-card" style="left:320px;width:153px"><b>Cowork</b><span>데스크톱 파일·앱 작업 에이전트</span></div>
-      <div class="tl-card hot" style="left:482px;width:153px"><b>Managed Agents</b><span>수 시간 단위 장기 실행 관리형 인프라</span></div>
+      <div class="tl-card hot" style="left:157px;width:153px"><b>Claude Code</b><span>터미널 기반 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:320px;width:153px"><b>Cowork</b><span>데스크톱 파일·앱 작업 에이전트</span></div>
+      <div class="tl-card" style="left:482px;width:153px"><b>Managed Agents</b><span>수 시간 단위 장기 실행 관리형 인프라</span></div>
+      <div class="tl-card hot" style="left:808px;width:153px"><b>Projects</b><span>Claude Code 병렬 클라우드 세션 지휘</span></div>
     </div>
-    <div class="abs tl-row" data-step="4" style="top:534px">
+    <div class="abs tl-row" data-step="4" style="top:476px">
       <p class="tl-co">Google</p>
+      <div class="tl-card hot" style="left:320px;width:153px"><b>Auto Browse</b><span>크롬에서 웹 작업 대행 에이전트</span></div>
       <div class="tl-card hot" style="left:482px;width:153px"><b>Gemini Spark</b><span>Gmail 연동 24시간 개인 에이전트</span></div>
+      <div class="tl-card hot" style="left:808px;width:153px"><b>Call for Me</b><span>사업장에 대신 전화 거는 에이전트</span></div>
       <div class="tl-card hot" style="left:970px;width:153px"><b>Gemini agent</b><span>하위 에이전트, 모델 선택</span></div>
     </div>
-    <div class="abs tl-row" data-step="3" style="top:424px">
+    <div class="abs tl-row" data-step="3" style="top:380px">
       <p class="tl-co">Meta</p>
+      <div class="tl-card hot" style="left:320px;width:153px"><b>Manus Desktop</b><span>내 PC를 조작하는 데스크톱 에이전트</span></div>
       <div class="tl-card" style="left:482px;width:153px"><b>Muse Spark</b><span>멀티 에이전트 조율 추론 모델</span></div>
-      <div class="tl-card" style="left:645px;width:153px"><b>Muse Code</b><span>Muse Spark 연동 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:645px;width:153px"><b>Muse Code</b><span>Muse Spark 연동 코딩 에이전트</span></div>
       <div class="tl-card hot" style="left:808px;width:153px"><b>Muse</b><span>일정·심부름 대행 개인 에이전트</span></div>
-      <div class="tl-card hot" style="left:970px;width:153px"><b>Muse Wonder</b><span>첫 프런티어 모델, 에이전트 작업 특화</span></div>
+      <div class="tl-card" style="left:970px;width:153px"><b>Muse Wonder</b><span>에이전트 작업 특화 최상위 모델</span></div>
+    </div>
+    <div class="abs tl-row" data-step="5" style="top:572px">
+      <p class="tl-co">xAI</p>
+      <div class="tl-card hot" style="left:482px;width:153px"><b>Grok Build</b><span>터미널 기반 코딩 에이전트</span></div>
+      <div class="tl-card hot" style="left:645px;width:153px"><b>Grok Bot</b><span>앱에 로그인해 일하는 상시 에이전트 팀</span></div>
     </div>
   </section>
 
-  <!-- AI가 바꾸는 게임 제작(넥슨판 2026-10-18, 에이전트 커머스 장 구조 사용): 스팀에서 생성형 AI 사용을 밝힌 게임 2024.4 1.1% → 2025.7 약 7%(7,818/114,126), 그중 약 60%가 시각 요소(Totally Human, 2차 보도).
+  <!-- AI가 바꾸는 게임 제작(넥슨판 2026-10-18, 에이전트 커머스 장 구조 사용): 스팀 신작 중 생성형 AI 사용 공개 비율 2024 10.9% → 2025 19.9% → 2026(7월까지) 30.8%(Sulka Haro 전수조사 53,597개, 2023.7~2026.7, PC Gamer 2026-07-20 원문 확인). 시각 요소 약 60%는 Totally Human 2025.7(7,818개) 기준.
        대응·역량 열은 발표자 정리 -->
-  <section class="slide dark ac" data-gap="700" aria-label="AI가 들어올수록 게임 제작 역량의 패러다임이 바뀔 것임: 스팀 생성형 AI 공개 게임 비중과 직무별 대응">
+  <section class="slide dark ac" data-gap="700" aria-label="AI가 들어올수록 게임 제작 역량의 패러다임이 바뀔 것임: 스팀 신작 중 생성형 AI 공개 비중(2024년 10.9%, 2025년 19.9%, 2026년 7월까지 30.8%)과 직무별 대응">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">AI가 들어올수록 게임 제작 역량의 패러다임이 바뀔 것임</h2>
-    <p class="abs cr-sub lv-sub">생성형 AI 사용을 밝힌 게임 비중</p>
+    <p class="abs cr-sub lv-sub">생성형 AI 사용을 밝힌 신작 비중</p>
     <div class="abs ac-bars">
-      <div class="ac-bar a" data-step="1"><b>1.1%</b><i style="height:48px"></i><span>2024.4</span></div>
-      <div class="ac-bar b" data-step="2"><b>약 7%</b><i style="height:300px"></i><span>2025.7</span></div>
-      <p class="ac-x">스팀 전체 게임 중 비중</p>
+      <div class="ac-bar a" data-step="1"><b>10.9%</b><i style="height:106px"></i><span>2024</span></div>
+      <div class="ac-bar b" data-step="1"><b>19.9%</b><i style="height:194px"></i><span>2025</span></div>
+      <div class="ac-bar c" data-step="2"><b>30.8%</b><i style="height:300px"></i><span>2026.7</span></div>
+      <p class="ac-x">연도별 스팀 신작 중 비중</p>
     </div>
     <p class="abs ac-h l">AI가 바꾸는 제작 방식</p><p class="abs ac-h r">게임사의 대응 (현재 → 향후)</p><p class="abs ac-h k">핵심 역량</p>
     <div class="abs ac-row" data-step="3" style="top:220px"><div class="ac-c"><b>아트·에셋을 대량 생성</b><span>AI 공개 게임의 약 60%가 시각 요소에 사용</span></div><i>→</i><div class="ac-r"><em>아트 (수작업 → AI 초안·검수)</em><s>전부 손으로 제작</s><b>→ AI 초안을 아티스트가 다듬음</b></div><i>→</i><div class="ac-k"><b>아트 디렉션·IP 일관성 관리</b></div></div>
@@ -2609,7 +2690,7 @@
     <div class="abs ac-row" data-step="5" style="top:396px"><div class="ac-c"><b>테스트를 대신 수행</b><span>스퀘어에닉스, QA·디버깅 70% 자동화 목표</span></div><i>→</i><div class="ac-r"><em>QA (수동 테스트 → 에이전트 테스트)</em><s>사람이 반복 플레이</s><b>→ 에이전트가 반복 테스트</b></div><i>→</i><div class="ac-k"><b>테스트 설계·버그 판단</b></div></div>
     <div class="abs ac-row" data-step="6" style="top:484px"><div class="ac-c"><b>24시간 운영 대응</b><span>라이브 서비스 문의와 모니터링을 상시 처리</span></div><i>→</i><div class="ac-r"><em>라이브옵스·CS (운영시간 → 상시)</em><s>운영시간 내 대응</s><b>→ 24시간 에이전트 대응</b></div><i>→</i><div class="ac-k"><b>에이전트 상담·모니터링 설계</b></div></div>
     <div class="abs ac-row" data-step="7" style="top:572px"><div class="ac-c"><b>목소리와 대사를 생성</b><span>엠바크 ARC Raiders, 일부 대사에 TTS 사용</span></div><i>→</i><div class="ac-r"><em>사운드·내러티브 (녹음 → 생성 병행)</em><s>전부 성우 녹음</s><b>→ 일부 음성을 AI로 생성</b></div><i>→</i><div class="ac-k"><b>IP·저작권·성우 권리 관리</b></div></div>
-    <p class="abs footnote">출처: Totally Human, 스팀 생성형 AI 공개 분석(2024.4·2025.7, 7,818개) · Google Cloud·Harris Poll(2025.8) · Square Enix(2025.11) · Embark Studios(2025.11). 대응과 역량은 발표자 정리</p>
+    <p class="abs footnote">출처: Sulka Haro, 스팀 신작 53,597개 전수조사(PC Gamer, 2026.7.20) · Totally Human, 스팀 생성형 AI 공개 분석(2025.7) · Google Cloud·Harris Poll(2025.8) · Square Enix(2025.11) · Embark Studios(2025.11). 대응과 역량은 발표자 정리</p>
   </section>
 
   <!-- 하이브리드 조직도(사용자 요청 2026-10-16): CEO 아래 세 갈래. ① 사람 C-level → 에이전트 ② 에이전트 C-level → 사람 ③ 에이전트 C-level → 에이전트.
@@ -2654,6 +2735,35 @@
     <div class="abs id-mv hot" data-step="5" style="top:549px"><span class="gp-date">2026.06</span><b>IETF Agent Identity Protocol 초안</b><p>신원·위임·권한·폐기를 묶은 개인 제출 초안(표준 아님)</p></div>
     <p class="abs footnote" style="top:664px">주: NIST = 미국 국립표준기술연구소(National Institute of Standards and Technology) · IETF = 국제 인터넷 표준화 기구(Internet Engineering Task Force)</p>
     <p class="abs footnote">출처: IETF, draft-singla-agent-identity-protocol-03(2026.6.10, 개인 제출 초안) · Visa, Trusted Agent Protocol(2025.10.14) · NIST CAISI, AI Agent Standards Initiative(2026.2) · Microsoft Learn, Entra Agent ID</p>
+  </section>
+
+  <!-- Agent OS 키워드 장(2026-10-19 사용자 요청, Agent Identity Protocol 장 다음): 조직도·신원 장을 묶어 에이전트가 일하는 기반으로 정리. 타임라인의 강조 칸(dots·Grok Bot 등)도 에이전트에게 자기 컴퓨터를 주는 흐름.
+       AI > Data(회색) > Knowledge(노하우: Company Brain + Skill Library) > Agent OS(일하는 공간: Agent Identity + Harness + Control Tower, 37장 Agent Identity·17장 5-Color Harness·24장 Control Tower와 같은 말. 신원은 Harness가 아니라 조직이 발급·회수). Identity는 바로 앞 Agent Identity Protocol 장에서 받는다 -->
+  <section class="slide dark aos" data-gap="900" aria-label="AI, Data, Knowledge 다음은 Agent OS: 에이전트에게 노하우와 일하는 공간을 제공하는 기반">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">AI 투자 집중 영역은 모델이 아니라 Knowledge와 Agent OS임</h2>
+    <div class="abs aos-grid">
+      <div class="aos-grp a" data-step="1"><span>노하우</span></div>
+      <div class="aos-grp b" data-step="2"><span>일하는 공간</span></div>
+      <b class="aos-kw" data-step="1" style="grid-column:1">AI</b><i class="aos-ar" data-step="1" style="grid-column:2">›</i>
+      <b class="aos-kw" data-step="1" style="grid-column:3">Data</b><i class="aos-ar" data-step="1" style="grid-column:4">›</i>
+      <b class="aos-kw hl" data-step="1" style="grid-column:5">Knowledge</b><i class="aos-ar" data-step="2" style="grid-column:6">›</i>
+      <b class="aos-kw hl" data-step="2" style="grid-column:7">Agent OS</b>
+      <span class="aos-sub" data-step="1" style="grid-column:1">모델의 지능</span>
+      <span class="aos-sub" data-step="1" style="grid-column:3">회사의 데이터</span>
+      <span class="aos-sub hl" data-step="1" style="grid-column:5">Company Brain + Skill Library</span>
+      <span class="aos-sub hl" data-step="2" style="grid-column:7">Agent Identity + Harness + Control Tower</span>
+    </div>
+    <p class="abs aos-def" data-step="3">에이전트에게 <em>노하우</em>와 <em>일하는 공간</em>을 제공하는 기반</p>
+    <div class="abs aos-imp" data-step="4"><b>넥슨 시사점</b><p>모델은 범용화되므로, 축적되는 <em>Company Brain·Skill Library</em>에 집중 투자하고 <em>Agent OS</em>는 사내 시스템 연동 파일럿으로 검증해야 함</p></div>
+  </section>
+
+  <!-- 38→39 연결 장(2026-10-19 사용자 요청): Agent OS(기반·투자)에서 하이브리드 팀 리더십 사이클로 넘어가는 다리. 기존 br 장 문법 그대로 -->
+  <section class="slide dark br" data-gap="1400" aria-label="기반은 시스템이 만들지만, 사람과 에이전트를 함께 이끄는 것은 리더의 몫">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
+    <p class="abs br-text"><span class="br-l1" data-step="1">기반은 시스템이 만들지만,</span><span class="br-l2" data-step="2">사람과 에이전트를 함께 이끄는 것은 <em>리더</em>의 몫입니다.</span></p>
   </section>
 
   <!-- 하이브리드 팀의 리더십 사이클(과거→미래가 아니라 두 팀을 함께 운영): 비전(가운데)을 중심으로 목표 수립 → 팀 구성·동원(Mobilization) → 평가·피드백이 돈다.
@@ -2734,25 +2844,14 @@
     <p class="abs footnote">출처: MIT CISR, Peter Weill·Stephanie Woerner·Ina Sebastian, "Building Enterprise AI Maturity"(2024.12), 2022 Future Ready Survey(N=721, 주로 분석형 AI 기준)</p>
   </section>
 
-  <!-- 03 하이브리드 조직 설계 묶음 마무리(2026-10-18): 이전 올리브영 덱의 "시사점" 장(km-card 세 장) 문법에 액션 아이템 칸을 더함. 근거: 31·34·35·36·37장(에이전트 커머스, 하이브리드 조직도, 에이전트 신원, 리더십 사이클, 5대 역량) -->
-  <section class="slide dark km km-sub km-sum" aria-label="03 하이브리드 조직 설계 요약: 에이전트 고객 대비, 역할과 권한, 하이브리드 리더">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">하이브리드 조직은 제작·거버넌스·리더십 세 축에서 재설계해야 함</h2>
-    <div class="abs sp-track"><span class="sp-pill on">03 하이브리드 조직 설계: 시사점</span></div>
-    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 제작 파이프라인</span><h3>AI 제작 방식에 맞춰<br>개발 데이터를 정비</h3><ul><li>스팀에서 생성형 AI 사용을 밝힌 게임 비중, 1.1%에서 약 7%로 확대(2024.4→2025.7)</li></ul><div class="km-act"><small>ACTION ITEM</small><p>에이전트가 쓸 수 있도록 <mark>에셋·빌드·로그 데이터</mark>를 구조화하고 표준화</p></div></div>
-    <div class="abs km-card" data-step="2" style="left:464px"><span class="km-no">02 · 거버넌스</span><h3>에이전트별 책임자와<br>권한 체계를 확립</h3><ul><li>사람과 에이전트의 상호 관리 확산으로 에이전트 신원·권한 관리 필요성 증가</li></ul><div class="km-act"><small>ACTION ITEM</small><p>에이전트별 <mark>책임자와 권한 범위</mark>를 지정하고, <mark>작업 이력</mark>을 감사 가능하게 기록</p></div></div>
-    <div class="abs km-card" data-step="3" style="left:852px"><span class="km-no">03 · 리더십</span><h3>휴먼·에이전트 팀을 함께<br>이끄는 리더를 육성</h3><ul><li>윤리 판단·AI 리터러시·통합 설계가 리더의 신규 필수 역량으로 부상</li></ul><div class="km-act"><small>ACTION ITEM</small><p>리더 평가에 <mark>에이전트 위임·검증 성과</mark>를 반영하고, <mark>토큰 예산</mark>을 인건비와 통합 관리</p></div></div>
-  </section>
-
   <!-- HR 서밋 덱에서 가져옴(2026-10-18, HR 레버 → 조직 레버). 2027 AX 트렌드(2026-10-17 AI 변화 묶음 끝(60분 업무 장 다음)으로 옮김, 세 묶음 전이라 내비 없음. 2026-10-16 MECE 재정리): 황재선 『AX 100배의 법칙』(좋은습관연구소, 2025, 교보·예스24 저자 표기 기준)의 전망을 운영 모델 다섯 요소로 겹침 없이 묶음(IT → Execution Builder와 AI Maturity는 사용자 의견으로 뺌, 11개).
        Work(무엇을) · People(누가) · Capability(어떤 역량으로) · Measure(무엇으로 재나) · Foundation(무엇 위에서). 축마다 조직 레버 하나.
        축 이름과 항목 제목은 영어, 질문·HR 레버·설명과 헤드라인은 한국어(사용자 지정) -->
-  <section class="slide dark ax5" data-gap="600" data-click="1" data-auto="1" aria-label="2027년 AX는 기반·업무·사람·역량·측정 다섯 축에서 바뀔 것임: 2027 AX 트렌드를 조직의 다섯 가지 레버(Foundation, Work, People, Capability, Measure)로 정리">
+  <section class="slide dark ax5" data-gap="600" data-click="1" data-auto="1" aria-label="2027년 AX는 기반·업무·사람·역량·측정 다섯 축에서 바뀔 것임: 2027 AX 트렌드를 조직의 다섯 가지 레버(Foundation, Work, People, Capability, Measure)로 정리. Foundation은 Company Brain·Skill Library와 Agent OS">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <h2 class="abs head-title">2027년 AX는 기반·업무·사람·역량·측정 다섯 축에서 바뀔 것임</h2>
     <p class="abs cr-sub lv-sub">2027 AX 트렌드</p>
-    <div class="abs ax5-col" data-step="1" style="left:76px"><div class="ax5-h"><small>01</small><b>FOUNDATION</b><span>어떤 기반으로 동작하는가</span><em>데이터·거버넌스</em></div><ul><li class="key"><b>Data → Knowledge</b><p>숫자 축적에서 업무 노하우 축적으로 전환</p></li><li><b>Hybrid Model Architecture</b><p>여러 모델과 사내 시스템을 혼용하고 접근 기준 설정</p></li><li><b>Agent Control ·<br>Monitoring</b><p>품질·비용·속도 상시 관제</p></li></ul></div>
+    <div class="abs ax5-col" data-step="1" style="left:76px"><div class="ax5-h"><small>01</small><b>FOUNDATION</b><span>어떤 기반으로 동작하는가</span><em>데이터·거버넌스</em></div><ul><li class="key"><b>Company Brain ·<br>Skill Library</b><p>데이터 축적에서 업무 노하우 축적으로 전환</p></li><li class="key"><b>Agent OS</b><p>에이전트가 일할 신원·실행·관제 기반 구축</p></li><li><b>Hybrid Model Architecture</b><p>여러 모델과 사내 시스템을 혼용하고 접근 기준 설정</p></li></ul></div>
     <div class="abs ax5-col" data-step="2" style="left:305px"><div class="ax5-h"><small>02</small><b>WORK</b><span>무엇을 하는가</span><em>직무 설계</em></div><ul><li><b>Job → Workflow</b><p>직무 기술서보다 업무 흐름 설계로 경쟁력 확보</p></li><li class="key"><b>AI-enabled →<br>AI-native</b><p>AI를 덧붙이는 대신 AI 전제로 업무 재설계</p></li></ul></div>
     <div class="abs ax5-col" data-step="3" style="left:534px"><div class="ax5-h"><small>03</small><b>PEOPLE</b><span>누가 하는가</span><em>인력 계획</em></div><ul><li><b>Digital Workforce</b><p>에이전트를 인력 계획의 한 축으로 반영</p></li><li class="key"><b>[Human + Agent] Team</b><p>사람과 에이전트가 한 팀으로 협업</p></li></ul></div>
     <div class="abs ax5-col" data-step="4" style="left:763px"><div class="ax5-h"><small>04</small><b>CAPABILITY</b><span>어떤 역량으로 하는가</span><em>리더·역량 육성</em></div><ul><li class="key"><b>Using AI →<br>Operating AI</b><p>AI 교육 목표를 체험에서 운영으로 전환</p></li><li><b>People Leader →<br>Hybrid Leader</b><p>사람과 에이전트를 함께 이끄는 리더로 전환</p></li></ul></div>
@@ -2787,9 +2886,10 @@
     <p class="abs mx-narrow-label" data-step="1">좁은 의미의 AX</p>
   </section>
 
-  <!-- AX Methodology 2: 같은 틀을 흐리게 깔고 고민 영역 4개를 번호 순으로 클릭해 올린다. 블록마다 HR 리더용 Action Items 말풍선 -->
+  <!-- AX Methodology 2: 같은 틀을 흐리게 깔고 고민 영역 4개를 번호 순으로 클릭해 올린다. 블록마다 HR 리더용 Action Items 말풍선.
+       2026-10-19: 3·4번 블록 이름을 Agent OS 장(38) 용어와 맞춤(Company Brain + Skill Library, Agent OS + 하이브리드 조직) -->
   <!-- HR 서밋 덱(hrsummit_jaydenkang_20261027) 38장에서 가져옴(2026-10-18) -->
-  <section class="slide dark" data-click="1" style="--bs:26px" aria-label="AX의 네 개 블록: AI 모델, 에이전트 리더, Company Brain, 하이브리드 조직">
+  <section class="slide dark" data-click="1" style="--bs:26px" aria-label="AX의 네 개 블록: AI 모델, 에이전트 리더, Company Brain과 Skill Library, Agent OS와 하이브리드 조직">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <h2 class="abs head-title">AX 성공을 위해서는 조직의 업무 구조를 폭넓게 조망해야 함</h2>
     <div class="mx-dim" aria-hidden="true">
@@ -2813,8 +2913,8 @@
     </div>
     <div class="abs ar-box sm" data-step="1" style="left:538px;top:462px;width:146px;height:162px"><em>1</em><b>AI 모델</b></div>
     <div class="abs ar-box sm" data-step="2" style="left:538px;top:226px;width:146px;height:228px"><em>2</em><b>에이전트<br>리더</b></div>
-    <div class="abs ar-box " data-step="3" style="left:70px;top:226px;width:460px;height:398px"><em>3</em><b>Company Brain</b><span>(지식 레이어 → MCP 허브 → 스킬 라이브러리)</span></div>
-    <div class="abs ar-box " data-step="4" style="left:692px;top:226px;width:460px;height:398px"><em>4</em><b>하이브리드 조직</b><span>(워크포스 설계 → 라이프사이클 관리 → 조직 전환)</span></div>
+    <div class="abs ar-box " data-step="3" style="left:70px;top:226px;width:460px;height:398px"><em>3</em><b>Company Brain<br>+ Skill Library</b><span>(지식 레이어 → MCP 허브 → 스킬 라이브러리)</span></div>
+    <div class="abs ar-box " data-step="4" style="left:692px;top:226px;width:460px;height:398px"><em>4</em><b>Agent OS<br>+ 하이브리드 조직</b><span>(Agent Identity → Harness → Control Tower)</span></div>
     <div class="abs ar-tip t-r" data-step="5" style="left:100px;top:504px;width:422px"><p class="ar-tip-h">Action Items (제안)</p><p>업무별로 쓸 AI 모델을 정하고, 사내 데이터를 넣어도 되는 범위와 보안 기준을 먼저 정함</p></div>
     <div class="abs ar-tip t-l" data-step="6" style="left:700px;top:234px;width:444px"><p class="ar-tip-h">Action Items (제안)</p><p class="ar-li">보고는 HTML로 받고, 리더가 에이전트로 먼저 검토하는 과정을 공개(파워포인트 → 1 Pager → HTML)</p><p class="ar-li">부서마다 AX 챔피언을 선정하고, IT 부서와 함께 AI 전환 과제를 발굴</p><p class="ar-li">리더 평가에 에이전트 위임·검증 성과를 반영</p></div>
     <div class="abs ar-tip t-d" data-step="7" style="left:94px;top:262px"><p class="ar-tip-h">Action Items (제안)</p><p>기획서·빌드·QA 기록과 데이터 정의를 Company Brain으로 통합하고, 개발 노하우는 스킬 라이브러리로 축적</p></div>
