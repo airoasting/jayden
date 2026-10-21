@@ -6,6 +6,7 @@
 <title>넥슨 | 강정구</title>
 <!-- 원본: 삼성물산_강정구_20261009_v1.pptx (16:9, 3장). 좌표는 1280×720 캔버스 기준으로 옮겼다. -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&amp;display=swap">
 <style>
   :root {
     --ink: #000;
@@ -718,6 +719,10 @@
   .slide.demo-bk, .slide.dark.demo-bk { background: #000 !important; }
   .demo-bk .browser { background: #000; border-color: #000; box-shadow: none; }
   .demo-bk .browser video { background: #000; }
+  /* 이 장이 열려 있을 때는 캔버스 바깥 여백(창 비율 차이로 생기는 좌우 흰 띠)도 검정으로 */
+  @media screen {
+    html:has(.slide.demo-bk.active), html:has(.slide.demo-bk.active) body { background: #000; }
+  }
 
   /* 3. 시대별 커리어: 시대 띠(인터넷·모바일·AI) 아래 회사 카드 여섯 장, 카드 사이 아래에 학력, AI 카드 아래에 대외 활동.
      카드 1장 = 173×290, 간격 18. 인터넷 시대는 Freechal·Kearney, 모바일 시대는 Bain부터. 카드 색은 시대로 나눈다(IQVIA판과 같은 값): 인터넷 블루, 모바일 퍼플, AI 그린 그라디언트. 단 컨설팅(Kearney·Bain)은 차콜로 따로 묶는다. 글자와 로고는 흰색, NAVER·kakao 글자 로고만 브랜드 색(#03C75A·#FFCD00). 시대 띠는 인터넷·모바일 회색, AI만 그린 */
@@ -1414,6 +1419,7 @@
 
   /* 이유 세 가지(.rs) */
   .rs-card { top: 196px; width: 352px; height: 456px; box-sizing: border-box; padding: 36px 32px; border-radius: 20px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; justify-content: center; }
+  .rs.rs-sub .rs-card { top: 220px; height: 430px; }   /* 앞 장(넥슨 진단)의 숫자를 잇는 필을 y 168에 두고 카드를 내림 */
   .rs-pill { align-self: flex-start; height: 32px; padding: 0 16px; border-radius: 999px; background: #e7f6fb; border: 1px solid #0aa0d2; display: inline-flex; align-items: center; font-size: 15px; font-weight: 800; color: #0a3255; }
   .rs-card h4 { margin: 24px 0 0; min-height: 0; font-size: 34px; font-weight: 800; line-height: 1.32; letter-spacing: -.02em; color: #1a1a1a; word-break: keep-all; }
 
@@ -1509,7 +1515,7 @@
   .jr-r i { font-style: normal; color: #0a3255; }
   .jr-arr { top: 323px; width: 24px; height: 24px; fill: none; stroke: #98a1a8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .jr-band { left: 76px; top: 498px; width: 1128px; height: 152px; box-sizing: border-box; padding: 0 30px; border-radius: 18px; background: #1a1a1a; display: flex; align-items: center; gap: 28px; }
-  .jr-bh { flex: none; width: 110px; margin: 0; font-size: 17px; font-weight: 800; line-height: 1.35; color: #0aa0d2; }
+  .jr-bh { flex: none; width: 110px; margin: 0; font-size: 17px; font-weight: 800; line-height: 1.35; color: #7dd8f7; }   /* 검은 띠 위에서 더 잘 보이도록 밝은 블루(2026-10-21) */
   .jr-band ul { list-style: none; margin: 0; padding: 0; flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
   .jr-band li { height: 50px; box-sizing: border-box; padding: 0 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); display: flex; align-items: center; font-size: 17px; font-weight: 700; color: #fff; white-space: nowrap; }
 
@@ -1730,6 +1736,10 @@
   /* 8장(.jr) 글자 키움(2026-10-18): 카드 y 196~496(300 높이), 아래 띠 y 516~650(134 높이). 본문 아래 끝 650은 그대로 */
   .jr-card { height: 300px; padding: 24px 26px 22px; }
   .jr-k { font-size: 14px; }
+  /* 10장 카드 머리(2026-10-21 사용자 요청): 번호 없이 필 버튼, 필과 질문은 가운데 정렬 */
+  .jr-card .jr-k { align-self: center; height: 30px; padding: 0 16px; border-radius: 999px; background: #e7f6fb; border: 1px solid #0aa0d2; display: inline-flex; align-items: center; font-family: inherit; font-size: 15px; font-weight: 800; line-height: 1; letter-spacing: 0; color: #0a3255; }
+  .jr-card.hot .jr-k { background: #fff; }
+  .jr-card .jr-q, .jr-card .jr-b { text-align: center; }
   .jr-q { font-size: 24px; line-height: 1.34; }
   .jr-b { font-size: 16px; line-height: 1.5; }
   .jr-r { font-size: 16.5px; }
@@ -1991,6 +2001,183 @@
   .ex2-card li { display: grid; grid-template-columns: 42px 1fr; }
   .ex2-card li b { font-weight: 800; color: #0a3255; }
   .ex2-card li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: #0aa0d2; }
+
+  /* 사전 질문(2026-10-20): 넥슨 리더 30명이 보낸 질문 7개. 개요 장(.pq), 마지막 회수 장(.pqr) */
+  .pq-col { top: 196px; width: 352px; height: 372px; box-sizing: border-box; padding: 34px 30px; border-radius: 20px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; gap: 34px; }
+  .pq-item { display: flex; gap: 12px; align-items: flex-start; }
+  .pq-item i { flex: none; width: 40px; height: 28px; margin-top: 2px !important; border-radius: 999px; background: #0a3255; display: inline-flex; align-items: center; justify-content: center; font: 800 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-style: normal; color: #fff; margin-top: 1px; }
+  .pq-item p { margin: 0; font-size: 22px; font-weight: 800; line-height: 1.42; letter-spacing: -.02em; color: #1a1a1a; word-break: keep-all; }
+  .pq-band { left: 76px; top: 588px; width: 1128px; height: 62px; box-sizing: border-box; padding: 0 26px; border-radius: 16px; background: #1a1a1a; display: flex; align-items: center; gap: 16px; }
+  .pq-band i { flex: none; width: 40px; height: 28px; border-radius: 999px; background: #0aa0d2; display: inline-flex; align-items: center; justify-content: center; font: 800 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-style: normal; color: #1a1a1a; }
+  .pq-band b { font-size: 18px; font-weight: 800; color: #fff; white-space: nowrap; }
+  .pq-band span { font-size: 16px; font-weight: 600; color: rgba(255,255,255,.72); white-space: nowrap; }
+  .pqr-row { left: 76px; width: 1128px; height: 58px; box-sizing: border-box; padding: 0 22px; border-radius: 14px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; align-items: center; gap: 18px; }
+  .pqr-row.hot { background: #e7f6fb; border-color: #0aa0d2; }
+  .pqr-row i { flex: none; width: 40px; height: 28px; border-radius: 999px; background: #0a3255; display: inline-flex; align-items: center; justify-content: center; font: 800 13px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-style: normal; color: #fff; }
+  .pqr-row span { flex: none; width: 196px; font-size: 15px; font-weight: 700; color: #6f7880; white-space: nowrap; }
+  .pqr-row p { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -.02em; color: #1a1a1a; white-space: nowrap; }
+
+  /* 모델 활용 세 방식(.mo, 2026-10-21 사용자 요청): Build(자체 개발·Open Weight) · Buy(프론티어 기업 계약) · Route(멀티 모델 라우팅). 카드 352 × 3(y 196~580) + 아래 시사점 띠(y 596~650) */
+  .mo-card { top: 196px; width: 352px; height: 384px; box-sizing: border-box; padding: 30px 28px 26px; border-radius: 20px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; }
+  .mo-card.hot { background: #e7f6fb; border-color: #0aa0d2; box-shadow: 0 16px 40px rgba(10,160,210,.16); }
+  .mo-top { display: flex; align-items: center; gap: 10px; }
+  .mo-top b { height: 30px; padding: 0 14px; border-radius: 999px; background: #0a3255; display: inline-flex; align-items: center; font: 800 14px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .06em; color: #fff; }
+  .mo-top span { font-size: 19px; font-weight: 800; color: #1a1a1a; }
+  .mo-card h3 { margin: 18px 0 8px; font-size: 25px; font-weight: 800; line-height: 1.35; letter-spacing: -.03em; color: #1a1a1a; }
+  .mo-sub { margin-top: 12px; padding: 14px 16px; border-radius: 12px; background: #fff; border: 1px solid #e3e6ea; }
+  .mo-card.hot .mo-sub { border-color: rgba(10,160,210,.45); }
+  .mo-sub b { display: block; font-size: 17px; font-weight: 800; color: #1a1a1a; }
+  .mo-sub p { margin: 6px 0 0; font-size: 14.5px; font-weight: 600; color: #6f7880; }
+  .mo-cost { margin: auto 0 0; padding-top: 14px; border-top: 1px solid #e3e6ea; font-size: 15.5px; font-weight: 700; color: #3d434a; }
+  .mo-card.hot .mo-cost { border-top-color: rgba(10,160,210,.45); }
+  .mo-arr { top: 374px; width: 26px; height: 26px; fill: none; stroke: #0aa0d2; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }   /* 카드 사이 36px 틈 가운데, 카드 세로 중심(388) */
+  .mo-axis { top: 606px; height: 40px; }   /* 28장(모델 활용 세 방식) 축: 카드 아래(시사점 띠 자리, 2026-10-21 사용자 요청), 왼쪽 보안 강화 → 오른쪽 비용 효율성 */
+  .mo-axis b { font-size: 20px; }
+
+  /* 사전 질문 원문 장(.pqv): 질문 7개를 세로 한 줄로 나열(y 146~660). 왼쪽 번호·제목, 오른쪽 원문 */
+  .pqg-col { height: 454px; gap: 30px; padding: 40px 32px; }   /* 세 묶음 장: 아래 띠 없이 카드가 y 650까지 */
+  .pqg-col .rs-pill { font-size: 16px; height: 34px; }
+  .pqg-lead { margin: -6px 0 18px; padding-bottom: 22px; border-bottom: 1px solid #e3e6ea; white-space: nowrap; font-size: 20px; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; color: #0a3255; }
+  .pqg-col .pq-item p { font-size: 22px; }
+  .pqv-list { left: 76px; top: 146px; width: 1128px; height: 514px; display: flex; flex-direction: column; gap: 10px; }
+  .pqv-list .pqv-item { flex: 1 1 0; }   /* 2026-10-21 사용자 요청: 일곱 칸 높이를 똑같이 */
+  /* 2026-10-21 사용자 요청: 왼쪽 번호·제목 칸을 따로 진한 상자로, 오른쪽 본문은 기존 칸 색 */
+  .pqv-list .pqv-item { padding: 0; overflow: hidden; }
+  .pqv-list .pqv-h { align-self: stretch; width: 300px; box-sizing: border-box; padding: 0 18px; background: #e2e7ed; border-right: 1px solid #d5dade; }
+  .pqv-list .pqv-item p { padding-right: 20px; }
+  /* 2026-10-21 사용자 요청: 원문 장을 사람(Q1~Q3)·실행(Q4~Q7) 두 묶음으로, 왼쪽에 묶음 이름 기둥 */
+  .pqv-grp { flex: 1 1 0; display: flex; gap: 10px; }
+  .pqv-gl { flex: none; width: 100px; margin: 0; display: flex; align-items: stretch; justify-content: flex-start; gap: 8px; }   /* 2026-10-21 사용자 요청: 질문 오른쪽에 닫는 중괄호 + 손글씨 묶음 이름 */
+  .pqv-gl span { align-self: center; white-space: nowrap; font-family: "Nanum Pen Script", "Pretendard", cursive; font-size: 36px; font-weight: 400; line-height: 1; letter-spacing: 0; color: #0aa0d2; transform: rotate(-4deg); }   /* 2026-10-21 사용자 요청: 손글씨, 넥슨 블루 */
+  .pqv-brace { flex: none; width: 18px; height: 100%; fill: none; stroke: #0aa0d2; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .pqv-brace path { vector-effect: non-scaling-stroke; }
+  .pqv-gi { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  /* 2026-10-21 사용자 요청: Q3·Q4 사이 구분선. 처음엔 일곱 칸이 같은 간격(10)으로 서 있다가, 선이 그어지며 틈이 36으로 벌어지고 칸들이 다시 같은 높이로 재배열된다.
+     묶음 flex 기준값(20·30)이 묶음 안 간격 합이라, 남는 높이를 3:4로 나누면 일곱 칸 높이가 정확히 같아진다 */
+  .pqv-list { gap: 0; }
+  .pqv-line { position: relative; flex: none; height: 10px; }
+  .pqv-line::before { content: ""; position: absolute; left: 0; right: 110px; top: 50%; height: 2px; margin-top: -1px; border-radius: 1px; background: #0aa0d2; transform: scaleX(0); transform-origin: left center; transition: transform .9s cubic-bezier(.16,1,.3,1) .35s; }
+  .slide.dark .pqv-line[data-step] { translate: none; filter: none; transition: opacity .3s ease, height .8s cubic-bezier(.16,1,.3,1); }
+  .slide.dark .pqv-line[data-step].on { height: 36px; }
+  .slide.dark .pqv-line[data-step].on::before { transform: scaleX(1); }
+  .slide.dark.instant .pqv-line, .slide.dark.instant .pqv-line::before { transition: none; }
+  .slide.dark .pqv-gl.on { transition-delay: .55s; }   /* 클릭 한 번에 선이 먼저 그어지고, 이어서 중괄호와 묶음 이름 */
+  .pqv-list .pqv-item p { line-height: 1.4; }
+  .pqv-list .pqv-h { width: 280px; }
+  .pqv-list .pqv-h b { white-space: nowrap; }   /* 2026-10-21 사용자 요청: 제목은 한 줄로, 칸은 가장 긴 제목(195px)에 맞춰 최소로 */
+  .pqv-item { display: flex; align-items: center; gap: 20px; padding: 10px 20px; box-sizing: border-box; border-radius: 14px; background: #f7f8f9; border: 1px solid #e3e6ea; }
+  .pqv-h { flex: none; width: 268px; display: flex; align-items: center; gap: 10px; }
+  .pqv-h i { flex: none; width: 36px; height: 24px; border-radius: 999px; background: #04182c; display: inline-flex; align-items: center; justify-content: center; font: 800 12px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-style: normal; color: #fff; }
+  .pqv-h b { font-size: 16px; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; color: #1a1a1a; word-break: keep-all; }
+  /* 2026-10-21 사용자 요청: 칸 색은 그대로, 왼쪽 번호 필과 본문 글자만 진하게 */
+  .pqv-item p { flex: 1; margin: 0; font-size: 14px; font-weight: 600; line-height: 1.5; color: #1a1a1a; word-break: keep-all; }
+
+  /* 세 묶음 문장형 답(.an, 2026-10-21 사용자 요청): 묶음 필(y 168) → 한 줄 답(y 214) → 문단 세 개(y 290~650) */
+  .an-lead { left: 76px; top: 214px; width: 1128px; margin: 0; font-size: 26px; font-weight: 800; line-height: 1.4; letter-spacing: -.03em; color: #0a3255; }
+  .an-list { left: 76px; top: 290px; width: 1128px; height: 360px; display: flex; flex-direction: column; gap: 12px; }
+  .an-row { flex: 1 1 0; display: flex; gap: 20px; align-items: center; padding: 0 28px; box-sizing: border-box; border-radius: 16px; background: #f7f8f9; border: 1px solid #e3e6ea; }
+  .an-row > i { flex: none; width: 34px; height: 34px; border-radius: 50%; background: #04182c; display: inline-flex; align-items: center; justify-content: center; font: 800 14px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-style: normal; color: #fff; }
+  .an-row p { margin: 0; font-size: 16px; font-weight: 500; line-height: 1.6; color: #3d434a; word-break: keep-all; }
+  .an-row p b { display: block; margin-bottom: 3px; font-size: 19px; font-weight: 800; letter-spacing: -.02em; color: #1a1a1a; }
+
+  /* 넥슨 AX 역량진단(.nd, 2026-10-21 사용자 요청): 인재성장팀 결과보고서 6쪽(4대 역량요소 평균 프로필). 왼쪽 막대 4개(개인 둘·조직 둘), 오른쪽 숫자 카드 셋 */
+  .nd-chart { left: 76px; top: 214px; width: 640px; height: 436px; box-sizing: border-box; padding: 18px 20px 10px; border-radius: 20px; background: #f7f8f9; border: 1px solid #e3e6ea; }
+  .nd-chart svg { display: block; width: 100%; height: 100%; overflow: visible; font-family: inherit; }
+  .nd-chart .gl { stroke: #e3e6ea; stroke-width: 1; }
+  .nd-chart .full { stroke: #98a1a8; stroke-width: 1; stroke-dasharray: 4 4; }
+  .nd-chart .ax { font-size: 12px; font-weight: 600; fill: #98a1a8; }
+  .nd-chart .bar.p { fill: #0a3255; }
+  .nd-chart .bar.o { fill: #0aa0d2; }
+  .nd-chart .val { font-size: 26px; font-weight: 800; fill: #1a1a1a; letter-spacing: -.02em; }
+  .nd-chart .lb { font-size: 17px; font-weight: 800; fill: #1a1a1a; }
+  .nd-chart .gr { font-size: 15px; font-weight: 800; }
+  .nd-chart .gr.p { fill: #0a3255; } .nd-chart .gr.o { fill: #0aa0d2; }
+  .nd-chart .br { fill: none; stroke-width: 2; stroke-linecap: round; }
+  .nd-chart .br.p { stroke: #0a3255; } .nd-chart .br.o { stroke: #0aa0d2; }
+  .nd-chart .dots circle { fill: rgba(152,161,168,.9); stroke: #fff; stroke-width: 1.2; }
+  .nd-chart .gr { font-family: "Nanum Pen Script", "Pretendard", cursive; font-size: 34px; font-weight: 400; }
+  .nd-chart .val { font-size: 22px; }
+  .nd-chart .mean rect { stroke: #fff; stroke-width: 2; }
+  .nd-chart .mean.p rect { fill: #04182c; } .nd-chart .mean.o rect { fill: #0a3255; }
+  .nd-chart .mean text { font-size: 18px; font-weight: 800; fill: #fff; letter-spacing: -.02em; }   /* 평균은 막대 윗변에 걸친 필로, 점들 위에 그린다 */
+  .nd-rgs { display: flex; flex-direction: column; gap: 9px; }   /* 메시지 2: 영역별 최저~최고 범위 막대(0~25점 눈금) */
+  .nd-rg { display: flex; align-items: center; gap: 12px; height: 24px; }
+  .nd-rg span { flex: none; width: 34px; font-size: 15px; font-weight: 800; color: #1a1a1a; }
+  .nd-tr { position: relative; flex: 1; height: 10px; border-radius: 5px; background: #e3e6ea; }
+  .nd-tr i { position: absolute; top: 0; height: 10px; border-radius: 5px; }
+  .nd-tr i.p { background: #0a3255; } .nd-tr i.o { background: #0aa0d2; }
+  .nd-rg em { flex: none; width: 70px; font-style: normal; font-size: 15px; font-weight: 800; color: #0a3255; text-align: right; }
+  .slide.dark .nd-msg1.on { transition-delay: .4s; }   /* 처음 로딩: 막대 다음에 메시지 1 */
+  .slide.dark .nd-msg2.on { transition-delay: .5s; }   /* 두 번째 클릭: 점이 먼저 퍼지고 이어서 메시지 2 */
+  .nd-card { left: 744px; width: 460px; height: 210px; box-sizing: border-box; padding: 24px 26px; border-radius: 18px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .nd-card.hot { background: #e7f6fb; border-color: #0aa0d2; box-shadow: 0 16px 40px rgba(10,160,210,.16); }
+  .nd-k { font-size: 17px; font-weight: 800; color: #0a3255; letter-spacing: -.02em; }
+  .nd-row { display: flex; align-items: center; gap: 20px; }
+  .nd-row b { flex: none; font-size: 40px; font-weight: 800; letter-spacing: -.03em; color: #0a3255; white-space: nowrap; }
+  .nd-row b i { font-style: normal; margin: 0 6px; font-size: 28px; color: #98a1a8; }
+  .nd-row b i.vs { margin: 0 10px; font-size: 22px; font-weight: 700; letter-spacing: 0; vertical-align: 6px; }
+  .nd-card.hot .nd-row b { color: #0aa0d2; }
+  .nd-row p { margin: 0; font-size: 15.5px; font-weight: 600; line-height: 1.5; color: #3d434a; word-break: keep-all; }
+  .slide.dark .nd-chart .dots[data-step] { translate: none; filter: none; }
+
+  /* 넥슨 진단 2-5 상관(.nc, 좌우 산점도): 패널 552×334(y 214~548, 필 아래 16 간격), 아래 메시지 띠(y 562~650) */
+  .nc2-panel { top: 214px; width: 552px; height: 334px; box-sizing: border-box; padding: 18px 20px 6px; border-radius: 20px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; }
+  .nc2-panel.hot { background: #fff; border-color: #0aa0d2; box-shadow: 0 16px 40px rgba(10,160,210,.14); }
+  .nc2-h { display: flex; align-items: center; justify-content: space-between; }
+  .nc2-h b { font-size: 19px; font-weight: 800; letter-spacing: -.02em; color: #1a1a1a; }
+  .nc2-r { padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 800; }
+  .nc2-r.weak { background: #e3e6ea; color: #6f7880; } .nc2-r.strong { background: #0aa0d2; color: #fff; }
+  .nc2-panel svg { flex: 1; width: 100%; min-height: 0; overflow: visible; font-family: inherit; }
+  .nc2-panel .gl { stroke: #e3e6ea; stroke-width: 1; } .nc2-panel .axl { stroke: #c3c9cf; stroke-width: 1.2; }
+  .nc2-panel .ax { font-size: 12px; font-weight: 600; fill: #98a1a8; } .nc2-panel .at { font-size: 13px; font-weight: 700; fill: #6f7880; }
+  .nc2-panel .pts circle { stroke: #fff; stroke-width: 1.4; }
+  .nc2-panel .pts.weak circle { fill: #98a1a8; } .nc2-panel .pts.strong circle { fill: #0aa0d2; }
+  .nc2-panel .trend { stroke-width: 2.4; stroke-dasharray: 8 6; stroke-linecap: round; }
+  .nc2-panel .trend.weak { stroke: #6f7880; } .nc2-panel .trend.strong { stroke: #0a3255; }
+  .nc2-msg { top: 562px; width: 552px; height: 88px; box-sizing: border-box; padding: 0 26px; border-radius: 16px; background: #f7f8f9; border: 1px solid #e3e6ea; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .nc2-msg.hot { background: #e7f6fb; border-color: #0aa0d2; }
+  .nc2-msg b { font-size: 21px; font-weight: 800; letter-spacing: -.02em; color: #1a1a1a; }
+  .nc2-msg.hot b { color: #0a3255; }
+  .nc2-msg span { font-size: 15px; font-weight: 600; color: #6f7880; }
+  /* 넥슨 진단 2-2 유형 매트릭스(.nq): 왼쪽 2×2(가로 개인 활용, 세로 조직 확산, 중앙값 기준), 오른쪽 메시지 */
+  .nq-grid { left: 140px; top: 206px; width: 520px; height: 400px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; }
+  .nq-q { border-radius: 16px; background: #f7f8f9; border: 1px solid #e3e6ea; padding: 22px 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .nq-q b { font-size: 21px; font-weight: 800; letter-spacing: -.02em; color: #1a1a1a; }
+  .nq-q strong { font-size: 40px; font-weight: 800; letter-spacing: -.03em; color: #0a3255; line-height: 1.1; }
+  .nq-q strong small { margin-left: 6px; font-size: 18px; font-weight: 700; color: #6f7880; }
+  .nq-q span { font-size: 15px; font-weight: 600; color: #6f7880; }
+  .nq-q.lead { background: #0a3255; border-color: #0a3255; } .nq-q.lead b, .nq-q.lead strong { color: #fff; } .nq-q.lead span, .nq-q.lead strong small { color: rgba(255,255,255,.75); }
+  .nq-q.idle { background: #e3e6ea; border-color: #d5dade; }
+  .nq-y { left: 76px; top: 206px; width: 52px; height: 400px; display: flex; align-items: center; justify-content: center; }
+  .nq-y span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 15px; font-weight: 800; color: #6f7880; white-space: nowrap; }
+  .nq-x { left: 140px; top: 616px; width: 520px; text-align: center; font-size: 15px; font-weight: 800; color: #6f7880; }
+  /* 2026-10-21 사용자 요청: 2×2 칸 대신 28명 산점도(중앙값 선으로 4분면), 질문 카드는 빼고 차트를 전체 폭으로 */
+  .nq-plot { left: 76px; top: 206px; width: 1128px; height: 444px; box-sizing: border-box; padding: 0; background: none; border: 0; }   /* 바깥 테두리 상자 없이 차트만 */
+  .nq-plot svg { display: block; width: 100%; height: 100%; overflow: visible; font-family: inherit; }
+  .nq-plot .gl { stroke: #e3e6ea; } .nq-plot .axl { stroke: #c3c9cf; stroke-width: 1.2; }
+  .nq-plot .ax { font-size: 12px; font-weight: 600; fill: #98a1a8; } .nq-plot .at { font-size: 14px; font-weight: 800; fill: #6f7880; }
+  .nq-plot .med { stroke: #98a1a8; stroke-width: 1.4; stroke-dasharray: 6 5; } .nq-plot .mlab { font-size: 11px; font-weight: 700; fill: #98a1a8; }
+  .nq-plot .qbg.lead { fill: rgba(10,160,210,.17); } .nq-plot .qbg.idle { fill: rgba(255,120,120,.14); } .nq-plot .qbg.push, .nq-plot .qbg.solo { fill: #fff; fill-opacity: .7; }   /* 강조: 확산 리더형(넥슨 블루)과 관망형(코랄) 두 칸만 칠하고, 나머지 두 칸은 흰 바탕(2026-10-21 회색 대신) */
+  .nq-plot .ql { font-family: "Nanum Pen Script", "Pretendard", cursive; } .nq-plot .qt { font-size: 34px; font-weight: 400; } .nq-plot .qn { font-size: 34px; font-weight: 400; } .nq-plot .qp { font-size: 28px; font-weight: 400; fill-opacity: .8; }   /* 2026-10-21 사용자 요청: 사분면 이름은 손글씨 */
+  .nq-plot .ql.lead { fill: #0a3255; stroke: #0a3255; } .nq-plot .ql.idle { fill: #c8504f; stroke: #c8504f; } .nq-plot .ql.push, .nq-plot .ql.solo { fill: #98a1a8; stroke: #98a1a8; }
+  .nq-plot .ql { stroke-width: 1.1; stroke-linejoin: round; paint-order: stroke fill; }   /* 손글씨 폰트에 굵은 꼴이 없어, 같은 색 외곽선으로 Bold처럼 굵힘 */
+  .nq-plot .pt circle { stroke: #fff; stroke-width: 1.6; }
+  .nq-plot .pt.lead circle { fill: #0a3255; } .nq-plot .pt.push circle { fill: #0aa0d2; } .nq-plot .pt.solo circle { fill: #7cc3e0; } .nq-plot .pt.idle circle { fill: #b7bec5; }
+  .nq-plot .span-arr line { stroke: #0a3255; stroke-width: 2; stroke-opacity: .6; stroke-linecap: round; }   /* 관망형 ↔ 확산 리더형: 두 극단을 잇는 화살표, 점보다 아래 층 */
+  .slide.dark .nq-plot .span-arr[data-step] { translate: none; filter: none; }
+  .nq-plot .axa { stroke: #98a1a8; stroke-width: 1.4; }   /* 축 이름 양옆 선: 낮은 쪽은 선만, 높은 쪽 끝에만 화살표 */
+  .nq-plot .span-arr.hand path { fill: none; stroke: #0aa0d2; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }   /* 손으로 그은 듯한 ↔ (살짝 휜 선 + 열린 화살촉), 48장 손글씨와 같은 블루 */
+  .nq-msg { left: 700px; top: 206px; width: 504px; height: 444px; display: flex; flex-direction: column; gap: 16px; }
+  .nq-big { flex: none; box-sizing: border-box; padding: 26px 30px; border-radius: 20px; background: #e7f6fb; border: 1px solid #0aa0d2; box-shadow: 0 16px 40px rgba(10,160,210,.16); }
+  .nq-big small { font: 800 14px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .04em; color: #0a3255; }
+  .nq-big b { display: block; margin-top: 12px; font-size: 52px; font-weight: 800; letter-spacing: -.03em; color: #0aa0d2; line-height: 1; }
+  .nq-big p { margin: 12px 0 0; font-size: 17px; font-weight: 700; line-height: 1.5; color: #1a1a1a; word-break: keep-all; }
+  .nq-ask { flex: 1; box-sizing: border-box; padding: 40px 40px; border-radius: 20px; background: #1a1a1a; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .nq-ask b { font-size: 36px; font-weight: 800; line-height: 1.4; letter-spacing: -.03em; color: #fff; }
+  .nq-ask span { font-size: 18px; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,.72); word-break: keep-all; }
+  /* 진단 숫자를 기존 장에 덧붙인 한 줄 */
+  .aos-data { left: 76px; top: 538px; width: 1128px; margin: 0; text-align: center; font-size: 16px; font-weight: 700; color: #6f7880; }
+  .aos-data b { color: #0a3255; }
 </style>
 </head>
 <body>
@@ -2210,7 +2397,7 @@
     <div class="abs iq-stat " data-step="1" style="top:372px"><span class="k">중앙값</span><p class="v"><s>91</s><i>→</i><b>127</b></p><span class="t">2025.7 → 2026.10</span></div>
     <div class="abs iq-stat hot" data-step="1" style="top:518px"><span class="k">IQ 130 이상 모델</span><p class="v"><s>0개</s><i>→</i><b>7개</b></p><span class="t">2025.7 → 2026.10</span></div>
     <p class="abs iq-legend"><span><i class="h"></i>사람 IQ 분포</span><span><i class="a"></i>AI 모델(2025.7)</span><span><i class="b"></i>AI 모델(2026.10)</span></p>
-    <p class="abs footnote">출처: TrackingAI.org, AI IQ Test(오프라인 테스트, 미공개 문항) 일별 기록으로 계산. 모델별 최근 7회 평균, 2025.7.31·2026.10.18 기준 · 한국인·미국 평균: Lynn·Vanhanen, IQ and Global Inequality(2006) 추정치</p>
+    <p class="abs footnote">출처: TrackingAI.org, AI IQ Test(오프라인 테스트, 미공개 문항) 일별 기록으로 계산. 모델별 최근 7회 평균, 2025.7.31·2026.10.20 기준 · 한국인·미국 평균: Lynn·Vanhanen, IQ and Global Inequality(2006) 추정치</p>
   </section>
 
   <!-- 모델 변곡점 셋(2026-10-18 사용자 제안): AI가 만드는 결과물이 이미지 → 영상 → 파워포인트로 넓어짐. IQ(지능) 장과 60분 업무(생산성) 장 사이에서 지능이 산출물로 바뀌는 과정을 보여 준다.
@@ -2279,19 +2466,33 @@
   <section class="slide dark jr" data-gap="900" aria-label="일선 현장에서도 AI 도입 성과에 대한 질문이 커지는 중: 커스텀 AI 구축, AI 교육, 토큰 관리를 지나 경영진이 갖는 의구심">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <h2 class="abs head-title">일선 현장에서도 AI 도입 성과에 대한 질문이 커지는 중</h2>
-    <div class="abs jr-card" data-step="1" style="left:76px"><span class="jr-k">01 · 커스텀 AI 구축</span><p class="jr-q">“우리 회사도 AI를<br>도입해야 하지 않을까?”</p><p class="jr-b">많은 회사가 자체 AI 모델(커스텀 AI) 구축에 돈을 씀</p><p class="jr-r"><i>→</i>구축하는 사이 더 좋은 모델이 나와 성능 격차가 커짐</p></div>
+    <div class="abs jr-card" data-step="1" style="left:76px"><span class="jr-k">커스텀 AI 구축</span><p class="jr-q">“우리 회사도 AI를<br>도입해야 하지 않을까?”</p><p class="jr-b">많은 회사가 자체 AI 모델(커스텀 AI)과 사내 AI 구축에 투자함</p><p class="jr-r"><i>→</i>구축하는 사이 새 모델이 계속 나와, 모델을 바꿔 쓸 수 있는 구조가 필요해짐</p></div>
     <svg class="abs jr-arr" data-step="2" style="left:432px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    <div class="abs jr-card" data-step="2" style="left:464px"><span class="jr-k">02 · AI 교육</span><p class="jr-q">“모델이 이렇게 빠르면<br>무엇부터 해야 하지?”</p><p class="jr-b">내부망 모델과 별개로 최신(SOTA) 모델을 쓰는 교육 수요가 급증함</p><p class="jr-r"><i>→</i>회사마다 전사 AI 교육을 서둘러 시작함</p></div>
+    <div class="abs jr-card" data-step="2" style="left:464px"><span class="jr-k">AI 교육</span><p class="jr-q">“모델이 이렇게 빠르면<br>무엇부터 해야 하지?”</p><p class="jr-b">내부망 모델과 별개로 최신(SOTA) 모델을 쓰는 교육 수요가 급증함</p><p class="jr-r"><i>→</i>회사마다 전사 AI 교육을 서둘러 시작함</p></div>
     <svg class="abs jr-arr" data-step="3" style="left:820px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    <div class="abs jr-card hot" data-step="3" style="left:852px"><span class="jr-k">03 · 토큰 관리</span><p class="jr-q">“늘어나는 토큰 비용은<br>누가 관리하지?”</p><p class="jr-b">Accenture는 일부 직원의 Claude 사용액이 월 $500~1,000에 이르자, 인당 월 $29로 제한함(2026.10)</p><p class="jr-r"><i>→</i>토큰비도 인건비처럼 관리해야 한다는 인식이 생김</p></div>
-    <div class="abs jr-band" data-step="4"><p class="jr-bh">경영진이<br>갖는 의구심</p><ul><li>교육은 시켰는데, 그다음은 뭘 해야 하지?</li><li>토큰 비용은 계속 증가하는데, 그래서 성과는?</li><li>AI 도입 성과가 정말 나고 있는 게 맞나?</li><li>효과가 있다는데, 왜 비용은 줄지 않지?</li></ul></div>
+    <div class="abs jr-card hot" data-step="3" style="left:852px"><span class="jr-k">토큰 관리</span><p class="jr-q">“늘어나는 토큰 비용은<br>누가 관리하지?”</p><p class="jr-b">Accenture는 일부 직원의 Claude 사용액이 월 $500~1,000에 이르자, 인당 월 $29로 제한함(2026.10)</p><p class="jr-r"><i>→</i>토큰비도 인건비처럼 관리해야 한다는 인식이 생김</p></div>
+    <div class="abs jr-band" data-step="4"><p class="jr-bh">경영진이<br>갖는 의구심</p><ul><li>교육은 시켰는데, 그다음은 뭘 해야 하지?</li><li>토큰 비용은 계속 증가하는데, 그래서 성과는?</li><li>AI 도입 성과가 정말 나고 있는 게 맞나?</li><li>어디까지 쓰게 두고, 무엇으로 판단하지?</li></ul></div>
     <p class="abs footnote">출처: Forbes, "Accenture Clarifies Claude Spending Limits As AI Cost Questions Grow"(2026.10.16)</p>
   </section>
 
   <!-- 이유 세 가지(2026-10-15): 뒤 세 묶음(사람·문화 / 성과 축적 / 워크플로우 재설계)의 목차. 근거는 모두 덱 안 수치(격차, Z세대 방해, 질문 비중, McKinsey, 시간 단축, 에이전트 팀) -->
-  <section class="slide dark rs" data-gap="900" aria-label="AI 도입이 조직 성과로 이어지지 않는 이유 세 가지: 조직문화 전환, 암묵지 축적, 하이브리드 조직 설계">
+  <!-- 넥슨 AX 역량진단(2026-10-21 사용자 요청): 인재성장팀 리더십파트 결과보고서 6쪽. 대상 본부장급 이상 32명 중 28명 응답(청중 본인들의 진단).
+       평균 활용 15.7 · 인식 13.1 · 성과 10.5 · 확산 9.6(각 25점), 확산·성과 상위(19점 이상) 0명, 총점 평균 48.9점, AX 실행 단계 20명(입문 7 · 체화 1), 인식 초기 12명 · 상위 6명.
+       자리: 일선 현장의 질문 다음, 이유 세 가지 앞. 세계 데이터(개인 생산성 80% vs 이익 37%)와 같은 모양이 넥슨 리더들 자신의 진단에서도 나온다는 것을 보여준 뒤 "왜"로 넘어간다 -->
+  <section class="slide dark nd" data-click="1" data-auto="1" aria-label="넥슨 리더 AX 역량진단: 개인 활용은 앞섰지만 조직 성과는 낮고, 리더 간 편차도 큼">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <h2 class="abs head-title">AI 도입이 조직 성과로 이어지지 않는 이유</h2>
+    <h2 class="abs head-title">개인 활용은 앞섰지만 조직 성과는 낮고, 리더 간 편차도 큼</h2>
+    <div class="abs sp-track"><span class="sp-pill on">넥슨 AX 역량진단 · 본부장급 이상 28명 응답 · 4대 역량요소 평균과 28명 개인 점수(각 25점 만점)</span></div>
+    <div class="abs nd-chart" data-step="1"><svg viewBox="0 0 600 424" role="img" aria-label="4대 역량요소 평균과 28명 개인 점수 분포: 인식 13.1, 활용 15.7, 확산 9.6, 성과 10.5(각 25점 만점)"><line class="gl" x1="20" y1="280" x2="580" y2="280"/><text class="ax" x="12" y="284" text-anchor="end">5</text><line class="gl" x1="20" y1="220" x2="580" y2="220"/><text class="ax" x="12" y="224" text-anchor="end">10</text><line class="gl" x1="20" y1="160" x2="580" y2="160"/><text class="ax" x="12" y="164" text-anchor="end">15</text><line class="gl" x1="20" y1="100" x2="580" y2="100"/><text class="ax" x="12" y="104" text-anchor="end">20</text><line class="full" x1="20" y1="40" x2="580" y2="40"/><text class="ax" x="580" y="32" text-anchor="end">만점 25</text><line class="gl" x1="20" y1="340" x2="580" y2="340" style="stroke:#c3c9cf"/><text class="ax" x="12" y="344" text-anchor="end">0</text><rect class="bar p" x="30" y="182.8" width="84" height="157.2" rx="6"/><g class="dots" data-step="2"><circle cx="40.0" cy="293.2" r="4.6"/><circle cx="42.4" cy="280.0" r="4.6"/><circle cx="44.7" cy="268.0" r="4.6"/><circle cx="47.1" cy="242.8" r="4.6"/><circle cx="49.5" cy="239.2" r="4.6"/><circle cx="51.9" cy="236.8" r="4.6"/><circle cx="54.2" cy="235.6" r="4.6"/><circle cx="56.6" cy="232.0" r="4.6"/><circle cx="59.0" cy="228.4" r="4.6"/><circle cx="61.3" cy="224.8" r="4.6"/><circle cx="63.7" cy="224.8" r="4.6"/><circle cx="66.1" cy="222.4" r="4.6"/><circle cx="68.4" cy="215.2" r="4.6"/><circle cx="70.8" cy="185.2" r="4.6"/><circle cx="73.2" cy="172.0" r="4.6"/><circle cx="75.6" cy="170.8" r="4.6"/><circle cx="77.9" cy="168.4" r="4.6"/><circle cx="80.3" cy="155.2" r="4.6"/><circle cx="82.7" cy="128.8" r="4.6"/><circle cx="85.0" cy="127.6" r="4.6"/><circle cx="87.4" cy="124.0" r="4.6"/><circle cx="89.8" cy="124.0" r="4.6"/><circle cx="92.1" cy="119.2" r="4.6"/><circle cx="94.5" cy="108.4" r="4.6"/><circle cx="96.9" cy="107.2" r="4.6"/><circle cx="99.3" cy="100.0" r="4.6"/><circle cx="101.6" cy="100.0" r="4.6"/><circle cx="104.0" cy="80.8" r="4.6"/></g><text class="lb" x="72" y="364" text-anchor="middle">인식</text><rect class="bar p" x="166" y="151.6" width="84" height="188.4" rx="6"/><g class="dots" data-step="2"><circle cx="176.0" cy="306.4" r="4.6"/><circle cx="178.4" cy="263.2" r="4.6"/><circle cx="180.7" cy="253.6" r="4.6"/><circle cx="183.1" cy="248.8" r="4.6"/><circle cx="185.5" cy="232.0" r="4.6"/><circle cx="187.9" cy="220.0" r="4.6"/><circle cx="190.2" cy="220.0" r="4.6"/><circle cx="192.6" cy="192.4" r="4.6"/><circle cx="195.0" cy="192.4" r="4.6"/><circle cx="197.3" cy="172.0" r="4.6"/><circle cx="199.7" cy="170.8" r="4.6"/><circle cx="202.1" cy="170.8" r="4.6"/><circle cx="204.4" cy="169.6" r="4.6"/><circle cx="206.8" cy="163.6" r="4.6"/><circle cx="209.2" cy="146.8" r="4.6"/><circle cx="211.6" cy="145.6" r="4.6"/><circle cx="213.9" cy="126.4" r="4.6"/><circle cx="216.3" cy="112.0" r="4.6"/><circle cx="218.7" cy="104.8" r="4.6"/><circle cx="221.0" cy="103.6" r="4.6"/><circle cx="223.4" cy="100.0" r="4.6"/><circle cx="225.8" cy="90.4" r="4.6"/><circle cx="228.1" cy="72.4" r="4.6"/><circle cx="230.5" cy="66.4" r="4.6"/><circle cx="232.9" cy="55.6" r="4.6"/><circle cx="235.3" cy="55.6" r="4.6"/><circle cx="237.6" cy="49.6" r="4.6"/><circle cx="240.0" cy="49.6" r="4.6"/></g><text class="lb" x="208" y="364" text-anchor="middle">활용</text><rect class="bar o" x="318" y="224.8" width="84" height="115.2" rx="6"/><g class="dots" data-step="2"><circle cx="328.0" cy="316.0" r="4.6"/><circle cx="330.4" cy="310.0" r="4.6"/><circle cx="332.7" cy="305.2" r="4.6"/><circle cx="335.1" cy="304.0" r="4.6"/><circle cx="337.5" cy="284.8" r="4.6"/><circle cx="339.9" cy="259.6" r="4.6"/><circle cx="342.2" cy="252.4" r="4.6"/><circle cx="344.6" cy="252.4" r="4.6"/><circle cx="347.0" cy="235.6" r="4.6"/><circle cx="349.3" cy="223.6" r="4.6"/><circle cx="351.7" cy="220.0" r="4.6"/><circle cx="354.1" cy="220.0" r="4.6"/><circle cx="356.4" cy="220.0" r="4.6"/><circle cx="358.8" cy="220.0" r="4.6"/><circle cx="361.2" cy="215.2" r="4.6"/><circle cx="363.6" cy="211.6" r="4.6"/><circle cx="365.9" cy="211.6" r="4.6"/><circle cx="368.3" cy="208.0" r="4.6"/><circle cx="370.7" cy="204.4" r="4.6"/><circle cx="373.0" cy="199.6" r="4.6"/><circle cx="375.4" cy="199.6" r="4.6"/><circle cx="377.8" cy="196.0" r="4.6"/><circle cx="380.1" cy="194.8" r="4.6"/><circle cx="382.5" cy="187.6" r="4.6"/><circle cx="384.9" cy="185.2" r="4.6"/><circle cx="387.3" cy="175.6" r="4.6"/><circle cx="389.6" cy="148.0" r="4.6"/><circle cx="392.0" cy="136.0" r="4.6"/></g><text class="lb" x="360" y="364" text-anchor="middle">확산</text><rect class="bar o" x="454" y="214.0" width="84" height="126.0" rx="6"/><g class="dots" data-step="2"><circle cx="464.0" cy="322.0" r="4.6"/><circle cx="466.4" cy="322.0" r="4.6"/><circle cx="468.7" cy="322.0" r="4.6"/><circle cx="471.1" cy="319.6" r="4.6"/><circle cx="473.5" cy="282.4" r="4.6"/><circle cx="475.9" cy="271.6" r="4.6"/><circle cx="478.2" cy="268.0" r="4.6"/><circle cx="480.6" cy="258.4" r="4.6"/><circle cx="483.0" cy="246.4" r="4.6"/><circle cx="485.3" cy="241.6" r="4.6"/><circle cx="487.7" cy="223.6" r="4.6"/><circle cx="490.1" cy="222.4" r="4.6"/><circle cx="492.4" cy="202.0" r="4.6"/><circle cx="494.8" cy="199.6" r="4.6"/><circle cx="497.2" cy="192.4" r="4.6"/><circle cx="499.6" cy="186.4" r="4.6"/><circle cx="501.9" cy="184.0" r="4.6"/><circle cx="504.3" cy="181.6" r="4.6"/><circle cx="506.7" cy="174.4" r="4.6"/><circle cx="509.0" cy="172.0" r="4.6"/><circle cx="511.4" cy="166.0" r="4.6"/><circle cx="513.8" cy="156.4" r="4.6"/><circle cx="516.1" cy="156.4" r="4.6"/><circle cx="518.5" cy="150.4" r="4.6"/><circle cx="520.9" cy="145.6" r="4.6"/><circle cx="523.3" cy="144.4" r="4.6"/><circle cx="525.6" cy="144.4" r="4.6"/><circle cx="528.0" cy="133.6" r="4.6"/></g><text class="lb" x="496" y="364" text-anchor="middle">성과</text><g class="mean p"><rect x="42" y="167.8" width="60" height="30" rx="15"/><text x="72" y="189.8" text-anchor="middle">13.1</text></g><g class="mean p"><rect x="178" y="136.6" width="60" height="30" rx="15"/><text x="208" y="158.6" text-anchor="middle">15.7</text></g><g class="mean o"><rect x="330" y="209.8" width="60" height="30" rx="15"/><text x="360" y="231.8" text-anchor="middle">9.6</text></g><g class="mean o"><rect x="466" y="199.0" width="60" height="30" rx="15"/><text x="496" y="221.0" text-anchor="middle">10.5</text></g><path class="br p" d="M34 376Q34 385 46 385H128.0Q140.0 385 140.0 394Q140.0 385 152.0 385H234Q246 385 246 376"/><text class="gr p" x="140" y="420" text-anchor="middle">개인</text><path class="br o" d="M322 376Q322 385 334 385H416.0Q428.0 385 428.0 394Q428.0 385 440.0 385H522Q534 385 534 376"/><text class="gr o" x="428" y="420" text-anchor="middle">조직</text></svg></div>
+    <div class="abs nd-card nd-msg nd-msg1 hot" data-step="1" style="top:214px"><span class="nd-k">01 · 개인은 쓰지만, 조직으로 이어지지 않음</span><div class="nd-row"><b>15.7<i class="vs">vs.</i>9.6</b><p>개인 활용 15.7점, 조직 확산 9.6점. 확산·성과 상위(19점 이상) 응답자는 0명</p></div></div>
+    <div class="abs nd-card nd-msg nd-msg2" data-step="2" style="top:440px"><span class="nd-k">02 · 네 영역 모두 리더 간 편차가 매우 큼</span><div class="nd-rgs"><div class="nd-rg"><span>인식</span><div class="nd-tr"><i class="p" style="left:15.6%;width:70.8%"></i></div><em>4~22점</em></div><div class="nd-rg"><span>활용</span><div class="nd-tr"><i class="p" style="left:11.2%;width:85.6%"></i></div><em>3~24점</em></div><div class="nd-rg"><span>확산</span><div class="nd-tr"><i class="o" style="left:8.0%;width:60.0%"></i></div><em>2~17점</em></div><div class="nd-rg"><span>성과</span><div class="nd-tr"><i class="o" style="left:6.0%;width:62.8%"></i></div><em>2~17점</em></div></div></div>
+    <p class="abs footnote">출처: 넥슨 인재성장팀 리더십파트, AX 역량진단 결과보고서(2026.10)</p>
+  </section>
+
+  <section class="slide dark rs rs-sub" data-gap="900" aria-label="개인 활용이 조직 확산으로 번지지 않는 세 가지 이유: 조직문화 전환, 암묵지 축적, 하이브리드 조직 설계">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">개인 활용이 조직 확산으로 번지지 않는 세 가지 이유</h2>
+    <div class="abs sp-track"><span class="sp-pill on">넥슨 리더 진단: 개인 활용 15.7점 vs. 조직 확산 9.6점</span></div>
     <div class="abs rs-card" data-step="1" style="left:76px"><span class="rs-pill">01 조직문화 전환</span><h4>구성원이 변화를 따라오지 못함</h4></div>
     <div class="abs rs-card" data-step="2" style="left:464px"><span class="rs-pill">02 암묵지 축적</span><h4>구성원의 노하우가 조직에 축적되지 않음</h4></div>
     <div class="abs rs-card" data-step="3" style="left:852px"><span class="rs-pill">03 하이브리드 조직 설계</span><h4>하이브리드 조직 설계 없이 AI 도입에 그침</h4></div>
@@ -2305,8 +2506,8 @@
     <h2 class="abs head-title">AI 교육은 늘었지만, 구성원 간 활용 격차는 오히려 벌어지는 중</h2>
     <div class="abs gp-card" data-step="1" style="left:76px"><span class="gp-date">2026.07 조사</span><span class="gp-k">AI 교육 제공 확대</span><div class="gp-chart" role="img" aria-label="AI 교육을 제공하는 기업 비율, 2025년 25%에서 2026년 58%"><div class="gp-col"><b>25%</b><i style="height:73px"></i><span>2025</span></div><div class="gp-col hot"><b>58%</b><i style="height:170px"></i><span>2026</span></div></div><small>Workera, 미국 대기업 직장인 1,000명</small></div>
     <div class="abs gp-card" data-step="3" style="left:852px"><span class="gp-date">2026.09 발표</span><span class="gp-k">인력별 AI 역량 구분</span>
-      <svg class="gp-pie" viewBox="-2 -2 154 154" role="img" aria-label="PwC 인력별 AI 역량 구분: 선도 인력 14%, AI 적극 사용자 18%, AI 미도입 전문가 11%, 다수 실무층 56%"><path class="a" d="M75 75L75.00 0.00A75 75 0 0 1 133.21 27.71Z"><title>선도 인력 14%</title></path><path class="a2" d="M75 75L133.21 27.71A75 75 0 0 1 142.20 108.30Z"><title>AI 적극 사용자 18%</title></path><path class="b" d="M75 75L142.20 108.30A75 75 0 0 1 105.07 143.71Z"><title>AI 미도입 전문가 11%</title></path><path class="c" d="M75 75L105.07 143.71A75 75 0 1 1 75.00 0.00Z"><title>다수 실무층 56%</title></path><text x="96.5" y="29.9">14%</text><text x="124.7" y="69.5">18%</text><text x="109.5" y="111.2">11%</text><text class="dk" x="30.0" y="84.4">56%</text></svg>
-      <ul class="gp-pleg"><li class="a"><i></i><b>14%</b><span>선도 인력<small>희소 역량과 높은 AI 숙련</small></span></li><li class="a2"><i></i><b>18%</b><span>AI 적극 사용자<small>많이 쓰지만 전문성은 낮음</small></span></li><li class="b"><i></i><b>11%</b><span>AI 미도입 전문가</span></li><li class="c"><i></i><b>56%</b><span>다수 실무층</span></li></ul>
+      <svg class="gp-pie" viewBox="-2 -2 154 154" role="img" aria-label="PwC 인력별 AI 역량 구분: 선도 인력 14%, AI 적극 사용자 18%, AI 미도입 전문가 11%, AI 저활용 실무층 56%"><path class="a" d="M75 75L75.00 0.00A75 75 0 0 1 133.21 27.71Z"><title>선도 인력 14%</title></path><path class="a2" d="M75 75L133.21 27.71A75 75 0 0 1 142.20 108.30Z"><title>AI 적극 사용자 18%</title></path><path class="b" d="M75 75L142.20 108.30A75 75 0 0 1 105.07 143.71Z"><title>AI 미도입 전문가 11%</title></path><path class="c" d="M75 75L105.07 143.71A75 75 0 1 1 75.00 0.00Z"><title>AI 저활용 실무층 56%</title></path><text x="96.5" y="29.9">14%</text><text x="124.7" y="69.5">18%</text><text x="109.5" y="111.2">11%</text><text class="dk" x="30.0" y="84.4">56%</text></svg>
+      <ul class="gp-pleg"><li class="a"><i></i><b>14%</b><span>선도 인력<small>희소 역량과 높은 AI 숙련</small></span></li><li class="a2"><i></i><b>18%</b><span>AI 적극 사용자<small>많이 쓰지만 전문성은 낮음</small></span></li><li class="b"><i></i><b>11%</b><span>AI 미도입 전문가</span></li><li class="c"><i></i><b>56%</b><span>AI 저활용 실무층<small>AI를 거의 쓰지 않음</small></span></li></ul>
       <small>PwC, 48개국 직장인 49,364명</small></div>
     <div class="abs gp-card" data-step="2" style="left:464px"><span class="gp-date">2026.03 발표</span><span class="gp-k">사용 경험에 따른 활용 격차</span>
       <p class="gp-legend"><i class="h"></i>6개월 이상 사용자<i class="l"></i>신규 사용자</p><ul class="gp-cmp"><li><em>업무 목적 활용<span class="gp-delta">7%p 격차</span></em><div class="h"><span class="t"><i style="width:98.0%"></i></span><b>49%</b></div><div class="l"><span class="t"><i style="width:84.0%"></i></span><b>42%</b></div></li><li><em>AI와의 반복 협업<span class="gp-delta">3.7%p 격차</span></em><div class="h"><span class="t"><i style="width:56.4%"></i></span><b>28.2%</b></div><div class="l"><span class="t"><i style="width:49.0%"></i></span><b>24.5%</b></div></li></ul>
@@ -2372,13 +2573,34 @@
     <p class="abs footnote">출처: Tim Sweeney, X(2026.10.12) · Bloomberg(2026.10.12) · Asha Sharma 사내 메일(Thurrott, 2026.10.13) · Windows Central·Forbes, Xbox Labs(2026.10.13~14)</p>
   </section>
 
-  <!-- 01 묶음 연결 장: 10-20-70(사람에 70%) 다음, 본인 사례(에이전트 팀) 앞. 교육만으로는 안 되고 리더가 먼저 일하는 방식을 보여줘야 한다는 연결 -->
-  <section class="slide dark br" data-gap="1400" aria-label="교육만으로는 구성원이 따라오지 않음, 리더가 먼저 AI와 일하는 방식을 보여줘야 함">
+  <!-- 넥슨 진단 2-5(2026-10-21 사용자 요청, 좌우 산점도로 개편, 01 묶음의 유형 매트릭스 앞으로 이동): 활용→확산 r=0.24, 확산→성과 r=0.69. 28명의 점은 보고서 7·10쪽 산점도에서 읽고, 축별 값이 6쪽 분포와 일치하는지 확인.
+       읽은 값으로 다시 계산한 r은 0.244 · 0.687(보고서 0.24 · 0.69). 추세선은 같은 값의 최소제곱 직선. 자기보고 28명이라 인과가 아닌 경향 -->
+  <section class="slide dark nc" data-gap="1200" aria-label="성과를 가르는 것은 개인 활용이 아니라 조직 확산 역량: 개인 활용과 조직 확산 r 0.24, 조직 확산과 성과 r 0.69">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
-    <p class="abs br-text"><span class="br-l1" data-step="1">AI 교육을 늘리는 것만으로는 구성원이 따라오지 않습니다.</span><span class="br-l2" data-step="2">리더가 먼저 <em>AI와 일하는 방식</em>을 바꾸고, 보여줘야 합니다.</span></p>
+    <h2 class="abs head-title">성과를 가르는 것은 개인 활용이 아니라 조직 확산 역량임</h2>
+    <div class="abs sp-track"><span class="sp-pill on">넥슨 AX 역량진단 · 본부장급 이상 28명 · 역량요소 간 상관 분석</span></div>
+    <div class="abs nc2-panel" data-step="1" style="left:76px"><div class="nc2-h"><b>개인 활용 × 조직 확산</b><span class="nc2-r weak">r = 0.24 · 상관 미약</span></div><svg viewBox="0 0 520 310" role="img" aria-label="개인 활용과 조직 확산 28명 산점도, r 0.24"><line class="gl" x1="56" y1="202.0" x2="500" y2="202.0"/><text class="ax" x="46" y="206.0" text-anchor="end">5</text><line class="gl" x1="56" y1="142.0" x2="500" y2="142.0"/><text class="ax" x="46" y="146.0" text-anchor="end">10</text><line class="gl" x1="56" y1="82.0" x2="500" y2="82.0"/><text class="ax" x="46" y="86.0" text-anchor="end">15</text><line class="gl" x1="56" y1="22.0" x2="500" y2="22.0"/><text class="ax" x="46" y="26.0" text-anchor="end">20</text><text class="ax" x="56.0" y="282" text-anchor="middle">0</text><text class="ax" x="144.8" y="282" text-anchor="middle">5</text><text class="ax" x="233.6" y="282" text-anchor="middle">10</text><text class="ax" x="322.4" y="282" text-anchor="middle">15</text><text class="ax" x="411.2" y="282" text-anchor="middle">20</text><text class="ax" x="500.0" y="282" text-anchor="middle">25</text><line class="axl" x1="56" y1="262" x2="500" y2="262"/><line class="axl" x1="56" y1="262" x2="56" y2="22"/><text class="at" x="278.0" y="306" text-anchor="middle">개인 활용 점수</text><text class="at" transform="translate(16 142.0) rotate(-90)" text-anchor="middle">조직 확산 점수</text><g class="pts weak"><circle cx="343.7" cy="58.0" r="6"/><circle cx="393.4" cy="97.6" r="6"/><circle cx="404.1" cy="121.6" r="6"/><circle cx="411.2" cy="118.0" r="6"/><circle cx="405.9" cy="137.2" r="6"/><circle cx="452.0" cy="107.2" r="6"/><circle cx="460.9" cy="121.6" r="6"/><circle cx="476.9" cy="126.4" r="6"/><circle cx="476.9" cy="130.0" r="6"/><circle cx="485.8" cy="142.0" r="6"/><circle cx="485.8" cy="142.0" r="6"/><circle cx="341.9" cy="181.6" r="6"/><circle cx="372.1" cy="174.4" r="6"/><circle cx="425.4" cy="227.2" r="6"/><circle cx="233.6" cy="70.0" r="6"/><circle cx="215.8" cy="116.8" r="6"/><circle cx="274.4" cy="109.6" r="6"/><circle cx="306.4" cy="133.6" r="6"/><circle cx="304.6" cy="133.6" r="6"/><circle cx="105.7" cy="142.0" r="6"/><circle cx="191.0" cy="145.6" r="6"/><circle cx="169.7" cy="206.8" r="6"/><circle cx="183.9" cy="232.0" r="6"/><circle cx="233.6" cy="226.0" r="6"/><circle cx="274.4" cy="174.4" r="6"/><circle cx="306.4" cy="157.6" r="6"/><circle cx="308.2" cy="142.0" r="6"/><circle cx="317.1" cy="238.0" r="6"/></g><line class="trend weak" x1="105.7" y1="170.9" x2="485.8" y2="131.0"/></svg></div>
+    <div class="abs nc2-panel hot" data-step="2" style="left:652px"><div class="nc2-h"><b>조직 확산 × 성과</b><span class="nc2-r strong">r = 0.69 · 상관 강함</span></div><svg viewBox="0 0 520 310" role="img" aria-label="조직 확산과 성과 28명 산점도, r 0.69"><line class="gl" x1="56" y1="202.0" x2="500" y2="202.0"/><text class="ax" x="46" y="206.0" text-anchor="end">5</text><line class="gl" x1="56" y1="142.0" x2="500" y2="142.0"/><text class="ax" x="46" y="146.0" text-anchor="end">10</text><line class="gl" x1="56" y1="82.0" x2="500" y2="82.0"/><text class="ax" x="46" y="86.0" text-anchor="end">15</text><line class="gl" x1="56" y1="22.0" x2="500" y2="22.0"/><text class="ax" x="46" y="26.0" text-anchor="end">20</text><text class="ax" x="56.0" y="282" text-anchor="middle">0</text><text class="ax" x="167.0" y="282" text-anchor="middle">5</text><text class="ax" x="278.0" y="282" text-anchor="middle">10</text><text class="ax" x="389.0" y="282" text-anchor="middle">15</text><text class="ax" x="500.0" y="282" text-anchor="middle">20</text><line class="axl" x1="56" y1="262" x2="500" y2="262"/><line class="axl" x1="56" y1="262" x2="56" y2="22"/><text class="at" x="278.0" y="306" text-anchor="middle">조직 확산 점수</text><text class="at" transform="translate(16 142.0) rotate(-90)" text-anchor="middle">성과 점수</text><g class="pts strong"><circle cx="100.4" cy="244.0" r="6"/><circle cx="111.5" cy="244.0" r="6"/><circle cx="122.6" cy="244.0" r="6"/><circle cx="120.4" cy="145.6" r="6"/><circle cx="158.1" cy="241.6" r="6"/><circle cx="204.7" cy="190.0" r="6"/><circle cx="218.1" cy="94.0" r="6"/><circle cx="218.1" cy="121.6" r="6"/><circle cx="249.1" cy="114.4" r="6"/><circle cx="271.3" cy="124.0" r="6"/><circle cx="278.0" cy="67.6" r="6"/><circle cx="278.0" cy="78.4" r="6"/><circle cx="278.0" cy="180.4" r="6"/><circle cx="278.0" cy="193.6" r="6"/><circle cx="286.9" cy="204.4" r="6"/><circle cx="293.5" cy="103.6" r="6"/><circle cx="293.5" cy="144.4" r="6"/><circle cx="300.2" cy="66.4" r="6"/><circle cx="306.9" cy="168.4" r="6"/><circle cx="315.7" cy="55.6" r="6"/><circle cx="315.7" cy="78.4" r="6"/><circle cx="322.4" cy="96.4" r="6"/><circle cx="324.6" cy="163.6" r="6"/><circle cx="337.9" cy="66.4" r="6"/><circle cx="342.4" cy="106.0" r="6"/><circle cx="360.1" cy="88.0" r="6"/><circle cx="411.2" cy="108.4" r="6"/><circle cx="433.4" cy="72.4" r="6"/></g><line class="trend strong" x1="100.4" y1="218.6" x2="433.4" y2="55.2"/></svg></div>
+    <div class="abs nc2-msg" data-step="1" style="left:76px"><b>개인 활용 역량은 조직 확산으로 전이되지 않음</b><span>활용 상위 리더 사이에서도 확산 수준은 크게 엇갈림</span></div>
+    <div class="abs nc2-msg hot" data-step="2" style="left:652px"><b>조직 확산 활동이 성과와 직결됨</b><span>리더 육성·평가의 초점을 '확산'으로 옮겨야 함</span></div>
+    <p class="abs footnote">주: r은 피어슨 상관계수, 점선은 선형 추세선. 표본 28명의 자기보고 기반으로 인과관계가 아닌 경향성으로 해석 · 출처: 넥슨 인재성장팀 리더십파트, AX 역량진단 결과보고서(2026.10)</p>
   </section>
 
+  <!-- 넥슨 진단 2-2(2026-10-21 사용자 요청): 활용·확산 중앙값(15.4점·10.2점) 기준 4유형. 확산 리더형 9명(32%), 관망형 9명(32%), 개인 몰입형 5명(18%), 조직 독려형 5명(18%). 게임사 CEO 사례 다음, "리더는 AI와 어떻게 일해야 할까요?" 앞 -->
+  <section class="slide dark nq" data-gap="800" aria-label="리더의 AX 실천은 확산 리더형과 관망형으로 양극화되는 중: 확산 리더형 9명, 관망형 9명, 개인 몰입형 5명, 조직 독려형 5명">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">리더의 AX 실천은 확산 리더형과 관망형으로 양극화되는 중</h2>
+    <div class="abs nq-plot" data-step="1"><svg viewBox="0 0 1128 444" role="img" aria-label="개인 활용(가로)과 조직 확산(세로) 28명 산점도, 중앙값 15.4점·10.2점 기준 4유형"><defs><marker id="nqAx" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#98a1a8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="nqHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0a3255" fill-opacity=".75"/></marker></defs><rect class="qbg lead" x="702.0" y="18.0" width="394.0" height="181.3"/><rect class="qbg push" x="70.0" y="18.0" width="632.0" height="181.3"/><rect class="qbg idle" x="70.0" y="199.3" width="632.0" height="188.7"/><rect class="qbg solo" x="702.0" y="199.3" width="394.0" height="188.7"/><line class="gl" x1="70" y1="295.5" x2="1096" y2="295.5"/><text class="ax" x="58" y="299.5" text-anchor="end">5</text><line class="gl" x1="70" y1="203.0" x2="1096" y2="203.0"/><text class="ax" x="58" y="207.0" text-anchor="end">10</text><line class="gl" x1="70" y1="110.5" x2="1096" y2="110.5"/><text class="ax" x="58" y="114.5" text-anchor="end">15</text><line class="gl" x1="70" y1="18.0" x2="1096" y2="18.0"/><text class="ax" x="58" y="22.0" text-anchor="end">20</text><text class="ax" x="70.0" y="408" text-anchor="middle">0</text><text class="ax" x="275.2" y="408" text-anchor="middle">5</text><text class="ax" x="480.4" y="408" text-anchor="middle">10</text><text class="ax" x="685.6" y="408" text-anchor="middle">15</text><text class="ax" x="890.8" y="408" text-anchor="middle">20</text><text class="ax" x="1096.0" y="408" text-anchor="middle">25</text><line class="axl" x1="70" y1="388" x2="1096" y2="388"/><line class="axl" x1="70" y1="388" x2="70" y2="18"/><line class="med" x1="702.0" y1="18" x2="702.0" y2="388"/><line class="med" x1="70" y1="199.3" x2="1096" y2="199.3"/><text class="mlab" x="708.0" y="380">중앙값 15.4</text><text class="mlab" x="1090" y="193.3" text-anchor="end">중앙값 10.2</text><text class="at" x="583.0" y="434" text-anchor="middle">개인 활용 점수</text><line class="axa" x1="513.0" y1="429" x2="70" y2="429"/><line class="axa" x1="653.0" y1="429" x2="1096" y2="429" marker-end="url(#nqAx)"/><text class="at" transform="translate(16 203.0) rotate(-90)" text-anchor="middle">조직 확산 점수</text><line class="axa" x1="11" y1="265.0" x2="11" y2="388"/><line class="axa" x1="11" y1="141.0" x2="11" y2="18" marker-end="url(#nqAx)"/><text class="ql push" x="86" y="48" text-anchor="start"><tspan class="qt">조직 독려형</tspan><tspan class="qn" dx="8">5명</tspan><tspan class="qp" dx="6">(18%)</tspan></text><text class="ql lead" x="1080" y="48" text-anchor="end"><tspan class="qt">확산 리더형</tspan><tspan class="qn" dx="8">9명</tspan><tspan class="qp" dx="6">(32%)</tspan></text><text class="ql idle" x="86" y="370" text-anchor="start"><tspan class="qt">관망형</tspan><tspan class="qn" dx="8">9명</tspan><tspan class="qp" dx="6">(32%)</tspan></text><text class="ql solo" x="1080" y="370" text-anchor="end"><tspan class="qt">개인 몰입형</tspan><tspan class="qn" dx="8">5명</tspan><tspan class="qp" dx="6">(18%)</tspan></text><g class="span-arr hand" data-step="2"><path d="M668.0 223.3C691.3 213.0 718.1 190.4 736.0 175.3"/><path d="M723.0 176.0L736.0 175.3L730.7 184.9"/><path d="M678.9 221.9L668.0 223.3L672.8 211.2"/></g><g class="pt lead"><circle cx="734.8" cy="73.5" r="8"/><circle cx="849.8" cy="134.6" r="8"/><circle cx="874.4" cy="171.6" r="8"/><circle cx="890.8" cy="166.0" r="8"/><circle cx="878.5" cy="195.6" r="8"/><circle cx="985.2" cy="149.3" r="8"/><circle cx="1005.7" cy="171.6" r="8"/><circle cx="1042.6" cy="178.9" r="8"/><circle cx="1042.6" cy="184.5" r="8"/></g><g class="pt solo"><circle cx="1063.2" cy="203.0" r="8"/><circle cx="1063.2" cy="203.0" r="8"/><circle cx="730.7" cy="264.1" r="8"/><circle cx="800.5" cy="252.9" r="8"/><circle cx="923.6" cy="334.4" r="8"/></g><g class="pt push"><circle cx="480.4" cy="92.0" r="8"/><circle cx="439.4" cy="164.2" r="8"/><circle cx="574.8" cy="153.1" r="8"/><circle cx="648.7" cy="190.1" r="8"/><circle cx="644.6" cy="190.1" r="8"/></g><g class="pt idle"><circle cx="184.9" cy="203.0" r="8"/><circle cx="381.9" cy="208.6" r="8"/><circle cx="332.7" cy="302.9" r="8"/><circle cx="365.5" cy="341.8" r="8"/><circle cx="480.4" cy="332.5" r="8"/><circle cx="574.8" cy="252.9" r="8"/><circle cx="648.7" cy="227.1" r="8"/><circle cx="652.8" cy="203.0" r="8"/><circle cx="673.3" cy="351.0" r="8"/></g></svg></div>
+    <p class="abs footnote">출처: 넥슨 인재성장팀 리더십파트, AX 역량진단 결과보고서(2026.10)</p>
+  </section>
+  <!-- 01 묶음 연결 장(2026-10-21 사용자 요청): 게임사 CEO 사례 다음, 본인 에이전트 팀 사례 앞. 교육 연결 장을 부록으로 보낸 자리를 질문으로 잇는다(.br 형식) -->
+  <section class="slide dark br" data-gap="1400" aria-label="CEO가 직접 AI 전환을 이끄는 시대, 리더는 AI와 어떻게 일해야 하는가">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <p class="abs br-text"><span class="br-l1" data-step="1">CEO가 직접 AI 전환을 이끄는 시대,</span><span class="br-l2" data-step="2">리더는 <em>AI와 어떻게 일해야</em> 할까요?</span></p>
+  </section>
   <!-- 4. 80명의 AI 에이전트와 팀으로 일하고 있음 (2장과 같은 다크 포맷). 5 + 50 + 25 = 80 -->
   <section class="slide dark" aria-label="에이전트 팀">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
@@ -2439,9 +2661,9 @@
     <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">AI 전환은 교육 확대를 넘어 리더 주도의 변화 관리로 확산됨</h2>
     <div class="abs sp-track"><span class="sp-pill on">01 조직문화 전환: 시사점</span></div>
-    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 격차 관리</span><h3>교육 이수율이 아니라<br>활용 격차를 KPI로 관리</h3><ul><li>AI 교육 제공 기업은 25%에서 58%로 늘었지만, 업무 활용 격차는 7%p로 벌어짐</li></ul><div class="km-act"><small>ACTION ITEM</small><p>부서별 <mark>AI 활용 지표</mark>를 주기적으로 공개하고, 격차가 큰 팀에 <mark>실무 코치</mark>를 배정</p></div></div>
-    <div class="abs km-card" data-step="2" style="left:464px"><span class="km-no">02 · 저항 관리</span><h3>AX 노력의 70%를<br>사람과 프로세스에 배정</h3><ul><li>직원 29%, Z세대 44%가 회사의 AI 전략을 거스르는 중이라 기술 투자만으로는 부족함</li></ul><div class="km-act"><small>ACTION ITEM</small><p>부서마다 <mark>AX 챔피언</mark>을 선정하고, IT 부서와 함께 <mark>AI 전환 과제</mark>를 발굴</p></div></div>
-    <div class="abs km-card hot" data-step="3" style="left:852px"><span class="km-no">03 · 리더의 시범</span><h3>리더가 먼저 AI로<br>일하는 모습을 보여줌</h3><ul><li>구성원은 교육보다 리더가 실제로 일하는 방식을 보고 따라옴</li></ul><div class="km-act"><small>ACTION ITEM</small><p>보고는 <mark>HTML</mark>로 받고, 리더가 <mark>에이전트로 먼저 검토</mark>하는 과정을 공개 <span style="white-space:nowrap">(파워포인트 → 1 Pager → HTML)</span></p></div></div>
+    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 격차 관리</span><h3>교육 이수율이 아니라<br>활용 격차를 KPI로 관리</h3><ul><li>AI 교육 제공 기업은 25%에서 58%로 늘었지만, 업무 활용 격차는 7%p로 벌어짐</li></ul><div class="km-act"><small>ACTION ITEM</small><p>스튜디오별 <mark>AI 활용 지표</mark>를 주기적으로 공개하고, 격차가 큰 팀에 <mark>실무 코치</mark>를 배정</p></div></div>
+    <div class="abs km-card" data-step="2" style="left:464px"><span class="km-no">02 · 변화 피로 관리</span><h3>AX 노력의 70%를<br>사람과 프로세스에 배정</h3><ul><li>기술이 빨리 바뀔수록 구성원의 피로가 쌓이고, 직원 29%·Z세대 44%는 AI 전략을 거스르기까지 함</li></ul><div class="km-act"><small>ACTION ITEM</small><p>3~6개월 앞의 <mark>AX 로드맵</mark>을 공유하고, <mark>AX 챔피언의 노하우</mark>를 팀의 스킬로 옮김</p></div></div>
+    <div class="abs km-card hot" data-step="3" style="left:852px"><span class="km-no">03 · 리더의 시범</span><h3>리더가 먼저 AI로<br>일하는 모습을 보여줌</h3><ul><li>구성원은 교육보다 리더가 실제로 일하는 방식을 보고 따라옴</li><li>넥슨 진단: 결과물 검증 습관 76%, 구성원 기준 안내 26%</li></ul><div class="km-act"><small>ACTION ITEM</small><p>보고는 <mark>HTML</mark>로 받고, 리더가 <mark>에이전트로 먼저 검토</mark>하는 과정을 공개 <span style="white-space:nowrap">(파워포인트 → 1 Pager → HTML)</span></p></div></div>
   </section>
 
   <!-- 02 묶음 여는 연결 장(12장 .br 형식): 01 사례(리더가 먼저 일하는 방식)에서 02(암묵지 축적)로 넘어감 -->
@@ -2466,11 +2688,28 @@
     <p class="abs footnote">출처: Krafton 발표(2025.10, DCD·Hitmarker 보도) · Square Enix 중기 계획 진척 보고(2025.11, VGC) · Business Insider, EA(2025.10) · Google Cloud·Harris Poll, 게임 개발자 조사(2025.8) · Ubisoft News, Teammates(2025.11)</p>
   </section>
 
+  <!-- 모델 활용 세 방식(2026-10-21 사용자 요청): 게임사 사례 다음, 운영 계층(골라 쓰는 엔진) 앞. 넥슨의 전용 모델 개발을 부정하지 않고 Build·Buy·Route를 섞는 구조로 정리.
+       근거: 과기정통부 독자 AI 파운데이션 모델 2차 성과(2026.8, Epoch AI 주목할 모델 등재: K-EXAONE 2.0, A.X K2, Solar Open2) ·
+       OpenAI gpt-oss(2025.8) · Menlo Ventures 2025 Mid-Year LLM Market Update(2025.7.31, 기업 사용 비중 Anthropic 32%, OpenAI 25%, Google 20%) ·
+       Microsoft Learn, Foundry Model router(비용·균형·품질 모드, 18개 모델) · AWS, Bedrock Intelligent Prompt Routing("up to 30%" 비용 절감, AWS 주장) (2026-10-21 크래프톤 사례는 사용자 요청으로 뺌) -->
+  <section class="slide dark mo" data-gap="700" aria-label="모델 활용 전략은 Build에서 Buy, Route로 진화하는 중: 직접 구축(자체 모델, Open Weight), 프론티어 모델 기업 계약, 멀티 모델 라우팅">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">모델 활용 전략은 Build에서 Buy, Route로 진화하는 중</h2>
+    <div class="abs ex2-axis mo-axis" data-step="4" aria-label="왼쪽은 보안 강화, 오른쪽은 비용 효율성"><b>보안 강화</b><i aria-hidden="true"></i><b class="r">비용 효율성</b></div>
+    <div class="abs mo-card" data-step="1" style="left:76px"><div class="mo-top"><b>BUILD</b><span>직접 구축</span></div><h3>보안과 통제가 우선일 때</h3><div class="mo-sub"><b>자체 모델 개발</b><p>LG K-EXAONE, SKT A.X</p></div><div class="mo-sub"><b>Open Weight 모델 활용</b><p>gpt-oss, Qwen, DeepSeek</p></div><p class="mo-cost">대신 GPU·인력 등 운영 부담이 큼</p></div>
+    <svg class="abs mo-arr" data-step="2" style="left:433px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <div class="abs mo-card" data-step="2" style="left:464px"><div class="mo-top"><b>BUY</b><span>기업 계약</span></div><h3>최신 성능이 우선일 때</h3><div class="mo-sub"><b>프론티어 모델 기업 계약</b><p>Anthropic, OpenAI, Google</p></div><div class="mo-sub"><b>클라우드로 도입</b><p>Azure, Bedrock, Vertex AI</p></div><p class="mo-cost">대신 토큰 비용과 공급사 종속이 커짐</p></div>
+    <svg class="abs mo-arr" data-step="3" style="left:821px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <div class="abs mo-card hot" data-step="3" style="left:852px"><div class="mo-top"><b>ROUTE</b><span>멀티 모델 라우팅</span></div><h3>업무마다 모델을 나눠 쓸 때</h3><div class="mo-sub"><b>업무별 모델 자동 배정</b><p>난이도·보안 등급·비용 기준</p></div><div class="mo-sub"><b>클라우드 라우터</b><p>Microsoft Foundry, Amazon Bedrock</p></div><p class="mo-cost">대신 배정 기준을 직접 설계해야 함</p></div>
+    <p class="abs footnote">출처: 과기정통부, 독자 AI 파운데이션 모델 프로젝트(2026.8) · OpenAI gpt-oss(2025.8) · Microsoft Learn, Model router · AWS, Bedrock Intelligent Prompt Routing</p>
+  </section>
+
   <!-- 18. 운영 계층: 왼쪽 LLM(골라 쓰는 엔진, 계층 1~3) + 4개 계층 + 오른쪽 Control Tower(실시간 관제, 계층 전체). 관제는 모든 층을 보고 Agent OS로 개입 지시 -->
   <section class="slide dark ly" data-click="1" data-auto="3" style="--bs:10px" aria-label="에이전트 조직의 운영 계층: 골라 쓰는 LLM, 직접 갖출 관제와 회사의 두뇌">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">LLM 자체보다 Company Brain과 관제 체계의 중요성이 더 커지고 있음</h2>
+    <h2 class="abs head-title">LLM보다 Company Brain과 관제 체계의 중요성이 커지는 중</h2>
     <div class="abs ly-model" data-step="1"><p class="ly-kicker">ENGINE</p><p class="ly-en">LLM</p><p class="ly-ko">골라 쓰는 엔진</p><ul><li>범용 LLM</li><li>도메인 특화 LLM</li><li>사내 모델</li></ul></div>
     <svg class="abs ly-wires" data-step="2" viewBox="0 0 20 330" aria-hidden="true"><line x1="0" y1="279" x2="20" y2="279"/><circle cx="1.5" cy="279" r="2.5"/></svg>
     <svg class="abs ly-wires" data-step="4" viewBox="0 0 20 330" aria-hidden="true"><line x1="0" y1="51" x2="20" y2="51"/><circle cx="1.5" cy="51" r="2.5"/><line x1="0" y1="165" x2="20" y2="165"/><circle cx="1.5" cy="165" r="2.5"/></svg>
@@ -2567,17 +2806,16 @@
 
   <!-- 업무 지도(2026-10-18 HR 서밋 덱 22장 구조로 다시 씀): HR 대신 일반 업무 다섯 줄(MD·상품기획, 마케팅, 고객 응대, 재무·경영지원, 보고·협업)에
        성과가 빨리 나기 쉬운 반복·대량 업무를 골라 AI 활용 유형 16가지를 한 번씩 배치. 칩 색은 AI가 맡는 역할 넷(생성·편집, 요약·인식, 검색·조사, 분석·실행). 줄마다 차례로 뜬다 -->
-  <section class="slide dark hm" data-gap="500" aria-label="AI 적용 지점은 특정 부서가 아니라 모든 직무에 걸쳐 있음: 업무 단계별 AI 활용 16가지">
+  <section class="slide dark hm" data-gap="500" aria-label="AI 적용 지점은 특정 부서가 아니라 모든 직무에 걸쳐 있음: 업무 단계별 AI 활용 13가지">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">AI 적용 지점은 특정 부서가 아니라 모든 직무에 걸쳐 있음</h2>
-    <p class="abs cr-sub lv-sub">업무 단계별 AI 활용 16가지(Selective)</p>
+    <p class="abs cr-sub lv-sub">업무 단계별 AI 활용 13가지(Selective)</p>
     <p class="abs hm-lg"><span><i class="c"></i>생성·편집</span><span><i class="u"></i>요약·인식</span><span><i class="f"></i>검색·조사</span><span><i class="x"></i>분석·실행</span></p>
-    <div class="abs hm-lane" data-step="1" style="top:220px"><div class="hm-st"><b>게임 기획</b><span>재미를 설계하는 일</span></div><div class="hm-chips"><div class="hm-chip c"><p class="hm-k"><em>생성·편집</em>아이디어</p><p class="hm-t">퀘스트·이벤트 기획 초안</p></div><div class="hm-chip f"><p class="hm-k"><em>검색·조사</em>딥 리서치</p><p class="hm-t">경쟁작·장르 트렌드 조사</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>예측·시뮬레이션</p><p class="hm-t">밸런스·게임 경제 시뮬레이션</p></div></div></div>
-    <div class="abs hm-lane" data-step="2" style="top:308px"><div class="hm-st"><b>개발·아트</b><span>게임을 만드는 일</span></div><div class="hm-chips"><div class="hm-chip c"><p class="hm-k"><em>생성·편집</em>생성</p><p class="hm-t">컨셉 아트·에셋 초안</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>코딩</p><p class="hm-t">툴·스크립트·빌드 자동화</p></div><div class="hm-chip u"><p class="hm-k"><em>요약·인식</em>이미지 이해(OCR)</p><p class="hm-t">UI 화면 텍스트 추출·검수</p></div></div></div>
-    <div class="abs hm-lane" data-step="3" style="top:396px"><div class="hm-st"><b>QA·라이브옵스</b><span>게임을 지키고 운영하는 일</span></div><div class="hm-chips"><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>PC 업무 자동화</p><p class="hm-t">반복 테스트 시나리오 실행</p></div><div class="hm-chip f"><p class="hm-k"><em>검색·조사</em>사내 규정 챗봇(RAG)</p><p class="hm-t">운영 정책·대응 매뉴얼 Q&amp;A</p></div><div class="hm-chip u"><p class="hm-k"><em>요약·인식</em>요약</p><p class="hm-t">버그 리포트·로그 요약</p></div></div></div>
-    <div class="abs hm-lane" data-step="4" style="top:484px"><div class="hm-st"><b>마케팅·커뮤니티</b><span>플레이어와 소통하는 일</span></div><div class="hm-chips"><div class="hm-chip u"><p class="hm-k"><em>요약·인식</em>영상 이해</p><p class="hm-t">플레이 영상·방송 반응 분석</p></div><div class="hm-chip c"><p class="hm-k"><em>생성·편집</em>번역</p><p class="hm-t">글로벌 공지·패치 노트 현지화</p></div><div class="hm-chip f"><p class="hm-k"><em>검색·조사</em>전문 챗봇</p><p class="hm-t">플레이어 문의 1차 응대</p></div><div class="hm-chip u"><p class="hm-k"><em>요약·인식</em>음성 이해</p><p class="hm-t">음성 피드백·인터뷰 정리</p></div></div></div>
-    <div class="abs hm-lane" data-step="5" style="top:572px"><div class="hm-st"><b>경영지원</b><span>숫자와 문서를 관리하는 일</span></div><div class="hm-chips"><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>차트 만들기</p><p class="hm-t">매출·리텐션 대시보드</p></div><div class="hm-chip f"><p class="hm-k"><em>검색·조사</em>외부 데이터 정리</p><p class="hm-t">시장·경쟁사 지표 정리</p></div><div class="hm-chip c"><p class="hm-k"><em>생성·편집</em>교정</p><p class="hm-t">보고서·사내 공지 교정</p></div></div></div>
+    <div class="abs hm-lane" data-step="1" style="top:226px"><div class="hm-st"><b>게임 기획</b><span>재미를 설계하는 일</span></div><div class="hm-chips"><div class="hm-chip c"><p class="hm-k"><em>생성·편집</em>아이디어</p><p class="hm-t">퀘스트·이벤트 기획 초안</p></div><div class="hm-chip f"><p class="hm-k"><em>검색·조사</em>딥 리서치</p><p class="hm-t">경쟁작·장르 트렌드 조사</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>예측·시뮬레이션</p><p class="hm-t">밸런스·게임 경제 시뮬레이션</p></div></div></div>
+    <div class="abs hm-lane" data-step="2" style="top:336px"><div class="hm-st"><b>개발·아트</b><span>게임을 만드는 일</span></div><div class="hm-chips"><div class="hm-chip c"><p class="hm-k"><em>생성·편집</em>생성</p><p class="hm-t">컨셉 아트·에셋 초안</p></div><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>코딩</p><p class="hm-t">툴·스크립트·빌드 자동화</p></div><div class="hm-chip u"><p class="hm-k"><em>요약·인식</em>이미지 이해(OCR)</p><p class="hm-t">UI 화면 텍스트 추출·검수</p></div></div></div>
+    <div class="abs hm-lane" data-step="3" style="top:446px"><div class="hm-st"><b>QA·라이브옵스</b><span>게임을 지키고 운영하는 일</span></div><div class="hm-chips"><div class="hm-chip x"><p class="hm-k"><em>분석·실행</em>PC 업무 자동화</p><p class="hm-t">반복 테스트 시나리오 실행</p></div><div class="hm-chip f"><p class="hm-k"><em>검색·조사</em>사내 규정 챗봇(RAG)</p><p class="hm-t">운영 정책·대응 매뉴얼 Q&amp;A</p></div><div class="hm-chip u"><p class="hm-k"><em>요약·인식</em>요약</p><p class="hm-t">버그 리포트·로그 요약</p></div></div></div>
+    <div class="abs hm-lane" data-step="4" style="top:556px"><div class="hm-st"><b>마케팅·커뮤니티</b><span>플레이어와 소통하는 일</span></div><div class="hm-chips"><div class="hm-chip u"><p class="hm-k"><em>요약·인식</em>영상 이해</p><p class="hm-t">플레이 영상·방송 반응 분석</p></div><div class="hm-chip c"><p class="hm-k"><em>생성·편집</em>번역</p><p class="hm-t">글로벌 공지·패치 노트 현지화</p></div><div class="hm-chip f"><p class="hm-k"><em>검색·조사</em>전문 챗봇</p><p class="hm-t">플레이어 문의 1차 응대</p></div><div class="hm-chip u"><p class="hm-k"><em>요약·인식</em>음성 이해</p><p class="hm-t">음성 피드백·인터뷰 정리</p></div></div></div>
   </section>
 
   <!-- 02 암묵지 축적 묶음 마무리(2026-10-18): 이전 올리브영 덱의 "시사점" 장(km-card 세 장) 문법에 액션 아이템 칸을 더함. 근거: 20·23·24·25·27장(소비재·유통 사례, Company Brain, 아모레퍼시픽, 스킬, 이해 상충) -->
@@ -2586,8 +2824,8 @@
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">Company Brain과 스킬 라이브러리로 조직의 노하우를 쌓아야 함</h2>
     <div class="abs sp-track"><span class="sp-pill on">02 암묵지 축적: 시사점</span></div>
-    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 지식 연결</span><h3>흩어진 개발 문서와<br>QA 기록을 AI로 연결</h3><ul><li>크래프톤·스퀘어에닉스·EA, 개발·QA 업무를 사내 AI로 연결</li></ul><div class="km-act"><small>ACTION ITEM</small><p>기획서·빌드·QA 기록을 <mark>단일 지식 저장소</mark>로 통합하고, <mark>개발용 AI 비서</mark>부터 도입</p></div></div>
-    <div class="abs km-card" data-step="2" style="left:464px"><span class="km-no">02 · 의미 정의</span><h3>데이터 의미를 정의해<br>Company Brain을 구축</h3><ul><li>부서마다 다른 데이터 정의로 에이전트의 판단 기준 불일치</li></ul><div class="km-act"><small>ACTION ITEM</small><p>플레이어·결제·로그 데이터의 용어와 지표 정의를 <mark>전사 기준으로 표준화</mark></p></div></div>
+    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 지식 연결</span><h3>흩어진 개발 문서와<br>QA 기록을 AI로 연결</h3><ul><li>크래프톤·스퀘어에닉스·EA, 개발·QA 업무를 사내 AI로 연결</li></ul><div class="km-act"><small>ACTION ITEM</small><p>기획서·소스 코드·QA 기록이 <mark>어디에 있고 어떻게 이어지는지</mark> 지도로 만들고, <mark>개발용 AI 비서</mark>부터 도입</p></div></div>
+    <div class="abs km-card" data-step="2" style="left:464px"><span class="km-no">02 · 의미 정의</span><h3>데이터 의미를 정의해<br>Company Brain을 구축</h3><ul><li>게임마다 데이터 구조가 달라 하나로 통일하기 어렵고, 에이전트의 판단 기준도 어긋남</li></ul><div class="km-act"><small>ACTION ITEM</small><p>모든 데이터를 통일하는 대신, 핵심 지표의 정의와 위치를 <mark>온톨로지</mark>로 연결</p></div></div>
     <div class="abs km-card hot" data-step="3" style="left:852px"><span class="km-no">03 · 노하우 축적</span><h3>노하우를 스킬로 만들어<br>스킬 라이브러리에 축적</h3><ul><li>노하우 공유 시 대체될 수 있다는 우려로 조직과 개인의 이해 상충</li></ul><div class="km-act"><small>ACTION ITEM</small><p>스킬 기여도와 활용도를 <mark>평가·보상에 반영</mark>하고, <mark>수집 범위와 활용 원칙</mark>을 사전에 공개</p></div></div>
   </section>
 
@@ -2619,7 +2857,7 @@
 
   <!-- 11. AI 빅테크는 사업 중심을 LLM 개발에서 에이전트 서비스로 옮기는 중: 각사 에이전트 제품 타임라인(2025.1–2026.10.12 발표 기준. Meta Muse Wonder 2026-10-12: TechCrunch·CNBC. xAI Grok Build 2026-05-14·Grok Bot 2026-08-11: Bloomberg·xAI 공식 글, 2026 중반부터 보도상 사명 SpaceXAI.
        2026-10-19 보강: OpenAI Workspace Agents 2026-04-22(OpenAI)·ChatGPT Work 2026-07-09(TNW)·dots 2026-09-29(SF Standard), Anthropic Claude Code Projects 2026-09-17(The New Stack, 1차 출처 미확인),
-       Google Chrome Auto Browse 2026-01-28(SiliconANGLE)·Call for Me 2026-09-24(TechCrunch), Meta Manus My Computer 2026-03-16(9to5Mac). Managed Agents(개발자 인프라)·Muse Wonder(모델)는 강조 해제). 강조 칸 = 에이전트 제품(사용자 요청 2026-10-19: 에이전트에만 색), 회색 칸 = 모델(Muse Spark·Muse Wonder)·개발자 인프라(Managed Agents) -->
+       Google Chrome Auto Browse 2026-01-28(SiliconANGLE)·Call for Me 2026-09-24(TechCrunch), Meta Manus My Computer 2026-03-16(9to5Mac). Managed Agents(개발자 인프라)·Muse Wonder(모델)는 강조 해제). 강조 칸 = 에이전트 제품(사용자 요청 2026-10-19: 에이전트에만 색), 회색 칸 = 모델(Muse Spark)·개발자 인프라(Managed Agents). 2026-10-21 사용자 요청: 회사별 맨 오른쪽(가장 최근) 칸만 강조 -->
   <section class="slide dark" style="--bs:18px" aria-label="AI 기업 5사의 에이전트 기업 전환 타임라인">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
@@ -2637,36 +2875,36 @@
     <div class="abs tl-span" style="left:1047px;width:151px"></div>
     <div class="abs tl-row" data-step="2" style="top:284px">
       <p class="tl-co">OpenAI</p>
-      <div class="tl-card hot" style="left:157px;width:315px"><b>Operator · Agents SDK · Codex</b><span>브라우저 조작, 에이전트 개발 키트, 클라우드 코딩 에이전트</span></div>
-      <div class="tl-card hot" style="left:482px;width:153px"><b style="font-size:14px;letter-spacing:-.02em">Workspace Agents</b><span>팀 공유형 클라우드 업무 에이전트</span></div>
-      <div class="tl-card hot" style="left:645px;width:153px"><b>ChatGPT Work</b><span>앱을 넘나드는 장시간 업무 에이전트</span></div>
+      <div class="tl-card" style="left:157px;width:315px"><b>Operator · Agents SDK · Codex</b><span>브라우저 조작, 에이전트 개발 키트, 클라우드 코딩 에이전트</span></div>
+      <div class="tl-card" style="left:482px;width:153px"><b style="font-size:14px;letter-spacing:-.02em">Workspace Agents</b><span>팀 공유형 클라우드 업무 에이전트</span></div>
+      <div class="tl-card" style="left:645px;width:153px"><b>ChatGPT Work</b><span>앱을 넘나드는 장시간 업무 에이전트</span></div>
       <div class="tl-card hot" style="left:808px;width:153px"><b>dots</b><span>자체 클라우드 컴퓨터 기반 상시 가동 에이전트</span></div>
     </div>
     <div class="abs tl-row" data-step="1" style="top:188px">
       <p class="tl-co">Anthropic</p>
-      <div class="tl-card hot" style="left:157px;width:153px"><b>Claude Code</b><span>터미널 기반 코딩 에이전트</span></div>
-      <div class="tl-card hot" style="left:320px;width:153px"><b>Cowork</b><span>데스크톱 파일·앱 작업 에이전트</span></div>
+      <div class="tl-card" style="left:157px;width:153px"><b>Claude Code</b><span>터미널 기반 코딩 에이전트</span></div>
+      <div class="tl-card" style="left:320px;width:153px"><b>Cowork</b><span>데스크톱 파일·앱 작업 에이전트</span></div>
       <div class="tl-card" style="left:482px;width:153px"><b>Managed Agents</b><span>수 시간 단위 장기 실행 관리형 인프라</span></div>
       <div class="tl-card hot" style="left:808px;width:153px"><b>Projects</b><span>Claude Code 병렬 클라우드 세션 지휘</span></div>
     </div>
     <div class="abs tl-row" data-step="4" style="top:476px">
       <p class="tl-co">Google</p>
-      <div class="tl-card hot" style="left:320px;width:153px"><b>Auto Browse</b><span>크롬에서 웹 작업 대행 에이전트</span></div>
-      <div class="tl-card hot" style="left:482px;width:153px"><b>Gemini Spark</b><span>Gmail 연동 24시간 개인 에이전트</span></div>
-      <div class="tl-card hot" style="left:808px;width:153px"><b>Call for Me</b><span>사업장에 대신 전화 거는 에이전트</span></div>
+      <div class="tl-card" style="left:320px;width:153px"><b>Auto Browse</b><span>크롬에서 웹 작업 대행 에이전트</span></div>
+      <div class="tl-card" style="left:482px;width:153px"><b>Gemini Spark</b><span>Gmail 연동 24시간 개인 에이전트</span></div>
+      <div class="tl-card" style="left:808px;width:153px"><b>Call for Me</b><span>사업장에 대신 전화 거는 에이전트</span></div>
       <div class="tl-card hot" style="left:970px;width:153px"><b>Gemini agent</b><span>하위 에이전트, 모델 선택</span></div>
     </div>
     <div class="abs tl-row" data-step="3" style="top:380px">
       <p class="tl-co">Meta</p>
-      <div class="tl-card hot" style="left:320px;width:153px"><b>Manus Desktop</b><span>내 PC를 조작하는 데스크톱 에이전트</span></div>
+      <div class="tl-card" style="left:320px;width:153px"><b>Manus Desktop</b><span>내 PC를 조작하는 데스크톱 에이전트</span></div>
       <div class="tl-card" style="left:482px;width:153px"><b>Muse Spark</b><span>멀티 에이전트 조율 추론 모델</span></div>
-      <div class="tl-card hot" style="left:645px;width:153px"><b>Muse Code</b><span>Muse Spark 연동 코딩 에이전트</span></div>
-      <div class="tl-card hot" style="left:808px;width:153px"><b>Muse</b><span>일정·심부름 대행 개인 에이전트</span></div>
-      <div class="tl-card" style="left:970px;width:153px"><b>Muse Wonder</b><span>에이전트 작업 특화 최상위 모델</span></div>
+      <div class="tl-card" style="left:645px;width:153px"><b>Muse Code</b><span>Muse Spark 연동 코딩 에이전트</span></div>
+      <div class="tl-card" style="left:808px;width:153px"><b>Muse</b><span>일정·심부름 대행 개인 에이전트</span></div>
+      <div class="tl-card hot" style="left:970px;width:153px"><b>Muse Wonder</b><span>에이전트 작업 특화 최상위 모델</span></div>
     </div>
     <div class="abs tl-row" data-step="5" style="top:572px">
       <p class="tl-co">xAI</p>
-      <div class="tl-card hot" style="left:482px;width:153px"><b>Grok Build</b><span>터미널 기반 코딩 에이전트</span></div>
+      <div class="tl-card" style="left:482px;width:153px"><b>Grok Build</b><span>터미널 기반 코딩 에이전트</span></div>
       <div class="tl-card hot" style="left:645px;width:153px"><b>Grok Bot</b><span>앱에 로그인해 일하는 상시 에이전트 팀</span></div>
     </div>
   </section>
@@ -2708,7 +2946,7 @@
     <div class="abs oc-card" data-step="1" style="left:76px"><span class="oc-no">01</span><b>사람이 에이전트를 이끔</b><p>지금 대부분의 조직이 시작하는 형태. 리더가 목표와 맥락을 주고 결과를 검증함</p><p class="oc-hr"><em>조직</em>에이전트 위임·검증 역량을 리더 평가에 반영</p></div>
     <div class="abs oc-head a" data-step="2" style="left:540px"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트 C-level</div>
     <div class="abs oc-team" data-step="2" style="left:470px"><span class="oc-chip p"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5" r="3"/><path d="M2.5 15c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/></svg>사람</span><span class="oc-chip p"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="5" r="3"/><path d="M2.5 15c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/></svg>사람</span><span class="oc-chip a"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트</span></div>
-    <div class="abs oc-card" data-step="2" style="left:464px"><span class="oc-no">02</span><b>에이전트가 사람을 조율함</b><p>에이전트가 업무 배분·일정·진척을 관리하고, 사람은 판단과 실행을 맡음</p><p class="oc-hr"><em>조직</em>평가·보상의 최종 결정은 사람이 내린다는 원칙</p></div>
+    <div class="abs oc-card" data-step="2" style="left:464px"><span class="oc-no">02</span><b>에이전트가 사람을 조율함</b><p>에이전트가 일정·빌드·QA 진척을 관리하고, 재미와 품질의 판단은 사람이 맡음</p><p class="oc-hr"><em>조직</em>평가·보상의 최종 결정은 사람이 내린다는 원칙</p></div>
     <div class="abs oc-head a" data-step="3" style="left:928px"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트 C-level</div>
     <div class="abs oc-team" data-step="3" style="left:858px"><span class="oc-chip a"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트</span><span class="oc-chip a"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트</span><span class="oc-chip a"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="4.5" width="11" height="9" rx="2.5"/><path d="M8 4.5V2M5.8 9h.01M10.2 9h.01"/></svg>에이전트</span></div>
     <div class="abs oc-card hot" data-step="3" style="left:852px"><span class="oc-no">03</span><b>에이전트가 에이전트를 이끔</b><p>사람 개입 없이 돌아가는 업무 단위. 사람은 결과와 비용만 감독함</p><p class="oc-hr"><em>조직</em>책임자 지정, 감사 기록 기준, 비용 한도 설정</p></div>
@@ -2742,7 +2980,7 @@
   <section class="slide dark aos" data-gap="900" aria-label="AI, Data, Knowledge 다음은 Agent OS: 에이전트에게 노하우와 일하는 공간을 제공하는 기반">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
-    <h2 class="abs head-title">AI 투자 집중 영역은 모델이 아니라 Knowledge와 Agent OS임</h2>
+    <h2 class="abs head-title">AI 투자는 모델을 넘어 Knowledge와 Agent OS로 넓어져야 함</h2>
     <div class="abs aos-grid">
       <div class="aos-grp a" data-step="1"><span>노하우</span></div>
       <div class="aos-grp b" data-step="2"><span>일하는 공간</span></div>
@@ -2756,7 +2994,8 @@
       <span class="aos-sub hl" data-step="2" style="grid-column:7">Agent Identity + Harness + Control Tower</span>
     </div>
     <p class="abs aos-def" data-step="3">에이전트에게 <em>노하우</em>와 <em>일하는 공간</em>을 제공하는 기반</p>
-    <div class="abs aos-imp" data-step="4"><b>넥슨 시사점</b><p>모델은 범용화되므로, 축적되는 <em>Company Brain·Skill Library</em>에 집중 투자하고 <em>Agent OS</em>는 사내 시스템 연동 파일럿으로 검증해야 함</p></div>
+    <p class="abs aos-data" data-step="4">넥슨 진단: 조직 차원 장애요인 1위는 <b>보안·데이터 활용 기준 불명확</b>(7명), 구성원에게 기준을 직접 안내한 리더는 <b>5명(18%)</b></p>
+    <div class="abs aos-imp" data-step="4"><b>넥슨 시사점</b><p>모델은 바꿔 쓰고, 그 밖에 쌓이는 <em>Company Brain·Skill Library</em>에 집중 투자하고 <em>Agent OS</em>는 사내 시스템 연동 파일럿으로 검증해야 함</p></div>
   </section>
 
   <!-- 38→39 연결 장(2026-10-19 사용자 요청): Agent OS(기반·투자)에서 하이브리드 팀 리더십 사이클로 넘어가는 다리. 기존 br 장 문법 그대로 -->
@@ -2857,10 +3096,75 @@
     <div class="abs ax5-col" data-step="4" style="left:763px"><div class="ax5-h"><small>04</small><b>CAPABILITY</b><span>어떤 역량으로 하는가</span><em>리더·역량 육성</em></div><ul><li class="key"><b>Using AI →<br>Operating AI</b><p>AI 교육 목표를 체험에서 운영으로 전환</p></li><li><b>People Leader →<br>Hybrid Leader</b><p>사람과 에이전트를 함께 이끄는 리더로 전환</p></li></ul></div>
     <div class="abs ax5-col" data-step="5" style="left:992px"><div class="ax5-h"><small>05</small><b>MEASURE</b><span>무엇으로 측정하는가</span><em>평가·보상</em></div><ul><li class="key"><b>Token Maxxing →<br>Value Maxxing</b><p>사용량보다 창출 가치 중심으로 평가</p></li><li><b>Individual →<br>Team Productivity</b><p>생산성을 팀 단위로 측정</p></li></ul></div>
     <i class="abs ax5-trig" data-step="6" aria-hidden="true"></i>
+    <p class="abs footnote">넥슨 진단(28명): 현재 단계는 '프로세스 효율화' 14명이 최다, 1년 후 지향은 '협업·시스템 내재화' 12명, '신규 가치창출'은 현재 0명에서 1년 후 4명 · 출처: 넥슨 인재성장팀 AX 역량진단 결과보고서(2026.10)</p>
   </section>
 
 
   <!-- 20. 마무리: 왼쪽에서 모인 빛줄기가 한 줄로 이어지는 엔딩 화면 -->
+  <!-- AX Methodology 2: 같은 틀을 흐리게 깔고 고민 영역 4개를 번호 순으로 클릭해 올린다. 블록마다 HR 리더용 Action Items 말풍선.
+       2026-10-19: 3·4번 블록 이름을 Agent OS 장(38) 용어와 맞춤(Company Brain + Skill Library, Agent OS + 하이브리드 조직) -->
+  <!-- 인용: Satya Nadella, X 장문 에세이(2026-06-14). 원문 문장 그대로 -->
+  <section class="slide dark quote" aria-label="사티아 나델라 인용">
+    <svg class="abs qt-mark" viewBox="0 0 64 52" aria-hidden="true"><path fill="#0aa0d2" d="M0 52V30C0 13 9 3 26 0l3 7C19 10 14 17 14 26h12v26H0zm35 0V30C35 13 44 3 61 0l3 7C54 10 49 17 49 26h12v26H35z"/></svg>
+    <blockquote class="abs qt-text">진짜 기회는 최고의 모델을 고르는 데 있지 않습니다.<br>모델 위에 <mark class="cap">휴먼 캐피탈</mark>과 <mark class="cap">토큰 캐피탈</mark>이 함께 복리로 쌓이는<br><mark class="loop">학습 루프</mark>를 만드는 데 있습니다.</blockquote>
+    <p class="abs qt-src"><i></i><b>사티아 나델라, 마이크로소프트 CEO</b><span>X 에세이, 2026년 6월 14일</span></p>
+  </section>
+
+  <section class="slide closing" aria-label="마무리 인사">
+    <svg class="abs oy-symbol nx-symbol" viewBox="0 0 1 1" role="img" aria-label="넥슨 심볼"><polygon points="0,0.238 0.444,0 0.444,0.640 0,0.542" fill="#0a3255"/><polygon points="0,0.542 0.444,0.640 0,0.874" fill="#0aa0d2"/><polygon class="oy-dot" points="0,0.874 0.444,0.640 1,0.762 0.551,1" fill="#b4e114"/></svg>
+    <img class="abs cover-logo nx-logo" src="assets/logo-nexon.png" alt="NEXON">
+    <h2 class="abs cl-title">감사합니다</h2>
+    <div class="abs cl-bar oy-bar" aria-hidden="true"></div>
+    <p class="abs cl-sub">강정구 · 라이너 AI 전략 총괄</p>
+    <div class="abs cl-qr"><a href="https://www.linkedin.com/in/jayden-kang/" target="_blank" rel="noopener"><svg class="cl-qr-code" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="링크드인 프로필 QR 코드" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#1a1a1a" d="M0 0.5h7m3 0h1m1 0h3m3 0h1m3 0h7M0 1.5h1m5 0h1m1 0h1m2 0h1m4 0h2m2 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m5 0h1m4 0h1m2 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h3m2 0h1m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h2m1 0h2m2 0h5m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h2m2 0h2m1 0h1m5 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m2 0h1m4 0h1m2 0h2M0 8.5h1m5 0h1m1 0h2m2 0h3m2 0h3m1 0h2m2 0h3M1 9.5h1m1 0h1m1 0h1m3 0h3m2 0h7m2 0h2m1 0h2M0 10.5h2m2 0h3m4 0h5m1 0h1m4 0h1M0 11.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h3m2 0h2m2 0h1m1 0h1M0 12.5h1m1 0h2m2 0h3m5 0h1m1 0h1m3 0h1m1 0h2m4 0h1M2 13.5h1m2 0h1m1 0h1m2 0h4m1 0h6m1 0h1m1 0h1m2 0h2M0 14.5h2m4 0h2m2 0h7m1 0h1m1 0h4m1 0h2M3 15.5h1m1 0h1m2 0h2m1 0h2m7 0h5m1 0h1m1 0h1M0 16.5h1m5 0h3m2 0h2m2 0h1m1 0h1m1 0h1m3 0h1m1 0h2M0 17.5h1m1 0h1m1 0h1m4 0h1m3 0h1m1 0h6m1 0h3m1 0h3M0 18.5h9m2 0h1m3 0h2m2 0h2m4 0h1m2 0h1M0 19.5h1m2 0h1m4 0h2m1 0h3m2 0h1m1 0h1m1 0h1m1 0h3M0 20.5h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h5m1 0h3M8 21.5h2m4 0h2m1 0h2m1 0h1m3 0h2M0 22.5h7m2 0h2m1 0h1m2 0h3m1 0h2m1 0h1m1 0h3M0 23.5h1m5 0h1m3 0h1m3 0h1m4 0h2m3 0h1M0 24.5h1m1 0h3m1 0h1m3 0h5m4 0h7m1 0h1M0 25.5h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m1 0h1m1 0h2m1 0h1M0 26.5h1m1 0h3m1 0h1m2 0h1m3 0h1m1 0h5m1 0h7M0 27.5h1m5 0h1m2 0h5m2 0h1m1 0h1m4 0h1m1 0h2m1 0h1M0 28.5h7m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m2 0h5"/></svg></a><p><b>LinkedIn</b><span>linkedin.com/in/jayden-kang</span></p></div>
+  </section>
+
+  <!-- 사전 질문 원문(2026-10-21 사용자 요청): 넥슨 리더들이 보낸 질문 7개. 뜻은 그대로 두고 주술 구조와 합니다체만 다듬음(2026-10-21 사용자 요청). 뒷표지 뒤 부록 첫 장. 세로 한 줄 나열. 세 묶음 분류는 다음 장 -->
+  <section class="slide dark pqv" data-click="1" data-auto="1" aria-label="사전 질문(원문 7개)">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">사전 질문</h2>
+    <div class="abs pqv-list"><div class="pqv-grp" style="flex:3 1 20px"><div class="pqv-gi" data-step="1"><div class="pqv-item"><div class="pqv-h"><i>Q1</i><b>AI 전환에 따른 조직·인력의 미래</b></div><p>AX가 이상적으로 진행된 조직의 최종 형태는 사람이 최소화된 조직이 아닐까 생각합니다. 이 전제가 맞다면 우리 중 대부분이 사라져야 합니다. 가장 먼저 사라져야 하는 사람과 마지막까지 남아야 하는 사람은 각각 어떤 사람인지 궁금합니다.</p></div><div class="pqv-item"><div class="pqv-h"><i>Q2</i><b>구성원의 불안 해소 방안</b></div><p>조직의 업무가 지속적으로 AI로 전환되면서 구성원들의 불안이 커지고 있습니다. 직무가 재정의·확장되면서 부가가치가 높은 업무를 맡을 기회는 충분히 보장하고 있지만, AI 발전으로 인력이 대체될 수 있다는 막연한 두려움을 어떻게 해소해야 할지 고민입니다.</p></div><div class="pqv-item"><div class="pqv-h"><i>Q3</i><b>AI 시대의 판단 역량 강화</b></div><p>AI 활용이 늘면서 구성원의 반복 업무 생산성이 빠르게 높아졌고, 누구나 일정 수준 이상의 결과물을 빠르게 만들 수 있는 환경이 갖춰졌습니다. 그렇다면 무엇을 판단하고 어떤 방향을 선택할지에 대한 판단 역량은 어떻게 키울 수 있을지 궁금합니다.</p></div></div><p class="pqv-gl" data-step="2"><svg class="pqv-brace" viewBox="0 0 20 100" preserveAspectRatio="none" aria-hidden="true"><path d="M2 1C10 1 10 4 10 10V42C10 47 12 50 18 50C12 50 10 53 10 58V90C10 96 10 99 2 99"/></svg><span>사람</span></p></div><div class="pqv-line" data-step="2" aria-hidden="true"></div><div class="pqv-grp" style="flex:4 1 30px"><div class="pqv-gi" data-step="1"><div class="pqv-item"><div class="pqv-h"><i>Q4</i><b>기존 업무 체계의 AI 전환</b></div><p>새로 시작하는 프로젝트는 초기 설계부터 AX를 고려할 수 있습니다. 하지만 오랫동안 업무 체계가 자리 잡은 상황에서 AI 전환을 시도하면 작업자의 이해관계, 결과물의 부족함, 기존 업무 규모 등 고려할 점이 너무 많습니다.</p></div><div class="pqv-item"><div class="pqv-h"><i>Q5</i><b>AX 투자 효율화</b></div><p>AX를 위한 시간과 인력 투자를 효과적으로 만드는 방안이 궁금합니다.</p></div><div class="pqv-item"><div class="pqv-h"><i>Q6</i><b>빠른 기술 변화에 대한 대응</b></div><p>기술이 계속 빠르게 바뀌고 있습니다. 언제, 어떻게 기반을 잡아야 뒤처지지 않도록 업그레이드할 수 있는지 궁금합니다.</p></div><div class="pqv-item"><div class="pqv-h"><i>Q7</i><b>동종업계 AX 우수 사례</b></div><p>동종업계 타사에 AX 관리의 우수 사례가 있다면 공유받고 싶습니다.</p></div></div><p class="pqv-gl" data-step="2"><svg class="pqv-brace" viewBox="0 0 20 100" preserveAspectRatio="none" aria-hidden="true"><path d="M2 1C10 1 10 4 10 10V42C10 47 12 50 18 50C12 50 10 53 10 58V90C10 96 10 99 2 99"/></svg><span>실행</span></p></div></div>
+  </section>
+
+  <!-- 사전 질문 세 묶음(2026-10-21 사용자 요청): 원문 장 다음. 바깥의 변화 → 우리의 실행 → 사람의 순서 -->
+  <section class="slide dark pqg" data-gap="700" aria-label="사전 질문 7개는 세 묶음: 기술 변화와 업계 흐름(Q6, Q7), AX 실행과 투자(Q4, Q5), 사람과 조직의 미래(Q2, Q1, Q3)">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">사전 질문은 사람·실행·환경 세 가지 과제로 수렴함</h2>
+    <div class="abs pq-col pqg-col" data-step="1" style="left:76px"><span class="rs-pill">01 사람과 조직의 미래</span><p class="pqg-lead">사람의 역할은 어떻게 달라질 것인가?</p><div class="pq-item"><i>Q1</i><p>AI 전환에 따른 조직·인력의 미래</p></div><div class="pq-item"><i>Q2</i><p>구성원의 불안 해소 방안</p></div><div class="pq-item"><i>Q3</i><p>판단 역량 강화 방안</p></div></div>
+    <div class="abs pq-col pqg-col" data-step="2" style="left:464px"><span class="rs-pill">02 AX 실행과 투자</span><p class="pqg-lead">우리 업무는 어떻게 바꿔야 하나?</p><div class="pq-item"><i>Q4</i><p>기존 업무 체계의 AI 전환</p></div><div class="pq-item"><i>Q5</i><p>AX 투자 효율화</p></div></div>
+    <div class="abs pq-col pqg-col" data-step="3" style="left:852px"><span class="rs-pill">03 기술 변화와 업계 흐름</span><p class="pqg-lead">빠른 변화를 어떻게 따라잡을 것인가?</p><div class="pq-item"><i>Q6</i><p>빠른 기술 변화에 대한 대응</p></div><div class="pq-item"><i>Q7</i><p>동종업계 AX 우수 사례</p></div></div>
+  </section>
+
+  <!-- 사전 질문 묶음 01 답(2026-10-21 사용자 요청): 2026-10-21 인사이트 보강: 앤드류 응(다보스 2026.1.19, 일자리 감소 과장·직무의 30~40%), 한국은행 경력 사다리, 고르는 능력 -->
+  <section class="slide dark an" data-gap="700" aria-label="사전 질문 답 01 사람과 조직의 미래(Q2, Q1, Q3): 대체 공포는 과장됐지만 주니어의 사다리는 실제로 흔들림">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">대체 공포는 과장됐지만, 주니어의 사다리는 흔들리는 중</h2>
+    <div class="abs sp-track"><span class="sp-pill on">01 사람과 조직의 미래 · Q2, Q1, Q3</span></div>
+    <p class="abs an-lead" data-step="1">AI가 사람을 대체한다는 이야기에는 과장이 섞여 있습니다. 진짜 위험은 다른 곳에 있습니다.</p>
+    <div class="abs an-list"><div class="an-row" data-step="2"><i>1</i><p><b>대체되는 것은 직무가 아니라 업무의 일부입니다.</b>앤드류 응은 AI로 인한 일자리 감소가 과장됐다며, 많은 직무에서 AI가 할 수 있는 일은 30~40% 수준이라고 했습니다. AI를 쓰는 사람이 쓰지 않는 사람을 대체한다는 것이 그의 결론입니다.</p></div><div class="an-row" data-step="3"><i>2</i><p><b>진짜 위험은 주니어가 배울 일이 사라지는 것입니다.</b>4년간 청년 일자리는 28.5만 개 줄고 50대 일자리는 23만 개 늘었습니다. 정답이 있는 일부터 넘어가면 신입의 첫 업무가 먼저 사라지므로, 시니어의 스킬로 주니어가 배우는 경로를 새로 짜야 합니다.</p></div><div class="an-row" data-step="4"><i>3</i><p><b>만드는 비용이 0에 가까워지면, 고르는 능력이 희소해집니다.</b>결과물 하나 대신 여러 안을 만들게 하고, 좋은 결과의 기준을 먼저 쓰고, 왜 그 안을 골랐는지 기록하게 합니다. 판단 역량은 이 반복에서 자랍니다.</p></div></div>
+    <p class="abs footnote">출처: Andrew Ng, 세계경제포럼 다보스(2026.1.19) · 한국은행 고용연구팀, 변화하는 경력 사다리와 대응 과제(2026.8, 2022.6~2026.6 누적)</p>
+  </section>
+
+  <!-- 사전 질문 묶음 02 답(2026-10-21 사용자 요청): 2026-10-21 인사이트 보강: McKinsey 개인 생산성 80% vs EBIT 37%(본편 9장), 병목 한 곳, 사용 지표, 토큰 가치 환산 -->
+  <section class="slide dark an" data-gap="700" aria-label="사전 질문 답 02 AX 실행과 투자(Q4, Q5): 아낀 시간을 재배치하지 않으면 AX 투자는 사라짐">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">아낀 시간을 재배치하지 않으면 AX 투자는 사라짐</h2>
+    <div class="abs sp-track"><span class="sp-pill on">02 AX 실행과 투자 · Q4, Q5</span></div>
+    <p class="abs an-lead" data-step="1">AI로 개인은 빨라졌지만 회사 이익은 그만큼 늘지 않았습니다. 아낀 시간이 어디로 가는지 설계하지 않았기 때문입니다.</p>
+    <div class="abs an-list"><div class="an-row" data-step="2"><i>1</i><p><b>새 프로젝트는 AI 전제로, 기존 프로젝트는 병목 한 곳만 바꿉니다.</b>오래된 체계를 통째로 바꾸려 하면 이해관계와 규모에 막힙니다. 시간이 가장 많이 드는 구간 하나를 골라 바꾸고, 그 결과로 다음 구간을 설득합니다.</p></div><div class="an-row" data-step="3"><i>2</i><p><b>투자 효율은 도입 건수가 아니라 실제 사용에서 갈립니다.</b>도구를 만들어도 현업이 쓰지 않으면 비용만 남습니다. 몇 개를 도입했는지가 아니라, 누가 반복해서 쓰고 있는지를 지표로 봐야 합니다.</p></div><div class="an-row" data-step="4"><i>3</i><p><b>토큰 비용은 단축된 일정으로 환산합니다.</b>개발 일정이 한 달 당겨진다면 그 사이 쓴 토큰은 충분히 싼 비용입니다. 사용량 상한보다 일정과 품질을 함께 보는 기준이 필요합니다.</p></div></div>
+    <p class="abs footnote">출처: McKinsey, The State of AI(2026.8): AI로 개인 생산성이 높아졌다는 응답 80%, AI가 회사 이익(EBIT)에 기여했다는 응답 37%</p>
+  </section>
+
+  <!-- 사전 질문 묶음 03 답(2026-10-21 사용자 요청): 2026-10-21 인사이트 보강: 앤드류 응(AFR 2023.10, 빅테크의 공포 서사와 규제), 우리 업무 평가셋, Epic·Xbox 속도 -->
+  <section class="slide dark an" data-gap="700" aria-label="사전 질문 답 03 기술 변화와 업계 흐름(Q6, Q7): 새 모델은 뉴스가 아니라 우리 평가셋으로 판단">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">새 모델은 뉴스가 아니라 우리 평가셋으로 판단해야 함</h2>
+    <div class="abs sp-track"><span class="sp-pill on">03 기술 변화와 업계 흐름 · Q6, Q7</span></div>
+    <p class="abs an-lead" data-step="1">빅테크의 발표 주기에 조직을 맞추면 피로만 쌓입니다. 모델이 나오는 속도와 성과가 나는 속도는 다릅니다.</p>
+    <div class="abs an-list"><div class="an-row" data-step="2"><i>1</i><p><b>FOMO에는 만들어진 부분이 있습니다.</b>앤드류 응은 일부 빅테크가 AI 공포를 키워 강한 규제를 끌어내고, 오픈소스와의 경쟁을 막으려 한다고 지적했습니다. 출시 뉴스 하나하나가 우리 회사의 과제는 아닙니다.</p></div><div class="an-row" data-step="3"><i>2</i><p><b>새 모델은 우리 업무로 만든 시험으로 판단합니다.</b>버그 리포트 요약, 기획서 검토처럼 우리 업무에서 뽑은 시험 문제를 미리 만들어 둡니다. 새 모델이 나오면 하루 안에 돌려 보고, 결과가 나을 때만 바꿉니다.</p></div><div class="an-row" data-step="4"><i>3</i><p><b>업계 사례는 정답이 아니라 속도의 범위로 읽습니다.</b>Epic은 회사 전체를 한 번에 전환했고, Xbox는 소규모 랩에서 먼저 실험했습니다. 우리가 감당할 속도를 정하고 3~6개월 로드맵으로 공유하면, 바깥 변화에 덜 흔들립니다.</p></div></div>
+    <p class="abs footnote">출처: Andrew Ng, Australian Financial Review 인터뷰(2023.10) · Tim Sweeney, X(2026.10.12) · Asha Sharma 사내 메일(2026.10.13)</p>
+  </section>
+
   <!-- AX Methodology 1: 좁은 의미의 AX(1→5)가 먼저, 클릭하면 10단계 전체가 펼쳐진다 -->
   <section class="slide dark" data-click="1" style="--bs:30px" aria-label="AX에는 업무 전체를 보는 관점이 필요함(좁은 의미의 AX부터)">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
@@ -2886,8 +3190,6 @@
     <p class="abs mx-narrow-label" data-step="1">좁은 의미의 AX</p>
   </section>
 
-  <!-- AX Methodology 2: 같은 틀을 흐리게 깔고 고민 영역 4개를 번호 순으로 클릭해 올린다. 블록마다 HR 리더용 Action Items 말풍선.
-       2026-10-19: 3·4번 블록 이름을 Agent OS 장(38) 용어와 맞춤(Company Brain + Skill Library, Agent OS + 하이브리드 조직) -->
   <!-- HR 서밋 덱(hrsummit_jaydenkang_20261027) 38장에서 가져옴(2026-10-18) -->
   <section class="slide dark" data-click="1" style="--bs:26px" aria-label="AX의 네 개 블록: AI 모델, 에이전트 리더, Company Brain과 Skill Library, Agent OS와 하이브리드 조직">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
@@ -2921,20 +3223,78 @@
     <div class="abs ar-tip t-u" data-step="8" style="left:792px;top:528px;width:360px"><p class="ar-tip-h">Action Items (제안)</p><p>에이전트별 책임자와 권한 범위를 지정하고, 2027년 예산부터 토큰 예산을 인건비와 통합 관리</p></div>
   </section>
 
-  <!-- 인용: Satya Nadella, X 장문 에세이(2026-06-14). 원문 문장 그대로 -->
-  <section class="slide dark quote" aria-label="사티아 나델라 인용">
-    <svg class="abs qt-mark" viewBox="0 0 64 52" aria-hidden="true"><path fill="#0aa0d2" d="M0 52V30C0 13 9 3 26 0l3 7C19 10 14 17 14 26h12v26H0zm35 0V30C35 13 44 3 61 0l3 7C54 10 49 17 49 26h12v26H35z"/></svg>
-    <blockquote class="abs qt-text">진짜 기회는 최고의 모델을 고르는 데 있지 않습니다.<br>모델 위에 <mark class="cap">휴먼 캐피탈</mark>과 <mark class="cap">토큰 캐피탈</mark>이 함께 복리로 쌓이는<br><mark class="loop">학습 루프</mark>를 만드는 데 있습니다.</blockquote>
-    <p class="abs qt-src"><i></i><b>사티아 나델라, 마이크로소프트 CEO</b><span>X 에세이, 2026년 6월 14일</span></p>
+  <!-- 사전 질문 회수 장(2026-10-20): 일곱 질문의 답을 한 장에 모은다. 행 58 × 7 + 간격 7(196~644) -->
+  <section class="slide dark pqr" data-gap="300" aria-label="사전 질문 7개에 대한 답">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">사전 질문 7개에 대한 답</h2>
+    <div class="abs pqr-row hot" data-step="1" style="top:196px"><i>Q1</i><span>조직과 인력의 미래</span><p>줄어드는 것은 정답이 있는 업무. 재미의 기준을 정하고 결과에 책임지는 사람이 남음</p></div>
+    <div class="abs pqr-row" data-step="2" style="top:261px"><i>Q2</i><span>구성원의 막연한 불안</span><p>3~6개월 로드맵과 효용 경험으로 예측 가능하게 만들고, 줄어든 시간은 재미와 품질에 다시 씀</p></div>
+    <div class="abs pqr-row" data-step="3" style="top:326px"><i>Q3</i><span>판단 역량 강화</span><p>기준을 먼저 쓰고, 여러 관점에서 비평하고, 판단의 근거를 조직에 쌓음</p></div>
+    <div class="abs pqr-row" data-step="4" style="top:391px"><i>Q4</i><span>기존 업무 체계의 전환</span><p>업무를 분해해 한 구간씩 옮기고, 노하우를 내놓아도 손해 보지 않게 보상을 설계</p></div>
+    <div class="abs pqr-row" data-step="5" style="top:456px"><i>Q5</i><span>AX 투자 효율화</span><p>작은 업무 단위로 효과를 재고, 토큰 비용은 단축된 일정과 높아진 품질로 환산</p></div>
+    <div class="abs pqr-row" data-step="6" style="top:521px"><i>Q6</i><span>낡지 않는 기반</span><p>모델은 바꿔 쓰고, Company Brain·Skill Library·Agent OS처럼 모델 밖에 쌓이는 자산에 투자</p></div>
+    <div class="abs pqr-row" data-step="7" style="top:586px"><i>Q7</i><span>동종업계 우수 사례</span><p>Epic(전사 전환), Xbox(소규모 랩), 크래프톤·스퀘어에닉스·EA(개발·QA 연결)</p></div>
   </section>
 
-  <section class="slide closing" aria-label="마무리 인사">
-    <svg class="abs oy-symbol nx-symbol" viewBox="0 0 1 1" role="img" aria-label="넥슨 심볼"><polygon points="0,0.238 0.444,0 0.444,0.640 0,0.542" fill="#0a3255"/><polygon points="0,0.542 0.444,0.640 0,0.874" fill="#0aa0d2"/><polygon class="oy-dot" points="0,0.874 0.444,0.640 1,0.762 0.551,1" fill="#b4e114"/></svg>
-    <img class="abs cover-logo nx-logo" src="assets/logo-nexon.png" alt="NEXON">
-    <h2 class="abs cl-title">감사합니다</h2>
-    <div class="abs cl-bar oy-bar" aria-hidden="true"></div>
-    <p class="abs cl-sub">강정구 · 라이너 AI 전략 총괄</p>
-    <div class="abs cl-qr"><a href="https://www.linkedin.com/in/jayden-kang/" target="_blank" rel="noopener"><svg class="cl-qr-code" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="링크드인 프로필 QR 코드" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#1a1a1a" d="M0 0.5h7m3 0h1m1 0h3m3 0h1m3 0h7M0 1.5h1m5 0h1m1 0h1m2 0h1m4 0h2m2 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m5 0h1m4 0h1m2 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h3m2 0h1m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h2m1 0h2m2 0h5m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h2m2 0h2m1 0h1m5 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m2 0h1m4 0h1m2 0h2M0 8.5h1m5 0h1m1 0h2m2 0h3m2 0h3m1 0h2m2 0h3M1 9.5h1m1 0h1m1 0h1m3 0h3m2 0h7m2 0h2m1 0h2M0 10.5h2m2 0h3m4 0h5m1 0h1m4 0h1M0 11.5h3m2 0h1m2 0h1m1 0h1m1 0h1m1 0h3m2 0h2m2 0h1m1 0h1M0 12.5h1m1 0h2m2 0h3m5 0h1m1 0h1m3 0h1m1 0h2m4 0h1M2 13.5h1m2 0h1m1 0h1m2 0h4m1 0h6m1 0h1m1 0h1m2 0h2M0 14.5h2m4 0h2m2 0h7m1 0h1m1 0h4m1 0h2M3 15.5h1m1 0h1m2 0h2m1 0h2m7 0h5m1 0h1m1 0h1M0 16.5h1m5 0h3m2 0h2m2 0h1m1 0h1m1 0h1m3 0h1m1 0h2M0 17.5h1m1 0h1m1 0h1m4 0h1m3 0h1m1 0h6m1 0h3m1 0h3M0 18.5h9m2 0h1m3 0h2m2 0h2m4 0h1m2 0h1M0 19.5h1m2 0h1m4 0h2m1 0h3m2 0h1m1 0h1m1 0h1m1 0h3M0 20.5h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m2 0h2m1 0h2m1 0h5m1 0h3M8 21.5h2m4 0h2m1 0h2m1 0h1m3 0h2M0 22.5h7m2 0h2m1 0h1m2 0h3m1 0h2m1 0h1m1 0h3M0 23.5h1m5 0h1m3 0h1m3 0h1m4 0h2m3 0h1M0 24.5h1m1 0h3m1 0h1m3 0h5m4 0h7m1 0h1M0 25.5h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m1 0h1m1 0h2m1 0h1M0 26.5h1m1 0h3m1 0h1m2 0h1m3 0h1m1 0h5m1 0h7M0 27.5h1m5 0h1m2 0h5m2 0h1m1 0h1m4 0h1m1 0h2m1 0h1M0 28.5h7m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m2 0h5"/></svg></a><p><b>LinkedIn</b><span>linkedin.com/in/jayden-kang</span></p></div>
+  <!-- 사전 질문 7개(2026-10-20, 넥슨 리더 사전 질문): 이유 세 가지 바로 뒤에서 질문을 세 묶음에 나눠 보여 준다. Q4(사례)은 모든 묶음에 걸쳐 답하므로 아래 띠 -->
+  <section class="slide dark pq" data-gap="700" aria-label="사전 질문 7개를 세 가지 축으로 나눠 답함: 01 조직문화 전환(Q5 투자, Q2 불안), 02 암묵지 축적(Q6 기반, Q4 기존 체계), 03 하이브리드 조직 설계(Q1 조직의 미래, Q3 판단 역량), Q7 동종업계 사례는 전체에 걸쳐 답함">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">사전 질문 7개를 세 가지 축으로 나눠 답함</h2>
+    <div class="abs pq-col" data-step="1" style="left:76px"><span class="rs-pill">01 조직문화 전환</span><div class="pq-item"><i>Q5</i><p>AX에 들이는 시간과 인력, 어떻게 효율적으로 쓸까?</p></div><div class="pq-item"><i>Q2</i><p>AI로 대체될 수 있다는 구성원의 막연한 불안, 어떻게 해소할까?</p></div></div>
+    <div class="abs pq-col" data-step="2" style="left:464px"><span class="rs-pill">02 암묵지 축적</span><div class="pq-item"><i>Q6</i><p>빠르게 바뀌는 기술 속에서 낡지 않는 기반은 어떻게 잡을까?</p></div><div class="pq-item"><i>Q4</i><p>오래 자리 잡은 업무 체계는 어떻게 AI로 전환할까?</p></div></div>
+    <div class="abs pq-col" data-step="3" style="left:852px"><span class="rs-pill">03 하이브리드 조직 설계</span><div class="pq-item"><i>Q1</i><p>AX의 끝은 사람이 최소화된 조직일까? 누가 먼저 사라지고 누가 남을까?</p></div><div class="pq-item"><i>Q3</i><p>누구나 결과물을 빨리 만드는 시대, 판단 역량은 어떻게 키울까?</p></div></div>
+    <div class="abs pq-band" data-step="4"><i>Q7</i><b>동종업계 AX 우수 사례</b><span>각 묶음의 게임사 사례(Epic·Xbox, 크래프톤·스퀘어에닉스·EA, 스팀 신작)로 함께 답함</span></div>
+  </section>
+
+  <section class="slide dark km km-sub km-sum" aria-label="사전 질문 Q5 AX 투자 효율화: 작은 단위 측정, 비용 가시화, 단축된 일정으로 환산">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">AX 투자는 사용량보다 단축된 일정으로 판단해야 함</h2>
+    <div class="abs sp-track"><span class="sp-pill on">사전 질문 Q5: AX 투자(시간·인력)를 효율적으로 만드는 방법</span></div>
+    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 작게 시작</span><h3>작은 단위 업무부터<br>효과를 측정</h3><ul><li>크래프톤은 한꺼번에 바꾸지 않고, 작은 단위 업무부터 AI 전환 효과를 측정함</li></ul><div class="km-act"><small>ACTION ITEM</small><p>파이프라인 중 <mark>한 구간</mark>을 골라 전환 전후의 <mark>시간과 품질</mark>을 기록</p></div></div>
+    <div class="abs km-card" data-step="2" style="left:464px"><span class="km-no">02 · 비용 가시화</span><h3>토큰·좌석·구독 비용을<br>한 화면에서 봄</h3><ul><li>크래프톤은 토큰, 엔터프라이즈 시트, 개인 구독 비용을 하나의 대시보드로 공개함</li></ul><div class="km-act"><small>ACTION ITEM</small><p>비용 옆에 <mark>프로젝트 진척</mark>을 함께 놓고, 조직 성숙도에 따라 <mark>사용 장려와 효율화</mark>를 나눠 안내</p></div></div>
+    <div class="abs km-card hot" data-step="3" style="left:852px"><span class="km-no">03 · 가치 환산</span><h3>토큰 비용은<br>단축된 일정으로 환산</h3><ul><li>개발 일정이 한 달 당겨진다면, 그 사이 쓴 토큰은 충분히 가치 있는 비용이 됨</li></ul><div class="km-act"><small>ACTION ITEM</small><p>프로젝트별 <mark>토큰 비용 예측</mark>을 과거 데이터로 만들고, <mark>인력 계획과 함께</mark> 편성</p></div></div>
+    <p class="abs footnote">출처: 넥슨·크래프톤 AX 대담(크래프톤 운영 사례, 토큰 비용의 가치 판단) · BCG 10-20-70 원칙</p>
+  </section>
+
+  <!-- 사전 질문 Q6 답(2026-10-20): 게임사 CEO 사례(Epic 원칙) 다음, 리더가 먼저 보여줘야 한다는 연결 장 앞 -->
+  <section class="slide dark km km-sub km-sum" aria-label="사전 질문 Q2 구성원의 불안 해소: 예측 가능한 로드맵, 효용 경험, 줄어든 시간의 재투자">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">불안은 예측 가능한 계획과 효용 경험으로 줄여야 함</h2>
+    <div class="abs sp-track"><span class="sp-pill on">사전 질문 Q2: AI로 대체될 수 있다는 구성원의 막연한 불안</span></div>
+    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 예측 가능성</span><h3>3~6개월 뒤 바뀔 업무를<br>미리 보여줌</h3><ul><li>불안은 변화 자체보다, 다음에 무엇이 바뀔지 모르는 데서 커짐</li></ul><div class="km-act"><small>ACTION ITEM</small><p>스튜디오별 <mark>AX 로드맵</mark>을 분기마다 공유하고, 바뀐 내용도 함께 공개</p></div></div>
+    <div class="abs km-card" data-step="2" style="left:464px"><span class="km-no">02 · 효용 경험</span><h3>AI가 일을 덜어 준<br>경험부터 쌓음</h3><ul><li>AI를 6개월 이상 쓴 사람은 업무 목적 활용이 7%p 높음(Anthropic)</li></ul><div class="km-act"><small>ACTION ITEM</small><p>반복 업무 하나를 골라 <mark>팀 단위로 자동화</mark>하고, 줄어든 시간을 함께 확인</p></div></div>
+    <div class="abs km-card hot" data-step="3" style="left:852px"><span class="km-no">03 · 재투자 원칙</span><h3>줄어든 시간을 어디에 쓸지<br>먼저 정함</h3><ul><li>Epic은 인력 감축이 아니라 같은 인력으로 생산성과 퀄리티를 함께 올리는 것을 목표로 둠</li></ul><div class="km-act"><small>ACTION ITEM</small><p>AI로 확보한 시간을 <mark>재미와 품질</mark>에 다시 쓰는 계획을 <mark>팀과 함께</mark> 세움</p></div></div>
+    <p class="abs footnote">출처: Tim Sweeney, X(2026.10.12) · Bloomberg(2026.10.12) · Anthropic, Economic Index report: Learning curves</p>
+  </section>
+
+  <!-- 사전 질문 Q1·Q3 답(2026-10-20, 10-21 사용자 요청으로 마무리 인사 뒤 부록으로 옮김): 리더 5대 역량 다음. 사람이 최소화된 조직이라는 전제를 업무 단위로 바로잡고, 판단 역량 키우는 법으로 이어감 -->
+  <section class="slide dark km km-sub km-sum" aria-label="사전 질문 Q1 조직과 인력의 미래: 먼저 줄어드는 일, 끝까지 남는 사람, 주의할 신호">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">먼저 줄어드는 것은 사람이 아니라 정답이 있는 업무임</h2>
+    <div class="abs sp-track"><span class="sp-pill on">사전 질문 Q1: AX의 끝은 사람이 최소화된 조직인가</span></div>
+    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 먼저 줄어드는 일</span><h3>정답이 있는<br>반복 산출 업무</h3><ul><li>테스트 시나리오 실행, 로그 요약, 에셋 초안처럼 기준이 분명한 일부터 에이전트로 넘어감</li></ul><div class="km-act"><small>ACTION ITEM</small><p>팀 업무를 <mark>정답이 있는 일</mark>과 <mark>정답이 없는 일</mark>로 나눠 목록으로 만듦</p></div></div>
+    <div class="abs km-card hot" data-step="2" style="left:464px"><span class="km-no">02 · 끝까지 남는 사람</span><h3>재미의 기준을 정하고<br>결과에 책임지는 사람</h3><ul><li>도메인 전문성과 윤리·책임 판단, 사람과 에이전트를 묶는 통합 설계 역량이 남음</li></ul><div class="km-act"><small>ACTION ITEM</small><p>에이전트에게 맡길 일을 <mark>설계하고 검증하는 역할</mark>을 직무 기술서에 명시</p></div></div>
+    <div class="abs km-card" data-step="3" style="left:852px"><span class="km-no">03 · 주의할 신호</span><h3>주니어가 배울 일이<br>먼저 사라지는 중</h3><ul><li>4년간 청년 일자리는 28.5만 개 줄고, 50대 일자리는 23만 개 늘어남(한국은행)</li></ul><div class="km-act"><small>ACTION ITEM</small><p>시니어가 만든 <mark>스킬로 주니어가 배우는</mark> 새 경력 사다리를 설계</p></div></div>
+    <p class="abs footnote">출처: 한국은행 고용연구팀, 변화하는 경력 사다리와 대응 과제(2026.8, 2022.6~2026.6 누적)</p>
+  </section>
+
+  <section class="slide dark km km-sub km-sum" aria-label="사전 질문 Q3 판단 역량 강화: 기준 명시, 관점 분리 비평, 판단 근거 공유">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">판단 역량은 AI 결과물을 비평하는 훈련으로 키워야 함</h2>
+    <div class="abs sp-track"><span class="sp-pill on">사전 질문 Q3: AI 시대의 판단 역량 강화</span></div>
+    <div class="abs km-card" data-step="1" style="left:76px"><span class="km-no">01 · 기준 명시</span><h3>좋은 결과의 기준을<br>먼저 글로 씀</h3><ul><li>에이전트에게 일을 맡기려면 완료 기준과 검증 방법부터 정의해야 함</li></ul><div class="km-act"><small>ACTION ITEM</small><p>업무를 맡기기 전 <mark>완료 기준</mark>과 <mark>평가 항목</mark>을 먼저 적게 함</p></div></div>
+    <div class="abs km-card hot" data-step="2" style="left:464px"><span class="km-no">02 · 관점 분리</span><h3>한 결과물을<br>여러 관점에서 비평</h3><ul><li>5-Color Harness는 수행자 1명과 비평가 4명(논리, 현장, 공감, 독자)이 나눠 검토함</li></ul><div class="km-act"><small>ACTION ITEM</small><p>중요한 산출물은 <mark>비평 에이전트</mark>의 의견을 받고, 사람이 <mark>최종 판단의 근거</mark>를 남김</p></div></div>
+    <div class="abs km-card" data-step="3" style="left:852px"><span class="km-no">03 · 판단 공유</span><h3>리더의 판단 과정을<br>공개함</h3><ul><li>누구나 일정 수준의 결과물을 만드는 환경에서는 무엇을 고르는지에서 차이가 생김</li></ul><div class="km-act"><small>ACTION ITEM</small><p>리뷰에서 <mark>왜 이 안을 골랐는지</mark> 기록해 팀의 <mark>판단 사례</mark>로 쌓음</p></div></div>
+  </section> 
+ <!-- 사전 질문 Q4(원래 4번, 2026-10-21 스토리 순서 확정) 답(2026-10-20): 10-20-70 다음, 투자 효율을 무엇으로 잴지 -->  <!-- 01 묶음 연결 장: 10-20-70(사람에 70%) 다음, 본인 사례(에이전트 팀) 앞. 교육만으로는 안 되고 리더가 먼저 일하는 방식을 보여줘야 한다는 연결 -->
+  <section class="slide dark br" data-gap="1400" aria-label="교육만으로는 구성원이 따라오지 않음, 리더가 먼저 AI와 일하는 방식을 보여줘야 함">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <p class="abs br-text"><span class="br-l1" data-step="1">AI 교육을 늘리는 것만으로는 구성원이 따라오지 않습니다.</span><span class="br-l2" data-step="2">리더가 먼저 <em>AI와 일하는 방식</em>을 바꾸고, 보여줘야 합니다.</span></p>
   </section>
 </main>
 <!-- ../../index.html 복사본(base64). file://로 열 때만 쓴다. 원본을 고치면 이 블록도 다시 만들어야 한다 -->
