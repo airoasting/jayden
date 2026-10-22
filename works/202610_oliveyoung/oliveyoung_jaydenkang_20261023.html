@@ -714,6 +714,14 @@
     transform: translateX(-16px);
   }
   .browser video { display: block; width: 1040px; height: 585px; object-fit: cover; background: #f4f5f7; }
+  /* 검정 배경 게임 시연 장(넥슨판에서 복사, 2026-10-22): 슬라이드·틀·영상 바탕을 모두 검정으로 */
+  .slide.demo-bk, .slide.dark.demo-bk { background: #000 !important; }
+  .demo-bk .browser { background: #000; border-color: #000; box-shadow: none; }
+  .demo-bk .browser video { background: #000; }
+  /* 이 장이 열려 있을 때는 캔버스 바깥 여백(창 비율 차이로 생기는 좌우 흰 띠)도 검정으로 */
+  @media screen {
+    html:has(.slide.demo-bk.active), html:has(.slide.demo-bk.active) body { background: #000; }
+  }
 
   /* 3. 시대별 커리어: 시대 띠(인터넷·모바일·AI) 아래 회사 카드 여섯 장, 카드 사이 아래에 학력, AI 카드 아래에 대외 활동.
      카드 1장 = 173×290, 간격 18. 인터넷 시대는 Freechal·Kearney, 모바일 시대는 Bain부터. 카드 색은 시대로 나눈다(IQVIA판과 같은 값): 인터넷 블루, 모바일 퍼플, AI 그린 그라디언트. 단 컨설팅(Kearney·Bain)은 차콜로 따로 묶는다. 글자와 로고는 흰색, NAVER·kakao 글자 로고만 브랜드 색(#03C75A·#FFCD00). 시대 띠는 인터넷·모바일 회색, AI만 그린 */
@@ -2153,6 +2161,14 @@
     <svg class="abs ip-arr" data-step="2" style="left:428px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
     <svg class="abs ip-arr" data-step="3" style="left:816px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
     <p class="abs footnote">출처: Google, Nano Banana Pro(2025.11.20) · ByteDance Seed, Seedance 2.0(2026.2.12) · Anthropic, Claude Opus 5.5(2026.9.22) · 이미지: YouTube, The Decoder(Claude in PowerPoint)</p>
+  </section>
+
+  <!-- 넥슨판과 같은 위치: AI 결과물의 세 가지 변곡점 다음에 게임 시연 영상을 배치 -->
+  <section class="slide dark demo demo-bk" aria-label="Claude Code로 만든 복셀 게임 MindCraft Temple 화면 녹화">
+    <div class="abs browser" data-step="1">
+      <div class="bar"><i></i><i></i><i></i><span class="url">airoasting.com/assets/claudecode/07_minecraft</span></div>
+      <video src="assets/video/minecraft.mp4" poster="assets/video/minecraft.jpg" muted loop playsinline preload="auto" aria-label="MindCraft Temple game screen recording"></video>
+    </div>
   </section>
 
   <!-- AI를 잘 썼을 때 60분 업무를 끝내는 시간(연도별 대표 연구, 2026-10-14 확인).
