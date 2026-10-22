@@ -1930,6 +1930,19 @@
   .ip-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .ip-play { position: absolute; left: 50%; top: 50%; width: 52px; height: 36px; transform: translate(-50%,-50%); border-radius: 10px; background: rgba(26,26,26,.82); }
   .ip-play::after { content: ""; position: absolute; left: 21px; top: 10px; border-left: 14px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+  /* 4열 변형(.ip4, 2026-10-23): 카드 258 × 4 + 간격 32(76~1204). 사진 칸 16:9, 큰 글자와 모델 줄을 좁은 폭에 맞춤 */
+  .ip4 .ip-col { width: 258px; padding: 26px 22px 24px; }
+  .ip4 .ip-pic { width: 212px; height: 120px; }
+  .ip4 .ip-big { font-size: 38px; height: 46px; line-height: 46px; white-space: nowrap; }   /* "영상 편집·게임"이 안쪽 폭 214에 한 줄로 들어가는 크기(208px) */
+  .ip4 .ip-mrow { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .ip4 .ip-model { font-size: 14px; }
+  .ip-pic img.ip-crop { transform: scale(1.19); }   /* 게임 화면 위아래 검은 띠(각 8%) 잘라 냄 */
+  .ip-term { background: #1f2329; border-color: #1f2329; display: flex; flex-direction: column; }
+  .ip-tb { display: flex; gap: 5px; padding: 8px 10px 0; }
+  .ip-tb i { width: 7px; height: 7px; border-radius: 50%; background: #4a525b; }
+  .ip-term code { padding: 10px 12px 0; font: 600 11.5px/1.75 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #d7dce1; white-space: nowrap; }
+  .ip-term code s { text-decoration: none; color: #7c868f; } .ip-term code em { font-style: normal; color: #d97757; } .ip-term code b { color: #fff; }
+  .ip-term code u { display: inline-block; width: 6px; height: 12px; margin-left: 3px; vertical-align: -2px; background: #d7dce1; text-decoration: none; }
 
   /* 서비스 확장 프레임워크(10장): Communication → Content → Game → Commerce. Fintech는 네 영역을 지원. Fintech는 공통 기반. */
   .cfx-stage { left: 76px; top: 196px; width: 1128px; height: 454px; }
@@ -1966,6 +1979,32 @@
     .cfx-stage .commerce { background: #50df00; border-color: #50df00; box-shadow: none; }
     .cfx .cfx-trace { stroke-dashoffset: 0; }
   }
+
+  /* 라이너 Slack 화면 장(.sk, 2026-10-23): 창 x 76~1204, y 214~650. 메시지 안을 왼쪽(인사·상태 360)과 오른쪽(Top10 표)으로 나눔. 글자는 Slack 기본 톤(잉크·회색), 진한 면 없음 */
+  .sk-win { left: 76px; top: 214px; width: 1128px; height: 436px; box-sizing: border-box; border: 1px solid #e3e6ea; border-radius: 16px; background: #fff; box-shadow: 0 14px 36px rgba(26,26,26,.07); overflow: hidden; }
+  .sk-top { height: 34px; display: flex; align-items: center; gap: 14px; padding: 0 16px; background: #f7f8f9; border-bottom: 1px solid #e3e6ea; }
+  .sk-dots { display: flex; gap: 6px; } .sk-dots i { width: 10px; height: 10px; border-radius: 50%; background: #d5dade; }
+  .sk-ws { font-size: 12.5px; font-weight: 700; color: #6f7880; }
+  .sk-msg { display: grid; grid-template-columns: 40px 1fr; column-gap: 12px; padding: 16px 22px 0 20px; }
+  .sk-av { width: 40px; height: 40px; border-radius: 9px; display: block; }
+  .sk-who { margin: 0; display: flex; align-items: baseline; gap: 7px; font-size: 15px; color: #1a1a1a; }
+  .sk-who b { font-weight: 800; }
+  .sk-app { padding: 0 4px; border-radius: 3px; background: #eef0f2; font-size: 10.5px; font-weight: 700; color: #6f7880; }
+  .sk-who time { font-size: 12px; color: #98a1a8; }
+  .sk-cols { margin-top: 10px; display: grid; grid-template-columns: 316px 1fr; column-gap: 20px; }
+  .sk-l { display: flex; flex-direction: column; font-size: 13.5px; line-height: 1.6; color: #1a1a1a; word-break: keep-all; }
+  .sk-hi { margin: 0; font-weight: 700; }
+  .sk-ul { margin: 6px 0 0; padding-left: 18px; } .sk-ul li { margin-top: 3px; } .sk-ul ul { padding-left: 18px; list-style: circle; color: #3d434a; }
+  .sk-eye { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid #eef0f2; }
+  .sk-r { padding-left: 20px; border-left: 1px solid #eef0f2; min-width: 0; }
+  .sk-tt { margin: 0; font-size: 14.5px; font-weight: 800; color: #1a1a1a; }
+  .sk-cap { margin: 5px 0 0; font-size: 10.3px; line-height: 1.5; color: #6f7880; word-break: keep-all; }
+  .sk-tb { margin-top: 12px; width: 100%; border-collapse: collapse; font-size: 12.4px; color: #1a1a1a; font-variant-numeric: tabular-nums; }
+  .sk-tb th, .sk-tb td { padding: 0 5px; height: 29px; border: 1px solid #eef0f2; text-align: right; white-space: nowrap; }
+  .sk-tb th { height: 30px; font-weight: 800; background: #f7f8f9; }
+  .sk-tb .nm, .sk-tb .sh { text-align: left; }
+  .sk-tb td:first-child, .sk-tb th:first-child { text-align: center; }
+  .sk-tb .bar { margin-right: 5px; font: 9px/1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: -.5px; color: #1a1a1a; }
 </style>
 </head>
 <body>
@@ -2188,79 +2227,22 @@
     <p class="abs footnote">출처: TrackingAI.org, AI IQ Test(오프라인 테스트, 미공개 문항) 일별 기록으로 계산. 모델별 최근 7회 평균, 2025.7.31·2026.10.19 기준 · 한국인·미국 평균: Lynn·Vanhanen, IQ and Global Inequality(2006) 추정치</p>
   </section>
 
-  <!-- 멘토 v2의 9·10장 복사: 월별 모델 출시 표와 AI는 그거 못해. 변곡점 장 앞에 배치 -->
-  <section class="slide dark md" data-click="1" aria-label="주요 AI 기업의 월별 모델·제품 출시 표, 2025년 1월부터 2026년 10월까지, Anthropic Claude Duet 10월 21일 공개 포함">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <h2 class="abs head-title">주요 AI 기업은 거의 매달 새 모델과 제품을 출시하고 있음</h2>
-    <table class="abs md-tbl">
-      <thead><tr><th>회사</th><th class="y">’25.1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th class="y">’26.1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr></thead>
-      <tbody>
-        <tr><th>DeepSeek</th><td class="y hot">V3/R1</td><td></td><td></td><td></td><td></td><td></td><td></td><td>V3.1</td><td>V3.2</td><td></td><td>V3.2-Speciale</td><td></td><td class="y"></td><td></td><td></td><td class="hot">V4</td><td></td><td></td><td></td><td>V4-Pro</td><td>V4.1-Flash</td><td></td></tr>
-        <tr><th>OpenAI</th><td class="y">GPT 4o (Omni)</td><td>GPT 4.5, Deep Research</td><td class="media">4o 이미지</td><td></td><td></td><td></td><td></td><td>GPT 5</td><td>Sora 2 (동영상)</td><td>GPT 5 Pro</td><td>GPT 5.1</td><td>GPT 5.2</td><td class="y"></td><td>GPT 5.3 Codex</td><td>Sora 2 종료</td><td class="hot">GPT 5.5 Duct-Tape</td><td></td><td></td><td class="hot">GPT 5.6, GPT Live</td><td></td><td class="hot">GPT 6 Astra · Sol · Luna, dots</td><td>GPT 6 Instant, 미공개 모델</td></tr>
-        <tr><th>Anthropic</th><td class="y"></td><td class="hot">Claude 3.7 Sonnet</td><td></td><td></td><td class="hot">Opus 4</td><td></td><td></td><td>Opus 4.1</td><td>Sonnet 4.5</td><td></td><td>Opus 4.5</td><td></td><td class="y"></td><td class="hot">Opus 4.6</td><td></td><td>Opus 4.7</td><td class="hot">Mythos Preview</td><td class="hot">Fable 5</td><td class="hot">Opus 5</td><td></td><td class="hot">Opus 5.5, Sonnet 5.5</td><td class="hot">Haiku 5.5<br>Duet<br>(에이전트)</td></tr>
-        <tr><th>Google</th><td class="y"></td><td>Gemini 2.0</td><td>Gemini 2.5</td><td></td><td></td><td></td><td></td><td class="media">2.5 Flash w/ image</td><td>Veo 3.0</td><td class="media">Veo 3.1 (동영상)</td><td class="hot">Gemini 3 Pro, 3 Pro Image</td><td></td><td class="y"></td><td>Gemini 3.1 Pro Preview</td><td></td><td></td><td></td><td></td><td></td><td>Gemini 3.7 Flash</td><td class="hot">Gemini 3.8 Flash, Gemini 4 Argon</td><td class="media">Nano Banana 2.1</td></tr>
-        <tr><th>Meta</th><td class="y"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="y"></td><td></td><td></td><td class="hot">Muse Spark</td><td></td><td></td><td>Muse Spark 1.1</td><td>Muse Code</td><td class="hot">Muse (에이전트)</td><td class="hot">Muse Wonder</td></tr>
-        <tr><th>xAI</th><td class="y"></td><td>Grok 3</td><td></td><td></td><td></td><td></td><td>Grok 4</td><td></td><td></td><td></td><td>Grok 4.1</td><td></td><td class="y"></td><td></td><td>4.2 Beta</td><td></td><td></td><td></td><td>Grok 4.5</td><td>Grok 4.6</td><td>Grok 4.7</td><td></td></tr>
-        <tr><th>Alibaba</th><td class="y">Qwen2.5-VL</td><td>Qwen2.5-Omni</td><td></td><td>Qwen3</td><td></td><td></td><td>Qwen3-235B-A22B</td><td></td><td>Qwen3-VL</td><td>Qwen3-Max</td><td></td><td></td><td class="y"></td><td></td><td>Qwen3.5 Omni</td><td>Qwen3.6 Plus</td><td></td><td></td><td></td><td>Qwen3.8-Max</td><td>Qwen3.8 Omni-Flash</td><td></td></tr>
-        <tr><th>ByteDance</th><td class="y"></td><td></td><td></td><td></td><td>Skylark-vision</td><td>Seedance 1.0 Pro</td><td></td><td></td><td></td><td></td><td>Seedream 4.5</td><td></td><td class="y"></td><td class="hot">Seedance 2.0</td><td></td><td>Seed3D 2.0</td><td></td><td>Seed 2.1</td><td class="hot">Seedance 2.5</td><td>Seed Realtime</td><td class="media">Seedream 5.0 Flash</td><td></td></tr>
-        <tr><th>Moonshot AI</th><td class="y"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="y"></td><td></td><td></td><td></td><td></td><td></td><td class="hot">Kimi K3</td><td></td><td></td><td></td></tr>
-      </tbody>
-    </table>
-    <p class="abs md-legend" data-step="1"><i class="hot"></i>주요 출시<i class="media"></i>이미지·영상 모델</p>
-    <!-- 질문 말풍선: 클릭마다 하나씩. 말풍선은 지금 단계 것만 보이고(:has로 앞 것을 숨김), 답한 칸 표시(.qz-mark)는 남는다.
-         1단계는 범례(표만 보이는 상태), 질문은 2~10단계. 좌표는 표 칸을 잰 값(칸 47 × 52) -->
-    <div class="abs qz-mark" data-step="2" style="left:215.5px;top:255.8px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="3" style="left:262.6px;top:255.8px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="4" style="left:356.7px;top:305.1px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="5" style="left:638.9px;top:354.4px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="6" style="left:780px;top:305.1px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="7" style="left:780px;top:551.6px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="8" style="left:1109.3px;top:305.1px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="9" style="left:1109.3px;top:255.8px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="9" style="left:1109.3px;top:403.7px;width:47px;height:49.3px"></div>
-    <div class="abs qz-mark" data-step="10" style="left:1156.3px;top:255.8px;width:47px;height:49.3px"></div>
-    <p class="abs qz-bub l" data-step="2" style="left:239px;top:245.8px"><q>리서치 보고서나 제대로 쓰겠어?</q><b>ChatGPT Deep Research · 2025.02</b></p>
-    <p class="abs qz-bub l" data-step="3" style="left:286.1px;top:245.8px"><q>말만 하지 그림은 못 그리잖아?</q><b>ChatGPT 4o · 2025.03</b></p>
-    <p class="abs qz-bub c" data-step="4" style="left:380.2px;top:295.1px"><q>코딩도 모르는데 앱을 어떻게 만들어?</q><b>Claude Opus 4 · 2025.05</b></p>
-    <p class="abs qz-bub c" data-step="5" style="left:662.4px;top:344.4px"><q>이미지 속 한글은 다 깨지잖아</q><b>Gemini 3 Pro Image · 2025.11</b></p>
-    <p class="abs qz-bub c" data-step="6" style="left:803.5px;top:295.1px"><q>AI로 만든 파워포인트 정말 별로야</q><b>Claude Opus 4.6 · 2026.02</b></p>
-    <p class="abs qz-bub c" data-step="7" style="left:803.5px;top:541.6px"><q>AI 영상은 움직임도 어색하고 연출도 안 되잖아</q><b>Seedance 2.0 · 2026.02</b></p>
-    <p class="abs qz-bub r" data-step="8" style="left:1132.8px;top:295.1px"><q>그래도, 동영상 편집은 사람이 해야 하잖아</q><b>Claude Opus 5.5 + Higgsfield MCP · 2026.09</b></p>
-    <p class="abs qz-bub r" data-step="9" style="left:1132.8px;top:245.8px"><q>뭐? AI가 매번 시키지 않아도 알아서 일한다고?</q><b>Meta Muse · OpenAI dots · 2026.09</b></p>
-    <p class="abs qz-bub r" data-step="10" style="left:1179.8px;top:245.8px"><q>수학 난제를 AI가 푼다고?</q><b>OpenAI 미공개 프런티어 모델 · 2026.10</b></p>
-    <div class="abs qz-mark" data-step="11" style="left:1156.3px;top:305.1px;width:47px;height:49.3px"></div>
-    <p class="abs qz-bub r" data-step="11" style="left:1179.8px;top:295.1px"><q>내가 자리를 비워도 계속 챙겨 준다고?</q><b>Anthropic Claude Duet · 2026.10.21</b></p>
-    <p class="abs footnote">출처: 각 사 발표, 2026년 10월 기준 · Duet은 에이전트 앱 · <a href="https://claude.com/resources/articles/claude-duet" target="_blank" rel="noopener noreferrer" style="color:inherit;margin-left:3px">Anthropic 공식 발표(2026.10.21)</a></p>
-  </section>
-
-  <section class="slide dark qa" data-gap="800" style="--bs:-6px" aria-label="AI는 그거 못해라는 질문과 그 질문을 깬 모델 아홉 가지">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <!-- 9줄이 다 뜬 뒤(10단계) 헤드라인 끝에 ", 아직은"이 펼쳐지고, "아직은"에 그린 밑줄이 그어진다 -->
-    <h2 class="abs head-title">“AI는 그거 못해<span class="qa-later" data-step="10">, <em>아직은</em></span>”</h2>
-    <div class="abs qa-row" data-step="1" style="top:176px"><q>리서치 보고서나 제대로 쓰겠어?</q><i aria-hidden="true">→</i><b>ChatGPT Deep Research</b><time>2025.02</time></div>
-    <div class="abs qa-row" data-step="2" style="top:230px"><q>말만 하지 그림은 못 그리잖아?</q><i aria-hidden="true">→</i><b>ChatGPT 4o</b><time>2025.03</time></div>
-    <div class="abs qa-row" data-step="3" style="top:284px"><q>코딩도 모르는데 앱을 어떻게 만들어?</q><i aria-hidden="true">→</i><b>Claude Opus 4</b><time>2025.05</time></div>
-    <div class="abs qa-row" data-step="4" style="top:338px"><q>이미지 속 한글은 다 깨지잖아</q><i aria-hidden="true">→</i><b>Gemini 3 Pro Image</b><time>2025.11</time></div>
-    <div class="abs qa-row" data-step="5" style="top:392px"><q>AI로 만든 파워포인트 정말 별로야</q><i aria-hidden="true">→</i><b>Claude Opus 4.6</b><time>2026.02</time></div>
-    <div class="abs qa-row" data-step="6" style="top:446px"><q>AI 영상은 움직임도 어색하고 연출도 안 되잖아</q><i aria-hidden="true">→</i><b>Seedance 2.0</b><time>2026.02</time></div>
-    <div class="abs qa-row" data-step="7" style="top:500px"><q>그래도, 동영상 편집은 사람이 해야 하잖아</q><i aria-hidden="true">→</i><b>Claude Opus 5.5 + Higgsfield MCP</b><time>2026.09</time></div>
-    <div class="abs qa-row" data-step="8" style="top:554px"><q>뭐? AI가 매번 시키지 않아도 알아서 일한다고?</q><i aria-hidden="true">→</i><b>Meta Muse · OpenAI dots · Claude Duet</b><time>2026.09~10</time></div>
-    <div class="abs qa-row" data-step="9" style="top:608px"><q>수학 난제를 AI가 푼다고?</q><i aria-hidden="true">→</i><b>OpenAI 미공개 프런티어 모델</b><time>2026.10</time></div>
-  </section>
-
-  <!-- 모델 변곡점 셋(2026-10-18 사용자 제안): AI가 만드는 결과물이 이미지 → 영상 → 파워포인트로 넓어짐. 모델 출시 표와 AI 활용 사례 뒤에서 지능이 산출물로 바뀌는 과정을 보여 준다.
+  <!-- 모델 변곡점 넷(2026-10-18 사용자 제안, 2026-10-23 맨 왼쪽에 Claude Code 추가): AI가 만드는 결과물이 코딩 → 이미지 → 영상 → 영상 편집·게임으로 넓어짐(2026-10-23 파워포인트 → 영상 편집·게임, 썸네일은 게임 시연 첫 화면).
+       Claude Code 2025-02-24(Anthropic, Claude 3.7 Sonnet과 함께 리서치 프리뷰 공개, 정식 출시는 2025-05-22). 터미널 그림은 HTML로 다시 그린 것. 모델 출시 표와 AI 활용 사례 뒤에서 지능이 산출물로 바뀌는 과정을 보여 준다.
        Gemini 3 Pro 2025-11-18, Nano Banana Pro(Gemini 3 Pro Image) 2025-11-20(BGR·iThome). Seedance 2.0 2026-02-12(ByteDance Seed 공식 블로그, 글·이미지·소리·영상 입력, 소리까지 맞춘 최대 15초 영상).
        Claude Opus 5.5 2026-09-22(Anthropic): "built a financial model in Excel, then turned it into an executive presentation". 아이콘은 직접 그린 SVG -->
-  <section class="slide dark ip" data-gap="900" aria-label="AI가 이미지·영상을 넘어 화이트칼라 업무를 빠르게 대체하기 시작함: Gemini 3 Pro(2025.11), Seedance 2.0(2026.2), Claude Opus 5.5(2026.9)">
+  <section class="slide dark ip ip4" data-gap="900" aria-label="AI의 산출 범위는 코드에서 영상·게임까지 업무 전반으로 확장되는 중: Claude Code(2025.2), Gemini 3 Pro(2025.11), Seedance 2.0(2026.2), Claude Opus 5.5(2026.9) 영상 편집·게임">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <h2 class="abs head-title">AI가 이미지·영상을 넘어 화이트칼라 업무를 빠르게 대체하기 시작함</h2>
-    <p class="abs cr-sub lv-sub">AI 결과물의 세 가지 변곡점</p>
-    <div class="abs ip-col" data-step="1" style="left:76px"><figure class="ip-pic nb"><img src="assets/nanobanana-1280.jpg" alt="Nano Banana Pro로 만든 이미지: 고딕풍 방의 탁자 위에 앉은 점토 인형 바나나"></figure><b class="ip-big">이미지</b><div class="ip-mrow"><span class="ip-model">Gemini 3 Pro · Google</span><span class="ip-date">2025.11</span></div></div>
-    <div class="abs ip-col" data-step="2" style="left:464px"><figure class="ip-pic"><img src="assets/seedance-cruise-pitt.jpg" alt="AI로 만든 탐 크루즈와 브래드 피트 격투 장면 보도 영상 썸네일"><span class="ip-play" aria-hidden="true"></span></figure><b class="ip-big">영상</b><div class="ip-mrow"><span class="ip-model">Seedance 2.0 · ByteDance</span><span class="ip-date">2026.02</span></div></div>
-    <div class="abs ip-col hot" data-step="3" style="left:852px"><figure class="ip-pic"><img src="assets/claude-in-powerpoint.png" alt="파워포인트에서 Claude가 슬라이드를 만드는 화면(The Decoder 보도 이미지)"></figure><b class="ip-big">파워포인트</b><div class="ip-mrow"><span class="ip-model">Claude Opus 5.5 · Anthropic</span><span class="ip-date">2026.09</span></div></div>
-    <svg class="abs ip-arr" data-step="2" style="left:428px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    <svg class="abs ip-arr" data-step="3" style="left:816px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    <p class="abs footnote">출처: Google, Nano Banana Pro(2025.11.20) · ByteDance Seed, Seedance 2.0(2026.2.12) · Anthropic, Claude Opus 5.5(2026.9.22) · 이미지: YouTube, The Decoder(Claude in PowerPoint)</p>
+    <h2 class="abs head-title">AI의 산출 범위는 코드에서 영상·게임까지 업무 전반으로 확장되는 중</h2>
+    <p class="abs cr-sub lv-sub">AI 결과물의 네 가지 변곡점</p>
+    <div class="abs ip-col" data-step="1" style="left:76px"><figure class="ip-pic ip-term" role="img" aria-label="터미널에서 claude 명령으로 Claude Code를 실행한 화면(발표자가 다시 그림)"><span class="ip-tb"><i></i><i></i><i></i></span><code><s>$</s> claude<br><em>✻</em> Welcome to <b>Claude Code</b><br><s>&gt;</s> 로그인 버그 고쳐 줘<u></u></code></figure><b class="ip-big">코딩</b><div class="ip-mrow"><span class="ip-model">Claude Code · Anthropic</span><span class="ip-date">2025.02</span></div></div>
+    <div class="abs ip-col" data-step="2" style="left:366px"><figure class="ip-pic nb"><img src="assets/nanobanana-1280.jpg" alt="Nano Banana Pro로 만든 이미지: 고딕풍 방의 탁자 위에 앉은 점토 인형 바나나"></figure><b class="ip-big">이미지</b><div class="ip-mrow"><span class="ip-model">Gemini 3 Pro · Google</span><span class="ip-date">2025.11</span></div></div>
+    <div class="abs ip-col" data-step="3" style="left:656px"><figure class="ip-pic"><img src="assets/seedance-cruise-pitt.jpg" alt="AI로 만든 탐 크루즈와 브래드 피트 격투 장면 보도 영상 썸네일"><span class="ip-play" aria-hidden="true"></span></figure><b class="ip-big">영상</b><div class="ip-mrow"><span class="ip-model">Seedance 2.0 · ByteDance</span><span class="ip-date">2026.02</span></div></div>
+    <div class="abs ip-col hot" data-step="4" style="left:946px"><figure class="ip-pic"><img class="ip-crop" src="assets/video/minecraft.jpg" alt="Claude Code로 만든 복셀 게임 MindCraft Temple 시작 화면"></figure><b class="ip-big">영상 편집·게임</b><div class="ip-mrow"><span class="ip-model">Claude Opus 5.5 · Anthropic</span><span class="ip-date">2026.09</span></div></div>
+    <svg class="abs ip-arr" data-step="2" style="left:338px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <svg class="abs ip-arr" data-step="3" style="left:628px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <svg class="abs ip-arr" data-step="4" style="left:918px" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    <p class="abs footnote">출처: Anthropic, Claude 3.7 Sonnet and Claude Code(2025.2.24, 리서치 프리뷰) · Google, Nano Banana Pro(2025.11.20) · ByteDance Seed, Seedance 2.0(2026.2.12) · Anthropic, Claude Opus 5.5(2026.9.22) · 이미지: Claude Code로 만든 MindCraft Temple(다음 장 시연)</p>
   </section>
 
   <!-- 게임 시연: AI 결과물의 세 가지 변곡점 다음에 배치 -->
@@ -2268,28 +2250,6 @@
     <div class="abs browser" data-step="1">
       <div class="bar"><i></i><i></i><i></i><span class="url">airoasting.com/assets/claudecode/07_minecraft</span></div>
       <video src="assets/video/minecraft.mp4" poster="assets/video/minecraft.jpg" muted loop playsinline preload="auto" aria-label="MindCraft Temple game screen recording"></video>
-    </div>
-  </section>
-
-  <!-- 10. Communication → Content → Game → Commerce 순서로 사례와 연결선을 보여 준다. Fintech와 지지 화살표는 처음부터 공통 기반으로 보인다. -->
-  <section class="slide dark cfx" data-gap="700" aria-label="AI 서비스 확장 프레임워크: Communication에서 Content, Game을 거쳐 Agentic Commerce로 연결됨. Fintech는 전체 영역을 지원하는 거래·결제 공통 기반">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <h2 class="abs head-title">AI 서비스는 소통·콘텐츠·게임을 넘어 커머스로 확장될 것임</h2>
-    <div class="abs cfx-stage" data-step="1">
-      <div class="cfx-engagement" role="group" aria-label="Communication에서 Content와 Game으로 이어지는 서비스 영역">
-        <div class="cfx-node chat" style="left:0"><h3>Communication</h3><span class="cfx-proof" data-step="2">캐릭터 챗봇</span></div>
-        <svg class="cfx-link one" style="left:246px" viewBox="0 0 48 40" aria-label="Communication에서 Content로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
-        <div class="cfx-node drama" style="left:294px"><h3>Content</h3><span class="cfx-proof" data-step="3">AI 드라마</span></div>
-        <svg class="cfx-link two" style="left:540px" viewBox="0 0 48 40" aria-label="Content에서 Game으로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
-        <div class="cfx-node game" style="left:588px"><h3>Game</h3><span class="cfx-proof" data-step="4">AI 게임</span></div>
-      </div>
-      <svg class="cfx-link three" style="left:834px" viewBox="0 0 48 40" aria-label="Game에서 Commerce로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
-      <div class="cfx-node commerce" style="left:882px"><h3>Commerce</h3><span class="cfx-proof" data-step="5">Agentic Commerce</span></div>
-      <svg class="cfx-support" style="left:103px" viewBox="0 0 40 40" aria-label="Fintech가 Communication의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
-      <svg class="cfx-support" style="left:397px" viewBox="0 0 40 40" aria-label="Fintech가 Content의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
-      <svg class="cfx-support" style="left:691px" viewBox="0 0 40 40" aria-label="Fintech가 Game의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
-      <svg class="cfx-support" style="left:985px" viewBox="0 0 40 40" aria-label="Fintech가 Commerce의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
-      <div class="cfx-fintech"><strong>Fintech</strong><span>거래·결제 공통 기반</span></div>
     </div>
   </section>
 
@@ -2586,6 +2546,42 @@
     <div class="abs ln-box" data-step="3" style="left:852px"><div class="ln-h"><i class="r">H</i><b>Hermes</b><em>일하는 에이전트</em></div><p class="ln-d">DevOps 리더가 설정한 환경에서 에이전트 구동</p><ol class="ln-roi"><li><small>01</small><b>기억이 축적됨</b><span>대화가 끝나도 프로젝트와 사람을 기억함</span></li><li><small>02</small><b>스킬을 축적하고 조직에 확산함</b><span>한 사람이 만든 스킬을 팀 전체가 함께 씀</span></li><li><small>03</small><b>가드레일을 명확히 강화함</b><span>격리된 샌드박스 안에서만 작업을 실행함</span></li></ol></div>
   </section>
 
+  <!-- 사내 Slack 화면(2026-10-23 사용자 요청, 업무 지도 장 뒤에서 Notion·Slack·Hermes 장 바로 다음으로 옮김): 앞 장 업무 조합의 실제 예. 에이전트 관리자 pongpong(퐁퐁이)이 2026-10-21 오전 9:01에 올린 메시지를
+       사용자가 준 원문과 스크린샷 그대로 다시 그림(아바타는 스크린샷에서 잘라 냄). 원문 제목은 Top10이나 표는 9줄. 왼쪽은 인사·상태, 오른쪽은 Top10 표로 나눠 한 화면에 담았다 -->
+  <section class="slide dark sk" data-gap="800" aria-label="에이전트가 사내 AI 비서의 상태와 사용량을 슬랙으로 보고하는 중: 에이전트 관리자 퐁퐁이의 아침 메시지와 최근 24시간 비서 Top10">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span class="on">02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">에이전트가 사내 AI 비서의 상태와 사용량을 슬랙으로 보고하는 중</h2>
+    <p class="abs cr-sub lv-sub">에이전트 관리자 퐁퐁이의 아침 메시지</p>
+    <div class="abs sk-win" data-step="1">
+      <div class="sk-top"><span class="sk-dots"><i></i><i></i><i></i></span><span class="sk-ws">Slack</span></div>
+      <div class="sk-msg">
+        <img class="sk-av" src="assets/pongpong-avatar.png" alt="pongpong 아바타">
+        <div class="sk-main">
+          <p class="sk-who"><b>pongpong</b><span class="sk-app">앱</span><time>오전 9:01</time></p>
+          <div class="sk-cols">
+            <div class="sk-l">
+              <p class="sk-hi">☕ 좋은 아침이에요! 비서들 출석 체크하고 온 퐁퐁이입니다.</p>
+              <ul class="sk-ul">
+                <li>🚨 상태: 일부 비서가 응답하지 않을 수 있어 관리 확인이 필요해요.</li>
+                <li>🙋 사용자 조치: 불편하면 잠시 뒤 다시 불러보고, 계속 안 되면 알려주세요.</li>
+                <li>🧘 안심 포인트: 관리자가 확인해야 할 신호가 있어요.</li>
+                <li>🍃 사무실 앞 날씨: 8~15℃, 큰 비 소식은 적어요.<ul><li>날씨가 오늘은 비교적 협조적이에요. 출근길과 평화협정 체결 완료.</li></ul></li>
+              </ul>
+              <p class="sk-eye">👀 제가 계속 지켜보고 있을게요.</p>
+            </div>
+            <div class="sk-r">
+              <p class="sk-tt">🏆 최근 24시간 가장 바빴던 비서 Top10</p>
+              <p class="sk-cap">최근 24시간 요청 수순 Top10 · 기존 동점 처리 유지 · 30일 누적 함께 표시.</p>
+              <table class="sk-tb"><thead><tr><th>순위</th><th class="nm">비서</th><th>요청</th><th>세션</th><th>활동 점수</th><th class="sh">점유율</th><th>30일 순위</th><th>30일 요청</th><th>30일 세션</th></tr></thead><tbody><tr><td>1</td><td class="nm">BMO (Eden)</td><td>148</td><td>34</td><td>36</td><td class="sh"><span class="bar">███░░░░░░░</span>27.0%</td><td>1</td><td>1740</td><td>310</td></tr><tr><td>2</td><td class="nm">Hermia Gnosis Asteria Aether (Shea)</td><td>77</td><td>23</td><td>43</td><td class="sh"><span class="bar">█░░░░░░░░░</span>14.0%</td><td>6</td><td>625</td><td>346</td></tr><tr><td>3</td><td class="nm">올라프 (Lena)</td><td>55</td><td>12</td><td>32</td><td class="sh"><span class="bar">█░░░░░░░░░</span>10.0%</td><td>2</td><td>1299</td><td>149</td></tr><tr><td>4</td><td class="nm">하나 (Jamie)</td><td>49</td><td>49</td><td>0</td><td class="sh"><span class="bar">█░░░░░░░░░</span>8.9%</td><td>3</td><td>1049</td><td>1012</td></tr><tr><td>5</td><td class="nm">Lumi (Brian)</td><td>28</td><td>26</td><td>21</td><td class="sh"><span class="bar">█░░░░░░░░░</span>5.1%</td><td>7</td><td>544</td><td>468</td></tr><tr><td>6</td><td class="nm">갑돌이 (Eisen)</td><td>24</td><td>24</td><td>4</td><td class="sh"><span class="bar">█░░░░░░░░░</span>4.4%</td><td>4</td><td>850</td><td>710</td></tr><tr><td>7</td><td class="nm">kyle-HB (Kyle)</td><td>20</td><td>20</td><td>5</td><td class="sh"><span class="bar">█░░░░░░░░░</span>3.6%</td><td>9</td><td>318</td><td>112</td></tr><tr><td>8</td><td class="nm">순욱 (Neo)</td><td>20</td><td>7</td><td>13</td><td class="sh"><span class="bar">█░░░░░░░░░</span>3.6%</td><td>5</td><td>824</td><td>117</td></tr><tr><td>9</td><td class="nm">민식이 (Lou)</td><td>20</td><td>5</td><td>0</td><td class="sh"><span class="bar">█░░░░░░░░░</span>3.6%</td><td>11</td><td>270</td><td>61</td></tr></tbody></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="abs footnote">화면: 사내 Slack, 에이전트 관리자 pongpong의 메시지(2026.10.21) · 발표자가 원문 그대로 다시 그림, 수치는 화면 원문 값</p>
+  </section>
+
   <!-- 업무 지도(2026-10-18 HR 서밋 덱 22장 구조로 다시 씀): HR 대신 일반 업무 다섯 줄(MD·상품기획, 마케팅, 고객 응대, 재무·경영지원, 보고·협업)에
        성과가 빨리 나기 쉬운 반복·대량 업무를 골라 AI 활용 유형 16가지를 한 번씩 배치. 칩 색은 AI가 맡는 역할 넷(생성·편집, 요약·인식, 검색·조사, 분석·실행). 줄마다 차례로 뜬다 -->
   <section class="slide dark hm" data-gap="500" aria-label="AI 적용 지점은 특정 부서가 아니라 모든 직무에 걸쳐 있음: 업무 단계별 AI 활용 16가지">
@@ -2695,6 +2691,29 @@
   </section>
 
 
+
+  <!-- 서비스 확장 프레임워크(2026-10-23 게임 시연 뒤에서 5사 타임라인과 에이전트 고객 장 사이로 옮김). Communication → Content → Game → Commerce 순서로 사례와 연결선을 보여 준다. Fintech와 지지 화살표는 처음부터 공통 기반으로 보인다. -->
+  <section class="slide dark cfx" data-gap="700" aria-label="AI 서비스 확장 프레임워크: Communication에서 Content, Game을 거쳐 Agentic Commerce로 연결됨. Fintech는 전체 영역을 지원하는 거래·결제 공통 기반">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span>01 조직문화 전환</span><span>02 암묵지 축적</span><span class="on">03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">AI 서비스는 소통·콘텐츠·게임을 넘어 커머스로 확장될 것임</h2>
+    <div class="abs cfx-stage" data-step="1">
+      <div class="cfx-engagement" role="group" aria-label="Communication에서 Content와 Game으로 이어지는 서비스 영역">
+        <div class="cfx-node chat" style="left:0"><h3>Communication</h3><span class="cfx-proof" data-step="2">캐릭터 챗봇</span></div>
+        <svg class="cfx-link one" style="left:246px" viewBox="0 0 48 40" aria-label="Communication에서 Content로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+        <div class="cfx-node drama" style="left:294px"><h3>Content</h3><span class="cfx-proof" data-step="3">AI 드라마</span></div>
+        <svg class="cfx-link two" style="left:540px" viewBox="0 0 48 40" aria-label="Content에서 Game으로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+        <div class="cfx-node game" style="left:588px"><h3>Game</h3><span class="cfx-proof" data-step="4">AI 게임</span></div>
+      </div>
+      <svg class="cfx-link three" style="left:834px" viewBox="0 0 48 40" aria-label="Game에서 Commerce로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+      <div class="cfx-node commerce" style="left:882px"><h3>Commerce</h3><span class="cfx-proof" data-step="5">Agentic Commerce</span></div>
+      <svg class="cfx-support" style="left:103px" viewBox="0 0 40 40" aria-label="Fintech가 Communication의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:397px" viewBox="0 0 40 40" aria-label="Fintech가 Content의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:691px" viewBox="0 0 40 40" aria-label="Fintech가 Game의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:985px" viewBox="0 0 40 40" aria-label="Fintech가 Commerce의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <div class="cfx-fintech"><strong>Fintech</strong><span>거래·결제 공통 기반</span></div>
+    </div>
+  </section>
 
   <!-- 에이전트 고객(B2C): 왼쪽 AI가 관여한 이커머스 거래 비중 2026 3.2% → 2030 15.8%(eMarketer US Ecommerce 2026 기본 시나리오. AI 추천·쇼핑몰 AI 도우미 포함, 에이전트 단독 결제만이 아님), 오른쪽 에이전트 구매 특성 5가지와 B2C 대응 전략.
        특성·대응은 McKinsey·Bain의 agentic commerce 보고서와 Meta Muse 사례를 바탕으로 한 발표자 정리 -->
@@ -2946,6 +2965,66 @@
     <div class="abs ar-tip t-l" data-step="6" style="left:700px;top:234px;width:444px"><p class="ar-tip-h">Action Items (제안)</p><p class="ar-li">보고는 HTML로 받고, 리더가 에이전트로 먼저 검토하는 과정을 공개(파워포인트 → 1 Pager → HTML)</p><p class="ar-li">부서마다 AX 챔피언을 선정하고, IT 부서와 함께 AI 전환 과제를 발굴</p><p class="ar-li">리더 평가에 에이전트 위임·검증 성과를 반영</p></div>
     <div class="abs ar-tip t-d" data-step="7" style="left:94px;top:262px"><p class="ar-tip-h">Action Items (제안)</p><p>매장 운영 매뉴얼·FAQ와 데이터 정의를 Company Brain으로 통합하고, 업무 노하우는 스킬 라이브러리로 축적</p></div>
     <div class="abs ar-tip t-u" data-step="8" style="left:792px;top:528px;width:360px"><p class="ar-tip-h">Action Items (제안)</p><p>에이전트별 책임자와 권한 범위를 지정하고, 2027년 예산부터 토큰 예산을 인건비와 통합 관리</p></div>
+  </section>
+
+  <!-- 멘토 v2의 9·10장 복사: 월별 모델 출시 표와 AI는 그거 못해. 변곡점 장 앞에 배치 -->
+  <section class="slide dark md" data-click="1" aria-label="주요 AI 기업의 월별 모델·제품 출시 표, 2025년 1월부터 2026년 10월까지, Anthropic Claude Duet 10월 21일 공개 포함">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">주요 AI 기업은 거의 매달 새 모델과 제품을 출시하고 있음</h2>
+    <table class="abs md-tbl">
+      <thead><tr><th>회사</th><th class="y">’25.1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th class="y">’26.1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr></thead>
+      <tbody>
+        <tr><th>DeepSeek</th><td class="y hot">V3/R1</td><td></td><td></td><td></td><td></td><td></td><td></td><td>V3.1</td><td>V3.2</td><td></td><td>V3.2-Speciale</td><td></td><td class="y"></td><td></td><td></td><td class="hot">V4</td><td></td><td></td><td></td><td>V4-Pro</td><td>V4.1-Flash</td><td></td></tr>
+        <tr><th>OpenAI</th><td class="y">GPT 4o (Omni)</td><td>GPT 4.5, Deep Research</td><td class="media">4o 이미지</td><td></td><td></td><td></td><td></td><td>GPT 5</td><td>Sora 2 (동영상)</td><td>GPT 5 Pro</td><td>GPT 5.1</td><td>GPT 5.2</td><td class="y"></td><td>GPT 5.3 Codex</td><td>Sora 2 종료</td><td class="hot">GPT 5.5 Duct-Tape</td><td></td><td></td><td class="hot">GPT 5.6, GPT Live</td><td></td><td class="hot">GPT 6 Astra · Sol · Luna, dots</td><td>GPT 6 Instant, 미공개 모델</td></tr>
+        <tr><th>Anthropic</th><td class="y"></td><td class="hot">Claude 3.7 Sonnet</td><td></td><td></td><td class="hot">Opus 4</td><td></td><td></td><td>Opus 4.1</td><td>Sonnet 4.5</td><td></td><td>Opus 4.5</td><td></td><td class="y"></td><td class="hot">Opus 4.6</td><td></td><td>Opus 4.7</td><td class="hot">Mythos Preview</td><td class="hot">Fable 5</td><td class="hot">Opus 5</td><td></td><td class="hot">Opus 5.5, Sonnet 5.5</td><td class="hot">Haiku 5.5<br>Duet<br>(에이전트)</td></tr>
+        <tr><th>Google</th><td class="y"></td><td>Gemini 2.0</td><td>Gemini 2.5</td><td></td><td></td><td></td><td></td><td class="media">2.5 Flash w/ image</td><td>Veo 3.0</td><td class="media">Veo 3.1 (동영상)</td><td class="hot">Gemini 3 Pro, 3 Pro Image</td><td></td><td class="y"></td><td>Gemini 3.1 Pro Preview</td><td></td><td></td><td></td><td></td><td></td><td>Gemini 3.7 Flash</td><td class="hot">Gemini 3.8 Flash, Gemini 4 Argon</td><td class="media">Nano Banana 2.1</td></tr>
+        <tr><th>Meta</th><td class="y"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="y"></td><td></td><td></td><td class="hot">Muse Spark</td><td></td><td></td><td>Muse Spark 1.1</td><td>Muse Code</td><td class="hot">Muse (에이전트)</td><td class="hot">Muse Wonder</td></tr>
+        <tr><th>xAI</th><td class="y"></td><td>Grok 3</td><td></td><td></td><td></td><td></td><td>Grok 4</td><td></td><td></td><td></td><td>Grok 4.1</td><td></td><td class="y"></td><td></td><td>4.2 Beta</td><td></td><td></td><td></td><td>Grok 4.5</td><td>Grok 4.6</td><td>Grok 4.7</td><td></td></tr>
+        <tr><th>Alibaba</th><td class="y">Qwen2.5-VL</td><td>Qwen2.5-Omni</td><td></td><td>Qwen3</td><td></td><td></td><td>Qwen3-235B-A22B</td><td></td><td>Qwen3-VL</td><td>Qwen3-Max</td><td></td><td></td><td class="y"></td><td></td><td>Qwen3.5 Omni</td><td>Qwen3.6 Plus</td><td></td><td></td><td></td><td>Qwen3.8-Max</td><td>Qwen3.8 Omni-Flash</td><td></td></tr>
+        <tr><th>ByteDance</th><td class="y"></td><td></td><td></td><td></td><td>Skylark-vision</td><td>Seedance 1.0 Pro</td><td></td><td></td><td></td><td></td><td>Seedream 4.5</td><td></td><td class="y"></td><td class="hot">Seedance 2.0</td><td></td><td>Seed3D 2.0</td><td></td><td>Seed 2.1</td><td class="hot">Seedance 2.5</td><td>Seed Realtime</td><td class="media">Seedream 5.0 Flash</td><td></td></tr>
+        <tr><th>Moonshot AI</th><td class="y"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="y"></td><td></td><td></td><td></td><td></td><td></td><td class="hot">Kimi K3</td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+    <p class="abs md-legend" data-step="1"><i class="hot"></i>주요 출시<i class="media"></i>이미지·영상 모델</p>
+    <!-- 질문 말풍선: 클릭마다 하나씩. 말풍선은 지금 단계 것만 보이고(:has로 앞 것을 숨김), 답한 칸 표시(.qz-mark)는 남는다.
+         1단계는 범례(표만 보이는 상태), 질문은 2~10단계. 좌표는 표 칸을 잰 값(칸 47 × 52) -->
+    <div class="abs qz-mark" data-step="2" style="left:215.5px;top:255.8px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="3" style="left:262.6px;top:255.8px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="4" style="left:356.7px;top:305.1px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="5" style="left:638.9px;top:354.4px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="6" style="left:780px;top:305.1px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="7" style="left:780px;top:551.6px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="8" style="left:1109.3px;top:305.1px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="9" style="left:1109.3px;top:255.8px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="9" style="left:1109.3px;top:403.7px;width:47px;height:49.3px"></div>
+    <div class="abs qz-mark" data-step="10" style="left:1156.3px;top:255.8px;width:47px;height:49.3px"></div>
+    <p class="abs qz-bub l" data-step="2" style="left:239px;top:245.8px"><q>리서치 보고서나 제대로 쓰겠어?</q><b>ChatGPT Deep Research · 2025.02</b></p>
+    <p class="abs qz-bub l" data-step="3" style="left:286.1px;top:245.8px"><q>말만 하지 그림은 못 그리잖아?</q><b>ChatGPT 4o · 2025.03</b></p>
+    <p class="abs qz-bub c" data-step="4" style="left:380.2px;top:295.1px"><q>코딩도 모르는데 앱을 어떻게 만들어?</q><b>Claude Opus 4 · 2025.05</b></p>
+    <p class="abs qz-bub c" data-step="5" style="left:662.4px;top:344.4px"><q>이미지 속 한글은 다 깨지잖아</q><b>Gemini 3 Pro Image · 2025.11</b></p>
+    <p class="abs qz-bub c" data-step="6" style="left:803.5px;top:295.1px"><q>AI로 만든 파워포인트 정말 별로야</q><b>Claude Opus 4.6 · 2026.02</b></p>
+    <p class="abs qz-bub c" data-step="7" style="left:803.5px;top:541.6px"><q>AI 영상은 움직임도 어색하고 연출도 안 되잖아</q><b>Seedance 2.0 · 2026.02</b></p>
+    <p class="abs qz-bub r" data-step="8" style="left:1132.8px;top:295.1px"><q>그래도, 동영상 편집은 사람이 해야 하잖아</q><b>Claude Opus 5.5 + Higgsfield MCP · 2026.09</b></p>
+    <p class="abs qz-bub r" data-step="9" style="left:1132.8px;top:245.8px"><q>뭐? AI가 매번 시키지 않아도 알아서 일한다고?</q><b>Meta Muse · OpenAI dots · 2026.09</b></p>
+    <p class="abs qz-bub r" data-step="10" style="left:1179.8px;top:245.8px"><q>수학 난제를 AI가 푼다고?</q><b>OpenAI 미공개 프런티어 모델 · 2026.10</b></p>
+    <div class="abs qz-mark" data-step="11" style="left:1156.3px;top:305.1px;width:47px;height:49.3px"></div>
+    <p class="abs qz-bub r" data-step="11" style="left:1179.8px;top:295.1px"><q>내가 자리를 비워도 계속 챙겨 준다고?</q><b>Anthropic Claude Duet · 2026.10.21</b></p>
+    <p class="abs footnote">출처: 각 사 발표, 2026년 10월 기준 · Duet은 에이전트 앱 · <a href="https://claude.com/resources/articles/claude-duet" target="_blank" rel="noopener noreferrer" style="color:inherit;margin-left:3px">Anthropic 공식 발표(2026.10.21)</a></p>
+  </section>
+
+  <section class="slide dark qa" data-gap="800" style="--bs:-6px" aria-label="AI는 그거 못해라는 질문과 그 질문을 깬 모델 아홉 가지">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <!-- 9줄이 다 뜬 뒤(10단계) 헤드라인 끝에 ", 아직은"이 펼쳐지고, "아직은"에 그린 밑줄이 그어진다 -->
+    <h2 class="abs head-title">“AI는 그거 못해<span class="qa-later" data-step="10">, <em>아직은</em></span>”</h2>
+    <div class="abs qa-row" data-step="1" style="top:176px"><q>리서치 보고서나 제대로 쓰겠어?</q><i aria-hidden="true">→</i><b>ChatGPT Deep Research</b><time>2025.02</time></div>
+    <div class="abs qa-row" data-step="2" style="top:230px"><q>말만 하지 그림은 못 그리잖아?</q><i aria-hidden="true">→</i><b>ChatGPT 4o</b><time>2025.03</time></div>
+    <div class="abs qa-row" data-step="3" style="top:284px"><q>코딩도 모르는데 앱을 어떻게 만들어?</q><i aria-hidden="true">→</i><b>Claude Opus 4</b><time>2025.05</time></div>
+    <div class="abs qa-row" data-step="4" style="top:338px"><q>이미지 속 한글은 다 깨지잖아</q><i aria-hidden="true">→</i><b>Gemini 3 Pro Image</b><time>2025.11</time></div>
+    <div class="abs qa-row" data-step="5" style="top:392px"><q>AI로 만든 파워포인트 정말 별로야</q><i aria-hidden="true">→</i><b>Claude Opus 4.6</b><time>2026.02</time></div>
+    <div class="abs qa-row" data-step="6" style="top:446px"><q>AI 영상은 움직임도 어색하고 연출도 안 되잖아</q><i aria-hidden="true">→</i><b>Seedance 2.0</b><time>2026.02</time></div>
+    <div class="abs qa-row" data-step="7" style="top:500px"><q>그래도, 동영상 편집은 사람이 해야 하잖아</q><i aria-hidden="true">→</i><b>Claude Opus 5.5 + Higgsfield MCP</b><time>2026.09</time></div>
+    <div class="abs qa-row" data-step="8" style="top:554px"><q>뭐? AI가 매번 시키지 않아도 알아서 일한다고?</q><i aria-hidden="true">→</i><b>Meta Muse · OpenAI dots · Claude Duet</b><time>2026.09~10</time></div>
+    <div class="abs qa-row" data-step="9" style="top:608px"><q>수학 난제를 AI가 푼다고?</q><i aria-hidden="true">→</i><b>OpenAI 미공개 프런티어 모델</b><time>2026.10</time></div>
   </section>
 </main>
 <!-- ../../index.html 복사본(base64). file://로 열 때만 쓴다. 원본을 고치면 이 블록도 다시 만들어야 한다 -->
