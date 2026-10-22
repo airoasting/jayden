@@ -2190,6 +2190,43 @@
   /* 진단 숫자를 기존 장에 덧붙인 한 줄 */
   .aos-data { left: 76px; top: 538px; width: 1128px; margin: 0; text-align: center; font-size: 16px; font-weight: 700; color: #6f7880; }
   .aos-data b { color: #0a3255; }
+  /* 서비스 확장 프레임워크(8장): Communication → Content → Game → Commerce. Fintech는 네 영역을 지원. Fintech는 공통 기반. */
+  .cfx-stage { left: 76px; top: 196px; width: 1128px; height: 454px; }
+  .cfx-engagement { position: absolute; left: 0; top: 0; width: 834px; height: 280px; }
+  .cfx-node { position: absolute; top: 0; width: 246px; height: 280px; border: 2px solid #dce1e5; border-radius: 18px; background: #f7f8f9;
+    transition: background-color .65s ease, border-color .65s ease, box-shadow .65s ease; }
+  .cfx-node h3 { position: absolute; left: 16px; right: 16px; top: 75px; font-size: 27px; font-weight: 800; line-height: 1.25; letter-spacing: -.035em; text-align: center; white-space: nowrap; }
+  .cfx-node.chat h3 { font-size: 24px; }
+  .cfx-proof { position: absolute; left: 18px; right: 18px; top: 145px; height: 58px; border-radius: 11px; display: flex; align-items: center; justify-content: center;
+    background: #e7f6fb; font-size: 21px; font-weight: 800; letter-spacing: -.02em; color: #0a3255; }
+  .cfx-stage:has(.chat .cfx-proof.on):not(:has(.drama .cfx-proof.on)) .chat,
+  .cfx-stage:has(.drama .cfx-proof.on):not(:has(.game .cfx-proof.on)) .drama,
+  .cfx-stage:has(.game .cfx-proof.on):not(:has(.commerce .cfx-proof.on)) .game { border-color: #0aa0d2; background: #e7f6fb; box-shadow: 0 10px 28px rgba(10,160,210,.09); }
+  .cfx-stage:has(.commerce .cfx-proof.on) .commerce { background: #0aa0d2; border-color: #0aa0d2; box-shadow: 0 14px 36px rgba(10,160,210,.20); }
+  .cfx-stage:has(.commerce .cfx-proof.on) .commerce h3 { color: #fff; }
+  .commerce .cfx-proof { color: #0a3255; background: rgba(255,255,255,.66); }
+  .cfx-link { position: absolute; top: 120px; width: 48px; height: 40px; fill: none; stroke: #c4ccd2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cfx-link .cfx-trace { stroke: #0a3255; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .7s cubic-bezier(.65,0,.35,1); }
+  .cfx-stage:has(.drama .cfx-proof.on) .cfx-link.one .cfx-trace,
+  .cfx-stage:has(.game .cfx-proof.on) .cfx-link.two .cfx-trace,
+  .cfx-stage:has(.commerce .cfx-proof.on) .cfx-link.three .cfx-trace { stroke-dashoffset: 0; }
+  .cfx-support { position: absolute; top: 288px; width: 40px; height: 36px; fill: none; stroke: #98a1a8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cfx-fintech { position: absolute; left: 0; top: 334px; width: 1128px; height: 120px; border: 2px solid #dce1e5; border-radius: 18px;
+    display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; background: #fff; color: #6f7880; font-size: 27px; font-weight: 800; letter-spacing: -.03em; }
+  .cfx-fintech span { font-size: 18px; font-weight: 600; letter-spacing: -.02em; color: #98a1a8; }
+  /* 8장: 단계 간격 0.7초, 등장·강조 전환 0.35~0.45초로 빠르게 재생한다. */
+  .slide.dark.cfx [data-step] { transition-duration: .35s, .45s, .35s; }
+  .cfx .cfx-node { transition-duration: .4s; }
+  .cfx .cfx-trace { transition-duration: .4s; }
+  .cfx.instant .cfx-node, .cfx.instant .cfx-trace { transition: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    .cfx .cfx-node, .cfx .cfx-trace { transition: none !important; }
+  }
+  @media print {
+    .cfx-stage .commerce { background: #0aa0d2; border-color: #0aa0d2; box-shadow: none; }
+    .cfx .commerce h3 { color: #fff; }
+    .cfx .cfx-trace { stroke-dashoffset: 0; }
+  }
 </style>
 </head>
 <body>
@@ -2435,6 +2472,28 @@
     <div class="abs browser" data-step="1">
       <div class="bar"><i></i><i></i><i></i><span class="url">airoasting.com/assets/claudecode/07_minecraft</span></div>
       <video src="assets/video/minecraft.mp4" poster="assets/video/minecraft.jpg" muted loop playsinline preload="auto" aria-label="MindCraft Temple game screen recording"></video>
+    </div>
+  </section>
+
+  <!-- 올리브영 최신 10장 복사: 게임 시연 다음. 레이아웃·문구·0.7초 순차 등장은 유지하고 강조색은 넥슨 블루로 적용 -->
+  <section class="slide dark cfx" data-gap="700" aria-label="AI 서비스 확장 프레임워크: Communication에서 Content, Game을 거쳐 Agentic Commerce로 연결됨. Fintech는 전체 영역을 지원하는 거래·결제 공통 기반">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">AI 서비스는 소통·콘텐츠·게임을 넘어 커머스로 확장될 것임</h2>
+    <div class="abs cfx-stage" data-step="1">
+      <div class="cfx-engagement" role="group" aria-label="Communication에서 Content와 Game으로 이어지는 서비스 영역">
+        <div class="cfx-node chat" style="left:0"><h3>Communication</h3><span class="cfx-proof" data-step="2">캐릭터 챗봇</span></div>
+        <svg class="cfx-link one" style="left:246px" viewBox="0 0 48 40" aria-label="Communication에서 Content로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+        <div class="cfx-node drama" style="left:294px"><h3>Content</h3><span class="cfx-proof" data-step="3">AI 드라마</span></div>
+        <svg class="cfx-link two" style="left:540px" viewBox="0 0 48 40" aria-label="Content에서 Game으로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+        <div class="cfx-node game" style="left:588px"><h3>Game</h3><span class="cfx-proof" data-step="4">AI 게임</span></div>
+      </div>
+      <svg class="cfx-link three" style="left:834px" viewBox="0 0 48 40" aria-label="Game에서 Commerce로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+      <div class="cfx-node commerce" style="left:882px"><h3>Commerce</h3><span class="cfx-proof" data-step="5">Agentic Commerce</span></div>
+      <svg class="cfx-support" style="left:103px" viewBox="0 0 40 40" aria-label="Fintech가 Communication의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:397px" viewBox="0 0 40 40" aria-label="Fintech가 Content의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:691px" viewBox="0 0 40 40" aria-label="Fintech가 Game의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:985px" viewBox="0 0 40 40" aria-label="Fintech가 Commerce의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <div class="cfx-fintech"><strong>Fintech</strong><span>거래·결제 공통 기반</span></div>
     </div>
   </section>
 
