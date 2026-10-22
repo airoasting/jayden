@@ -1931,7 +1931,7 @@
   .ip-play { position: absolute; left: 50%; top: 50%; width: 52px; height: 36px; transform: translate(-50%,-50%); border-radius: 10px; background: rgba(26,26,26,.82); }
   .ip-play::after { content: ""; position: absolute; left: 21px; top: 10px; border-left: 14px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
 
-  /* 서비스 확장 프레임워크(10장): 소통·콘텐츠·게임은 병렬, 관심·참여를 커머스 구매로 연결. Fintech는 공통 기반. */
+  /* 서비스 확장 프레임워크(10장): Communication → Content → Game → Commerce. Fintech는 네 영역을 지원. Fintech는 공통 기반. */
   .cfx-stage { left: 76px; top: 196px; width: 1128px; height: 454px; }
   .cfx-engagement { position: absolute; left: 0; top: 0; width: 834px; height: 280px; }
   .cfx-node { position: absolute; top: 0; width: 246px; height: 280px; border: 2px solid #dce1e5; border-radius: 18px; background: #f7f8f9;
@@ -1947,6 +1947,8 @@
   .commerce .cfx-proof { color: #1a1a1a; background: rgba(255,255,255,.66); }
   .cfx-link { position: absolute; top: 120px; width: 48px; height: 40px; fill: none; stroke: #c4ccd2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .cfx-link .cfx-trace { stroke: #3a9c00; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .7s cubic-bezier(.65,0,.35,1); }
+  .cfx-stage:has(.drama .cfx-proof.on) .cfx-link.one .cfx-trace,
+  .cfx-stage:has(.game .cfx-proof.on) .cfx-link.two .cfx-trace,
   .cfx-stage:has(.commerce .cfx-proof.on) .cfx-link.three .cfx-trace { stroke-dashoffset: 0; }
   .cfx-support { position: absolute; top: 288px; width: 40px; height: 36px; fill: none; stroke: #98a1a8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .cfx-fintech { position: absolute; left: 0; top: 334px; width: 1128px; height: 120px; border: 2px solid #dce1e5; border-radius: 18px;
@@ -2269,17 +2271,19 @@
     </div>
   </section>
 
-  <!-- 10. 세 병렬 활용 영역의 사례를 차례로 보여 준 뒤, 관심·참여에서 구매 전환으로 연결한다. Fintech와 지지 화살표는 처음부터 공통 기반으로 보인다. -->
-  <section class="slide dark cfx" data-gap="700" aria-label="AI 서비스 확장 프레임워크: Communication·Content·Game은 관심과 참여를 만드는 병렬 영역이며, Agentic Commerce의 구매 전환으로 연결됨. Fintech는 전체 영역을 지원하는 거래·결제 공통 기반">
+  <!-- 10. Communication → Content → Game → Commerce 순서로 사례와 연결선을 보여 준다. Fintech와 지지 화살표는 처음부터 공통 기반으로 보인다. -->
+  <section class="slide dark cfx" data-gap="700" aria-label="AI 서비스 확장 프레임워크: Communication에서 Content, Game을 거쳐 Agentic Commerce로 연결됨. Fintech는 전체 영역을 지원하는 거래·결제 공통 기반">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <h2 class="abs head-title">AI 서비스는 소통·콘텐츠·게임을 넘어 커머스로 확장될 것임</h2>
     <div class="abs cfx-stage" data-step="1">
-      <div class="cfx-engagement" role="group" aria-label="관심과 참여를 만드는 세 병렬 영역">
+      <div class="cfx-engagement" role="group" aria-label="Communication에서 Content와 Game으로 이어지는 서비스 영역">
         <div class="cfx-node chat" style="left:0"><h3>Communication</h3><span class="cfx-proof" data-step="2">캐릭터 챗봇</span></div>
+        <svg class="cfx-link one" style="left:246px" viewBox="0 0 48 40" aria-label="Communication에서 Content로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
         <div class="cfx-node drama" style="left:294px"><h3>Content</h3><span class="cfx-proof" data-step="3">AI 드라마</span></div>
+        <svg class="cfx-link two" style="left:540px" viewBox="0 0 48 40" aria-label="Content에서 Game으로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
         <div class="cfx-node game" style="left:588px"><h3>Game</h3><span class="cfx-proof" data-step="4">AI 게임</span></div>
       </div>
-      <svg class="cfx-link three" style="left:834px" viewBox="0 0 48 40" aria-label="세 영역의 관심과 참여를 커머스 구매로 전환"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+      <svg class="cfx-link three" style="left:834px" viewBox="0 0 48 40" aria-label="Game에서 Commerce로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
       <div class="cfx-node commerce" style="left:882px"><h3>Commerce</h3><span class="cfx-proof" data-step="5">Agentic Commerce</span></div>
       <svg class="cfx-support" style="left:103px" viewBox="0 0 40 40" aria-label="Fintech가 Communication의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
       <svg class="cfx-support" style="left:397px" viewBox="0 0 40 40" aria-label="Fintech가 Content의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
