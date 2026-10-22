@@ -1955,6 +1955,10 @@
   .cfx-fintech { position: absolute; left: 0; top: 254px; width: 1128px; height: 200px; border: 2px solid #dce1e5; border-radius: 18px;
     display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; background: #fff; color: #6f7880; font-size: 27px; font-weight: 800; letter-spacing: -.03em; }
   .cfx-fintech span { font-size: 18px; font-weight: 600; letter-spacing: -.02em; color: #98a1a8; }
+  /* 10장: 단계 간격 0.7초, 등장·강조 전환 0.35~0.45초로 빠르게 재생한다. */
+  .slide.dark.cfx [data-step] { transition-duration: .35s, .45s, .35s; }
+  .cfx .cfx-node { transition-duration: .4s; }
+  .cfx .cfx-trace { transition-duration: .4s; }
   .cfx.instant .cfx-node, .cfx.instant .cfx-trace { transition: none !important; }
   @media (prefers-reduced-motion: reduce) {
     .cfx .cfx-node, .cfx .cfx-trace { transition: none !important; }
@@ -2269,7 +2273,7 @@
   </section>
 
   <!-- 10. 세 병렬 활용 영역의 사례를 차례로 보여 준 뒤, 관심·참여에서 구매 전환으로 연결한다. Fintech와 지지 화살표는 처음부터 공통 기반으로 보인다. -->
-  <section class="slide dark cfx" data-gap="1400" aria-label="AI 서비스 확장 프레임워크: Communication·Content·Game은 관심과 참여를 만드는 병렬 영역이며, Agentic Commerce의 구매 전환으로 연결됨. Fintech는 전체 영역을 지원하는 거래·결제 공통 기반">
+  <section class="slide dark cfx" data-gap="700" aria-label="AI 서비스 확장 프레임워크: Communication·Content·Game은 관심과 참여를 만드는 병렬 영역이며, Agentic Commerce의 구매 전환으로 연결됨. Fintech는 전체 영역을 지원하는 거래·결제 공통 기반">
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <h2 class="abs head-title">AI 서비스는 소통·콘텐츠·게임을 넘어 커머스로 확장될 것임</h2>
     <div class="abs cfx-stage" data-step="1">
