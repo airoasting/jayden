@@ -1926,6 +1926,44 @@
   .ip-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .ip-play { position: absolute; left: 50%; top: 50%; width: 52px; height: 36px; transform: translate(-50%,-50%); border-radius: 10px; background: rgba(26,26,26,.82); }
   .ip-play::after { content: ""; position: absolute; left: 21px; top: 10px; border-left: 14px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+
+  /* 서비스 확장 프레임워크(10장): 4개 가로 박스 → Commerce 아래 Fintech. 기존 6단계 자동 재생을 사용한다. */
+  .cfx-stage { left: 76px; top: 244px; width: 1128px; height: 406px; }
+  .cfx-node { position: absolute; top: 0; width: 246px; height: 200px; border: 2px solid #dce1e5; border-radius: 18px; background: #f7f8f9;
+    transition: background-color .65s ease, border-color .65s ease, box-shadow .65s ease; }
+  .cfx-node h3 { position: absolute; left: 16px; right: 16px; top: 35px; font-size: 27px; font-weight: 800; line-height: 1.25; letter-spacing: -.035em; text-align: center; white-space: nowrap; }
+  .cfx-node.chat h3 { font-size: 24px; }
+  .cfx-proof { position: absolute; left: 18px; right: 18px; top: 105px; height: 58px; border-radius: 11px; display: flex; align-items: center; justify-content: center;
+    background: #eaf8df; font-size: 21px; font-weight: 800; letter-spacing: -.02em; color: #3a9c00; }
+  .cfx-stage:has(.chat .cfx-proof.on):not(:has(.drama .cfx-proof.on)) .chat,
+  .cfx-stage:has(.drama .cfx-proof.on):not(:has(.game .cfx-proof.on)) .drama,
+  .cfx-stage:has(.game .cfx-proof.on):not(:has(.cfx-close.on)) .game { border-color: #50df00; background: #f3fceb; box-shadow: 0 10px 28px rgba(80,223,0,.09); }
+  .cfx-stage:has(.cfx-close.on) .commerce { background: #50df00; border-color: #50df00; box-shadow: 0 14px 36px rgba(80,223,0,.20); }
+  .commerce .cfx-proof { color: #1a1a1a; background: rgba(255,255,255,.66); }
+  .cfx-link { position: absolute; top: 80px; width: 48px; height: 40px; fill: none; stroke: #c4ccd2; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cfx-link .cfx-trace { stroke: #3a9c00; stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .7s cubic-bezier(.65,0,.35,1); }
+  .cfx-stage:has(.drama .cfx-proof.on) .cfx-link.one .cfx-trace,
+  .cfx-stage:has(.game .cfx-proof.on) .cfx-link.two .cfx-trace,
+  .cfx-stage:has(.cfx-close.on) .cfx-link.three .cfx-trace { stroke-dashoffset: 0; }
+  .cfx-close { position: absolute; left: 0; top: 292px; width: 820px; }
+  .cfx-close > span { display: block; font-size: 19px; line-height: 30px; font-weight: 600; color: #98a1a8; }
+  .cfx-close p { margin-top: 8px; font-size: 44px; line-height: 1.35; font-weight: 800; letter-spacing: -.035em; color: #1a1a1a; white-space: nowrap; }
+  .cfx-close strong { position: relative; color: #3a9c00; font-weight: 800; }
+  .cfx-close strong::after { content: ''; position: absolute; left: 0; right: 0; bottom: -5px; height: 5px; border-radius: 3px; background: #50df00;
+    transform: scaleX(0); transform-origin: left; transition: transform .75s cubic-bezier(.65,0,.35,1) .45s; }
+  .cfx-close.on strong::after { transform: scaleX(1); }
+  .cfx-down { position: absolute; left: 985px; top: 210px; width: 40px; height: 80px; fill: none; stroke: #98a1a8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cfx-fintech { position: absolute; left: 882px; top: 304px; width: 246px; height: 102px; border: 2px solid #dce1e5; border-radius: 18px;
+    display: flex; align-items: center; justify-content: center; background: #fff; color: #6f7880; font-size: 27px; font-weight: 800; letter-spacing: -.03em; }
+  .cfx.instant .cfx-node, .cfx.instant .cfx-trace, .cfx.instant .cfx-close strong::after { transition: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    .cfx .cfx-node, .cfx .cfx-trace, .cfx .cfx-close strong::after { transition: none !important; }
+  }
+  @media print {
+    .cfx-stage .commerce { background: #50df00; border-color: #50df00; box-shadow: none; }
+    .cfx .cfx-trace { stroke-dashoffset: 0; }
+    .cfx-close strong::after { transform: scaleX(1); }
+  }
 </style>
 </head>
 <body>
@@ -2229,6 +2267,26 @@
       <div class="bar"><i></i><i></i><i></i><span class="url">airoasting.com/assets/claudecode/07_minecraft</span></div>
       <video src="assets/video/minecraft.mp4" poster="assets/video/minecraft.jpg" muted loop playsinline preload="auto" aria-label="MindCraft Temple game screen recording"></video>
     </div>
+  </section>
+
+  <!-- 10. AI 서비스 확장: 전체 프레임 → 캐릭터 챗봇 → AI 드라마 → AI 게임 → Commerce 강조 → Fintech 연결. 1.4초 간격 자동 재생 -->
+  <section class="slide dark cfx" data-gap="1400" aria-label="AI 서비스의 확장 프레임워크: Communication의 캐릭터 챗봇, Content의 AI 드라마, Game의 AI 게임을 지나 다음은 Commerce이며, 아래로 Fintech가 연결됨">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">AI 서비스의 다음 무대는 Commerce임</h2>
+    <p class="abs cr-sub">소통과 즐길 거리에서 구매와 결제로</p>
+    <div class="abs cfx-stage" data-step="1">
+      <div class="cfx-node chat" style="left:0"><h3>Communication</h3><span class="cfx-proof" data-step="2">캐릭터 챗봇</span></div>
+      <svg class="cfx-link one" style="left:246px" viewBox="0 0 48 40" aria-label="Communication에서 Content로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+      <div class="cfx-node drama" style="left:294px"><h3>Content</h3><span class="cfx-proof" data-step="3">AI 드라마</span></div>
+      <svg class="cfx-link two" style="left:540px" viewBox="0 0 48 40" aria-label="Content에서 Game으로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+      <div class="cfx-node game" style="left:588px"><h3>Game</h3><span class="cfx-proof" data-step="4">AI 게임</span></div>
+      <svg class="cfx-link three" style="left:834px" viewBox="0 0 48 40" aria-label="Game에서 Commerce로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+      <div class="cfx-node commerce" style="left:882px"><h3>Commerce</h3><span class="cfx-proof" data-step="5">NEXT</span></div>
+      <div class="cfx-close" data-step="5"><span>캐릭터 챗봇 · AI 드라마 · AI 게임</span><p>이제 다음은 <strong>Commerce</strong></p></div>
+      <svg class="cfx-down" data-step="6" viewBox="0 0 40 80" aria-label="Commerce에서 Fintech로"><path d="M20 5v65m-8-8 8 8 8-8"/></svg>
+      <div class="cfx-fintech" data-step="6">Fintech</div>
+    </div>
+    <p class="abs footnote">서비스 확장 경로에 대한 발표자 프레임워크</p>
   </section>
 
   <!-- AI를 잘 썼을 때 60분 업무를 끝내는 시간(연도별 대표 연구, 2026-10-14 확인).
