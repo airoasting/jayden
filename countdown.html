@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>콜라주 카운트다운</title>
+<!--
+  사용법
+  - 그대로 열면 오늘 11:20 ~ 12:20 세션, 이어서 12:20 ~ 12:40 쉬는 시간 카운트다운.
+  - 세션이 끝나면 화면이 쉬는 시간 디자인(색·형태가 다른 콜라주)으로 자동 전환된다.
+  - 다른 시간: countdown.html?start=13:00&end=14:30&break=14:50
+  - 리허설: countdown.html?test=12:30 (그 시각부터 시계가 흐른다)
+  - 전체 화면: 오른쪽 아래 버튼 또는 F 키. 3초 동안 마우스를 안 움직이면 커서와 버튼이 숨는다.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=Black+Han+Sans&family=Bungee&family=DM+Serif+Display:ital@0;1&family=Do+Hyeon&family=Nanum+Pen+Script&family=Song+Myung&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+/* Layout: 크라프트 보드 위에 잘라 붙인 종이 조각. 위는 제목 띠와 현재 시각 메모, 가운데는 랜섬 노트 숫자, 아래는 남은 분 배너와 줄자. */
+:root{
+  --board:#b48a58;
+  --paper:#f3eee1;
+  --ink:#1c1916;
+  --red:#d23a26;
+  --blue:#2b57a6;
+  --yellow:#f2c432;
+  --pink:#f0a2b6;
+  --green:#3a8956;
+  --tape:rgba(250,246,214,.66);
+  --shadow:rgba(28,25,22,.32);
+
+  --f-display:"Abril Fatface","Song Myung",Georgia,serif;
+  --f-ko:"Black Han Sans","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-hand:"Nanum Pen Script","Apple SD Gothic Neo",cursive;
+  --f-mono:"Space Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  overflow:hidden;
+  color:var(--ink);
+  background:
+    radial-gradient(ellipse at 18% 22%, rgba(255,240,210,.18), transparent 45%),
+    radial-gradient(ellipse at 82% 78%, rgba(60,35,10,.18), transparent 50%),
+    repeating-linear-gradient(83deg, rgba(60,35,10,.05) 0 2px, transparent 2px 7px),
+    repeating-linear-gradient(-12deg, rgba(255,240,210,.05) 0 1px, transparent 1px 5px),
+    var(--board);
+  font-family:var(--f-ko);
+}
+body.idle{cursor:none}
+
+.board{
+  position:relative;
+  height:100%;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  padding-block:max(2.2vh, env(safe-area-inset-top, 0px)) max(2.6vh, env(safe-area-inset-bottom, 0px));
+  padding-left:max(16px, 3vw, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, 3vw, env(safe-area-inset-right, 0px));
+}
+.board > *:not(.deco){position:relative;z-index:1}
+
+/* 배경 장식 */
+.deco{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.deco > *{position:absolute}
+.d-dots{
+  width:38vmin;aspect-ratio:1;border-radius:50%;top:-10vmin;left:-8vmin;
+  background:radial-gradient(var(--red) 1.6px, transparent 2.1px) 0 0/9px 9px, var(--pink);
+  opacity:.9;
+}
+.d-burst{
+  width:26vmin;aspect-ratio:1;right:-6vmin;bottom:24vh;background:var(--yellow);
+  clip-path:polygon(50% 0,59% 30%,88% 12%,72% 41%,100% 50%,72% 59%,88% 88%,59% 70%,50% 100%,41% 70%,12% 88%,28% 59%,0 50%,28% 41%,12% 12%,41% 30%);
+  transform:rotate(12deg);
+}
+.d-tri{
+  width:20vmin;aspect-ratio:1;left:-4vmin;bottom:30vh;background:var(--blue);
+  clip-path:polygon(0 0,100% 55%,8% 100%);
+}
+.d-scrap{
+  width:24vmin;height:13vmin;right:16vw;top:15vh;padding:1.2vmin 1.6vmin;
+  background:repeating-linear-gradient(0deg, rgba(28,25,22,.12) 0 1px, transparent 1px 5px), var(--paper);
+  transform:rotate(-7deg);
+  clip-path:polygon(0 6%,100% 0,97% 100%,3% 93%);
+  font:italic 400 3.4vmin/1 "DM Serif Display",Georgia,serif;color:rgba(28,25,22,.55);
+}
+.d-strip{
+  width:46vmin;height:5vmin;left:4vw;bottom:15vh;background:var(--green);
+  transform:rotate(-4deg);opacity:.85;
+  clip-path:polygon(0 10%,100% 0,99% 90%,1% 100%);
+}
+
+/* 테이프 */
+.tape{
+  position:absolute;width:5.2em;height:1.4em;background:var(--tape);
+  box-shadow:0 1px 2px rgba(0,0,0,.12);
+  clip-path:polygon(3% 8%,8% 0,92% 4%,97% 0,100% 92%,95% 100%,6% 96%,0 100%);
+}
+
+/* 위: 제목 띠와 현재 시각 */
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.lift{filter:drop-shadow(3px 5px 0 var(--shadow))}
+.title-strip{
+  position:relative;display:flex;align-items:baseline;gap:.5em;
+  padding:.5em .9em .45em;background:var(--paper);transform:rotate(-2deg);
+  clip-path:polygon(0 6%,3% 0,97% 4%,100% 0,99% 94%,96% 100%,2% 95%);
+  font-size:clamp(18px,3.4vh,40px);
+}
+.title-strip .tape{top:-.55em;left:42%;transform:rotate(-4deg)}
+.title-strip strong{font:400 1.25em/1 var(--f-display);letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.hand{font-family:var(--f-hand);font-size:1.15em;line-height:1;color:var(--ink)}
+
+.ticket{
+  position:relative;display:flex;flex-direction:column;gap:.15em;
+  padding:.7em 1em .55em;background:var(--yellow);transform:rotate(2.5deg);
+  font-size:clamp(18px,3.4vh,40px);
+  clip-path:polygon(0 0,100% 2%,98% 100%,2% 97%);
+}
+.ticket .tape{top:-.5em;right:1.2em;transform:rotate(6deg)}
+.ticket time{font:700 1.45em/1 var(--f-mono);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+
+/* 가운데: 랜섬 노트 */
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3vh;min-height:0}
+.label{display:flex;gap:.12em;font-size:clamp(22px,5vh,60px)}
+.digits{display:flex;align-items:center;justify-content:center;gap:.05em;font-size:min(19vw,34vh)}
+.digits.long{font-size:min(13vw,30vh)}
+.gap{width:.35em}
+
+.cut{display:inline-block;transform:rotate(var(--r,0deg)) translateY(var(--y,0));filter:drop-shadow(3px 5px 0 var(--shadow))}
+.chip{display:flex;align-items:center;justify-content:center;line-height:1;padding:.08em .16em .04em}
+.digits .cut{width:.84em}
+.digits .chip{height:1.14em;padding:0}
+
+.v0{background:repeating-linear-gradient(0deg, rgba(28,25,22,.08) 0 1px, transparent 1px 4px), var(--paper);color:var(--ink);font-family:"DM Serif Display","Song Myung",Georgia,serif}
+.v1{background:var(--red);color:var(--paper);font-family:"Archivo Black","Black Han Sans",sans-serif}
+.v2{background:var(--yellow);color:var(--ink);font-family:"Bungee","Do Hyeon",sans-serif}
+.v3{background:var(--ink);color:var(--paper);font-family:"Abril Fatface","Song Myung",Georgia,serif}
+.v4{background:var(--blue);color:var(--paper);font-family:"DM Serif Display","Song Myung",Georgia,serif;font-style:italic}
+.v5{background:radial-gradient(rgba(28,25,22,.2) 1px, transparent 1.6px) 0 0/6px 6px, var(--pink);color:var(--ink);font-family:"Abril Fatface","Black Han Sans",serif}
+.v6{background:repeating-linear-gradient(0deg, rgba(28,25,22,.08) 0 1px, transparent 1px 4px), var(--paper);color:var(--red);font-family:"Bungee","Do Hyeon",sans-serif}
+.v7{background:var(--green);color:var(--paper);font-family:"Archivo Black","Do Hyeon",sans-serif}
+
+.s0{clip-path:polygon(2% 4%,97% 0,100% 93%,4% 100%)}
+.s1{clip-path:polygon(0 8%,30% 2%,62% 6%,100% 0,96% 52%,100% 97%,58% 93%,22% 100%,3% 94%,5% 48%)}
+.s2{clip-path:polygon(5% 0,100% 6%,94% 100%,0 92%)}
+.s3{clip-path:polygon(0 0,48% 4%,100% 1%,98% 100%,52% 95%,2% 99%)}
+
+.colon{display:flex;flex-direction:column;justify-content:center;gap:.22em;width:.34em;align-items:center}
+.colon i{display:block;width:.17em;aspect-ratio:1;border-radius:50%;background:var(--red);box-shadow:2px 3px 0 var(--shadow)}
+.colon i + i{background:var(--blue)}
+
+/* 아래: 남은 분 배너와 줄자 */
+.bottom{display:flex;flex-direction:column;align-items:center;gap:2.6vh}
+.banner{
+  display:flex;align-items:baseline;gap:.25em;
+  padding:.35em 1.1em .3em;background:var(--paper);transform:rotate(-1.2deg);
+  font:400 clamp(22px,min(6.4vh,6.5vw),78px)/1 var(--f-ko);white-space:nowrap;
+  clip-path:polygon(0 12%,4% 0,9% 10%,15% 2%,22% 9%,30% 1%,38% 8%,46% 0,55% 9%,63% 2%,71% 10%,80% 1%,88% 8%,95% 0,100% 10%,99% 88%,94% 100%,87% 91%,79% 99%,70% 90%,61% 98%,52% 90%,43% 100%,34% 91%,25% 99%,16% 90%,8% 99%,1% 90%);
+}
+.banner .num{font:400 1.45em/1 var(--f-display);color:var(--red);font-variant-numeric:tabular-nums}
+.urgent .banner .num{animation:pulse 1s steps(2,end) infinite}
+@keyframes pulse{50%{color:var(--ink)}}
+
+.ruler-wrap{width:min(100%,1100px)}
+.ruler{
+  position:relative;height:clamp(38px,6vh,64px);background:var(--yellow);
+  clip-path:polygon(0 0,100% 4%,100% 100%,0 96%);
+}
+.tick{position:absolute;top:0;width:2px;height:28%;background:var(--ink);transform:translateX(-50%)}
+.tick.major{height:46%}
+.tl{position:absolute;bottom:10%;font:700 clamp(10px,1.7vh,18px)/1 var(--f-mono);transform:translateX(-50%);white-space:nowrap}
+.tl.first{transform:none;margin-left:6px}
+.tl.last{transform:translateX(-100%);margin-left:-6px}
+.fill{
+  position:absolute;inset:0 auto 0 0;width:0;
+  background:repeating-linear-gradient(45deg, rgba(210,58,38,.55) 0 7px, transparent 7px 14px);
+  border-right:3px dashed var(--ink);
+}
+.pin-row{position:relative;height:0}
+.pin{
+  position:absolute;top:-.55em;left:0;width:1.1em;aspect-ratio:1;border-radius:50%;
+  font-size:clamp(18px,3vh,34px);background:var(--red);transform:translateX(-50%);
+  box-shadow:inset -.18em -.18em 0 rgba(0,0,0,.25),2px 4px 0 var(--shadow);z-index:2;
+}
+
+/* 전체 화면 버튼 */
+.fs-tag{
+  position:fixed;
+  right:calc(max(16px, 2vw) + env(safe-area-inset-right, 0px));
+  bottom:calc(max(12px, 2vh) + env(safe-area-inset-bottom, 0px));
+  z-index:5;border:0;cursor:pointer;
+  padding:.5em .9em;background:var(--paper);color:var(--ink);
+  font:400 15px/1 var(--f-ko);transform:rotate(-3deg);
+  box-shadow:2px 4px 0 var(--shadow);transition:opacity .3s;
+}
+.fs-tag kbd{font:700 12px/1 var(--f-mono);padding:.15em .35em;margin-left:.3em;border:1.5px solid var(--ink)}
+.fs-tag:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.is-fs.idle .fs-tag{opacity:0;pointer-events:none}
+
+@media (max-width:900px){
+  .bottom{padding-bottom:42px}
+}
+@media (max-width:600px){
+  .d-scrap{display:none}
+  .digits{font-size:min(18vw,30vh)}
+}
+@media (prefers-reduced-motion:reduce){
+  .urgent .banner .num{animation:none}
+  .fs-tag{transition:none}
+}
+
+/* 쉬는 시간: 초록 커팅 매트 위에 둥글게 오린 스티커. 색과 형태를 세션과 다르게 간다. */
+body.break{
+  --board:#2e6a62;
+  --paper:#fbf5ea;
+  --ink:#1f2b2a;
+  --red:#ef6b57;
+  --blue:#5a4ea6;
+  --yellow:#f5d470;
+  --pink:#c8b4ee;
+  --green:#9ad9bd;
+  --tape:rgba(255,255,255,.5);
+  --shadow:rgba(10,30,28,.38);
+  background:
+    linear-gradient(rgba(255,255,255,.10) 1px, transparent 1px) 0 0/4vmin 4vmin,
+    linear-gradient(90deg, rgba(255,255,255,.10) 1px, transparent 1px) 0 0/4vmin 4vmin,
+    linear-gradient(rgba(255,255,255,.18) 2px, transparent 2px) 0 0/20vmin 20vmin,
+    linear-gradient(90deg, rgba(255,255,255,.18) 2px, transparent 2px) 0 0/20vmin 20vmin,
+    var(--board);
+}
+.deco-break{display:none}
+.break .deco-session{display:none}
+.break .deco-break{display:block}
+.b-moon{
+  width:30vmin;aspect-ratio:1;top:-6vmin;right:22vw;border-radius:50%;
+  background:radial-gradient(circle at 68% 38%, var(--board) 0 46%, transparent 47%), var(--yellow);
+}
+.b-blob{
+  width:34vmin;height:24vmin;left:-8vmin;bottom:22vh;background:var(--pink);
+  border-radius:58% 42% 63% 37% / 46% 61% 39% 54%;transform:rotate(-14deg);
+}
+.b-ring{
+  width:22vmin;aspect-ratio:1;right:-5vmin;bottom:30vh;border-radius:50%;
+  border:3.4vmin solid var(--red);
+}
+.b-dots{
+  width:30vmin;height:12vmin;left:30vw;top:13vh;
+  background:radial-gradient(var(--paper) 2.2px, transparent 2.8px) 0 0/14px 14px;opacity:.55;
+}
+.b-zig{
+  width:40vmin;height:4vmin;right:8vw;bottom:13vh;background:var(--green);
+  clip-path:polygon(0 100%,5% 0,10% 100%,15% 0,20% 100%,25% 0,30% 100%,35% 0,40% 100%,45% 0,50% 100%,55% 0,60% 100%,65% 0,70% 100%,75% 0,80% 100%,85% 0,90% 100%,95% 0,100% 100%);
+}
+
+.break .chip{clip-path:none}
+.break .s0{border-radius:.22em}
+.break .s1{border-radius:52% 48% 46% 54% / 50% 56% 44% 50%}
+.break .s2{border-radius:.5em .12em .5em .12em}
+.break .s3{border-radius:999px}
+.break .digits .chip{height:1.06em}
+.break .digits .cut{width:.9em}
+.break .v7{color:var(--ink)}
+.break .v0,.break .v6{background:radial-gradient(rgba(31,43,42,.12) 1px, transparent 1.5px) 0 0/5px 5px, var(--paper)}
+.break .colon i{border-radius:.04em;transform:rotate(45deg)}
+
+.break .title-strip{clip-path:none;border-radius:999px;transform:rotate(1.5deg);background:var(--green)}
+.break .ticket{clip-path:none;border-radius:50% 50% 46% 54% / 60% 55% 45% 40%;padding:.9em 1.3em .8em;background:var(--pink);transform:rotate(-3deg)}
+.break .banner{clip-path:none;border-radius:999px;transform:rotate(1deg);padding:.4em 1.3em .35em}
+.break .banner .tag{font:400 .62em/1 var(--f-ko);color:var(--paper);background:var(--blue);padding:.3em .6em;border-radius:999px;align-self:center}
+.break .ruler{clip-path:none;border-radius:999px;background:var(--green)}
+.break .fill{background:repeating-linear-gradient(-45deg, rgba(239,107,87,.6) 0 7px, transparent 7px 14px);border-radius:999px 0 0 999px}
+.break .pin{background:var(--blue);border-radius:.25em;transform:translateX(-50%) rotate(45deg)}
+.break .fs-tag{border-radius:999px;transform:rotate(2deg)}
+.tag{display:none;white-space:nowrap}
+.break .tag{display:inline-block}
+</style>
+</head>
+<body>
+<main class="board">
+  <div class="deco deco-session" aria-hidden="true">
+    <div class="d-dots"></div>
+    <div class="d-burst"></div>
+    <div class="d-tri"></div>
+    <div class="d-scrap">tick, tock,<br>tick.</div>
+    <div class="d-strip"></div>
+  </div>
+  <div class="deco deco-break" aria-hidden="true">
+    <div class="b-moon"></div>
+    <div class="b-blob"></div>
+    <div class="b-ring"></div>
+    <div class="b-dots"></div>
+    <div class="b-zig"></div>
+  </div>
+
+  <header class="top">
+    <div class="lift"><div class="title-strip"><span class="tape"></span><span id="phase" class="hand">오늘의 세션</span><strong id="range">11:20 ~ 12:20</strong></div></div>
+    <div class="lift"><div class="ticket"><span class="tape"></span><span class="hand">현재 시각</span><time id="now">--:--:--</time></div></div>
+  </header>
+
+  <section class="center">
+    <div id="label" class="label" aria-hidden="true"></div>
+    <div id="digits" class="digits" role="timer" aria-label="남은 시간"></div>
+  </section>
+
+  <footer class="bottom">
+    <div class="lift"><div class="banner" aria-live="polite"><span class="tag">쉬는 시간</span><span id="pre"></span><span id="num" class="num">60</span><span id="post">분 남음</span></div></div>
+    <div class="ruler-wrap">
+      <div class="pin-row"><div id="pin" class="pin"></div></div>
+      <div class="lift"><div id="ruler" class="ruler"><div id="fill" class="fill"></div></div></div>
+    </div>
+  </footer>
+
+  <button id="fs" class="fs-tag" type="button">전체 화면<kbd>F</kbd></button>
+</main>
+
+<script>
+(() => {
+  const q = new URLSearchParams(location.search);
+  const valid = s => /^\d{1,2}:\d{2}$/.test(s || "");
+  const START = valid(q.get("start")) ? q.get("start") : "11:20";
+  const END = valid(q.get("end")) ? q.get("end") : "12:20";
+  const BREAK_END = valid(q.get("break")) ? q.get("break") : "12:40";
+
+  const $ = id => document.getElementById(id);
+  const pad = n => String(n).padStart(2, "0");
+  const toMin = hm => { const [h, m] = hm.split(":").map(Number); return h * 60 + m; };
+  const fmtHM = m => `${pad(Math.floor(m / 60) % 24)}:${pad(m % 60)}`;
+  const at = hm => { const [h, m] = hm.split(":").map(Number); const d = new Date(); d.setHours(h, m, 0, 0); return d; };
+
+  // 리허설용: ?test=12:30 이면 그 시각에서 시계가 흐른다
+  const offset = valid(q.get("test")) ? at(q.get("test")) - Date.now() : 0;
+
+  // 줄자 눈금: 5분마다 눈금. 30분 넘는 구간은 15분마다, 짧은 구간은 5분마다 시각
+  const ruler = $("ruler");
+  function buildRuler(from, to) {
+    if (ruler.dataset.k === from + to) return;
+    ruler.dataset.k = from + to;
+    ruler.querySelectorAll(".tick,.tl").forEach(n => n.remove());
+    const startMin = toMin(from), total = Math.max(1, toMin(to) - startMin);
+    const every = total > 30 ? 15 : 5;
+    for (let m = 0; m <= total; m += 5) {
+      const x = (m / total) * 100;
+      const major = m % every === 0 || m === total;
+      const t = document.createElement("span");
+      t.className = "tick" + (major ? " major" : "");
+      t.style.left = x + "%";
+      ruler.append(t);
+      if (major) {
+        const l = document.createElement("span");
+        l.className = "tl" + (m === 0 ? " first" : m === total ? " last" : "");
+        l.style.left = x + "%";
+        l.textContent = fmtHM(startMin + m);
+        ruler.append(l);
+      }
+    }
+  }
+
+  // 잡지에서 오려 낸 글자 조각. 같은 자리의 같은 글자는 항상 같은 조각이라 매초 흔들리지 않는다.
+  function chips(el, text) {
+    if (el.dataset.t === text) return;
+    el.dataset.t = text;
+    el.replaceChildren();
+    let prev = -1;
+    [...text].forEach((ch, i) => {
+      if (ch === " ") { const g = document.createElement("span"); g.className = "gap"; el.append(g); return; }
+      if (ch === ":") { const c = document.createElement("span"); c.className = "colon"; c.innerHTML = "<i></i><i></i>"; el.append(c); return; }
+      const code = ch.codePointAt(0);
+      let v = (code * 7 + i * 3) % 8;
+      if (v === prev) v = (v + 1) % 8;
+      prev = v;
+      const cut = document.createElement("span");
+      cut.className = "cut";
+      cut.style.setProperty("--r", (((code * 13 + i * 29) % 9) - 4) * 0.9 + "deg");
+      cut.style.setProperty("--y", (((code * 5 + i * 11) % 5) - 2) * 0.03 + "em");
+      const c = document.createElement("span");
+      c.className = `chip v${v} s${(code + i * 2) % 4}`;
+      c.textContent = ch;
+      cut.append(c);
+      el.append(cut);
+    });
+  }
+
+  function clock(ms) {
+    const s = Math.max(0, Math.ceil(ms / 1000));
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+    return h ? `${h}:${pad(m)}:${pad(sec)}` : `${pad(m)}:${pad(sec)}`;
+  }
+
+  function render(now) {
+    $("now").textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    const start = at(START), end = at(END), breakEnd = at(BREAK_END);
+    const isBreak = now >= end;
+    let label, ms, pre = "", post = "분 남음", progress, live = false, done = false;
+
+    if (now < start) {
+      label = "시작까지"; ms = start - now; pre = "시작까지"; post = "분"; progress = 0;
+    } else if (now < end) {
+      label = "남은 시간"; ms = end - now; progress = (now - start) / (end - start); live = true;
+    } else if (now < breakEnd) {
+      label = "쉬는 시간"; ms = breakEnd - now; progress = (now - end) / (breakEnd - end); live = true;
+    } else {
+      label = "쉬는 시간 끝"; ms = 0; progress = 1; done = true;
+    }
+
+    document.body.classList.toggle("break", isBreak);
+    $("phase").textContent = isBreak ? "쉬는 시간" : "오늘의 세션";
+    $("range").textContent = isBreak ? `${END} ~ ${BREAK_END}` : `${START} ~ ${END}`;
+    buildRuler(isBreak ? END : START, isBreak ? BREAK_END : END);
+
+    const text = clock(ms);
+    chips($("label"), label);
+    chips($("digits"), text);
+    $("digits").classList.toggle("long", text.length > 5);
+    $("digits").setAttribute("aria-label", `${label} ${text}`);
+
+    $("pre").textContent = done ? "" : pre;
+    $("num").textContent = done ? "" : Math.ceil(ms / 60000);
+    $("post").textContent = done ? "자리로 돌아와 주세요" : post;
+
+    document.body.classList.toggle("urgent", live && ms <= 5 * 60000);
+
+    const pct = (Math.min(1, Math.max(0, progress)) * 100).toFixed(3) + "%";
+    $("fill").style.width = pct;
+    $("fill").style.borderRightStyle = progress > 0 && progress < 1 ? "dashed" : "none";
+    $("pin").style.left = pct;
+  }
+
+  function tick() {
+    render(new Date(Date.now() + offset));
+    setTimeout(tick, 1000 - (Date.now() % 1000) + 10);
+  }
+  tick();
+
+  // 전체 화면
+  const fs = () => {
+    if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+    else document.documentElement.requestFullscreen?.().catch(() => {});
+  };
+  $("fs").addEventListener("click", fs);
+  document.addEventListener("keydown", e => { if (e.key === "f" || e.key === "F") fs(); });
+  document.addEventListener("fullscreenchange", () => document.body.classList.toggle("is-fs", !!document.fullscreenElement));
+
+  // 커서 숨김
+  let idleTimer;
+  const wake = () => { document.body.classList.remove("idle"); clearTimeout(idleTimer); idleTimer = setTimeout(() => document.body.classList.add("idle"), 3000); };
+  ["mousemove", "pointerdown", "keydown"].forEach(ev => document.addEventListener(ev, wake));
+  wake();
+
+  // 화면 꺼짐 방지 (지원하는 브라우저에서만)
+  let lock;
+  const keepAwake = async () => { try { lock = await navigator.wakeLock?.request("screen"); } catch (_) {} };
+  keepAwake();
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") keepAwake(); });
+})();
+</script>
+</body>
+</html>

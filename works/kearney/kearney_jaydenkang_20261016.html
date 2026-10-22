@@ -1298,6 +1298,63 @@
   .ar-tip.t-u::after { top: -16px; }
   .ar-tip.t-d::before { bottom: -21.5px; left: 50%; transform: translateX(-50%); border-top-color: #fff; }
   .ar-tip.t-d::after { bottom: -16px; }
+  /* 3-A. K-AI 스타트업(.kai): 영역 다섯 열. 국민성장펀드 투자사는 보라 면, 라이너는 커리어 장의 AI 시대 초록 점선 */
+  .kai-legend { right: 76px; top: 150px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #c9c9c9; }
+  .kai-legend i { width: 28px; height: 16px; border-radius: 5px; background: rgba(120,35,220,.22); box-shadow: inset 0 0 0 1px rgba(169,112,255,.5); }
+  .kai-grid { left: 76px; top: 186px; width: 1128px; height: 484px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .kai-col { display: flex; flex-direction: column; overflow: hidden; background: #131313; border: 1px solid #232323; border-radius: 16px; }
+  .kai-band { padding: 12px 16px; background: #1b1b1b; color: #a970ff; font-size: 14px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; }
+  .kai-head { padding: 14px 16px 12px; border-bottom: 1px solid #232323; }
+  .kai-head b { display: flex; align-items: baseline; gap: 7px; font-size: 22px; font-weight: 800; letter-spacing: -.02em; color: #f6f6f6; white-space: nowrap; }
+  .kai-head b small { font-size: 15px; font-weight: 700; color: #a970ff; }
+  .kai-head span { display: block; margin-top: 4px; font-size: 13.5px; font-weight: 600; color: #929292; }
+  .kai-list { list-style: none; padding: 12px 10px 0; display: flex; flex-direction: column; gap: 5px; }
+  .kai-list li { padding: 7px 10px; border-radius: 10px; }
+  .kai-list li.is-fund { background: rgba(120,35,220,.20); box-shadow: inset 0 0 0 1px rgba(169,112,255,.38); }
+  .kai-list strong { display: block; font-size: 18.5px; font-weight: 700; letter-spacing: -.02em; color: #f6f6f6; white-space: nowrap; }
+  .kai-list em { display: block; margin-top: 2px; font-style: normal; font-size: 13.5px; font-weight: 600; color: #929292; }
+  .kai-list li.is-fund em { color: #cdb4ff; }
+  .kai-list li.is-mark { outline: 2px dashed #6fdc8c; outline-offset: 1px; }
+  .kai-list li.is-mark em { color: #6fdc8c; }
+
+  /* 3-B. 라이너 국가 AI 대상(.aw): 왼쪽 포스터, 오른쪽 수상 사실과 투자 현황. step 2에서 포스터의 라이너 줄로 확대한다 */
+  .aw-sub { left: 76px; top: 150px; font-size: 18px; font-weight: 600; color: #929292; letter-spacing: -.01em; }
+  .aw-sub b { color: #f6f6f6; font-weight: 700; }
+  .aw-poster { left: 76px; top: 196px; width: 336px; height: 475px; z-index: 3; }
+  .aw-zoom { position: absolute; inset: 0; transform-origin: 0 0; transition: transform .9s cubic-bezier(.65,0,.25,1); }
+  .aw-zoom img { display: block; width: 100%; height: 100%; border-radius: 10px; box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08); }
+  /* 포스터 속 라이너 줄 위치(원본 포스터 기준 비율) */
+  .aw-spot { position: absolute; left: 7.344%; top: 41.768%; width: 85.312%; height: 2.873%; border-radius: 3px;
+    box-shadow: 0 0 0 2px #6fdc8c, 0 0 18px rgba(111,220,140,.6), 0 0 0 2000px rgba(7,7,7,0); transition: box-shadow .9s cubic-bezier(.65,0,.25,1); animation: aw-pulse 2.4s ease-in-out infinite; }
+  .aw-spot::after { content: "라이너"; position: absolute; right: -10px; top: 50%; translate: 100% -50%; padding: 4px 9px; border-radius: 999px; background: #6fdc8c; color: #062a12; font-size: 12px; font-weight: 800; white-space: nowrap; transition: opacity .3s; }
+  @keyframes aw-pulse { 50% { box-shadow: 0 0 0 2px #6fdc8c, 0 0 30px rgba(111,220,140,.9), 0 0 0 2000px rgba(7,7,7,0); } }
+  .aw-side { transition: opacity .45s, translate .45s; }
+  .aw-facts { left: 460px; top: 196px; width: 744px; display: grid; grid-template-columns: 1fr 1fr; background: #131313; border: 1px solid #232323; border-radius: 20px; overflow: hidden; }
+  .aw-facts div { padding: 22px 26px; border-top: 1px solid #232323; }
+  .aw-facts div:nth-child(-n+2) { border-top: 0; }
+  .aw-facts div:nth-child(even) { border-left: 1px solid #232323; }
+  .aw-facts dt { font-size: 13px; font-weight: 700; color: #929292; margin-bottom: 8px; }
+  .aw-facts dd { font-size: 24px; font-weight: 700; letter-spacing: -.02em; color: #f6f6f6; }
+  .aw-facts .k dd { color: #a970ff; }
+  .aw-fund { left: 460px; top: 470px; width: 744px; display: grid; grid-template-columns: repeat(3, 1fr); background: #1d1230; border: 1px solid #7823dc; border-radius: 20px; box-shadow: 0 16px 40px rgba(120,35,220,.18); }
+  .aw-fund div { padding: 26px 26px 24px; }
+  .aw-fund div + div { border-left: 1px solid rgba(169,112,255,.22); }
+  .aw-fund dt { font-size: 13px; font-weight: 700; color: #b9a3e6; margin-bottom: 12px; white-space: nowrap; }
+  .aw-fund dd { font-size: 50px; font-weight: 800; line-height: 1; letter-spacing: -.03em; color: #f6f6f6; }
+  .aw-fund dd small { font-size: 19px; font-weight: 700; letter-spacing: -.01em; margin-left: 4px; color: #c9c9c9; }
+  .aw-fund .k dd, .aw-fund .k dd small { color: #cdb4ff; }
+  .aw-zcap { left: 50%; bottom: 64px; z-index: 4; display: flex; align-items: center; gap: 18px; padding: 14px 24px; border-radius: 14px; white-space: nowrap;
+    background: rgba(19,19,19,.94); border: 1px solid rgba(111,220,140,.4); box-shadow: 0 20px 60px rgba(0,0,0,.5); font-size: 20px; font-weight: 600; color: #f6f6f6; }
+  .slide.dark .aw-zcap[data-step] { transform: translateX(-50%); }
+  .aw-zcap b { color: #6fdc8c; font-weight: 800; }
+  .aw-zcap i { width: 1px; height: 20px; background: #3a3a3a; }
+  /* 확대: 라이너 줄 가운데를 화면 가운데(640, 360)로, 줄 너비가 약 1,000px이 되게 한다 */
+  .aw:has(.aw-zcap.on) .aw-zoom { transform: translate(-22.3px, -552.2px) scale(3.49); }
+  .aw:has(.aw-zcap.on) .aw-spot { animation: none; box-shadow: 0 0 0 .6px #6fdc8c, 0 0 6px rgba(111,220,140,.5), 0 0 0 2000px rgba(7,7,7,.78); }
+  .aw:has(.aw-zcap.on) .aw-spot::after { opacity: 0; }
+  .aw:has(.aw-zcap.on) .aw-side { opacity: 0 !important; translate: 30px 0 !important; }
+  .slide.dark.instant .aw-zoom, .slide.dark.instant .aw-spot { transition: none; }
+  @media (prefers-reduced-motion: reduce) { .aw-spot { animation: none; } }
 </style>
 </head>
 <body>
@@ -1491,6 +1548,42 @@
     <p class="abs cr-note" data-step="1" style="left:128px;width:260px"><span>서울대 경제학부</span></p>
     <p class="abs cr-note" data-step="1" style="left:319px;width:260px"><span>미국 미시간 대학 MBA</span></p>
     <p class="abs cr-note r" data-step="3" style="left:744px;width:460px"><span>국민경제자문회의<br>AI경제 정책자문단 위원</span></p>
+  </section>
+
+  <!-- 3-A. K-AI 스타트업 지형도: intro_kearney.html에서 옮겨 옴(2026-10-16). 영역 다섯 열이 차례로 뜬다. 라이너만 초록 점선 -->
+  <section class="slide dark kai" data-gap="180" aria-label="K-AI 스타트업은 반도체·인프라, 모델, 버티컬, 에이전트, 피지컬 5개 영역에 걸쳐 글로벌 경쟁력을 높이고 있음">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">K-AI 스타트업은 5개 영역에 걸쳐 글로벌 경쟁력을 높이고 있음</h2>
+    <p class="abs kai-legend"><i aria-hidden="true"></i>국민성장펀드 투자</p>
+    <div class="abs kai-grid" role="list" aria-label="K-AI 스타트업 5개 영역">
+      <div class="kai-col" role="listitem" data-step="1"><div class="kai-band">4개사 · 누적 2조 6천억+</div><div class="kai-head"><b><small>01</small>반도체·인프라</b><span>NPU · 온디바이스</span></div><ul class="kai-list"><li class="is-fund"><strong>리벨리온</strong><em>1.3조 원</em></li><li class="is-fund"><strong>퓨리오사AI</strong><em>1.1조 원+</em></li><li><strong>딥엑스</strong><em>1,900억+</em></li><li><strong>Nota AI</strong><em>코스닥 상장, 2025/11</em></li></ul></div>
+      <div class="kai-col" role="listitem" data-step="2"><div class="kai-band">3개사 · 누적 1조 400억+</div><div class="kai-head"><b><small>02</small>모델</b><span>LLM · vLLM</span></div><ul class="kai-list"><li class="is-fund"><strong>업스테이지</strong><em>7,300억</em></li><li><strong>트웰브랩스</strong><em>3,000억+</em></li><li><strong>한국딥러닝</strong><em>121억</em></li></ul></div>
+      <div class="kai-col" role="listitem" data-step="3"><div class="kai-band">5개사 · 상장 3개 포함</div><div class="kai-head"><b><small>03</small>버티컬</b><span>헬스 · 제조 · 커머스 · 법률</span></div><ul class="kai-list"><li><strong>루닛</strong><em>코스닥 상장, 2022/07</em></li><li><strong>뷰노</strong><em>코스닥 상장, 2021/02</em></li><li><strong>마키나락스</strong><em>코스닥 상장, 2026/05</em></li><li><strong>인핸스</strong><em>810억</em></li><li><strong>BHSN</strong><em>160억</em></li></ul></div>
+      <div class="kai-col" role="listitem" data-step="4"><div class="kai-band">3개사 · 누적 4,140억+</div><div class="kai-head"><b><small>04</small>에이전트</b><span>리서치 · 챗봇</span></div><ul class="kai-list"><li class="is-mark"><strong>라이너</strong><em>940억</em></li><li><strong>스캐터랩</strong><em>900억+</em></li><li><strong>뤼튼 / 크랙</strong><em>2,300억</em></li></ul></div>
+      <div class="kai-col" role="listitem" data-step="5"><div class="kai-band">5개사 · 상장 2개 · 누적 4천억+</div><div class="kai-head"><b><small>05</small>피지컬</b><span>모빌리티 · 로봇</span></div><ul class="kai-list"><li><strong>오토노머스A2G</strong><em>1,225억</em></li><li><strong>스트라드비젼</strong><em>코스닥 상장, 2026/06</em></li><li><strong>레인보우로보틱스</strong><em>코스닥 상장, 2021/02</em></li><li><strong>홀리데이로보틱스</strong><em>1,700억+</em></li><li><strong>위로보틱스</strong><em>1,080억</em></li></ul></div>
+    </div>
+    <p class="abs footnote">출처: 각사 공시 및 언론 보도(2026/10 기준). 누적 투자금은 공개된 라운드 기준 추정치</p>
+  </section>
+
+  <!-- 3-B. 라이너 국가 AI 대상: intro_kearney.html에서 옮겨 옴(2026-10-16). data-click: 첫 단계는 저절로, 다음 클릭(→)에 포스터의 라이너 줄을 확대한다 -->
+  <section class="slide dark aw" data-click="1" aria-label="라이너, 과학기술정보통신부 2026 인공지능주간 국가대표 AI 어워드 서울특별시장상 수상. 최근 투자 500억 원, 누적 940억 원, 기업가치 3,000억 원 이상">
+    <div class="abs head-bar iq-lines" aria-hidden="true"><i style="--k:0;top:0px;left:0;width:44px"></i><i class="s" style="--k:1;top:0px;left:48px;width:10px"></i><i style="--k:1;top:8px;left:0;width:58px"></i><i class="s" style="--k:2;top:8px;left:62px;width:12px"></i><i style="--k:2;top:16px;left:0;width:30px"></i><i class="s" style="--k:3;top:16px;left:34px;width:8px"></i></div>
+    <h2 class="abs head-title">라이너, 국가 AI 대상 수상</h2>
+    <p class="abs aw-sub aw-side">과학기술정보통신부 2026 인공지능주간 공식 국가대표 AI 어워드에서 <b>서울특별시장상</b>을 받음</p>
+    <div class="abs aw-poster" data-step="1"><div class="aw-zoom"><img src="assets/liner-award-poster.png" alt="2026 국가대표 AI 어워드 수상 기업 포스터"><span class="aw-spot" aria-hidden="true"></span></div></div>
+    <dl class="abs aw-facts aw-side" data-step="1">
+      <div class="k"><dt>성격</dt><dd>서울특별시장상</dd></div>
+      <div><dt>기업명</dt><dd>라이너</dd></div>
+      <div><dt>제품/서비스명</dt><dd>라이너(Liner)</dd></div>
+      <div class="k"><dt>주요 기능 및 특징</dt><dd>AI 리서치 에이전트 플랫폼</dd></div>
+    </dl>
+    <dl class="abs aw-fund aw-side" data-step="1" aria-label="라이너 투자 현황">
+      <div><dt>최근 투자 · 2026.08 시리즈C</dt><dd>500<small>억 원</small></dd></div>
+      <div><dt>누적 투자</dt><dd>940<small>억 원</small></dd></div>
+      <div class="k"><dt>기업가치</dt><dd>3,000<small>억 원+</small></dd></div>
+    </dl>
+    <div class="abs aw-zcap" data-step="2" aria-hidden="true"><b>서울특별시장상</b><i></i>라이너<i></i>라이너(Liner)<i></i>AI 리서치 에이전트 플랫폼</div>
+    <p class="abs footnote aw-side">출처: 라이너 보도자료(2026.08.25). 기업가치는 언론 추산치(전자신문)</p>
   </section>
 
   <!-- 3-1. 메시지: 색 구절 넷(step 1) → 흰 글자(step 2). data-gap으로 두 단계 사이를 길게 둔다 -->

@@ -1960,6 +1960,10 @@
   /* 멘토판(2026-10-22): 표지·마무리의 고객사 로고를 뺐다. 전용 색상: navy #0A3255, blue #0AA0D2, green #B4E114
      표지 로고는 라이너(assets/logo-liner-dark.svg, 흰색 원본을 #1a1a1a로 칠한 것). 왼쪽 위 top 56, 높이 34 */
   .cover-logo.ln-logo { top: 56px; height: 34px; }
+  /* 멘토판 표지 그림(2026-10-22): 고객사 심볼 자리에 navy·blue·green 판 세 장을 겹쳐 쌓는다(덱 안의 레이어 구조를 추상화). 들어올 때 아래 판부터 차례로 내려앉는다 */
+  .cv-stack { left: 790px; top: 160px; width: 420px; height: 420px; overflow: visible; }
+  .cover.play .cv-plate { animation: cv-drop 1s cubic-bezier(.16,1,.3,1) var(--d, .5s) backwards; }
+  @keyframes cv-drop { from { opacity: 0; transform: translateY(-28px); } }
 
   /* 블루(#0AA0D2) 면 위 글자는 모두 흰색(사용자 요청 2026-10-18) */
   .slide.dark .verb, .thesis-text .c4, .ar-box em, .lc-a .lc-k, .hq-col.a .hq-tag, .rs-nav span.on, .br-l2 em,
@@ -2184,6 +2188,7 @@
   <!-- 1. 표지: 원본 배경(남색 그라디언트 + 하단 광선 + 좌측 부채꼴 선)을 SVG로 다시 그렸다.
        맨 위 노이즈 층은 어두운 그라디언트의 밴딩을 없애는 디더링이다. -->
   <section class="slide cover active" aria-label="표지">
+    <svg class="abs cv-stack" viewBox="0 0 420 420" aria-hidden="true"><g class="cv-plate" style="--d:.45s"><polygon points="40,275 210,360 210,374 40,289" fill="#072540"/><polygon points="210,360 380,275 380,289 210,374" fill="#051c31"/><polygon points="210,190 380,275 210,360 40,275" fill="#0a3255"/></g><g class="cv-plate" style="--d:.65s"><polygon points="40,205 210,290 210,304 40,219" fill="#0886b0"/><polygon points="210,290 380,205 380,219 210,304" fill="#076f92"/><polygon points="210,120 380,205 210,290 40,205" fill="#0aa0d2"/></g><g class="cv-plate" style="--d:.85s"><polygon points="40,115 210,200 210,214 40,129" fill="#9cc40f"/><polygon points="210,200 380,115 380,129 210,214" fill="#86a90c"/><polygon points="210,30 380,115 210,200 40,115" fill="#b4e114"/></g></svg>
     <img class="abs cover-logo ln-logo" src="assets/logo-liner-dark.svg" alt="Liner">
     <h1 class="abs"><span>에이전트 시대의 리더십</span></h1>
     <p class="abs cover-sub">사람과 에이전트가 함께 일하는 조직을 이끄는 법</p>
