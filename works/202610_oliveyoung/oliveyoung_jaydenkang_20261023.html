@@ -1928,7 +1928,7 @@
   .ip-play::after { content: ""; position: absolute; left: 21px; top: 10px; border-left: 14px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
 
   /* 서비스 확장 프레임워크(10장): 4개 가로 박스 → 전체 너비의 Fintech. 기존 6단계 자동 재생을 사용한다. */
-  .cfx-stage { left: 76px; top: 244px; width: 1128px; height: 406px; }
+  .cfx-stage { left: 76px; top: 196px; width: 1128px; height: 454px; }
   .cfx-node { position: absolute; top: 0; width: 246px; height: 200px; border: 2px solid #dce1e5; border-radius: 18px; background: #f7f8f9;
     transition: background-color .65s ease, border-color .65s ease, box-shadow .65s ease; }
   .cfx-node h3 { position: absolute; left: 16px; right: 16px; top: 35px; font-size: 27px; font-weight: 800; line-height: 1.25; letter-spacing: -.035em; text-align: center; white-space: nowrap; }
@@ -1945,8 +1945,8 @@
   .cfx-stage:has(.drama .cfx-proof.on) .cfx-link.one .cfx-trace,
   .cfx-stage:has(.game .cfx-proof.on) .cfx-link.two .cfx-trace,
   .cfx-stage:has(.commerce .cfx-proof.on) .cfx-link.three .cfx-trace { stroke-dashoffset: 0; }
-  .cfx-down { position: absolute; left: 544px; top: 210px; width: 40px; height: 80px; fill: none; stroke: #98a1a8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .cfx-fintech { position: absolute; left: 0; top: 304px; width: 1128px; height: 102px; border: 2px solid #dce1e5; border-radius: 18px;
+  .cfx-down { position: absolute; left: 544px; top: 208px; width: 40px; height: 36px; fill: none; stroke: #98a1a8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cfx-fintech { position: absolute; left: 0; top: 254px; width: 1128px; height: 200px; border: 2px solid #dce1e5; border-radius: 18px;
     display: flex; align-items: center; justify-content: center; background: #fff; color: #6f7880; font-size: 27px; font-weight: 800; letter-spacing: -.03em; }
   .cfx.instant .cfx-node, .cfx.instant .cfx-trace { transition: none !important; }
   @media (prefers-reduced-motion: reduce) {
@@ -2273,7 +2273,7 @@
       <div class="cfx-node game" style="left:588px"><h3>Game</h3><span class="cfx-proof" data-step="4">AI 게임</span></div>
       <svg class="cfx-link three" style="left:834px" viewBox="0 0 48 40" aria-label="Game에서 Commerce로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
       <div class="cfx-node commerce" style="left:882px"><h3>Commerce</h3><span class="cfx-proof" data-step="5">Agentic Commerce</span></div>
-      <svg class="cfx-down" data-step="6" viewBox="0 0 40 80" aria-label="서비스 프레임워크에서 Fintech로"><path d="M20 5v65m-8-8 8 8 8-8"/></svg>
+      <svg class="cfx-down" data-step="6" viewBox="0 0 40 40" aria-label="서비스 프레임워크에서 Fintech로"><path d="M20 3v30m-8-8 8 8 8-8"/></svg>
       <div class="cfx-fintech" data-step="6">Fintech</div>
     </div>
   </section>
