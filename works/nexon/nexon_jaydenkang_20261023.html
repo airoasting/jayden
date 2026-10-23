@@ -2266,6 +2266,75 @@
   .sk-tb .nm, .sk-tb .sh { text-align: left; }
   .sk-tb td:first-child, .sk-tb th:first-child { text-align: center; }
   .sk-tb .bar { margin-right: 5px; font: 9px/1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: -.5px; color: #1a1a1a; }
+
+  /* 커리어 매핑판 프레임워크(.cfx-me, 2026-10-23): 노드 안 증거 칩 아래(y 216~256)와 Fintech 줄 아래에 회사 로고. Freechal은 3장 카드와 같은 글자 */
+  .cfx-logos { position: absolute; left: 12px; right: 12px; top: 218px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .cfx-logos img { display: block; }
+  .cfx-fc { font-size: 23px; font-weight: 800; line-height: 1; letter-spacing: -.01em; color: #1a1a1a; }
+  .cfx-logos .lg-line { height: 34px; }
+  .cfx-logos .lg-kakaoent { height: 42px; }
+  .cfx-logos .lg-linegames { height: 18px; }
+  /* 발표자가 거친 세 영역(Communication·Content·Commerce)은 넥슨 블루 옅은 면으로 칠함(10/23). Game은 칠하지 않음 */
+  .cfx-me .cfx-node.chat, .cfx-me .cfx-node.drama, .cfx-me .cfx-node.commerce { background: #e7f6fb; border-color: #0aa0d2; }
+  .cfx-logos .lg-lineman { height: 34px; width: 34px; border-radius: 9px; }
+  .cfx-lb { font-size: 16px; font-weight: 800; letter-spacing: -.01em; color: #1a1a1a; }
+  .cfx-logos.fin { position: static; height: auto; gap: 22px; }
+  .cfx-logos .lg-linepay { height: 24px; } .cfx-logos .lg-linebk { height: 22px; }
+  .cfx-me .cfx-fintech { gap: 14px; }
+  .cfx-me .cfx-logos { top: 145px; height: 58px; }   /* 증거 칩을 지운 자리(10/23)에 로고를 올림 */
+  .cfx-me .cfx-logos.fin { height: auto; }
+  /* 봉준호 인용(.bq): 사진 카드 x 76~492(높이 518, y 101~619), 글 x 556~1204 세로 가운데. 색 구절은 넥슨 블루, 나머지는 잉크 */
+  .bq-pic { left: 76px; top: 101px; width: 416px; height: 518px; margin: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 14px 36px rgba(26,26,26,.12); }
+  .bq-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .bq-text { left: 556px; top: 101px; width: 648px; height: 518px; display: flex; flex-direction: column; justify-content: center; gap: 30px; word-break: keep-all; }
+  .bq-text p { margin: 0; font-size: 28px; font-weight: 800; line-height: 1.55; letter-spacing: -.03em; color: #fff; }
+  .bq-text .hl { color: #ff8c1a; }   /* 검은 바탕(10/23): 사용자가 준 화면처럼 흰 글자 + 주황 구절. 주황은 사진 속 띠 색 */
+  .bq-text .bq-intro { font-size: 20px; font-weight: 600; font-style: italic; line-height: 1.5; letter-spacing: -.02em; color: #c4ccd2; }
+  .bq-text .bq-src { font-size: 14px; font-weight: 600; line-height: 1.45; letter-spacing: -.01em; color: #98a1a8; }
+  .slide.dark.bq { background: #000; }
+  html:has(.slide.bq.active), html:has(.slide.bq.active) body { background: #000; }   /* 5장은 슬라이드 바깥 여백까지 검게 */
+  .bq-pic { box-shadow: none; background: #000; }
+  .bq-pic img { transform: scale(1.025); }   /* 사진 가장자리 밝은 픽셀이 흰 테두리처럼 보여 살짝 키워 잘라 냄 */
+
+  /* 일해 온 도시(.jm, 2026-10-23): 점 y 262, 지명 y 300, 판교 아래 도시 칩 y 386~. 열 중심 217·499·781·1063 */
+  .jm-stop { top: 118px; width: 282px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .jm-dot { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 3px solid #98a1a8; box-sizing: border-box; }
+  .jm-stop b { margin-top: 20px; font-size: 48px; font-weight: 800; line-height: 1.2; letter-spacing: -.03em; color: #1a1a1a; white-space: nowrap; }
+  .jm-stop.hot .jm-dot { background: #0aa0d2; border-color: #0aa0d2; box-shadow: 0 0 0 6px rgba(10,160,210,.16); }
+  .jm-stop.hot b { color: #0aa0d2; }
+  .jm-seg { top: 126px; height: 2px; background: #c4ccd2; }
+  .jm-seg::after { content: ""; position: absolute; right: -1px; top: -5px; width: 9px; height: 9px; border-top: 2px solid #c4ccd2; border-right: 2px solid #c4ccd2; transform: rotate(45deg); }
+  .jm-cities { list-style: none; margin: 22px 0 0; padding: 0; width: 272px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .jm-cities li { width: 84px; box-sizing: border-box; text-align: center; padding: 7px 0; border-radius: 999px; background: #f2f4f6; border: 1px solid #e3e6ea; font-size: 16px; font-weight: 700; letter-spacing: -.01em; color: #3d434a; }
+  /* 지도(10/23): x 76~1204, y 340~650. 1도 = 5.01px, 북위 52°~남위 10°. 점 지름 10, 판교만 넥슨 블루 */
+  .jm-map { left: 76px; top: 340px; width: 1128px; height: 310px; }
+  .jm-map { -webkit-mask-image: radial-gradient(ellipse 60% 66% at 50% 50%, #000 66%, transparent 100%); mask-image: radial-gradient(ellipse 60% 66% at 50% 50%, #000 66%, transparent 100%); }   /* 네모 테두리 대신 타원으로 가장자리를 흐림(10/23) */
+  .jm-pin { width: 0; height: 0; }
+  .jm-pin i { position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%; background: #0a3255; box-shadow: 0 0 0 3px #fff; }
+  .jm-pin span { position: absolute; top: -10px; font-size: 15px; font-weight: 700; line-height: 20px; letter-spacing: -.01em; color: #1a1a1a; white-space: nowrap; }
+  .jm-pin.r span { left: 11px; } .jm-pin.l span { right: 11px; }
+  .jm-pin.t span { left: 50%; top: -34px; transform: translateX(-50%); }
+  .jm-pin.hub i { left: -7px; top: -7px; width: 14px; height: 14px; background: #0aa0d2; box-shadow: 0 0 0 4px rgba(10,160,210,.2); }
+  .jm-pin.hub span { color: #0aa0d2; font-weight: 800; }
+  /* 판교 → 도시 화살표(10/23): 선은 stroke-dashoffset으로 그려지고, 화살촉과 도시 점은 선이 닿을 무렵 뜬다 */
+  /* 6장 검은 바탕(10/23): 슬라이드 바깥 여백까지 검게, 글자 흰색, 지도 짙은 회색(#2b3137, world-land.svg 안 값), 도시 점 흰색 */
+  .slide.dark.jm { background: #000; }
+  html:has(.slide.jm.active), html:has(.slide.jm.active) body { background: #000; }
+  .jm-stop b { color: #fff; }
+  .jm-dot { background: #000; border-color: #6f7880; }
+  .jm-seg { background: #3d434a; } .jm-seg::after { border-color: #3d434a; }
+  .jm-pin i { background: #fff; box-shadow: 0 0 0 3px #000; }
+  .jm-pin span { color: #fff; }
+  .jm-pin.hub i { box-shadow: 0 0 0 4px rgba(10,160,210,.35); }
+  .jm-arcs { left: 76px; top: 340px; width: 1128px; height: 310px; overflow: visible; }
+  .jm-arcs .arc { fill: none; stroke: #0aa0d2; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .9s cubic-bezier(.45,0,.25,1); }
+  .jm-arcs .head { fill: #0aa0d2; opacity: 0; transition: opacity .25s ease; }
+  .jm-arcs.on .arc { stroke-dashoffset: 0; }
+  .jm-arcs.on .head { opacity: 1; }
+  .slide.dark.jm .jm-arcs[data-step] { translate: none; filter: none; }
+  .jm.instant .jm-arcs .arc, .jm.instant .jm-arcs .head { transition: none !important; }
+  .slide.dark.jm [data-step="5"].on { transition-delay: 2.1s; }   /* 홍대는 화살표·도시 점(약 2.3초)이 모두 뜬 뒤에 뜸. 0.7초 단계 간격 + 2.1초 */
+  @media (prefers-reduced-motion: reduce) { .jm-arcs .arc, .jm-arcs .head { transition: none !important; } }
 </style>
 </head>
 <body>
@@ -2462,6 +2531,64 @@
     <p class="abs cr-note" data-step="1" style="left:128px;width:260px"><span>서울대 경제학부</span></p>
     <p class="abs cr-note" data-step="2" style="left:319px;width:260px"><span>미국 미시간 대학 MBA</span></p>
     <p class="abs cr-note r" data-step="4" style="left:744px;width:460px"><span>국민경제자문회의<br>AI경제 정책자문단 위원</span></p>
+  </section>
+
+  <!-- 커리어 매핑판(2026-10-23 사용자 요청): 40장 서비스 확장 프레임워크를 복사해 3장(시대별 커리어) 뒤에 둠. 영역마다 발표자가 거친 회사 로고를 붙임.
+       Communication: Freechal(3장과 같은 글자)·LINE, Content: 카카오엔터테인먼트, Commerce: LINE MAN(태국), Fintech: LINE Pay·LINE BK(태국). Game은 로고 없음.
+       로고 출처: LINE·LINE Pay·카카오엔터테인먼트 Wikimedia Commons, LINE BK linebk.com, LINE MAN App Store 앱 아이콘 -->
+  <section class="slide dark cfx cfx-me" data-gap="700" aria-label="커뮤니케이션에서 콘텐츠 및 커머스로 커리어를 확장해 옴, 발표자 커리어로 본 AI 서비스 확장 프레임워크: Communication에서 Content, Game을 거쳐 Agentic Commerce로 연결됨. Fintech는 전체 영역을 지원하는 거래·결제 공통 기반">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">커뮤니케이션에서 콘텐츠 및 커머스로 커리어를 확장해 옴</h2>
+    <div class="abs cfx-stage" data-step="1">
+      <div class="cfx-engagement" role="group" aria-label="Communication에서 Content와 Game으로 이어지는 서비스 영역">
+        <div class="cfx-node chat" style="left:0"><h3>Communication</h3><div class="cfx-logos"><span class="cfx-fc">Freechal</span><img class="lg-line" src="assets/logo-line.svg" alt="LINE"></div></div>
+        <svg class="cfx-link one" style="left:246px" viewBox="0 0 48 40" aria-label="Communication에서 Content로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+        <div class="cfx-node drama" style="left:294px"><h3>Content</h3><div class="cfx-logos"><img class="lg-kakaoent" src="assets/logo-kakaoent.svg" alt="카카오엔터테인먼트"></div></div>
+        <svg class="cfx-link two" style="left:540px" viewBox="0 0 48 40" aria-label="Content에서 Game으로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+        <div class="cfx-node game" style="left:588px"><h3>Game</h3><div class="cfx-logos"><img class="lg-linegames" src="assets/logo-linegames.png" alt="LINE GAMES"></div></div>
+      </div>
+      <svg class="cfx-link three" style="left:834px" viewBox="0 0 48 40" aria-label="Game에서 Commerce로"><path d="M8 20h30m-8-8 8 8-8 8"/><path class="cfx-trace" pathLength="1" d="M8 20h30m-8-8 8 8-8 8"/></svg>
+      <div class="cfx-node commerce" style="left:882px"><h3>Commerce</h3><div class="cfx-logos"><img class="lg-lineman" src="assets/logo-lineman.jpg" alt="LINE MAN"><span class="cfx-lb">LINE MAN</span></div></div>
+      <svg class="cfx-support" style="left:103px" viewBox="0 0 40 40" aria-label="Fintech가 Communication의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:397px" viewBox="0 0 40 40" aria-label="Fintech가 Content의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:691px" viewBox="0 0 40 40" aria-label="Fintech가 Game의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <svg class="cfx-support" style="left:985px" viewBox="0 0 40 40" aria-label="Fintech가 Commerce의 거래와 결제를 지원"><path d="M20 35V7m-8 8 8-8 8 8"/></svg>
+      <div class="cfx-fintech"><strong>Fintech</strong><div class="cfx-logos fin"><img class="lg-linepay" src="assets/logo-linepay.svg" alt="LINE Pay"><img class="lg-linebk" src="assets/logo-linebk.svg" alt="LINE BK"></div></div>
+    </div>
+  </section>
+
+  <!-- 봉준호 인용(2026-10-23 사용자 요청): 왼쪽은 사용자가 준 이미지(assets/bong.jpg, 마라케시 국제영화제 발언 카드), 오른쪽은 사용자가 준 한국어 문구 전체(도입·인용·Deadline 출처). 사진·도입 문장은 저절로(step 1), 첫 인용 문단(클릭 1), 둘째 문단과 출처(클릭 2) -->
+  <section class="slide dark bq" data-click="1" aria-label="봉준호 감독의 AI에 대한 답: 공식적으로는 인류가 비로소 인간만이 할 수 있는 일에 대해 생각하기 시작했으니 좋다, 개인적으로는 인공지능을 파괴하는 임무를 맡은 특수부대를 조직하겠다">
+    <figure class="abs bq-pic" data-step="1"><img src="assets/bong.jpg" alt="봉준호 감독, 마라케시 국제영화제. AI에 대한 공식적인 답과 개인적인 답을 적은 영문 인용 카드"></figure>
+    <div class="abs bq-text" data-step="1">
+      <p class="bq-intro">2025년 11월, 모로코 마라케시 영화제 심사위원 기자회견에서 AI 발전에 대한 생각을 묻는 질문에 대한 봉준호 감독의 답변:</p>
+      <p data-step="2"><span>“공식적인 답변은 </span><span class="hl">인류가 비로소 인간만이 할 수 있는 일에 대해</span><span> 진지하게 생각하기 시작한 첫걸음이므로 좋다입니다.</span></p>
+      <p data-step="3"><span>하지만 개인적인 답변은 </span><span class="hl">인공지능을 파괴하는 임무를 맡은 특수부대를 조직</span><span>하겠습니다.”</span></p>
+      <p class="bq-src" data-step="3">Deadline(“Bong Joon Ho Jokes Wants To Organize Military Squad To ‘Destroy AI’”, 2025.11.29)</p>
+    </div>
+  </section>
+
+
+  <!-- 일해 온 도시(2026-10-23 사용자 요청): 서울 → 미국 → 판교(지도: LA·NY·베이징·도쿄·타이페이·방콕·자카르타) → 홍대. 사용자가 준 지명만 쓰고 회사 이름은 붙이지 않음.
+       헤드라인 없는 메시지 장. 아래에 세계 지도(Natural Earth 110m 육지, 경도 80~305(태평양 중심, 미국이 오른쪽) 등장방형, assets/world-land.svg, 검은 바탕용 짙은 회색)를 깔고 판교에서 각 도시로 화살표가 차례로 뻗어 나가며(0.18초 간격) 도시 점이 뜬다. 순서: 서울 → 미국 → 판교·지도 → 화살표 → 홍대. 열 4개(282 폭, x 76~1204), 점과 화살표 선으로 잇고 한 곳씩 차례로 뜬다. 마지막 홍대만 넥슨 블루 -->
+  <section class="slide dark jm" data-gap="700" aria-label="일해 온 도시: 서울, 미국, 판교에서 LA, NY, 베이징, 도쿄, 타이페이, 방콕, 자카르타로, 홍대">
+    <i class="abs jm-seg" data-step="2" style="left:233px;width:250px"></i>
+    <i class="abs jm-seg" data-step="3" style="left:515px;width:250px"></i>
+    <i class="abs jm-seg" data-step="5" style="left:797px;width:250px"></i>
+    <div class="abs jm-stop" data-step="1" style="left:76px"><i class="jm-dot"></i><b>서울</b></div>
+    <div class="abs jm-stop" data-step="2" style="left:358px"><i class="jm-dot"></i><b>미국</b></div>
+    <div class="abs jm-stop" data-step="3" style="left:640px"><i class="jm-dot"></i><b>판교</b></div>
+    <div class="abs jm-stop hot" data-step="5" style="left:922px"><i class="jm-dot"></i><b>홍대</b></div>
+    <img class="abs jm-map" data-step="3" src="assets/world-land.svg" alt="" aria-hidden="true">
+    <svg class="abs jm-arcs" data-step="4" viewBox="0 0 1128 310" aria-hidden="true"><path class="arc" style="transition-delay:0.0s" pathLength="1" d="M245.4 69.3Q523.6 -50.0 802.9 86.0"/><path class="arc" style="transition-delay:0.18s" pathLength="1" d="M245.3 69.1Q634.4 -110.0 1024.4 53.1"/><path class="arc" style="transition-delay:0.36s" pathLength="1" d="M228.5 66.8Q212.5 53.5 191.2 58.6"/><path class="arc" style="transition-delay:0.54s" pathLength="1" d="M244.4 78.9Q265.6 93.3 290.7 84.7"/><path class="arc" style="transition-delay:0.72s" pathLength="1" d="M228.4 79.6Q206.8 97.3 208.0 126.2"/><path class="arc" style="transition-delay:0.9s" pathLength="1" d="M227.0 77.2Q149.6 110.0 107.2 183.9"/><path class="arc" style="transition-delay:1.08s" pathLength="1" d="M229.9 81.0Q158.2 169.9 136.3 283.0"/><path class="head" style="transition-delay:0.75s" d="M802.9 86.0L792.8 86.2L796.7 78.1Z"/><path class="head" style="transition-delay:0.93s" d="M1024.4 53.1L1014.4 53.8L1017.8 45.5Z"/><path class="head" style="transition-delay:1.11s" d="M191.2 58.6L199.0 52.1L201.0 60.9Z"/><path class="head" style="transition-delay:1.29s" d="M290.7 84.7L283.7 91.9L280.8 83.4Z"/><path class="head" style="transition-delay:1.47s" d="M208.0 126.2L203.1 117.4L212.1 117.0Z"/><path class="head" style="transition-delay:1.65s" d="M107.2 183.9L107.8 173.9L115.6 178.3Z"/><path class="head" style="transition-delay:1.83s" d="M136.3 283.0L133.6 273.3L142.4 275.0Z"/></svg>
+    <div class="abs jm-pin r" data-step="4" style="left:887.0px;top:430.0px;transition-delay:0.75s"><i></i><span>LA</span></div>
+    <div class="abs jm-pin r" data-step="4" style="left:1108.7px;top:396.6px;transition-delay:0.93s"><i></i><span>NY</span></div>
+    <div class="abs jm-pin l" data-step="4" style="left:258.5px;top:400.7px;transition-delay:1.11s"><i></i><span>베이징</span></div>
+    <div class="abs jm-pin r" data-step="4" style="left:375.2px;top:421.8px;transition-delay:1.29s"><i></i><span>도쿄</span></div>
+    <div class="abs jm-pin r" data-step="4" style="left:284.4px;top:475.2px;transition-delay:1.47s"><i></i><span>타이페이</span></div>
+    <div class="abs jm-pin l" data-step="4" style="left:178.8px;top:531.7px;transition-delay:1.65s"><i></i><span>방콕</span></div>
+    <div class="abs jm-pin r" data-step="4" style="left:210.6px;top:631.8px;transition-delay:1.83s"><i></i><span>자카르타</span></div>
+    <div class="abs jm-pin t hub" data-step="3" style="left:312.2px;top:413.2px"><i></i><span>판교</span></div>
   </section>
 
   <!-- 3-1. 메시지: 색 구절 넷(step 1) → 흰 글자(step 2). data-gap으로 두 단계 사이를 길게 둔다 -->
