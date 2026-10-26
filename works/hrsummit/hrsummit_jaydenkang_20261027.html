@@ -1945,6 +1945,8 @@
   .sq3-num b { grid-area: 1 / 1; text-align: center; transition: opacity .5s ease .3s; }
   .sq3-num .n6, .sq3:has(.sq3-c.k.on) .sq3-num .n4 { opacity: 0; }
   .sq3:has(.sq3-c.k.on) .sq3-num .n6 { opacity: 1; }   /* 형식 정의·윤문이 끼면 번호가 1~6으로 바뀐다 */
+  .sq3-c h3, .sq3-pill { transition: opacity .45s ease; }
+  .slide.morph .sq3-c h3, .slide.morph .sq3-pill { opacity: 0; transition: none; }   /* 원이 날아오는 동안 이름·필은 숨겼다가 내려앉은 뒤 뜬다 */
   .sq3-pill { display: inline-block; margin-top: 14px; padding: 6px 16px; border-radius: 999px; background: #1f9a14; color: #fff; font-size: 15px; font-weight: 800; letter-spacing: .01em; }
   .sq3-c h3 { margin: 18px 0 8px; font-size: 24px; font-weight: 800; color: #f6f6f6; letter-spacing: -.02em; }
   .sq3-c .sq-sk { font-size: 16.5px; }
@@ -2974,7 +2976,7 @@
       const host = el.closest('[data-step]');
       if (host && !host.classList.contains('on')) return;
       const [x, y] = morphCenter(el);
-      pts.rings[el.dataset.morphRing] = { x, y, el };
+      pts.rings[el.dataset.morphRing] = { x, y, el, w: el.offsetWidth };   // 장이 바뀌면 원래 장이 숨어 크기를 잴 수 없으니 미리 잰다
     });
     return pts;
   }
@@ -3013,7 +3015,7 @@
     dst.querySelectorAll('[data-morph-ring]').forEach(t => {
       const r = pts.rings && pts.rings[t.dataset.morphRing];
       if (!r) return;
-      const [x1, y1] = morphCenter(t), k = t.offsetWidth / r.el.offsetWidth;
+      const [x1, y1] = morphCenter(t), k = t.offsetWidth / r.w;
       const fly = r.el.cloneNode(true);
       fly.removeAttribute('data-morph-ring');
       fly.classList.add('morph-fly');
