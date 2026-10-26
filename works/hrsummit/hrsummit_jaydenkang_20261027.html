@@ -1002,7 +1002,7 @@
   .slide.dark.instant .tk-bar, .slide.dark.instant .tk-anns { transition: none; }
   .tk-val { font-size: 15px; font-weight: 800; fill: #f0f0f0; } .tk-val.last { font-size: 18px; fill: #3add2e; }
   .tk-brk { fill: none; stroke: #3add2e; stroke-width: 1.5; stroke-dasharray: 5 4; }
-  .tk-pill rect { fill: #3add2e; } .tk-pill text { font-size: 18px; font-weight: 800; fill: #f0f0f0; }
+  .tk-pill rect { fill: #1f9a14; } .tk-pill text { font-size: 18px; font-weight: 800; fill: #f0f0f0; }
   .tk-bub { margin: 0; padding: 7px 12px; border-radius: 10px; background: #262626; color: #fff; font-size: 13.5px; font-weight: 700; white-space: nowrap; opacity: 0; transition: opacity .4s 1.7s; }
   .tk-bub::after { content: ""; position: absolute; left: 12px; bottom: -6px; border: 6px solid transparent; border-bottom: 0; border-top-color: #c9cdd1; }
   .tk:has(.tk-go.on) .tk-bub { opacity: 1; } .slide.dark.instant .tk-bub { transition: none; }
@@ -1079,7 +1079,7 @@
   .ts-note strong { font-size: 24px; font-weight: 800; color: #3add2e; letter-spacing: -.01em; }
   .ts-note small { font-size: 13px; font-weight: 600; color: #9aa2a9; line-height: 1.35; word-break: keep-all; }
   .ts-bub { right: 76px; top: 566px; margin: 0; padding: 8px 14px 9px; border-radius: 12px; background: #262626; color: #fff; font-size: 15px; font-weight: 800; white-space: nowrap; }
-  .ts-bub::after { content: ""; position: absolute; left: -7px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 0; border-right-color: #c9cdd1; }   /* 꼬리는 왼쪽 55분 단축 쪽 */
+  .ts-bub::after { content: ""; position: absolute; left: -7px; top: 50%; transform: translateY(-50%); border: 7px solid transparent; border-left: 0; border-right-color: #262626; }   /* 꼬리는 말풍선과 같은 색, 왼쪽 55분 단축 쪽 */
   .slide.dark .ts-bub.on { transition-delay: 1.1s; }
   .ts-split { left: 76px; width: 1128px; height: 0; margin: 0; border-top: 1.5px dashed #666666; font-size: 12.5px; font-weight: 700; color: #7f878e; }
   .ts-split span { position: absolute; right: 0; white-space: nowrap; } .ts-split span:first-child { bottom: 4px; } .ts-split span:last-child { top: 5px; }   /* 위 묶음 이름은 선 위, 아래 묶음 이름은 선 아래 */
@@ -1161,7 +1161,7 @@
   .lv-sub { color: #f6f6f6; font-weight: 800; }   /* 31장 서브타이틀: 필 없이 검은 Bold 글자, 크기·위치는 다른 장 서브타이틀(20px, y 168)과 같음 */
   .lv-arr { top: 284px; width: 27px; text-align: center; font-size: 30px; font-weight: 700; line-height: 1; color: #7f878e; }
   .lv-now { left: 538px; top: 600px; width: 204px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .lv-now i { width: 0; height: 0; border: 7px solid transparent; border-top: 9px solid #c9cdd1; border-bottom: 0; }
+  .lv-now i { width: 0; height: 0; border: 7px solid transparent; border-top: 9px solid #262626; border-bottom: 0; }
   .lv-now span { height: 36px; padding: 0 22px; border-radius: 999px; background: #262626; color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; }
   /* 업계 반응(.rx): 카드 352 × 3 + 간격 36 = 76~1204, y 220~650. 위에서부터 분야·날짜, 인물, 발언(언론 보도 기준), 구분선, 이후. 카드가 차례로 뜬다 */
   .rx-card { top: 220px; width: 352px; height: 430px; box-sizing: border-box; padding: 30px 30px 26px; border-radius: 20px; background: #141414; border: 1px solid #4a4a4a; display: flex; flex-direction: column; }
@@ -1202,7 +1202,7 @@
   .lc-cyc svg { position: absolute; left: 0; top: 0; width: 320px; height: 310px; overflow: visible; }
   .lc-ring { fill: none; stroke: #666666; stroke-width: 2; }
   .lc-arr { fill: #98a1a8; }
-  .lc-core { fill: #3add2e; }
+  .lc-core { fill: #1f9a14; }   /* 흰 글자가 올라가는 면은 진한 그린 */
   .lc-core-t { font-size: 26px; font-weight: 800; fill: #f0f0f0; text-anchor: middle; }
   .lc-core-s { font-size: 13px; font-weight: 700; fill: #f0f0f0; text-anchor: middle; }
   .lc-dot circle { fill: #0b0b0b; stroke: #e6e6e6; stroke-width: 1.5; }
@@ -1919,6 +1919,44 @@
   .nw-hl { position: absolute; border-radius: 3px; background: rgba(255,222,0,.6); mix-blend-mode: multiply; transform: scaleX(0); transform-origin: left center; transition: transform .45s cubic-bezier(.3,.7,.3,1); }   /* 노란 형광펜: 카드가 뜬 뒤 왼쪽부터 칠한다 */
   .nw-card.on .nw-hl { transform: scaleX(1); transition-delay: calc(.8s + var(--d, 0s)); }
   .instant .nw-hl { transition: none; }
+
+  /* 6단계 업무 흐름(17장): 카드 346 × 3(+화살표 간격 45) = 76~1204, 두 줄. 위 y 200~400, 아래 440~640 */
+  .sq-card { width: 346px; height: 200px; box-sizing: border-box; padding: 22px 22px 0; border-radius: 14px; background: #141414; border: 1px solid #4a4a4a; }
+  .sq-n { display: block; font-size: 13px; font-weight: 800; color: #9aa2a9; letter-spacing: .04em; }
+  .sq-card h3 { margin: 14px 0 0; padding-bottom: 16px; border-bottom: 1px solid #4a4a4a; font-size: 21px; font-weight: 800; line-height: 1.25; color: #f6f6f6; letter-spacing: -.01em; }
+  .sq-sk { font: 600 18px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #3add2e; letter-spacing: 0; }
+  .sq-card h3 small { font-size: 14px; font-weight: 700; color: #3add2e; }
+  .sq-card p { margin: 16px 0 0; font-size: 15px; line-height: 1.55; font-weight: 500; color: #c9cdd1; word-break: keep-all; }
+  .sq-arr { width: 44px; height: 200px; display: grid; place-items: center; }
+  .sq-arr::before { content: ""; width: 0; height: 0; border: 8px solid transparent; border-right: 0; border-left: 11px solid #7f878e; }
+  .slide.morph [data-morph-dst] { visibility: hidden; }
+
+
+  /* 17장 AI와 일하는 6단계(2026-10-26): 4칸(x 156, 478.7, 801.3, 1124) → korean 둘이 끼면 6칸(간격 193.6). 노드 중심 y 340, 이름 y 418, 설명 y 486~ */
+  .sq3-c { top: 280px; width: 180px; left: var(--x4); z-index: 2; text-align: center; transition: left .9s cubic-bezier(.65,0,.35,1), opacity .7s cubic-bezier(.16,1,.3,1), translate .9s cubic-bezier(.16,1,.3,1), filter .7s ease !important; }
+  .sq3:has(.sq3-c.k.on) .sq3-c { left: var(--x6); }
+  .sq3-n { height: 120px; display: grid; place-items: center; }
+  .sq3-ring, .sq3-dot { width: 88px; height: 88px; border-radius: 50%; box-sizing: border-box; display: grid; place-items: center; position: relative; }
+  .sq3-ring { border: 2px solid transparent;
+    background: radial-gradient(circle at 50% 32%, #161616 0%, #0e260b 72%) padding-box, conic-gradient(from 210deg, #ff7878, #1f9a14, #3add2e, #1f9a14, #ff7878) border-box;
+    box-shadow: 0 0 30px rgba(58,221,46,.18), inset 0 0 16px rgba(255,120,120,.12); }
+  .sq3-dot { background: #141414; border: 2px solid #3add2e; box-shadow: 0 0 22px rgba(58,221,46,.22); }
+  .sq3-num { display: grid; font-size: 34px; font-weight: 800; color: #f6f6f6; line-height: 1; font-variant-numeric: tabular-nums; }
+  .sq3-num b { grid-area: 1 / 1; text-align: center; transition: opacity .5s ease .3s; }
+  .sq3-num .n6, .sq3:has(.sq3-c.k.on) .sq3-num .n4 { opacity: 0; }
+  .sq3:has(.sq3-c.k.on) .sq3-num .n6 { opacity: 1; }   /* 형식 정의·윤문이 끼면 번호가 1~6으로 바뀐다 */
+  .sq3-pill { display: inline-block; margin-top: 14px; padding: 6px 16px; border-radius: 999px; background: #1f9a14; color: #fff; font-size: 15px; font-weight: 800; letter-spacing: .01em; }
+  .sq3-c h3 { margin: 18px 0 8px; font-size: 24px; font-weight: 800; color: #f6f6f6; letter-spacing: -.02em; }
+  .sq3-c .sq-sk { font-size: 16.5px; }
+  .sq3-desc { margin: 14px auto 0; width: 190px; margin-left: -5px; white-space: nowrap; font-size: 14.5px; line-height: 1.55; font-weight: 500; color: #c9cdd1; word-break: keep-all; }
+  .sq3-track { left: 156px; top: 339px; width: 968px; height: 2px; background: #3a3a3a; }
+  .slide.dark .sq3-track[data-step] { translate: none; filter: none; }
+  .sq3-chev { top: 333px; width: 0; height: 0; border: 7px solid transparent; border-right: 0; border-left: 10px solid #7f878e; }
+  .slide.dark .sq3-chev[data-step] { translate: none; filter: none; }
+  .sq3-run { left: 150px; top: 334px; width: 12px; height: 12px; border-radius: 50%; background: #3add2e; box-shadow: 0 0 16px 4px rgba(58,221,46,.7); z-index: 1; }   /* 노드 뒤로 지나간다 */
+  .slide.dark .sq3-run[data-step] { translate: none; filter: none; }
+  .slide.dark .sq3-run.on { animation: sq3-run 2.6s cubic-bezier(.65,0,.35,1) forwards; }
+  @keyframes sq3-run { 0% { left: 150px; opacity: 1; } 92% { left: 1118px; opacity: 1; } 100% { left: 1118px; opacity: 0; } }
 </style>
 </head>
 <body>
@@ -2116,34 +2154,6 @@
     <p class="abs cr-note r" data-step="4" style="left:744px;width:460px"><span>국민경제자문회의<br>AI경제 정책자문단 위원</span></p>
   </section>
 
-  <!-- 사고 실험: 두 질문이 클릭 없이 차례로 뜬다. 답은 다음 장 기사 두 건 -->
-  <section class="slide dark" data-gap="900" aria-label="사우디아라비아 국영 AI 기업이 쓰는 핵심 기술을 한국 스타트업이 만들고 있다면? 한국 고등학생이 AI로 쓴 논문이 세계 최초 AI 저자 학회에서 상을 받는다면?">
-    <p class="abs tq-q" data-step="1" style="top:238px">만약에 <b>사우디아라비아 국영 AI 기업</b>이 쓰는 핵심 기술을,<br>한국 스타트업이 만들고 있다면?</p>
-    <p class="abs tq-q" data-step="2" style="top:380px">만약에 한국 고등학생이 AI로 쓴 논문이,<br><b>세계 최초 AI 저자 학회</b>에서 상을 받는다면?</p>
-  </section>
-
-  <!-- 기사 두 건(사용자가 준 화면 캡처를 자름): 전자신문 2025.12.22, 조선비즈 2025.10.23 -->
-  <section class="slide dark demo-bk" aria-label="전자신문 2025년 12월 22일: 라이너, 사우디 국책 AI 휴메인과 해외 B2B 사업 시동. 조선비즈 2025년 10월 23일: 라이너 리서치 AI, 세계 최초 AI 저자 학회서 논문 3편 채택">
-    <figure class="abs nw-card" data-step="1" style="left:180px;width:462px"><img src="assets/news-etnews-humain.png" alt="전자신문 기사: 라이너, '사우디 국책 AI' 휴메인과 해외 B2B 사업 시동"><i class="nw-hl" style="left:15.37%;top:25.97%;width:77.07%;height:5.02%;--d:0.00s"></i><i class="nw-hl" style="left:4.15%;top:31.43%;width:43.17%;height:5.02%;--d:0.35s"></i></figure>
-    <figure class="abs nw-card" data-step="2" style="left:682px;width:417px"><img src="assets/news-chosunbiz-agents4science.png" alt="조선비즈 기사: 라이너 리서치 AI, 세계 최초 AI 저자 학회서 논문 3편 채택"><i class="nw-hl" style="left:43.04%;top:10.50%;width:49.88%;height:4.38%;--d:0.00s"></i><i class="nw-hl" style="left:9.51%;top:15.71%;width:30.97%;height:4.15%;--d:0.35s"></i><i class="nw-hl" style="left:59.63%;top:87.39%;width:36.89%;height:3.25%;--d:0.70s"></i><i class="nw-hl" style="left:3.60%;top:91.92%;width:3.94%;height:3.25%;--d:1.05s"></i><i class="nw-hl" style="left:40.84%;top:91.92%;width:52.67%;height:3.25%;--d:1.40s"></i><i class="nw-hl" style="left:3.60%;top:96.45%;width:43.27%;height:3.47%;--d:1.75s"></i></figure>
-  </section>
-
-  <!-- 라이너 국가 AI 대상(2026-10-26 사용자 요청, 커니판 20261016 3-B장을 흰 바탕 서밋 색으로 옮김). 첫 단계는 저절로, 다음 클릭(→)에 포스터의 라이너 줄을 확대 -->
-  <section class="slide dark demo-bk aw" data-click="1" aria-label="라이너, 과학기술정보통신부 2026 인공지능주간 국가대표 AI 어워드 서울특별시장상 수상. 최근 투자 500억 원, 누적 투자 940억 원, 누적 이용자 1,400만 명 이상">
-    <div class="abs aw-poster" data-step="1"><div class="aw-zoom"><img src="assets/liner-award-poster.png" alt="2026 국가대표 AI 어워드 수상 기업 포스터"><span class="aw-spot" aria-hidden="true"></span></div></div>
-    <dl class="abs aw-facts aw-side" data-step="1">
-      <div class="k"><dt>2026.09 국가 AI 대상</dt><dd>서울특별시장상</dd></div>
-      <div><dt>기업명</dt><dd>라이너(Liner)</dd></div>
-      <div class="k"><dt>주요 기능 및 특징</dt><dd>AI 리서치 에이전트 플랫폼 <small>(Hallucination 최소화)</small></dd></div>
-    </dl>
-    <dl class="abs aw-fund aw-side" data-step="1" aria-label="라이너 투자 현황">
-      <div><dt>최근 투자 · 2026.08 시리즈C</dt><dd>500<small>억 원</small></dd></div>
-      <div><dt>누적 투자</dt><dd>940<small>억 원</small></dd></div>
-      <div class="k"><dt>누적 이용자 · 2026.10</dt><dd>1,400<small>만+</small></dd></div>
-    </dl>
-    <div class="abs aw-zcap" data-step="2" aria-hidden="true"><b>서울특별시장상</b><i></i>라이너<i></i>라이너(Liner)<i></i>AI 리서치 에이전트 플랫폼</div>
-  </section>
-
   <!-- 3-1. 메시지: 색 구절 넷(step 1) → 흰 글자(step 2). data-gap으로 두 단계 사이를 길게 둔다 -->
   <section class="slide dark demo-bk thesis" data-gap="2200" aria-label="AI 트렌드를 아는 것, AI를 잘 쓰는 것, AX를 추진하는 것, AX를 정착시키는 것은 서로 다른 문제">
     <p class="abs center thesis-text">
@@ -2215,7 +2225,7 @@
     <p class="abs cr-sub">HR이 받는 질문의 변화: 도입 → 교육 → 비용 관리</p>
     <p class="abs esc-q" data-step="1" style="left:76px;top:344px"><span><em>“</em>우리 회사도 AI를<br>도입해야 하지 않을까?<em>”</em></span></p>
     <div class="abs esc-s s1" data-step="1" style="left:76px;top:440px;height:210px"><span class="esc-k"><small>01</small>커스텀 AI 구축</span><p class="esc-b">많은 회사가 자체 AI 모델(커스텀 AI)과<br>사내 AI 구축에 투자함</p><p class="esc-r"><i>→</i>구축하는 사이 새 모델이 계속 나와,<br>모델을 바꿔 쓸 수 있는 구조가 필요해짐</p></div>
-    <p class="abs esc-q" data-step="2" style="left:452px;top:284px"><span><em>“</em>모델이 이렇게 빠르면<br>무엇부터 해야 하지?<em>”</em></span></p>
+    <p class="abs esc-q" data-step="2" style="left:452px;top:284px"><span><em>“</em>모델 발전이 이렇게 빠르면<br>무엇부터 해야 하지?<em>”</em></span></p>
     <div class="abs esc-s s2" data-step="2" style="left:452px;top:380px;height:270px"><span class="esc-k"><small>02</small>AI 교육</span><p class="esc-b">내부망 모델과 별개로<br>최신(SOTA) 모델을 쓰는 교육 수요가 급증함</p><p class="esc-r"><i>→</i>HR 주도로 전사 AI 교육을 서둘러 시작함</p></div>
     <p class="abs esc-q" data-step="3" style="left:828px;top:224px"><span><em>“</em>늘어나는 토큰 비용은<br>누가 관리하지?<em>”</em></span></p>
     <div class="abs esc-s s3" data-step="3" style="left:828px;top:320px;height:330px"><span class="esc-k"><small>03</small>토큰 관리</span><p class="esc-b">Accenture는 일부 직원의 Claude 사용액이<br>월 $500~1,000에 이르자,<br>인당 월 $29로 제한함(2026.10)</p><p class="esc-r"><i>→</i>토큰비도 인건비처럼 HR이 관리해야<br>한다는 인식이 생김</p></div>
@@ -2230,7 +2240,7 @@
     <div class="abs vq-b t3 hot" data-step="1" style="left:76px;top:220px"><span class="vq-k">사용 실태 · 사내 규정</span><p>전 직원에게 AI 계정을 제공했는데, 사용량이 유난히 많은 분이 개인 용도로 쓰고 계셨어요. 조치하려 해도 기준이 될 규정이 아직 없어요.</p></div>
     <div class="abs vq-b t3 r" data-step="2" style="left:664px;top:220px"><span class="vq-k">소유권</span><p>회사 계정으로 만든 프롬프트는<br>회사 자산일까요, 개인의 노하우일까요?</p></div>
     <div class="abs vq-b t2" data-step="3" style="left:76px;top:376px"><span class="vq-k">퇴사·인수인계</span><p>AI를 잘 쓰던 분이 퇴사하면,<br>그분이 만든 프롬프트와 스킬은 어떻게 이어받을까요?</p></div>
-    <div class="abs vq-b t2 r" data-step="4" style="left:664px;top:376px"><span class="vq-k">보안</span><p>AI 서비스에 회사 정보가 들어가는 것을<br>어디까지 확인하고, 어떻게 안내하면 좋을까요?</p></div>
+    <div class="abs vq-b t2 r" data-step="4" style="left:664px;top:376px"><span class="vq-k">보안</span><p>AI 서비스에 회사 민감 정보가 들어가는 것을<br>어디까지 확인하고, 어떻게 안내하면 좋을까요?</p></div>
     <div class="abs jr-band" data-step="5"><p class="jr-bh">지금 HR이<br>받는 질문</p><ul><li>교육은 마쳤는데, 다음 단계는 무엇일까요?</li><li>토큰 비용이 느는 만큼 성과도 나고 있을까요?</li><li>AI 도입 성과는 어떻게 확인할 수 있을까요?</li><li>어디까지 쓰도록 하고, 무엇을 기준으로 볼까요?</li></ul></div>
   </section>
 
@@ -2314,7 +2324,7 @@
   <!-- 내 책상(IQVIA판 17장, 2026-10-16 가져옴: 기존 책상 장과 플로어 시연 장을 한 장으로 합침. 왼쪽 모니터 연도 2027, 클릭하면 오른쪽 모니터의 플로어 영상이 커진다): 모니터 1 아래 맥북(사람의 자리), 모니터 2 아래 맥 미니와 4분할 터미널(에이전트의 자리). 헤드라인 없음.
        한국어판은 일러스트 대신 AI 생성 실사 이미지(Higgsfield gpt_image_2_5 고품질 2K, 서울 야경, 화면은 한국어: 맥북 파워포인트·왼쪽 모니터 워드·오른쪽 모니터 Claude 터미널 4개)를 쓴다 -->
   <section class="slide dark demo-bk desk-slide" data-click="1" aria-label="내 책상(서울 야경 배경 실사 이미지): 모니터 두 대, 모니터 1 아래 거치대 위 맥북, 모니터 2 아래 맥 미니, 키보드와 마우스 두 벌, 두 키보드 사이 커피잔">
-    <div class="desk-scene"><img class="desk-photo" src="assets/desk-seoul.jpg" alt=""><div class="desk-yrs" aria-hidden="true"><span class="desk-yr t" style="left:349.0px;top:268.3px;width:29.5px;height:10.5px;font-size:11.6px;font-weight:800;color:#141a2e;background:#e4effa">2027</span><span class="desk-yr b" style="left:355.0px;top:307.3px;width:15.5px;height:6.5px;font-size:6.2px;font-weight:600;color:#333d51;background:#e2eefa">2027</span><span class="desk-yr r" style="left:484.5px;top:390.8px;width:14.0px;height:5.0px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dfecf9">2027.</span><span class="desk-yr r" style="left:484.5px;top:399.8px;width:14.0px;height:5.5px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dbebfa">2027.</span><span class="desk-yr r" style="left:484.5px;top:409.8px;width:14.0px;height:5.0px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dae9f7">2027.</span><span class="desk-yr r" style="left:484.5px;top:418.8px;width:14.0px;height:5.5px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dceaf8">2027.</span></div><div class="desk-mac-title" aria-hidden="true">에이전트 리더의 탄생</div><svg class="desk-lights" viewBox="0 0 1280 720" aria-hidden="true"><defs><radialGradient id="dkBeacon"><stop offset="0" stop-color="#ff5a4a" stop-opacity="1"/><stop offset="1" stop-color="#ff5a4a" stop-opacity="0"/></radialGradient><radialGradient id="dkPod"><stop offset="0" stop-color="#bfe3ff" stop-opacity=".9"/><stop offset="1" stop-color="#bfe3ff" stop-opacity="0"/></radialGradient><radialGradient id="dkLamp"><stop offset="0" stop-color="#ffcf8a" stop-opacity=".55"/><stop offset="1" stop-color="#ffcf8a" stop-opacity="0"/></radialGradient><path id="dkBridge" d="M1056 241 L1172 236 M1236 233 L1280 231"/></defs><circle class="beacon" cx="1023" cy="51" r="7" fill="url(#dkBeacon)"/><circle class="pod" cx="1023" cy="101" r="13" fill="url(#dkPod)"/><ellipse class="lamp" cx="34" cy="300" rx="70" ry="48" fill="url(#dkLamp)"/><circle class="tw" cx="579.0" cy="219.9" r="1.44" fill="#ffffff" style="--t:3.69s;--d:-4.28s"/><circle class="tw" cx="238.3" cy="199.3" r="0.81" fill="#ffb36b" style="--t:4.87s;--d:-3.47s"/><circle class="tw" cx="787.9" cy="146.7" r="0.71" fill="#ffb36b" style="--t:2.41s;--d:-0.18s"/><circle class="tw" cx="1125.8" cy="227.1" r="1.32" fill="#cfe6ff" style="--t:3.65s;--d:-4.21s"/><circle class="tw" cx="585.4" cy="168.6" r="1.50" fill="#ffe2a8" style="--t:4.54s;--d:-1.58s"/><circle class="tw" cx="294.0" cy="170.6" r="0.76" fill="#ffe2a8" style="--t:3.52s;--d:-4.23s"/><circle class="tw" cx="1084.6" cy="118.1" r="0.87" fill="#ffe2a8" style="--t:3.75s;--d:-4.90s"/><circle class="tw" cx="508.7" cy="131.3" r="1.20" fill="#cfe6ff" style="--t:3.31s;--d:-1.56s"/><circle class="tw" cx="19.4" cy="192.6" r="1.44" fill="#ffd28a" style="--t:3.01s;--d:-0.51s"/><circle class="tw" cx="572.7" cy="152.7" r="1.29" fill="#ffd28a" style="--t:3.58s;--d:-1.92s"/><circle class="tw" cx="1247.8" cy="225.9" r="1.50" fill="#ffe2a8" style="--t:2.90s;--d:-1.97s"/><circle class="tw" cx="1093.6" cy="234.8" r="0.78" fill="#ffd28a" style="--t:2.90s;--d:-1.29s"/><circle class="tw" cx="989.0" cy="177.9" r="0.94" fill="#ffe2a8" style="--t:2.45s;--d:-1.04s"/><circle class="tw" cx="814.8" cy="120.8" r="0.99" fill="#ffb36b" style="--t:3.70s;--d:-4.80s"/><circle class="tw" cx="1109.2" cy="151.3" r="0.82" fill="#ffd28a" style="--t:4.90s;--d:-1.25s"/><circle class="tw" cx="132.9" cy="125.0" r="1.47" fill="#ffd28a" style="--t:4.64s;--d:-1.96s"/><circle class="tw" cx="628.5" cy="212.7" r="1.44" fill="#ffe2a8" style="--t:2.62s;--d:-2.40s"/><circle class="tw" cx="94.9" cy="156.7" r="1.43" fill="#ffe2a8" style="--t:2.43s;--d:-2.06s"/><circle class="tw" cx="318.8" cy="126.5" r="0.93" fill="#ffb36b" style="--t:4.09s;--d:-0.66s"/><circle class="tw" cx="1255.0" cy="237.6" r="1.25" fill="#ffb36b" style="--t:5.32s;--d:-2.95s"/><circle class="tw" cx="457.6" cy="174.7" r="0.73" fill="#ffb36b" style="--t:4.30s;--d:-2.41s"/><circle class="tw" cx="935.0" cy="176.0" r="1.50" fill="#ffe2a8" style="--t:3.70s;--d:-1.84s"/><circle class="tw" cx="943.6" cy="141.6" r="1.47" fill="#cfe6ff" style="--t:3.36s;--d:-3.43s"/><circle class="tw" cx="1153.1" cy="276.5" r="1.03" fill="#ffe2a8" style="--t:5.05s;--d:-2.86s"/><circle class="tw" cx="799.9" cy="187.6" r="1.17" fill="#ffb36b" style="--t:2.44s;--d:-0.45s"/><circle class="tw" cx="147.9" cy="164.8" r="1.03" fill="#cfe6ff" style="--t:3.48s;--d:-3.68s"/><circle class="tw" cx="1073.1" cy="133.2" r="1.30" fill="#ffe2a8" style="--t:3.22s;--d:-0.44s"/><circle class="tw" cx="845.0" cy="206.5" r="1.42" fill="#cfe6ff" style="--t:3.19s;--d:-3.39s"/><circle class="tw" cx="259.3" cy="148.9" r="1.42" fill="#ffffff" style="--t:3.84s;--d:-1.21s"/><circle class="tw" cx="518.1" cy="163.6" r="1.21" fill="#ffd28a" style="--t:5.10s;--d:-1.92s"/><circle class="tw" cx="174.3" cy="208.4" r="1.37" fill="#ffe2a8" style="--t:4.55s;--d:-4.75s"/><circle class="tw" cx="354.3" cy="148.8" r="1.06" fill="#cfe6ff" style="--t:5.25s;--d:-4.15s"/><circle class="tw" cx="489.7" cy="212.6" r="1.24" fill="#ffb36b" style="--t:3.69s;--d:-0.37s"/><circle class="tw" cx="730.3" cy="174.2" r="1.33" fill="#ffe2a8" style="--t:4.32s;--d:-2.03s"/><circle class="tw" cx="147.6" cy="137.8" r="1.13" fill="#cfe6ff" style="--t:5.36s;--d:-3.42s"/><circle class="tw" cx="255.2" cy="204.5" r="0.84" fill="#ffe2a8" style="--t:4.69s;--d:-2.67s"/><circle class="tw" cx="46.3" cy="159.2" r="1.32" fill="#ffb36b" style="--t:4.50s;--d:-2.60s"/><circle class="tw" cx="1160.0" cy="133.9" r="1.45" fill="#ffffff" style="--t:2.63s;--d:-2.27s"/><circle class="tw" cx="482.3" cy="221.5" r="1.40" fill="#cfe6ff" style="--t:3.73s;--d:-3.26s"/><circle class="tw" cx="918.6" cy="156.8" r="1.42" fill="#ffe2a8" style="--t:5.43s;--d:-2.68s"/><circle class="tw" cx="1012.2" cy="176.3" r="1.43" fill="#ffe2a8" style="--t:3.35s;--d:-0.41s"/><circle class="tw" cx="564.4" cy="218.2" r="1.31" fill="#ffffff" style="--t:5.24s;--d:-1.09s"/><circle class="tw" cx="1110.5" cy="196.1" r="0.73" fill="#ffb36b" style="--t:3.31s;--d:-3.94s"/><circle class="tw" cx="1075.2" cy="243.5" r="1.46" fill="#ffffff" style="--t:4.11s;--d:-3.45s"/><circle class="tw" cx="970.0" cy="198.0" r="1.15" fill="#ffb36b" style="--t:4.31s;--d:-2.61s"/><circle class="tw" cx="1079.8" cy="219.9" r="0.95" fill="#ffffff" style="--t:5.35s;--d:-4.35s"/><g class="cars"><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:0.0s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ffd9a0" style="--d:-1.9s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:-3.8s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ffd9a0" style="--d:-5.7s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:-7.6s"/></g></svg><svg class="desk-steam" viewBox="0 0 60 110" aria-hidden="true"><path style="--k:0" d="M30 108c-6-10 6-18 0-28s6-18 0-28 6-16 0-26"/><path style="--k:1" d="M22 108c-5-9 5-16 0-25s5-16 0-25 5-14 0-22"/><path style="--k:2" d="M38 108c-5-9 5-16 0-25s5-16 0-25 5-14 0-22"/></svg><div class="desk-mon2" aria-hidden="true"><img src="assets/video/floor-desk.jpg" alt=""></div></div>
+    <div class="desk-scene"><img class="desk-photo" src="assets/desk-seoul.jpg" alt=""><div class="desk-yrs" aria-hidden="true"><i class="desk-cur" style="position:absolute;left:340.2px;top:266.6px;width:4.4px;height:14.6px;background:#e8f2fd"></i><span class="desk-yr t" style="left:349.0px;top:268.3px;width:29.5px;height:10.5px;font-size:11.6px;font-weight:800;color:#141a2e;background:#e4effa">2027</span><span class="desk-yr b" style="left:355.0px;top:307.3px;width:15.5px;height:6.5px;font-size:6.2px;font-weight:600;color:#333d51;background:#e2eefa">2027</span><span class="desk-yr r" style="left:484.5px;top:390.8px;width:14.0px;height:5.0px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dfecf9">2027.</span><span class="desk-yr r" style="left:484.5px;top:399.8px;width:14.0px;height:5.5px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dbebfa">2027.</span><span class="desk-yr r" style="left:484.5px;top:409.8px;width:14.0px;height:5.0px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dae9f7">2027.</span><span class="desk-yr r" style="left:484.5px;top:418.8px;width:14.0px;height:5.5px;font-size:5.6px;font-weight:500;color:#4b5568;background:#dceaf8">2027.</span></div><div class="desk-mac-title" aria-hidden="true">에이전트 리더의 탄생</div><svg class="desk-lights" viewBox="0 0 1280 720" aria-hidden="true"><defs><radialGradient id="dkBeacon"><stop offset="0" stop-color="#ff5a4a" stop-opacity="1"/><stop offset="1" stop-color="#ff5a4a" stop-opacity="0"/></radialGradient><radialGradient id="dkPod"><stop offset="0" stop-color="#bfe3ff" stop-opacity=".9"/><stop offset="1" stop-color="#bfe3ff" stop-opacity="0"/></radialGradient><radialGradient id="dkLamp"><stop offset="0" stop-color="#ffcf8a" stop-opacity=".55"/><stop offset="1" stop-color="#ffcf8a" stop-opacity="0"/></radialGradient><path id="dkBridge" d="M1056 241 L1172 236 M1236 233 L1280 231"/></defs><circle class="beacon" cx="1023" cy="51" r="7" fill="url(#dkBeacon)"/><circle class="pod" cx="1023" cy="101" r="13" fill="url(#dkPod)"/><ellipse class="lamp" cx="34" cy="300" rx="70" ry="48" fill="url(#dkLamp)"/><circle class="tw" cx="579.0" cy="219.9" r="1.44" fill="#ffffff" style="--t:3.69s;--d:-4.28s"/><circle class="tw" cx="238.3" cy="199.3" r="0.81" fill="#ffb36b" style="--t:4.87s;--d:-3.47s"/><circle class="tw" cx="787.9" cy="146.7" r="0.71" fill="#ffb36b" style="--t:2.41s;--d:-0.18s"/><circle class="tw" cx="1125.8" cy="227.1" r="1.32" fill="#cfe6ff" style="--t:3.65s;--d:-4.21s"/><circle class="tw" cx="585.4" cy="168.6" r="1.50" fill="#ffe2a8" style="--t:4.54s;--d:-1.58s"/><circle class="tw" cx="294.0" cy="170.6" r="0.76" fill="#ffe2a8" style="--t:3.52s;--d:-4.23s"/><circle class="tw" cx="1084.6" cy="118.1" r="0.87" fill="#ffe2a8" style="--t:3.75s;--d:-4.90s"/><circle class="tw" cx="508.7" cy="131.3" r="1.20" fill="#cfe6ff" style="--t:3.31s;--d:-1.56s"/><circle class="tw" cx="19.4" cy="192.6" r="1.44" fill="#ffd28a" style="--t:3.01s;--d:-0.51s"/><circle class="tw" cx="572.7" cy="152.7" r="1.29" fill="#ffd28a" style="--t:3.58s;--d:-1.92s"/><circle class="tw" cx="1247.8" cy="225.9" r="1.50" fill="#ffe2a8" style="--t:2.90s;--d:-1.97s"/><circle class="tw" cx="1093.6" cy="234.8" r="0.78" fill="#ffd28a" style="--t:2.90s;--d:-1.29s"/><circle class="tw" cx="989.0" cy="177.9" r="0.94" fill="#ffe2a8" style="--t:2.45s;--d:-1.04s"/><circle class="tw" cx="814.8" cy="120.8" r="0.99" fill="#ffb36b" style="--t:3.70s;--d:-4.80s"/><circle class="tw" cx="1109.2" cy="151.3" r="0.82" fill="#ffd28a" style="--t:4.90s;--d:-1.25s"/><circle class="tw" cx="132.9" cy="125.0" r="1.47" fill="#ffd28a" style="--t:4.64s;--d:-1.96s"/><circle class="tw" cx="628.5" cy="212.7" r="1.44" fill="#ffe2a8" style="--t:2.62s;--d:-2.40s"/><circle class="tw" cx="94.9" cy="156.7" r="1.43" fill="#ffe2a8" style="--t:2.43s;--d:-2.06s"/><circle class="tw" cx="318.8" cy="126.5" r="0.93" fill="#ffb36b" style="--t:4.09s;--d:-0.66s"/><circle class="tw" cx="1255.0" cy="237.6" r="1.25" fill="#ffb36b" style="--t:5.32s;--d:-2.95s"/><circle class="tw" cx="457.6" cy="174.7" r="0.73" fill="#ffb36b" style="--t:4.30s;--d:-2.41s"/><circle class="tw" cx="935.0" cy="176.0" r="1.50" fill="#ffe2a8" style="--t:3.70s;--d:-1.84s"/><circle class="tw" cx="943.6" cy="141.6" r="1.47" fill="#cfe6ff" style="--t:3.36s;--d:-3.43s"/><circle class="tw" cx="1153.1" cy="276.5" r="1.03" fill="#ffe2a8" style="--t:5.05s;--d:-2.86s"/><circle class="tw" cx="799.9" cy="187.6" r="1.17" fill="#ffb36b" style="--t:2.44s;--d:-0.45s"/><circle class="tw" cx="147.9" cy="164.8" r="1.03" fill="#cfe6ff" style="--t:3.48s;--d:-3.68s"/><circle class="tw" cx="1073.1" cy="133.2" r="1.30" fill="#ffe2a8" style="--t:3.22s;--d:-0.44s"/><circle class="tw" cx="845.0" cy="206.5" r="1.42" fill="#cfe6ff" style="--t:3.19s;--d:-3.39s"/><circle class="tw" cx="259.3" cy="148.9" r="1.42" fill="#ffffff" style="--t:3.84s;--d:-1.21s"/><circle class="tw" cx="518.1" cy="163.6" r="1.21" fill="#ffd28a" style="--t:5.10s;--d:-1.92s"/><circle class="tw" cx="174.3" cy="208.4" r="1.37" fill="#ffe2a8" style="--t:4.55s;--d:-4.75s"/><circle class="tw" cx="354.3" cy="148.8" r="1.06" fill="#cfe6ff" style="--t:5.25s;--d:-4.15s"/><circle class="tw" cx="489.7" cy="212.6" r="1.24" fill="#ffb36b" style="--t:3.69s;--d:-0.37s"/><circle class="tw" cx="730.3" cy="174.2" r="1.33" fill="#ffe2a8" style="--t:4.32s;--d:-2.03s"/><circle class="tw" cx="147.6" cy="137.8" r="1.13" fill="#cfe6ff" style="--t:5.36s;--d:-3.42s"/><circle class="tw" cx="255.2" cy="204.5" r="0.84" fill="#ffe2a8" style="--t:4.69s;--d:-2.67s"/><circle class="tw" cx="46.3" cy="159.2" r="1.32" fill="#ffb36b" style="--t:4.50s;--d:-2.60s"/><circle class="tw" cx="1160.0" cy="133.9" r="1.45" fill="#ffffff" style="--t:2.63s;--d:-2.27s"/><circle class="tw" cx="482.3" cy="221.5" r="1.40" fill="#cfe6ff" style="--t:3.73s;--d:-3.26s"/><circle class="tw" cx="918.6" cy="156.8" r="1.42" fill="#ffe2a8" style="--t:5.43s;--d:-2.68s"/><circle class="tw" cx="1012.2" cy="176.3" r="1.43" fill="#ffe2a8" style="--t:3.35s;--d:-0.41s"/><circle class="tw" cx="564.4" cy="218.2" r="1.31" fill="#ffffff" style="--t:5.24s;--d:-1.09s"/><circle class="tw" cx="1110.5" cy="196.1" r="0.73" fill="#ffb36b" style="--t:3.31s;--d:-3.94s"/><circle class="tw" cx="1075.2" cy="243.5" r="1.46" fill="#ffffff" style="--t:4.11s;--d:-3.45s"/><circle class="tw" cx="970.0" cy="198.0" r="1.15" fill="#ffb36b" style="--t:4.31s;--d:-2.61s"/><circle class="tw" cx="1079.8" cy="219.9" r="0.95" fill="#ffffff" style="--t:5.35s;--d:-4.35s"/><g class="cars"><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:0.0s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ffd9a0" style="--d:-1.9s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:-3.8s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ffd9a0" style="--d:-5.7s"/><circle class="car" cx="1056" cy="241" r="1.1" fill="#ff6b5a" style="--d:-7.6s"/></g></svg><svg class="desk-steam" viewBox="0 0 60 110" aria-hidden="true"><path style="--k:0" d="M30 108c-6-10 6-18 0-28s6-18 0-28 6-16 0-26"/><path style="--k:1" d="M22 108c-5-9 5-16 0-25s5-16 0-25 5-14 0-22"/><path style="--k:2" d="M38 108c-5-9 5-16 0-25s5-16 0-25 5-14 0-22"/></svg><div class="desk-mon2" aria-hidden="true"><img src="assets/video/floor-desk.jpg" alt=""></div></div>
     <div class="abs desk-dim" data-step="2" aria-hidden="true"></div>
     <div class="abs browser desk-zoom" data-step="2">
       <div class="bar"><i></i><i></i><i></i><span class="url">에이전트 오피스</span></div>
@@ -2327,41 +2337,53 @@
     <div class="abs head-bar oy-bar" aria-hidden="true"></div>
     <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
     <h2 class="abs head-title">80명의 AI 에이전트와 팀으로 일하고 있음</h2>
-    <div class="abs agent" data-step="1" style="left:160px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="5">5</b></span></div>
-      <p class="cmd"><span>/</span>5color</p>
-    </div>
     <div class="abs agent" data-step="2" style="left:520px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="50">50</b></span></div>
-      <p class="cmd"><span>/</span>casting</p>
+      <div class="ring" data-morph-ring="5color"><span class="mult"><i>×</i><b data-count="5">5</b></span></div>
+      <p class="cmd" data-morph-src="5color"><span>/</span>5color</p>
+    </div>
+    <div class="abs agent" data-step="1" style="left:160px">
+      <div class="ring" data-morph-ring="casting"><span class="mult"><i>×</i><b data-count="50">50</b></span></div>
+      <p class="cmd" data-morph-src="casting"><span>/</span>casting</p>
     </div>
     <div class="abs agent" data-step="3" style="left:880px">
-      <div class="ring"><span class="mult"><i>×</i><b data-count="25">25</b></span></div>
-      <p class="cmd"><span>/</span>council</p>
+      <div class="ring" data-morph-ring="council"><span class="mult"><i>×</i><b data-count="25">25</b></span></div>
+      <p class="cmd" data-morph-src="council"><span>/</span>council</p>
     </div>
   </section>
 
-  <!-- 5. 시연 영상: 5color.airoasting.com -->
-  <section class="slide dark demo-bk demo" aria-label="5-Color Harness 사이트 화면 녹화">
+  <!-- 16장 다음(2026-10-26 사용자 요청): AI와 일하는 6단계. 16장 원 셋(×5·×50·×25)과 /명령 글자가 casting·5color·council 자리로 모핑 → 목표가 앞에 붙고(step 1) → 형식 정의(slide-library)가 목표·casting 사이, 윤문(korean)이 5color·council 사이로 끼어들며 자리가 벌어짐(step 2) → 설명(step 3) → 흐름 빛(step 4). 이전 카드형 자리로 날아와 바뀐다(모핑) -->
+  <section class="slide dark sq3" data-gap="1500" aria-label="AI와 일하는 6단계: 목표 /goal, 형식 정의 /slide-library, 팀 구성 /casting ×50, 리뷰 /5color ×5, 윤문 /korean, 판단 /council ×25">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <div class="abs rs-nav" aria-hidden="true"><span class="on">01 조직문화 전환</span><span>02 암묵지 축적</span><span>03 하이브리드 조직 설계</span></div>
+    <h2 class="abs head-title">AI와 일하는 6단계</h2>
+    <div class="abs sq3-track" data-step="1"></div>
+    <div class="abs sq3-c" data-step="1" style="--x6:66px;--x4:66px"><div class="sq3-n"><div class="sq3-dot"><span class="sq3-num"><b class="n4">1</b><b class="n6">1</b></span></div></div><h3>목표</h3><b class="sq-sk">/goal</b><p class="sq3-desc" data-step="3">완료 기준을 먼저 정해<br>끝 상태를 명확히 합니다.</p></div>
+    <div class="abs sq3-c k" data-step="2" style="--x6:259.6px;--x4:259.6px"><div class="sq3-n"><div class="sq3-dot"><span class="sq3-num"><b class="n4">2</b><b class="n6">2</b></span></div></div><h3>형식 정의</h3><b class="sq-sk">/slide-library</b><p class="sq3-desc" data-step="3">HTML 슬라이드는 16:9,<br>보고서는 A4로 확정합니다.</p></div>
+    <div class="abs sq3-c" data-step="0" style="--x6:453.20000000000005px;--x4:388.7px"><div class="sq3-n"><div class="sq3-ring" data-morph-ring="casting"><span class="sq3-num"><b class="n4">2</b><b class="n6">3</b></span></div></div><h3>팀 구성</h3><b class="sq-sk" data-morph-dst="casting">/casting</b><p class="sq3-desc" data-step="3">리서처·설계자·작성자 등<br>역할을 casting합니다.</p><span class="sq3-pill" data-step="1">×50</span></div>
+    <div class="abs sq3-c" data-step="0" style="--x6:646.8px;--x4:711.3px"><div class="sq3-n"><div class="sq3-ring" data-morph-ring="5color"><span class="sq3-num"><b class="n4">3</b><b class="n6">4</b></span></div></div><h3>리뷰</h3><b class="sq-sk" data-morph-dst="5color">/5color</b><p class="sq3-desc" data-step="3">5-color 관점으로<br>품질을 비평합니다.</p><span class="sq3-pill" data-step="1">×5</span></div>
+    <div class="abs sq3-c k" data-step="2" style="--x6:840.4px;--x4:840.4px"><div class="sq3-n"><div class="sq3-dot"><span class="sq3-num"><b class="n4">5</b><b class="n6">5</b></span></div></div><h3>윤문</h3><b class="sq-sk">/korean</b><p class="sq3-desc" data-step="3">주술 호응과 번역투를<br>사람 글로 다듬습니다.</p></div>
+    <div class="abs sq3-c" data-step="0" style="--x6:1034px;--x4:1034px"><div class="sq3-n"><div class="sq3-ring" data-morph-ring="council"><span class="sq3-num"><b class="n4">4</b><b class="n6">6</b></span></div></div><h3>판단</h3><b class="sq-sk" data-morph-dst="council">/council</b><p class="sq3-desc" data-step="3">직접 보고, 필요하면<br>council로 판단합니다.</p><span class="sq3-pill" data-step="1">×25</span></div>
+    <i class="abs sq3-chev" data-step="3" style="left:246.8px" aria-hidden="true"></i>
+    <i class="abs sq3-chev" data-step="3" style="left:440.4px" aria-hidden="true"></i>
+    <i class="abs sq3-chev" data-step="3" style="left:634.0px" aria-hidden="true"></i>
+    <i class="abs sq3-chev" data-step="3" style="left:827.6px" aria-hidden="true"></i>
+    <i class="abs sq3-chev" data-step="3" style="left:1021.2px" aria-hidden="true"></i>
+    <i class="abs sq3-run" data-step="4" aria-hidden="true"></i>
+  </section>
+
+  <!-- 시연 영상: robots.airoasting.com (2026-10-26 녹화, 스크롤로 로봇 조립 → 3분 요약 → 시장) -->
+  <section class="slide dark demo-bk demo" aria-label="로봇 백과사전 ARGOS 사이트 화면 녹화">
     <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">5color.airoasting.com</span></div>
-      <video src="assets/video/5color.mp4" poster="assets/video/5color.jpg" muted playsinline preload="auto" aria-label="5-Color Harness site screen recording"></video>
+      <div class="bar"><i></i><i></i><i></i><span class="url">robots.airoasting.com</span></div>
+      <video src="assets/video/robots.mp4" poster="assets/video/robots.jpg" muted playsinline preload="auto" aria-label="ARGOS robot encyclopedia site screen recording"></video>
     </div>
   </section>
 
-  <!-- 6. 시연 영상: 50agents.airoasting.com -->
-  <section class="slide dark demo-bk demo" aria-label="에이전트 팀 빌더 사이트 화면 녹화">
+  <!-- 시연 영상: novels.bookroasting.com (2026-10-26 녹화, AI 에이전트 팀이 쓴 단편 세 편) -->
+  <section class="slide dark demo-bk demo" aria-label="AI 에이전트 팀이 쓴 SF 단편 사이트 화면 녹화">
     <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">50agents.airoasting.com</span></div>
-      <video src="assets/video/50agents.mp4" poster="assets/video/50agents.jpg" muted playsinline preload="auto" aria-label="Agent team builder site screen recording"></video>
-    </div>
-  </section>
-
-  <!-- 7. 시연 영상: council.airoasting.com -->
-  <section class="slide dark demo-bk demo" aria-label="AI ROASTING 자문단 사이트 화면 녹화">
-    <div class="abs browser" data-step="1">
-      <div class="bar"><i></i><i></i><i></i><span class="url">council.airoasting.com</span></div>
-      <video src="assets/video/council.mp4" poster="assets/video/council.jpg" muted playsinline preload="auto" aria-label="AI ROASTING council site screen recording"></video>
+      <div class="bar"><i></i><i></i><i></i><span class="url">novels.bookroasting.com</span></div>
+      <video src="assets/video/novels.mp4" poster="assets/video/novels.jpg" muted playsinline preload="auto" aria-label="AI-written SF novels site screen recording"></video>
     </div>
   </section>
 
@@ -2853,14 +2875,14 @@
     const next = Math.max(0, Math.min(slides.length - 1, n));
     const prevIndex = i;
     // 2장에서 바로 3장으로 넘어갈 때만: 2장 시대 이름의 위치를 장이 바뀌기 전에 재 둔다
-    const morphPts = slides[prevIndex] === morphSrcSlide && slides[next] === morphDstSlide && next === prevIndex + 1 ? morphSources() : null;
+    const morphPts = next === prevIndex + 1 && slides[prevIndex].querySelector('[data-morph-src]') && slides[next].querySelector('[data-morph-dst]') ? morphSources(slides[prevIndex]) : null;
     stopMorph();
     i = next;
     slides.forEach((el, k) => el.classList.toggle('active', k === i));
     if (i === 0) replayCover();
     stopSeq();
     if (slides[i].querySelector('[data-step]')) playSeq(slides[i], next < prevIndex, morphPts ? MORPH_DUR - 500 : 0);
-    if (morphPts) morphEras(morphPts);
+    if (morphPts) morphEras(morphPts, slides[next]);
     if (slides[i] === hlSlide) {
       setHl(next < prevIndex ? HL_MAX : 0);
       // 앞에서 들어오면 카드 셋이 다 뜬 뒤 클릭 없이 첫 번째 카드를 강조한다
@@ -2926,8 +2948,7 @@
 
   // 2장 → 3장: 2장 아래 시대 이름(Internet · Smartphone / Social · Artificial Intelligence)이 3장 시대 띠 이름 자리로 날아가며
   // 글자가 바뀐다(Internet era · Mobile era · AI era). 2장에 아직 뜨지 않은 이름은 날리지 않는다
-  const morphSrcSlide = slides.find(sl => sl.querySelector('[data-morph-src]'));
-  const morphDstSlide = slides.find(sl => sl.querySelector('[data-morph-dst]'));
+  // 모핑 쌍: [data-morph-src]가 있는 장 바로 다음 장에 [data-morph-dst]가 있으면 같은 키끼리 글자가 날아간다(2→3장 시대 이름, 16→17장 스킬 이름)
   const MORPH_DUR = 1100;
   let morphTimer = 0;
   const morphCenter = el => {
@@ -2935,21 +2956,34 @@
     for (let e = el; e && !e.classList.contains('slide'); e = e.offsetParent) { x += e.offsetLeft; y += e.offsetTop; }
     return [x, y];
   };
-  function morphSources() {
+  const pickFont = (el, span) => {
+    const c = getComputedStyle(el);
+    ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'textTransform', 'color'].forEach(k => { span.style[k] = c[k]; });
+  };
+  function morphSources(src) {
     const pts = {};
-    morphSrcSlide.querySelectorAll('[data-morph-src].on').forEach(el => {
+    src.querySelectorAll('[data-morph-src]').forEach(el => {
+      const host = el.closest('[data-step]');
+      if (host && !host.classList.contains('on')) return;   // 아직 안 뜬 이름은 날리지 않는다
       const [x, y] = morphCenter(el);
-      pts[el.dataset.morphSrc] = { x, y, text: el.textContent };
+      pts[el.dataset.morphSrc] = { x, y, el, text: el.textContent };
+    });
+    // 원(16→17장): 원 전체를 복제해 크기·위치를 옮긴다
+    pts.rings = {};
+    src.querySelectorAll('[data-morph-ring]').forEach(el => {
+      const host = el.closest('[data-step]');
+      if (host && !host.classList.contains('on')) return;
+      const [x, y] = morphCenter(el);
+      pts.rings[el.dataset.morphRing] = { x, y, el };
     });
     return pts;
   }
   function stopMorph() {
     clearTimeout(morphTimer);
-    morphDstSlide.classList.remove('morph');
-    morphDstSlide.querySelectorAll('.morph-fly').forEach(f => f.remove());
+    deck.querySelectorAll('.slide.morph').forEach(sl => sl.classList.remove('morph'));
+    deck.querySelectorAll('.morph-fly').forEach(f => f.remove());
   }
-  function morphEras(pts) {
-    const dst = morphDstSlide;
+  function morphEras(pts, dst) {
     dst.classList.add('morph');
     const ease = 'cubic-bezier(.65,0,.35,1)';
     dst.querySelectorAll('[data-morph-dst]').forEach(t => {
@@ -2960,7 +2994,8 @@
       from.className = 'from'; to.className = 'to';
       from.textContent = s ? s.text : '';
       to.textContent = t.textContent;
-      to.style.color = getComputedStyle(t).color;
+      pickFont(t, to);
+      if (s) pickFont(s.el, from);
       fly.append(from, to);
       const [x1, y1] = morphCenter(t);
       fly.style.left = `${x1}px`; fly.style.top = `${y1}px`;
@@ -2974,6 +3009,19 @@
         fly.style.transform = 'translate(-50%, -50%)';
         to.animate([{ opacity: 0, filter: 'blur(6px)' }, { opacity: 1, filter: 'none' }], { duration: 700, delay: MORPH_DUR - 700, fill: 'both' });
       }
+    });
+    dst.querySelectorAll('[data-morph-ring]').forEach(t => {
+      const r = pts.rings && pts.rings[t.dataset.morphRing];
+      if (!r) return;
+      const [x1, y1] = morphCenter(t), k = t.offsetWidth / r.el.offsetWidth;
+      const fly = r.el.cloneNode(true);
+      fly.removeAttribute('data-morph-ring');
+      fly.classList.add('morph-fly');
+      Object.assign(fly.style, { position: 'absolute', left: `${r.x}px`, top: `${r.y}px`, margin: 0 });
+      dst.appendChild(fly);
+      fly.animate([{ transform: 'translate(-50%, -50%)' }, { transform: `translate(-50%, -50%) translate(${(x1 - r.x) / k}px, ${(y1 - r.y) / k}px) scale(${k})` }].map((f, n) => n ? { transform: `translate(${x1 - r.x}px, ${y1 - r.y}px) translate(-50%, -50%) scale(${k})` } : f), { duration: MORPH_DUR, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'both' });
+      fly.animate([{ opacity: 1 }, { opacity: 1, offset: .6 }, { opacity: 0 }], { duration: MORPH_DUR, fill: 'both' });
+      t.animate([{ opacity: 0 }, { opacity: 0, offset: .55 }, { opacity: 1 }], { duration: MORPH_DUR });
     });
     morphTimer = setTimeout(stopMorph, MORPH_DUR);
   }
