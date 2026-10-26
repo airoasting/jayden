@@ -1910,6 +1910,12 @@
   /* 전체 검정 배경(2026-10-26 사용자 지정, 흰 바탕판은 _v1에 보관) */
   html, body { background: #000 !important; }
   .slide, .slide.dark, .slide.dark.thesis, .slide.closing, .slide.cover { background: #000 !important; }
+
+  /* 사고 실험(4장)과 기사 두 건(5장). 2026-10-26 사용자 요청, 국가 AI 대상 장 앞에 둔다 */
+  .tq-q { left: 76px; width: 1128px; margin: 0; text-align: center; font-size: 34px; line-height: 1.5; font-weight: 500; color: #f6f6f6; word-break: keep-all; letter-spacing: -.01em; }
+  .tq-q b { color: #3add2e; font-weight: 800; }
+  .nw-card { top: 40px; height: 640px; margin: 0; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+  .nw-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 </style>
 </head>
 <body>
@@ -2105,6 +2111,20 @@
     <p class="abs cr-note" data-step="1" style="left:128px;width:260px"><span>서울대 경제학부</span></p>
     <p class="abs cr-note" data-step="2" style="left:319px;width:260px"><span>미국 미시간 대학 MBA</span></p>
     <p class="abs cr-note r" data-step="4" style="left:744px;width:460px"><span>국민경제자문회의<br>AI경제 정책자문단 위원</span></p>
+  </section>
+
+  <!-- 사고 실험: 첫 질문은 저절로, 둘째 질문은 클릭(→). 답은 다음 장 기사 두 건 -->
+  <section class="slide dark" data-click="1" data-auto="1" aria-label="사고 실험: 사우디아라비아 국영 AI 기업이 쓰는 핵심 기술을 한국 스타트업이 만들고 있다면? 한국 고등학생이 AI로 쓴 논문이 세계 최초 AI 저자 학회에서 상을 받는다면?">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">사고 실험</h2>
+    <p class="abs tq-q" data-step="1" style="top:258px">만약에 <b>사우디아라비아 국영 AI 기업</b>이 쓰는 핵심 기술을,<br>한국 스타트업이 만들고 있다면?</p>
+    <p class="abs tq-q" data-step="2" style="top:450px">만약에 한국 고등학생이 AI로 쓴 논문이,<br><b>세계 최초 AI 저자 학회</b>에서 상을 받는다면?</p>
+  </section>
+
+  <!-- 기사 두 건(사용자가 준 화면 캡처를 자름): 전자신문 2025.12.22, 조선비즈 2025.10.23 -->
+  <section class="slide dark demo-bk" aria-label="전자신문 2025년 12월 22일: 라이너, 사우디 국책 AI 휴메인과 해외 B2B 사업 시동. 조선비즈 2025년 10월 23일: 라이너 리서치 AI, 세계 최초 AI 저자 학회서 논문 3편 채택">
+    <figure class="abs nw-card" data-step="1" style="left:180px;width:462px"><img src="assets/news-etnews-humain.png" alt="전자신문 기사: 라이너, '사우디 국책 AI' 휴메인과 해외 B2B 사업 시동"></figure>
+    <figure class="abs nw-card" data-step="2" style="left:682px;width:417px"><img src="assets/news-chosunbiz-agents4science.png" alt="조선비즈 기사: 라이너 리서치 AI, 세계 최초 AI 저자 학회서 논문 3편 채택"></figure>
   </section>
 
   <!-- 라이너 국가 AI 대상(2026-10-26 사용자 요청, 커니판 20261016 3-B장을 흰 바탕 서밋 색으로 옮김). 첫 단계는 저절로, 다음 클릭(→)에 포스터의 라이너 줄을 확대 -->
