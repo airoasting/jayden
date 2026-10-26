@@ -1916,6 +1916,9 @@
   .tq-q b { color: #3add2e; font-weight: 800; }
   .nw-card { top: 40px; height: 640px; margin: 0; border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
   .nw-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .nw-hl { position: absolute; border-radius: 3px; background: rgba(255,222,0,.6); mix-blend-mode: multiply; transform: scaleX(0); transform-origin: left center; transition: transform .45s cubic-bezier(.3,.7,.3,1); }   /* 노란 형광펜: 카드가 뜬 뒤 왼쪽부터 칠한다 */
+  .nw-card.on .nw-hl { transform: scaleX(1); transition-delay: calc(.8s + var(--d, 0s)); }
+  .instant .nw-hl { transition: none; }
 </style>
 </head>
 <body>
@@ -2113,18 +2116,16 @@
     <p class="abs cr-note r" data-step="4" style="left:744px;width:460px"><span>국민경제자문회의<br>AI경제 정책자문단 위원</span></p>
   </section>
 
-  <!-- 사고 실험: 첫 질문은 저절로, 둘째 질문은 클릭(→). 답은 다음 장 기사 두 건 -->
-  <section class="slide dark" data-click="1" data-auto="1" aria-label="사고 실험: 사우디아라비아 국영 AI 기업이 쓰는 핵심 기술을 한국 스타트업이 만들고 있다면? 한국 고등학생이 AI로 쓴 논문이 세계 최초 AI 저자 학회에서 상을 받는다면?">
-    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
-    <h2 class="abs head-title">사고 실험</h2>
-    <p class="abs tq-q" data-step="1" style="top:258px">만약에 <b>사우디아라비아 국영 AI 기업</b>이 쓰는 핵심 기술을,<br>한국 스타트업이 만들고 있다면?</p>
-    <p class="abs tq-q" data-step="2" style="top:450px">만약에 한국 고등학생이 AI로 쓴 논문이,<br><b>세계 최초 AI 저자 학회</b>에서 상을 받는다면?</p>
+  <!-- 사고 실험: 두 질문이 클릭 없이 차례로 뜬다. 답은 다음 장 기사 두 건 -->
+  <section class="slide dark" data-gap="900" aria-label="사우디아라비아 국영 AI 기업이 쓰는 핵심 기술을 한국 스타트업이 만들고 있다면? 한국 고등학생이 AI로 쓴 논문이 세계 최초 AI 저자 학회에서 상을 받는다면?">
+    <p class="abs tq-q" data-step="1" style="top:238px">만약에 <b>사우디아라비아 국영 AI 기업</b>이 쓰는 핵심 기술을,<br>한국 스타트업이 만들고 있다면?</p>
+    <p class="abs tq-q" data-step="2" style="top:380px">만약에 한국 고등학생이 AI로 쓴 논문이,<br><b>세계 최초 AI 저자 학회</b>에서 상을 받는다면?</p>
   </section>
 
   <!-- 기사 두 건(사용자가 준 화면 캡처를 자름): 전자신문 2025.12.22, 조선비즈 2025.10.23 -->
   <section class="slide dark demo-bk" aria-label="전자신문 2025년 12월 22일: 라이너, 사우디 국책 AI 휴메인과 해외 B2B 사업 시동. 조선비즈 2025년 10월 23일: 라이너 리서치 AI, 세계 최초 AI 저자 학회서 논문 3편 채택">
-    <figure class="abs nw-card" data-step="1" style="left:180px;width:462px"><img src="assets/news-etnews-humain.png" alt="전자신문 기사: 라이너, '사우디 국책 AI' 휴메인과 해외 B2B 사업 시동"></figure>
-    <figure class="abs nw-card" data-step="2" style="left:682px;width:417px"><img src="assets/news-chosunbiz-agents4science.png" alt="조선비즈 기사: 라이너 리서치 AI, 세계 최초 AI 저자 학회서 논문 3편 채택"></figure>
+    <figure class="abs nw-card" data-step="1" style="left:180px;width:462px"><img src="assets/news-etnews-humain.png" alt="전자신문 기사: 라이너, '사우디 국책 AI' 휴메인과 해외 B2B 사업 시동"><i class="nw-hl" style="left:15.37%;top:25.97%;width:77.07%;height:5.02%;--d:0.00s"></i><i class="nw-hl" style="left:4.15%;top:31.43%;width:43.17%;height:5.02%;--d:0.35s"></i></figure>
+    <figure class="abs nw-card" data-step="2" style="left:682px;width:417px"><img src="assets/news-chosunbiz-agents4science.png" alt="조선비즈 기사: 라이너 리서치 AI, 세계 최초 AI 저자 학회서 논문 3편 채택"><i class="nw-hl" style="left:43.04%;top:10.50%;width:49.88%;height:4.38%;--d:0.00s"></i><i class="nw-hl" style="left:9.51%;top:15.71%;width:30.97%;height:4.15%;--d:0.35s"></i><i class="nw-hl" style="left:59.63%;top:87.39%;width:36.89%;height:3.25%;--d:0.70s"></i><i class="nw-hl" style="left:3.60%;top:91.92%;width:3.94%;height:3.25%;--d:1.05s"></i><i class="nw-hl" style="left:40.84%;top:91.92%;width:52.67%;height:3.25%;--d:1.40s"></i><i class="nw-hl" style="left:3.60%;top:96.45%;width:43.27%;height:3.47%;--d:1.75s"></i></figure>
   </section>
 
   <!-- 라이너 국가 AI 대상(2026-10-26 사용자 요청, 커니판 20261016 3-B장을 흰 바탕 서밋 색으로 옮김). 첫 단계는 저절로, 다음 클릭(→)에 포스터의 라이너 줄을 확대 -->
