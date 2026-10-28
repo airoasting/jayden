@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>스킬 과제 제출 현황</title>
+<!-- 출처: 단톡방 제출 메시지(10/24~10/27)와 각 저장소 README. 설명은 README 내용을 한 줄로 줄였다. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #1a1a1a;
+    --ink-soft: #595959;
+    --muted: #8a8a8a;
+    --line: #e6e6e6;
+    --head: #f6f6f4;
+    --link: #1a5fd0;
+    --chip: #f1f1ef;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    line-height: 1.55;
+  }
+  main { max-width: 1160px; margin: 0 auto; padding: 64px 32px 80px; }
+  header { margin-bottom: 32px; }
+  .eyebrow { font-size: 13px; color: var(--muted); letter-spacing: .02em; margin-bottom: 8px; }
+  h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.8px; }
+  .sub { margin-top: 8px; font-size: 15px; color: var(--ink-soft); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  thead th {
+    text-align: left; font-size: 13px; font-weight: 600; color: var(--ink-soft);
+    background: var(--head); padding: 12px 16px; border-bottom: 1px solid var(--line);
+  }
+  tbody td { padding: 20px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .no { width: 44px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .who { width: 100px; font-weight: 600; white-space: nowrap; }
+  .who .org { display: block; font-size: 12px; font-weight: 400; color: var(--ink-soft); margin-top: 2px; white-space: normal; }
+  .who .date { display: block; font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+  .skill { width: 230px; }
+  .skill strong { display: block; font-weight: 700; }
+  .skill code {
+    display: inline-block; margin-top: 4px; font-size: 12px; color: var(--ink-soft);
+    background: var(--chip); padding: 2px 6px; border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .desc { color: var(--ink-soft); }
+  .links { width: 250px; }
+  .links a {
+    display: block; color: var(--link); text-decoration: none; font-size: 14px;
+    overflow-wrap: anywhere; margin-bottom: 6px;
+  }
+  .links a:hover { text-decoration: underline; }
+  .links .tag { font-size: 11px; color: var(--muted); margin-right: 6px; }
+  .links .note { font-size: 12px; color: var(--muted); }
+
+
+
+  @media (max-width: 760px) {
+    main { padding: 40px 16px 56px; }
+    h1 { font-size: 26px; }
+    thead { display: none; }
+    table, tbody, tr, td { display: block; width: 100% !important; }
+    tr { padding: 16px 0; border-bottom: 1px solid var(--line); }
+    tbody td { padding: 4px 0; border: 0; }
+    .no { display: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">AI를 고용하라(강정구) 8기 · 2026. 10. 29</p>
+    <h1>스킬 과제 제출 현황</h1>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="no">#</th>
+        <th>제출자</th>
+        <th>스킬명</th>
+        <th>설명</th>
+        <th>링크</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="no">1</td>
+        <td class="who">구예준</td>
+        <td class="skill"><strong>길찾기 3사 비교</strong><code>quickroot (navi-compare)</code></td>
+        <td class="desc">네이버지도, 카카오맵, 티맵의 자동차 길찾기 결과(소요시간, 거리, 통행료, 정체 현황, 주요 도로)를 한 화면에서 비교하는 웹 도구입니다. 현재 카카오맵이 실제 API로 연동되어 있고, 네이버와 티맵은 샘플 값입니다.</td>
+        <td class="links">
+          <a href="https://github.com/willofgodyejun/quickroot" target="_blank" rel="noopener"><span class="tag">GitHub</span>github.com/willofgodyejun/quickroot</a>
+          <a href="https://quickroot1.onrender.com/" target="_blank" rel="noopener"><span class="tag">데모</span>quickroot1.onrender.com</a>
+          <span class="note">데모 비밀번호 1004</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="no">2</td>
+        <td class="who">김소연</td>
+        <td class="skill"><strong>신메뉴 개발</strong><code>new-menu-development</code></td>
+        <td class="desc">메뉴개발팀의 신메뉴 개발을 7단계(콘셉트, 시장·경쟁, 레시피, 원가, 주방 운영, 검증, 출시 준비)로 돕습니다. 각 단계 산출물을 R&amp;D 셰프, 원가·구매 등 5인 페르소나가 토론으로 검토하고, 외식 트렌드와 제철 식자재를 반영합니다.</td>
+        <td class="links">
+          <a href="https://github.com/lfsykim-boop/MenuDevelopment" target="_blank" rel="noopener"><span class="tag">GitHub</span>github.com/lfsykim-boop/MenuDevelopment</a>
+          <a href="https://lfsykim-boop.github.io/MenuDevelopment/" target="_blank" rel="noopener"><span class="tag">공개 페이지</span>lfsykim-boop.github.io/MenuDevelopment</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="no">3</td>
+        <td class="who">김정헌</td>
+        <td class="skill"><strong>AI 리더십 주간 뉴스레터</strong><code>weekly-ai-leadership-news</code></td>
+        <td class="desc">기업교육(HRD) 담당자를 위해 AI 리더십 관련 국내외 소식을 매주 검색하고, 본문을 확인한 기사만 골라 HTML 뉴스레터로 만듭니다. 4항목 점수제로 기사를 고르고 5개 관점으로 3회 검토합니다.</td>
+        <td class="links">
+          <a href="https://github.com/hbhrd/news-clipping" target="_blank" rel="noopener"><span class="tag">GitHub</span>github.com/hbhrd/news-clipping</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="no">4</td>
+        <td class="who">양지웅</td>
+        <td class="skill"><strong>오늘 순매수</strong><code>korea-net-buy-top</code></td>
+        <td class="desc">"오늘 순매수"라고 말하면 코스피·코스닥에서 외국인·기관·개인 자금이 어느 섹터와 종목으로 들어오고 빠졌는지 계산해 한 장짜리 HTML로 보여줍니다. 수급 전환, 연속 순매수, 주가와 수급이 엇갈린 종목까지 짚습니다.</td>
+        <td class="links">
+          <a href="https://github.com/hype767/kospi-kosdaq" target="_blank" rel="noopener"><span class="tag">GitHub</span>github.com/hype767/kospi-kosdaq</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="no">5</td>
+        <td class="who">한지원</td>
+        <td class="skill"><strong>자전거 출퇴근 크레딧 정산</strong><code>bike-commute-credit</code></td>
+        <td class="desc">자전거 출퇴근 복지(라이딩 1회당 크레딧)의 분기 정산을 자동화합니다. 엑셀 입력을 근무일 규칙으로 검증하고, 인증 사진 대조용 표본을 뽑고, 연 한도를 적용해 정산 엑셀과 오류 목록을 만듭니다. Claude Code 스킬과 웹 도구 두 가지로 씁니다.</td>
+        <td class="links">
+          <a href="https://github.com/jeewonhan7/bike-commute-credit" target="_blank" rel="noopener"><span class="tag">GitHub</span>github.com/jeewonhan7/bike-commute-credit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</main>
+</body>
+</html>
