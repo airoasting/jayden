@@ -1,0 +1,3593 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<link rel="prefetch" href="data:,Jua">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>밀가루 A to Z 백과사전</title>
+<meta name="description" content="초등학생을 위한 밀가루 백과사전. A부터 Z까지 밀가루에 얽힌 낱말을 재미있게 배워요.">
+<style>
+:root{
+  --scale:1;
+  --bg:#F3EADB;
+  --surface:#F3EADB;
+  --sd:#d5c4a6;          /* soft shadow dark */
+  --sl:#ffffff;          /* soft shadow light */
+  --ink:#4a3725;
+  --ink-soft:#7a6248;
+  --accent:#d9822b;
+  --accent-ink:#ffffff;
+  --line:rgba(122,98,72,.18);
+  --focus:#e0782a;
+  --overlay:rgba(60,42,22,.45);
+  --clay-ink:#3b2a1a;
+  --clay-hi:rgba(255,255,255,.6);
+  --clay-lo:rgba(90,60,30,.18);
+  --clay-drop:rgba(120,90,50,.28);
+  --c-kind:#F6C76E; --c-ing:#A6D8AE; --c-proc:#94C9EC; --c-food:#F6A98F; --c-sci:#C7ADEB; --c-hist:#F3AECB; --c-etc:#E6D3B3;
+  --r-sm:18px; --r-md:24px; --r-lg:28px;
+  --raised:7px 7px 16px var(--sd),-7px -7px 16px var(--sl);
+  --raised-sm:4px 4px 10px var(--sd),-4px -4px 10px var(--sl);
+  --pressed:inset 4px 4px 10px var(--sd),inset -4px -4px 10px var(--sl);
+  --clay:inset -3px -5px 8px var(--clay-lo),inset 3px 4px 7px var(--clay-hi),5px 7px 14px var(--clay-drop);
+  --clay-pressed:inset 3px 4px 8px var(--clay-lo),inset -2px -3px 6px var(--clay-hi);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#2a231c; --surface:#2a231c; --sd:#1a150f; --sl:#3a3026;
+    --ink:#f3e6d1; --ink-soft:#c9b394; --accent:#f0a24a; --accent-ink:#2a1b0c;
+    --line:rgba(243,230,209,.14); --focus:#f6b562; --overlay:rgba(0,0,0,.6);
+    --clay-hi:rgba(255,255,255,.35); --clay-lo:rgba(0,0,0,.25); --clay-drop:rgba(0,0,0,.45);
+    --c-kind:#e3b55e; --c-ing:#8fc39a; --c-proc:#82b6d8; --c-food:#e5937a; --c-sci:#b39ad8; --c-hist:#de99b7; --c-etc:#cdb995;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2a231c; --surface:#2a231c; --sd:#1a150f; --sl:#3a3026;
+  --ink:#f3e6d1; --ink-soft:#c9b394; --accent:#f0a24a; --accent-ink:#2a1b0c;
+  --line:rgba(243,230,209,.14); --focus:#f6b562; --overlay:rgba(0,0,0,.6);
+  --clay-hi:rgba(255,255,255,.35); --clay-lo:rgba(0,0,0,.25); --clay-drop:rgba(0,0,0,.45);
+  --c-kind:#e3b55e; --c-ing:#8fc39a; --c-proc:#82b6d8; --c-food:#e5937a; --c-sci:#b39ad8; --c-hist:#de99b7; --c-etc:#cdb995;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:calc(100% * var(--scale));scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Gowun Dodum","Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  font-size:1.125rem;line-height:1.8;overflow-x:clip;
+  word-break:keep-all;overflow-wrap:break-word;
+}
+h1,h2,h3,.jua{font-family:"Jua","Gowun Dodum",sans-serif;font-weight:400;line-height:1.3;margin:0}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;-webkit-tap-highlight-color:transparent}
+input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+[hidden]{display:none!important}
+
+/* ---------- neumorphic primitives ---------- */
+.raised{background:var(--surface);box-shadow:var(--raised);border-radius:var(--r-md)}
+.nbtn{
+  min-height:48px;min-width:48px;padding:.4rem 1rem;border-radius:var(--r-sm);
+  background:var(--surface);box-shadow:var(--raised-sm);
+  display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  font-family:"Jua",sans-serif;font-size:1rem;line-height:1.2;
+  transition:box-shadow .18s ease,transform .18s ease;
+}
+.nbtn:hover{transform:translateY(-1px)}
+.nbtn:active,.nbtn[aria-pressed="true"]{box-shadow:var(--pressed);transform:none}
+.nbtn[disabled],.nbtn[aria-disabled="true"]{opacity:.4;cursor:not-allowed;transform:none}
+
+.chip{
+  --c:var(--c-etc);
+  display:inline-flex;align-items:center;gap:.3rem;
+  background:var(--c);color:var(--clay-ink);
+  border-radius:999px;padding:.15rem .8rem;font-family:"Jua",sans-serif;font-size:.9rem;line-height:1.6;
+  box-shadow:var(--clay);white-space:nowrap;
+}
+.cat-kind{--c:var(--c-kind)}.cat-ing{--c:var(--c-ing)}.cat-proc{--c:var(--c-proc)}
+.cat-food{--c:var(--c-food)}.cat-sci{--c:var(--c-sci)}.cat-hist{--c:var(--c-hist)}.cat-etc{--c:var(--c-etc)}
+
+/* ---------- header ---------- */
+.site-head{padding:24px 0 8px}
+.head-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.brand-mark{
+  flex:none;width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:2.1rem;
+  background:var(--c-kind);box-shadow:var(--clay);
+}
+.brand h1{font-size:clamp(1.6rem,5vw,2.4rem)}
+.brand h1 .az{color:var(--accent)}
+.intro{margin:.15rem 0 0;color:var(--ink-soft);font-size:1rem;line-height:1.6}
+.tools{display:flex;gap:10px;flex-wrap:wrap}
+.tools .nbtn{padding:.4rem .8rem}
+
+/* ---------- hero video ---------- */
+.hero{padding:16px 0 8px}
+.video-frame{padding:14px;border-radius:var(--r-lg);background:var(--c-kind);box-shadow:var(--clay)}
+#video{position:relative;width:100%;border-radius:20px}
+#video:has(.video-ph){aspect-ratio:16/9;overflow:hidden;background:var(--surface);box-shadow:var(--pressed)}
+#video > iframe,#video > video,#video > canvas{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.video-ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;color:var(--ink-soft)}
+.video-ph .big{font-size:3.4rem;line-height:1}
+.video-ph p{margin:.4rem 0 0;font-family:"Jua",sans-serif;font-size:1.1rem}
+
+/* ---------- sticky A-Z ---------- */
+.azbar{position:sticky;top:0;z-index:30;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
+.azbar .wrap{position:relative}
+.az-scroll{
+  display:flex;gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;
+  padding:8px 6px 10px;scrollbar-width:thin;
+}
+.az-btn{
+  flex:none;width:48px;height:48px;border-radius:50%;scroll-snap-align:center;
+  background:var(--surface);box-shadow:var(--raised-sm);
+  font-family:"Jua",sans-serif;font-size:1.25rem;line-height:1;
+  transition:box-shadow .18s,background .18s,color .18s,transform .18s;
+}
+.az-btn:hover{transform:translateY(-2px)}
+.az-btn.active{background:var(--accent);color:var(--accent-ink);box-shadow:var(--clay)}
+.az-btn[aria-disabled="true"]{opacity:.35;cursor:default;transform:none}
+
+/* ---------- controls ---------- */
+.controls{padding:20px 0 4px;display:grid;gap:16px}
+.search{
+  display:flex;align-items:center;gap:10px;padding:0 16px;min-height:58px;border-radius:999px;
+  background:var(--surface);box-shadow:var(--pressed);
+}
+.search span{font-size:1.3rem}
+.search input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-size:1.05rem;padding:12px 0}
+.search input::placeholder{color:var(--ink-soft);opacity:.85}
+.search:focus-within{outline:3px solid var(--focus);outline-offset:3px}
+.clear-q{width:44px;height:44px;border-radius:50%;font-size:1.1rem}
+.filters{display:flex;flex-wrap:wrap;gap:10px}
+.fchip{
+  --c:var(--surface);
+  min-height:48px;padding:.3rem 1rem;border-radius:999px;
+  background:var(--surface);box-shadow:var(--raised-sm);
+  font-family:"Jua",sans-serif;font-size:1rem;display:inline-flex;align-items:center;gap:.4rem;
+  transition:box-shadow .18s,background .18s,transform .18s;
+}
+.fchip .n{font-size:.8rem;min-width:1.8em;padding:0 .4em;border-radius:999px;background:var(--line);text-align:center;line-height:1.6}
+.fchip[aria-pressed="true"]{background:var(--c);color:var(--clay-ink);box-shadow:var(--clay-pressed)}
+.fchip[aria-pressed="true"].all{--c:var(--accent);color:var(--accent-ink)}
+.fchip:disabled{opacity:.45;cursor:default}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.status{color:var(--ink-soft);font-size:.95rem;margin:0}
+
+/* ---------- quiz ---------- */
+.quiz{margin:20px 0 4px;padding:22px;border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--raised)}
+.quiz-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.quiz h2{font-size:1.45rem;display:flex;align-items:center;gap:.5rem}
+.quiz-q{margin:14px 0;padding:16px 18px;border-radius:var(--r-sm);box-shadow:var(--pressed);max-width:36em}
+.quiz-q .lead{display:block;font-family:"Jua",sans-serif;color:var(--ink-soft);font-size:.95rem}
+.quiz-choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px}
+.qbtn{
+  min-height:56px;padding:.5rem 1rem;border-radius:var(--r-sm);background:var(--surface);box-shadow:var(--raised-sm);
+  font-family:"Jua",sans-serif;font-size:1.1rem;line-height:1.3;text-align:center;
+  transition:box-shadow .18s,background .18s,transform .18s;
+}
+.qbtn:hover:not(:disabled){transform:translateY(-2px)}
+.qbtn:disabled{cursor:default}
+.qbtn.right{background:var(--c-ing);color:var(--clay-ink);box-shadow:var(--clay)}
+.qbtn.wrong{background:var(--c-food);color:var(--clay-ink);box-shadow:var(--clay-pressed)}
+.quiz-fb{min-height:1.8em;margin:12px 0 0;font-family:"Jua",sans-serif;font-size:1.15rem}
+.linkish{text-decoration:underline;text-underline-offset:3px;font-family:"Jua",sans-serif;min-height:48px;padding:0 .3rem;color:var(--accent)}
+
+/* ---------- grid / cards ---------- */
+.grid{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr))}
+.card{position:relative;border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--raised);scroll-margin-top:110px;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px)}
+.card:has(.card-open:active){box-shadow:var(--pressed);transform:none}
+.card-open{display:block;width:100%;height:100%;text-align:left;padding:20px 20px 18px;border-radius:var(--r-lg)}
+.card-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;padding-right:52px}
+.badge{
+  flex:none;width:58px;height:58px;border-radius:20px;display:grid;place-items:center;
+  font-family:"Jua",sans-serif;font-size:2rem;line-height:1;
+  background:var(--c);color:var(--clay-ink);box-shadow:var(--clay);
+}
+.card-emoji{font-size:2.3rem;line-height:1}
+.card-word{display:block;font-family:"Jua",sans-serif;font-size:1.35rem;line-height:1.3}
+.card-ko{display:block;color:var(--ink-soft);font-size:1rem;line-height:1.5}
+.card-sum{display:block;margin:10px 0 14px;font-size:1rem;line-height:1.7;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.fav{
+  position:absolute;top:14px;right:14px;z-index:2;width:48px;height:48px;border-radius:50%;
+  background:var(--surface);box-shadow:var(--raised-sm);font-size:1.35rem;line-height:1;
+  filter:grayscale(1);opacity:.7;transition:box-shadow .18s,filter .18s,opacity .18s,transform .18s;
+}
+.fav[aria-pressed="true"]{filter:none;opacity:1;box-shadow:var(--pressed)}
+.fav:active{transform:scale(.92)}
+.empty{text-align:center;padding:44px 16px;margin-top:20px;border-radius:var(--r-lg);box-shadow:var(--pressed)}
+.empty .big{font-size:3rem;line-height:1}
+.empty h2{font-size:1.5rem;margin:.6rem 0 .2rem}
+.empty p{margin:0 0 1rem;color:var(--ink-soft)}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-bg{position:absolute;inset:0;background:var(--overlay);animation:fade .2s ease}
+.sheet{
+  position:relative;width:100%;max-width:760px;max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;
+  background:var(--surface);border-radius:var(--r-lg);box-shadow:0 20px 50px rgba(0,0,0,.3),var(--raised);
+  padding:20px 22px 24px;animation:pop .22s ease;
+}
+@keyframes fade{from{opacity:0}}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.98)}}
+.sheet-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.sheet-bar .left,.sheet-bar .right{display:flex;gap:10px;flex-wrap:wrap}
+.d-hero{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:6px 0 14px}
+.d-emoji{flex:none;width:112px;height:112px;border-radius:32px;display:grid;place-items:center;font-size:4rem;line-height:1;background:var(--surface);box-shadow:var(--pressed)}
+.d-titles{min-width:0;flex:1}
+.d-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.d-line .badge{width:52px;height:52px;font-size:1.8rem}
+.d-word{font-size:clamp(1.7rem,6vw,2.3rem)}
+.d-ko{margin:.2rem 0 .5rem;color:var(--ink-soft);font-size:1.15rem;font-family:"Jua",sans-serif}
+.d-sum{font-size:1.15rem;margin:0 0 1rem;max-width:36em;font-weight:700}
+.d-body p{margin:0 0 1.1em;max-width:36em}
+.callout{margin:18px 0;padding:16px 18px;border-radius:var(--r-md);background:var(--c);color:var(--clay-ink);box-shadow:var(--clay);max-width:38em}
+.callout h3{font-size:1.2rem;margin-bottom:.3rem}
+.callout p{margin:0}
+.call-fun{--c:var(--c-kind)}
+.call-try{--c:var(--c-ing)}
+.related{margin:22px 0 8px}
+.related h3{font-size:1.15rem;margin-bottom:.6rem}
+.rel-list{display:flex;flex-wrap:wrap;gap:10px}
+.rel-btn{border-radius:999px;padding:.3rem 1rem .3rem .4rem}
+.rel-btn .b{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:var(--clay-ink);box-shadow:var(--clay);font-size:1.1rem}
+.d-nav{display:flex;justify-content:space-between;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.d-nav .nbtn{flex:1;max-width:48%}
+.d-nav .nbtn span.t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hint{margin:12px 0 0;text-align:center;color:var(--ink-soft);font-size:.85rem}
+@media (max-width:640px){
+  .modal{align-items:flex-end;padding:0}
+  .sheet{border-radius:var(--r-lg) var(--r-lg) 0 0;max-height:94dvh;padding:16px 16px 22px}
+  .d-emoji{width:88px;height:88px;font-size:3.2rem;border-radius:26px}
+  .hint{display:none}
+}
+body.lock{overflow:hidden}
+
+/* ---------- back to top & footer ---------- */
+.totop{
+  position:fixed;right:16px;bottom:16px;z-index:40;width:60px;height:60px;border-radius:22px;
+  background:var(--accent);color:var(--accent-ink);box-shadow:var(--clay);font-family:"Jua",sans-serif;font-size:.85rem;line-height:1.1;
+  display:grid;place-items:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .25s,transform .25s;
+}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop .arr{font-size:1.4rem;display:block}
+.site-foot{margin:48px 0 0;padding:28px 0 96px;color:var(--ink-soft);font-size:.95rem;border-top:1px solid var(--line);text-align:center}
+.site-foot p{margin:.2rem auto;max-width:36em}
+
+@media (max-width:420px){
+  .tools .nbtn .lbl{display:none}
+  .brand-mark{width:54px;height:54px;font-size:1.8rem;border-radius:18px}
+  .quiz{padding:18px 16px}
+}
+.d-facts,.d-words,.d-more{margin:22px 0;padding:18px 20px;border-radius:var(--r-md);background:var(--md-surface-c,var(--surface));box-shadow:var(--raised-sm)}
+.d-facts h3,.d-words h3,.d-more h3{margin:0 0 10px;font-size:1.2rem}
+.d-facts dl,.d-words dl{margin:0;display:grid;gap:8px}
+.d-facts dl>div{display:grid;grid-template-columns:minmax(5.5em,32%) 1fr;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.d-facts dl>div:last-child{border-bottom:0}
+.d-facts dt,.d-words dt{font-weight:700;color:var(--accent)}
+.d-facts dd,.d-words dd{margin:0}
+.d-words dl>div{padding:6px 0}
+.d-more details{padding:10px 14px;margin:8px 0;border-radius:var(--r-sm);background:var(--md-surface-low,var(--bg))}
+.d-more summary{cursor:pointer;font-weight:700;min-height:32px;display:flex;align-items:center}
+.d-more details p{margin:8px 0 0}
+@media (max-width:480px){.d-facts dl>div{grid-template-columns:1fr;gap:2px}}
+</style>
+<style>/* theme-materialyou.css */
+/* Material You (M3) theme layer — seed: wheat amber. Overrides shell tokens. */
+@font-face{font-family:"SeoulNamsan";src:url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap}
+
+:root{
+  --md-primary:#8C4F00; --md-on-primary:#FFFFFF;
+  --md-primary-container:#FFDCBE; --md-on-primary-container:#2D1600;
+  --md-secondary-container:#FBDDC3; --md-tertiary-container:#DCE8B4; --md-tertiary:#58633A;
+  --md-surface:#FBF8F5; --md-surface-low:#F6F1EC; --md-surface-c:#F1EBE5; --md-surface-high:#EBE4DD;
+  --md-on-surface:#221A14; --md-on-surface-var:#52443A; --md-outline:#D7C3B5;
+
+  --bg:var(--md-surface); --surface:var(--md-surface-low);
+  --ink:var(--md-on-surface); --ink-soft:var(--md-on-surface-var);
+  --accent:var(--md-primary); --accent-ink:var(--md-on-primary); --focus:var(--md-primary);
+  --line:var(--md-outline); --overlay:rgba(34,26,20,.42);
+  --clay-ink:var(--md-on-primary-container);
+  --c-kind:#FFDCBE; --c-ing:#DCE8B4; --c-proc:#CDE5FF; --c-food:#FFDAD4; --c-sci:#E9DDFF; --c-hist:#FFD8E8; --c-etc:#F0E0D0;
+  --r-sm:20px; --r-md:28px; --r-lg:32px;
+  --raised:0 1px 2px rgba(34,26,20,.10),0 2px 8px rgba(140,79,0,.08);
+  --raised-sm:0 1px 2px rgba(34,26,20,.10);
+  --pressed:inset 0 0 0 1px var(--md-outline);
+  --clay:0 1px 2px rgba(34,26,20,.12);
+  --clay-pressed:inset 0 0 0 2px rgba(34,26,20,.12);
+  /* overview (fg-) tokens */
+  --text:var(--md-on-surface); --accent2:var(--md-tertiary);
+  --shadow-dark:rgba(140,79,0,.10); --shadow-light:rgba(255,255,255,0);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --md-primary:#FFB870; --md-on-primary:#4A2800;
+    --md-primary-container:#6A3B00; --md-on-primary-container:#FFDCBE;
+    --md-secondary-container:#5A4330; --md-tertiary-container:#404B25; --md-tertiary:#C0CC9A;
+    --md-surface:#19120C; --md-surface-low:#221A14; --md-surface-c:#261E18; --md-surface-high:#312822;
+    --md-on-surface:#F0DFD3; --md-on-surface-var:#D7C3B5; --md-outline:#52443A;
+    --c-kind:#6A3B00; --c-ing:#404B25; --c-proc:#1F4A6E; --c-food:#73332A; --c-sci:#4B3C73; --c-hist:#6B2D4A; --c-etc:#4A3A2C;
+    --clay-ink:#FFEDE0; --overlay:rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --md-primary:#FFB870; --md-on-primary:#4A2800;
+  --md-primary-container:#6A3B00; --md-on-primary-container:#FFDCBE;
+  --md-secondary-container:#5A4330; --md-tertiary-container:#404B25; --md-tertiary:#C0CC9A;
+  --md-surface:#19120C; --md-surface-low:#221A14; --md-surface-c:#261E18; --md-surface-high:#312822;
+  --md-on-surface:#F0DFD3; --md-on-surface-var:#D7C3B5; --md-outline:#52443A;
+  --c-kind:#6A3B00; --c-ing:#404B25; --c-proc:#1F4A6E; --c-food:#73332A; --c-sci:#4B3C73; --c-hist:#6B2D4A; --c-etc:#4A3A2C;
+  --clay-ink:#FFEDE0; --overlay:rgba(0,0,0,.6);
+}
+
+/* Material You background: calm tonal surface, one faint primary tint at the top */
+body{
+  background-color:var(--md-surface)!important;
+  background-image:linear-gradient(180deg, color-mix(in srgb, var(--md-primary-container) 28%, transparent) 0, transparent 520px)!important;
+}
+/* muted tonal category colors (less candy) */
+:root{
+  --c-kind:#EFE0D2; --c-ing:#E3E6D3; --c-proc:#DDE3EA; --c-food:#EEDFDB; --c-sci:#E5E0EC; --c-hist:#ECDDE2; --c-etc:#ECE3DA;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --c-kind:#3E3328; --c-ing:#353829; --c-proc:#2C333B; --c-food:#3D302C; --c-sci:#35303D; --c-hist:#3C2E33; --c-etc:#3A3229;
+  }
+}
+:root[data-theme="dark"]{
+  --c-kind:#3E3328; --c-ing:#353829; --c-proc:#2C333B; --c-food:#3D302C; --c-sci:#35303D; --c-hist:#3C2E33; --c-etc:#3A3229;
+}
+
+/* Seoul Namsan everywhere (emoji still fall back per glyph) */
+html body, html body *:not(svg):not(svg *){font-family:"SeoulNamsan","Apple SD Gothic Neo","Malgun Gothic",sans-serif!important}
+svg text{font-family:"SeoulNamsan",sans-serif!important}
+h1,h2,h3,.card-word,.fg-title,.fg-tname,.fg-tltitle{font-weight:700!important;letter-spacing:-.01em}
+h1{color:var(--md-primary)}
+
+/* M3 shapes: pill buttons, large rounded tonal cards */
+button,.nbtn,.chip,.fg-pill{border-radius:999px}
+.nbtn[aria-pressed="true"],.chip[aria-pressed="true"],.filters button[aria-pressed="true"]{
+  background:var(--md-primary)!important;color:var(--md-on-primary)!important;box-shadow:none!important}
+.azbar{background:color-mix(in srgb, var(--md-surface) 82%, transparent)!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.video-frame{background:var(--md-surface-c)!important;border-radius:32px!important}
+
+</style>
+</head>
+<body>
+<a class="sr-only" href="#grid">낱말 목록으로 바로 가기</a>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">🌾</div>
+      <div>
+        <h1>밀가루 <span class="az">A to Z</span> 백과사전</h1>
+        <p class="intro">밀 한 톨이 빵이 되기까지! 알파벳 26개로 밀가루 세상을 탐험해요.</p>
+      </div>
+    </div>
+    <div class="tools" role="group" aria-label="보기 설정">
+      <button class="nbtn" id="fontDown" type="button" aria-label="글자 크기 줄이기" title="글자 크기 줄이기"><span aria-hidden="true">가−</span><span class="lbl">작게</span></button>
+      <button class="nbtn" id="fontUp" type="button" aria-label="글자 크기 키우기" title="글자 크기 키우기"><span aria-hidden="true">가+</span><span class="lbl">크게</span></button>
+      <button class="nbtn" id="themeBtn" type="button" aria-label="어두운 화면으로 바꾸기"><span id="themeIcon" aria-hidden="true">🌙</span><span class="lbl" id="themeLbl">밤 모드</span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" aria-label="소개 영상">
+  <div class="wrap">
+    <div class="video-frame">
+      <div id="video">
+        <div class="video-ph" id="videoPh"><div><div class="big" aria-hidden="true">🎬</div><p>밀가루 이야기 영상이 곧 나와요!</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="azbar" aria-label="알파벳으로 찾기">
+  <div class="wrap"><div class="az-scroll" id="azBar"></div></div>
+</nav>
+
+<main class="wrap" id="main">
+  <section id="guide" aria-label="밀가루 총론"></section>
+  <section class="controls" aria-label="낱말 찾기">
+    <label class="search">
+      <span aria-hidden="true">🔍</span>
+      <span class="sr-only">낱말 찾기</span>
+      <input id="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="낱말을 찾아봐요 (예: 반죽, yeast)">
+      <button class="clear-q" id="clearQ" type="button" aria-label="검색어 지우기" hidden>✕</button>
+    </label>
+    <div class="filters" id="filters" role="group" aria-label="갈래로 고르기"></div>
+    <div class="actions">
+      <button class="nbtn" id="favOnly" type="button" aria-pressed="false">⭐ 내 즐겨찾기만 보기</button>
+      <button class="nbtn" id="randomBtn" type="button">🎲 아무 낱말이나!</button>
+    </div>
+    <p class="status" id="status" aria-live="polite"></p>
+  </section>
+
+  <ul class="grid" id="grid" aria-label="낱말 카드"></ul>
+  <div class="empty" id="empty" hidden>
+    <div class="big" aria-hidden="true">🔎</div>
+    <h2>찾는 낱말이 없어요</h2>
+    <p id="emptyMsg">다른 말로 찾아보거나, 고른 것을 모두 풀어 볼까요?</p>
+    <button class="nbtn" id="resetBtn" type="button">↩︎ 처음부터 다시 보기</button>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>🌾 밀가루 A to Z 백과사전 · 초등학교 3학년 친구들을 위해 만들었어요.</p>
+    <p>불을 쓰거나 칼을 쓰는 활동은 꼭 어른과 함께 해요. 밀가루 알레르기가 있는 친구는 만지기 전에 확인해요!</p>
+  </div>
+</footer>
+
+<button class="totop" id="toTop" type="button" aria-label="맨 위로 가기"><span><span class="arr" aria-hidden="true">⬆</span>위로</span></button>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-bg" id="modalBg"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="dWord" tabindex="-1">
+    <div class="sheet-bar">
+      <div class="left">
+        <button class="nbtn" id="speakBtn" type="button" aria-pressed="false" hidden>🔊 <span id="speakLbl">읽어주기</span></button>
+        <button class="nbtn" id="dFav" type="button" aria-pressed="false">⭐ <span id="dFavLbl">즐겨찾기</span></button>
+      </div>
+      <div class="right">
+        <button class="nbtn" id="closeBtn" type="button" aria-label="닫기">✕ 닫기</button>
+      </div>
+    </div>
+    <div id="detail"></div>
+    <div class="d-nav">
+      <button class="nbtn" id="prevBtn" type="button"><span aria-hidden="true">◀</span><span class="t" id="prevT">이전</span></button>
+      <button class="nbtn" id="nextBtn" type="button"><span class="t" id="nextT">다음</span><span aria-hidden="true">▶</span></button>
+    </div>
+    <p class="hint">키보드 ← → 로 넘기고, Esc 로 닫아요.</p>
+  </div>
+</div>
+
+<script>/* entries-v2-1.js */
+window.FLOUR_ENTRIES = (window.FLOUR_ENTRIES || []).concat([
+  {
+    letter: "A", word: "All-purpose flour", korean: "중력분", emoji: "🥖",
+    category: "종류",
+    summary: "단백질이 중간쯤이라 여러 요리에 두루 쓰는 밀가루예요.",
+    body: [
+      "중력분은 밀가루 가운데 '중간 힘'을 가진 밀가루예요. 영어 이름 'All-purpose'는 '모든 쓰임'이라는 뜻이에요. 그래서 '다목적 밀가루'라고도 불러요.",
+      "중력분은 하얗고 고운 가루예요. 대부분은 녹말(전분)이고, 단백질이 약 9~10% 들어 있어요. 나머지는 물기와 아주 적은 양의 무기질이에요. 손으로 꽉 쥐면 살짝 뭉쳤다가 금방 흩어져요.",
+      "밀가루의 '힘'은 단백질 양에 따라 달라져요. 단백질은 물을 만나 '글루텐'이라는 그물을 만들어요. 그물이 튼튼하면 반죽이 쫄깃하고, 약하면 부드러워요. 중력분은 그물이 알맞게 생겨서 쫄깃함과 부드러움을 함께 낼 수 있어요.",
+      "옛날에는 밀가루를 이렇게 힘에 따라 나누지 않았어요. 기계로 밀을 곱게 갈고 단백질 양도 잴 수 있게 되었어요. 그 뒤로 쓰임에 맞게 나누기 시작했어요. 우리나라에서는 강력분·중력분·박력분 세 가지로 나누는 방식이 널리 쓰여요.",
+      "단백질이 가장 많은 강력분(약 11~14%)은 빵에 잘 어울려요. 가장 적은 박력분(약 7~9%)은 과자와 케이크에 좋아요. 중력분은 그 사이에 있어요. 그래서 강력분이나 박력분이 없을 때 대신 쓰기도 해요. 다만 빵은 덜 부풀고, 케이크는 조금 덜 폭신해질 수 있어요.",
+      "우리 집 부엌에 있는 밀가루는 대부분 중력분이에요. 칼국수, 수제비, 만두피, 부침개, 호떡처럼 우리 음식에 두루 쓰여요. 어느 자리든 잘 해내는 '만능 선수' 같은 밀가루예요."
+    ],
+    facts: [
+      { k: "다른 이름", v: "다목적 밀가루, 일반 밀가루" },
+      { k: "단백질", v: "약 9~10%" },
+      { k: "주성분", v: "녹말(전분) 약 70% 이상" },
+      { k: "글루텐 힘", v: "중간 (강력분보다 약하고 박력분보다 강함)" },
+      { k: "어울리는 음식", v: "칼국수, 수제비, 만두피, 부침개, 호떡" },
+      { k: "보관", v: "밀봉해서 서늘하고 마른 곳" }
+    ],
+    words: [
+      { w: "단백질", m: "몸을 만드는 영양소예요. 밀가루에서는 글루텐의 재료가 돼요." },
+      { w: "녹말(전분)", m: "곡식에 많이 든 영양소로, 몸에서 힘을 내는 데 쓰여요." },
+      { w: "글루텐", m: "밀가루 단백질이 물을 만나 만드는 쫄깃한 그물이에요." }
+    ],
+    more: [
+      { t: "강력분·중력분·박력분 구별하기", d: "밀가루 봉지 뒤의 영양 정보에서 100g당 단백질 양을 보면 돼요. 숫자가 클수록 힘센 밀가루예요. 대략 11g 넘으면 강력분, 9~10g쯤이면 중력분, 그보다 적으면 박력분이에요." },
+      { t: "세계의 다목적 밀가루", d: "미국에서는 'All-purpose flour'라고 불러요. 영국에서는 'Plain flour'라고 해요. 나라마다 쓰는 밀이 달라서 단백질 양도 조금씩 달라요. 그래서 외국 요리책을 따라 할 때는 밀가루 종류를 잘 확인해야 해요." }
+    ],
+    funFact: "봉지에 '다목적용'이라고 쓰여 있다면 대부분 중력분이에요.",
+    tryIt: "어른과 함께 집에 있는 밀가루 봉지 뒷면을 보고 '단백질'이 몇 g인지 찾아보세요. 그 숫자로 어떤 밀가루인지 맞혀 봐요.",
+    related: ["C", "G"]
+  },
+  {
+    letter: "B", word: "Bran", korean: "밀기울", emoji: "🌾",
+    category: "구조·과학",
+    summary: "밀알을 감싸고 있는 단단한 갈색 겉껍질이에요.",
+    body: [
+      "밀기울은 밀알의 바깥을 감싸는 갈색 껍질이에요. 밀알을 사람 몸에 빗대면, 밀기울은 몸을 지켜 주는 '겉옷'과 같아요. 하얀 밀가루를 만들 때 걸러 내는 부분이에요.",
+      "밀기울은 밀알 무게의 약 14~15%를 차지해요. 얇은 껍질 여러 겹이 겹쳐 있는 모양이에요. 가장 안쪽에는 '호분층'이라는 얇은 층이 있는데, 단백질과 무기질이 많아요. 갈아 놓으면 납작하고 거친 갈색 부스러기처럼 보여요.",
+      "밀기울은 단단해서 밀알 속을 벌레나 습기로부터 지켜 줘요. 또 식이섬유가 아주 많아요(약 40% 안팎). 식이섬유는 배 속에서 음식이 잘 내려가도록 돕는 성분이에요. 철, 마그네슘 같은 무기질과 비타민 B도 들어 있어요.",
+      "옛날에는 돌로 밀을 갈아서 밀기울을 깨끗이 걸러 내기 어려웠어요. 그래서 대부분 사람들은 갈색빛이 도는 빵을 먹었어요. 19세기 후반에 롤러 제분기가 널리 쓰였어요. 그러면서 밀기울을 쉽게 걸러 낼 수 있게 되었어요. 그때부터 하얀 밀가루가 흔해졌어요.",
+      "밀기울을 걸러 내지 않고 밀알을 통째로 갈면 '통밀가루'가 돼요. 하얀 밀가루는 주로 배젖만 갈아 만들어요. 그래서 통밀가루는 섬유질이 많고 색이 진하지만, 반죽이 덜 부풀어요. 밀기울의 날카로운 조각이 글루텐 그물을 끊기 때문이에요.",
+      "밀기울은 통밀빵, 시리얼, 머핀에 넣어 먹어요. 소나 돼지 같은 가축의 먹이로도 많이 쓰여요. 우리나라에서는 예부터 거칠게 간 밀과 밀기울로 누룩을 빚어 막걸리 같은 술을 만들었어요."
+    ],
+    facts: [
+      { k: "위치", v: "밀알의 가장 바깥 껍질" },
+      { k: "밀알에서 차지하는 양", v: "무게의 약 14~15%" },
+      { k: "많이 든 성분", v: "식이섬유(약 40% 안팎), 무기질, 비타민 B" },
+      { k: "색", v: "갈색" },
+      { k: "쓰임", v: "통밀빵, 시리얼, 가축 먹이, 누룩" }
+    ],
+    words: [
+      { w: "식이섬유", m: "몸에서 잘 소화되지 않지만 배 속 청소를 돕는 성분이에요." },
+      { w: "호분층", m: "밀기울 가장 안쪽의 얇은 층이에요. 영양분이 많아요." },
+      { w: "누룩", m: "곡식에 곰팡이를 키워 만든 덩어리로, 술이나 장을 담글 때 써요." }
+    ],
+    more: [
+      { t: "밀알의 세 부분", d: "밀알은 밀기울(겉껍질), 배젖(속살), 씨눈(배아) 세 부분으로 나뉘어요. 무게로 보면 배젖이 약 83%로 가장 많아요. 하얀 밀가루는 배젖, 통밀가루는 세 부분을 모두 갈아 만들어요." },
+      { t: "통밀이 더 좋을까?", d: "통밀에는 섬유질과 무기질이 더 많아요. 하지만 기름기가 있는 씨눈도 함께 들어 있어 쉽게 상할 수 있어요. 그래서 통밀가루는 조금씩 사서 서늘한 곳에 두고 빨리 쓰는 게 좋아요." }
+    ],
+    funFact: "통밀빵이 갈색인 까닭은 밀기울이 함께 들어 있기 때문이에요.",
+    tryIt: "하얀 식빵과 통밀빵을 나란히 놓고 색깔과 작은 갈색 알갱이를 돋보기로 비교해 보세요.",
+    related: ["E", "I"]
+  },
+  {
+    letter: "C", word: "Cake flour", korean: "박력분", emoji: "🍰",
+    category: "종류",
+    summary: "단백질이 가장 적어 부드럽고 바삭한 맛을 내는 밀가루예요.",
+    body: [
+      "박력분은 밀가루 가운데 단백질이 가장 적은 밀가루예요. 영어로는 'Cake flour', 곧 '케이크 밀가루'라고 불러요. 손으로 만지면 아주 곱고 보드라워요.",
+      "박력분의 단백질은 약 7~9%예요. 중력분보다 조금 적어요. 주로 단백질이 적은 '연질밀'로 만들어요. 알갱이가 아주 고와서 손으로 쥐면 꾹 뭉쳐지는 편이에요.",
+      "단백질이 적으면 반죽 속 글루텐 그물이 조금만 생겨요. 그물이 약하니 반죽이 질겨지지 않아요. 그래서 구우면 폭신하고, 튀기면 바삭해요. 박력분 반죽은 너무 오래 섞지 않아요. 그물이 많이 생기지 않게 하려는 거예요.",
+      "'박력분'이라는 이름은 일본에서 쓰던 말이 우리나라에 들어온 거예요. '박(薄)'은 '얇다, 약하다'라는 뜻이에요. 그러니까 '힘이 약한 가루'라는 뜻이지요. 강력분의 '강(強)'은 '세다'는 뜻이에요.",
+      "강력분은 빵처럼 쫄깃하고 크게 부풀어야 할 때 써요. 박력분은 반대로 부드럽고 가벼워야 할 때 써요. 중력분은 그 중간이에요. 똑같은 밀가루처럼 보여도 쓰임이 전혀 달라요.",
+      "카스텔라, 스펀지케이크, 쿠키, 머핀을 만들 때 박력분을 많이 써요. 튀김옷을 바삭하게 할 때도 좋아요. 쫄깃함보다 부드러움이 필요할 때 꺼내는 밀가루예요."
+    ],
+    facts: [
+      { k: "다른 이름", v: "케이크 밀가루" },
+      { k: "단백질", v: "약 7~9%" },
+      { k: "원료 밀", v: "주로 연질밀(단백질이 적은 밀)" },
+      { k: "글루텐 힘", v: "약함" },
+      { k: "어울리는 음식", v: "카스텔라, 스펀지케이크, 쿠키, 머핀, 튀김옷" }
+    ],
+    words: [
+      { w: "연질밀", m: "알이 비교적 무르고 단백질이 적은 밀이에요." },
+      { w: "반죽", m: "가루에 물 같은 액체를 넣고 섞어 이긴 덩어리예요." },
+      { w: "튀김옷", m: "튀길 재료 겉에 입히는 묽은 반죽이나 가루예요." }
+    ],
+    more: [
+      { t: "바삭한 튀김의 비밀", d: "튀김옷 반죽은 차가운 물로 짧게, 덩어리가 조금 남을 만큼만 섞어요. 그러면 글루텐이 덜 생겨 바삭해져요. 박력분을 쓰는 것도 같은 까닭이에요." },
+      { t: "박력분이 없을 때", d: "중력분에 옥수수 전분을 조금 섞어 박력분 대신 쓰기도 해요. 전분이 섞이면 단백질 비율이 낮아지기 때문이에요. 완전히 같지는 않지만 비슷하게 부드러워져요." }
+    ],
+    funFact: "박력분의 '박'은 힘이 '얇다(약하다)'는 뜻이에요. 힘이 세다는 뜻이 아니에요!",
+    tryIt: "어른과 함께 박력분과 중력분을 손가락으로 집어 보며 어느 쪽이 더 보드라운지 느껴 보세요. 날가루는 맛보지 않아요.",
+    related: ["A", "G"]
+  },
+  {
+    letter: "D", word: "Durum wheat & semolina", korean: "듀럼밀·세몰리나", emoji: "🍝",
+    category: "종류",
+    summary: "파스타를 만드는 아주 단단한 밀과 그 노란 가루예요.",
+    body: [
+      "듀럼밀은 아주 단단한 밀의 한 종류예요. 이 밀을 굵게 갈아 만든 노란 가루를 '세몰리나'라고 해요. 보통 밀가루보다 알갱이가 굵고 모래처럼 까끌까끌해요.",
+      "듀럼밀 알은 밀 가운데 가장 단단한 편이에요. 속을 잘라 보면 하얗지 않고 노란빛이 돌며 유리처럼 반투명해요. 단백질도 약 12~15%로 많은 편이에요. 노란색은 '카로티노이드'라는 색소 때문이에요.",
+      "듀럼밀 단백질로 만든 글루텐은 잘 늘어나기보다 단단하게 버티는 성질이 강해요. 그래서 빵을 크게 부풀리기에는 알맞지 않아요. 대신 삶아도 쉽게 퍼지거나 끊어지지 않아요. 파스타가 꼬들꼬들한 식감을 지키는 까닭이에요.",
+      "이름의 '듀럼(durum)'은 '단단하다'는 뜻의 라틴어에서 왔어요. 듀럼밀은 지중해 둘레 나라들에서 오래전부터 길러 왔어요. 이탈리아에서는 말린 파스타를 듀럼밀 세몰리나로 만들도록 법으로 정해 두었어요.",
+      "우리가 흔히 먹는 밀가루는 대부분 '빵밀(보통밀)'로 만들어요. 빵밀은 세계에서 기르는 밀의 대부분을 차지해요. 듀럼밀은 그보다 훨씬 적게 길러요. 세몰리나를 더 곱게 간 가루는 '세몰라 리마치나타'라고 불러요.",
+      "스파게티, 마카로니, 펜네 같은 파스타는 주로 세몰리나로 만들어요. 북아프리카의 '쿠스쿠스'도 세몰리나로 만든 작은 알갱이예요. 우리나라 소면은 보통 밀가루로 만들어서 하얗고 부드러워요."
+    ],
+    facts: [
+      { k: "분류", v: "밀의 한 종류 (빵밀과 다른 종)" },
+      { k: "단백질", v: "약 12~15%" },
+      { k: "색", v: "노란색 (카로티노이드 색소)" },
+      { k: "주요 재배 지역", v: "지중해 둘레, 북아메리카 등" },
+      { k: "어울리는 음식", v: "스파게티, 마카로니, 쿠스쿠스" },
+      { k: "가루 모양", v: "굵고 까끌까끌한 알갱이" }
+    ],
+    words: [
+      { w: "세몰리나", m: "듀럼밀을 굵게 갈아 만든 노란 가루예요." },
+      { w: "카로티노이드", m: "당근이나 호박을 노랗고 주황색으로 만드는 색소예요." },
+      { w: "반투명", m: "빛이 조금 비쳐 보이는 상태예요." }
+    ],
+    more: [
+      { t: "생파스타와 마른 파스타", d: "마른 파스타는 듀럼밀 세몰리나와 물로 만들어 말린 거예요. 생파스타는 보통 밀가루에 달걀을 넣어 만들기도 해요. 그래서 생파스타는 더 부드럽고, 마른 파스타는 더 꼬들꼬들해요." },
+      { t: "파스타를 맛있게 삶는 법", d: "물을 넉넉히 끓이고 소금을 조금 넣은 뒤 면을 넣어요. 봉지에 적힌 시간보다 조금 일찍 건져 소스와 함께 볶으면 꼬들꼬들함이 살아요. 끓는 물은 꼭 어른이 다뤄요." }
+    ],
+    funFact: "'듀럼'은 '단단하다'는 뜻의 라틴어에서 온 이름이에요.",
+    tryIt: "마른 스파게티 면과 소면을 나란히 놓고 색깔을 비교해 보세요. 어느 쪽이 더 노란가요?",
+    related: ["A", "G"]
+  },
+  {
+    letter: "E", word: "Endosperm", korean: "배젖", emoji: "🥚",
+    category: "구조·과학",
+    summary: "하얀 밀가루가 되는 밀알 속 하얀 부분이에요.",
+    body: [
+      "배젖은 밀알 안쪽을 가득 채운 하얀 부분이에요. 하얀 밀가루는 이 배젖을 곱게 갈아서 만들어요. '배유'라고도 불러요.",
+      "배젖은 밀알 무게의 약 83%를 차지해요. 밀알에서 가장 큰 부분이에요. 배젖은 녹말 알갱이가 단백질 사이에 촘촘히 박혀 있는 모양이에요. 그래서 배젖 가루의 대부분은 녹말이에요.",
+      "배젖은 아기 밀이 자랄 때 먹을 '도시락' 같은 곳이에요. 밀알 속에는 새싹이 될 '씨눈'이 있어요. 씨눈은 싹을 틔울 때 배젖에 모아 둔 녹말과 단백질을 먹고 자라요. 이 단백질이 바로 우리가 반죽할 때 글루텐을 만드는 재료예요.",
+      "옛날 맷돌로는 배젖만 따로 골라내기 어려웠어요. 체로 여러 번 쳐서 하얀 가루를 얻었지만 아주 귀하고 비쌌어요. 19세기 후반 롤러 제분기가 나오면서 배젖만 깨끗하게 모을 수 있게 되었어요.",
+      "밀기울은 겉옷, 씨눈은 아기, 배젖은 도시락이에요. 하얀 밀가루는 배젖만, 통밀가루는 셋을 모두 갈아 만들어요. 밀알에서 하얀 밀가루로 얻는 양은 보통 약 70~75%예요. 쌀의 하얀 부분도 배젖이에요.",
+      "우리가 먹는 하얀 국수, 식빵, 과자는 대부분 배젖으로 만든 거예요. 색이 하얗고 맛이 부드러운 대신 섬유질과 무기질은 줄어들어요. 그래서 하얀 밀가루에 비타민이나 철분을 더해 파는 나라도 있어요."
+    ],
+    facts: [
+      { k: "다른 이름", v: "배유" },
+      { k: "밀알에서 차지하는 양", v: "무게의 약 83%" },
+      { k: "주성분", v: "녹말, 단백질(글루텐 재료)" },
+      { k: "하얀 밀가루 수율", v: "밀알의 약 70~75%" },
+      { k: "하는 일", v: "싹이 틀 때 씨눈에 영양을 줌" },
+      { k: "만드는 것", v: "하얀 밀가루, 국수, 식빵" }
+    ],
+    words: [
+      { w: "씨눈(배아)", m: "씨앗 속에서 자라 새싹이 되는 아주 작은 부분이에요." },
+      { w: "수율", m: "원래 재료에서 얻어 낸 양이 얼마나 되는지 나타낸 비율이에요." },
+      { w: "무기질", m: "철, 칼슘처럼 몸을 튼튼하게 하는 데 필요한 영양소예요." }
+    ],
+    more: [
+      { t: "배젖의 가운데와 가장자리", d: "배젖도 자리에 따라 조금 달라요. 가운데는 녹말이 많고 더 하얗고, 바깥쪽은 단백질이 더 많아요. 제분 공장은 이 차이를 이용해 등급이 다른 밀가루를 만들어요." },
+      { t: "쌀과 밀의 배젖", d: "쌀밥도 벼의 배젖을 먹는 거예요. 하지만 쌀 배젖에는 글루텐을 만드는 단백질이 거의 없어요. 그래서 쌀가루로는 밀가루처럼 쫄깃하게 부푸는 빵을 만들기 어려워요." }
+    ],
+    funFact: "밀알 하나를 반으로 자르면 가운데 하얀 배젖이 보여요.",
+    tryIt: "어른과 함께 물에 불린 밀알(또는 쌀알)을 반으로 잘라 돋보기로 속을 살펴보세요. 칼은 꼭 어른이 써요.",
+    related: ["B", "G"]
+  },
+  {
+    letter: "F", word: "Fermentation", korean: "발효", emoji: "🫧",
+    category: "기능",
+    summary: "작은 생물이 반죽을 부풀리고 맛을 바꾸는 일이에요.",
+    body: [
+      "발효는 눈에 보이지 않을 만큼 작은 생물이 음식을 바꾸는 일이에요. 빵을 만들 때는 '효모(이스트)'라는 작은 생물이 이 일을 해요. 효모가 일하면 반죽이 풍선처럼 부풀어요.",
+      "효모는 곰팡이, 버섯과 같은 '균류'에 드는 작은 생물이에요. 하나의 크기는 머리카락 굵기보다 훨씬 작아요. 가게에서 파는 드라이 이스트는 효모를 말려서 잠재워 둔 거예요. 물과 먹이를 만나면 다시 깨어나요.",
+      "효모는 반죽 속 당분을 먹고 '이산화탄소'라는 기체와 약간의 알코올을 내놓아요. 이 기체를 붙잡아 두는 것이 밀가루의 글루텐 그물이에요. 그래서 반죽 속에 작은 공기 방이 잔뜩 생기며 부풀어요. 구울 때 알코올은 날아가고 좋은 냄새가 남아요.",
+      "사람들은 수천 년 전부터 발효한 빵을 먹었어요. 고대 이집트에도 빵을 굽는 모습이 그림으로 남아 있어요. 발효가 작은 생물 때문이라는 건 19세기에 밝혀졌어요. 프랑스 과학자 '파스퇴르'가 알아냈어요.",
+      "효모는 따뜻한 곳(약 25~35℃)에서 가장 활발해요. 너무 차가우면 느려지고, 약 60℃ 가까이 뜨거우면 죽어요. 효모 말고 젖산균이 함께 일하는 '사워도우' 빵도 있어요. 사워도우는 새콤한 맛이 나요.",
+      "식빵, 바게트, 피자 도우, 찐빵은 모두 발효로 부풀어요. 막걸리를 넣어 부풀리는 우리나라 '술빵'도 있어요. 김치, 된장, 요구르트도 작은 생물이 만드는 발효 음식이에요."
+    ],
+    facts: [
+      { k: "일하는 생물", v: "효모(이스트), 젖산균 등" },
+      { k: "효모가 내놓는 것", v: "이산화탄소, 알코올" },
+      { k: "좋아하는 온도", v: "약 25~35℃" },
+      { k: "죽는 온도", v: "약 60℃ 안팎" },
+      { k: "발효 빵", v: "식빵, 바게트, 피자, 찐빵, 술빵, 사워도우" }
+    ],
+    words: [
+      { w: "효모(이스트)", m: "당분을 먹고 기체를 내뿜는 아주 작은 생물이에요." },
+      { w: "이산화탄소", m: "우리가 숨을 내쉴 때도 나오는 기체예요. 반죽을 부풀려요." },
+      { w: "젖산균", m: "새콤한 맛을 내는 작은 생물이에요. 김치나 요구르트에도 있어요." },
+      { w: "당분", m: "단맛을 내는 성분이에요. 효모의 먹이가 돼요." }
+    ],
+    more: [
+      { t: "발효와 부패는 어떻게 다를까?", d: "둘 다 작은 생물이 음식을 바꾸는 일이에요. 사람에게 좋게 바뀌면 '발효'라고 해요. 먹을 수 없게 상하면 '부패'라고 불러요. 그래서 발효 음식도 깨끗하게 다뤄야 해요." },
+      { t: "베이킹파우더와 이스트", d: "머핀이나 팬케이크는 이스트 대신 베이킹파우더로 부풀려요. 베이킹파우더는 생물이 아니라 물과 열을 만나 기체를 내는 가루예요. 그래서 발효를 기다릴 필요가 없어요." }
+    ],
+    funFact: "빵 반죽은 따뜻한 곳에 두면 더 빨리 부풀어요. 효모도 따뜻한 걸 좋아하거든요.",
+    tryIt: "어른과 함께 미지근한 설탕물에 이스트를 넣고 페트병 입구에 풍선을 씌워 풍선이 부푸는지 지켜보세요. 다 본 물은 마시지 말고 버려요.",
+    related: ["G", "H"]
+  },
+  {
+    letter: "G", word: "Gluten", korean: "글루텐", emoji: "🕸️",
+    category: "기능",
+    summary: "밀가루 단백질이 물을 만나 만드는 쫄깃한 그물이에요.",
+    body: [
+      "글루텐은 밀가루에 물을 넣고 주무를 때 생기는 단백질 그물이에요. 반죽이 쭉쭉 늘어나고 쫄깃한 것은 글루텐 덕분이에요. 이름은 '풀(접착제)'이라는 뜻의 라틴어에서 왔어요.",
+      "글루텐은 '글리아딘'과 '글루테닌'이라는 두 단백질로 만들어져요. 글리아딘은 반죽을 잘 늘어나게 하고, 글루테닌은 다시 돌아오려는 힘을 줘요. 밀 단백질의 대부분(약 80%)이 이 두 가지예요. 물로 씻어 낸 글루텐 덩어리는 고무처럼 말랑해요.",
+      "두 단백질은 물을 만나면 서로 손을 잡아요. 반죽을 치댈수록 그물이 더 촘촘하고 튼튼해져요. 이 그물은 발효할 때 생긴 기체를 풍선처럼 붙잡아요. 굽는 열에 단백질이 굳으면서 빵 모양이 그대로 남아요.",
+      "중국에서는 오래전부터 반죽을 씻어 얻은 글루텐을 '면근'이라는 음식으로 먹었어요. 서양에서는 '세이탄'이라고 불러요. 고기 대신 먹는 음식으로 쓰여요.",
+      "밀에는 글루텐을 만드는 단백질이 있어요. 보리와 호밀에도 비슷한 단백질이 있어요. 쌀, 옥수수, 감자에는 거의 없어요. 그래서 쌀가루 빵은 잘 부풀지 않아요. 단백질이 많은 강력분일수록 글루텐이 많이 생겨요.",
+      "쫄깃한 칼국수와 폭신한 식빵은 글루텐 덕분이에요. 쭉 늘어나는 피자 도우도 마찬가지예요. 하지만 몸이 글루텐을 받아들이지 못해 아픈 사람도 있어요. 이런 병을 '셀리악병'이라고 해요. 그런 사람을 위해 '글루텐 프리' 음식이 있어요."
+    ],
+    facts: [
+      { k: "이루는 단백질", v: "글리아딘(늘어남) + 글루테닌(되돌아옴)" },
+      { k: "밀 단백질 중 비율", v: "약 80%" },
+      { k: "생기는 조건", v: "물 + 치대기(반죽)" },
+      { k: "들어 있는 곡식", v: "밀 (보리·호밀에도 비슷한 단백질)" },
+      { k: "거의 없는 곡식", v: "쌀, 옥수수" },
+      { k: "글루텐 음식", v: "면근, 세이탄" }
+    ],
+    words: [
+      { w: "탄력", m: "늘어났다가 원래대로 돌아오려는 힘이에요." },
+      { w: "셀리악병", m: "글루텐을 먹으면 장이 다치는 병이에요. 글루텐을 피해야 해요." },
+      { w: "글루텐 프리", m: "글루텐이 들어 있지 않다는 뜻이에요." }
+    ],
+    more: [
+      { t: "글루텐을 키우는 법, 줄이는 법", d: "빵을 만들 땐 강력분을 쓰고 오래 치대서 글루텐을 키워요. 케이크나 튀김은 박력분을 쓰고 짧게 섞어서 줄여요. 반죽을 잠깐 쉬게 하면 그물이 느슨해져서 밀기 쉬워져요." },
+      { t: "오해와 진실", d: "글루텐은 모든 사람에게 나쁜 것이 아니에요. 셀리악병이나 밀 알레르기가 있는 사람은 피해야 해요. 그렇지 않은 사람에게는 밀가루 음식의 쫄깃함을 만드는 중요한 성분이에요." }
+    ],
+    funFact: "쌀가루로는 쫄깃한 빵 반죽이 잘 안 돼요. 쌀에는 글루텐을 만드는 단백질이 거의 없거든요.",
+    tryIt: "어른과 함께 밀가루 반죽을 물속에서 조물조물 씻어 보세요. 녹말이 빠지고 고무 같은 글루텐 덩어리가 남아요. 날 밀가루와 날 반죽은 맛보지 말고, 끝나면 손을 씻어요.",
+    related: ["A", "C", "F"]
+  },
+  {
+    letter: "H", word: "History of flour", korean: "밀가루의 역사", emoji: "🏺",
+    category: "역사",
+    summary: "사람이 밀을 기르고 가루로 빻아 온 약 1만 년의 이야기예요.",
+    body: [
+      "밀가루의 역사는 사람이 밀을 기르면서 시작되었어요. 약 1만 년 전, 사람들이 밀을 처음 기르기 시작했어요. 서아시아의 '비옥한 초승달' 지역이에요. 땅이 기름지고 지도에서 초승달처럼 휘어 있어 이런 이름이 붙었어요.",
+      "처음 기른 밀은 지금 밀과 조금 달랐어요. '외알밀', '엠머밀' 같은 옛날 밀은 껍질이 단단히 붙어 있었어요. 오랜 시간에 걸쳐 껍질이 잘 벗겨지는 지금의 밀로 바뀌었어요.",
+      "처음에는 밀알을 평평한 돌 위에 놓고 다른 돌로 문질러 가루를 냈어요. 이것을 '갈돌'이라고 해요. 그 뒤 둥근 돌 두 개를 돌리는 맷돌이 생겼어요. 고대 로마 시대에는 물레방아로, 중세 유럽에서는 풍차로 큰 맷돌을 돌렸어요.",
+      "19세기 후반에는 쇠 롤러로 밀을 가는 롤러 제분기가 널리 퍼졌어요. 하얀 밀가루를 싸고 많이 만들 수 있게 되었어요. 그전까지 하얀 빵은 부자들이나 먹던 귀한 음식이었어요.",
+      "우리나라는 옛날에 밀을 많이 기르지 않아서 밀가루가 아주 귀했어요. 고려 때 중국 사신이 『고려도경』이라는 책을 남겼어요. 거기에 밀가루가 비싸서 잔치 때나 쓴다고 적혀 있어요. 한국 전쟁 뒤에는 미국의 원조 밀가루가 많이 들어왔어요. 그러면서 칼국수, 수제비, 라면 같은 음식이 흔해졌어요.",
+      "지금 밀은 쌀, 옥수수와 함께 세계에서 가장 많이 기르는 곡식 가운데 하나예요. 우리나라는 먹는 밀의 거의 전부(약 98~99%)를 외국에서 사 와요. 미국, 오스트레일리아, 캐나다 같은 나라에서 많이 들여와요."
+    ],
+    facts: [
+      { k: "밀 재배 시작", v: "약 1만 년 전" },
+      { k: "시작된 곳", v: "서아시아 '비옥한 초승달' 지역" },
+      { k: "가는 도구 변화", v: "갈돌 → 맷돌 → 물레방아·풍차 → 롤러 제분기" },
+      { k: "롤러 제분 확산", v: "19세기 후반" },
+      { k: "우리나라 밀 자급률", v: "약 1~2% (대부분 수입)" },
+      { k: "주요 수입국", v: "미국, 오스트레일리아, 캐나다" }
+    ],
+    words: [
+      { w: "비옥하다", m: "땅이 기름져서 곡식이 잘 자란다는 뜻이에요." },
+      { w: "원조", m: "어려운 나라를 다른 나라가 물건이나 돈으로 돕는 일이에요." },
+      { w: "자급률", m: "먹는 것 가운데 우리나라에서 직접 기른 것이 얼마인지 나타낸 비율이에요." }
+    ],
+    more: [
+      { t: "우리나라의 분식 장려 운동", d: "1960~70년대에는 쌀이 모자라서 나라에서 밀가루 음식을 먹자고 권했어요. 이것을 '분식 장려 운동'이라고 해요. 이때 국수, 빵, 라면이 우리 밥상에 더 자주 오르게 되었어요." },
+      { t: "우리밀 이야기", d: "우리나라에서도 '앉은키밀' 같은 토종 밀을 길러 왔어요. 지금도 우리밀을 기르는 농가가 있지만 양이 아주 적어요. 우리밀은 수입 밀보다 비싸지만 가까운 곳에서 나서 신선해요." }
+    ],
+    funFact: "사람들은 아주 오래전에 이미 반죽을 부풀려 빵을 구웠어요. 고대 이집트에도 빵 굽는 모습이 그림으로 남아 있어요.",
+    tryIt: "어른과 함께 세계 지도에서 서아시아를 찾고, 초승달 모양 땅이 어디쯤일지 손가락으로 따라가 보세요.",
+    related: ["I", "F"]
+  },
+  {
+    letter: "I", word: "Industrial roller mill", korean: "롤러 제분기", emoji: "⚙️",
+    category: "역사",
+    summary: "쇠 롤러로 밀알을 여러 번 눌러 가루로 만드는 기계예요.",
+    body: [
+      "롤러 제분기는 밀알을 가루로 만드는 큰 기계예요. '제분'은 곡식을 빻아 가루로 만든다는 뜻이에요. 맷돌 대신 쇠로 만든 둥근 막대(롤러) 두 개가 마주 보며 돌아가요.",
+      "롤러는 두 종류가 있어요. 겉에 홈이 파인 롤러는 밀알을 쪼개요. 겉이 매끈한 롤러는 쪼갠 조각을 더 곱게 눌러요. 두 롤러는 서로 다른 빠르기로 돌아서 밀알을 비비듯 부숴요.",
+      "밀알이 롤러 사이를 지나면 조금씩 부서져요. 이것을 체로 거르고 다시 롤러에 넣기를 여러 번 되풀이해요. 크고 납작한 밀기울은 체에 걸리고, 고운 배젖 가루만 빠져나와요. 한 번에 갈지 않아서 열이 덜 나고 가루가 깨끗해요.",
+      "옛날에는 맷돌로 밀을 한 번에 갈았어요. 그러면 밀기울이 잘게 부서져 가루에 섞였어요. 19세기에 헝가리 등 유럽에서 롤러 제분이 발달했어요. 곧 미국과 세계로 퍼졌어요. 이 덕분에 하얀 밀가루가 싸고 흔해졌어요.",
+      "맷돌은 밀알 전체를 갈아 영양이 골고루 남지만 하얀 가루를 얻기 어려워요. 롤러 제분기는 밀기울, 씨눈, 배젖을 깔끔하게 나눠요. 그래서 강력분, 박력분, 통밀가루처럼 여러 가지 밀가루를 골라 만들 수 있어요.",
+      "오늘날 가게에서 파는 밀가루는 대부분 롤러 제분 공장에서 만들어져요. 공장은 밀을 씻고, 물을 조금 먹여 껍질을 부드럽게 한 다음 갈아요. 만든 가루는 검사를 거쳐 봉지에 담겨 우리 부엌까지 와요."
+    ],
+    facts: [
+      { k: "하는 일", v: "밀알을 부수고 걸러 밀가루로 만듦" },
+      { k: "롤러 종류", v: "홈 롤러(쪼개기), 매끈한 롤러(곱게 갈기)" },
+      { k: "널리 퍼진 때", v: "19세기 후반" },
+      { k: "발달한 곳", v: "헝가리 등 유럽 → 미국·세계" },
+      { k: "함께 쓰는 장치", v: "체(가루 거르개)" },
+      { k: "만드는 것", v: "하얀 밀가루, 통밀가루, 밀기울" }
+    ],
+    words: [
+      { w: "제분", m: "곡식을 빻아 가루로 만드는 일이에요." },
+      { w: "롤러", m: "둥근 막대 모양으로 돌아가며 누르는 부품이에요." },
+      { w: "체", m: "고운 가루만 빠져나가게 거르는 그물 도구예요." }
+    ],
+    more: [
+      { t: "맷돌과 롤러 비교", d: "맷돌은 돌 두 개를 비벼 한 번에 갈아요. 롤러는 쇠 롤러로 여러 번 나눠 조금씩 부숴요. 그래서 롤러로 만든 밀가루가 더 하얗고 고와요." },
+      { t: "밀가루 공장의 하루", d: "밀은 먼저 돌과 먼지를 골라내고 깨끗이 씻어요. 물을 먹여 반나절~하루쯤 두면 껍질이 질겨져 잘 떨어져요. 그다음 롤러와 체를 여러 번 지나 밀가루가 돼요." }
+    ],
+    funFact: "롤러 제분은 한 번에 갈지 않고 여러 번 나누어 조금씩 부숴요.",
+    tryIt: "어른과 함께 지퍼백에 비스킷을 넣고 밀대로 살살 밀어 보세요. 롤러처럼 눌러서 가루가 되는 모습을 볼 수 있어요.",
+    related: ["H", "B", "E"]
+  }
+]);
+
+</script>
+<script>/* entries-v2-2.js */
+window.FLOUR_ENTRIES = (window.FLOUR_ENTRIES || []).concat([
+  {
+    letter: "J", word: "Jinmal", korean: "진말", emoji: "🍜",
+    category: "역사",
+    summary: "옛날 우리나라에서 밀가루를 부르던 이름이에요.",
+    body: [
+      "진말은 옛날 우리나라 사람들이 밀가루를 부르던 말이에요. 한자로 '참 진(眞)'과 '가루 말(末)'을 써요. 그러니까 '참된 가루'라는 뜻이에요.",
+      "조선 시대 요리책에도 '진말'이라는 말이 나와요. 약 350년 전에 장계향이라는 분이 쓴 『음식디미방』이 대표적이에요. 이 책에는 진말로 만두, 국수, 떡 같은 음식을 만드는 방법이 적혀 있어요.",
+      "우리 땅에서도 밀은 아주 오래전부터 길렀어요. 평안남도 미림리에서는 약 2천2백 년 전 밀이 나왔어요. 경주 반월성과 부여 부소산의 백제 군량 창고 터에서도 밀이 나왔어요. 군량은 군인들이 먹을 식량이에요. 일본의 밀 농사도 약 3~4세기에 우리나라에서 전해졌어요.",
+      "그래도 밀은 늘 적게 나서 아주 귀했어요. 밀은 가을에 심어 이른 여름에 거두는데, 장마와 겹치면 알곡이 상하기 쉬웠어요. 약 900년 전 고려에 온 송나라 사신 서긍도 『고려도경』에 적었어요. 고려에는 밀이 적어 밀가루가 아주 비싸다고요. 그래서 잔치 같은 큰일에만 썼다고 해요.",
+      "밀가루가 흔해진 것은 아주 최근이에요. 6·25 전쟁 뒤 미국에서 도움 물자(원조)로 밀이 많이 들어왔어요. 우리나라 제분 회사들이 이 밀을 빻아 밀가루를 만들었어요. 1960년에는 한 사람이 한 해에 밀가루를 약 13.8kg 먹었어요. 1967년 뒤로 '분식 장려 운동'이 벌어지고 빵 굽는 기술도 늘었어요. 그러자 1970년에는 약 26.1kg으로 두 배쯤 늘었어요.",
+      "옛날에는 귀한 국수를 결혼식이나 생일 같은 잔칫날에 먹었어요. 지금도 \"국수 언제 먹여 줄 거야?\"라는 말은 \"결혼 언제 해?\"라는 뜻이에요. 긴 국수처럼 오래오래 잘 살라는 바람이 담겨 있지요."
+    ],
+    facts: [
+      { k: "한자", v: "眞末 (참 진, 가루 말)" },
+      { k: "뜻", v: "참된 가루, 곧 밀가루" },
+      { k: "나오는 옛 책", v: "『음식디미방』(약 1670년 무렵)" },
+      { k: "흔해진 때", v: "6·25 전쟁 뒤 원조 밀이 들어오면서" },
+      { k: "오래된 밀 유적", v: "평남 미림리, 경주 반월성, 부여 부소산" },
+      { k: "우리나라 밀 자급률", v: "1965년 27% → 2020년 약 0.8%" }
+    ],
+    words: [
+      { w: "자급률", m: "먹는 것 가운데 우리나라에서 직접 길러 마련하는 몫이에요." },
+      { w: "사신", m: "나라의 심부름으로 다른 나라에 가는 사람이에요." },
+      { w: "분식", m: "밀가루 같은 가루로 만든 음식이에요. 국수, 빵, 만두가 있어요." },
+      { w: "원조", m: "어려운 나라를 돕기 위해 보내 주는 돈이나 물건이에요." }
+    ],
+    more: [
+      { t: "그때는 메밀국수가 더 흔했어요", d: "밀가루가 귀했던 시절에는 메밀가루로 국수를 많이 만들었어요. 메밀은 추운 산골에서도 잘 자라서 구하기 쉬웠어요. 평양냉면이나 막국수가 메밀국수의 전통을 이어 오고 있어요." },
+      { t: "우리밀은 지금 어디에?", d: "우리나라에서 먹는 밀가루는 대부분 미국, 호주, 캐나다 같은 나라에서 들여온 밀로 만들어요. 우리 밀이 줄어든 까닭도 있어요. 밀은 보리보다 열흘 넘게 늦게 거둬서 모내기(벼 심기)에 방해가 돼요. 값과 품질도 수입 밀과 겨루기 어려웠어요. 그래도 남부 지방 등에서 '우리밀'을 기르고 있어요." }
+    ],
+    funFact: "옛날에는 밀가루가 귀해서 메밀가루로 국수를 더 많이 만들었어요.",
+    tryIt: "할머니, 할아버지께 어릴 때 잔칫날 무엇을 먹었는지, 밀가루 음식을 언제 처음 먹었는지 여쭤보고 적어 봐요.",
+    related: ["M", "Q", "O"]
+  },
+  {
+    letter: "K", word: "Kneading", korean: "치대기(반죽하기)", emoji: "🤲",
+    category: "과정",
+    summary: "반죽을 누르고 접어 글루텐 그물을 만들어요.",
+    body: [
+      "치대기는 밀가루에 물을 넣고 손으로 꾹꾹 누르고 접는 일이에요. 처음에는 끈적끈적하고 잘 뜯어지던 반죽이 점점 매끈해져요. 이렇게 반죽을 다듬는 과정을 치대기라고 해요.",
+      "치대기 전 반죽은 울퉁불퉁하고 손에 잘 달라붙어요. 잘 치댄 반죽은 겉이 반들반들하고, 잡아당기면 고무줄처럼 늘어났다가 다시 돌아와요. 손가락으로 눌러도 천천히 다시 올라와요.",
+      "밀가루 속에는 '글리아딘'과 '글루테닌'이라는 두 가지 단백질이 있어요. 물을 만나 치대면 두 단백질이 서로 손을 잡고 길게 이어져요. 글루테닌은 튼튼하게 버티게 하고, 글리아딘은 잘 늘어나게 해요. 이렇게 생긴 그물을 '글루텐'이라고 불러요. 빵밀 단백질의 약 75~85%가 글루텐이에요.",
+      "오래 치댈수록 글루텐 줄이 더 많이 이어져서 더 쫄깃해져요. 물을 넉넉히 넣어도 글루텐이 잘 생겨요. 그래서 아주 질척한 반죽을 오래 부풀리면 치대지 않아도 빵이 돼요. 이런 빵을 '노니드(치대지 않는) 빵'이라고 해요. 오늘날 빵 공장에서는 커다란 반죽 기계가 치대기를 해요.",
+      "음식마다 치대는 정도가 달라요. 식빵, 피자, 베이글은 오래 치대서 쫄깃하게 만들어요. 칼국수와 수제비도 잘 치대야 쫄깃해요. 반대로 케이크, 쿠키, 튀김옷은 살살 섞어요. 파이 껍질에는 버터 같은 기름을 넣고 물은 적게, 덜 치대요. 기름이 글루텐 줄이 서로 붙는 것을 막아 바삭해져요.",
+      "반죽을 치댄 뒤에는 잠깐 쉬게 해요. 이것을 '휴지'라고 해요. 쉬는 동안 팽팽하던 글루텐이 느슨해져서 반죽을 밀거나 늘이기가 쉬워져요. 만두피나 칼국수 반죽을 밀기 전에 꼭 덮어 두는 까닭이에요."
+    ],
+    facts: [
+      { k: "목적", v: "글루텐 그물 만들기" },
+      { k: "관련 단백질", v: "글리아딘(늘어남), 글루테닌(버팀)" },
+      { k: "잘 됐는지 보는 법", v: "얇게 늘여 막이 생기는지 보기" },
+      { k: "많이 치대는 음식", v: "식빵, 칼국수, 수제비, 수타면" },
+      { k: "적게 섞는 음식", v: "케이크, 쿠키, 튀김옷, 파이 껍질" },
+      { k: "글루텐을 막는 것", v: "버터·기름 (그물이 덜 생겨 바삭해짐)" }
+    ],
+    words: [
+      { w: "글루텐", m: "밀가루 단백질이 물을 만나 생기는 쫄깃한 그물이에요." },
+      { w: "탄력", m: "눌렀다 놓으면 다시 돌아오려는 힘이에요." },
+      { w: "휴지", m: "반죽을 덮어서 잠깐 쉬게 두는 일이에요." }
+    ],
+    more: [
+      { t: "얇은 막 시험", d: "잘 치댄 빵 반죽을 손가락으로 살살 펴면 빛이 비칠 만큼 얇은 막이 생겨요. 찢어지지 않고 늘어나면 글루텐이 잘 생긴 거예요. 빵 만드는 사람들이 반죽이 다 됐는지 확인할 때 쓰는 방법이에요." },
+      { t: "소금이 하는 일", d: "반죽에 소금을 조금 넣으면 글루텐 그물이 더 단단해져요. 그래서 칼국수나 우동 반죽에 소금물을 쓰기도 해요. 소금은 맛도 내지만 반죽의 힘도 길러 줘요." }
+    ],
+    funFact: "잘 치댄 반죽은 얇게 늘이면 빛이 비칠 만큼 얇은 막이 생겨요.",
+    tryIt: "어른과 함께 밀가루와 물로 작은 반죽을 두 개 만들어, 하나는 1분, 하나는 10분 치댄 뒤 얼마나 늘어나는지 비교해 봐요. 날반죽은 맛보지 말고, 다 하면 손을 깨끗이 씻어요.",
+    related: ["L", "P"]
+  },
+  {
+    letter: "L", word: "Leavening", korean: "부풀리기", emoji: "🎈",
+    category: "기능",
+    summary: "반죽 속에 공기 방울을 만들어 부풀려요.",
+    body: [
+      "부풀리기는 반죽 속에 작은 공기 방울을 만들어 크게 만드는 일이에요. 빵, 케이크, 찐빵이 폭신한 까닭이 바로 이 공기 방울 덕분이에요. 부풀리는 데 쓰는 재료를 '팽창제'라고 해요.",
+      "팽창제는 크게 세 가지가 있어요. 첫째는 이스트처럼 살아 있는 생물이에요. 둘째는 베이킹파우더나 베이킹소다 같은 가루예요. 셋째는 달걀을 세게 저어 넣는 공기나, 반죽 속 물이 끓어서 생기는 수증기예요.",
+      "이스트는 눈에 안 보일 만큼 작은 생물로, 곰팡이와 같은 무리(균류)예요. 빵에 흔히 쓰는 효모는 '맥주효모균'으로, 술을 만드는 효모와 같은 종이에요. 반죽 속 당분을 먹고 이산화탄소라는 기체를 내뿜어요. 따뜻한 곳(약 25~35℃)에서 가장 힘차게 일하고, 너무 뜨거우면(약 60℃ 넘게) 죽어요. 베이킹파우더는 물과 열을 만나면 거품을 만들어요.",
+      "옛날 사람들은 반죽을 놓아두면 저절로 부푼다는 것을 먼저 알았어요. 곡식 겉에 붙은 효모가 반죽에 섞여 들어갔기 때문이에요. 그래서 옛날 발효빵은 모두 발효종(사워도우)으로 만들었어요. 효모가 하는 일은 1800년대에 와서야 밝혀졌어요. 1845년 영국의 헨리 존스는 팽창제를 미리 섞은 밀가루를 만들어 특허를 냈어요.",
+      "생긴 기체는 글루텐 그물이 풍선처럼 붙잡아 줘요. 오븐에 넣으면 반죽 속 물이 수증기로 바뀌며 빵을 크게 부풀려요. 오븐 속 부풀기는 사실 이 수증기 몫이 가장 커요. 열 때문에 효모는 곧 죽고, 글루텐과 전분이 굳어 모양이 남아요. 빵을 잘라 보면 보이는 작은 구멍들이 그 흔적이에요.",
+      "음식마다 쓰는 팽창제가 달라요. 식빵과 찐빵은 이스트, 머핀과 팬케이크는 베이킹파우더를 써요. 카스텔라는 달걀 거품으로, 슈크림 껍질은 수증기로 부풀어요. 우리나라 술빵은 막걸리 속 효모로 부풀린 빵이에요."
+    ],
+    facts: [
+      { k: "생물 팽창제", v: "이스트(주로 맥주효모균), 천연 발효종" },
+      { k: "화학 팽창제", v: "베이킹파우더, 베이킹소다" },
+      { k: "물리 팽창", v: "달걀 거품, 수증기" },
+      { k: "부풀리는 기체", v: "이산화탄소, 오븐에서는 수증기" },
+      { k: "이스트가 좋아하는 온도", v: "약 25~35℃" },
+      { k: "부풀리지 않은 빵", v: "차파티(인도), 토르티야(멕시코)" }
+    ],
+    words: [
+      { w: "팽창제", m: "반죽을 부풀게 하는 재료예요." },
+      { w: "이산화탄소", m: "우리가 숨 쉴 때 내뱉는 기체예요. 콜라의 톡 쏘는 거품도 이것이에요." },
+      { w: "효모", m: "이스트의 우리말 이름이에요. 아주 작은 생물로, 당분을 먹고 기체를 만들어요." },
+      { w: "발효", m: "작은 생물이 음식을 먹고 바꾸어 놓는 일이에요. 김치와 된장도 발효 음식이에요." }
+    ],
+    more: [
+      { t: "베이킹소다와 베이킹파우더는 달라요", d: "베이킹소다는 신맛 나는 재료(요구르트, 레몬즙 등)를 만나야 거품이 나요. 베이킹파우더는 소다에 신맛 가루와 전분을 미리 섞어 둔 것이라 물만 있어도 일해요. 그래서 요리법에 적힌 대로 바꿔 쓰지 않는 게 좋아요." },
+      { t: "천연 발효종(사워도우)", d: "밀가루와 물을 섞어 며칠 두면 공기와 가루 속 효모와 유산균이 자라요. 이것을 키워 빵을 부풀리면 살짝 시큼한 맛이 나요. 이스트를 따로 사서 쓰기 전에는 사람들이 이렇게 빵을 만들었어요." }
+    ],
+    funFact: "부풀리지 않은 납작한 빵도 있어요. 인도의 차파티나 멕시코의 토르티야가 그래요.",
+    tryIt: "어른과 함께 컵 두 개에 물을 붓고 한쪽에만 베이킹파우더를 한 숟가락 넣어 거품을 비교해 봐요. 마시지 말고 관찰만 해요.",
+    related: ["K", "O", "P"]
+  },
+  {
+    letter: "M", word: "Milling", korean: "제분", emoji: "⚙️",
+    category: "과정",
+    summary: "밀알을 갈아서 고운 밀가루로 만드는 일이에요.",
+    body: [
+      "제분은 단단한 밀알을 갈아서 가루로 만드는 일이에요. 밀가루를 만드는 공장을 '제분 공장'이라고 불러요. 우리가 쓰는 밀가루는 모두 이 과정을 거쳐요.",
+      "밀알 한 알은 세 부분으로 되어 있어요. 겉껍질인 밀기울이 약 14%, 싹이 트는 씨눈이 약 2~3%, 하얀 속살인 배젖이 약 83%예요. 흰 밀가루는 주로 이 배젖으로 만들어요.",
+      "제분은 여러 단계로 해요. 먼저 돌과 먼지를 골라내요. 그다음 물을 살짝 뿌려 하루쯤 두어요. 그러면 껍질은 질겨져서 잘 안 부서지고, 속살은 잘 부서져요. 이제 롤러라는 쇠 바퀴 사이로 밀을 지나가게 해서 조금씩 부숴요. 체로 거르면 껍질은 걸러지고 하얀 가루만 아래로 떨어져요.",
+      "옛날에는 돌 두 개 사이에 밀을 넣고 손으로 갈았어요. 그 뒤에는 물레방아나 풍차의 힘으로 큰 맷돌을 돌렸어요. 약 150년 전 헝가리 등에서 쇠 롤러로 가는 방법이 널리 퍼지면서, 하얗고 고운 밀가루를 많이 만들 수 있게 됐어요.",
+      "어떻게 가느냐에 따라 밀가루가 달라져요. 속살만 곱게 갈면 흰 밀가루예요. 껍질과 씨눈까지 함께 갈면 갈색빛 통밀가루가 돼요. 단단한 듀럼밀을 굵게 갈면 파스타를 만드는 '세몰리나'가 돼요.",
+      "제분할 때 나오는 밀기울은 버리지 않아요. 시리얼이나 동물 먹이로 쓰여요. 밀 100에서 흰 밀가루는 약 70~75쯤 나와요. 이렇게 얼마나 가루가 나오는지를 '제분율'이라고 해요."
+    ],
+    facts: [
+      { k: "밀알 구성", v: "배젖 약 83%, 밀기울 약 14%, 씨눈 약 2~3%" },
+      { k: "흰 밀가루 제분율", v: "약 70~75%" },
+      { k: "주요 기계", v: "롤러(쇠 바퀴), 체" },
+      { k: "옛날 도구", v: "갈돌, 맷돌, 물레방아, 풍차" },
+      { k: "나오는 것", v: "흰 밀가루, 통밀가루, 세몰리나, 밀기울" },
+      { k: "롤러 제분이 퍼진 때", v: "약 150년 전(1800년대 후반)" }
+    ],
+    words: [
+      { w: "배젖", m: "밀알 속 하얀 속살이에요. 싹이 자랄 때 먹을 양분이 저장돼 있어요." },
+      { w: "밀기울", m: "밀알의 갈색 겉껍질이에요." },
+      { w: "제분율", m: "밀을 갈았을 때 밀가루가 얼마나 나오는지를 나타낸 비율이에요." }
+    ],
+    more: [
+      { t: "갓 간 밀가루는 바로 안 써요", d: "갓 빻은 밀가루는 반죽 힘이 조금 약해요. 그래서 공장에서는 며칠에서 몇 주쯤 두었다가 내보내기도 해요. 공기와 만나며 반죽이 더 잘 되는 밀가루로 바뀌어요." },
+      { t: "밀가루 먼지 조심", d: "밀가루 가루가 공기 중에 아주 많이 날리면 불꽃에 '펑' 하고 터질 수 있어요. 그래서 제분 공장은 먼지를 빨아들이고 불을 아주 조심해요. 집에서도 가스불 근처에서 밀가루를 털지 않는 게 좋아요." }
+    ],
+    funFact: "밀알 한 알은 껍질, 씨눈, 속살(배젖)로 나뉘고, 흰 밀가루는 주로 속살로 만들어요.",
+    tryIt: "체에 밀가루와 통밀가루를 각각 쳐 보고, 체 위에 남은 알갱이를 돋보기로 관찰해 봐요. 날가루는 맛보지 않아요.",
+    related: ["Q", "N", "J"]
+  },
+  {
+    letter: "N", word: "Nutrition", korean: "영양", emoji: "💪",
+    category: "영양·대체",
+    summary: "밀가루에는 힘을 내는 영양소가 들어 있어요.",
+    body: [
+      "밀가루에 가장 많이 든 영양소는 탄수화물이에요. 탄수화물은 우리 몸이 뛰고 생각할 때 쓰는 연료예요. 그 밖에 몸을 만드는 단백질도 조금 들어 있어요.",
+      "흰 밀가루 100g에는 탄수화물이 약 73~76g 들어 있어요. 대부분은 '전분'이라는 형태예요. 단백질은 약 8~13g, 지방은 약 1~2g이고, 나머지는 물이 약 13~14%예요. 에너지는 약 350~365kcal쯤이에요.",
+      "왜 흰 밀가루와 통밀가루의 영양이 다를까요? 영양소가 밀알 곳곳에 다르게 들어 있기 때문이에요. 하얀 속살에는 주로 전분과 단백질이 있어요. 껍질에는 식이섬유와 무기질이, 씨눈에는 비타민과 좋은 기름이 많아요. 흰 밀가루는 껍질과 씨눈을 걸러 내서 이런 영양소가 줄어들어요.",
+      "흰 밀가루가 널리 퍼지자 몇몇 나라에서는 줄어든 영양을 다시 채우기 시작했어요. 미국 등에서는 밀가루에 철분과 비타민 B를 넣은 '강화 밀가루'를 많이 써요. 엽산이라는 비타민을 넣도록 정한 나라도 있어요.",
+      "통밀가루 100g에는 식이섬유가 약 10~12g 들어 있어요. 흰 밀가루(약 2~3g)보다 몇 배나 많아요. 그래서 통밀빵은 색이 진하고 거칠지만 배가 더 오래 불러요. 식이섬유는 장을 깨끗이 청소해 주는 빗자루 같은 일을 해요.",
+      "어떤 사람은 밀을 먹으면 몸이 아파요. 밀 알레르기가 있는 사람, 그리고 글루텐 때문에 장이 다치는 '셀리악병'이 있는 사람이에요. 우리나라는 과자나 빵 봉지에 '밀 함유'를 꼭 적게 하고 있어요. 이런 사람들은 의사 선생님과 상의해서 쌀가루 같은 다른 가루를 써요."
+    ],
+    facts: [
+      { k: "에너지(흰 밀가루 100g)", v: "약 350~365kcal" },
+      { k: "탄수화물", v: "약 73~76g (대부분 전분)" },
+      { k: "단백질", v: "약 8~13g (종류마다 다름)" },
+      { k: "지방", v: "약 1~2g" },
+      { k: "식이섬유", v: "흰 밀가루 약 2~3g, 통밀가루 약 10~12g" },
+      { k: "알레르기 표시", v: "우리나라 표시 의무 성분" }
+    ],
+    words: [
+      { w: "탄수화물", m: "몸에 힘을 주는 영양소예요. 밥, 빵, 국수에 많아요." },
+      { w: "전분", m: "식물이 양분을 모아 둔 하얀 가루예요. 녹말이라고도 해요." },
+      { w: "식이섬유", m: "몸에서 잘 소화되지 않지만 장을 건강하게 해 주는 성분이에요." },
+      { w: "셀리악병", m: "글루텐을 먹으면 장이 다치는 병이에요. 평생 글루텐을 피해야 해요." }
+    ],
+    more: [
+      { t: "영양 성분표 읽는 법", d: "밀가루 봉지 뒷면에는 영양 성분표가 있어요. 맨 위에 몇 g을 기준으로 적었는지 먼저 보세요. 그다음 탄수화물, 단백질, 식이섬유 숫자를 다른 밀가루와 비교하면 차이를 알 수 있어요." },
+      { t: "오해와 진실: 밀가루는 나쁜 음식?", d: "밀가루 자체가 나쁜 음식은 아니에요. 다만 흰 밀가루로 만든 과자, 빵만 많이 먹으면 다른 영양소가 모자랄 수 있어요. 채소, 고기, 과일과 골고루 먹는 것이 가장 중요해요." }
+    ],
+    funFact: "밀가루 봉지 뒤에는 영양 성분표가 있어서 무엇이 얼마나 들었는지 알 수 있어요.",
+    tryIt: "집에 있는 흰 밀가루와 통밀가루(또는 통밀빵) 봉지의 영양 성분표에서 식이섬유 숫자를 찾아 표로 비교해 봐요.",
+    related: ["R", "M", "P"]
+  },
+  {
+    letter: "O", word: "Old Egypt bread", korean: "고대 이집트의 빵", emoji: "🏺",
+    category: "역사",
+    summary: "고대 이집트 사람들은 부푼 빵을 즐겨 먹었어요.",
+    body: [
+      "고대 이집트는 약 5천 년 전 아프리카의 나일강 옆에 있던 나라예요. 이집트 사람들은 밀과 보리를 길러 빵을 아주 많이 먹었어요. 부풀린 빵을 즐겨 먹은 옛날 사람들 가운데 하나로 잘 알려져 있어요.",
+      "이집트 사람들이 주로 기른 밀은 '엠머밀'이에요. 오늘날 우리가 먹는 빵밀보다 껍질이 단단히 붙어 있는 옛날 밀이에요. 빵 모양도 둥근 것, 납작한 것, 길쭉한 것, 동물 모양 등 아주 여러 가지였어요. 꿀이나 대추야자, 깨를 넣어 맛을 내기도 했어요.",
+      "나일강은 해마다 넘쳐서 강가에 기름진 흙을 남겼어요. 그 덕분에 밀이 잘 자랐어요. 반죽을 놓아두면 공기와 곡식 속에 있던 효모가 자라 저절로 부풀어요. 이집트 사람들은 이렇게 부푼 반죽을 진흙 화덕이나 종 모양의 틀에 넣어 구웠어요.",
+      "기자의 피라미드 근처에서는 일꾼들이 살던 마을과 빵 굽던 곳의 흔적이 발견됐어요. 일꾼들은 빵과 맥주를 받으며 일했다고 알려져 있어요. 무덤 벽화에는 밀을 갈고 반죽하고 빵을 굽는 모습이 차례대로 그려져 있어요. 람세스 3세 무덤의 벽화에도 왕궁의 빵집 모습이 남아 있어요.",
+      "이집트의 빵은 오늘날 빵과 달랐어요. 돌로 곡식을 갈아서 가루에 작은 모래와 돌가루가 섞였어요. 그래서 이 빵을 오래 먹은 사람들의 이가 많이 닳았다는 것이 미라 연구로 밝혀졌어요. 맛보다 배를 채우는 게 더 중요했던 음식이었어요.",
+      "이집트의 빵 만드는 지혜는 그리스와 로마로 전해졌어요. 로마에는 큰 빵집이 생겼고, 그 뒤 유럽 곳곳으로 퍼졌어요. 지금 이집트에서는 '에이시'라는 둥글고 납작한 빵을 매일 먹어요. '에이시'는 이집트 말로 '삶'이라는 뜻과도 이어져 있어요."
+    ],
+    facts: [
+      { k: "시대", v: "약 5천 년 전부터" },
+      { k: "장소", v: "아프리카 나일강 주변" },
+      { k: "주로 쓴 곡식", v: "엠머밀, 보리" },
+      { k: "굽는 도구", v: "진흙 화덕, 종 모양 틀" },
+      { k: "증거", v: "무덤 벽화, 피라미드 일꾼 마을 빵집 터, 남아 있는 빵 덩어리" },
+      { k: "지금의 이집트 빵", v: "에이시 (둥글고 납작한 빵)" }
+    ],
+    words: [
+      { w: "엠머밀", m: "아주 오래전부터 기른 옛날 밀이에요. 껍질이 단단히 붙어 있어요." },
+      { w: "벽화", m: "벽에 그린 그림이에요. 옛날 사람들의 생활을 알려 줘요." },
+      { w: "미라", m: "죽은 사람의 몸을 썩지 않게 처리해 둔 것이에요. 옛날 사람의 건강을 연구하는 데 쓰여요." }
+    ],
+    more: [
+      { t: "빵과 맥주는 형제 음식", d: "고대 이집트에서는 빵과 맥주를 같은 곡식으로 만들었어요. 둘 다 효모가 일을 해야 만들어지는 발효 음식이에요. 그래서 빵집과 맥주 만드는 곳이 함께 있는 경우가 많았어요." },
+      { t: "빵은 돈처럼 쓰였어요", d: "옛날 이집트에는 지금 같은 돈이 널리 쓰이지 않았어요. 그래서 일한 값을 빵이나 곡식으로 주는 일이 많았어요. 빵은 먹을거리이면서 생활을 지키는 중요한 재산이었어요." }
+    ],
+    funFact: "이집트 무덤에서는 수천 년 된 빵 덩어리가 발견되기도 했어요. 지금도 박물관에서 볼 수 있어요.",
+    tryIt: "도서관이나 박물관 누리집에서 고대 이집트 벽화 그림을 찾아보고, 빵 만드는 장면을 순서대로 그려 봐요.",
+    related: ["L", "Q", "J"]
+  },
+  {
+    letter: "P", word: "Protein content", korean: "단백질 함량", emoji: "📊",
+    category: "종류",
+    summary: "단백질 양에 따라 밀가루 종류가 나뉘어요.",
+    body: [
+      "단백질 함량은 밀가루 속에 단백질이 얼마나 들어 있는지를 말해요. 이 양에 따라 밀가루를 강력분, 중력분, 박력분으로 나눠요. 봉지에 적힌 이름을 보면 어떤 밀가루인지 알 수 있어요.",
+      "강력분은 단백질이 약 11~14%로 가장 많아요. 중력분은 약 9~11%로 중간이에요. 박력분은 약 7~9%로 가장 적어요. 손으로 쥐어 보면 강력분은 보슬보슬 잘 흩어지고, 박력분은 부드럽게 뭉쳐져요.",
+      "단백질이 많을수록 왜 쫄깃할까요? 밀가루 단백질의 대부분은 물을 만나면 글루텐이 돼요. 단백질이 많으면 글루텐 그물이 더 많고 튼튼하게 생겨요. 튼튼한 그물은 빵 속 기체를 잘 붙잡아서 빵이 높이 부풀어요.",
+      "밀가루의 단백질 양은 어떤 밀을 쓰느냐에 따라 달라요. 알이 단단한 '경질밀'은 단백질이 많아 강력분이 돼요. 알이 무른 '연질밀'은 단백질이 적어 박력분이 돼요. '강력분', '박력분'이라는 이름은 일본에서 쓰던 말이 우리나라에 들어온 거예요.",
+      "다른 곡식 가루와 비교해 볼까요? 파스타를 만드는 듀럼밀 가루는 단백질이 약 12~15%로 많고 노란빛이에요. 쌀가루는 단백질이 약 6~7%이고 글루텐이 생기지 않아요. 그래서 쌀가루만으로는 빵이 잘 부풀지 않아요.",
+      "그래서 만들 음식에 맞춰 밀가루를 골라요. 쫄깃한 식빵과 피자에는 강력분을 써요. 칼국수, 수제비, 부침개, 만두피에는 중력분을 써요. 바삭한 튀김옷, 폭신한 케이크, 쿠키에는 박력분을 써요."
+    ],
+    facts: [
+      { k: "강력분", v: "단백질 약 11~14% · 빵, 피자" },
+      { k: "중력분", v: "단백질 약 9~11% · 국수, 부침개, 만두" },
+      { k: "박력분", v: "단백질 약 7~9% · 케이크, 쿠키, 튀김" },
+      { k: "듀럼밀 가루", v: "단백질 약 12~15% · 파스타" },
+      { k: "원료 밀", v: "경질밀(강력분), 연질밀(박력분)" },
+      { k: "확인하는 곳", v: "봉지 뒷면 영양 성분표" }
+    ],
+    words: [
+      { w: "단백질", m: "몸을 만드는 영양소예요. 밀가루에서는 글루텐의 재료가 돼요." },
+      { w: "함량", m: "어떤 것 속에 무엇이 얼마나 들어 있는지를 말해요." },
+      { w: "경질밀", m: "알이 단단하고 단백질이 많은 밀이에요." },
+      { w: "연질밀", m: "알이 무르고 단백질이 적은 밀이에요." }
+    ],
+    more: [
+      { t: "강력분이 없을 때는?", d: "집에 중력분만 있어도 빵을 만들 수는 있어요. 다만 강력분보다 덜 부풀고 덜 쫄깃해요. 반대로 케이크를 중력분으로 만들면 조금 더 단단하고 질겨질 수 있어요." },
+      { t: "같은 강력분도 조금씩 달라요", d: "같은 이름이라도 회사와 밀의 원산지에 따라 단백질 양이 조금씩 달라요. 그래서 빵을 만드는 사람들은 봉지의 숫자를 꼭 확인해요. 물의 양도 밀가루에 따라 조금씩 바꿔요." }
+    ],
+    funFact: "'강력'은 힘이 세다는 뜻이고, '박력'의 '박(薄)'은 엷다는 뜻이에요.",
+    tryIt: "강력분과 박력분을 한 줌씩 꽉 쥐었다 펴 보고, 어느 쪽이 더 잘 뭉치는지 비교해 봐요. 날가루는 맛보지 말고 다 하면 손을 씻어요.",
+    related: ["K", "L", "N"]
+  },
+  {
+    letter: "Q", word: "Quern", korean: "손맷돌", emoji: "🪨",
+    category: "역사",
+    summary: "돌 두 개로 곡식을 갈던 옛날 도구예요.",
+    body: [
+      "손맷돌은 돌 두 개 사이에 곡식을 넣고 갈아서 가루로 만드는 도구예요. 기계가 없던 옛날에는 이것으로 밀가루를 만들었어요. 우리나라의 맷돌도 손맷돌의 한 가지예요.",
+      "우리나라 맷돌은 둥근 돌 두 짝을 위아래로 포갠 모양이에요. 아래짝 가운데에는 짧은 쇠막대(중쇠)가 박혀 있어서 위짝이 빠지지 않고 돌아가요. 위짝에는 곡식을 넣는 구멍과 손으로 잡고 돌리는 나무 손잡이(맷손)가 있어요. 두 돌이 맞닿는 면에는 홈이 파여 있어요.",
+      "위짝을 빙글빙글 돌리면 곡식이 두 돌 사이로 들어가 눌리고 비벼져요. 돌 면의 홈이 곡식을 잘게 부수고, 부서진 가루를 바깥쪽으로 밀어내요. 그래서 맷돌 가장자리로 가루가 소복이 나와요. 돌 사이를 좁히면 더 고운 가루가 돼요.",
+      "가장 오래된 방법은 넓적한 돌(갈판) 위에 곡식을 놓고 작은 돌(갈돌)로 밀어서 가는 것이었어요. 우리나라 신석기 시대 유적에서도 갈돌과 갈판이 나왔어요. 둥근 돌을 돌리는 맷돌은 그보다 훨씬 뒤인 약 2천여 년 전부터 널리 쓰였어요.",
+      "손맷돌은 점점 더 큰 맷돌로 발전했어요. 로마 시대에는 당나귀가 돌리는 큰 맷돌이 있었어요. 그 뒤 물레방아와 풍차가 맷돌을 돌렸고, 지금은 쇠 롤러가 달린 기계가 그 일을 해요. 손맷돌은 모든 제분 기계의 할아버지인 셈이에요.",
+      "우리나라에서는 맷돌을 밀가루보다 콩과 녹두를 가는 데 더 많이 썼어요. 불린 콩을 갈아 두부와 콩국을 만들고, 녹두를 갈아 빈대떡을 부쳤어요. 맷돌로 가루를 내는 일은 시간도 오래 걸리고 힘도 많이 들었어요. 그래서 옛날에는 가루 음식이 귀했어요."
+    ],
+    facts: [
+      { k: "재료", v: "단단한 돌 (우리나라는 주로 화강암)" },
+      { k: "구조", v: "위짝·아래짝, 중쇠, 맷손, 곡식 넣는 구멍" },
+      { k: "가장 오래된 형태", v: "갈돌과 갈판 (신석기 시대)" },
+      { k: "돌리는 맷돌이 퍼진 때", v: "약 2천여 년 전부터" },
+      { k: "발전 순서", v: "갈돌 → 손맷돌 → 동물·물레방아·풍차 → 롤러 기계" },
+      { k: "우리나라에서 갈던 것", v: "콩(두부), 녹두(빈대떡), 메밀, 밀" }
+    ],
+    words: [
+      { w: "갈판", m: "곡식을 올려놓고 가는 넓적한 돌이에요." },
+      { w: "중쇠", m: "맷돌 가운데에 박힌 쇠막대예요. 위짝이 그 둘레를 돌아요." },
+      { w: "신석기 시대", m: "사람들이 돌을 갈아 도구를 만들고 농사를 시작한 아주 옛날이에요." }
+    ],
+    more: [
+      { t: "'어처구니가 없다'의 오해와 진실", d: "흔히 맷돌 손잡이를 '어처구니'라고 해서, 손잡이가 없어 황당하다는 뜻이라는 이야기가 퍼져 있어요. 하지만 국어사전에서 어처구니는 '엄청나게 큰 사람이나 물건'이라는 뜻이에요. 맷돌 손잡이의 이름은 '맷손'이고, 어처구니라는 말은 확실한 근거가 없어요." },
+      { t: "세계의 맷돌", d: "곡식을 가는 돌은 세계 곳곳에서 쓰였어요. 멕시코에서는 '메타테'라는 돌판에 옥수수를 갈아 토르티야를 만들어요. 유럽에서는 맷돌을 크게 만들어 물레방아와 풍차로 돌렸어요." }
+    ],
+    funFact: "우리나라 신석기 시대 유적에서도 곡식을 갈던 '갈돌과 갈판'이 나왔어요.",
+    tryIt: "어른과 함께 깨끗한 돌 두 개나 절구로 쌀 몇 알을 갈아 보며 얼마나 힘든지 느껴 봐요. 간 가루는 맛보지 않아요.",
+    related: ["M", "J", "O"]
+  },
+  {
+    letter: "R", word: "Rye flour", korean: "호밀가루", emoji: "🌾",
+    category: "영양·대체",
+    summary: "밀과 친척인 호밀을 갈아 만든 가루예요.",
+    body: [
+      "호밀가루는 호밀이라는 곡식을 갈아서 만든 가루예요. 호밀은 밀, 보리와 같은 벼과 식물로 밀의 가까운 친척이에요. 영어로는 '라이(rye)'라고 해요.",
+      "호밀은 밀보다 키가 크고 이삭이 길쭉해요. 호밀가루는 밀가루보다 색이 어두운 회색빛이나 갈색이에요. 맛은 시큼하면서도 고소해요. 통호밀가루에는 식이섬유가 흰 밀가루보다 몇 배 많아요.",
+      "호밀가루로는 왜 빵이 잘 안 부풀까요? 호밀에도 단백질이 있지만, 밀처럼 튼튼한 글루텐 그물을 만들지 못해요. 대신 물을 많이 빨아들여 끈적해지는 성분(펜토산)이 많아요. 그래서 호밀빵은 묵직하고 촘촘해요. 사람들은 시큼한 발효종(사워도우)을 써서 호밀 반죽이 잘 굳고 맛있어지게 해요.",
+      "호밀은 원래 서아시아의 밀밭에서 자라던 잡초였다고 해요. 밀이 추운 북쪽 지방으로 퍼질 때 함께 따라갔어요. 밀은 얼어 죽어도 호밀은 추위를 잘 견뎌서 살아남았어요. 그래서 호밀은 북쪽 나라 사람들의 중요한 곡식이 됐어요.",
+      "지금도 독일, 폴란드, 러시아, 핀란드 같은 추운 나라에서 호밀빵을 많이 먹어요. 독일의 '품퍼니켈'은 아주 진하고 묵직한 호밀빵이에요. 북유럽에는 바삭하게 구운 납작한 호밀빵도 있어요. 호밀은 위스키를 만드는 데에도 쓰여요.",
+      "우리나라에서도 빵집에서 진한 갈색 '호밀빵'을 볼 수 있어요. 보통은 호밀가루에 밀가루를 섞어서 더 잘 부풀게 만들어요. 호밀에도 글루텐과 비슷한 성분이 있어서 셀리악병이 있는 사람은 먹지 않아요. 궁금하면 의사 선생님께 여쭤봐요."
+    ],
+    facts: [
+      { k: "식물 분류", v: "벼과, 밀의 가까운 친척" },
+      { k: "잘 자라는 곳", v: "춥고 메마른 땅" },
+      { k: "많이 먹는 나라", v: "독일, 폴란드, 러시아, 핀란드 등" },
+      { k: "특징", v: "글루텐이 약해 덜 부풂, 물을 많이 머금음" },
+      { k: "관련 음식", v: "호밀빵, 품퍼니켈, 납작 호밀빵, 호밀 위스키" },
+      { k: "주의", v: "글루텐 비슷한 성분이 있어 셀리악병 환자는 피함" }
+    ],
+    words: [
+      { w: "벼과", m: "벼, 밀, 보리, 옥수수처럼 줄기가 마디로 된 풀 무리예요." },
+      { w: "펜토산", m: "호밀에 많은 성분으로, 물을 많이 빨아들여 반죽을 끈적하게 해요." },
+      { w: "사워도우", m: "밀가루나 호밀가루를 물과 섞어 키운 시큼한 발효 반죽이에요." }
+    ],
+    more: [
+      { t: "호밀과 맥각병", d: "옛날 유럽에서는 축축한 날씨에 호밀에 '맥각'이라는 곰팡이가 생기곤 했어요. 이 곰팡이가 핀 호밀을 먹은 사람들은 크게 아팠어요. 지금은 곡식을 꼼꼼히 골라내고 검사해서 이런 일이 거의 없어요." },
+      { t: "호밀빵을 맛있게 먹는 법", d: "호밀빵은 얇게 썰어 먹는 게 좋아요. 시큼하고 묵직한 맛이 치즈, 버터, 훈제 연어와 잘 어울려요. 구운 지 하루쯤 지나야 속이 자리를 잡아 썰기 좋다고 해요." }
+    ],
+    funFact: "호밀빵은 물을 잘 머금어서 흰 빵보다 오래 촉촉해요.",
+    tryIt: "빵집에서 흰 식빵과 호밀빵을 사서 색, 무게, 구멍 크기를 나란히 놓고 비교해 봐요. 빵 자르기는 어른과 함께 해요.",
+    related: ["N", "P", "L"]
+  }
+]);
+
+</script>
+<script>/* entries-v2-3.js */
+window.FLOUR_ENTRIES = (window.FLOUR_ENTRIES || []).concat([
+  {
+    letter: "S", word: "Starch", korean: "전분", emoji: "🔬",
+    category: "구조·과학",
+    summary: "밀가루의 대부분을 차지하는 에너지 알갱이예요.",
+    body: [
+      "전분은 식물이 에너지를 모아 두는 창고 같은 물질이에요. 밀가루 무게의 약 70%가 전분이에요. 밀가루에서 가장 많은 성분이에요. 쌀, 감자, 옥수수에도 전분이 많아요.",
+      "전분은 아주 작은 알갱이 모양이에요. 밀 전분 알갱이는 아주 작아서 현미경으로만 보여요. 크기가 약 0.001~0.035mm예요. 전분은 포도당이라는 작은 당이 수백, 수천 개 이어진 사슬로 되어 있어요. 길게 쭉 이어진 사슬은 '아밀로오스'예요. 나뭇가지처럼 갈라진 사슬은 '아밀로펙틴'이에요. 밀 전분은 아밀로오스가 약 25%, 아밀로펙틴이 약 75%예요.",
+      "전분 알갱이는 찬물에서는 거의 변하지 않아요. 물과 함께 약 60℃ 안팎으로 데워지면 물을 빨아들여 퉁퉁 부풀고 말랑해져요. 이것을 '호화'라고 해요. 반대로 익은 전분이 식으면서 다시 단단하게 뭉치는 것은 '노화'라고 해요. 노화는 냉장고 온도쯤에서 가장 빨리 일어나요.",
+      "사람은 아주 오래전부터 전분을 써 왔어요. 고대 이집트 사람들은 밀 전분으로 만든 풀을 파피루스 종이를 붙이는 데 썼다고 알려져 있어요. 지금도 전분은 음식뿐 아니라 종이, 풀, 옷감을 빳빳하게 하는 데에도 쓰여요.",
+      "밀 전분은 감자 전분이나 옥수수 전분과 조금 달라요. 감자 전분은 알갱이가 커서 더 투명하고 쫀득하게 굳어요. 옥수수 전분은 맑은 소스를 만들 때 많이 써요. 밀가루는 전분 말고도 단백질이 약 7~14% 들어 있어서 국물이 조금 뿌옇게 걸쭉해져요.",
+      "빵 속이 폭신하고, 수제비와 칼국수가 말랑한 것은 전분이 호화되었기 때문이에요. 우리가 먹은 전분은 몸속에서 포도당으로 바뀌어 뇌와 근육이 쓰는 에너지가 돼요. 탄수화물 1g은 약 4kcal의 에너지를 내요."
+    ],
+    facts: [
+      { k: "밀가루 속 비율", v: "약 70% (가장 많은 성분)" },
+      { k: "구성", v: "포도당 사슬: 아밀로오스 약 25% + 아밀로펙틴 약 75%" },
+      { k: "알갱이 크기", v: "약 0.001~0.035mm (현미경으로 보여요)" },
+      { k: "호화 시작 온도", v: "물과 함께 약 60℃ 안팎" },
+      { k: "에너지", v: "1g당 약 4kcal" },
+      { k: "관련 음식", v: "빵, 국수, 수제비, 떡, 크림수프" }
+    ],
+    words: [
+      { w: "호화", m: "전분이 물과 열을 만나 부풀고 말랑해지는 일이에요. 생쌀이 밥이 되는 것도 호화예요." },
+      { w: "노화", m: "익은 전분이 식으면서 다시 딱딱하게 뭉치는 일이에요. 식은 빵이나 떡이 굳는 이유예요." },
+      { w: "포도당", m: "가장 기본이 되는 작은 당이에요. 우리 몸이 바로 꺼내 쓰는 에너지예요." },
+      { w: "탄수화물", m: "몸에 힘을 주는 영양소예요. 전분과 설탕이 여기에 들어가요." }
+    ],
+    more: [
+      { t: "빵은 왜 냉장고에서 더 빨리 굳을까?", d: "전분의 노화는 0~5℃쯤의 냉장 온도에서 가장 빨리 일어나요. 그래서 빵을 냉장고에 넣으면 오히려 금방 딱딱해져요. 오래 둘 빵은 냉동하고, 먹을 때 데우면 다시 말랑해져요." },
+      { t: "요오드로 전분 찾기", d: "전분은 요오드 용액을 만나면 푸른 보라색으로 변해요. 과학 시간에 감자나 밥에 요오드를 떨어뜨려 전분을 찾는 실험을 해요. 밀가루에 떨어뜨려도 색이 변해요." }
+    ],
+    funFact: "식은 빵이 딱딱해지는 것은 부풀었던 전분이 다시 단단하게 뭉치기 때문이에요. 다시 데우면 조금 말랑해져요.",
+    tryIt: "어른과 함께 밀가루 한 숟가락을 찬물과 뜨거운 물에 각각 섞어 보고, 어느 쪽이 걸쭉해지는지 비교해 보세요. 뜨거운 물은 어른이 부어 주고, 섞은 것은 맛보지 마세요.",
+    related: ["T", "G", "W"]
+  },
+  {
+    letter: "T", word: "Thickening", korean: "걸쭉하게 하기", emoji: "🥣",
+    category: "기능",
+    summary: "묽은 국물을 진하고 걸쭉하게 만드는 일이에요.",
+    body: [
+      "걸쭉하게 하기는 물처럼 묽은 음식을 진하고 끈끈하게 만드는 일이에요. 요리에서는 '농도를 낸다'고도 말해요. 밀가루는 이 일을 잘하는 대표 재료예요. 크림수프, 카레, 그레이비소스가 걸쭉한 것도 밀가루 덕분일 때가 많아요.",
+      "밀가루는 하얀 가루지만 물에 녹지는 않아요. 찬물에 넣으면 그냥 둥둥 퍼져 있다가 가라앉아요. 그런데 데우기 시작하면 국물이 점점 뿌옇고 진해져요. 밀가루로 낸 소스는 불투명하고 부드러운 느낌이 나요.",
+      "걸쭉해지는 비밀은 전분이에요. 국물이 데워지면 전분 알갱이가 물을 빨아들여 여러 배로 부풀어요. 부푼 알갱이와 빠져나온 전분 사슬이 서로 얽혀서 물이 잘 흐르지 못하게 돼요. 밀가루를 뜨거운 국물에 한꺼번에 넣으면 겉만 먼저 익어서 속에 날가루가 든 덩어리가 생겨요.",
+      "밀가루를 버터에 볶아 쓰는 방법을 프랑스 말로 '루'라고 해요. 루는 1600년대 프랑스 요리책에도 나올 만큼 오래된 방법이에요. 버터 기름이 밀가루 알갱이를 하나하나 감싸 주어서 국물에 넣어도 덩어리가 잘 생기지 않아요. 오래 볶을수록 색이 하양, 노랑, 갈색으로 짙어지고 고소한 냄새가 나요.",
+      "농도를 내는 재료는 밀가루 말고도 많아요. 옥수수 전분이나 감자 전분은 거의 전분만 있어서 밀가루보다 적은 양으로도 걸쭉해져요. 흔히 밀가루는 옥수수 전분의 약 2배를 넣어야 비슷한 농도가 된다고 해요. 전분은 국물을 맑고 반짝이게, 밀가루는 뿌옇고 부드럽게 만들어요.",
+      "우리 생활에서도 걸쭉하게 하기를 자주 볼 수 있어요. 일본식 카레 덩어리(카레 루)에는 밀가루와 기름이 들어 있어요. 짜장 소스와 탕수육 소스는 전분물로 걸쭉하게 해요. 밀가루로 낸 소스는 날가루 맛이 나지 않도록 몇 분 더 끓여 주면 좋아요."
+    ],
+    facts: [
+      { k: "원리", v: "전분이 물과 열을 만나 부풀고 얽혀요 (호화)" },
+      { k: "대표 방법", v: "루(밀가루+버터 볶기), 찬물에 풀어 넣기" },
+      { k: "밀가루 vs 옥수수 전분", v: "같은 농도에 밀가루가 약 2배 필요" },
+      { k: "소스 모양", v: "밀가루: 뿌옇고 부드러움 / 전분: 맑고 반짝임" },
+      { k: "식으면", v: "더 걸쭉해져요" },
+      { k: "관련 음식", v: "크림수프, 카레, 그레이비, 베샤멜 소스, 검보" }
+    ],
+    words: [
+      { w: "농도", m: "음식이 얼마나 진하고 걸쭉한지를 말해요." },
+      { w: "루", m: "밀가루를 버터나 기름에 볶은 것이에요. 서양 소스의 바탕으로 써요." },
+      { w: "베샤멜 소스", m: "하얀 루에 우유를 넣어 만든 하얀 소스예요. 그라탱과 라자냐에 들어가요." },
+      { w: "불투명", m: "빛이 잘 통하지 않아 속이 비쳐 보이지 않는 것이에요." }
+    ],
+    more: [
+      { t: "덩어리 없이 걸쭉하게 만드는 법", d: "밀가루를 찬물에 먼저 잘 풀거나, 버터에 볶아 루로 만들어 넣어요. 넣을 때는 조금씩 나눠 넣고 계속 저어요. 체에 한 번 내려 넣으면 더 고와져요." },
+      { t: "세계의 루 요리", d: "프랑스에서는 하얀 루로 베샤멜 소스를 만들어요. 미국 루이지애나의 '검보'라는 스튜는 갈색이 될 때까지 오래 볶은 루를 써요. 일본에서는 루를 네모난 덩어리로 굳혀 카레와 스튜를 쉽게 만들게 했어요." }
+    ],
+    funFact: "프랑스 요리에서는 밀가루를 버터에 볶은 것을 '루'라고 부르며 소스의 바탕으로 써요. 루의 색이 짙을수록 걸쭉하게 하는 힘은 조금 약해져요.",
+    tryIt: "어른과 함께 데운 우유에 찬물에 푼 밀가루를 조금씩 넣고 저으며 숟가락에서 떨어지는 모습이 어떻게 바뀌는지 보세요. 불은 꼭 어른이 다뤄요.",
+    related: ["S", "U", "Z"]
+  },
+  {
+    letter: "U", word: "Uses of flour", korean: "밀가루의 쓰임새", emoji: "🍞",
+    category: "기능",
+    summary: "음식마다 알맞은 밀가루가 따로 있어요.",
+    body: [
+      "밀가루는 밀알을 곱게 갈아 만든 가루예요. 빵, 국수, 과자, 만두피, 튀김옷처럼 아주 많은 음식에 쓰여요. 우리나라에서 밀은 쌀 다음으로 많이 먹는 곡물이에요. 하지만 우리나라는 밀 대부분을 외국에서 사 와요. 우리 밀로 채우는 양은 약 1% 안팎뿐이에요.",
+      "밀가루는 겉보기에는 다 하얗지만 속은 달라요. 가장 큰 차이는 단백질 양이에요. 밀가루에 물을 넣고 치대면 단백질이 엮여 '글루텐'이라는 끈기 그물이 생겨요. 단백질이 많을수록 그물이 질기고 튼튼해져요.",
+      "글루텐 그물은 반죽을 쭉쭉 늘어나게 하고, 효모가 만든 가스를 붙잡아 빵을 부풀려요. 그래서 크게 부푼 빵에는 그물이 튼튼한 밀가루가 좋아요. 반대로 케이크나 쿠키는 그물이 약해야 부드럽고 바삭해요. 튀김옷 반죽을 너무 오래 저으면 그물이 생겨서 눅눅해지는 것도 같은 이유예요.",
+      "우리나라에 밀가루 음식이 크게 늘어난 것은 1950~60년대예요. 한국전쟁 뒤 미국에서 원조로 밀가루가 많이 들어왔어요. 1960~70년대에는 쌀이 모자랐어요. 그래서 나라에서 보리와 밀가루 음식을 먹자는 '혼분식 장려 운동'을 했어요. 이때 라면, 국수, 빵이 우리 식탁에 널리 퍼졌어요.",
+      "우리나라에서는 밀가루를 단백질 양에 따라 세 가지로 나눠요. 강력분은 단백질이 약 11~13%로 식빵과 피자에 써요. 중력분은 약 9~10%로 칼국수, 만두피, 부침개에 써요. 박력분은 약 7~9%로 케이크, 쿠키, 튀김옷에 써요. 미국에서는 강력분과 박력분의 중간쯤 되는 '다목적 밀가루'를 많이 써요.",
+      "밀가루는 음식 말고도 쓰여요. 물과 끓여서 종이를 붙이는 '밀가루 풀'을 만들어요. 옛날에는 이 풀로 창호지를 바르고 벽지를 붙였어요. 밀가루 봉투 앞면에는 강력분, 중력분, 박력분과 추천 음식이 적혀 있으니 꼭 살펴보세요."
+    ],
+    facts: [
+      { k: "강력분", v: "단백질 약 11~13% · 식빵, 피자, 바게트" },
+      { k: "중력분", v: "단백질 약 9~10% · 칼국수, 만두피, 부침개" },
+      { k: "박력분", v: "단백질 약 7~9% · 케이크, 쿠키, 튀김옷" },
+      { k: "나누는 기준", v: "단백질(글루텐) 양" },
+      { k: "우리나라 밀 자급률", v: "약 1% 안팎 (대부분 수입)" },
+      { k: "음식 말고 쓰임", v: "밀가루 풀(도배, 창호지), 공예" }
+    ],
+    words: [
+      { w: "단백질", m: "몸을 만드는 영양소예요. 밀가루에서는 글루텐의 재료가 돼요." },
+      { w: "글루텐", m: "밀가루에 물을 넣고 치댈 때 생기는 끈기 그물이에요." },
+      { w: "자급률", m: "우리가 먹는 양 가운데 우리나라에서 직접 기른 것이 얼마인지 나타낸 비율이에요." },
+      { w: "원조", m: "어려운 나라를 다른 나라가 물건이나 돈으로 도와주는 일이에요." }
+    ],
+    more: [
+      { t: "밀가루 고르는 법", d: "빵처럼 부풀고 쫄깃해야 하면 강력분을 골라요. 국수처럼 알맞게 쫄깃해야 하면 중력분이 좋아요. 부드럽고 바삭해야 하면 박력분을 골라요. 집에 중력분만 있으면 대부분의 요리를 무난하게 할 수 있어요." },
+      { t: "오해와 진실: 박력분은 힘이 센 밀가루?", d: "이름 때문에 헷갈리지만 아니에요. '강력'은 글루텐 힘이 세다는 뜻이고, '박력'의 '박'은 엷다는 뜻이에요. 그래서 박력분은 끈기가 가장 약한 밀가루예요." }
+    ],
+    funFact: "튀김옷 반죽을 너무 오래 저으면 글루텐 그물이 생겨서 덜 바삭해져요. 그래서 튀김옷은 찬물로 살짝만 섞어요.",
+    tryIt: "마트에서 어른과 함께 밀가루 봉투를 살펴보고 강력분·중력분·박력분 글자와 단백질 양, 추천 음식을 찾아보세요.",
+    related: ["V", "G", "T"]
+  },
+  {
+    letter: "V", word: "Varieties of wheat", korean: "밀의 품종", emoji: "🌾",
+    category: "종류",
+    summary: "밀은 단단함과 심는 때에 따라 여러 종류로 나뉘어요.",
+    body: [
+      "품종은 같은 식물 안에서 성질이 조금씩 다른 무리를 말해요. 사과에 부사와 홍로가 있는 것처럼 밀에도 여러 품종이 있어요. 품종에 따라 알갱이의 단단함, 단백질 양, 잘 자라는 날씨가 달라요.",
+      "세계에서 기르는 밀의 약 95%는 '빵밀(보통밀)'이에요. 우리가 먹는 하얀 밀가루 대부분이 이 밀로 만들어져요. 나머지 약 5%는 대부분 '듀럼밀'이에요. 듀럼밀은 알갱이가 아주 단단하고 속이 노래요.",
+      "알갱이가 단단한 밀을 '경질밀', 무른 밀을 '연질밀'이라고 해요. 경질밀은 단백질이 많고, 갈면 까슬까슬한 가루가 돼요. 그래서 주로 빵용 강력분이 돼요. 연질밀은 단백질이 적고 보드라운 가루가 되어 과자나 케이크용 박력분이 돼요. 듀럼밀은 거칠게 갈아 '세몰리나'로 만들고 파스타를 빚어요.",
+      "밀은 약 1만 년 전에 처음 길러졌어요. 서아시아의 '비옥한 초승달 지대'라는 곳이에요. 지금의 이라크, 시리아, 튀르키예 부근이에요. 처음 기른 밀은 '외알밀'과 '엠머밀' 같은 옛 밀이었어요. 빵밀은 그 뒤에 생겨났어요. 엠머밀과 야생 풀이 자연스럽게 섞여서 태어났어요.",
+      "심는 때에 따라서도 나눠요. 가을에 심어 겨울을 나고 이듬해 여름에 거두는 밀은 '겨울밀'이에요. 봄에 심어 그해 가을 전에 거두는 밀은 '봄밀'이에요. 우리나라 밀은 대부분 겨울밀이라서 보통 10~11월에 씨를 뿌리고 6월쯤 거둬요. 미국은 단단함, 색, 심는 때를 합쳐 밀을 나눠요. '경질 붉은 겨울밀', '연질 흰밀', '듀럼밀' 같은 이름이 그 예예요.",
+      "우리 밀가루는 한 가지 밀만 쓰지 않을 때가 많아요. 제분 회사가 여러 나라, 여러 품종의 밀을 섞어서 원하는 성질을 맞춰요. 우리나라에서도 빵용 '금강밀'처럼 우리 땅에 맞는 품종을 개발해 왔어요."
+    ],
+    facts: [
+      { k: "가장 많은 밀", v: "빵밀(보통밀) · 세계 생산의 약 95%" },
+      { k: "파스타용 밀", v: "듀럼밀 · 약 5%, 아주 단단하고 노란 속" },
+      { k: "단단함으로 나누기", v: "경질밀(빵용) / 연질밀(과자·케이크용)" },
+      { k: "심는 때로 나누기", v: "겨울밀(가을 파종) / 봄밀(봄 파종)" },
+      { k: "처음 기른 곳", v: "서아시아 비옥한 초승달 지대, 약 1만 년 전" },
+      { k: "옛 밀", v: "외알밀, 엠머밀, 스펠트밀" }
+    ],
+    words: [
+      { w: "품종", m: "같은 식물 안에서 성질이 조금씩 다른 무리예요." },
+      { w: "경질", m: "딱딱하고 단단한 성질이에요. 반대말은 연질이에요." },
+      { w: "세몰리나", m: "듀럼밀을 거칠게 간 노란 가루예요. 파스타와 쿠스쿠스를 만들어요." },
+      { w: "제분", m: "곡식을 빻아 가루로 만드는 일이에요." }
+    ],
+    more: [
+      { t: "세계의 밀 지도", d: "중국, 인도, 러시아, 미국 같은 나라가 밀을 많이 길러요. 캐나다와 미국 북부처럼 겨울이 아주 추운 곳에서는 봄밀을 많이 심어요. 이탈리아와 캐나다는 파스타용 듀럼밀로도 유명해요." },
+      { t: "옛 밀이 다시 인기를 얻는 이유", d: "스펠트밀, 엠머밀 같은 옛 밀은 수확량이 적어서 한동안 잘 기르지 않았어요. 요즘에는 독특한 고소한 맛 때문에 다시 찾는 사람이 늘었어요. 하지만 옛 밀에도 글루텐이 있어서 글루텐을 먹으면 안 되는 사람은 피해야 해요." }
+    ],
+    funFact: "겨울밀은 추운 겨울을 땅속에서 버텨야 이듬해 이삭을 잘 맺어요. 겨울 추위가 꽃을 피울 준비를 하라는 신호가 되거든요.",
+    tryIt: "어른과 함께 밀가루와 듀럼밀 가루(세몰리나)를 손가락으로 만져 보고 색과 까슬까슬한 느낌이 어떻게 다른지 비교해 보세요. 날가루는 맛보지 마세요.",
+    related: ["U", "W", "G"]
+  },
+  {
+    letter: "W", word: "Whole wheat flour", korean: "통밀가루", emoji: "🟤",
+    category: "종류",
+    summary: "밀알을 껍질과 씨눈까지 통째로 간 가루예요.",
+    body: [
+      "통밀가루는 밀알을 통째로 갈아 만든 가루예요. 하얀 밀가루는 밀알 가운데의 하얀 부분만 골라 써요. 통밀가루는 겉껍질과 씨눈까지 모두 함께 갈아요. 그래서 색이 갈색이고 작은 점 같은 껍질 조각이 보여요.",
+      "밀알은 세 부분으로 되어 있어요. 가운데 하얀 '배젖'이 약 83%를 차지해요. 겉껍질인 '밀기울'은 약 14%예요. 싹이 트는 '씨눈'은 약 2~3%뿐이에요. 배젖에는 전분과 글루텐 단백질이 있어요. 밀기울에는 식이섬유와 무기질이, 씨눈에는 비타민 E 같은 비타민과 기름이 많아요.",
+      "통밀가루로 만든 빵은 하얀 빵보다 덜 부풀고 묵직해요. 날카로운 밀기울 조각이 글루텐 그물을 군데군데 끊어 놓기 때문이에요. 밀기울은 물도 많이 빨아들여서 통밀 반죽에는 물을 조금 더 넣어요. 씨눈 속 기름은 공기와 만나면 시간이 지나 상한 냄새가 나기 쉬워요.",
+      "아주 오래전에는 대부분의 사람이 맷돌로 간 거친 통밀가루를 먹었어요. 하얀 밀가루는 체로 여러 번 쳐야 해서 귀하고 비쌌어요. 1800년대 후반 쇠로 된 롤러로 밀을 가는 기계가 널리 퍼졌어요. 그 뒤로 하얀 밀가루가 싸지고 흔해졌어요.",
+      "하얀 밀가루와 통밀가루는 영양에서 차이가 커요. 100g에 든 식이섬유가 하얀 밀가루는 약 3g, 통밀가루는 약 10g이 넘어요. 비슷한 가루로 호밀가루, 귀리가루도 있어요. 하얀 밀가루와 통밀가루를 반씩 섞어 쓰면 맛도 고소하고 빵도 적당히 부풀어요.",
+      "통밀가루는 통밀빵, 통밀 파스타, 크래커, 시리얼에 쓰여요. 꼭꼭 오래 씹어야 해서 배가 천천히 꺼져요. 씨눈 기름 때문에 쉽게 상하니 꼭 닫아서 서늘한 곳이나 냉장고에 두고 빨리 쓰는 것이 좋아요."
+    ],
+    facts: [
+      { k: "밀알 구성", v: "배젖 약 83% · 밀기울 약 14% · 씨눈 약 2~3%" },
+      { k: "식이섬유(100g)", v: "통밀가루 약 10g 이상 / 하얀 밀가루 약 3g" },
+      { k: "색과 맛", v: "갈색, 고소하고 조금 거친 맛" },
+      { k: "빵 모양", v: "하얀 빵보다 덜 부풀고 묵직해요" },
+      { k: "보관", v: "꼭 닫아 서늘한 곳·냉장고, 빨리 쓰기" },
+      { k: "관련 음식", v: "통밀빵, 통밀 파스타, 크래커, 시리얼" }
+    ],
+    words: [
+      { w: "밀기울", m: "밀알을 감싼 겉껍질이에요. 식이섬유가 많아요." },
+      { w: "씨눈", m: "밀알에서 싹이 트는 작은 부분이에요. 비타민과 기름이 들어 있어요." },
+      { w: "배젖", m: "밀알 가운데의 하얀 부분이에요. 하얀 밀가루가 바로 이 부분이에요." },
+      { w: "식이섬유", m: "몸에서 잘 소화되지 않지만 장이 잘 움직이도록 돕는 성분이에요." }
+    ],
+    more: [
+      { t: "오해와 진실: 갈색 빵은 다 통밀빵?", d: "꼭 그렇지는 않아요. 하얀 밀가루에 캐러멜 색소나 코코아로 색만 낸 빵도 있어요. 포장지 원재료 표에서 '통밀가루'가 맨 앞에 적혀 있는지 확인해 보세요." },
+      { t: "통밀빵을 잘 만드는 법", d: "통밀가루는 물을 많이 먹으니 반죽에 물을 조금 더 넣어요. 반죽을 잠시 쉬게 하면 밀기울이 물을 먹어 부드러워져요. 처음에는 하얀 밀가루와 섞어 쓰면 실패가 적어요." }
+    ],
+    funFact: "아주 오래전에는 하얀 빵이 부자들의 음식이었어요. 지금은 오히려 통밀빵이 더 비싼 경우가 많아요.",
+    tryIt: "하얀 밀가루와 통밀가루를 흰 종이 위에 조금씩 놓고 돋보기로 알갱이 색과 크기를 비교해 보세요. 날가루는 맛보지 말고, 끝나면 손을 씻어요.",
+    related: ["S", "V", "Z"]
+  },
+  {
+    letter: "X", word: "Xanthan gum", korean: "잔탄검", emoji: "🧪",
+    category: "영양·대체",
+    summary: "글루텐 대신 반죽에 끈기를 주는 하얀 가루예요.",
+    body: [
+      "잔탄검은 반죽이나 소스를 끈끈하게 만드는 하얀 가루예요. 아주 조금만 넣어도 물이 걸쭉해져요. 음식에 넣는 첨가물로, 식품 성분표에는 '잔탄검'이라고 적혀요.",
+      "잔탄검은 '잔토모나스'라는 세균이 만들어요. 이 세균에게 설탕이나 포도당을 먹이면 끈적한 물질을 내놓아요. 이 물질을 모아서 말리고 가루로 빻은 것이 잔탄검이에요. 요구르트를 만들 때 균이 일하는 것처럼 '발효'로 만드는 거예요.",
+      "잔탄검은 찬물에도 잘 풀리고, 뜨겁거나 신 음식에서도 끈기를 잘 지켜요. 물속에서 긴 사슬이 그물처럼 퍼져 물을 붙잡아요. 그래서 반죽 속에서는 글루텐 그물이 하던 일을 조금 대신해요. 가스를 붙잡고 반죽이 부스러지지 않게 묶어 줘요.",
+      "잔탄검은 1950년대 미국 농무부 연구소의 과학자들이 찾아냈어요. 미국에서 1969년에 음식에 써도 된다는 허가를 받았어요. 그 뒤로 세계 여러 나라에서 소스, 아이스크림, 샐러드드레싱에 쓰이고 있어요.",
+      "쌀가루나 옥수수가루에는 글루텐이 생기지 않아서 빵 반죽이 쉽게 부서져요. 이럴 때 가루 무게의 약 1% 안팎으로 잔탄검을 넣으면 반죽이 잘 뭉쳐요. 비슷한 일을 하는 재료로 구아검, 차전자피 가루가 있어요. 너무 많이 넣으면 빵이 고무처럼 질겨지니 조금만 넣어요.",
+      "글루텐을 먹으면 장이 다치는 '셀리악병'이 있는 사람은 세계 인구의 약 1%예요. 이런 사람을 위한 '글루텐 프리' 빵과 과자에 잔탄검이 자주 들어가요. 우리 주변에서는 샐러드 소스, 아이스크림, 케첩 같은 음식의 성분표에서 찾아볼 수 있어요."
+    ],
+    facts: [
+      { k: "만드는 방법", v: "잔토모나스 세균이 당을 발효해서 만들어요" },
+      { k: "모양", v: "하얀 가루, 냄새와 맛이 거의 없어요" },
+      { k: "글루텐 프리 빵에 넣는 양", v: "가루 무게의 약 1% 안팎" },
+      { k: "발견", v: "1950년대 미국 농무부 연구소" },
+      { k: "비슷한 재료", v: "구아검, 차전자피 가루" },
+      { k: "들어 있는 음식", v: "샐러드드레싱, 아이스크림, 소스, 글루텐 프리 빵" }
+    ],
+    words: [
+      { w: "첨가물", m: "음식의 맛, 모양, 보관을 좋게 하려고 조금 넣는 재료예요." },
+      { w: "세균", m: "눈에 보이지 않을 만큼 작은 생물이에요. 몸에 좋은 세균도 있어요." },
+      { w: "셀리악병", m: "글루텐을 먹으면 몸이 장을 공격해서 아프게 되는 병이에요." },
+      { w: "글루텐 프리", m: "글루텐이 들어 있지 않다는 뜻이에요." }
+    ],
+    more: [
+      { t: "배추를 아프게 하는 세균이 만든 가루", d: "잔탄검을 만드는 잔토모나스 세균의 한 종류는 배추나 양배추에 병을 일으키기도 해요. 하지만 음식에 쓰는 잔탄검은 세균을 깨끗이 걸러 내고 만들어서 안전해요. 해로운 것과 쓸모 있는 것이 같은 곳에서 나오기도 하는 셈이에요." },
+      { t: "잔탄검을 잘 쓰는 법", d: "물에 바로 넣으면 몽글몽글 뭉치기 쉬워요. 다른 가루나 설탕과 먼저 섞은 뒤 넣으면 고르게 풀려요. 아주 조금만 넣어도 되니 계량스푼 끝으로 조금씩 재요." }
+    ],
+    funFact: "잔탄검은 아주 적은 양만 넣어도 되어서 보통 숟가락 끝으로 조금씩 재요.",
+    tryIt: "샐러드드레싱, 아이스크림, 과자 봉지 뒤 성분표에서 '잔탄검'이라는 글자를 찾아보고 몇 개나 찾았는지 세어 보세요.",
+    related: ["Z", "G", "T"]
+  },
+  {
+    letter: "Y", word: "Yeast", korean: "효모", emoji: "🫧",
+    category: "기능",
+    summary: "당을 먹고 가스를 내서 빵을 부풀리는 작은 생물이에요.",
+    body: [
+      "효모는 눈에 보이지 않을 만큼 작은 생물이에요. 곰팡이, 버섯과 같은 '균' 무리에 속해요. 빵을 만들 때 넣는 효모를 '이스트'라고 불러요. 빵에 쓰는 효모의 학명은 '사카로미세스 세레비지에'예요.",
+      "효모 하나는 크기가 약 0.005~0.01mm로 동그랗거나 달걀 모양이에요. 효모는 몸에 작은 혹을 만들어 떼어 내는 방법으로 수를 늘려요. 이것을 '출아'라고 해요. 생이스트 한 덩어리 속에는 셀 수 없이 많은 효모가 살아 있어요.",
+      "효모는 반죽 속 당을 먹고 이산화탄소 가스와 알코올을 만들어요. 이 가스가 글루텐 그물에 갇혀 반죽을 풍선처럼 부풀려요. 이 과정을 '발효'라고 해요. 효모는 약 25~35℃의 따뜻한 곳에서 가장 활발하고, 약 60℃ 가까이 뜨거워지면 죽어요. 알코올은 빵을 구울 때 거의 날아가요.",
+      "사람들은 수천 년 전부터 효모를 썼어요. 고대 이집트 사람들도 부푼 빵을 굽고 맥주를 빚었어요. 하지만 그때는 효모가 무엇인지 몰랐어요. 1850~60년대에 프랑스 과학자 파스퇴르가 비밀을 풀었어요. 발효는 살아 있는 효모가 하는 일이라는 것을 밝혔지요.",
+      "빵에 쓰는 이스트에는 여러 종류가 있어요. 촉촉한 덩어리는 '생이스트'예요. 물에 불려 쓰는 것은 '드라이이스트'예요. 가루에 바로 섞는 것은 '인스턴트 드라이이스트'예요. 인스턴트 드라이이스트는 보통 밀가루 무게의 약 1~2%를 넣어요. 밀가루와 물에 사는 효모와 젖산균을 키워 쓰는 '사워도우(천연발효종)'도 있어요.",
+      "식빵, 피자, 바게트, 찐빵이 폭신한 것은 효모가 만든 작은 공기 구멍 덕분이에요. 빵을 잘라 보면 속에 송송 뚫린 구멍이 그 흔적이에요. 효모는 막걸리, 간장, 맥주 같은 발효 음식을 만들 때도 일해요. 케이크나 머핀은 효모 대신 베이킹파우더로 부풀리는 경우가 많아요."
+    ],
+    facts: [
+      { k: "정체", v: "균 무리에 속하는 작은 생물 (학명: 사카로미세스 세레비지에)" },
+      { k: "크기", v: "약 0.005~0.01mm" },
+      { k: "만드는 것", v: "이산화탄소(빵을 부풀림) + 알코올(구울 때 날아감)" },
+      { k: "좋아하는 온도", v: "약 25~35℃ · 약 60℃ 가까이에서 죽어요" },
+      { k: "넣는 양", v: "인스턴트 드라이이스트: 밀가루의 약 1~2%" },
+      { k: "관련 음식", v: "식빵, 피자, 바게트, 찐빵, 막걸리, 맥주" }
+    ],
+    words: [
+      { w: "발효", m: "작은 생물이 음식 속 당을 먹고 가스나 다른 물질을 만들어 내는 일이에요." },
+      { w: "이산화탄소", m: "우리가 숨을 내쉴 때도 나오는 기체예요. 빵 속 구멍을 만들어요." },
+      { w: "출아", m: "몸에 작은 혹을 만들어 떼어 내며 수를 늘리는 방법이에요." },
+      { w: "사워도우", m: "밀가루와 물에서 키운 효모와 젖산균으로 부풀린 빵이에요. 살짝 새콤한 맛이 나요." }
+    ],
+    more: [
+      { t: "효모가 일을 잘하게 하는 법", d: "효모는 미지근한 물을 좋아하고, 너무 뜨거운 물은 싫어해요. 소금이나 설탕이 효모에 바로 닿으면 힘이 약해질 수 있어서 따로 떨어뜨려 넣어요. 반죽을 따뜻한 곳에 두면 더 빨리 부풀어요." },
+      { t: "효모와 베이킹파우더는 어떻게 다를까?", d: "둘 다 이산화탄소로 반죽을 부풀려요. 효모는 살아 있는 생물이라 몇 시간에 걸쳐 천천히 가스를 만들고 고소한 냄새를 내요. 베이킹파우더는 화학 가루라서 물과 열을 만나면 금방 가스를 내요." }
+    ],
+    funFact: "사람들은 아주 오래전부터 효모를 썼지만, 효모가 살아 있는 생물이라는 것은 1800년대에야 확실히 알게 되었어요.",
+    tryIt: "어른과 함께 미지근한 설탕물에 이스트를 넣고 병 입구에 풍선을 씌운 뒤 풍선이 부푸는지 지켜보세요. 뜨거운 물은 쓰지 말고, 끝나면 마시지 말고 버려요.",
+    related: ["G", "S", "U"]
+  },
+  {
+    letter: "Z", word: "Zea mays & other flours", korean: "옥수수가루·쌀가루 등 다른 가루", emoji: "🌽",
+    category: "영양·대체",
+    summary: "밀가루 말고도 쓰이는 여러 곡식 가루예요.",
+    body: [
+      "'제아 마이스'는 옥수수의 학명이에요. 학명은 세계 과학자들이 함께 쓰는 생물의 이름이에요. 세상에는 밀가루 말고도 여러 곡식 가루가 있어요. 옥수수가루, 쌀가루, 메밀가루, 호밀가루가 그 예예요. 나라마다 많이 나는 곡식으로 가루를 만들어 왔어요.",
+      "이 가루들은 모두 전분이 많아서 익히면 말랑해지고 배를 채워 줘요. 하지만 들어 있는 단백질은 서로 달라요. 밀가루 단백질은 물을 만나 '글루텐'이라는 끈기 그물을 만들어요. 옥수수와 쌀의 단백질은 이런 그물을 만들지 못해요.",
+      "글루텐 그물은 효모가 만든 가스를 풍선처럼 붙잡아요. 그래서 밀가루 빵은 크게 부풀어요. 옥수수가루나 쌀가루로만 빵을 만들면 가스가 새어 나가서 납작하고 잘 부서져요. 호밀가루는 끈기가 약해서 빵이 묵직하고 촘촘해져요. 메밀가루는 끈기가 거의 없어서 면을 뽑을 때 밀가루나 전분을 섞기도 해요.",
+      "옥수수는 약 9,000년 전 지금의 멕시코 지역에서 처음 길러졌어요. 멕시코 사람들은 옥수수를 석회물에 삶은 뒤 갈아서 토르티야를 만들어요. 벼는 아시아에서 오래전부터 길러 왔고, 우리나라 사람들은 쌀가루로 떡을 만들어 먹었어요. 호밀은 추위에 강해서 독일, 러시아처럼 추운 나라에서 많이 길러요.",
+      "가루마다 잘 어울리는 음식이 달라요. 쌀가루는 떡, 쌀국수, 쌀빵에 써요. 옥수수가루는 토르티야, 콘브레드, 이탈리아의 '폴렌타' 죽이 돼요. 메밀가루는 막국수, 냉면, 메밀전병에, 호밀가루는 독일의 검고 묵직한 호밀빵에 써요. 쌀, 옥수수, 메밀은 글루텐이 없지만 호밀과 보리에는 글루텐과 비슷한 단백질이 있어요.",
+      "다른 가루로 폭신한 빵을 만들 때는 밀가루를 섞거나 잔탄검 같은 재료로 끈기를 보태요. 글루텐을 먹으면 안 되는 사람은 쌀가루, 옥수수가루, 메밀가루를 주로 써요. 다만 메밀국수에는 밀가루가 섞인 경우가 많으니 성분표를 꼭 확인해요. 다른 가루를 알면 밀가루가 왜 빵에 특별한지 더 잘 알 수 있어요."
+    ],
+    facts: [
+      { k: "옥수수 학명", v: "제아 마이스(Zea mays)" },
+      { k: "글루텐 없는 가루", v: "쌀가루, 옥수수가루, 메밀가루" },
+      { k: "글루텐 비슷한 단백질이 있는 가루", v: "밀, 호밀, 보리" },
+      { k: "옥수수 고향", v: "멕시코 지역, 약 9,000년 전" },
+      { k: "빵 부풂 비교", v: "밀가루 > 호밀가루 > 쌀·옥수수가루" },
+      { k: "관련 음식", v: "떡, 토르티야, 폴렌타, 막국수, 호밀빵" }
+    ],
+    words: [
+      { w: "학명", m: "세계 과학자들이 함께 쓰는 생물의 공식 이름이에요." },
+      { w: "토르티야", m: "옥수수가루나 밀가루로 얇고 둥글게 구운 멕시코의 빵이에요. 타코를 만들 때 써요." },
+      { w: "글루텐", m: "밀가루에 물을 넣고 치댈 때 생기는 끈기 그물이에요. 빵을 부풀게 도와줘요." },
+      { w: "폴렌타", m: "옥수수가루를 물에 끓여 만든 이탈리아의 죽이에요. 식혀서 굳힌 뒤 구워 먹기도 해요." }
+    ],
+    more: [
+      { t: "세계의 곡식 가루 음식", d: "멕시코에는 옥수수 토르티야, 이탈리아에는 옥수수 폴렌타가 있어요. 우리나라에는 쌀가루로 만든 떡과 메밀로 만든 막국수가 있어요. 독일과 북유럽에는 호밀빵이 있어요. 그 나라에서 잘 자라는 곡식이 그 나라의 대표 음식이 된 거예요." },
+      { t: "오해와 진실: 메밀국수는 글루텐이 없다?", d: "메밀 자체에는 글루텐이 없어요. 하지만 메밀가루만으로는 면이 잘 끊어져서 밀가루를 섞어 만드는 메밀국수가 많아요. 글루텐을 피해야 한다면 메밀 100%인지 성분표를 꼭 확인해요." }
+    ],
+    funFact: "메밀은 이름에 '밀'이 들어가지만 밀과는 전혀 다른 식물이에요. 오히려 마디풀 무리의 식물이에요.",
+    tryIt: "밀가루와 쌀가루를 각각 물과 섞어 반죽한 뒤 양손으로 살살 늘려 보고 어느 쪽이 더 잘 늘어나는지 비교해 보세요. 날가루 반죽은 맛보지 말고, 끝나면 손을 씻어요.",
+    related: ["G", "X", "Y"]
+  }
+]);
+
+</script>
+<script>/* overview.js */
+/* 밀가루 백과사전 - 총론(overview) 장
+ * API: window.FlourGuide.mount(el)
+ * 스스로 데이터와 스타일(접두어 fg-)을 갖고 4개 절을 그려요.
+ */
+(function () {
+  'use strict';
+
+  /* ---------------- 데이터 ---------------- */
+
+  var SECTIONS = [
+    { id: 'guide-history', emoji: '📜', title: '밀가루의 역사', pill: '역사' },
+    { id: 'guide-function', emoji: '🛠️', title: '밀가루가 하는 일', pill: '하는 일' },
+    { id: 'guide-types', emoji: '🥖', title: '밀가루의 종류', pill: '종류' },
+    { id: 'guide-anatomy', emoji: '🌾', title: '밀알 속을 들여다봐요', pill: '밀알 속' }
+  ];
+
+  var HISTORY = [
+    {
+      when: '약 1만 1천여 년 전',
+      emoji: '🌱',
+      title: '밀 농사가 시작됐어요',
+      text: '서아시아의 ‘비옥한 초승달’ 지역에서 사람들이 밀을 기르기 시작했어요. 지금의 튀르키예 남동부와 시리아 근처예요. 들풀의 낟알을 거두고 다시 심기를 오래 되풀이하는 사이에, 알이 굵고 이삭에서 잘 떨어지지 않는 밀이 생겼어요.',
+      link: 'W'
+    },
+    {
+      when: '적어도 8천 년 전',
+      emoji: '🪨',
+      title: '돌로 갈아 가루를 냈어요',
+      text: '옛날 사람들은 돌로 밀알을 갈고 빻아서 가루를 냈어요. 밀가루를 만든 흔적은 적어도 기원전 6000년까지 거슬러 올라가요. 지금도 돌 두 개 사이에 곡식을 넣고 가는 방법을 ‘맷돌 제분’이라고 불러요.',
+      link: 'M'
+    },
+    {
+      when: '고대 이집트',
+      emoji: '🍞',
+      title: '이집트 사람들의 빵 굽기',
+      text: '고대 이집트 사람들은 빵 만들기와 오븐 쓰기를 크게 발전시켰어요. 빵을 아주 많이 굽는 큰 일거리로 키웠어요. 옛날 빵은 곡식에 묻어 있던 작은 효모 덕분에 부풀었는데, 사람들은 효모를 19세기에야 처음 알아냈어요.',
+      link: 'F'
+    },
+    {
+      when: '고대 로마 무렵부터',
+      emoji: '🌬️',
+      title: '물레방아와 풍차가 돌았어요',
+      text: '로마 사람들은 처음으로 원뿔 모양 맷돌로 곡식을 갈았어요. 사람들은 힘을 덜 들이고 더 많이 갈고 싶어서, 물의 힘으로 도는 물레방아와 바람의 힘으로 도는 풍차를 만들었어요.',
+      link: 'M'
+    },
+    {
+      when: '1786년',
+      emoji: '🏭',
+      title: '증기로 도는 제분소',
+      text: '영국 런던에 증기 기관의 힘으로 밀을 가는 첫 제분소가 세워졌어요. 이름은 ‘앨비언 제분소’예요. 기계로 물건을 많이 만드는 산업 시대가 막 시작될 무렵이었어요.',
+      link: 'M'
+    },
+    {
+      when: '19세기 후반',
+      emoji: '⚙️',
+      title: '롤러 제분기로 하얀 밀가루를!',
+      text: '쇠로 만든 원통(롤러) 사이로 밀을 여러 번 통과시키는 기계가 돌맷돌을 대신했어요. 껍질과 씨눈을 쉽게 골라낼 수 있어서 하얀 밀가루를 많이 만들 수 있었어요. 씨눈을 빼니 밀가루가 덜 상해서 멀리 실어 나르기도 좋았어요.',
+      link: 'E'
+    },
+    {
+      when: '삼국시대보다 전',
+      emoji: '🎎',
+      title: '귀하디귀한 밀',
+      text: '우리나라에서도 아주 오래전부터 밀을 길렀어요. 평안남도에서는 약 2천100~2천200년 전 밀알이 나왔고, 경주와 부여의 옛 터에서도 밀이 발견됐어요. 하지만 거두는 양이 적어서 밀은 아주 귀한 먹을거리였어요.',
+      link: 'N'
+    },
+    {
+      when: '한국전쟁 뒤 ~ 1970년대',
+      emoji: '🍜',
+      title: '분식 문화가 생겼어요',
+      text: '전쟁 뒤 다른 나라에서 도와주는 물자로 밀이 많이 들어와 밀가루가 흔해졌어요. 쌀이 모자라던 때라 1967년쯤부터 나라에서 밀가루 음식(분식)을 먹자고 권했어요. 한 사람이 한 해에 먹는 밀가루는 1960년 약 14kg에서 1970년 약 26kg으로 거의 두 배가 됐어요.',
+      link: 'N'
+    },
+    {
+      when: '오늘날 (2020년)',
+      emoji: '🌾',
+      title: '우리 땅의 밀은 아주 조금',
+      text: '1965년에는 우리가 먹는 밀의 약 27%를 우리 땅에서 길렀어요. 하지만 2020년에는 1%도 안 돼요(약 0.8%). 나머지는 거의 다 다른 나라에서 사 와요. 그래도 조광, 올밀처럼 우리 땅에 맞는 밀 품종을 만들어 기르고 있어요.',
+      link: 'H'
+    }
+  ];
+
+  var FUNCTIONS = [
+    {
+      emoji: '🦴',
+      title: '뼈대 만들기',
+      text: '밀가루에 물을 넣고 주무르면 ‘글루텐’이라는 쫄깃한 그물이 생겨요. 이 그물이 빵과 면의 튼튼한 뼈대가 돼요.',
+      letter: 'G',
+      word: '글루텐'
+    },
+    {
+      emoji: '🎈',
+      title: '부풀리기',
+      text: '효모나 팽창제가 만든 가스를 글루텐 그물이 풍선처럼 가둬요. 그래서 빵이 폭신하게 부풀어요.',
+      letter: 'L',
+      word: '부풀리기'
+    },
+    {
+      emoji: '🥣',
+      title: '걸쭉하게',
+      text: '밀가루 속 전분은 물과 함께 데우면 물을 머금고 부풀어요. 그래서 밀가루로 만든 ‘루’를 넣으면 소스가 걸쭉해져요.',
+      letter: 'T',
+      word: '걸쭉하게 하기'
+    },
+    {
+      emoji: '🍤',
+      title: '바삭하게',
+      text: '밀가루 반죽물을 입혀 기름에 튀기면 겉에 얇은 옷이 생겨요. 이 옷 속 물기가 빠져나가면서 바삭바삭해져요.',
+      letter: 'U',
+      word: '쓰임새'
+    },
+    {
+      emoji: '🔥',
+      title: '노릇노릇 색',
+      text: '반죽을 오븐에 구우면 겉면이 갈색으로 변해요. 밀가루 속 단백질과 당이 열을 받아 맛있는 색과 냄새를 만들어요.',
+      letter: 'S',
+      word: '전분'
+    },
+    {
+      emoji: '🧸',
+      title: '모양 잡기',
+      text: '밀가루 반죽은 늘리고 접고 빚는 대로 모양이 잡혀요. 만두피, 꽈배기, 땋은 빵도 이 덕분에 만들 수 있어요.',
+      letter: 'K',
+      word: '치대기'
+    }
+  ];
+
+  // 단백질 % 범위(대략). 막대는 0~16% 눈금 위에 그려요.
+  var TYPES = [
+    {
+      emoji: '🍞',
+      name: '강력분',
+      protein: '약 11.5~14% (자료마다 조금 달라요)',
+      lo: 11.5, hi: 14,
+      feel: '쫄깃하고 힘이 세요',
+      foods: '식빵, 빵, 빵가루, 라면',
+      text: '낟알이 단단한 ‘굳은밀(경질밀)’로 만들어요. 단백질이 많아서 글루텐이 많이 생겨요. 반죽이 잘 늘어나고 효모가 만든 가스를 꽉 붙잡아서 빵이 잘 부풀고 쫄깃해져요.',
+      letter: 'P'
+    },
+    {
+      emoji: '🍜',
+      name: '중력분',
+      protein: '약 9.5~11.5% (자료마다 9~12%)',
+      lo: 9.5, hi: 11.5,
+      feel: '쫄깃함이 딱 중간이에요',
+      foods: '우동, 소면, 만두피, 수제비',
+      text: '단백질이 중간쯤이라 여러 음식에 두루 써요. 영어 이름(all-purpose flour)도 ‘여러 곳에 쓰는 밀가루’라는 뜻이에요.',
+      letter: 'A'
+    },
+    {
+      emoji: '🧁',
+      name: '박력분',
+      protein: '약 6~9% (자료마다 조금 달라요)',
+      lo: 6, hi: 9,
+      feel: '부드럽고 바스러져요',
+      foods: '케이크, 쿠키, 튀김, 부침개',
+      text: '낟알이 무른 ‘무른밀(연질밀)’을 곱게 갈아 만들어서 가루가 고와요. 단백질이 적어서 글루텐이 조금만 생겨요. 그래서 케이크는 부드럽게, 쿠키는 잘 바스러지게 돼요.',
+      letter: 'C'
+    },
+    {
+      emoji: '🟫',
+      name: '통밀가루',
+      protein: '약 13% 안팎 (밀 품종에 따라 달라요)',
+      lo: 11, hi: 13,
+      feel: '고소하고 거칠거칠해요',
+      foods: '통밀빵, 쿠키, 비스킷',
+      text: '껍질과 씨눈까지 통째로 갈아서 갈색을 띠어요. 흰 밀가루를 만들 때 버리는 껍질과 씨눈이 들어 있어서 식이섬유와 비타민이 더 많아요.',
+      letter: 'B'
+    },
+    {
+      emoji: '🍝',
+      name: '듀럼밀 세몰리나',
+      protein: '많은 편 (정해진 기준은 없어요)',
+      lo: 12, hi: 14,
+      feel: '노랗고 단단해요',
+      foods: '스파게티, 마카로니 같은 파스타, 쿠스쿠스',
+      text: '아주 단단한 ‘듀럼밀’의 배젖을 굵게 간 가루예요. 이탈리아에서는 고운 가루를 ‘파리나’, 굵은 가루를 ‘세몰라’라고 나눠 불러요. 파스타를 만들 때 많이 써요.',
+      letter: 'T'
+    }
+  ];
+
+  var PARTS = {
+    bran: {
+      name: '껍질 (밀기울)',
+      pct: '바깥 겉옷',
+      emoji: '🛡️',
+      text: '밀알을 감싸는 갈색 겉옷이에요. 식이섬유와 무기질이 많아요. 흰 밀가루를 만들 때는 벗겨 내고, 통밀가루에는 함께 들어가요. 벗겨 낸 밀기울은 가축 먹이로도 써요.',
+      letter: 'B'
+    },
+    germ: {
+      name: '씨눈 (배아)',
+      pct: '아주 작은 부분',
+      emoji: '🌱',
+      text: '땅에 심으면 싹이 트는 아기 밀이에요. 아주 작지만 비타민 B1, 비타민 E 같은 비타민과 기름이 많이 들어 있어요. 기름이 공기를 만나면 쉽게 상해서 흰 밀가루에서는 빼내요.',
+      letter: 'V'
+    },
+    endo: {
+      name: '배젖',
+      pct: '부피의 약 80%',
+      emoji: '🍚',
+      text: '밀알에서 가장 큰 부분이에요. 씨눈이 자랄 때 먹을 도시락 같은 곳이라 전분과 단백질이 가득해요. 이 부분을 곱게 갈면 하얀 밀가루가 돼요.',
+      letter: 'E'
+    }
+  };
+
+  /* ---------------- 스타일 ---------------- */
+
+  var CSS = [
+    '.fg-root{--fg-bg:var(--bg,#F3EADB);--fg-text:var(--text,#5B4636);--fg-accent:var(--accent,#E8A84A);--fg-accent2:var(--accent2,#C9773B);--fg-sd:var(--shadow-dark,rgba(166,140,104,.45));--fg-sl:var(--shadow-light,rgba(255,255,255,.85));',
+    'color:var(--fg-text);font-size:18px;line-height:1.8;max-width:1100px;margin:0 auto;padding:8px 16px 24px;box-sizing:border-box;overflow-wrap:anywhere;word-break:keep-all}',
+    '.fg-root *,.fg-root *::before,.fg-root *::after{box-sizing:border-box}',
+    '.fg-root h2,.fg-root h3,.fg-title,.fg-pill{font-family:"Jua","Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-weight:400}',
+    '.fg-head{text-align:center;margin:8px 0 12px}',
+    '.fg-head h2{font-size:30px;margin:0;line-height:1.3}',
+    '.fg-head p{margin:4px 0 0;opacity:.85}',
+    /* nav pills */
+    '.fg-nav{position:sticky;top:0;z-index:5;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:12px 4px;margin:0 0 8px;background:var(--fg-bg);border-radius:0 0 24px 24px}',
+    '.fg-pill{border:0;cursor:pointer;font-size:17px;color:var(--fg-text);background:var(--fg-bg);padding:8px 16px;border-radius:999px;box-shadow:4px 4px 10px var(--fg-sd),-4px -4px 10px var(--fg-sl);transition:box-shadow .2s,transform .2s;text-decoration:none;display:inline-block}',
+    '.fg-pill:hover{transform:translateY(-1px)}',
+    '.fg-pill:active,.fg-pill.fg-on{box-shadow:inset 3px 3px 8px var(--fg-sd),inset -3px -3px 8px var(--fg-sl);color:var(--fg-accent2)}',
+    '.fg-root button:focus-visible,.fg-root a:focus-visible,.fg-root [tabindex]:focus-visible{outline:3px solid var(--fg-accent);outline-offset:3px}',
+    /* sections */
+    '.fg-sec{margin:28px 0;padding:24px 18px;border-radius:24px;background:var(--fg-bg);box-shadow:10px 10px 24px var(--fg-sd),-10px -10px 24px var(--fg-sl);scroll-margin-top:84px}',
+    '.fg-sec>h2{font-size:26px;margin:0 0 6px;line-height:1.35}',
+    '.fg-lead{margin:0 0 18px;opacity:.9}',
+    '.fg-note{font-size:15px;opacity:.85;margin:14px 0 0;padding:10px 14px;border-radius:16px;box-shadow:inset 3px 3px 8px var(--fg-sd),inset -3px -3px 8px var(--fg-sl)}',
+    '.fg-link{display:inline-block;margin-top:10px;font-size:15px;font-weight:700;color:var(--fg-accent2);text-decoration:none;padding:4px 12px;border-radius:999px;box-shadow:3px 3px 7px var(--fg-sd),-3px -3px 7px var(--fg-sl)}',
+    '.fg-link:hover{color:var(--fg-text);background:var(--fg-accent)}',
+    /* timeline */
+    '.fg-tl{list-style:none;margin:0;padding:0 0 0 30px;position:relative}',
+    '.fg-tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:6px;border-radius:6px;background:linear-gradient(var(--fg-accent),var(--fg-accent2));opacity:.7}',
+    '.fg-tli{position:relative;margin:0 0 14px}',
+    '.fg-tli::before{content:"";position:absolute;left:-26px;top:20px;width:20px;height:20px;border-radius:50%;background:var(--fg-bg);box-shadow:2px 2px 5px var(--fg-sd),-2px -2px 5px var(--fg-sl),inset 0 0 0 4px var(--fg-accent)}',
+    '.fg-tli.fg-open::before{background:var(--fg-accent2)}',
+    '.fg-tlbtn{width:100%;text-align:left;border:0;cursor:pointer;color:var(--fg-text);background:var(--fg-bg);border-radius:20px;padding:12px 16px;display:flex;gap:12px;align-items:center;font:inherit;box-shadow:5px 5px 12px var(--fg-sd),-5px -5px 12px var(--fg-sl);transition:box-shadow .2s}',
+    '.fg-tli.fg-open .fg-tlbtn{box-shadow:inset 3px 3px 8px var(--fg-sd),inset -3px -3px 8px var(--fg-sl)}',
+    '.fg-tlemo{font-size:28px;flex:0 0 auto}',
+    '.fg-tlwhen{display:block;font-size:14px;font-weight:700;color:var(--fg-accent2)}',
+    '.fg-tltitle{display:block;font-family:"Jua",sans-serif;font-size:20px;line-height:1.4}',
+    '.fg-tlarrow{margin-left:auto;transition:transform .2s;flex:0 0 auto}',
+    '.fg-tli.fg-open .fg-tlarrow{transform:rotate(180deg)}',
+    '.fg-tlbody{padding:10px 16px 4px}',
+    '.fg-tlbody p{margin:0}',
+    /* clay cards */
+    '.fg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}',
+    '.fg-clay{border-radius:24px;padding:18px;background:linear-gradient(145deg,rgba(255,255,255,.35),rgba(255,255,255,0)) ,var(--fg-bg);box-shadow:8px 8px 18px var(--fg-sd),-6px -6px 14px var(--fg-sl),inset -4px -4px 10px rgba(0,0,0,.04),inset 4px 4px 10px rgba(255,255,255,.6);transition:transform .2s}',
+    '.fg-clay:hover{transform:translateY(-3px)}',
+    '.fg-emo{font-size:40px;line-height:1;display:inline-flex;width:64px;height:64px;align-items:center;justify-content:center;border-radius:20px;box-shadow:inset 3px 3px 8px var(--fg-sd),inset -3px -3px 8px var(--fg-sl)}',
+    '.fg-clay h3{font-size:22px;margin:10px 0 4px;line-height:1.35}',
+    '.fg-clay p{margin:0}',
+    /* table */
+    '.fg-tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:20px;box-shadow:inset 3px 3px 8px var(--fg-sd),inset -3px -3px 8px var(--fg-sl);padding:6px;margin:0 0 20px;max-width:100%}',
+    '.fg-table{border-collapse:separate;border-spacing:0;min-width:560px;width:100%;font-size:16px;line-height:1.6}',
+    '.fg-table th,.fg-table td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px dashed var(--fg-sd)}',
+    '.fg-table tr:last-child td{border-bottom:0}',
+    '.fg-table th{font-family:"Jua",sans-serif;font-weight:400;font-size:17px;color:var(--fg-accent2);white-space:nowrap}',
+    '.fg-table td:first-child{white-space:nowrap;font-weight:700}',
+    '.fg-tcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}',
+    '.fg-tcard{padding:0;overflow:hidden}',
+    '.fg-tbtn{width:100%;border:0;background:transparent;color:var(--fg-text);font:inherit;cursor:pointer;text-align:left;padding:16px 18px 8px;display:flex;align-items:center;gap:12px}',
+    '.fg-tbtn .fg-emo{width:52px;height:52px;font-size:30px;flex:0 0 auto}',
+    '.fg-tname{font-family:"Jua",sans-serif;font-size:22px;line-height:1.3;display:block}',
+    '.fg-tprot{font-size:14px;color:var(--fg-accent2);font-weight:700;display:block;line-height:1.4}',
+    '.fg-tarrow{margin-left:auto;transition:transform .2s}',
+    '.fg-tcard.fg-open .fg-tarrow{transform:rotate(180deg)}',
+    '.fg-bar{margin:4px 18px 14px}',
+    '.fg-barlabel{font-size:13px;display:flex;justify-content:space-between;opacity:.8;line-height:1.4}',
+    '.fg-track{position:relative;height:22px;border-radius:999px;box-shadow:inset 3px 3px 6px var(--fg-sd),inset -3px -3px 6px var(--fg-sl);overflow:hidden}',
+    '.fg-fill{position:absolute;top:4px;bottom:4px;left:4px;border-radius:999px;background:linear-gradient(90deg,var(--fg-accent),var(--fg-accent2));box-shadow:2px 2px 4px var(--fg-sd);width:0;transition:width .9s cubic-bezier(.2,.8,.2,1)}',
+    '.fg-fill::after{content:"";position:absolute;top:0;bottom:0;right:0;border-radius:999px;background:rgba(255,255,255,.35)}',
+    '.fg-tbody{padding:0 18px 18px}',
+    '.fg-tbody p{margin:0 0 6px}',
+    '.fg-tbody dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:16px}',
+    '.fg-tbody dt{font-weight:700;color:var(--fg-accent2)}',
+    '.fg-tbody dd{margin:0}',
+    /* anatomy */
+    '.fg-anat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px;align-items:center}',
+    '.fg-svgbox{border-radius:24px;padding:12px;box-shadow:inset 4px 4px 10px var(--fg-sd),inset -4px -4px 10px var(--fg-sl);text-align:center}',
+    '.fg-svgbox svg{width:100%;max-width:300px;height:auto;display:block;margin:0 auto}',
+    '.fg-part{cursor:pointer;transition:opacity .25s,filter .25s}',
+    '.fg-part:focus{outline:none}',
+    '.fg-anat.fg-sel .fg-part{opacity:.35}',
+    '.fg-anat.fg-sel .fg-part.fg-hl{opacity:1;filter:drop-shadow(0 0 6px rgba(232,168,74,.95))}',
+    '.fg-pbtns{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 14px}',
+    '.fg-pinfo{min-height:150px}',
+    '.fg-pinfo h3{font-size:22px;margin:0 0 4px}',
+    '.fg-pinfo p{margin:0}',
+    '.fg-pct{display:inline-block;font-size:15px;font-weight:700;color:var(--fg-accent2);margin-left:6px}',
+    '@media (max-width:720px){.fg-anat{grid-template-columns:1fr}}',
+    '@media (max-width:420px){.fg-root{font-size:17px;padding:6px 12px 20px}.fg-sec{padding:20px 14px}.fg-head h2{font-size:26px}.fg-sec>h2{font-size:23px}.fg-pill{font-size:15px;padding:7px 12px}.fg-grid,.fg-tcards{grid-template-columns:1fr}}',
+    '@media (prefers-reduced-motion:reduce){.fg-root *{transition:none!important}}'
+  ].join('\n');
+
+  /* ---------------- 도우미 ---------------- */
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function entryLink(letter, label) {
+    return '<a class="fg-link" href="#entry-' + letter + '" data-fg-letter="' + letter + '">자세히: ' +
+      letter + (label ? ' ' + esc(label) : '') + ' →</a>';
+  }
+
+  function injectStyle() {
+    if (document.getElementById('fg-style')) return;
+    var st = document.createElement('style');
+    st.id = 'fg-style';
+    st.textContent = CSS;
+    document.head.appendChild(st);
+    var hasJua = Array.prototype.some.call(document.querySelectorAll('link[href]'), function (l) {
+      return /Jua/.test(l.getAttribute('href'));
+    });
+    if (!hasJua) {
+      var lk = document.createElement('link');
+      lk.rel = 'stylesheet';
+      lk.href = 'https://fonts.googleapis.com/css2?family=Jua&display=swap';
+      document.head.appendChild(lk);
+    }
+  }
+
+  /* ---------------- 각 절 그리기 ---------------- */
+
+  function htmlHistory() {
+    var items = HISTORY.map(function (h, i) {
+      return '<li class="fg-tli" data-i="' + i + '">' +
+        '<button type="button" class="fg-tlbtn" aria-expanded="false" aria-controls="fg-tl-' + i + '">' +
+        '<span class="fg-tlemo" aria-hidden="true">' + h.emoji + '</span>' +
+        '<span><span class="fg-tlwhen">' + esc(h.when) + '</span><span class="fg-tltitle">' + esc(h.title) + '</span></span>' +
+        '<span class="fg-tlarrow" aria-hidden="true">▾</span></button>' +
+        '<div class="fg-tlbody" id="fg-tl-' + i + '" hidden><p>' + esc(h.text) + '</p>' + entryLink(h.link) + '</div>' +
+        '</li>';
+    }).join('');
+    return '<p class="fg-lead">밀가루는 아주 오랜 시간 동안 사람과 함께했어요. 점을 눌러서 이야기를 펼쳐 보세요.</p>' +
+      '<ol class="fg-tl">' + items + '</ol>' +
+      '<p class="fg-note">아주 오래된 일은 정확한 때를 알기 어려워요. 그래서 ‘약’이라고 적었어요.</p>';
+  }
+
+  function htmlFunction() {
+    var cards = FUNCTIONS.map(function (f) {
+      return '<article class="fg-clay">' +
+        '<span class="fg-emo" aria-hidden="true">' + f.emoji + '</span>' +
+        '<h3>' + esc(f.title) + '</h3>' +
+        '<p>' + esc(f.text) + '</p>' +
+        entryLink(f.letter, f.word) +
+        '</article>';
+    }).join('');
+    return '<p class="fg-lead">밀가루는 그냥 하얀 가루가 아니에요. 요리 속에서 여러 가지 일을 척척 해내요.</p>' +
+      '<div class="fg-grid">' + cards + '</div>';
+  }
+
+  function barHtml(t) {
+    var max = 16;
+    return '<div class="fg-bar" aria-label="단백질 ' + esc(t.protein) + '">' +
+      '<div class="fg-barlabel"><span>단백질 막대 💪</span><span>' + esc(t.protein.split(' (')[0]) + '</span></div>' +
+      '<div class="fg-track"><span class="fg-fill" data-w="' + Math.round((t.hi / max) * 100) + '"></span></div>' +
+      '<div class="fg-barlabel"><span>0%</span><span>8%</span><span>16%</span></div>' +
+      '</div>';
+  }
+
+  function htmlTypes() {
+    var rows = TYPES.map(function (t) {
+      return '<tr><td>' + t.emoji + ' ' + esc(t.name) + '</td><td>' + esc(t.protein) + '</td><td>' +
+        esc(t.feel) + '</td><td>' + esc(t.foods) + '</td></tr>';
+    }).join('');
+    var table = '<div class="fg-tablewrap" role="region" aria-label="밀가루 종류 비교표" tabindex="0">' +
+      '<table class="fg-table"><thead><tr><th>이름</th><th>단백질</th><th>느낌</th><th>어디에 써요?</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table></div>';
+    var cards = TYPES.map(function (t, i) {
+      return '<article class="fg-clay fg-tcard">' +
+        '<button type="button" class="fg-tbtn" aria-expanded="false" aria-controls="fg-ty-' + i + '">' +
+        '<span class="fg-emo" aria-hidden="true">' + t.emoji + '</span>' +
+        '<span><span class="fg-tname">' + esc(t.name) + '</span><span class="fg-tprot">' + esc(t.foods) + '</span></span>' +
+        '<span class="fg-tarrow" aria-hidden="true">▾</span></button>' +
+        barHtml(t) +
+        '<div class="fg-tbody" id="fg-ty-' + i + '" hidden>' +
+        '<p>' + esc(t.text) + '</p>' +
+        '<dl><dt>단백질</dt><dd>' + esc(t.protein) + '</dd><dt>느낌</dt><dd>' + esc(t.feel) + '</dd></dl>' +
+        entryLink(t.letter) +
+        '</div></article>';
+    }).join('');
+    return '<p class="fg-lead">밀가루는 단백질(글루텐)이 얼마나 들어 있느냐에 따라 이름이 달라져요. 단백질이 많을수록 반죽이 더 쫄깃해져요. 단단한 밀에서는 강력분이, 무른 밀에서는 박력분이 나와요.</p>' +
+      table +
+      '<div class="fg-tcards">' + cards + '</div>' +
+      '<p class="fg-note">단백질 숫자는 대략이에요. 정확한 기준은 나라와 회사마다 조금씩 달라요. 밀가루 봉지 뒤의 ‘영양 정보’를 살펴보세요!</p>' +
+      '<p class="fg-note">🔥 재(회분)로 나누는 나라도 있어요. 밀가루를 아주 뜨거운 오븐에서 태우면 재가 조금 남아요. 껍질에는 무기질이 많아서, 껍질이 많이 섞일수록 재가 많이 남아요. 흰 밀가루 100g은 재가 약 0.4g, 밀알을 통째로 간 가루는 약 2g 넘게 남아요. 독일은 이 양을 숫자로 붙여 405(하얀 가루)부터 1600(짙은 통곡물 가루)까지, 프랑스는 45부터 150까지로 나눠요.</p>';
+  }
+
+  function htmlAnatomy() {
+    var svg =
+      '<svg viewBox="0 0 240 320" role="img" aria-labelledby="fg-svg-t">' +
+      '<title id="fg-svg-t">밀알을 반으로 자른 모습: 껍질, 배젖, 씨눈</title>' +
+      '<defs>' +
+      '<radialGradient id="fg-gEndo" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#FFFDF6"/><stop offset="1" stop-color="#F1E3C4"/></radialGradient>' +
+      '<linearGradient id="fg-gBran" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C98B4E"/><stop offset="1" stop-color="#8E5A2B"/></linearGradient>' +
+      '<radialGradient id="fg-gGerm" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#F6D77A"/><stop offset="1" stop-color="#D9A93A"/></radialGradient>' +
+      '</defs>' +
+      // 껍질
+      '<g class="fg-part" data-part="bran" tabindex="0" role="button" aria-label="껍질(밀기울)">' +
+      '<path d="M120 12 C185 12 222 80 222 165 C222 250 180 308 120 308 C60 308 18 250 18 165 C18 80 55 12 120 12 Z" fill="url(#fg-gBran)"/>' +
+      '</g>' +
+      // 배젖
+      '<g class="fg-part" data-part="endo" tabindex="0" role="button" aria-label="배젖">' +
+      '<path d="M120 28 C175 28 206 90 206 165 C206 228 182 270 150 286 C140 266 118 258 100 266 C88 272 80 282 76 288 C50 270 34 228 34 165 C34 90 65 28 120 28 Z" fill="url(#fg-gEndo)"/>' +
+      '<g fill="#E9D7B0" opacity=".8"><circle cx="92" cy="110" r="5"/><circle cx="140" cy="95" r="4"/><circle cx="160" cy="150" r="6"/><circle cx="105" cy="170" r="4"/><circle cx="135" cy="210" r="5"/><circle cx="80" cy="215" r="4"/><circle cx="170" cy="225" r="4"/></g>' +
+      '<path d="M120 40 C118 120 118 200 120 250" stroke="#E2CDA0" stroke-width="3" fill="none" stroke-dasharray="6 8"/>' +
+      '</g>' +
+      // 씨눈
+      '<g class="fg-part" data-part="germ" tabindex="0" role="button" aria-label="씨눈(배아)">' +
+      '<path d="M78 290 C82 276 96 266 112 268 C130 270 146 282 148 294 C136 304 98 306 78 290 Z" fill="url(#fg-gGerm)"/>' +
+      '<path d="M104 286 C110 278 120 276 126 282" stroke="#9C7A1E" stroke-width="2.5" fill="none" stroke-linecap="round"/>' +
+      '</g>' +
+      // 이름표
+      '<g font-size="14" fill="#5B4636" font-family="Jua, sans-serif" pointer-events="none">' +
+      '<text x="120" y="140" text-anchor="middle">배젖</text>' +
+      '</g>' +
+      '</svg>';
+
+    var btns = [['bran', '🛡️ 껍질'], ['germ', '🌱 씨눈'], ['endo', '🍚 배젖']].map(function (b) {
+      return '<button type="button" class="fg-pill" data-part="' + b[0] + '" aria-pressed="false">' + b[1] + '</button>';
+    }).join('');
+
+    return '<p class="fg-lead">밀가루는 밀알을 갈아서 만들어요. 밀알을 반으로 자르면 세 부분이 보여요. 그림이나 단추를 눌러 보세요.</p>' +
+      '<div class="fg-anat">' +
+      '<div class="fg-svgbox">' + svg + '</div>' +
+      '<div><div class="fg-pbtns">' + btns + '</div>' +
+      '<div class="fg-clay fg-pinfo" aria-live="polite">' +
+      '<h3>👆 어느 부분이 궁금해요?</h3><p>밀알 그림의 갈색 껍질, 하얀 속, 아래쪽 노란 씨눈 가운데 하나를 눌러 보세요.</p>' +
+      '</div></div></div>' +
+      '<p class="fg-note">배젖은 밀알 부피의 약 80%를 차지해요. 나머지는 껍질과 씨눈이에요. 정확한 비율은 밀 품종마다 조금씩 달라요.</p>';
+  }
+
+  /* ---------------- 동작 연결 ---------------- */
+
+  function wireToggle(root, itemSel, btnSel, bodySel, onOpen) {
+    Array.prototype.forEach.call(root.querySelectorAll(itemSel), function (item) {
+      var btn = item.querySelector(btnSel);
+      var body = item.querySelector(bodySel);
+      btn.addEventListener('click', function () {
+        var open = !item.classList.contains('fg-open');
+        item.classList.toggle('fg-open', open);
+        btn.setAttribute('aria-expanded', String(open));
+        body.hidden = !open;
+        if (open && onOpen) onOpen(item);
+      });
+    });
+  }
+
+  function showPart(root, key) {
+    var p = PARTS[key];
+    if (!p) return;
+    var anat = root.querySelector('.fg-anat');
+    anat.classList.add('fg-sel');
+    Array.prototype.forEach.call(anat.querySelectorAll('.fg-part'), function (g) {
+      g.classList.toggle('fg-hl', g.getAttribute('data-part') === key);
+    });
+    Array.prototype.forEach.call(anat.querySelectorAll('.fg-pbtns .fg-pill'), function (b) {
+      var on = b.getAttribute('data-part') === key;
+      b.classList.toggle('fg-on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    anat.querySelector('.fg-pinfo').innerHTML =
+      '<h3>' + p.emoji + ' ' + esc(p.name) + '<span class="fg-pct">' + esc(p.pct) + '</span></h3>' +
+      '<p>' + esc(p.text) + '</p>' + entryLink(p.letter);
+  }
+
+  function animateBars(root) {
+    var fills = root.querySelectorAll('.fg-fill');
+    function go() {
+      Array.prototype.forEach.call(fills, function (f) {
+        f.style.width = 'calc(' + f.getAttribute('data-w') + '% - 8px)';
+      });
+    }
+    var sec = root.querySelector('#guide-types');
+    if ('IntersectionObserver' in window && sec) {
+      var io = new IntersectionObserver(function (ents) {
+        if (ents.some(function (e) { return e.isIntersecting; })) { go(); io.disconnect(); }
+      }, { threshold: 0.15 });
+      io.observe(sec);
+    } else {
+      go();
+    }
+  }
+
+  function mount(el) {
+    if (!el) return;
+    injectStyle();
+
+    var nav = SECTIONS.map(function (s) {
+      return '<a class="fg-pill" href="#' + s.id + '" data-fg-jump="' + s.id + '">' + s.emoji + ' ' + esc(s.pill) + '</a>';
+    }).join('');
+
+    var builders = {
+      'guide-history': htmlHistory,
+      'guide-function': htmlFunction,
+      'guide-types': htmlTypes,
+      'guide-anatomy': htmlAnatomy
+    };
+
+    var secs = SECTIONS.map(function (s) {
+      return '<section class="fg-sec" id="' + s.id + '" aria-labelledby="' + s.id + '-h">' +
+        '<h2 id="' + s.id + '-h">' + s.emoji + ' ' + esc(s.title) + '</h2>' +
+        builders[s.id]() + '</section>';
+    }).join('');
+
+    el.innerHTML =
+      '<div class="fg-root">' +
+      '<header class="fg-head"><h2>📖 밀가루 총론</h2><p>낱말 사전을 펼치기 전에, 밀가루의 큰 그림을 먼저 살펴봐요.</p></header>' +
+      '<nav class="fg-nav" aria-label="총론 바로가기">' + nav + '</nav>' +
+      secs +
+      '</div>';
+
+    var root = el.querySelector('.fg-root');
+
+    // 바로가기: 해시를 바꾸지 않고 부드럽게 이동 (A–Z 해시 라우팅과 부딪히지 않게)
+    Array.prototype.forEach.call(root.querySelectorAll('[data-fg-jump]'), function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var t = document.getElementById(a.getAttribute('data-fg-jump'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        Array.prototype.forEach.call(root.querySelectorAll('[data-fg-jump]'), function (x) {
+          x.classList.toggle('fg-on', x === a);
+        });
+      });
+    });
+
+    // 낱말 링크: location.hash = LETTER
+    root.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('[data-fg-letter]') : null;
+      if (!a) return;
+      e.preventDefault();
+      location.hash = a.getAttribute('data-fg-letter');
+    });
+
+    wireToggle(root, '.fg-tli', '.fg-tlbtn', '.fg-tlbody');
+    wireToggle(root, '.fg-tcard', '.fg-tbtn', '.fg-tbody');
+
+    // 밀알 부분 고르기
+    Array.prototype.forEach.call(root.querySelectorAll('.fg-anat [data-part]'), function (n) {
+      var key = n.getAttribute('data-part');
+      n.addEventListener('click', function () { showPart(root, key); });
+      if (n.tagName.toLowerCase() === 'g') {
+        n.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showPart(root, key); }
+        });
+      }
+    });
+
+    // 첫 번째 연표 점은 열어 둬요
+    var first = root.querySelector('.fg-tli .fg-tlbtn');
+    if (first) first.click();
+
+    animateBars(root);
+  }
+
+  window.FlourGuide = {
+    mount: mount,
+    data: { history: HISTORY, functions: FUNCTIONS, types: TYPES, parts: PARTS }
+  };
+})();
+
+</script>
+<script>/* video.js */
+/* FlourVideo: 30-second motion graphic + generated cooking music (no external assets). */
+(function () {
+  'use strict';
+
+  var W = 1600, H = 900, DUR = 30, BPM = 112, BEAT = 60 / BPM, TAU = Math.PI * 2;
+  var F = '"SeoulNamsan","Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif';
+  var C = {
+    bg: '#F3EADB', bg2: '#EAD9BF', wheat: '#E8A84A', crust: '#C9773B', ink: '#5B4636',
+    cream: '#FFF8EC', flour: '#FFFDF8', dough: '#F4DDB0', skin: '#FFD7B5', bowl: '#D98B55'
+  };
+  var SC = 1; // canvas scale (for shadows, which ignore transforms)
+  function noop() {}
+
+  /* ---------------- math & color helpers ---------------- */
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function lerp(a, b, u) { return a + (b - a) * u; }
+  function seg(t, a, b) { return clamp((t - a) / (b - a), 0, 1); }
+  function eio(u) { return u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2; }
+  function eo(u) { return 1 - Math.pow(1 - u, 3); }
+  function eob(u) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2); }
+  function rnd(i) { var x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }
+  function parse(c) {
+    if (typeof c !== 'string') return c;
+    var h = c.replace('#', '');
+    return [parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)];
+  }
+  function css(c) { if (typeof c === 'string') return c; return 'rgb(' + Math.round(c[0]) + ',' + Math.round(c[1]) + ',' + Math.round(c[2]) + ')'; }
+  function rgba(c, a) { var p = parse(c); return 'rgba(' + Math.round(p[0]) + ',' + Math.round(p[1]) + ',' + Math.round(p[2]) + ',' + a + ')'; }
+  function mix(a, b, u) { var A = parse(a), B = parse(b); return [lerp(A[0], B[0], u), lerp(A[1], B[1], u), lerp(A[2], B[2], u)]; }
+  function shade(c, amt) {
+    var A = parse(c), tg = amt > 0 ? 255 : 0, p = Math.abs(amt);
+    return [A[0] + (tg - A[0]) * p, A[1] + (tg - A[1]) * p, A[2] + (tg - A[2]) * p];
+  }
+
+  /* ---------------- drawing helpers ---------------- */
+  function rr(g, x, y, w, h, r) {
+    r = Math.max(0, Math.min(r, w / 2, h / 2));
+    g.beginPath();
+    g.moveTo(x + r, y);
+    g.arcTo(x + w, y, x + w, y + h, r);
+    g.arcTo(x + w, y + h, x, y + h, r);
+    g.arcTo(x, y + h, x, y, r);
+    g.arcTo(x, y, x + w, y, r);
+    g.closePath();
+  }
+  function ell(g, x, y, rx, ry, rot) { g.beginPath(); g.ellipse(x, y, Math.max(0.1, rx), Math.max(0.1, ry), rot || 0, 0, TAU); }
+  function circ(g, x, y, r) { g.beginPath(); g.arc(x, y, Math.max(0.1, r), 0, TAU); }
+  function sh(g, blur, oy, a) {
+    g.shadowColor = 'rgba(110,78,45,' + (a == null ? 0.25 : a) + ')';
+    g.shadowBlur = blur * SC; g.shadowOffsetX = 0; g.shadowOffsetY = oy * SC;
+  }
+  function noSh(g) { g.shadowColor = 'rgba(0,0,0,0)'; g.shadowBlur = 0; g.shadowOffsetY = 0; g.shadowOffsetX = 0; }
+  // Fill current path with a soft clay gradient + soft drop shadow.
+  function paint(g, color, cx, cy, r, opt) {
+    opt = opt || {};
+    r = Math.max(2, r);
+    var gr = g.createRadialGradient(cx - r * 0.35, cy - r * 0.45, Math.max(1, r * 0.05), cx, cy, r * 1.25);
+    gr.addColorStop(0, css(shade(color, 0.38)));
+    gr.addColorStop(0.5, css(color));
+    gr.addColorStop(1, css(shade(color, -0.2)));
+    g.save();
+    if (opt.shadow !== false) sh(g, opt.blur || 26, opt.oy == null ? 12 : opt.oy, opt.sa);
+    g.fillStyle = gr;
+    g.fill();
+    g.restore();
+    if (opt.line !== false) {
+      g.save(); g.lineWidth = opt.lw || 3; g.strokeStyle = 'rgba(91,70,54,.14)'; g.stroke(); g.restore();
+    }
+  }
+  function face(g, x, y, s, mood) {
+    g.save();
+    g.translate(x, y); g.scale(s, s);
+    g.fillStyle = C.ink; g.strokeStyle = C.ink; g.lineCap = 'round'; g.lineWidth = 6;
+    if (mood === 'happy') {
+      g.beginPath(); g.arc(-34, 4, 12, Math.PI * 1.1, Math.PI * 1.9); g.stroke();
+      g.beginPath(); g.arc(34, 4, 12, Math.PI * 1.1, Math.PI * 1.9); g.stroke();
+    } else if (mood === 'squeeze') {
+      g.beginPath(); g.moveTo(-46, -8); g.lineTo(-30, 0); g.lineTo(-46, 8); g.stroke();
+      g.beginPath(); g.moveTo(46, -8); g.lineTo(30, 0); g.lineTo(46, 8); g.stroke();
+    } else if (mood === 'sleep') {
+      g.beginPath(); g.arc(-34, -4, 12, Math.PI * 0.15, Math.PI * 0.85); g.stroke();
+      g.beginPath(); g.arc(34, -4, 12, Math.PI * 0.15, Math.PI * 0.85); g.stroke();
+    } else {
+      circ(g, -34, 0, 9); g.fill(); circ(g, 34, 0, 9); g.fill();
+      g.fillStyle = '#fff'; circ(g, -31, -3, 3); g.fill(); circ(g, 37, -3, 3); g.fill();
+    }
+    g.fillStyle = 'rgba(240,120,100,.45)';
+    ell(g, -58, 20, 14, 8); g.fill(); ell(g, 58, 20, 14, 8); g.fill();
+    g.strokeStyle = C.ink; g.lineWidth = 6;
+    if (mood === 'wow') { ell(g, 0, 24, 9, 11); g.fillStyle = C.ink; g.fill(); }
+    else if (mood === 'sleep') { g.beginPath(); g.arc(0, 18, 7, 0.2, Math.PI - 0.2); g.stroke(); }
+    else { g.beginPath(); g.arc(0, 12, 13, 0.25, Math.PI - 0.25); g.stroke(); }
+    g.restore();
+  }
+  function heartPath(g, x, y, s) {
+    g.beginPath();
+    g.moveTo(x, y + s * 0.35);
+    g.bezierCurveTo(x - s, y - s * 0.35, x - s * 0.45, y - s * 1.05, x, y - s * 0.45);
+    g.bezierCurveTo(x + s * 0.45, y - s * 1.05, x + s, y - s * 0.35, x, y + s * 0.35);
+    g.closePath();
+  }
+  function starPath(g, x, y, r, rot, pts, inner) {
+    pts = pts || 5; inner = inner || 0.45;
+    g.beginPath();
+    for (var i = 0; i < pts * 2; i++) {
+      var a = rot + i * Math.PI / pts - Math.PI / 2, rad = i % 2 ? r * inner : r;
+      if (i === 0) g.moveTo(x + Math.cos(a) * rad, y + Math.sin(a) * rad);
+      else g.lineTo(x + Math.cos(a) * rad, y + Math.sin(a) * rad);
+    }
+    g.closePath();
+  }
+  function sparkle(g, x, y, r, a) {
+    if (r <= 0.5 || a <= 0) return;
+    g.save(); g.globalAlpha *= a;
+    starPath(g, x, y, r, 0, 4, 0.28); g.fillStyle = '#FFF6D8'; g.fill();
+    g.restore();
+  }
+  function pill(g, x, y, text, size, bg, fg) {
+    g.save();
+    g.font = '800 ' + size + 'px ' + F;
+    var w = g.measureText(text).width + size * 1.4, h = size * 1.7;
+    rr(g, x - w / 2, y - h / 2, w, h, h / 2);
+    sh(g, 14, 5, 0.2); g.fillStyle = bg || 'rgba(255,250,240,.95)'; g.fill(); noSh(g);
+    g.fillStyle = fg || C.ink; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(text, x, y + size * 0.06);
+    g.restore();
+  }
+  function bgCream(g, glow) {
+    var gr = g.createLinearGradient(0, 0, 0, H);
+    gr.addColorStop(0, '#F8F0E2'); gr.addColorStop(1, C.bg2);
+    g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    if (glow) {
+      var rg = g.createRadialGradient(800, 420, 20, 800, 420, 700);
+      rg.addColorStop(0, 'rgba(255,255,255,.55)'); rg.addColorStop(1, 'rgba(255,255,255,0)');
+      g.fillStyle = rg; g.fillRect(0, 0, W, H);
+    }
+    // soft polka dots
+    g.fillStyle = 'rgba(232,168,74,.08)';
+    for (var i = 0; i < 18; i++) { circ(g, (i * 263) % W, 60 + ((i * 137) % 640), 18 + (i % 4) * 8); g.fill(); }
+  }
+  function floorShadow(g, x, y, rx, a) {
+    var rg = g.createRadialGradient(x, y, 1, x, y, Math.max(2, rx));
+    rg.addColorStop(0, 'rgba(120,85,50,' + (a || 0.22) + ')'); rg.addColorStop(1, 'rgba(120,85,50,0)');
+    g.save(); g.translate(x, y); g.scale(1, 0.18); g.translate(-x, -y);
+    g.fillStyle = rg; circ(g, x, y, rx); g.fill(); g.restore();
+  }
+
+  /* ---------------- shared props ---------------- */
+  function bowl(g, cx, cy, w, inner) {
+    var ry = w * 0.12;
+    floorShadow(g, cx, cy + w * 0.36, w * 0.55, 0.25);
+    // back rim / inside
+    ell(g, cx, cy, w / 2, ry);
+    g.fillStyle = css(shade(C.bowl, -0.35)); g.fill();
+    ell(g, cx, cy + 4, w / 2 - 14, ry - 8);
+    g.fillStyle = css(shade(C.bowl, -0.5)); g.fill();
+    if (inner) inner();
+    // foot
+    rr(g, cx - w * 0.17, cy + w * 0.28, w * 0.34, w * 0.07, 16);
+    g.fillStyle = css(shade(C.bowl, -0.15)); g.fill();
+    // body
+    g.beginPath();
+    g.moveTo(cx - w / 2, cy);
+    g.bezierCurveTo(cx - w / 2, cy + w * 0.42, cx + w / 2, cy + w * 0.42, cx + w / 2, cy);
+    g.ellipse(cx, cy, w / 2, ry, 0, 0, Math.PI, false);
+    g.closePath();
+    paint(g, C.bowl, cx, cy + w * 0.1, w * 0.45);
+    // cream stripe
+    g.save();
+    g.beginPath();
+    g.moveTo(cx - w / 2, cy);
+    g.bezierCurveTo(cx - w / 2, cy + w * 0.42, cx + w / 2, cy + w * 0.42, cx + w / 2, cy);
+    g.ellipse(cx, cy, w / 2, ry, 0, 0, Math.PI, false);
+    g.closePath(); g.clip();
+    g.strokeStyle = 'rgba(255,244,225,.85)'; g.lineWidth = 16;
+    g.beginPath(); g.ellipse(cx, cy + w * 0.07, w / 2, ry, 0, 0.05, Math.PI - 0.05, false); g.stroke();
+    g.fillStyle = 'rgba(255,255,255,.25)';
+    ell(g, cx - w * 0.28, cy + w * 0.15, w * 0.05, w * 0.1, 0.5); g.fill();
+    g.restore();
+    // rim highlight
+    g.strokeStyle = 'rgba(255,236,210,.9)'; g.lineWidth = 6;
+    g.beginPath(); g.ellipse(cx, cy, w / 2 - 3, ry - 2, 0, Math.PI * 0.05, Math.PI * 0.95, false); g.stroke();
+  }
+  function domePath(g, x, y, rx, ry) {
+    rx = Math.max(1, rx); ry = Math.max(1, ry);
+    g.beginPath();
+    g.ellipse(x, y, rx, ry, 0, Math.PI, TAU, false);
+    g.quadraticCurveTo(x + rx, y + ry * 0.32, x, y + ry * 0.32);
+    g.quadraticCurveTo(x - rx, y + ry * 0.32, x - rx, y);
+    g.closePath();
+  }
+  function dough(g, x, y, rx, ry, col, mood, faceScale) {
+    domePath(g, x, y, rx, ry);
+    paint(g, col, x, y - ry * 0.4, Math.max(rx, ry));
+    g.fillStyle = 'rgba(255,255,255,.35)';
+    ell(g, x - rx * 0.45, y - ry * 0.62, rx * 0.16, ry * 0.12, -0.5); g.fill();
+    if (mood) face(g, x, y - ry * 0.38, faceScale || clamp(ry / 140, 0.5, 1.2), mood);
+  }
+  function loafPath(g) {
+    g.beginPath();
+    g.moveTo(-200, 70);
+    g.quadraticCurveTo(-238, 70, -232, 18);
+    g.bezierCurveTo(-226, -118, 226, -118, 232, 18);
+    g.quadraticCurveTo(238, 70, 200, 70);
+    g.closePath();
+  }
+  function loaf(g, x, y, s, col, mood, shine) {
+    g.save();
+    g.translate(x, y); g.scale(s, s);
+    loafPath(g);
+    paint(g, col, 0, -10, 240, { blur: 30, oy: 14 });
+    // scoring
+    g.strokeStyle = css(shade(col, 0.35)); g.lineCap = 'round'; g.lineWidth = 14;
+    for (var i = -1; i <= 1; i++) {
+      g.beginPath(); g.moveTo(i * 105 - 40, -40); g.quadraticCurveTo(i * 105, -70, i * 105 + 40, -66); g.stroke();
+    }
+    g.fillStyle = 'rgba(255,255,255,' + (0.22 + (shine || 0) * 0.3) + ')';
+    ell(g, -120, -40, 40, 16, -0.4); g.fill();
+    if (mood) face(g, 0, 18, 0.9, mood);
+    g.restore();
+  }
+  function hand(g, x, y, rot, flip) {
+    g.save();
+    g.translate(x, y); g.rotate(rot); g.scale(flip ? -1 : 1, 1);
+    // cuff
+    rr(g, -48, -190, 96, 70, 24);
+    paint(g, C.wheat, 0, -160, 60, { blur: 14, oy: 6 });
+    // mitten palm
+    rr(g, -58, -130, 116, 132, 52);
+    paint(g, C.skin, 0, -70, 80, { blur: 18, oy: 8 });
+    ell(g, -60, -55, 22, 36, 0.45);
+    paint(g, C.skin, -60, -55, 30, { shadow: false });
+    g.strokeStyle = 'rgba(200,140,110,.5)'; g.lineWidth = 4; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(-14, -18); g.lineTo(-14, -2); g.moveTo(14, -18); g.lineTo(14, -2); g.stroke();
+    g.restore();
+  }
+
+  /* ---------------- timing constants (shared by animation + audio) ---------------- */
+  var DROPS = [
+    { t: 8.5, k: 'w' }, { t: 8.9, k: 'w' }, { t: 9.3, k: 'w' },
+    { t: 9.85, k: 'y' }, { t: 10.2, k: 'y' },
+    { t: 10.75, k: 's' }, { t: 11.05, k: 's' }, { t: 11.35, k: 's' }
+  ];
+  var FALL = 0.42;
+  var KS = 13.3, KP = 0.72, KN = 5;
+  var TICK0 = 17.5, TICKN = 7;
+  var CAPS = [
+    [0, 4, '밀을 거둬요'],
+    [4, 8, '곱게 갈면 밀가루!'],
+    [8, 12, '물, 이스트, 소금을 넣어요'],
+    [12, 17, '조물조물 치대요'],
+    [17, 21, '부풀 때까지 기다려요'],
+    [21, 26, '오븐에서 구워요'],
+    [26, 30.01, '따끈따끈 빵 완성!']
+  ];
+  var CUTS = [4, 8, 12, 17, 21, 26];
+
+  /* ---------------- scenes ---------------- */
+  function wheatStalk(g, x, y, h, ang, sz, col) {
+    g.save();
+    g.translate(x, y); g.rotate(ang);
+    g.strokeStyle = css(shade(col, -0.28)); g.lineWidth = 5 * sz; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(0, 0); g.quadraticCurveTo(7 * sz, -h * 0.5, 0, -h); g.stroke();
+    g.fillStyle = css(shade(col, -0.12));
+    g.beginPath(); g.moveTo(0, -h * 0.32); g.quadraticCurveTo(32 * sz, -h * 0.42, 46 * sz, -h * 0.6);
+    g.quadraticCurveTo(18 * sz, -h * 0.48, 0, -h * 0.38); g.fill();
+    g.translate(0, -h);
+    g.strokeStyle = css(shade(col, 0.15)); g.lineWidth = 2 * sz;
+    var k;
+    g.beginPath();
+    for (k = 0; k < 7; k++) {
+      var yy = -k * 13 * sz;
+      g.moveTo(-6 * sz, yy); g.lineTo(-22 * sz, yy - 30 * sz);
+      g.moveTo(6 * sz, yy); g.lineTo(22 * sz, yy - 30 * sz);
+    }
+    g.stroke();
+    for (k = 0; k < 7; k++) {
+      var y2 = -k * 13 * sz;
+      g.fillStyle = css(k % 2 ? col : shade(col, 0.14));
+      ell(g, -7 * sz, y2, 7 * sz, 12 * sz, -0.35); g.fill();
+      ell(g, 7 * sz, y2, 7 * sz, 12 * sz, 0.35); g.fill();
+    }
+    ell(g, 0, -7 * 13 * sz, 6 * sz, 11 * sz); g.fill();
+    g.restore();
+  }
+  function sceneField(g, t) {
+    var sky = g.createLinearGradient(0, 0, 0, 700);
+    sky.addColorStop(0, '#FCEBCB'); sky.addColorStop(1, '#F6D7A4');
+    g.fillStyle = sky; g.fillRect(0, 0, W, H);
+    var zoom = 1 + eio(seg(t, 3.0, 4.0)) * 0.12;
+    g.save();
+    g.translate(800, 520); g.scale(zoom, zoom); g.translate(-800, -520);
+    // clouds (behind the sun so its face stays visible)
+    for (var c = 0; c < 3; c++) {
+      var cx = ((160 + c * 500 + t * 32) % 1900) - 150, cy = 120 + c * 55;
+      g.beginPath();
+      g.arc(cx, cy, 42, 0, TAU); g.arc(cx + 50, cy - 18, 52, 0, TAU); g.arc(cx + 104, cy, 40, 0, TAU);
+      g.fillStyle = 'rgba(255,253,246,.92)'; g.fill();
+    }
+    // sun
+    g.save(); g.translate(1310, 170); g.rotate(t * 0.25);
+    g.fillStyle = 'rgba(246,195,91,.35)';
+    for (var r = 0; r < 10; r++) { g.rotate(TAU / 10); rr(g, -10, -150, 20, 44, 10); g.fill(); }
+    g.restore();
+    circ(g, 1310, 170, 88); paint(g, '#F6C35B', 1310, 170, 88, { blur: 30, oy: 0, sa: 0.15, line: false });
+    face(g, 1310, 175, 0.7, 'happy');
+    // hills
+    g.fillStyle = '#EDC98A';
+    g.beginPath(); g.moveTo(0, 560); g.bezierCurveTo(300, 450, 600, 520, 900, 500); g.bezierCurveTo(1200, 470, 1400, 520, 1600, 480);
+    g.lineTo(1600, 900); g.lineTo(0, 900); g.fill();
+    g.fillStyle = '#E2B567';
+    g.beginPath(); g.moveTo(0, 650); g.bezierCurveTo(400, 590, 900, 640, 1600, 600); g.lineTo(1600, 900); g.lineTo(0, 900); g.fill();
+    var i, x, ang;
+    for (i = 0; i < 34; i++) {
+      x = 20 + i * 48 + rnd(i) * 20;
+      ang = Math.sin(t * 2.4 + x * 0.012) * 0.07 + Math.sin(t * 1.1 + x * 0.004) * 0.06;
+      wheatStalk(g, x, 790, 250 + rnd(i + 9) * 70, ang, 0.72, '#EFCB82');
+    }
+    g.fillStyle = '#D9A657'; g.fillRect(0, 780, W, 120);
+    for (i = 0; i < 24; i++) {
+      x = 10 + i * 68 + rnd(i + 40) * 26;
+      if (x > 1220 && x < 1450) continue;
+      ang = Math.sin(t * 2.4 + x * 0.012 + 0.6) * 0.09 + Math.sin(t * 1.1 + x * 0.004) * 0.07;
+      wheatStalk(g, x, 935, 330 + rnd(i + 70) * 90, ang, 1.0, C.wheat);
+    }
+    // basket collecting ears
+    var bx = 1335, by = 760;
+    for (var e = 0; e < 3; e++) {
+      var t0 = 1.6 + e * 0.45, u = seg(t, t0, t0 + 0.6);
+      if (u <= 0) continue;
+      var sx = 1080 + e * 70, sy = 420 + e * 20;
+      var ex = bx - 40 + e * 40, ey = by - 70;
+      var px = lerp(sx, ex, eio(u)), py = lerp(sy, ey, eio(u)) - Math.sin(u * Math.PI) * 120;
+      wheatStalk(g, px, py + 90, 90, lerp(-0.6, -0.2 + e * 0.2, u), 0.75, C.wheat);
+    }
+    floorShadow(g, bx, by + 85, 170, 0.3);
+    g.beginPath();
+    g.moveTo(bx - 150, by - 40); g.lineTo(bx + 150, by - 40); g.lineTo(bx + 115, by + 80); g.quadraticCurveTo(bx, by + 98, bx - 115, by + 80); g.closePath();
+    paint(g, '#C98B4E', bx, by, 150);
+    g.strokeStyle = 'rgba(255,230,190,.45)'; g.lineWidth = 6;
+    for (var b = 0; b < 3; b++) { g.beginPath(); g.moveTo(bx - 140 + b * 6, by - 5 + b * 30); g.lineTo(bx + 140 - b * 6, by - 5 + b * 30); g.stroke(); }
+    rr(g, bx - 160, by - 56, 320, 30, 15); paint(g, '#B9783E', bx, by - 42, 160, { blur: 8, oy: 4 });
+    g.restore();
+  }
+
+  function sceneMill(g, t) {
+    var lt = t - 4;
+    bgCream(g, true);
+    var shake = Math.sin(lt * 70) * 1.6;
+    var prog = eo(seg(lt, 0.4, 3.8));
+    // pile
+    var ph = 40 + 190 * prog, pw = 180 + ph * 1.5, pyb = 830;
+    floorShadow(g, 800, pyb, pw * 0.75, 0.25);
+    // flour stream
+    var streamA = seg(lt, 0.3, 0.6) * (1 - seg(lt, 3.7, 3.95));
+    if (streamA > 0) {
+      g.save(); g.globalAlpha = streamA;
+      g.fillStyle = 'rgba(255,253,246,.95)';
+      g.beginPath();
+      g.moveTo(788, 500);
+      for (var yy = 500; yy <= pyb - ph + 10; yy += 20) g.lineTo(788 + Math.sin(yy * 0.05 + lt * 12) * 4, yy);
+      g.lineTo(812, pyb - ph + 10); g.lineTo(812, 500); g.closePath(); g.fill();
+      g.restore();
+    }
+    g.beginPath();
+    g.moveTo(800 - pw, pyb);
+    g.bezierCurveTo(800 - pw * 0.55, pyb - ph * 0.1, 800 - pw * 0.35, pyb - ph * 1.25, 800, pyb - ph * 1.25 + 4);
+    g.bezierCurveTo(800 + pw * 0.35, pyb - ph * 1.25, 800 + pw * 0.55, pyb - ph * 0.1, 800 + pw, pyb);
+    g.closePath();
+    paint(g, C.flour, 800, pyb - ph * 0.6, pw * 0.7, { blur: 22, oy: 8, sa: 0.18 });
+    if (ph > 120) face(g, 800, pyb - ph * 0.45, 0.8 * seg(ph, 120, 190), 'happy');
+    // dust puffs
+    for (var d = 0; d < 12; d++) {
+      var pp = (lt * 0.9 + d / 12) % 1;
+      var dx = 800 + (rnd(d) - 0.5) * pw * 1.4, dy = pyb - ph * 0.9 - pp * 120;
+      g.fillStyle = 'rgba(255,255,255,' + (0.55 * Math.sin(pp * Math.PI) * streamA) + ')';
+      circ(g, dx, dy, 8 + pp * 14); g.fill();
+    }
+    // mill frame
+    g.save(); g.translate(shake, 0);
+    rr(g, 600, 350, 34, 210, 17); paint(g, '#B9834F', 617, 450, 80, { blur: 14 });
+    rr(g, 966, 350, 34, 210, 17); paint(g, '#B9834F', 983, 450, 80, { blur: 14 });
+    rr(g, 600, 470, 400, 30, 15); paint(g, '#A9733F', 800, 485, 200, { blur: 12 });
+    // rollers
+    var rot = lt * 5;
+    [[716, -1], [884, 1]].forEach(function (R) {
+      var x = R[0], y = 420, r = 82;
+      circ(g, x, y, r); paint(g, '#E6D7C0', x, y, r, { blur: 18 });
+      g.save(); g.translate(x, y); g.rotate(rot * R[1]);
+      g.fillStyle = 'rgba(150,115,80,.35)';
+      for (var k = 0; k < 8; k++) { g.rotate(TAU / 8); rr(g, -6, -r + 8, 12, 30, 6); g.fill(); }
+      circ(g, 0, 0, 22); g.fillStyle = '#C9A57D'; g.fill();
+      circ(g, 0, 0, 9); g.fillStyle = '#9C7650'; g.fill();
+      g.restore();
+    });
+    // falling grains
+    for (var i = 0; i < 9; i++) {
+      var p = (lt * 1.6 + i / 9) % 1;
+      if (lt < 0.1) break;
+      var gx = 800 + Math.sin(i * 2.3) * 22 * (1 - p), gy = 300 + p * 60;
+      g.fillStyle = css(shade(C.wheat, -0.1));
+      ell(g, gx, gy, 8, 12, i); g.fill();
+    }
+    // hopper
+    g.beginPath();
+    g.moveTo(590, 150); g.lineTo(1010, 150); g.lineTo(860, 320); g.lineTo(740, 320); g.closePath();
+    paint(g, C.wheat, 800, 220, 220, { blur: 20 });
+    for (var q = 0; q < 16; q++) {
+      var qx = 620 + q * 24, qy = 146 - Math.sin((q / 15) * Math.PI) * 26 - (q % 2) * 6;
+      g.fillStyle = css(q % 2 ? '#D99A3E' : '#E9B460');
+      ell(g, qx, qy, 11, 15, q * 0.7); g.fill();
+    }
+    g.fillStyle = 'rgba(255,255,255,.3)'; rr(g, 640, 175, 60, 14, 7); g.fill();
+    g.restore();
+    pill(g, 1240, 260, '밀알', 34, C.wheat, '#fff');
+    g.strokeStyle = C.crust; g.lineWidth = 6; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(1180, 262); g.lineTo(1030, 230); g.stroke();
+    if (prog > 0.5) pill(g, 1220, 700, '밀가루', 34, '#fff', C.crust);
+  }
+
+  function rot(px, py, a) { return [px * Math.cos(a) - py * Math.sin(a), px * Math.sin(a) + py * Math.cos(a)]; }
+  function dropOrigin(k, t) {
+    if (k === 'w') { var a = 0.55 * eio(seg(t, 8.2, 8.45)), p = rot(105, -95, a); return [450 + p[0], 360 + p[1]]; }
+    if (k === 'y') return [800, 315];
+    var b = -0.65, q = rot(0, -110, b); return [1170 + q[0], 330 + q[1]];
+  }
+  function dropTarget(i) { return [800 + (rnd(i + 3) - 0.5) * 140, 572 + rnd(i + 8) * 10]; }
+  function flourMound(g, cx, cy, col, wobble, t) {
+    g.beginPath();
+    g.moveTo(cx - 230, cy + 14);
+    for (var k = 0; k <= 20; k++) {
+      var u = k / 20, x = cx - 230 + u * 460;
+      var y = cy + 14 - Math.sin(u * Math.PI) * 140 + (wobble ? Math.sin(u * 9 + t * 8) * wobble : 0);
+      g.lineTo(x, y);
+    }
+    g.closePath();
+    paint(g, col, cx, cy - 60, 220, { shadow: false });
+  }
+  function sceneMix(g, t) {
+    var lt = t - 8, cx = 800, cy = 620;
+    bgCream(g, true);
+    var landedW = 0, i;
+    bowl(g, cx, cy, 560, function () {
+      flourMound(g, cx, cy, C.flour, 0, t);
+      g.fillStyle = 'rgba(220,205,180,.6)'; ell(g, cx, cy - 92, 70, 18); g.fill();
+      for (i = 0; i < DROPS.length; i++) if (DROPS[i].k === 'w' && t > DROPS[i].t + FALL) landedW++;
+      if (landedW) { g.fillStyle = 'rgba(140,200,225,.85)'; ell(g, cx, cy - 92, 22 + landedW * 15, 6 + landedW * 3); g.fill(); }
+      for (i = 0; i < DROPS.length; i++) {
+        var d = DROPS[i];
+        if (d.k === 'w' || t < d.t + FALL) continue;
+        var tg = dropTarget(i);
+        for (var s = 0; s < 6; s++) {
+          var sx = tg[0] + (rnd(i * 10 + s) - 0.5) * 60, sy = cy - 80 + (rnd(i * 7 + s) - 0.5) * 30;
+          g.fillStyle = d.k === 'y' ? '#A9733F' : '#FFFFFF';
+          if (d.k === 'y') { ell(g, sx, sy, 5, 3.5, s); g.fill(); }
+          else { g.save(); g.translate(sx, sy); g.rotate(s); g.fillRect(-3, -3, 6, 6); g.strokeStyle = 'rgba(160,140,120,.5)'; g.lineWidth = 1; g.strokeRect(-3, -3, 6, 6); g.restore(); }
+        }
+      }
+    });
+    // jug
+    var inJ = eob(seg(lt, 0, 0.55));
+    var aJ = 0.55 * eio(seg(t, 8.2, 8.45)) * (1 - seg(t, 9.6, 9.9));
+    g.save(); g.translate(450, 360 - (1 - inJ) * 500); g.rotate(aJ);
+    g.lineWidth = 16; g.strokeStyle = css(shade('#BFDDE8', -0.15));
+    g.beginPath(); g.arc(-75, -10, 40, Math.PI * 0.5, Math.PI * 1.5); g.stroke();
+    g.beginPath(); g.moveTo(60, -80); g.lineTo(108, -96); g.lineTo(70, -40); g.closePath();
+    g.fillStyle = '#BFDDE8'; g.fill();
+    rr(g, -72, -90, 144, 170, 44); paint(g, '#BFDDE8', 0, 0, 100);
+    g.save(); rr(g, -72, -90, 144, 170, 44); g.clip();
+    g.fillStyle = 'rgba(110,175,205,.55)'; g.fillRect(-80, -10 - aJ * 30, 170, 120);
+    g.restore();
+    face(g, 0, 20, 0.55, 'open');
+    g.restore();
+    // yeast packet
+    var inY = eob(seg(lt, 0.25, 0.8));
+    var wig = (t > 9.5 && t < 10.5) ? Math.sin(t * 30) * 0.08 : 0;
+    g.save(); g.translate(800, 210 - (1 - inY) * 500); g.rotate(wig);
+    rr(g, -62, -80, 124, 150, 22); paint(g, C.wheat, 0, -10, 90);
+    g.fillStyle = '#fff'; g.font = '800 30px ' + F; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText('이스트', 0, -10);
+    g.fillStyle = 'rgba(255,255,255,.45)'; rr(g, -40, 30, 80, 12, 6); g.fill();
+    g.restore();
+    // salt shaker
+    var inS = eob(seg(lt, 0.5, 1.05));
+    var aS = -0.65 * eio(seg(t, 10.4, 10.65)) + ((t > 10.6 && t < 11.6) ? Math.sin(t * 34) * 0.1 : 0);
+    g.save(); g.translate(1170, 330 - (1 - inS) * 500); g.rotate(aS);
+    rr(g, -52, -60, 104, 140, 30); paint(g, C.cream, 0, 10, 80);
+    g.beginPath(); g.ellipse(0, -60, 52, 48, 0, Math.PI, TAU); g.closePath();
+    paint(g, '#B9C7CF', 0, -80, 60, { blur: 10, oy: 4 });
+    g.fillStyle = C.ink;
+    for (var h = -1; h <= 1; h++) { circ(g, h * 16, -88, 4); g.fill(); }
+    face(g, 0, 20, 0.45, 'happy');
+    g.restore();
+    // labels
+    if (inJ > 0.9) pill(g, 430, 520, '물', 30, '#BFDDE8', C.ink);
+    if (inY > 0.9) pill(g, 800, 330 + 40, '이스트', 26, '#fff', C.crust);
+    if (inS > 0.9) pill(g, 1190, 500, '소금', 30, '#fff', C.ink);
+    // falling drops
+    for (i = 0; i < DROPS.length; i++) {
+      var dr = DROPS[i];
+      var u = (t - dr.t) / FALL;
+      var tg2 = dropTarget(i);
+      if (u >= 0 && u < 1) {
+        var o = dropOrigin(dr.k, dr.t);
+        var x = lerp(o[0], tg2[0], u), y = lerp(o[1], tg2[1] - 50, u * u);
+        if (dr.k === 'w') {
+          g.beginPath(); g.moveTo(x, y - 26); g.bezierCurveTo(x + 18, y - 4, x + 16, y + 14, x, y + 14);
+          g.bezierCurveTo(x - 16, y + 14, x - 18, y - 4, x, y - 26); g.closePath();
+          paint(g, '#8FCBE3', x, y, 18, { blur: 8, oy: 3 });
+        } else {
+          for (var s2 = 0; s2 < 5; s2++) {
+            g.fillStyle = dr.k === 'y' ? '#A9733F' : '#FFFFFF';
+            ell(g, x + (rnd(s2 + i) - 0.5) * 22, y + (rnd(s2 * 3 + i) - 0.5) * 22, 5, 4, s2); g.fill();
+            g.strokeStyle = 'rgba(140,110,80,.35)'; g.lineWidth = 1; g.stroke();
+          }
+        }
+      } else if (u >= 1 && u < 1 + 0.4 / FALL) {
+        var v = (t - dr.t - FALL) / 0.4;
+        g.strokeStyle = 'rgba(120,180,210,' + (1 - v) + ')'; g.lineWidth = 4;
+        ell(g, tg2[0], tg2[1] - 50, 14 + v * 50, 4 + v * 14); g.stroke();
+        g.fillStyle = 'rgba(143,203,227,' + (1 - v) + ')';
+        for (var sp = 0; sp < 4; sp++) { circ(g, tg2[0] + (sp - 1.5) * 18 * (1 + v), tg2[1] - 60 - Math.sin(v * Math.PI) * 30, 5); g.fill(); }
+      }
+    }
+  }
+
+  function kneadS(t) {
+    if (t < KS || t > KS + KN * KP) return 0;
+    var ph = ((t - KS) / KP) % 1;
+    return Math.pow(Math.sin(ph * Math.PI), 2);
+  }
+  function sceneKnead(g, t) {
+    var lt = t - 12, cx = 800, cy = 620;
+    bgCream(g, true);
+    var B = seg(lt, 1.05, 1.45);
+    if (B < 1) {
+      g.save(); g.globalAlpha = 1 - B;
+      var m = seg(lt, 0, 1.1);
+      bowl(g, cx, cy, 560, function () {
+        flourMound(g, cx, cy, mix(C.flour, C.dough, m), 6 + m * 6, t);
+        g.strokeStyle = 'rgba(200,170,120,.5)'; g.lineWidth = 5;
+        g.beginPath(); g.arc(cx, cy - 70, 60 + Math.sin(t * 9) * 10, t * 9, t * 9 + 3); g.stroke();
+      });
+      var a = lt * 9;
+      var sx = cx + Math.cos(a) * 90, sy = cy - 60 + Math.sin(a) * 22;
+      g.save(); g.translate(sx, sy); g.rotate(0.5 + Math.cos(a) * 0.12);
+      rr(g, -14, -330, 28, 300, 14); paint(g, '#C98B4E', 0, -180, 120, { blur: 14 });
+      ell(g, 0, -20, 36, 50); paint(g, '#C98B4E', 0, -20, 50, { blur: 10 });
+      g.restore();
+      g.restore();
+    }
+    if (B > 0) {
+      g.save(); g.globalAlpha = B;
+      floorShadow(g, cx, 745, 460, 0.28);
+      rr(g, 400, 615, 800, 130, 50); paint(g, "#D9A066", cx, 680, 400, { blur: 24 });
+      g.strokeStyle = 'rgba(160,100,50,.25)'; g.lineWidth = 4;
+      for (var w = 0; w < 3; w++) { g.beginPath(); g.moveTo(450, 645 + w * 32); g.quadraticCurveTo(800, 635 + w * 32 + (w % 2 ? 12 : -12), 1150, 645 + w * 32); g.stroke(); }
+      var s = kneadS(t);
+      var ph = t > KS ? ((t - KS) / KP) % 1 : 0;
+      var wob = (t > KS && t < KS + KN * KP) ? Math.sin(ph * TAU * 2) * 0.03 * (1 - s) : 0;
+      var rx = 190 * (1 + 0.28 * s + wob), ry = 135 * (1 - 0.25 * s - wob);
+      var base = 655;
+      // flour dust on thumps
+      for (var k = 0; k < KN; k++) {
+        var th = KS + k * KP + KP / 2, v = (t - th) / 0.5;
+        if (v < 0 || v > 1) continue;
+        for (var p = 0; p < 6; p++) {
+          var dir = p < 3 ? -1 : 1;
+          g.fillStyle = 'rgba(255,255,255,' + (0.8 * (1 - v)) + ')';
+          circ(g, cx + dir * (rx + 10 + v * 90 + (p % 3) * 26), base - 10 - Math.sin(v * Math.PI) * (30 + (p % 3) * 18), 10 - v * 4); g.fill();
+        }
+      }
+      dough(g, cx, base, rx, ry, C.dough, s > 0.45 ? 'squeeze' : 'open', 0.95);
+      var enter = 1 - eo(seg(t, 12.9, 13.3));
+      var hy = (base - ry + 18) - (1 - s) * 80 - enter * 420;
+      hand(g, cx - 95, hy, 0.18, false);
+      hand(g, cx + 95, hy, -0.18, true);
+      g.restore();
+    }
+  }
+
+  function sceneProof(g, t) {
+    var lt = t - 17, cx = 800, cy = 650;
+    bgCream(g, true);
+    var rise = 1 + 0.85 * eio(seg(lt, 0.9, 3.6));
+    var rx = 200 + 55 * (rise - 1), ry = 95 * rise, base = cy - 2;
+    var clothDrop = (1 - eob(seg(lt, 0.05, 0.75))) * 520;
+    bowl(g, cx, cy, 560, function () {
+      dough(g, cx, base, rx, ry, C.dough, 'sleep', 0.75);
+    });
+    // cloth
+    var yc = base - ry * 0.52 - clothDrop;
+    g.save();
+    g.beginPath();
+    g.moveTo(0, -200); g.lineTo(W, -200); g.lineTo(W, yc);
+    for (var x = W; x >= 0; x -= 20) {
+      var off = Math.abs(x - cx) > rx * 0.62 ? (Math.abs(x - cx) - rx * 0.62) * 0.95 : 0;
+      g.lineTo(x, yc + Math.sin(x * 0.06) * 7 + Math.min(off, 110));
+    }
+    g.closePath(); g.clip();
+    domePath(g, cx, base - clothDrop, rx + 22, ry + 22);
+    g.save(); sh(g, 18, 8, 0.25); g.fillStyle = '#FFF4E4'; g.fill(); g.restore();
+    g.save(); domePath(g, cx, base - clothDrop, rx + 22, ry + 22); g.clip();
+    g.fillStyle = 'rgba(229,140,106,.42)';
+    for (var sx = cx - 400; sx < cx + 400; sx += 56) g.fillRect(sx, base - clothDrop - 400, 26, 600);
+    for (var sy = base - clothDrop - 400; sy < base + 200; sy += 56) g.fillRect(cx - 400, sy, 800, 26);
+    g.restore();
+    g.restore();
+    // zzz
+    for (var z = 0; z < 3; z++) {
+      var zp = (lt * 0.55 + z / 3) % 1;
+      g.save();
+      g.globalAlpha = Math.sin(zp * Math.PI) * seg(lt, 0.8, 1.2);
+      g.fillStyle = C.crust; g.font = '800 ' + (30 + zp * 26) + 'px ' + F;
+      g.fillText('z', cx + rx * 0.7 + zp * 90, base - ry - 10 - zp * 140);
+      g.restore();
+    }
+    // clock
+    var x2 = Math.max(0, (t - TICK0) / 0.5), k = Math.floor(x2), f = x2 - k;
+    var tickN = t < TICK0 ? 0 : Math.min(TICKN, k + 1);
+    var pulse = (t >= TICK0 && k < TICKN) ? 1 + 0.06 * (1 - seg(f, 0, 0.35)) : 1;
+    var stepPos = t < TICK0 ? 0 : (k < TICKN ? k + eob(Math.min(1, f * 4)) : TICKN);
+    var inC = eob(seg(lt, 0.2, 0.7));
+    g.save(); g.translate(1290, 250); g.scale(inC * pulse, inC * pulse);
+    circ(g, -62, -88, 26); paint(g, C.crust, -62, -88, 26, { blur: 6, oy: 3 });
+    circ(g, 62, -88, 26); paint(g, C.crust, 62, -88, 26, { blur: 6, oy: 3 });
+    circ(g, 0, 0, 108); paint(g, C.wheat, 0, 0, 108);
+    circ(g, 0, 0, 86); paint(g, C.cream, 0, 0, 86, { shadow: false });
+    g.fillStyle = C.ink;
+    for (var tk = 0; tk < 12; tk++) { var ta = tk * TAU / 12; circ(g, Math.sin(ta) * 70, -Math.cos(ta) * 70, tk % 3 ? 3 : 6); g.fill(); }
+    g.strokeStyle = C.ink; g.lineCap = 'round';
+    var ma = stepPos * TAU / 8, ha = stepPos * TAU / 96 + 1;
+    g.lineWidth = 9; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(ha) * 40, -Math.cos(ha) * 40); g.stroke();
+    g.strokeStyle = C.crust; g.lineWidth = 7; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.sin(ma) * 62, -Math.cos(ma) * 62); g.stroke();
+    circ(g, 0, 0, 10); g.fillStyle = C.crust; g.fill();
+    g.restore();
+    if (tickN > 0 && inC > 0.5) pill(g, 1290, 420, (tickN * 10) + '분', 26, '#fff', C.ink);
+    // x2 badge
+    var bdg = eob(seg(lt, 3.3, 3.7));
+    if (bdg > 0) {
+      g.save(); g.translate(470, 330); g.scale(bdg, bdg); g.rotate(-0.15);
+      starPath(g, 0, 0, 92, 0, 10, 0.78); paint(g, C.crust, 0, 0, 92, { blur: 16 });
+      g.fillStyle = '#fff'; g.font = '900 52px ' + F; g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.fillText('2배!', 0, 4);
+      g.restore();
+    }
+  }
+
+  function steam(g, x, y, t, i, len, a) {
+    var p = (t * 0.55 + i * 0.37) % 1;
+    g.save();
+    g.globalAlpha = Math.sin(p * Math.PI) * a;
+    g.strokeStyle = '#FFFFFF'; g.lineWidth = 12; g.lineCap = 'round';
+    g.beginPath();
+    for (var k = 0; k <= 12; k++) {
+      var u = k / 12, yy = y - p * 50 - u * len, xx = x + Math.sin(u * 5 + t * 3 + i) * 14 * (0.4 + u);
+      if (k === 0) g.moveTo(xx, yy); else g.lineTo(xx, yy);
+    }
+    g.stroke();
+    g.restore();
+  }
+  function sceneOven(g, t) {
+    var lt = t - 21;
+    bgCream(g, true);
+    var bake = eio(seg(t, 21.6, 25.6));
+    var col = bake < 0.5 ? mix(C.dough, C.wheat, bake * 2) : mix(C.wheat, C.crust, (bake - 0.5) * 2);
+    for (var s = 0; s < 3; s++) steam(g, 720 + s * 80, 150, t, s, 120, 0.7 * seg(lt, 0.5, 1.2));
+    floorShadow(g, 800, 770, 400, 0.3);
+    rr(g, 480, 730, 50, 40, 14); g.fillStyle = css(shade(C.crust, -0.2)); g.fill();
+    rr(g, 1070, 730, 50, 40, 14); g.fill();
+    rr(g, 460, 160, 680, 590, 64); paint(g, '#F7E7CF', 800, 420, 380, { blur: 34, oy: 16 });
+    rr(g, 460, 160, 680, 100, 50);
+    g.save(); g.clip(); g.fillStyle = C.wheat; g.fillRect(460, 160, 680, 100); g.fillStyle = 'rgba(255,255,255,.25)'; g.fillRect(460, 160, 680, 20); g.restore();
+    // knobs
+    [[560, 210], [1040, 210]].forEach(function (k, idx) {
+      circ(g, k[0], k[1], 30); paint(g, C.cream, k[0], k[1], 30, { blur: 8, oy: 4 });
+      g.save(); g.translate(k[0], k[1]); g.rotate(-2 + eio(seg(lt, 0, 0.8)) * (idx ? 2.2 : 3.2));
+      g.fillStyle = C.crust; rr(g, -5, -26, 10, 22, 5); g.fill(); g.restore();
+    });
+    rr(g, 700, 186, 200, 50, 25); g.fillStyle = C.ink; g.fill();
+    g.fillStyle = '#FFB45A'; g.font = '800 30px ' + F; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(Math.round(lerp(25, 200, eo(seg(lt, 0, 1.2)))) + '°C', 800, 213);
+    // window
+    rr(g, 540, 300, 520, 330, 46);
+    g.fillStyle = '#4A3628'; g.fill();
+    g.save(); rr(g, 540, 300, 520, 330, 46); g.clip();
+    var glow = 0.55 + Math.sin(t * 3) * 0.08;
+    var rg = g.createRadialGradient(800, 560, 20, 800, 520, 360);
+    rg.addColorStop(0, 'rgba(255,170,70,' + glow + ')'); rg.addColorStop(1, 'rgba(255,120,40,0)');
+    g.fillStyle = rg; g.fillRect(540, 300, 520, 330);
+    g.strokeStyle = 'rgba(255,' + Math.round(lerp(150, 90, glow)) + ',60,.9)'; g.lineWidth = 6;
+    g.beginPath();
+    for (var x = 570; x <= 1030; x += 10) g.lineTo(x, 340 + Math.sin(x * 0.12) * 6);
+    g.stroke();
+    g.strokeStyle = 'rgba(200,180,160,.5)'; g.lineWidth = 5;
+    g.beginPath(); g.moveTo(560, 590); g.lineTo(1040, 590); g.stroke();
+    loaf(g, 800, 540, 0.72 * (1 + 0.1 * bake), col, bake > 0.7 ? 'happy' : 'open', bake);
+    for (var s2 = 0; s2 < 3; s2++) steam(g, 740 + s2 * 60, 470, t + 0.3, s2 + 5, 80, 0.35 * bake);
+    if (bake > 0.75) for (var sp = 0; sp < 4; sp++) sparkle(g, 680 + sp * 80, 420 + (sp % 2) * 50, 12 + Math.sin(t * 6 + sp) * 6, 1);
+    g.fillStyle = 'rgba(255,255,255,.12)';
+    g.beginPath(); g.moveTo(600, 300); g.lineTo(700, 300); g.lineTo(560, 520); g.lineTo(540, 420); g.closePath(); g.fill();
+    g.restore();
+    g.lineWidth = 10; g.strokeStyle = '#EAD6B8'; rr(g, 540, 300, 520, 330, 46); g.stroke();
+    rr(g, 610, 660, 380, 32, 16); paint(g, C.crust, 800, 676, 190, { blur: 12, oy: 6 });
+  }
+
+  function sceneFinale(g, t) {
+    var lt = Math.min(t, DUR) - 26;
+    var bg = g.createRadialGradient(800, 480, 30, 800, 480, 900);
+    bg.addColorStop(0, '#FFF6E2'); bg.addColorStop(1, '#F1DDBA');
+    g.fillStyle = bg; g.fillRect(0, 0, W, H);
+    // rays
+    g.save(); g.translate(800, 500); g.rotate(lt * 0.15);
+    g.fillStyle = 'rgba(232,168,74,.12)';
+    for (var r = 0; r < 14; r++) {
+      g.rotate(TAU / 14);
+      g.beginPath(); g.moveTo(0, 0); g.lineTo(-70, -900); g.lineTo(70, -900); g.closePath(); g.fill();
+    }
+    g.restore();
+    var pop = eob(seg(lt, 0, 0.6));
+    floorShadow(g, 800, 640, 330 * pop, 0.3);
+    loaf(g, 800, 540 - Math.sin(lt * 2.2) * 6 * seg(lt, 0.6, 1), Math.max(0.01, 1.2 * pop), C.crust, 'happy', 1);
+    // sparkles around loaf
+    for (var s = 0; s < 6; s++) {
+      var a = s * TAU / 6 + lt * 0.6;
+      sparkle(g, 800 + Math.cos(a) * 330, 520 + Math.sin(a) * 160, 16 + Math.sin(lt * 5 + s * 2) * 9, seg(lt, 0.3, 0.7));
+    }
+    // particles
+    for (var i = 0; i < 28; i++) {
+      var ang = rnd(i) * TAU, dist = (220 + rnd(i + 50) * 420) * eo(seg(lt, 0.05, 2.2));
+      var px = 800 + Math.cos(ang) * dist * 1.25, py = 500 + Math.sin(ang) * dist * 0.75 + Math.sin(lt * 2 + i) * 10;
+      var size = 16 + rnd(i + 90) * 18, al = seg(lt, 0.05, 0.25) * (1 - 0.4 * seg(lt, 2.2, 3.5));
+      if (al <= 0) continue;
+      g.save(); g.globalAlpha = al;
+      g.translate(px, py); g.rotate(Math.sin(lt * 2 + i) * 0.4);
+      if (i % 2) { heartPath(g, 0, 0, size); paint(g, i % 4 === 1 ? '#F08A7A' : '#F5A3A0', 0, -size * 0.3, size, { blur: 6, oy: 3, line: false }); }
+      else { starPath(g, 0, 0, size, 0); paint(g, i % 4 === 0 ? '#F6C35B' : C.wheat, 0, 0, size, { blur: 6, oy: 3, line: false }); }
+      g.restore();
+    }
+    // ding!
+    var dg = seg(lt, 0, 0.12) * (1 - seg(lt, 1.0, 1.4));
+    if (dg > 0) {
+      g.save(); g.globalAlpha = dg; g.translate(1180, 300); g.scale(eob(seg(lt, 0, 0.35)), eob(seg(lt, 0, 0.35))); g.rotate(0.15);
+      g.fillStyle = C.crust; g.font = '900 64px ' + F; g.textAlign = 'center'; g.fillText('띵!', 0, 0);
+      g.restore();
+    }
+    // title
+    var tp = eob(seg(lt, 0.8, 1.4));
+    if (tp > 0) {
+      g.save(); g.translate(800, 160); g.scale(tp, tp);
+      g.font = '900 88px ' + F; g.textAlign = 'center'; g.textBaseline = 'middle';
+      var label = '밀가루 A to Z 백과사전';
+      var tw = g.measureText(label).width;
+      rr(g, -tw / 2 - 50, -76, tw + 100, 152, 76);
+      g.save(); sh(g, 30, 12, 0.25); g.fillStyle = 'rgba(255,251,243,.96)'; g.fill(); g.restore();
+      g.lineWidth = 4; g.strokeStyle = 'rgba(232,168,74,.5)'; g.stroke();
+      g.fillStyle = C.crust; g.fillText(label, 0, 4);
+      g.restore();
+    }
+  }
+
+  function caption(g, t) {
+    var idx = CAPS.length - 1;
+    for (var i = 0; i < CAPS.length; i++) if (t >= CAPS[i][0] && t < CAPS[i][1]) { idx = i; break; }
+    var c = CAPS[idx], lt = t - c[0];
+    var pop = eob(seg(lt, 0, 0.45)), a = seg(lt, 0, 0.18);
+    if (a <= 0) return;
+    g.save();
+    g.font = '800 44px ' + F;
+    var tw = g.measureText(c[2]).width, h = 88, badge = 30, w = tw + h + badge + 50;
+    g.translate(W / 2, 818); g.scale(0.85 + 0.15 * pop, 0.85 + 0.15 * pop); g.globalAlpha = a;
+    rr(g, -w / 2, -h / 2, w, h, h / 2);
+    sh(g, 24, 8, 0.25); g.fillStyle = 'rgba(255,250,240,.96)'; g.fill(); noSh(g);
+    var bx = -w / 2 + h / 2;
+    circ(g, bx, 0, badge); paint(g, C.wheat, bx, 0, badge, { blur: 6, oy: 2, line: false });
+    g.fillStyle = '#fff'; g.font = '900 30px ' + F; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(String(idx + 1), bx, 2);
+    g.fillStyle = C.ink; g.font = '800 44px ' + F; g.textAlign = 'left';
+    g.fillText(c[2], bx + badge + 24, 3);
+    g.restore();
+  }
+
+  function render(g, t, poster) {
+    if (t < 4) sceneField(g, t);
+    else if (t < 8) sceneMill(g, t);
+    else if (t < 12) sceneMix(g, t);
+    else if (t < 17) sceneKnead(g, t);
+    else if (t < 21) sceneProof(g, t);
+    else if (t < 26) sceneOven(g, t);
+    else sceneFinale(g, t);
+    for (var i = 0; i < CUTS.length; i++) {
+      var d = Math.abs(t - CUTS[i]);
+      if (d < 0.25) { g.fillStyle = 'rgba(243,234,219,' + (0.9 * (1 - d / 0.25)) + ')'; g.fillRect(0, 0, W, H); }
+    }
+    if (!poster) caption(g, t);
+    if (poster) {
+      g.fillStyle = 'rgba(91,70,54,.28)'; g.fillRect(0, 0, W, H);
+      pill(g, 800, 190, '밀가루 A to Z 백과사전', 56, 'rgba(255,250,240,.96)', C.crust);
+      circ(g, 800, 460, 110); paint(g, C.wheat, 800, 460, 110, { blur: 40, oy: 16, sa: 0.35 });
+      g.beginPath(); g.moveTo(770, 405); g.lineTo(770, 515); g.lineTo(858, 460); g.closePath();
+      g.fillStyle = '#fff'; g.fill();
+      pill(g, 800, 650, '눌러서 재생해요', 36, 'rgba(255,250,240,.95)', C.ink);
+    }
+  }
+
+  /* ---------------- music + SFX timeline ---------------- */
+  function mtof(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+  var BARS = [[48, 'M'], [45, 'm'], [41, 'M'], [43, 'M'], [48, 'M'], [45, 'm'], [38, 'm'], [43, 'M'],
+              [41, 'M'], [43, 'M'], [40, 'm'], [41, 'M'], [43, 'M'], [48, 'M']];
+  var MA = [0, null, 2, 1, 2, null, 4, null], MB = [4, 3, 2, null, 1, 2, 0, null],
+      MC = [2, null, 2, 3, 4, null, 5, 4], MD = [5, 4, 3, 2, 1, null, 0, null],
+      MEND = [0, 1, 2, 3, null, null, null, null];
+  var MEL = [MA, MB, MC, MD, MA, MB, MC, MD, MC, MA, MB, MC, MD, MEND];
+  var EV = (function () {
+    var ev = [];
+    function add(t, type, o) { o = o || {}; o.t = t; o.type = type; ev.push(o); }
+    var b, k;
+    for (b = 0; b < BARS.length; b++) {
+      var root = BARS[b][0], th = BARS[b][1] === 'M' ? 4 : 3, bt = b * 4 * BEAT, last = b === BARS.length - 1;
+      // walking bass
+      if (!last) {
+        var next = BARS[b + 1][0];
+        var walk = [root, root + th, root + 7, next - 1];
+        for (k = 0; k < 4; k++) add(bt + k * BEAT, 'bs', { f: mtof(walk[k]), d2: BEAT * 0.9 });
+      } else {
+        add(bt, 'bs', { f: mtof(root), d2: BEAT * 3.5 });
+      }
+      // light percussion
+      if (b >= 1 && !last) {
+        add(bt, 'kk', { v: 0.55 }); add(bt + 2 * BEAT, 'kk', { v: 0.5 }); add(bt + 2.5 * BEAT, 'kk', { v: 0.3 });
+        add(bt + BEAT, 'sn', { v: 0.1 }); add(bt + 3 * BEAT, 'sn', { v: 0.1 });
+        for (k = 0; k < 16; k++) {
+          if (k % 2) add(bt + k * BEAT / 4, 'sk', { v: 0.03 });
+          else if (k % 4 === 2) add(bt + k * BEAT / 4, 'hh', { v: 0.08 });
+          else add(bt + k * BEAT / 4, 'sk', { v: 0.045 });
+        }
+      }
+      if (last) add(bt, 'kk', { v: 0.5 });
+      // melody (major-key marimba plucks, light swing)
+      var pc = root % 12, base = 72 + pc; if (base > 77) base -= 12;
+      var lad = [base, base + th, base + 7, base + 12, base + 12 + th, base + 19, base + 24];
+      var m = MEL[b];
+      for (k = 0; k < 8; k++) {
+        if (m[k] == null) continue;
+        var dec = last && k === 3 ? 1.8 : 0.45;
+        add(bt + k * BEAT / 2 + (k % 2 ? 0.03 : 0), 'pl', { f: mtof(lad[m[k]]), v: k % 4 === 0 ? 0.2 : 0.14, dec: dec });
+      }
+      // offbeat chord stabs
+      if (!last) {
+        var cb = 60 + pc; if (cb > 66) cb -= 12;
+        [1.5, 3.5].forEach(function (bb) {
+          [0, th, 7].forEach(function (iv) { add(bt + bb * BEAT, 'pl', { f: mtof(cb + iv), v: 0.04, dec: 0.22 }); });
+        });
+      }
+    }
+    // kitchen SFX synced to scenes
+    add(0, 'wind', { d: 3.6 });
+    [3.85, 7.85, 11.85, 16.85, 20.85].forEach(function (x) { add(x, 'swish'); });
+    add(4.2, 'grind', { d: 3.6 });
+    for (k = 0; k < 26; k++) add(4.3 + k * 0.13 + rnd(k + 200) * 0.06, 'crk', { v: 0.05 + rnd(k) * 0.05 });
+    DROPS.forEach(function (d) { add(d.t + FALL, 'plip', { f: d.k === 'w' ? 1 : d.k === 'y' ? 0.8 : 1.25 }); });
+    for (k = 0; k < KN; k++) add(KS + k * KP + KP / 2, 'thump');
+    for (k = 0; k < TICKN; k++) add(TICK0 + k * 0.5, 'tick', { hi: k % 2 === 0 });
+    add(21.1, 'hum', { d: 4.8 });
+    add(26.0, 'ding');
+    [84, 88, 91, 96, 100].forEach(function (n, i) { add(26.15 + i * 0.07, 'pl', { f: mtof(n), v: 0.1, dec: 0.7 }); });
+    ev.sort(function (a, c) { return a.t - c.t; });
+    return ev;
+  })();
+
+  /* ---------------- audio engine (Web Audio, look-ahead scheduler) ---------------- */
+  function AudioEngine() {
+    this.ac = null; this.master = null; this.bus = null; this.timer = 0; this.live = []; this.muted = false; this.idx = 0;
+  }
+  AudioEngine.prototype.ensure = function () {
+    var ac = this.ac;
+    if (!ac) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      try { ac = this.ac = new AC(); } catch (e) { return false; }
+      var comp = ac.createDynamicsCompressor();
+      comp.threshold.value = -14; comp.knee.value = 12; comp.ratio.value = 4;
+      this.master = ac.createGain();
+      this.master.gain.value = this.muted ? 0 : 0.85;
+      this.master.connect(comp); comp.connect(ac.destination);
+      var len = Math.floor(ac.sampleRate * 2), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+      for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      this.noise = buf;
+    }
+    if (ac.state === 'suspended' && ac.resume) { try { var p = ac.resume(); if (p && p.catch) p.catch(noop); } catch (e2) { /* ignore */ } }
+    return true;
+  };
+  AudioEngine.prototype.setMuted = function (m) {
+    this.muted = m;
+    if (this.master && this.ac) {
+      var now = this.ac.currentTime;
+      this.master.gain.cancelScheduledValues(now);
+      this.master.gain.setTargetAtTime(m ? 0 : 0.85, now, 0.03);
+    }
+  };
+  AudioEngine.prototype.start = function (pos) {
+    this.stop();
+    if (!this.ac) return;
+    var ac = this.ac, now = ac.currentTime, self = this;
+    this.pos0 = pos; this.base0 = now + 0.04;
+    var bus = this.bus = ac.createGain();
+    bus.connect(this.master);
+    var fs = DUR - 1.5;
+    if (pos < fs) {
+      bus.gain.setValueAtTime(1, now);
+      bus.gain.setValueAtTime(1, this.base0 + (fs - pos));
+      bus.gain.linearRampToValueAtTime(0, this.base0 + (DUR - pos));
+    } else {
+      bus.gain.setValueAtTime(Math.max(0, (DUR - pos) / (DUR - fs)), now);
+      bus.gain.linearRampToValueAtTime(0, this.base0 + Math.max(0.05, DUR - pos));
+    }
+    this.idx = 0;
+    this.pump();
+    this.timer = setInterval(function () { self.pump(); }, 40);
+  };
+  AudioEngine.prototype.stop = function () {
+    if (this.timer) { clearInterval(this.timer); this.timer = 0; }
+    if (!this.ac || !this.bus) { this.live = []; this.bus = null; return; }
+    var now = this.ac.currentTime, bus = this.bus;
+    try {
+      bus.gain.cancelScheduledValues(now);
+      bus.gain.setValueAtTime(bus.gain.value, now);
+      bus.gain.linearRampToValueAtTime(0, now + 0.04);
+    } catch (e) { /* ignore */ }
+    this.live.forEach(function (n) { try { n.stop(now + 0.06); } catch (e2) { /* ignore */ } });
+    this.live = []; this.bus = null;
+    setTimeout(function () { try { bus.disconnect(); } catch (e3) { /* ignore */ } }, 150);
+  };
+  AudioEngine.prototype.pump = function () {
+    if (!this.bus) return;
+    var now = this.ac.currentTime, play = this.pos0 + (now - this.base0), hz = play + 0.3;
+    while (this.idx < EV.length && EV[this.idx].t < hz) {
+      var e = EV[this.idx++];
+      if (e.d) { if (e.t + e.d <= this.pos0 + 0.05) continue; }
+      else if (e.t < this.pos0 - 0.03) continue;
+      var at = this.base0 + (e.t - this.pos0), el = 0;
+      if (at < now) { el = now - at; at = now; }
+      if (e.d && e.d - el < 0.06) continue;
+      try { this.fire(e, at, el); } catch (err) { /* never break playback */ }
+    }
+    var keep = [];
+    for (var i = 0; i < this.live.length; i++) if (this.live[i]._end > now) keep.push(this.live[i]);
+    this.live = keep;
+  };
+  AudioEngine.prototype.reg = function (src, at, end, offset) {
+    if (offset != null) src.start(at, offset); else src.start(at);
+    src.stop(end); src._end = end; this.live.push(src);
+  };
+  AudioEngine.prototype.env = function (at, peak, atk, dec) {
+    var g = this.ac.createGain();
+    g.gain.setValueAtTime(0.0001, at);
+    g.gain.exponentialRampToValueAtTime(Math.max(0.0002, peak), at + atk);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + atk + dec);
+    return g;
+  };
+  AudioEngine.prototype.osc = function (type, f, at, end, dest) {
+    var o = this.ac.createOscillator(); o.type = type; o.frequency.setValueAtTime(f, at); o.connect(dest);
+    this.reg(o, at, end); return o;
+  };
+  AudioEngine.prototype.noiseSrc = function (at, end, dest, loop) {
+    var s = this.ac.createBufferSource(); s.buffer = this.noise; s.loop = !!loop; s.connect(dest);
+    this.reg(s, at, end, loop ? 0 : Math.random() * 1.2); return s;
+  };
+  AudioEngine.prototype.filt = function (type, f, q, dest) {
+    var b = this.ac.createBiquadFilter(); b.type = type; b.frequency.value = f; b.Q.value = q == null ? 1 : q; b.connect(dest); return b;
+  };
+  AudioEngine.prototype.noiseHit = function (at, type, f, q, peak, atk, dec) {
+    var g = this.env(at, peak, atk, dec); g.connect(this.bus);
+    this.noiseSrc(at, at + atk + dec + 0.05, this.filt(type, f, q, g));
+  };
+  AudioEngine.prototype.curve = function (param, fn, at, dur, el, total) {
+    var n = 48, arr = new Float32Array(n);
+    for (var i = 0; i < n; i++) arr[i] = fn((el + (i / (n - 1)) * dur) / total);
+    param.setValueCurveAtTime(arr, at, dur);
+  };
+  AudioEngine.prototype.fire = function (e, at, el) {
+    var ac = this.ac, out = this.bus, g, o, f, dur;
+    switch (e.type) {
+      case 'pl': { // marimba-like pluck
+        g = this.env(at, e.v, 0.006, e.dec); g.connect(out);
+        this.osc('sine', e.f, at, at + e.dec + 0.05, g);
+        var g2 = this.env(at, e.v * 0.35, 0.004, 0.12); g2.connect(out);
+        this.osc('triangle', e.f * 2, at, at + 0.2, g2);
+        var g3 = this.env(at, e.v * 0.22, 0.002, 0.05); g3.connect(out);
+        this.osc('sine', e.f * 4.01, at, at + 0.1, g3);
+        break;
+      }
+      case 'bs': {
+        g = ac.createGain();
+        g.gain.setValueAtTime(0.0001, at);
+        g.gain.exponentialRampToValueAtTime(0.3, at + 0.012);
+        g.gain.exponentialRampToValueAtTime(0.12, at + e.d2 * 0.6);
+        g.gain.exponentialRampToValueAtTime(0.0001, at + e.d2);
+        g.connect(out);
+        var lp = this.filt('lowpass', 650, 0.8, g);
+        this.osc('triangle', e.f, at, at + e.d2 + 0.05, lp);
+        this.osc('sine', e.f / 2, at, at + e.d2 + 0.05, lp);
+        break;
+      }
+      case 'kk':
+        g = this.env(at, e.v, 0.003, 0.26); g.connect(out);
+        o = this.osc('sine', 150, at, at + 0.3, g);
+        o.frequency.exponentialRampToValueAtTime(45, at + 0.12);
+        break;
+      case 'hh': this.noiseHit(at, 'highpass', 7500, 0.7, e.v, 0.002, 0.045); break;
+      case 'sk': this.noiseHit(at, 'bandpass', 5500, 1.2, e.v, 0.012, 0.06); break;
+      case 'sn': this.noiseHit(at, 'bandpass', 1700, 0.9, e.v, 0.003, 0.13); break;
+      case 'crk': this.noiseHit(at, 'bandpass', 2400 + Math.random() * 1500, 4, e.v, 0.002, 0.03); break;
+      case 'swish': {
+        g = this.env(at, 0.12, 0.08, 0.25); g.connect(out);
+        var bp = this.filt('bandpass', 600, 1.5, g);
+        bp.frequency.setValueAtTime(600, at); bp.frequency.exponentialRampToValueAtTime(3200, at + 0.3);
+        this.noiseSrc(at, at + 0.4, bp);
+        break;
+      }
+      case 'wind': {
+        dur = e.d - el;
+        g = ac.createGain(); g.gain.value = 0; g.connect(out);
+        var wb = this.filt('bandpass', 500, 0.9, g);
+        this.curve(wb.frequency, function (u) { return 350 + 1050 * Math.sin(Math.PI * Math.min(1, u * 1.4)) + 150 * Math.sin(u * 20); }, at, dur, el, e.d);
+        this.curve(g.gain, function (u) { return 0.22 * Math.pow(Math.max(0, Math.sin(Math.PI * u)), 0.8) + 0.0001; }, at, dur, el, e.d);
+        this.noiseSrc(at, at + dur + 0.05, wb, true);
+        break;
+      }
+      case 'grind': {
+        dur = e.d - el;
+        g = ac.createGain(); g.gain.value = 0; g.connect(out);
+        var total = e.d;
+        this.curve(g.gain, function (u) { var x = u * total; return 0.24 * Math.min(1, x / 0.3) * Math.min(1, Math.max(0, (total - x) / 0.4)) + 0.0001; }, at, dur, el, total);
+        var am = ac.createGain(); am.gain.value = 0.7; am.connect(g);
+        var lfoG = ac.createGain(); lfoG.gain.value = 0.3; lfoG.connect(am.gain);
+        this.osc('sine', 11, at, at + dur, lfoG);
+        this.noiseSrc(at, at + dur, this.filt('lowpass', 280, 3, am), true);
+        var sg = ac.createGain(); sg.gain.value = 0.5; sg.connect(am);
+        this.osc('sawtooth', 48, at, at + dur, this.filt('lowpass', 180, 1, sg));
+        break;
+      }
+      case 'hum': {
+        dur = e.d - el;
+        g = ac.createGain(); g.gain.value = 0; g.connect(out);
+        this.curve(g.gain, function (u) { return 0.07 * Math.min(1, u * 6) * Math.max(0, Math.min(1, (1 - u) * 5)) + 0.0001; }, at, dur, el, e.d);
+        this.noiseSrc(at, at + dur, this.filt('lowpass', 420, 0.7, g), true);
+        break;
+      }
+      case 'plip':
+        f = e.f || 1;
+        g = this.env(at, 0.28, 0.005, 0.17); g.connect(out);
+        o = this.osc('sine', 420 * f, at, at + 0.22, g);
+        o.frequency.exponentialRampToValueAtTime(1500 * f, at + 0.09);
+        break;
+      case 'thump': {
+        g = this.env(at, 0.55, 0.004, 0.28); g.connect(out);
+        o = this.osc('sine', 120, at, at + 0.32, g);
+        o.frequency.exponentialRampToValueAtTime(48, at + 0.18);
+        var sq = this.env(at, 0.2, 0.01, 0.2); sq.connect(out);
+        var sb = this.filt('bandpass', 900, 2, sq);
+        sb.frequency.setValueAtTime(900, at); sb.frequency.exponentialRampToValueAtTime(250, at + 0.2);
+        this.noiseSrc(at, at + 0.25, sb);
+        break;
+      }
+      case 'tick':
+        g = this.env(at, 0.07, 0.001, 0.035); g.connect(out);
+        this.osc('square', e.hi ? 2400 : 1800, at, at + 0.05, this.filt('highpass', 1200, 0.7, g));
+        this.noiseHit(at, 'highpass', 3000, 0.7, 0.05, 0.001, 0.02);
+        break;
+      case 'ding':
+        [[1318.5, 1, 2.4], [2637, 0.45, 1.5], [3639, 0.25, 0.9], [7120, 0.08, 0.4]].forEach(function (p) {
+          var dg = this.env(at, 0.22 * p[1], 0.003, p[2]); dg.connect(out);
+          this.osc('sine', p[0], at, at + p[2] + 0.05, dg);
+        }, this);
+        break;
+    }
+  };
+
+  /* ---------------- styles ---------------- */
+  var STYLE_ID = 'fv-style';
+  var CSS = [
+    '.fv-root{--fv-bg:#F3EADB;--fv-a1:#E8A84A;--fv-a2:#C9773B;--fv-ink:#5B4636;--fv-hi:rgba(255,255,255,.9);--fv-lo:rgba(166,132,92,.38);',
+    'box-sizing:border-box;background:var(--fv-bg);color:var(--fv-ink);border-radius:28px;padding:16px;',
+    'box-shadow:12px 12px 28px var(--fv-lo),-12px -12px 28px var(--fv-hi);font-family:' + F.replace(/"/g, "'") + ';',
+    '-webkit-tap-highlight-color:transparent;max-width:100%;}',
+    '.fv-root *{box-sizing:border-box;}',
+    '.fv-root:focus-visible{outline:3px solid var(--fv-a1);outline-offset:4px;}',
+    '.fv-stage{position:relative;border-radius:22px;padding:8px;background:var(--fv-bg);',
+    'box-shadow:inset 6px 6px 14px var(--fv-lo),inset -6px -6px 14px var(--fv-hi);}',
+    '.fv-canvas{display:block;width:100%;aspect-ratio:16/9;border-radius:16px;cursor:pointer;background:#F3EADB;}',
+    '.fv-bar{display:flex;align-items:center;gap:12px;margin-top:16px;padding:10px 14px;border-radius:999px;background:var(--fv-bg);',
+    'box-shadow:8px 8px 18px var(--fv-lo),-8px -8px 18px var(--fv-hi);}',
+    '.fv-btn{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:50%;padding:0;',
+    'cursor:pointer;color:var(--fv-a2);background:linear-gradient(145deg,#FAF3E7,#E7DBC7);',
+    'box-shadow:6px 6px 12px var(--fv-lo),-6px -6px 12px var(--fv-hi);transition:transform .15s ease,box-shadow .15s ease;}',
+    '.fv-btn:hover{transform:translateY(-1px);}',
+    '.fv-btn:active{transform:scale(.96);box-shadow:inset 4px 4px 9px var(--fv-lo),inset -4px -4px 9px var(--fv-hi);}',
+    '.fv-btn:focus-visible,.fv-seek:focus-visible{outline:3px solid var(--fv-a1);outline-offset:3px;}',
+    '.fv-btn svg{width:22px;height:22px;display:block;fill:currentColor;}',
+    '.fv-play{width:62px;height:62px;color:#fff;background:linear-gradient(145deg,#F2BC66,#DE9640);',
+    'box-shadow:7px 9px 18px rgba(201,119,59,.38),-7px -7px 16px var(--fv-hi),inset 3px 3px 7px rgba(255,255,255,.45),inset -4px -5px 9px rgba(160,90,30,.3);}',
+    '.fv-play:active{box-shadow:inset 5px 5px 10px rgba(160,90,30,.4),inset -4px -4px 9px rgba(255,255,255,.35);}',
+    '.fv-play svg{width:28px;height:28px;}',
+    '.fv-seek{position:relative;flex:1 1 auto;min-width:60px;height:36px;display:flex;align-items:center;cursor:pointer;touch-action:none;border-radius:18px;}',
+    '.fv-track{position:relative;width:100%;height:14px;border-radius:999px;background:var(--fv-bg);',
+    'box-shadow:inset 3px 3px 7px var(--fv-lo),inset -3px -3px 7px var(--fv-hi);}',
+    '.fv-fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;background:linear-gradient(90deg,var(--fv-a1),var(--fv-a2));}',
+    '.fv-thumb{position:absolute;top:50%;left:0;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;',
+    'background:linear-gradient(145deg,#FFF8EC,#EADCC6);box-shadow:3px 4px 8px var(--fv-lo),-2px -2px 6px var(--fv-hi),inset -2px -2px 4px rgba(201,119,59,.18);}',
+    '.fv-time{flex:0 0 auto;font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;min-width:84px;text-align:center;letter-spacing:.02em;}',
+    '.fv-mute[aria-pressed="true"]{color:#A8927A;}',
+    '@media (max-width:560px){.fv-root{padding:10px;border-radius:22px;}.fv-stage{padding:5px;border-radius:18px;}',
+    '.fv-bar{gap:8px;padding:8px 10px;margin-top:12px;}.fv-btn{width:38px;height:38px;}.fv-play{width:50px;height:50px;}',
+    '.fv-time{font-size:12px;min-width:0;}.fv-btn svg{width:18px;height:18px;}.fv-play svg{width:24px;height:24px;}}',
+    '@media (prefers-reduced-motion:reduce){.fv-btn{transition:none;}}'
+  ].join('');
+  function injectStyle() {
+    if (document.getElementById(STYLE_ID)) return;
+    var s = document.createElement('style'); s.id = STYLE_ID; s.textContent = CSS;
+    (document.head || document.documentElement).appendChild(s);
+  }
+  var ICON = {
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4.5" height="14" rx="2"/><rect x="13.5" y="5" width="4.5" height="14" rx="2"/></svg>',
+    replay: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2.5a.5.5 0 0 0-.85-.35L7.4 5.9a.5.5 0 0 0 0 .7l3.75 3.75A.5.5 0 0 0 12 10V7a5 5 0 1 1-5 5 1.25 1.25 0 0 0-2.5 0A7.5 7.5 0 1 0 12 5z"/></svg>',
+    vol: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5a1 1 0 0 0 1 1h3l4.3 3.6a1 1 0 0 0 1.7-.77V5.67a1 1 0 0 0-1.7-.77L8 8.5H5a1 1 0 0 0-1 1z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+    mute: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5a1 1 0 0 0 1 1h3l4.3 3.6a1 1 0 0 0 1.7-.77V5.67a1 1 0 0 0-1.7-.77L8 8.5H5a1 1 0 0 0-1 1z"/><path d="M17 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>'
+  };
+  function fmt(s) { s = Math.floor(Math.max(0, s) + 1e-6); return Math.floor(s / 60) + ':' + (s % 60 < 10 ? '0' : '') + (s % 60); }
+
+  /* ---------------- mount ---------------- */
+  function mount(container) {
+    if (!container || !container.appendChild) throw new Error('FlourVideo.mount: container element required');
+    injectStyle();
+    var root = document.createElement('div');
+    root.className = 'fv-root';
+    root.tabIndex = 0;
+    root.setAttribute('role', 'region');
+    root.setAttribute('aria-label', '밀가루 이야기 30초 영상');
+    root.innerHTML =
+      '<div class="fv-stage"><canvas class="fv-canvas" role="img" aria-label="밀밭에서 빵이 되기까지의 과정을 보여주는 애니메이션"></canvas></div>' +
+      '<div class="fv-bar">' +
+      '<button type="button" class="fv-btn fv-play" aria-label="재생">' + ICON.play + '</button>' +
+      '<button type="button" class="fv-btn fv-replay" aria-label="처음부터 다시">' + ICON.replay + '</button>' +
+      '<div class="fv-seek" role="slider" tabindex="0" aria-label="재생 위치" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0" aria-valuetext="0:00 / 0:30">' +
+      '<div class="fv-track"><div class="fv-fill"></div><div class="fv-thumb"></div></div></div>' +
+      '<span class="fv-time">0:00 / 0:30</span>' +
+      '<button type="button" class="fv-btn fv-mute" aria-label="음소거" aria-pressed="false">' + ICON.vol + '</button>' +
+      '</div>';
+    container.appendChild(root);
+
+    var canvas = root.querySelector('.fv-canvas'), g = canvas.getContext('2d');
+    var btnPlay = root.querySelector('.fv-play'), btnReplay = root.querySelector('.fv-replay'), btnMute = root.querySelector('.fv-mute');
+    var seekEl = root.querySelector('.fv-seek'), track = root.querySelector('.fv-track');
+    var fill = root.querySelector('.fv-fill'), thumb = root.querySelector('.fv-thumb'), timeEl = root.querySelector('.fv-time');
+    var audio = new AudioEngine();
+    var st = { t: 0, playing: false, started: false, muted: false, p0: 0, t0: 0, raf: 0, dragging: false, wasPlaying: false, dead: false, lastSec: -1 };
+
+    function draw() {
+      if (!g || !canvas.width) return;
+      SC = canvas.width / W;
+      g.setTransform(SC, 0, 0, SC, 0, 0);
+      g.clearRect(0, 0, W, H);
+      g.save();
+      try { render(g, st.t, !st.started && st.t === 0); } catch (e) { /* keep loop alive */ }
+      g.restore();
+      noSh(g); g.globalAlpha = 1;
+    }
+    function ui() {
+      var u = st.t / DUR;
+      fill.style.width = (u * 100) + '%';
+      thumb.style.left = (u * 100) + '%';
+      var sec = Math.floor(st.t);
+      if (sec !== st.lastSec) {
+        st.lastSec = sec;
+        var txt = fmt(st.t) + ' / ' + fmt(DUR);
+        timeEl.textContent = txt;
+        seekEl.setAttribute('aria-valuenow', String(sec));
+        seekEl.setAttribute('aria-valuetext', txt);
+      }
+      var showPause = st.playing;
+      if (btnPlay._state !== showPause) {
+        btnPlay._state = showPause;
+        btnPlay.innerHTML = showPause ? ICON.pause : ICON.play;
+        btnPlay.setAttribute('aria-label', showPause ? '일시정지' : '재생');
+      }
+    }
+    function frame(now) {
+      st.raf = 0;
+      if (st.dead) return;
+      if (st.playing) {
+        st.t = Math.min(DUR, st.t0 + (now - st.p0) / 1000);
+        if (st.t >= DUR) { st.t = DUR; st.playing = false; audio.stop(); }
+      }
+      draw(); ui();
+      if (st.playing) st.raf = requestAnimationFrame(frame);
+    }
+    function kick() { if (!st.raf && !st.dead) st.raf = requestAnimationFrame(frame); }
+    function play() {
+      if (st.dead) return;
+      if (st.t >= DUR - 0.01) st.t = 0;
+      st.started = true; st.playing = true;
+      st.t0 = st.t; st.p0 = performance.now();
+      if (audio.ensure()) audio.start(st.t);
+      kick(); ui();
+    }
+    function pause() {
+      st.playing = false; audio.stop();
+      if (st.raf) { cancelAnimationFrame(st.raf); st.raf = 0; }
+      draw(); ui();
+    }
+    function toggle() { if (st.playing) pause(); else play(); }
+    function seek(v, restartAudio) {
+      st.t = clamp(+v || 0, 0, DUR); st.started = true;
+      if (st.playing) {
+        st.t0 = st.t; st.p0 = performance.now();
+        if (restartAudio !== false) { if (st.t >= DUR) pause(); else audio.start(st.t); }
+      }
+      draw(); ui();
+    }
+    function replay() { seek(0, false); play(); }
+
+    function fracAt(e) {
+      var r = track.getBoundingClientRect();
+      return r.width ? clamp((e.clientX - r.left) / r.width, 0, 1) : 0;
+    }
+    function onDown(e) {
+      if (e.button != null && e.button > 0) return;
+      e.preventDefault();
+      st.dragging = true; st.wasPlaying = st.playing;
+      if (st.playing) pause();
+      try { seekEl.setPointerCapture(e.pointerId); } catch (x) { /* ignore */ }
+      seek(fracAt(e) * DUR);
+    }
+    function onMove(e) { if (st.dragging) seek(fracAt(e) * DUR); }
+    function onUp() {
+      if (!st.dragging) return;
+      st.dragging = false;
+      if (st.wasPlaying && st.t < DUR) play();
+    }
+    function onKey(e) {
+      var k = e.key;
+      if (k === 'ArrowRight' || k === 'ArrowUp') { seek(st.t + 2); e.preventDefault(); }
+      else if (k === 'ArrowLeft' || k === 'ArrowDown') { seek(st.t - 2); e.preventDefault(); }
+      else if (k === 'Home') { seek(0); e.preventDefault(); }
+      else if (k === 'End') { seek(DUR); e.preventDefault(); }
+    }
+    function onRootKey(e) {
+      if ((e.key === ' ' || e.key === 'k') && e.target === root) { toggle(); e.preventDefault(); }
+    }
+    function onMute() {
+      st.muted = !st.muted;
+      audio.setMuted(st.muted);
+      btnMute.innerHTML = st.muted ? ICON.mute : ICON.vol;
+      btnMute.setAttribute('aria-pressed', st.muted ? 'true' : 'false');
+      btnMute.setAttribute('aria-label', st.muted ? '음소거 해제' : '음소거');
+    }
+    function onVis() { if (document.hidden && st.playing) pause(); }
+
+    btnPlay.addEventListener('click', toggle);
+    btnReplay.addEventListener('click', replay);
+    btnMute.addEventListener('click', onMute);
+    canvas.addEventListener('click', toggle);
+    seekEl.addEventListener('pointerdown', onDown);
+    seekEl.addEventListener('pointermove', onMove);
+    seekEl.addEventListener('pointerup', onUp);
+    seekEl.addEventListener('pointercancel', onUp);
+    seekEl.addEventListener('lostpointercapture', onUp);
+    seekEl.addEventListener('keydown', onKey);
+    root.addEventListener('keydown', onRootKey);
+    document.addEventListener('visibilitychange', onVis);
+
+    function resize() {
+      var w = canvas.getBoundingClientRect().width || canvas.clientWidth;
+      if (!w) return;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      var h = w * 9 / 16;
+      canvas.style.height = h + 'px';
+      var cw = Math.max(1, Math.round(w * dpr)), ch = Math.max(1, Math.round(h * dpr));
+      if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; }
+      draw();
+    }
+    var ro = null;
+    if (typeof ResizeObserver !== 'undefined') { ro = new ResizeObserver(function () { resize(); }); ro.observe(root.querySelector('.fv-stage')); }
+    window.addEventListener('resize', resize);
+    resize(); ui();
+    // Poster frame only, never autoplay: audio needs a user gesture, and reduced-motion users are respected.
+
+    function destroy() {
+      if (st.dead) return;
+      pause(); st.dead = true;
+      if (ro) ro.disconnect();
+      window.removeEventListener('resize', resize);
+      document.removeEventListener('visibilitychange', onVis);
+      try { if (audio.ac && audio.ac.close) { var p = audio.ac.close(); if (p && p.catch) p.catch(noop); } } catch (e) { /* ignore */ }
+      if (root.parentNode) root.parentNode.removeChild(root);
+    }
+    return {
+      play: play, pause: pause, replay: replay, destroy: destroy, element: root, duration: DUR,
+      seek: function (v) { seek(v); },
+      getTime: function () { return st.t; }
+    };
+  }
+
+  window.FlourVideo = { mount: mount, duration: DUR };
+})();
+
+</script>
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- helpers ---------- */
+  var store = {
+    get: function(k, d){ try{ var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); }catch(e){ return d; } },
+    set: function(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  };
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function rand(n){ return Math.floor(Math.random() * n); }
+  function shuffle(a){ for(var i = a.length - 1; i > 0; i--){ var j = rand(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+
+  var CATS = ['역사','기능','종류','구조·과학','과정','영양·대체'];
+  var CAT_CLS = {'역사':'cat-hist','기능':'cat-food','종류':'cat-kind','구조·과학':'cat-sci','과정':'cat-proc','영양·대체':'cat-ing'};
+  var CAT_ICON = {'역사':'🏛️','기능':'🛠️','종류':'🌾','구조·과학':'🔬','과정':'🥣','영양·대체':'🥗'};
+  var LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  function catCls(c){ return CAT_CLS[c] || 'cat-etc'; }
+
+  /* ---------- data (guarded) ---------- */
+  var raw = Array.isArray(window.FLOUR_ENTRIES) ? window.FLOUR_ENTRIES : [];
+  var data = raw.filter(function(e){ return e && typeof e.letter === 'string' && e.letter.trim() && e.word; })
+    .map(function(e){
+      return {
+        letter: e.letter.trim().charAt(0).toUpperCase(),
+        word: String(e.word), korean: String(e.korean || ''), emoji: String(e.emoji || '🌾'),
+        category: String(e.category || ''), summary: String(e.summary || ''),
+        body: Array.isArray(e.body) ? e.body.map(String) : (e.body ? [String(e.body)] : []),
+        funFact: String(e.funFact || ''), tryIt: String(e.tryIt || ''),
+        related: Array.isArray(e.related) ? e.related.map(function(r){ return String(r).trim().charAt(0).toUpperCase(); }) : []
+      };
+    })
+    .sort(function(a, b){ return a.letter < b.letter ? -1 : a.letter > b.letter ? 1 : a.word.localeCompare(b.word); });
+  var byLetter = {};
+  data.forEach(function(e, i){ if(!(e.letter in byLetter)) byLetter[e.letter] = i; });
+
+  /* ---------- theme & font size ---------- */
+  var root = document.documentElement;
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function effectiveTheme(){ var t = root.getAttribute('data-theme'); return t || (mq && mq.matches ? 'dark' : 'light'); }
+  function paintThemeBtn(){
+    var dark = effectiveTheme() === 'dark';
+    $('themeIcon').textContent = dark ? '☀️' : '🌙';
+    $('themeLbl').textContent = dark ? '낮 모드' : '밤 모드';
+    $('themeBtn').setAttribute('aria-label', dark ? '밝은 화면으로 바꾸기' : '어두운 화면으로 바꾸기');
+  }
+  var savedTheme = store.get('flour-theme', null);
+  if(savedTheme === 'dark' || savedTheme === 'light') root.setAttribute('data-theme', savedTheme);
+  paintThemeBtn();
+  if(mq && mq.addEventListener) mq.addEventListener('change', paintThemeBtn);
+  $('themeBtn').addEventListener('click', function(){
+    var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next); store.set('flour-theme', next); paintThemeBtn();
+  });
+
+  var SCALES = [0.9, 1, 1.12, 1.25, 1.4];
+  var scaleIdx = store.get('flour-scale', 1);
+  if(typeof scaleIdx !== 'number' || scaleIdx < 0 || scaleIdx >= SCALES.length) scaleIdx = 1;
+  function applyScale(){
+    root.style.setProperty('--scale', SCALES[scaleIdx]);
+    $('fontDown').disabled = scaleIdx === 0;
+    $('fontUp').disabled = scaleIdx === SCALES.length - 1;
+    store.set('flour-scale', scaleIdx);
+  }
+  applyScale();
+  $('fontUp').addEventListener('click', function(){ if(scaleIdx < SCALES.length - 1){ scaleIdx++; applyScale(); } });
+  $('fontDown').addEventListener('click', function(){ if(scaleIdx > 0){ scaleIdx--; applyScale(); } });
+
+  /* ---------- video ---------- */
+  (function(){
+    var box = $('video');
+    if(window.FlourVideo && typeof window.FlourVideo.mount === 'function'){
+      try{ var ph = $('videoPh'); if(ph) ph.remove(); window.FlourVideo.mount(box); }
+      catch(err){ box.innerHTML = '<div class="video-ph"><div><div class="big" aria-hidden="true">🎬</div><p>영상을 불러오지 못했어요</p></div></div>'; }
+    }
+  })();
+
+  /* ---------- favorites ---------- */
+  var favs = {};
+  (store.get('flour-favs', []) || []).forEach(function(l){ if(typeof l === 'string') favs[l] = true; });
+  function saveFavs(){ store.set('flour-favs', Object.keys(favs)); }
+  function toggleFav(letter){
+    if(favs[letter]) delete favs[letter]; else favs[letter] = true;
+    saveFavs(); syncFavButtons(letter); applyFilters();
+  }
+  function syncFavButtons(letter){
+    var on = !!favs[letter];
+    var cardBtn = document.querySelector('.fav[data-letter="' + letter + '"]');
+    if(cardBtn){ cardBtn.setAttribute('aria-pressed', on); cardBtn.setAttribute('aria-label', (on ? '즐겨찾기에서 빼기: ' : '즐겨찾기에 넣기: ') + cardBtn.getAttribute('data-word')); }
+    if(current >= 0 && data[current].letter === letter){
+      $('dFav').setAttribute('aria-pressed', on); $('dFavLbl').textContent = on ? '즐겨찾기 됨' : '즐겨찾기';
+    }
+  }
+
+  /* ---------- A-Z bar ---------- */
+  var azBar = $('azBar');
+  LETTERS.forEach(function(L){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'az-btn'; b.textContent = L; b.dataset.letter = L;
+    if(L in byLetter){ b.setAttribute('aria-label', L + ' — ' + data[byLetter[L]].korean + ' 로 가기'); }
+    else { b.setAttribute('aria-disabled', 'true'); b.setAttribute('aria-label', L + ' 낱말 준비 중'); }
+    azBar.appendChild(b);
+  });
+  azBar.addEventListener('click', function(ev){
+    var b = ev.target.closest('.az-btn'); if(!b || b.getAttribute('aria-disabled') === 'true') return;
+    goToCard(b.dataset.letter);
+  });
+  function setActiveLetter(L){
+    var prev = azBar.querySelector('.az-btn.active');
+    if(prev && prev.dataset.letter === L) return;
+    if(prev){ prev.classList.remove('active'); prev.removeAttribute('aria-current'); }
+    var b = azBar.querySelector('.az-btn[data-letter="' + L + '"]');
+    if(!b) return;
+    b.classList.add('active'); b.setAttribute('aria-current', 'true');
+    var left = b.offsetLeft - azBar.clientWidth / 2 + b.offsetWidth / 2;
+    try{ azBar.scrollTo({left: left, behavior: 'smooth'}); }catch(e){ azBar.scrollLeft = left; }
+  }
+  function goToCard(L){
+    var i = byLetter[L]; if(i == null) return;
+    var card = $('entry-' + L);
+    if(!card) return;
+    if(card.hidden) resetFilters();
+    setActiveLetter(L);
+    card.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start'});
+    var btn = card.querySelector('.card-open'); if(btn) btn.focus({preventScroll: true});
+  }
+
+  /* ---------- filters ---------- */
+  var state = { q: '', cat: '전체', fav: false };
+  var filtersEl = $('filters');
+  ['전체'].concat(CATS).forEach(function(c){
+    var b = document.createElement('button');
+    b.type = 'button'; b.dataset.cat = c;
+    b.className = 'fchip ' + (c === '전체' ? 'all' : catCls(c));
+    b.setAttribute('aria-pressed', c === '전체');
+    b.innerHTML = '<span aria-hidden="true">' + (c === '전체' ? '📚' : CAT_ICON[c]) + '</span>' + esc(c) + ' <span class="n">0</span>';
+    filtersEl.appendChild(b);
+  });
+  filtersEl.addEventListener('click', function(ev){
+    var b = ev.target.closest('.fchip'); if(!b || b.disabled) return;
+    state.cat = b.dataset.cat; applyFilters();
+  });
+  var qEl = $('q'), qTimer;
+  qEl.addEventListener('input', function(){
+    clearTimeout(qTimer);
+    qTimer = setTimeout(function(){ state.q = qEl.value.trim().toLowerCase(); $('clearQ').hidden = !qEl.value; applyFilters(); }, 120);
+  });
+  $('clearQ').addEventListener('click', function(){ qEl.value = ''; state.q = ''; $('clearQ').hidden = true; applyFilters(); qEl.focus(); });
+  $('favOnly').addEventListener('click', function(){ state.fav = !state.fav; applyFilters(); });
+  $('resetBtn').addEventListener('click', function(){ resetFilters(); qEl.focus(); });
+  function resetFilters(){ state.q = ''; state.cat = '전체'; state.fav = false; qEl.value = ''; $('clearQ').hidden = true; applyFilters(); }
+
+  function matchQ(e){
+    if(!state.q) return true;
+    var hay = (e.word + ' ' + e.korean + ' ' + e.summary + ' ' + e.letter).toLowerCase();
+    return state.q.split(/\s+/).every(function(t){ return hay.indexOf(t) !== -1; });
+  }
+  function matchFav(e){ return !state.fav || !!favs[e.letter]; }
+
+  /* ---------- cards ---------- */
+  var grid = $('grid');
+  function renderCards(){
+    if(!data.length){
+      grid.innerHTML = '';
+      $('empty').hidden = false;
+      $('empty').querySelector('h2').textContent = '낱말을 준비하고 있어요';
+      $('emptyMsg').textContent = '조금 뒤에 다시 열어 주세요. 🌾';
+      $('resetBtn').hidden = true;
+      return;
+    }
+    var html = data.map(function(e, i){
+      var id = byLetter[e.letter] === i ? ' id="entry-' + esc(e.letter) + '"' : '';
+      var cls = catCls(e.category);
+      return '<li class="card ' + cls + '"' + id + ' data-i="' + i + '">' +
+        '<button class="card-open" type="button" data-i="' + i + '" aria-label="' + esc(e.letter + ', ' + e.word + ', ' + e.korean + ' 자세히 보기') + '">' +
+          '<span class="card-top"><span class="badge" aria-hidden="true">' + esc(e.letter) + '</span><span class="card-emoji" aria-hidden="true">' + esc(e.emoji) + '</span></span>' +
+          '<span class="card-word">' + esc(e.word) + '</span>' +
+          '<span class="card-ko">' + esc(e.korean) + '</span>' +
+          '<span class="card-sum">' + esc(e.summary) + '</span>' +
+          '<span class="chip ' + cls + '">' + (CAT_ICON[e.category] || '📖') + ' ' + esc(e.category || '기타') + '</span>' +
+        '</button>' +
+        '<button class="fav" type="button" data-letter="' + esc(e.letter) + '" data-word="' + esc(e.word) + '" aria-pressed="' + !!favs[e.letter] + '" aria-label="' + (favs[e.letter] ? '즐겨찾기에서 빼기: ' : '즐겨찾기에 넣기: ') + esc(e.word) + '">⭐</button>' +
+      '</li>';
+    }).join('');
+    grid.innerHTML = html;
+  }
+  grid.addEventListener('click', function(ev){
+    var f = ev.target.closest('.fav'); if(f){ toggleFav(f.dataset.letter); return; }
+    var o = ev.target.closest('.card-open'); if(o){ openEntry(+o.dataset.i, o); }
+  });
+
+  function applyFilters(){
+    if(!data.length){ updateCounts(); return; }
+    var cards = grid.children, shown = 0;
+    for(var i = 0; i < cards.length; i++){
+      var e = data[+cards[i].dataset.i];
+      var ok = matchQ(e) && matchFav(e) && (state.cat === '전체' || e.category === state.cat);
+      cards[i].hidden = !ok; if(ok) shown++;
+    }
+    updateCounts();
+    $('favOnly').setAttribute('aria-pressed', state.fav);
+    var empty = $('empty');
+    empty.hidden = shown > 0;
+    if(!shown){
+      $('emptyMsg').textContent = state.fav && !Object.keys(favs).length
+        ? '아직 ⭐ 즐겨찾기한 낱말이 없어요. 마음에 드는 카드의 별을 눌러 봐요!'
+        : '다른 말로 찾아보거나, 고른 것을 모두 풀어 볼까요?';
+    }
+    var parts = [];
+    if(state.q) parts.push('“' + qEl.value.trim() + '”');
+    if(state.cat !== '전체') parts.push(state.cat);
+    if(state.fav) parts.push('즐겨찾기');
+    $('status').textContent = parts.length ? parts.join(' · ') + ' — 낱말 ' + shown + '개를 찾았어요.' : '모두 ' + data.length + '개의 낱말이 있어요.';
+  }
+  function updateCounts(){
+    var counts = {'전체': 0}; CATS.forEach(function(c){ counts[c] = 0; });
+    data.forEach(function(e){ if(matchQ(e) && matchFav(e)){ counts['전체']++; if(e.category in counts) counts[e.category]++; } });
+    Array.prototype.forEach.call(filtersEl.children, function(b){
+      var c = b.dataset.cat, on = c === state.cat;
+      b.setAttribute('aria-pressed', on);
+      b.querySelector('.n').textContent = counts[c];
+      b.disabled = !on && counts[c] === 0;
+      b.setAttribute('aria-label', c + ' ' + counts[c] + '개');
+    });
+  }
+
+  /* ---------- active letter observer ---------- */
+  function observeCards(){
+    if(!('IntersectionObserver' in window) || !data.length) return;
+    var visible = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ var i = +en.target.dataset.i; if(en.isIntersecting) visible[i] = true; else delete visible[i]; });
+      var keys = Object.keys(visible).map(Number).filter(function(i){ return !grid.children[i].hidden; });
+      if(keys.length) setActiveLetter(data[Math.min.apply(null, keys)].letter);
+    }, { rootMargin: '-120px 0px -50% 0px', threshold: 0 });
+    Array.prototype.forEach.call(grid.children, function(c){ io.observe(c); });
+  }
+
+  /* ---------- modal ---------- */
+  var modal = $('modal'), sheet = $('sheet'), detail = $('detail');
+  var current = -1, opener = null;
+  function openEntry(i, from){
+    if(i < 0 || i >= data.length) return;
+    var wasOpen = current >= 0;
+    if(!wasOpen){ opener = from || document.activeElement; }
+    current = i; stopSpeak();
+    renderDetail();
+    if(!wasOpen){
+      modal.hidden = false; document.body.classList.add('lock');
+      setTimeout(function(){ $('closeBtn').focus(); }, 30);
+    }
+    sheet.scrollTop = 0;
+    var L = data[i].letter;
+    if(location.hash !== '#' + L){ try{ history.replaceState(null, '', '#' + L); }catch(e){} }
+  }
+  function closeModal(){
+    if(current < 0) return;
+    stopSpeak();
+    var L = data[current].letter;
+    current = -1; modal.hidden = true; document.body.classList.remove('lock');
+    try{ history.replaceState(null, '', location.pathname + location.search); }catch(e){}
+    var back = opener && document.contains(opener) ? opener : (document.querySelector('#entry-' + L + ' .card-open'));
+    if(back && back.focus) back.focus({preventScroll: false});
+    opener = null;
+  }
+  function renderDetail(){
+    var e = data[current], cls = catCls(e.category);
+    var rel = e.related.filter(function(r, k, arr){ return r !== e.letter && arr.indexOf(r) === k && (r in byLetter); });
+    detail.innerHTML =
+      '<div class="d-hero">' +
+        '<div class="d-emoji" aria-hidden="true">' + esc(e.emoji) + '</div>' +
+        '<div class="d-titles">' +
+          '<div class="d-line ' + cls + '"><span class="badge" aria-hidden="true">' + esc(e.letter) + '</span><h2 class="d-word" id="dWord">' + esc(e.word) + '</h2></div>' +
+          '<p class="d-ko">' + esc(e.korean) + '</p>' +
+          '<span class="chip ' + cls + '">' + (CAT_ICON[e.category] || '📖') + ' ' + esc(e.category || '기타') + '</span>' +
+        '</div>' +
+      '</div>' +
+      (e.summary ? '<p class="d-sum">' + esc(e.summary) + '</p>' : '') +
+      '<div class="d-body">' + e.body.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join('') + '</div>' +
+      (e.facts && e.facts.length ? '<div class="d-facts"><h3>📋 한눈에 보기</h3><dl>' + e.facts.map(function(f){ return '<div><dt>' + esc(f.k) + '</dt><dd>' + esc(f.v) + '</dd></div>'; }).join('') + '</dl></div>' : '') +
+      (e.more && e.more.length ? '<div class="d-more"><h3>🔍 더 알아보기</h3>' + e.more.map(function(m){ return '<details><summary>' + esc(m.t) + '</summary><p>' + esc(m.d) + '</p></details>'; }).join('') + '</div>' : '') +
+      (e.words && e.words.length ? '<div class="d-words"><h3>📖 낱말 풀이</h3><dl>' + e.words.map(function(w){ return '<div><dt>' + esc(w.w) + '</dt><dd>' + esc(w.m) + '</dd></div>'; }).join('') + '</dl></div>' : '') +
+      (e.funFact ? '<div class="callout call-fun"><h3>💡 깜짝 상식</h3><p>' + esc(e.funFact) + '</p></div>' : '') +
+      (e.tryIt ? '<div class="callout call-try"><h3>🙌 해 보아요</h3><p>' + esc(e.tryIt) + '</p></div>' : '') +
+      (rel.length ? '<div class="related"><h3>🔗 함께 보면 좋은 낱말</h3><div class="rel-list">' + rel.map(function(r){
+          var t = data[byLetter[r]];
+          return '<button class="nbtn rel-btn ' + catCls(t.category) + '" type="button" data-letter="' + esc(r) + '"><span class="b" aria-hidden="true">' + esc(r) + '</span>' + esc(t.korean || t.word) + '</button>';
+        }).join('') + '</div></div>' : '');
+    var p = data[current - 1], n = data[current + 1];
+    $('prevBtn').disabled = !p; $('nextBtn').disabled = !n;
+    $('prevT').textContent = p ? p.letter + ' ' + (p.korean || p.word) : '처음이에요';
+    $('nextT').textContent = n ? n.letter + ' ' + (n.korean || n.word) : '마지막이에요';
+    $('prevBtn').setAttribute('aria-label', p ? '이전 낱말: ' + p.word : '이전 낱말 없음');
+    $('nextBtn').setAttribute('aria-label', n ? '다음 낱말: ' + n.word : '다음 낱말 없음');
+    syncFavButtons(e.letter);
+  }
+  detail.addEventListener('click', function(ev){
+    var r = ev.target.closest('.rel-btn'); if(r){ openEntry(byLetter[r.dataset.letter]); $('closeBtn').focus(); }
+  });
+  $('closeBtn').addEventListener('click', closeModal);
+  $('modalBg').addEventListener('click', closeModal);
+  $('prevBtn').addEventListener('click', function(){ openEntry(current - 1); });
+  $('nextBtn').addEventListener('click', function(){ openEntry(current + 1); });
+  $('dFav').addEventListener('click', function(){ if(current >= 0) toggleFav(data[current].letter); });
+  document.addEventListener('keydown', function(ev){
+    if(current < 0) return;
+    if(ev.key === 'Escape'){ ev.preventDefault(); closeModal(); return; }
+    if(ev.key === 'ArrowLeft' && current > 0){ ev.preventDefault(); openEntry(current - 1); return; }
+    if(ev.key === 'ArrowRight' && current < data.length - 1){ ev.preventDefault(); openEntry(current + 1); return; }
+    if(ev.key === 'Tab'){
+      var f = Array.prototype.filter.call(sheet.querySelectorAll('button,[href],input,[tabindex]:not([tabindex="-1"])'), function(el){ return !el.disabled && !el.hidden && el.offsetParent !== null; });
+      if(!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if(ev.shiftKey && (document.activeElement === first || !sheet.contains(document.activeElement))){ ev.preventDefault(); last.focus(); }
+      else if(!ev.shiftKey && (document.activeElement === last || !sheet.contains(document.activeElement))){ ev.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* ---------- speech ---------- */
+  var synth = window.speechSynthesis, speaking = false;
+  var canSpeak = !!(synth && window.SpeechSynthesisUtterance);
+  if(canSpeak) $('speakBtn').hidden = false;
+  function koVoice(){ try{ var v = synth.getVoices(); for(var i = 0; i < v.length; i++){ if(/^ko/i.test(v[i].lang)) return v[i]; } }catch(e){} return null; }
+  function setSpeakUI(on){ speaking = on; $('speakBtn').setAttribute('aria-pressed', on); $('speakLbl').textContent = on ? '멈추기' : '읽어주기'; }
+  function stopSpeak(){ if(canSpeak){ try{ synth.cancel(); }catch(e){} } if(speaking) setSpeakUI(false); }
+  $('speakBtn').addEventListener('click', function(){
+    if(!canSpeak || current < 0) return;
+    if(speaking){ stopSpeak(); return; }
+    var e = data[current];
+    var chunks = [e.letter + '. ' + e.word + '. ' + e.korean + '.', e.summary].concat(e.body);
+    if(e.funFact) chunks.push('깜짝 상식. ' + e.funFact);
+    if(e.tryIt) chunks.push('해 보아요. ' + e.tryIt);
+    chunks = chunks.filter(Boolean);
+    try{ synth.cancel(); }catch(err){}
+    var voice = koVoice();
+    setSpeakUI(true);
+    chunks.forEach(function(text, k){
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ko-KR'; u.rate = 0.92; u.pitch = 1.05; if(voice) u.voice = voice;
+      if(k === chunks.length - 1){ u.onend = function(){ setSpeakUI(false); }; }
+      u.onerror = function(){ setSpeakUI(false); };
+      synth.speak(u);
+    });
+  });
+
+  /* ---------- random ---------- */
+  $('randomBtn').addEventListener('click', function(ev){ if(data.length) openEntry(rand(data.length), ev.currentTarget); });
+  if(!data.length) $('randomBtn').disabled = true;
+
+  /* ---------- back to top ---------- */
+  var toTop = $('toTop'), ticking = false;
+  window.addEventListener('scroll', function(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(function(){ toTop.classList.toggle('show', window.scrollY > 600); ticking = false; });
+  }, {passive: true});
+  toTop.addEventListener('click', function(){ window.scrollTo({top: 0, behavior: 'smooth'}); });
+
+  /* ---------- hash deep links ---------- */
+  function fromHash(){
+    var m = /^#([A-Za-z])$/.exec(location.hash || '');
+    if(!m) return;
+    var i = byLetter[m[1].toUpperCase()];
+    if(i == null) return;
+    var card = $('entry-' + data[i].letter);
+    if(card){ setActiveLetter(data[i].letter); card.scrollIntoView({block: 'start'}); }
+    openEntry(i, card ? card.querySelector('.card-open') : null);
+  }
+  window.addEventListener('hashchange', function(){
+    var m = /^#([A-Za-z])$/.exec(location.hash || '');
+    if(m && (current < 0 || data[current].letter !== m[1].toUpperCase())) fromHash();
+  });
+
+  /* ---------- init ---------- */
+  renderCards();
+  applyFilters();
+  observeCards();
+  if(data.length) fromHash();
+})();
+</script>
+<script>try{window.FlourGuide&&FlourGuide.mount(document.getElementById("guide"))}catch(e){console.error(e)}</script>
+</body>
+</html>
