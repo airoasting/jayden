@@ -193,18 +193,38 @@ h1 .gradient{background-image:linear-gradient(105deg,#1f3560 0%,#2f5490 38%,#6f8
 .mo-card:hover .sheen{transform:translateX(130%);transition:transform 1.1s cubic-bezier(.2,.7,.3,1)}
 .motion-off .mo-card{animation:none!important;transform:none!important}
 @media (prefers-reduced-motion:reduce){.mo-card{animation:none!important}}
+
+/* Stopwatch page (before skills): eight live stopwatches as screenshot cards that open the real page */
+.stopwatch-page .curriculum-heading{top:112px}
+.sw-grid{position:absolute;top:216px;left:64px;right:64px;height:664px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:16px}
+.sw-card{--c:#2e738a;position:relative;display:flex;flex-direction:column;min-height:0;padding:10px 10px 12px;border-radius:16px;isolation:isolate;overflow:hidden;text-decoration:none;color:inherit;border:1px solid #dfe4ec;background:linear-gradient(170deg,#ffffff,color-mix(in srgb,var(--c) 4%,#fbfcfd) 80%);box-shadow:0 1px 2px #0f172a0d,0 14px 34px -24px #0f172a40;transition:transform .3s,border-color .3s,box-shadow .3s;animation:lesson-arrive .7s calc(var(--order)*.06s + .1s) backwards}
+.sw-card:after{content:"";position:absolute;top:0;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.5}
+.sw-card:hover,.sw-card:focus-visible{transform:translateY(-6px);border-color:color-mix(in srgb,var(--c) 60%,#dfe4ec);box-shadow:0 1px 2px #0f172a0d,0 26px 50px -26px #0f172a59}
+.sw-card:hover .sheen{transform:translateX(130%);transition:transform 1.1s cubic-bezier(.2,.7,.3,1)}
+.sw-shot{position:relative;flex:1;min-height:0;border-radius:10px;overflow:hidden;background:#0d1422}
+.sw-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.sw-card:hover .sw-shot img{transform:scale(1.04)}
+.sw-body{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 4px 0}
+.sw-text{display:block;min-width:0}
+.sw-who{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--c);letter-spacing:-.2px;margin:0 0 2px}
+.sw-num{font-size:11px;font-weight:650;letter-spacing:.13em;opacity:.75}
+.sw-title{display:block;font-size:18px;line-height:1.3;letter-spacing:-.6px;font-weight:680;color:#01060f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sw-open{flex:none;display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:8px;font-size:12px;font-weight:600;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 22%,transparent);background:color-mix(in srgb,var(--c) 5%,#ffffff)}
+.sw-open b{font-weight:400;font-size:13px;line-height:1}
+.motion-off .sw-card{animation:none!important;transform:none!important}
+@media (prefers-reduced-motion:reduce){.sw-card{animation:none!important}}
 </style>
 <style>.entry-page{display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:70px;text-align:center}.entry-title{margin:0;font-size:52px;line-height:1.2;letter-spacing:-2.4px}.entry-card{margin-top:34px;padding:22px;background:#fff;border:1px solid #dfe4ec;border-radius:24px;box-shadow:0 1px 2px #0f172a0d,0 30px 60px -34px #0f172a59}.entry-card img{display:block;width:440px;height:440px}.entry-code{margin:30px 0 0;color:#1f3560;font-size:46px;font-weight:700;letter-spacing:-1.2px}</style>
-<style>.deck-nav{grid-template-columns:repeat(6,auto)}.workshop-page .workshop-heading{top:108px}.workshop-page .question-grid{top:290px;grid-template-columns:1fr;grid-template-rows:repeat(5,98px);gap:12px}.workshop-page .question-card,.workshop-page .question-card.wide{grid-column:auto;display:grid;grid-template-columns:44px 1fr;align-items:center;column-gap:28px;padding:0 34px}.workshop-page .question-text,.workshop-page .question-card.wide .question-text{margin:0;font-size:28px;line-height:1.3;white-space:nowrap}.workshop-page .question-number{font-size:15px}</style>
+<style>.deck-nav{grid-template-columns:repeat(7,auto)}.workshop-page .workshop-heading{top:108px}.workshop-page .question-grid{top:290px;grid-template-columns:1fr;grid-template-rows:repeat(5,98px);gap:12px}.workshop-page .question-card,.workshop-page .question-card.wide{grid-column:auto;display:grid;grid-template-columns:44px 1fr;align-items:center;column-gap:28px;padding:0 34px}.workshop-page .question-text,.workshop-page .question-card.wide .question-text{margin:0;font-size:28px;line-height:1.3;white-space:nowrap}.workshop-page .question-number{font-size:15px}</style>
 </head>
 <body>
 <div id="viewport" data-page="0">
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><div class="cursor-glow" aria-hidden="true"></div>
 <div id="fit">
-<main id="slide" aria-label="워크샵 참가자 자기소개, 1 / 6 페이지">
+<main id="slide" aria-label="워크샵 참가자 자기소개, 1 / 7 페이지">
   <div class="atmosphere" aria-hidden="true"></div><div class="ambient-lens" aria-hidden="true"></div><div class="spotlight" aria-hidden="true"></div>
   <header class="topbar reveal">
-    <nav class="deck-nav" aria-label="슬라이드 페이지 선택"><button class="deck-tab" type="button" aria-current="page" aria-controls="entry-page" title="카카오톡 그룹 채팅방 / Page Up"><small>01</small> 채팅방</button><button class="deck-tab" type="button" aria-controls="workshop-page" title="자기소개 / Page Down"><small>02</small> 자기소개</button><button class="deck-tab" type="button" aria-controls="curriculum-page" title="Day 1 커리큘럼 / Page Down"><small>03</small> Day 1 커리큘럼</button><button class="deck-tab" type="button" aria-controls="day2-page" title="Day 2 커리큘럼 / Page Down"><small>04</small> Day 2 커리큘럼</button><button class="deck-tab" type="button" aria-controls="skill-page" title="스킬 과제 / Page Down"><small>05</small> 스킬 과제</button><button class="deck-tab" type="button" aria-controls="motion-page" title="모션 그래픽 포트폴리오 / Page Down"><small>06</small> 모션 그래픽</button></nav>
+    <nav class="deck-nav" aria-label="슬라이드 페이지 선택"><button class="deck-tab" type="button" aria-current="page" aria-controls="entry-page" title="카카오톡 그룹 채팅방 / Page Up"><small>01</small> 채팅방</button><button class="deck-tab" type="button" aria-controls="workshop-page" title="자기소개 / Page Down"><small>02</small> 자기소개</button><button class="deck-tab" type="button" aria-controls="curriculum-page" title="Day 1 커리큘럼 / Page Down"><small>03</small> Day 1 커리큘럼</button><button class="deck-tab" type="button" aria-controls="day2-page" title="Day 2 커리큘럼 / Page Down"><small>04</small> Day 2 커리큘럼</button><button class="deck-tab" type="button" aria-controls="stopwatch-page" title="스탑워치 / Page Down"><small>05</small> 스탑워치</button><button class="deck-tab" type="button" aria-controls="skill-page" title="스킬 과제 / Page Down"><small>06</small> 스킬 과제</button><button class="deck-tab" type="button" aria-controls="motion-page" title="모션 그래픽 포트폴리오 / Page Down"><small>07</small> 모션 그래픽</button></nav>
     <div class="top-actions">
       <button class="control primary" id="fullscreen" type="button" aria-pressed="false" title="전체 화면 / F"><svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 3H3v4M13 3h4v4M17 13v4h-4M3 13v4h4"/></svg><span id="fullscreen-label">전체 화면</span><span class="key" aria-hidden="true">F</span></button>
     </div>
@@ -296,6 +316,54 @@ h1 .gradient{background-image:linear-gradient(105deg,#1f3560 0%,#2f5490 38%,#6f8
     </div>
     <div class="lesson-grid" id="day2-grid" role="group" aria-label="Day 2 다섯 가지 수업"></div>
     <div class="journey-rail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  </section>
+  <section class="deck-page curriculum-page stopwatch-page" id="stopwatch-page" hidden aria-labelledby="stopwatch-title">
+    <div class="curriculum-grid-bg" aria-hidden="true"></div>
+    <div class="curriculum-heading">
+      <h1 class="curriculum-title" id="stopwatch-title">나만의 <span class="spectrum">스탑워치</span></h1>
+    </div>
+    <div class="sw-grid" role="group" aria-label="수강생 스탑워치 여덟 개">
+      <a class="sw-card" href="https://kooysam-cyber.github.io/stopwatch/stopwatch.html" target="_blank" rel="noopener" style="--c:#2e738a;--order:0" aria-label="구영삼 님의 스탑워치, TEMPUS FUGIT 모래시계, 새 창에서 열기">
+        <span class="sw-shot"><img src="assets/stopwatch/yeongsam.jpg" alt="" loading="lazy"></span>
+        <span class="sw-body"><span class="sw-text"><span class="sw-who"><span class="sw-num">01</span>구영삼</span><span class="sw-title">TEMPUS FUGIT 모래시계</span></span><span class="sw-open">열기 <b>↗</b></span></span>
+        <span class="sheen" aria-hidden="true"></span>
+      </a>
+      <a class="sw-card" href="https://willofgodyejun.github.io/stopwatch/" target="_blank" rel="noopener" style="--c:#6e3db8;--order:1" aria-label="구예준 님의 스탑워치, 골든 스탑워치, 새 창에서 열기">
+        <span class="sw-shot"><img src="assets/stopwatch/yejun.jpg" alt="" loading="lazy"></span>
+        <span class="sw-body"><span class="sw-text"><span class="sw-who"><span class="sw-num">02</span>구예준</span><span class="sw-title">골든 스탑워치</span></span><span class="sw-open">열기 <b>↗</b></span></span>
+        <span class="sheen" aria-hidden="true"></span>
+      </a>
+      <a class="sw-card" href="https://lfsykim-boop.github.io/stopwatch/stopwatch.html" target="_blank" rel="noopener" style="--c:#a06c36;--order:2" aria-label="김소연 님의 스탑워치, 도시 날씨 스탑워치, 새 창에서 열기">
+        <span class="sw-shot"><img src="assets/stopwatch/soyeon.jpg" alt="" loading="lazy"></span>
+        <span class="sw-body"><span class="sw-text"><span class="sw-who"><span class="sw-num">03</span>김소연</span><span class="sw-title">도시 날씨 스탑워치</span></span><span class="sw-open">열기 <b>↗</b></span></span>
+        <span class="sheen" aria-hidden="true"></span>
+      </a>
+      <a class="sw-card" href="https://hbhrd.github.io/stopwatch/stopwatch.html" target="_blank" rel="noopener" style="--c:#2e6b60;--order:3" aria-label="김정헌 님의 스탑워치, 꿀벌과 꽃 스탑워치, 새 창에서 열기">
+        <span class="sw-shot"><img src="assets/stopwatch/jeongheon.jpg" alt="" loading="lazy"></span>
+        <span class="sw-body"><span class="sw-text"><span class="sw-who"><span class="sw-num">04</span>김정헌</span><span class="sw-title">꿀벌과 꽃 스탑워치</span></span><span class="sw-open">열기 <b>↗</b></span></span>
+        <span class="sheen" aria-hidden="true"></span>
+      </a>
+      <a class="sw-card" href="https://lfjepark-eng.github.io/stopwatch/stopwatch.html" target="_blank" rel="noopener" style="--c:#4a7326;--order:4" aria-label="박재은 님의 스탑워치, 올림포스 시계, 새 창에서 열기">
+        <span class="sw-shot"><img src="assets/stopwatch/jaeeun.jpg" alt="" loading="lazy"></span>
+        <span class="sw-body"><span class="sw-text"><span class="sw-who"><span class="sw-num">05</span>박재은</span><span class="sw-title">올림포스 시계</span></span><span class="sw-open">열기 <b>↗</b></span></span>
+        <span class="sheen" aria-hidden="true"></span>
+      </a>
+      <a class="sw-card" href="https://hype767.github.io/stopwatch/" target="_blank" rel="noopener" style="--c:#2e738a;--order:5" aria-label="양지웅 님의 스탑워치, 8비트 스탑워치, 새 창에서 열기">
+        <span class="sw-shot"><img src="assets/stopwatch/jiwoong.jpg" alt="" loading="lazy"></span>
+        <span class="sw-body"><span class="sw-text"><span class="sw-who"><span class="sw-num">06</span>양지웅</span><span class="sw-title">8비트 스탑워치</span></span><span class="sw-open">열기 <b>↗</b></span></span>
+        <span class="sheen" aria-hidden="true"></span>
+      </a>
+      <a class="sw-card" href="https://jeewonhan7.github.io/stopwatch/stopwatch.html" target="_blank" rel="noopener" style="--c:#6e3db8;--order:6" aria-label="한지원 님의 스탑워치, 자전거 스탑워치, 새 창에서 열기">
+        <span class="sw-shot"><img src="assets/stopwatch/jiwon.jpg" alt="" loading="lazy"></span>
+        <span class="sw-body"><span class="sw-text"><span class="sw-who"><span class="sw-num">07</span>한지원</span><span class="sw-title">자전거 스탑워치</span></span><span class="sw-open">열기 <b>↗</b></span></span>
+        <span class="sheen" aria-hidden="true"></span>
+      </a>
+      <a class="sw-card" href="https://ydyjmom-coder.github.io/stopwatch/stopwatch.html" target="_blank" rel="noopener" style="--c:#a06c36;--order:7" aria-label="함윤숙 님의 스탑워치, 아프리카 지도 스탑워치, 새 창에서 열기">
+        <span class="sw-shot"><img src="assets/stopwatch/yunsuk.jpg" alt="" loading="lazy"></span>
+        <span class="sw-body"><span class="sw-text"><span class="sw-who"><span class="sw-num">08</span>함윤숙</span><span class="sw-title">아프리카 지도 스탑워치</span></span><span class="sw-open">열기 <b>↗</b></span></span>
+        <span class="sheen" aria-hidden="true"></span>
+      </a>
+    </div>
   </section>
   <section class="deck-page curriculum-page skill-page" id="skill-page" hidden aria-labelledby="skill-title">
     <div class="curriculum-grid-bg" aria-hidden="true"></div>
@@ -541,17 +609,17 @@ let currentPage=0,awardZoomed=false;
 function setAwardZoom(on){awardZoomed=on;$('award-page').classList.toggle('is-zoomed',on);$('award-poster').setAttribute('aria-pressed',String(on));$('award-cta').tabIndex=on?-1:0;}
 $('award-poster').addEventListener('click',()=>setAwardZoom(!awardZoomed));$('award-cta').addEventListener('click',()=>setAwardZoom(true));
 // URL hash per page, so a link can open a page directly (#award kept as an alias of #liner).
-const pageHashes=['entry','intro','day1','day2','skills','motion'];
+const pageHashes=['entry','intro','day1','day2','stopwatch','skills','motion'];
 const pageFromHash=()=>{const h=location.hash.slice(1).toLowerCase();return Math.max(0,pageHashes.indexOf(h));};
 function showPage(index){
- stop();setAwardZoom(false);currentPage=Math.max(0,Math.min(5,index));
+ stop();setAwardZoom(false);currentPage=Math.max(0,Math.min(6,index));
  if(location.hash!=='#'+pageHashes[currentPage])history.replaceState(null,'','#'+pageHashes[currentPage]);
- ['entry-page','workshop-page','curriculum-page','day2-page','skill-page','motion-page'].forEach((id,i)=>$(id).hidden=currentPage!==i);
+ ['entry-page','workshop-page','curriculum-page','day2-page','stopwatch-page','skill-page','motion-page'].forEach((id,i)=>$(id).hidden=currentPage!==i);
  document.querySelectorAll('.deck-tab').forEach((button,i)=>{if(i===currentPage)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
- slide.setAttribute('aria-label',["카카오톡 그룹 채팅방 QR 코드와 입장 코드, 1 / 6 페이지","워크샵 참가자 자기소개, 2 / 6 페이지","AI 에이전트 고용 기초, Day 1 커리큘럼, 3 / 6 페이지","AI 에이전트 고용 실전, Day 2 커리큘럼, 4 / 6 페이지","스킬 과제 제출 현황, 5 / 6 페이지","모션 그래픽 포트폴리오, 6 / 6 페이지"][currentPage]);
+ slide.setAttribute('aria-label',["카카오톡 그룹 채팅방 QR 코드와 입장 코드, 1 / 7 페이지","워크샵 참가자 자기소개, 2 / 7 페이지","AI 에이전트 고용 기초, Day 1 커리큘럼, 3 / 7 페이지","AI 에이전트 고용 실전, Day 2 커리큘럼, 4 / 7 페이지","수강생 스탑워치, 5 / 7 페이지","스킬 과제 제출 현황, 6 / 7 페이지","모션 그래픽 포트폴리오, 7 / 7 페이지"][currentPage]);
  syncParticles();
  $('viewport').dataset.page=currentPage;
- document.querySelectorAll('.mo-video').forEach(v=>{if(currentPage!==5&&!v.paused)v.pause();});
+ document.querySelectorAll('.mo-video').forEach(v=>{if(currentPage!==6&&!v.paused)v.pause();});
 }
 document.querySelectorAll('.deck-tab').forEach((button,i)=>button.addEventListener('click',()=>showPage(i)));
 questionCards.forEach((card,i)=>{card.addEventListener('pointermove',e=>{if(!motion||e.pointerType==='touch')return;const r=card.getBoundingClientRect();card.style.setProperty('--qx',(e.clientX-r.left)/r.width*100+'%');card.style.setProperty('--qy',(e.clientY-r.top)/r.height*100+'%');});});
