@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>오늘 순매수 데모</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f2f1ec;--paper:#fff;--ink:#15171c;--ink2:#3b3e46;--muted:#70717a;--faint:#9a9ba2;
+  --line:#e1dfd8;--line2:#eceae4;--soft:#f3f2ee;--navy:#18202e;--navy2:#263043;
+  --up:#d1242f;--down:#1f5fd1;--f:#2f6bdb;--o:#d4831a;--i:#2f9a66;--warn:#b7791f;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:14px/1.5 "Pretendard",-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.num,td,.v,.val,.sv,.wv,.cx b,.tv{font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.up,.in{color:var(--up)}.down,.out{color:var(--down)}.muted{color:var(--muted)}
+
+/* masthead */
+.mast{background:var(--navy);color:#e9ecf2}
+.mast .wrap{padding-top:22px;padding-bottom:20px}
+.eyebrow{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:12px;letter-spacing:.02em;color:#a9b1c2}
+.eyebrow b{color:#e9ecf2;font-weight:600}
+.titlerow{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px;margin-top:10px}
+.mast h1{margin:0;font-size:28px;font-weight:800;letter-spacing:-.02em;color:#fff}
+.mast h1 small{font-size:15px;font-weight:500;color:#a9b1c2;margin-left:10px;letter-spacing:0}
+.stamp{font-size:12.5px;color:#a9b1c2;text-align:right}
+.stamp b{color:#fff;font-weight:600}
+.demo{display:flex;gap:10px;align-items:flex-start;margin-top:16px;background:#fff7e0;color:#4a3a12;border-radius:10px;padding:10px 14px;font-size:13.5px}
+.demo .dt{flex:none;width:8px;height:8px;border-radius:50%;background:var(--warn);margin-top:6px}
+.demo b{font-weight:700}
+.prompt{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin-top:12px;font-size:13px;color:#c9cfdb}
+.prompt .who{font-size:11.5px;font-weight:700;letter-spacing:.04em;color:#8f99ad;padding-top:2px}
+.prompt .say{color:#fff;font-weight:600}
+.prompt .say q{quotes:none;background:var(--navy2);border-radius:6px;padding:2px 8px}
+
+/* sticky market tabs */
+.bar{position:sticky;top:0;z-index:10;background:rgba(242,241,236,.96);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:8px;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}
+.mtabs{display:flex;gap:6px}
+.mtabs button{font:inherit;cursor:pointer;display:flex;align-items:baseline;gap:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:7px 14px;font-size:15px;font-weight:700}
+.mtabs button[aria-selected=true]{background:var(--navy);border-color:var(--navy);color:#fff}
+.mtabs .ix{font-size:12.5px;font-weight:600}
+.mtabs button[aria-selected=true] .ix.up{color:#ff8f8f}.mtabs button[aria-selected=true] .ix.down{color:#8fb6ff}
+.fx{margin-left:auto;font-size:12.5px;color:var(--muted)}
+.fx b{color:var(--ink);font-weight:600}
+@media (max-width:640px){.fx{margin-left:0;width:100%}.mtabs{width:100%}.mtabs button{flex:1 1 0;min-width:0;flex-direction:column;align-items:flex-start;gap:0;padding:6px 12px}.mtabs .ix{font-size:11px;white-space:normal;text-align:left}.mtabs button{font-size:14px}}
+
+main{padding-bottom:40px}
+main>section{scroll-margin-top:80px}
+section[hidden],[hidden]{display:none!important}
+
+/* section heads */
+.sh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.sh .no{font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.04em}
+.sh h2{margin:0;font-size:17px;font-weight:750;letter-spacing:-.01em}
+.sh .cap{font-size:12.5px;color:var(--muted)}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.box h3{margin:0 0 8px;font-size:14px;font-weight:700}
+.box h3 small{font-weight:400;color:var(--muted);font-size:12px;margin-left:4px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.g2{grid-template-columns:minmax(0,1fr)}}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.dot.f{background:var(--f)}.dot.o{background:var(--o)}.dot.i{background:var(--i)}
+.note{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+/* 01 context */
+.ctx{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:12px}
+@media (max-width:820px){.ctx{grid-template-columns:minmax(0,1fr)}}
+.cxrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.cx{padding:4px 14px 4px 0;display:flex;flex-direction:column;gap:2px}
+.cx + .cx{padding-left:14px;border-left:1px solid var(--line2)}
+.cx .k{font-size:12.5px;color:var(--muted)}
+.cx b{font-size:22px;font-weight:750;letter-spacing:-.01em;white-space:nowrap}
+.cx small{font-size:12px;color:var(--muted)}
+.cxline{font-size:13px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line2)}
+.warn{display:flex;gap:8px;margin-top:10px;font-size:12.5px;background:#fbf3e2;color:#5a4516;border-radius:8px;padding:8px 10px}
+.warn::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--warn);margin-top:5px}
+.inst{display:flex;flex-direction:column;gap:6px}
+.irow{display:grid;grid-template-columns:5em minmax(0,1fr) 4.6em;align-items:center;gap:8px;font-size:13px}
+.irow .t{position:relative;height:8px;background:var(--soft);border-radius:4px}
+.irow .t::after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--line)}
+.irow .t span{position:absolute;top:0;height:100%;border-radius:4px}
+.irow .t span.in{background:var(--up)}.irow .t span.out{background:var(--down)}
+.irow .val{text-align:right;font-weight:600}
+
+/* kpi */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
+@media (max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+.kpi .k{font-size:12px;color:var(--muted)}
+.kpi .v{font-size:17px;font-weight:750;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi .d{font-size:12px;color:var(--muted);margin-top:2px}
+.kpi .d b{font-size:13px}
+@media (max-width:480px){.kpi .d .split{display:block}}
+
+/* watch + signal rows */
+.srow,.wrow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(7.5em,auto);align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line2)}
+.srow:last-child,.wrow:last-child{border-bottom:0}
+.wrow{grid-template-columns:minmax(0,1fr) auto minmax(12em,auto)}
+.sn{min-width:0}
+.sn b{display:block;font-size:14px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sn small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sv,.wv{text-align:right;white-space:nowrap;font-weight:700;font-size:13.5px}
+.sv small,.wv small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.wv b{font-size:15px}
+.badge{display:inline-block;font-size:11px;font-weight:650;border-radius:999px;padding:1px 8px;white-space:nowrap;margin-top:3px}
+.badge.in{color:var(--up);background:#fbe9ea}.badge.out{color:var(--down);background:#e8effb}
+.box.sig .sd{font-size:12px;color:var(--muted);margin:-4px 0 4px}
+.mspark .axis{stroke:var(--faint);stroke-width:1;opacity:.6}
+.sin{fill:var(--up)}.sout{fill:var(--down)}.recent{fill:#ecebe5}
+.empty{font-size:12.5px;color:var(--muted);padding:10px 0}
+@media (max-width:600px){
+  .srow{grid-template-columns:minmax(0,1fr) auto}.srow .mspark{display:none}
+  .wrow{grid-template-columns:minmax(0,1fr) auto;row-gap:6px}.wrow .wv{grid-column:1/-1;text-align:left}
+  .cx b{font-size:16px}.cx small{font-size:11px}.mast h1 small{display:block;margin:4px 0 0}.stamp{text-align:left}.cx{padding-right:8px}.cx + .cx{padding-left:8px}
+}
+
+/* view toggle */
+.vtabs{display:inline-flex;flex-wrap:wrap;background:#e8e6e0;border-radius:8px;padding:3px;margin:0 0 10px}
+.vtabs button{font:inherit;font-size:13px;cursor:pointer;border:0;background:none;color:var(--muted);padding:5px 12px;border-radius:6px}
+.vtabs button[aria-selected=true]{background:var(--paper);color:var(--ink);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+h4.sub{font-size:12.5px;color:var(--muted);font-weight:600;margin:14px 0 8px;letter-spacing:.02em}
+
+/* flow rows */
+.frow{display:grid;grid-template-columns:minmax(6em,11em) minmax(0,1fr) auto;grid-template-areas:"nm tr val" "nm sp sp" "ld ld ld";align-items:center;column-gap:12px;row-gap:3px;padding:8px 0;border-bottom:1px solid var(--line2)}
+.frow .nm{grid-area:nm}.frow .track{grid-area:tr}.frow .val{grid-area:val}.frow .lead{grid-area:ld}
+.frow .spl{grid-area:sp;text-align:right;font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frow:last-child{border-bottom:0}
+.frow .nm{font-weight:650;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frow .nm small{display:block;font-weight:400;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+.frow .track{height:10px;background:var(--soft);border-radius:5px;overflow:hidden}
+.frow .fill{display:block;height:100%;border-radius:5px}
+.fill.in{background:var(--up)}.fill.out{background:var(--down)}
+.frow .val{text-align:right;white-space:nowrap;font-weight:750}
+.frow .lead{font-size:12px;color:var(--muted);background:var(--soft);border-radius:6px;padding:3px 8px;margin-top:-2px}
+.frow .lead b{color:var(--ink);font-weight:650}
+.heavy{display:inline-block;font-size:11px;font-weight:700;color:#8a5a0c;background:#f7ead0;border-radius:999px;padding:0 7px;margin-right:6px}
+@media (max-width:600px){
+  .frow{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"nm val" "tr tr" "sp sp" "ld ld";row-gap:5px}
+  .frow .spl{text-align:left}
+}
+
+/* trend */
+.tlegend{font-size:12px;color:var(--muted);margin:0 0 10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tlegend .sw{display:inline-block;width:10px;height:10px;border-radius:2px}
+.sw.sin{background:var(--up)}.sw.sout{background:var(--down)}.sw.recent{background:#ecebe5;border:1px solid var(--line)}
+.tcard{padding:11px 0;border-bottom:1px solid var(--line2)}
+.tcard:last-child{border-bottom:0}
+.th{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;min-width:0}
+.tn{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.th .badge{margin-top:0}
+.tv{margin-left:auto;font-weight:800;font-size:15px;white-space:nowrap}
+.spark{display:block;width:100%;height:46px}
+.spark .axis{stroke:var(--faint);stroke-width:1;opacity:.6;vector-effect:non-scaling-stroke}
+.sx{display:flex;justify-content:space-between;font-size:11px;color:var(--faint);margin-top:2px}
+.tf{font-size:12.5px;color:var(--muted);margin-top:4px}
+.tf b{font-weight:700}
+
+/* backtest */
+.btsum{font-size:14px;line-height:1.65}
+.btchart{display:flex;align-items:stretch;gap:3px;height:96px;margin:14px 0 22px}
+.btb{flex:1;position:relative;background:linear-gradient(var(--line),var(--line)) center/100% 1px no-repeat}
+.btb span{position:absolute;left:15%;width:70%;border-radius:2px;max-height:50%}
+.btb span.in{background:var(--up)}.btb span.out{background:var(--down)}
+.btb i{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);font-size:10px;font-style:normal;color:var(--faint);white-space:nowrap}
+@media (max-width:600px){.btb i{display:none}.btb:nth-child(5n+1) i{display:block}}
+
+/* top tables */
+details.detail{margin-top:34px}
+details.detail>summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;gap:10px;padding:12px 16px;background:var(--paper);border:1px solid var(--line);border-radius:10px;font-weight:750;font-size:15px}
+details.detail>summary::-webkit-details-marker{display:none}
+details.detail>summary .no{font-size:12px;color:var(--faint);font-weight:700}
+details.detail>summary::after{content:"펼치기";margin-left:auto;font-size:12px;font-weight:500;color:var(--muted)}
+details.detail[open]>summary::after{content:"접기"}
+.itabs{display:flex;overflow-x:auto;white-space:nowrap;margin-top:12px;border-bottom:2px solid var(--line)}
+.itabs button{font:inherit;font-size:14px;font-weight:600;cursor:pointer;border:0;background:none;color:var(--muted);padding:9px 14px;margin-bottom:-2px;border-bottom:3px solid transparent}
+.itabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--ink)}
+.itabs button[data-c=f][aria-selected=true]{border-bottom-color:var(--f)}
+.itabs button[data-c=o][aria-selected=true]{border-bottom-color:var(--o)}
+.itabs button[data-c=i][aria-selected=true]{border-bottom-color:var(--i)}
+.panel{background:var(--paper);border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px;padding:4px 0 8px}
+.meta{font-size:12px;color:var(--muted);padding:8px 14px 4px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{font-size:12px;color:var(--muted);font-weight:600;text-align:right;padding:7px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px 12px;border-bottom:1px solid var(--line2);text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+th.l,td.l{text-align:left}
+td.rk{color:var(--faint);width:2.5em}
+td.nm{font-weight:650}
+td.sc{color:var(--muted);font-size:12.5px}
+td.amt{font-weight:750;min-width:9em}
+td.amt .b{display:inline-block;height:6px;border-radius:3px;margin-right:8px;vertical-align:middle;opacity:.85}
+.b.f{background:var(--f)}.b.o{background:var(--o)}.b.i{background:var(--i)}.b.fo,.b.foi{background:var(--ink2)}
+.star{color:var(--warn);margin-left:4px;font-size:12px}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding:18px 0 28px;font-size:12.5px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px}
+footer a{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="eyebrow"><span><b>AI를 고용하라 8기</b> · 스킬 데모</span><span>korea-net-buy-top</span></div>
+    <div class="titlerow">
+      <h1>오늘 순매수<small>코스피·코스닥 투자자별 자금 흐름</small></h1>
+      <div class="stamp"><b>샘플 거래일</b> · 장 마감 기준 · 정규장(KRX)<br>금액 단위 억원 · 빨강 유입·상승 · 파랑 유출·하락</div>
+    </div>
+    <div class="demo"><span class="dt"></span><div><b>샘플 데이터로 만든 데모입니다. 수치는 실제 시세가 아닙니다.</b> 종목과 업종 이름은 실제를 쓰되 모든 금액, 주가, 지수는 설명용으로 만든 값입니다. 투자 조언이 아닙니다.</div></div>
+    <div class="prompt">
+      <span class="who">입력</span><span class="say"><q>오늘 순매수, 관심 종목은 삼성전자·SK하이닉스·에코프로·알테오젠</q></span>
+      <span class="who">결과</span><span>Claude가 네이버 증권의 전 종목(약 4,300개) 수급을 모아 계산하고, 아래와 같은 한 장짜리 HTML을 만듭니다. 실제 실행은 4~5분 걸립니다.</span>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="mtabs" id="mtabs"></div>
+    <div class="fx">원·달러 <b>1,384.20원</b> <span class="down">▼3.40 (−0.25%)</span></div>
+  </div>
+</div>
+
+<main class="wrap" id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <span>원본 스킬: 양지웅 · <a href="https://github.com/hype767/kospi-kosdaq" target="_blank" rel="noopener">GitHub</a></span>
+    <span>강의용 데모 페이지입니다.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+/* ───────── 샘플 데이터 (설명용, 실제 시세 아님) ─────────
+   stock: [종목명, 업종, 외국인, 기관, 개인, 종가, 등락률, 거래대금, 시가총액]  금액 단위 억원 */
+var MARKETS = [
+{ id:"kospi", name:"코스피", ix:{close:"2,684.35", diff:31.22, rate:1.18},
+  ctx:{f:2140,o:1860,i:-3720,f5:6820,o5:2310,i5:-8450,
+       inst:{"금융투자":1120,"연기금":540,"투신":260,"보험":90,"사모":-60,"은행":-30,"기타금융":-60},
+       fut:{t:4215,f5:9870}, events:"D-11 옵션만기"},
+  etf:{n:42,f:220,o:1020,i:-1180},
+  watch:[["삼성전자",6.2],["SK하이닉스",-2.4]],
+  stocks:[
+   ["삼성전자","반도체와반도체장비",1840,620,-2210,71800,1.84,18420,4286000],
+   ["SK하이닉스","반도체와반도체장비",-1260,1430,-150,186500,0.32,9870,1357700],
+   ["한미반도체","반도체와반도체장비",212,96,-290,98400,4.62,1640,95600],
+   ["HD현대중공업","조선",534,318,-810,214000,3.38,2310,189900],
+   ["한화오션","조선",286,174,-430,38650,2.79,1520,118400],
+   ["삼성중공업","조선",141,62,-190,11840,1.98,880,104200],
+   ["한화에어로스페이스","우주항공과국방",388,241,-598,362500,2.12,2040,183500],
+   ["LIG넥스원","우주항공과국방",46,92,-131,201000,1.01,410,44200],
+   ["KB금융","은행",312,207,-496,82300,1.48,1180,324100],
+   ["신한지주","은행",164,118,-270,51400,0.98,690,261900],
+   ["현대차","자동차",-742,-215,921,218500,-2.24,2860,457600],
+   ["기아","자동차",-386,-142,498,96100,-1.74,1420,381200],
+   ["현대모비스","자동차부품",-88,-41,121,236000,-0.84,380,217500],
+   ["LG에너지솔루션","전기제품",-512,-298,774,362000,-2.55,2240,847100],
+   ["삼성SDI","전기제품",-264,-138,382,268500,-3.10,1180,184600],
+   ["POSCO홀딩스","철강",-198,-112,291,341000,-1.30,860,288400],
+   ["LG화학","화학",-176,-64,228,298000,-1.49,740,210400],
+   ["NAVER","양방향미디어와서비스",-232,58,162,184300,-0.70,980,291800],
+   ["카카오","양방향미디어와서비스",-148,-96,231,41250,-1.67,820,183200],
+   ["삼성바이오로직스","생물공학",128,-46,-76,1012000,0.40,690,720300],
+   ["셀트리온","생물공학",-156,-84,228,172400,-1.26,840,374100],
+   ["두산에너빌리티","전기장비",248,132,-362,24850,2.69,1960,159200],
+   ["효성중공업","전기장비",86,104,-182,512000,3.85,620,47700],
+   ["LS ELECTRIC","전기장비",52,71,-118,214500,2.38,540,64300],
+   ["삼성물산","건설",64,-22,-38,128600,0.47,310,232700],
+   ["SK이노베이션","석유와가스",-94,-38,126,108200,-1.19,420,163500],
+   ["아모레퍼시픽","화장품",74,36,-104,132800,2.47,340,77700],
+   ["크래프톤","게임엔터테인먼트",-64,-58,116,296500,-2.14,450,142900],
+   ["미래에셋증권","증권",92,58,-142,9870,1.75,480,61800],
+   ["HMM","해운사",-72,-26,92,18920,-0.89,360,130100]
+  ],
+  sig:{turn:["한화오션","효성중공업","미래에셋증권","아모레퍼시픽"],
+       streak:[["HD현대중공업",9],["한화에어로스페이스",7],["KB금융",6],["두산에너빌리티",5]],
+       newboth:["LIG넥스원","한미반도체","삼성중공업","LS ELECTRIC"],
+       acc:[["LG화학",620,-6.8],["셀트리온",410,-4.2],["NAVER",380,-3.6]],
+       dis:[["현대차",-2180,6.4],["크래프톤",-340,7.9],["HMM",-260,5.6]]},
+  drift:{"반도체와반도체장비":[.45,.3],"조선":[.6,.45],"우주항공과국방":[.45,.4],"은행":[.35,.3],"전기장비":[.4,.35],
+         "자동차":[-.55,-.2],"전기제품":[-.5,-.4],"철강":[-.35,-.2],"화학":[-.2,-.3],"양방향미디어와서비스":[-.35,0],"생물공학":[0,-.25]},
+  bt:[.8,-.4,1.2,.3,-.9,.6,1.5,-.2,.4,.9,-1.1,.7,.2,1.0,-.3]
+},
+{ id:"kosdaq", name:"코스닥", ix:{close:"762.48", diff:-4.07, rate:-0.53},
+  ctx:{f:412,o:-186,i:-96,f5:1260,o5:-540,i5:-520,
+       inst:{"금융투자":-84,"투신":-92,"연기금":48,"사모":-38,"보험":-12,"은행":-4,"기타금융":-4}, events:"D-11 옵션만기"},
+  etf:null,
+  watch:[["에코프로",-9.8],["알테오젠",12.5]],
+  stocks:[
+   ["알테오젠","생물공학",186,142,-310,382000,3.24,1860,203600],
+   ["에코프로비엠","전기제품",-224,-96,302,118400,-3.42,1640,115800],
+   ["에코프로","전기제품",-168,-54,208,64300,-2.87,1210,85600],
+   ["엘앤에프","전기제품",-94,-58,146,98700,-3.66,720,35800],
+   ["리가켐바이오","제약",92,64,-148,128700,2.95,520,46800],
+   ["HLB","제약",-132,-38,162,62100,-2.05,940,81200],
+   ["삼천당제약","제약",48,21,-64,148300,1.37,360,34800],
+   ["파마리서치","제약",54,38,-88,412000,2.11,310,43000],
+   ["펩트론","제약",36,28,-60,88700,2.31,290,19100],
+   ["레인보우로보틱스","기계",78,56,-128,214000,4.18,760,41500],
+   ["클래시스","건강관리장비와용품",61,29,-84,54800,1.67,240,35900],
+   ["펄어비스","게임엔터테인먼트",-46,-32,74,38950,-1.89,280,25100],
+   ["HPSP","반도체와반도체장비",72,48,-116,31200,3.65,410,25800],
+   ["리노공업","반도체와반도체장비",38,46,-80,198500,2.27,230,30300],
+   ["이오테크닉스","반도체와반도체장비",-42,-36,74,152800,-1.61,260,18800],
+   ["JYP Ent.","방송과엔터테인먼트",-58,-44,96,61200,-2.24,290,21700],
+   ["에스엠","방송과엔터테인먼트",26,18,-40,82400,0.98,150,19600],
+   ["휴젤","생물공학",42,33,-71,248000,1.64,210,30900],
+   ["에이비엘바이오","생물공학",-38,-26,61,32850,-1.36,230,15900],
+   ["실리콘투","무역회사와판매업체",68,22,-86,38400,5.20,480,23100]
+  ],
+  sig:{turn:["리가켐바이오","레인보우로보틱스","펩트론"],
+       streak:[["알테오젠",8],["HPSP",6],["클래시스",5]],
+       newboth:["리노공업","휴젤","에스엠"],
+       acc:[["HLB",240,-8.4],["에이비엘바이오",96,-5.1]],
+       dis:[["엘앤에프",-380,6.2],["JYP Ent.",-210,5.4]]},
+  drift:{"생물공학":[.35,.3],"제약":[.3,.2],"기계":[.35,.3],"반도체와반도체장비":[.25,.2],
+         "전기제품":[-.55,-.35],"방송과엔터테인먼트":[-.3,-.2],"게임엔터테인먼트":[-.25,-.15]},
+  bt:[.4,.9,-.6,.3,1.1,-.8,.5,-.2,.7,-1.0,.6,.2,-.4,.8,.3]
+}];
+
+var N = 20;
+var DAYS = []; for (var d = 0; d < N; d++) DAYS.push(d === N-1 ? "오늘" : "D-" + (N-1-d));
+
+/* ───────── helpers ───────── */
+function rng(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}
+  return function(){h+=0x6D2B79F5;var t=h;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};}
+function fmt(n){return Math.round(n).toLocaleString("ko-KR");}
+function sg(n){n=Math.round(n);return (n>0?"+":n<0?"−":"")+Math.abs(n).toLocaleString("ko-KR");}
+function pct(n,d){d=d==null?2:d;return (n>0?"+":n<0?"−":"")+Math.abs(n).toFixed(d)+"%";}
+function cls(n){return n>=0?"in":"out";}
+function ud(n){return n>=0?"up":"down";}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function sum(a){return a.reduce(function(s,v){return s+v;},0);}
+function amt(r,keys){var t=0;keys.forEach(function(k){t+=r[k]||0;});return t;}
+
+/* 20일 일별 순매수 시계열. 마지막 값은 반드시 오늘 금액과 같다. */
+function series(seed,today,o){
+  o=o||{};var r=rng(seed),sc=Math.max(Math.abs(today),o.base||20)*(o.k||.8),dr=o.drift||0,a=[],i;
+  for(i=0;i<N-1;i++)a.push(Math.round(sc*(dr+(r()*2-1))));
+  a.push(Math.round(today));
+  if(o.streak){var k=o.streak;for(i=N-k;i<N-1;i++)a[i]=Math.abs(a[i])+Math.round(sc*.2)+1;a[N-k-1]=-Math.abs(a[N-k-1])-Math.round(sc*.2)-1;}
+  if(o.turn){for(i=0;i<15;i++)a[i]=Math.round(sc*(-.45+(r()*2-1)*.5));for(i=15;i<N-1;i++)a[i]=Math.abs(a[i])+1;a[16]=-Math.round(sc*.15)-1;}
+  if(o.cum!=null){var diff=o.cum-sum(a),m=N-2;for(i=0;i<m;i++)a[i]+=Math.round(diff/m);a[0]+=o.cum-sum(a);}
+  return a;
+}
+function streakOf(v){if(!v.length)return 0;var pos=v[v.length-1]>0,k=0;for(var i=v.length-1;i>=0;i--){if(v[i]!==0&&(v[i]>0)===pos)k++;else break;}return pos?k:-k;}
+
+var VIEWS=[["fo","외국인+기관",["f","o"]],["f","외국인",["f"]],["o","기관",["o"]],["i","개인",["i"]]];
+
+/* ───────── build model ───────── */
+MARKETS.forEach(function(M){
+  var spec={};
+  M.sig.turn.forEach(function(n){spec[n]={turn:true};});
+  M.sig.streak.forEach(function(x){spec[x[0]]={streak:x[1]};});
+  M.sig.acc.forEach(function(x){spec[x[0]]={cum:x[1],r20:x[2]};});
+  M.sig.dis.forEach(function(x){spec[x[0]]={cum:x[1],r20:x[2]};});
+  var wr={};M.watch.forEach(function(w){wr[w[0]]=w[1];});
+  M.S=M.stocks.map(function(s){
+    var r={name:s[0],sector:s[1],f:s[2],o:s[3],i:s[4],price:s[5],rate:s[6],value:s[7],mcap:s[8]};
+    var sp=spec[r.name]||{};
+    if(wr[r.name]!=null)sp.drift=wr[r.name]>0?.25:-.25;
+    r.h=series(M.id+r.name,r.f+r.o,sp);
+    r.r20=sp.r20!=null?sp.r20:(wr[r.name]!=null?wr[r.name]:r.rate*2);
+    return r;
+  });
+  M.by={};M.S.forEach(function(r){M.by[r.name]=r;});
+  /* 섹터 합계 */
+  var secs={};
+  M.S.forEach(function(r){var a=secs[r.sector]||(secs[r.sector]={name:r.sector,f:0,o:0,i:0,n:0,members:[]});
+    a.f+=r.f;a.o+=r.o;a.i+=r.i;a.n++;a.members.push(r);});
+  M.secs=Object.keys(secs).map(function(k){return secs[k];});
+  /* 섹터 20일 추세 (투자자별) */
+  M.trend=M.secs.map(function(sec){
+    var dr=M.drift[sec.name]||[0,0],t={name:sec.name};
+    t.f=series(M.id+sec.name+"f",sec.f,{drift:dr[0],base:40,k:.7});
+    t.o=series(M.id+sec.name+"o",sec.o,{drift:dr[1],base:30,k:.7});
+    t.i=series(M.id+sec.name+"i",sec.i,{drift:-(dr[0]+dr[1])*.6,base:40,k:.7});
+    return t;
+  });
+});
+
+/* ───────── render pieces ───────── */
+function sectionHead(no,title,cap){return '<div class="sh"><span class="no">'+no+'</span><h2>'+title+'</h2>'+(cap?'<span class="cap">'+cap+'</span>':'')+'</div>';}
+function split(r){return '<span class="split">'+[["f","외"],["o","기"],["i","개"]].map(function(p){return '<span class="dot '+p[0]+'"></span>'+p[1]+' '+sg(r[p[0]]);}).join(" · ")+'</span>';}
+
+function miniSpark(v,w,h){w=w||84;h=h||22;var pk=Math.max.apply(null,v.map(Math.abs))||1,n=v.length,mid=h/2,bw=w/n,out='';
+  v.forEach(function(x,i){var bh=Math.max(1,Math.abs(x)/pk*(mid-1)),y=x>=0?mid-bh:mid;
+    out+='<rect x="'+(i*bw+bw*.2).toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+(bw*.6).toFixed(1)+'" height="'+bh.toFixed(1)+'" class="'+(x>=0?"sin":"sout")+'"/>';});
+  return '<svg class="mspark" viewBox="0 0 '+w+' '+h+'" width="'+w+'" height="'+h+'" aria-hidden="true"><rect x="'+((n-5)*bw).toFixed(1)+'" y="0" width="'+(5*bw).toFixed(1)+'" height="'+h+'" class="recent"/><line x1="0" x2="'+w+'" y1="'+mid+'" y2="'+mid+'" class="axis"/>'+out+'</svg>';}
+
+function spark(v){var W=400,H=46,mid=23,n=v.length,bw=W/n,pk=Math.max.apply(null,v.map(Math.abs))||1;
+  var s='<rect x="'+((n-5)*bw).toFixed(1)+'" y="0" width="'+(5*bw).toFixed(1)+'" height="'+H+'" class="recent"/><line x1="0" x2="'+W+'" y1="'+mid+'" y2="'+mid+'" class="axis"/>';
+  v.forEach(function(x,i){var bh=Math.max(1.5,Math.abs(x)/pk*(mid-3)),y=x>=0?mid-bh:mid;
+    s+='<rect x="'+(i*bw+bw*.25).toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+(bw*.5).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="1.5" class="'+(x>=0?"sin":"sout")+'"><title>'+DAYS[i]+'  '+sg(x)+'억</title></rect>';});
+  return '<svg class="spark" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" role="img" aria-label="일별 순매수 흐름">'+s+'</svg><div class="sx"><span>'+DAYS[0]+'</span><span>'+DAYS[10]+'</span><span>최근 5일 ▸ 오늘</span></div>';}
+
+function vtabs(group,panels){
+  return '<div class="vtabs">'+VIEWS.map(function(v){return '<button type="button" data-group="'+group+'" data-target="'+group+'-'+v[0]+'">'+v[1]+'</button>';}).join("")+'</div>'+
+    VIEWS.map(function(v){return '<div id="'+group+'-'+v[0]+'" hidden>'+panels(v[2])+'</div>';}).join("");}
+
+/* 01 시장 전체 수급 */
+function contextHtml(M){
+  var c=M.ctx;
+  function cell(lab,k){return '<div class="cx"><span class="k"><span class="dot '+k+'"></span>'+lab+'</span><b class="'+cls(c[k])+'">'+sg(c[k])+'억</b><small>5일 '+sg(c[k+"5"])+'억</small></div>';}
+  var inst=Object.keys(c.inst).map(function(k){return[k,c.inst[k]];}).sort(function(a,b){return Math.abs(b[1])-Math.abs(a[1]);});
+  var ipk=Math.max.apply(null,inst.map(function(x){return Math.abs(x[1]);}));
+  var irows=inst.map(function(x){var w=Math.abs(x[1])/ipk*50;
+    return '<div class="irow"><span>'+x[0]+'</span><span class="t"><span class="'+cls(x[1])+'" style="'+(x[1]>=0?"left:50%":"right:50%")+';width:'+w.toFixed(1)+'%"></span></span><span class="val '+cls(x[1])+'">'+sg(x[1])+'</span></div>';}).join("");
+  var warn="",fin=c.inst["금융투자"]||0;
+  if(c.o>0&&fin>0&&fin/c.o>=.5)warn='<div class="warn"><span>기관 순매수의 <b>'+Math.round(fin/c.o*100)+'%</b>가 금융투자입니다. ETF 설정이나 차익거래 같은 기계적 매매일 수 있어 기관 수급을 조금 할인해서 봅니다.</span></div>';
+  var fut=c.fut?'<div class="cxline">외국인 <b>코스피200 선물</b> 오늘 <b class="'+cls(c.fut.t)+'">'+sg(c.fut.t)+'계약</b> · 5일 '+sg(c.fut.f5)+'계약 <span class="muted">(현물 방향을 미리 보여주는 경우가 많습니다)</span></div>':'';
+  var ev='<div class="cxline muted">최근 20일 이벤트: '+c.events+' · 오늘은 이벤트일이 아닙니다</div>';
+  return sectionHead("01","시장 전체 수급","정확값 · 오늘과 최근 5일")+
+    '<div class="ctx"><div class="box"><h3>투자자별 순매수</h3><div class="cxrow">'+cell("외국인","f")+cell("기관","o")+cell("개인","i")+'</div>'+warn+fut+ev+'</div>'+
+    '<div class="box"><h3>기관 세부<small>억원 · 합계 '+sg(c.o)+'억</small></h3><div class="inst">'+irows+'</div></div></div>';
+}
+
+/* 02 관심 종목 */
+function watchHtml(M){
+  var rows=M.watch.map(function(w){var r=M.by[w[0]];if(!r)return"";var s=r.h,st=streakOf(s),fo=r.f+r.o;
+    var badge=st>1?'<span class="badge in">'+st+'일 연속 유입</span>':st<-1?'<span class="badge out">'+(-st)+'일 연속 유출</span>':'';
+    return '<div class="wrow"><div class="sn"><b>'+esc(r.name)+'</b><small>'+esc(r.sector)+' · 종가 '+fmt(r.price)+' <span class="'+ud(r.rate)+'">'+pct(r.rate)+'</span></small>'+badge+'</div>'+
+      miniSpark(s,120,26)+'<div class="wv"><b class="'+cls(fo)+'">외+기 '+sg(fo)+'억</b><small>'+split(r)+'</small><small>5일 '+sg(sum(s.slice(-5)))+'억 · 20일 '+sg(sum(s))+'억 · 20일 주가 '+pct(r.r20,1)+'</small></div></div>';}).join("");
+  return sectionHead("02","내 관심 종목","대화에서 말한 종목 · 미니차트는 20일 외+기 순매수")+'<div class="box">'+rows+'</div>';
+}
+
+/* KPI */
+function kpiHtml(M){
+  var k=["f","o"],stocks=M.S.slice(),secs=M.secs.slice();
+  function pick(xs,hi){return xs.slice().sort(function(a,b){return hi?amt(b,k)-amt(a,k):amt(a,k)-amt(b,k);})[0];}
+  return '<div class="kpis">'+[["돈이 가장 많이 들어온 섹터",pick(secs,true)],["돈이 가장 많이 들어온 종목",pick(stocks,true)],["돈이 가장 많이 빠진 섹터",pick(secs,false)],["돈이 가장 많이 빠진 종목",pick(stocks,false)]].map(function(x){var v=amt(x[1],k);
+    return '<div class="kpi"><div class="k">'+x[0]+' (외+기)</div><div class="v '+cls(v)+'">'+esc(x[1].name)+'</div><div class="d"><b class="'+cls(v)+'">'+sg(v)+'억</b> · '+split(x[1])+'</div></div>';}).join("")+'</div>';
+}
+
+/* 03·04 신호 */
+function sigRow(r,main,sub){return '<div class="srow"><div class="sn"><b>'+esc(r.name)+'</b><small>'+esc(r.sector)+' · <span class="'+ud(r.rate)+'">'+pct(r.rate)+'</span></small></div>'+miniSpark(r.h)+'<div class="sv">'+main+'<small>'+sub+'</small></div></div>';}
+function sigBox(t,d,rows){return '<div class="box sig"><h3>'+t+'</h3><div class="sd">'+d+'</div>'+(rows||'<div class="empty">오늘은 해당 종목이 없습니다</div>')+'</div>';}
+function bp(x,m){return x/m*100;}
+function signalsHtml(M){
+  var by=M.by,sig=M.sig;
+  var turn=sig.turn.map(function(n){var r=by[n],p=sum(r.h.slice(0,15)),l=sum(r.h.slice(-5));return sigRow(r,'<span class="in">5일 '+sg(l)+'억</span>','앞 15일 '+sg(p)+'억');}).join("");
+  var stk=sig.streak.map(function(x){var r=by[x[0]],k=streakOf(r.h),c=sum(r.h.slice(-k));return sigRow(r,'<span class="in">'+k+'일 연속</span>','누적 '+sg(c)+'억 · 시총의 '+bp(c,r.mcap).toFixed(2)+'%');}).join("");
+  var nb=sig.newboth.map(function(n){var r=by[n];return sigRow(r,'<span class="in">'+sg(r.f+r.o)+'억</span>','외 '+sg(r.f)+' · 기 '+sg(r.o));}).join("");
+  var str=M.S.filter(function(r){return r.f+r.o>=3;}).sort(function(a,b){return bp(b.f+b.o,b.mcap)-bp(a.f+a.o,a.mcap);}).slice(0,5)
+    .map(function(r){var fo=r.f+r.o;return sigRow(r,'<span class="in">'+sg(fo)+'억</span>','시총의 '+bp(fo,r.mcap).toFixed(2)+'% · 거래대금의 '+Math.round(fo/r.value*100)+'%');}).join("");
+  var acc=sig.acc.map(function(x){var r=by[x[0]];return sigRow(r,'<span class="in">20일 '+sg(sum(r.h))+'억</span>','20일 주가 <span class="down">'+pct(r.r20,1)+'</span>');}).join("");
+  var dis=sig.dis.map(function(x){var r=by[x[0]];return sigRow(r,'<span class="out">20일 '+sg(sum(r.h))+'억</span>','20일 주가 <span class="up">'+pct(r.r20,1)+'</span>');}).join("");
+  return sectionHead("03","오늘 눈여겨볼 변화","외국인+기관 기준 · 시총 500억·거래대금 10억 이상 · ETF·ETN 제외")+
+    '<div class="g2">'+sigBox("수급 전환","앞 15일은 빠지다가 최근 5일 들어오기 시작한 종목",turn)+sigBox("연속 순매수","외+기가 오늘까지 5일 이상 연속으로 산 종목",stk)+
+    sigBox("신규 쌍끌이","오늘 외국인·기관이 같이 샀고, 어제는 아니었던 종목",nb)+sigBox("수급 강도 TOP","덩치 대비 많이 산 종목 (순매수 ÷ 시가총액)",str)+'</div>'+
+    sectionHead("04","주가와 수급이 엇갈린 종목","20일 기준 · 방향이 달라 눈여겨볼 곳")+
+    '<div class="g2">'+sigBox("주가는 빠졌는데 외+기는 산 종목","20일 주가 −3% 이하 · 외+기 누적 순매수",acc)+sigBox("주가는 올랐는데 외+기는 판 종목","20일 주가 +5% 이상 · 외+기 누적 순매도",dis)+'</div>';
+}
+
+/* 05 자금 흐름 */
+function leadLine(sec,keys){var tot=amt(sec,keys);if(!tot)return"";
+  var lead=sec.members.slice().sort(function(a,b){return tot>0?amt(b,keys)-amt(a,keys):amt(a,keys)-amt(b,keys);})[0],la=amt(lead,keys);
+  if(la*tot<=0)return"";var sh=la/tot*100;
+  return (sh>=70?'<span class="heavy">한 종목 쏠림</span>':'')+'주도 종목 <b>'+esc(lead.name)+'</b> '+sg(la)+'억 · '+(sh>=100?'섹터 합계 이상':'섹터의 '+Math.round(sh)+'%');}
+function flowRows(items,keys,peak,sub,isSec){return items.map(function(r){var t=amt(r,keys),w=Math.max(2,Math.abs(t)/peak*100),ll=isSec&&r.n>1?leadLine(r,keys):"";
+  return '<div class="frow"><span class="nm">'+esc(r.name)+'<small>'+sub(r)+'</small></span><span class="track"><span class="fill '+cls(t)+'" style="width:'+w.toFixed(0)+'%"></span></span><span class="val"><span class="'+cls(t)+'">'+sg(t)+'억</span></span><span class="spl">'+split(r)+'</span>'+(ll?'<span class="lead">'+ll+'</span>':'')+'</div>';}).join("");}
+function flowPanel(M,keys){
+  var secs=M.secs,st=M.S;
+  var sin=secs.filter(function(x){return amt(x,keys)>0;}).sort(function(a,b){return amt(b,keys)-amt(a,keys);}).slice(0,7);
+  var sout=secs.filter(function(x){return amt(x,keys)<0;}).sort(function(a,b){return amt(a,keys)-amt(b,keys);}).slice(0,6);
+  var tin=st.filter(function(r){return amt(r,keys)>0;}).sort(function(a,b){return amt(b,keys)-amt(a,keys);}).slice(0,10);
+  var tout=st.filter(function(r){return amt(r,keys)<0;}).sort(function(a,b){return amt(a,keys)-amt(b,keys);}).slice(0,10);
+  var sp=Math.max.apply(null,sin.concat(sout).map(function(x){return Math.abs(amt(x,keys));}).concat([1]));
+  var tp=Math.max.apply(null,tin.concat(tout).map(function(x){return Math.abs(amt(x,keys));}).concat([1]));
+  var ssub=function(x){return x.n+'종목';},tsub=function(r){return esc(r.sector)+' · <span class="'+ud(r.rate)+'">'+pct(r.rate)+'</span>';};
+  var etf=M.etf?'<div class="note">ETF '+M.etf.n+'종목은 업종이 아니어서 막대에서 빼고 따로 합계 '+sg(amt(M.etf,keys))+'억입니다.</div>':'';
+  return '<h4 class="sub">섹터별</h4><div class="g2"><div class="box"><h3>돈이 들어온 섹터</h3>'+flowRows(sin,keys,sp,ssub,true)+'</div><div class="box"><h3>돈이 빠진 섹터</h3>'+flowRows(sout,keys,sp,ssub,true)+'</div></div>'+
+    '<h4 class="sub">종목별</h4><div class="g2"><div class="box"><h3>돈이 들어온 종목 TOP '+tin.length+'</h3>'+flowRows(tin,keys,tp,tsub)+'</div><div class="box"><h3>돈이 빠진 종목 TOP '+tout.length+'</h3>'+flowRows(tout,keys,tp,tsub)+'</div></div>'+etf;
+}
+
+/* 06 섹터 추세 */
+function trendPanel(M,keys){
+  var rows=M.trend.map(function(t){var d=[];for(var i=0;i<N;i++){var s=0;keys.forEach(function(k){s+=t[k][i];});d.push(s);}return{name:t.name,d:d,s5:sum(d.slice(-5)),s20:sum(d)};});
+  function card(r){var st=streakOf(r.d);
+    var b=st===1?'<span class="badge in">오늘 유입</span>':st===-1?'<span class="badge out">오늘 유출</span>':st>1?'<span class="badge in">'+st+'일 연속 유입</span>':st<-1?'<span class="badge out">'+(-st)+'일 연속 유출</span>':'';
+    return '<div class="tcard"><div class="th"><span class="tn">'+esc(r.name)+'</span>'+b+'<span class="tv '+cls(r.s20)+'">'+sg(r.s20)+'억</span></div>'+spark(r.d)+
+      '<div class="tf">최근 5일 <b class="'+ud(r.s5)+'">'+sg(r.s5)+'억</b> · 오늘 <b class="'+ud(r.d[N-1])+'">'+sg(r.d[N-1])+'억</b></div></div>';}
+  var tin=rows.filter(function(r){return r.s20>0;}).sort(function(a,b){return b.s20-a.s20;}).slice(0,4);
+  var tout=rows.filter(function(r){return r.s20<0;}).sort(function(a,b){return a.s20-b.s20;}).slice(0,4);
+  return '<div class="tlegend"><span class="sw sin"></span>유입한 날 <span class="sw sout"></span>유출한 날 <span class="sw recent"></span>최근 5일 · 막대 높이는 업종마다 따로 맞춤 · 오른쪽 숫자는 20일 누적</div>'+
+    '<div class="g2"><div class="box"><h3>20거래일 누적 돈이 들어온 섹터</h3>'+(tin.map(card).join("")||'<div class="empty">해당 섹터가 없습니다</div>')+'</div><div class="box"><h3>20거래일 누적 돈이 빠진 섹터</h3>'+(tout.map(card).join("")||'<div class="empty">해당 섹터가 없습니다</div>')+'</div></div>';
+}
+
+/* 07 신호 점검 */
+function backtestHtml(M){
+  var r=rng(M.id+"bt"),rows=M.bt.map(function(ex,d){var mkt=Math.round((r()*2-1)*150)/100;return{day:DAYS[d],ex:ex,mkt:mkt,pick:mkt+ex};});
+  var avg=sum(rows.map(function(x){return x.ex;}))/rows.length,wins=rows.filter(function(x){return x.ex>0;}).length,pk=Math.max.apply(null,rows.map(function(x){return Math.abs(x.ex);}));
+  var bars=rows.map(function(x){return '<div class="btb" title="'+x.day+': 상위 '+pct(x.pick)+' / 시장 '+pct(x.mkt)+'"><span class="'+cls(x.ex)+'" style="height:'+Math.max(2,Math.abs(x.ex)/pk*100).toFixed(0)+'%;'+(x.ex>=0?"bottom:50%":"top:50%")+'"></span><i>'+x.day+'</i></div>';}).join("");
+  return sectionHead("07","신호 점검","이 페이지의 신호가 최근에 맞았는지 · 참고용")+
+    '<div class="box"><div class="btsum">지난 '+rows.length+'거래일 동안 매일 <b>수급 강도 상위 20종목</b>을 골랐다면, 5거래일 뒤 수익률이 시장 평균보다 평균 <b class="'+cls(avg)+'">'+(avg>=0?"+":"−")+Math.abs(avg).toFixed(2)+'%p</b> ('+rows.length+'일 중 '+wins+'일 앞섬)</div>'+
+    '<div class="btchart">'+bars+'</div><div class="note">막대 = 그날 고른 종목의 5일 뒤 수익률 − 시장 평균 (빨강 앞섬, 파랑 뒤짐). 표본이 작고(15일) 거래비용을 빼지 않았으며, 과거 결과가 앞으로를 보장하지 않습니다. 매일 기록을 쌓으면 archive_check.py로 더 긴 기간을 점검할 수 있습니다.</div></div>';
+}
+
+/* 08 상위 표 */
+function topTables(M){
+  var tabs=[["f","외국인",["f"]],["o","기관",["o"]],["fo","외국인+기관",["f","o"]],["i","개인",["i"]],["foi","외국인+기관+개인",["f","o","i"]]];
+  function top(keys){return M.S.filter(function(r){return amt(r,keys)>0;}).sort(function(a,b){return amt(b,keys)-amt(a,keys);}).slice(0,12);}
+  var tf=top(["f"]).map(function(r){return r.name;}),to=top(["o"]).map(function(r){return r.name;});
+  var both={};tf.forEach(function(n){if(to.indexOf(n)>=0)both[n]=1;});
+  var g=M.id+"-top";
+  var btns=tabs.map(function(t){return '<button type="button" data-group="'+g+'" data-target="'+g+'-'+t[0]+'" data-c="'+t[0]+'">'+t[1]+'</button>';}).join("");
+  var panels=tabs.map(function(t){var rows=top(t[2]),pk=rows.length?amt(rows[0],t[2]):1;
+    var body=rows.map(function(r,i){var a=amt(r,t[2]);return '<tr><td class="l rk">'+(i+1)+'</td><td class="l nm">'+esc(r.name)+(both[r.name]?'<span class="star" title="외국인·기관 동반 순매수">★</span>':'')+'</td><td class="l sc">'+esc(r.sector)+'</td><td class="amt"><span class="b '+t[0]+'" style="width:'+Math.max(3,Math.round(a/pk*56))+'px"></span>'+fmt(a)+'</td><td>'+fmt(r.price)+'</td><td class="'+ud(r.rate)+'">'+pct(r.rate)+'</td><td>'+fmt(r.value)+'</td></tr>';}).join("");
+    var src=t[0]==="foi"?'세 투자자 합산(추정) · 더하면 남는 건 기타법인 등의 반대편 매매라 금액이 작습니다':t[0]==="i"?'개인은 수량 × 종가 추정':'순매수 금액 순';
+    return '<div class="panel" id="'+g+'-'+t[0]+'" hidden><div class="meta">'+rows.length+'종목 표시 (실제 페이지는 100위까지) · '+src+'</div><div class="tw"><table><thead><tr><th class="l">#</th><th class="l">종목명</th><th class="l">업종</th><th>순매수 금액(억원)</th><th>종가(원)</th><th>등락률</th><th>거래대금(억원)</th></tr></thead><tbody>'+(body||'<tr><td class="l" colspan="7">해당 종목이 없습니다</td></tr>')+'</tbody></table></div></div>';}).join("");
+  return '<details class="detail" open><summary><span class="no">08</span>투자자별 순매수 상위 전체 보기</summary><div class="itabs">'+btns+'</div>'+panels+'</details>';
+}
+
+function marketSection(M){
+  return '<section id="'+M.id+'" hidden>'+contextHtml(M)+watchHtml(M)+kpiHtml(M)+signalsHtml(M)+
+    sectionHead("05","오늘 자금 흐름","누구 돈 기준으로 볼지 고릅니다 · ETF 제외 · 단위 억원")+vtabs(M.id+"-flow",function(k){return flowPanel(M,k);})+
+    sectionHead("06","섹터 추세","최근 20거래일 업종별 순매수 · 막대 하나가 하루")+vtabs(M.id+"-trend",function(k){return trendPanel(M,k);})+
+    backtestHtml(M)+topTables(M)+
+    '<div class="note">외국인·기관의 오늘 금액은 네이버 순위의 정확한 값(순위 밖 종목은 수량 × 종가 추정), 개인과 섹터 추세는 종목별 순매수 수량 × 종가로 계산한 추정치입니다. 모든 투자자를 더하면 0에 가까우므로(누가 사면 누가 판다) 기본 보기는 외국인+기관입니다.</div></section>';
+}
+
+/* ───────── mount ───────── */
+document.getElementById("mtabs").innerHTML=MARKETS.map(function(M){var ix=M.ix;
+  return '<button type="button" data-group="market" data-target="'+M.id+'">'+M.name+'<span class="ix '+ud(ix.rate)+'">'+ix.close+' '+(ix.rate>=0?"▲":"▼")+Math.abs(ix.diff).toFixed(2)+' ('+pct(ix.rate)+')</span></button>';}).join("");
+document.getElementById("app").innerHTML=MARKETS.map(marketSection).join("");
+
+function tabs(sel){var groups={};
+  [].slice.call(document.querySelectorAll(sel)).forEach(function(b){(groups[b.dataset.group]=groups[b.dataset.group]||[]).push(b);});
+  Object.keys(groups).forEach(function(g){var bs=groups[g];
+    function show(id){bs.forEach(function(b){var on=b.dataset.target===id;b.setAttribute("aria-selected",on);document.getElementById(b.dataset.target).hidden=!on;});}
+    bs.forEach(function(b){b.addEventListener("click",function(){show(b.dataset.target);});});
+    var h=(location.hash||"").slice(1);show(bs.some(function(b){return b.dataset.target===h;})?h:bs[0].dataset.target);});}
+tabs(".mtabs button");tabs(".vtabs button");tabs(".itabs button");
+})();
+</script>
+</body>
+</html>

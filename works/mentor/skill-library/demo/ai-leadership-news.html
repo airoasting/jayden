@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 리더십 뉴스레터 데모</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap">
+<style>
+  :root{
+    --paper:#F4F1EA; --sheet:#FFFDF8; --ink:#22303A; --sub:#5B6B72; --faint:#8A958F;
+    --sage:#3F6F5E; --sage-2:#4F7F6E; --sage-soft:#E3EEE9; --sage-mist:#EEF4F0;
+    --hook:#FFF0C4; --hook-deep:#F6DE92; --line:#E4DFD3; --rule:#22303A;
+    --serif:'Noto Serif KR', 'AppleMyungjo', serif;
+    --sans:'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+  a{color:inherit}
+
+  /* demo strip */
+  .demo-strip{background:var(--ink);color:#E8EDEB;font-size:13px;line-height:1.5}
+  .demo-strip .in{max-width:1080px;margin:0 auto;padding:10px 24px;display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-weight:600;font-size:12px;white-space:nowrap}
+  .demo-strip .pill{background:var(--hook);color:var(--ink)}
+  .demo-strip .note{color:#C9D3CF}
+
+  .page{max-width:1080px;margin:0 auto;padding:0 24px 56px}
+
+  /* masthead */
+  .masthead{padding:40px 0 0;text-align:center}
+  .mast-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--sub);
+    letter-spacing:.06em;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+  .mast-top b{color:var(--sage);font-weight:700}
+  .mast-title{font-family:var(--serif);font-weight:900;font-size:64px;line-height:1.15;letter-spacing:-.02em;margin:22px 0 6px}
+  .mast-sub{font-size:15px;color:var(--sub);margin:0 0 20px}
+  .mast-bar{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 18px;font-size:14px;font-weight:600;
+    padding:10px 0;border-top:3px double var(--rule);border-bottom:1px solid var(--rule)}
+  .mast-bar span{display:inline-flex;align-items:center;gap:8px}
+  .mast-bar span+span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--sage);margin-right:10px}
+
+  /* layout */
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;margin-top:36px;align-items:start}
+  main{min-width:0}
+  aside{position:sticky;top:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+
+  /* hero */
+  .hero{background:var(--sheet);border:1px solid var(--line);border-radius:20px;padding:36px 34px 30px}
+  .kicker{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--sage);letter-spacing:.08em;margin:0 0 14px}
+  .kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sage)}
+  .hook{font-family:var(--serif);font-size:38px;line-height:1.4;font-weight:900;margin:0 0 18px;letter-spacing:-.02em}
+  .hook mark{background:linear-gradient(transparent 12%, var(--hook) 12%, var(--hook) 92%, transparent 92%);color:var(--ink);padding:0 .12em}
+  .lead{margin:0;color:var(--sub);font-size:16px}
+  .lead .time{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:var(--sage);background:var(--sage-soft);border-radius:999px;padding:2px 10px}
+
+  /* section heads */
+  .sec{margin-top:52px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin:0 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+  .sec-no{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--sage)}
+  .sec-head h2{font-family:var(--serif);font-size:25px;font-weight:700;margin:0;letter-spacing:-.01em;line-height:1.35}
+  .sec-head .tag{margin-left:auto;font-size:12px;color:var(--faint);font-weight:600;letter-spacing:.06em;white-space:nowrap}
+
+  /* summary */
+  .three{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .three li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;background:var(--sage-mist);border-radius:14px;padding:16px 20px;font-weight:500}
+  .three li .n{font-family:var(--serif);font-weight:900;font-size:24px;line-height:1.2;color:var(--sage)}
+  .three li b{font-weight:700}
+
+  /* article card */
+  .card{background:var(--sheet);border:1px solid var(--line);border-radius:18px;padding:26px 28px;margin:0 0 16px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;border-radius:999px;padding:3px 10px;line-height:1.5;
+    background:var(--sage-soft);color:var(--sage)}
+  .chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .chip.pass{background:var(--sage);color:#fff}
+  .chip.pass::before{background:#CFE6DC}
+  .chip.frame{background:var(--hook);color:#6B5418}
+  .chip.local{background:#EDE9F5;color:#5A4D7A}
+  .card h3{font-family:var(--serif);font-size:22px;line-height:1.5;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+  .card h3 a{text-decoration:none;background-image:linear-gradient(var(--sage-soft),var(--sage-soft));background-size:100% 6px;background-repeat:no-repeat;background-position:0 92%}
+  .card h3 a:hover{background-size:100% 40%}
+  .meta{font-size:14px;color:var(--sub);margin:0 0 14px}
+  .card p{margin:12px 0 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0 0}
+  .stat{background:var(--sage-mist);border-radius:12px;padding:14px 12px;text-align:center}
+  .stat b{display:block;font-family:var(--serif);font-size:30px;line-height:1.2;color:var(--sage);font-weight:900;letter-spacing:-.02em}
+  .stat small{font-size:14px;color:var(--sub);line-height:1.45;display:block;margin-top:6px}
+  .roles{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .roles li{border:1px solid var(--line);border-radius:12px;padding:14px;font-size:15px;line-height:1.6}
+  .roles li b{display:block;font-family:var(--serif);font-size:17px;color:var(--ink);margin-bottom:4px}
+  .apply{display:flex;gap:10px;align-items:flex-start;background:var(--hook);border-radius:12px;padding:12px 16px;font-size:16px;margin:16px 0 0 !important}
+  .apply .lab{flex:none;font-size:12px;font-weight:700;background:var(--ink);color:var(--hook);border-radius:999px;padding:2px 9px;margin-top:3px;white-space:nowrap}
+
+  /* exec quote */
+  .exec{background:var(--ink);color:#F4F1EA;border-radius:20px;padding:34px 34px 28px;position:relative;overflow:hidden}
+  .exec q{display:block;font-family:var(--serif);font-size:24px;line-height:1.6;font-weight:700;quotes:"“" "”"}
+  .exec .src{margin:16px 0 0;font-size:14px;color:#B9C6C1}
+  .exec .q-mark{position:absolute;right:22px;top:-18px;font-family:var(--serif);font-size:140px;line-height:1;color:rgba(255,240,196,.12);pointer-events:none}
+
+  /* ideas */
+  .ideas{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .ideas li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px;background:var(--sheet);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+  .ideas .num{width:44px;height:44px;border-radius:50%;background:var(--sage);color:#fff;font-family:var(--serif);font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center}
+  .ideas h4{margin:0 0 8px;font-size:18px;font-weight:700;line-height:1.5}
+  .facts{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:14px;color:var(--sub);margin:0}
+  .facts span{display:inline-flex;gap:6px}
+  .facts em{font-style:normal;font-weight:700;color:var(--sage)}
+
+  /* schedule */
+  .event{display:grid;grid-template-columns:96px minmax(0,1fr);gap:18px;align-items:center}
+  .date{background:var(--sage-soft);border-radius:14px;text-align:center;padding:12px 6px;font-family:var(--serif);color:var(--sage)}
+  .date b{display:block;font-size:22px;line-height:1.2;font-weight:900}
+  .date small{font-size:12px;font-family:var(--sans);font-weight:600}
+  .event h4{margin:0;font-size:18px;line-height:1.5}
+  .event p{margin:4px 0 0;font-size:15px;color:var(--sub)}
+  .caution{display:inline-block;margin-top:8px;font-size:13px;background:var(--hook);color:#6B5418;border-radius:8px;padding:3px 10px}
+
+  /* colophon */
+  .colophon{margin-top:44px;padding-top:18px;border-top:3px double var(--rule);font-size:14px;color:var(--sub);line-height:1.8}
+  .colophon dl{display:grid;grid-template-columns:84px minmax(0,1fr);gap:4px 14px;margin:0}
+  .colophon dt{font-weight:700;color:var(--ink)}
+  .colophon dd{margin:0}
+  .colophon a{color:var(--sage)}
+
+  /* aside panels */
+  .panel{background:var(--sheet);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .panel h3{font-size:13px;letter-spacing:.08em;color:var(--sage);margin:0 0 12px;font-weight:700}
+  .panel p{font-size:14px;line-height:1.65;margin:0;color:var(--sub)}
+  .flow{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:f}
+  .flow li{counter-increment:f;display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;font-size:14px;line-height:1.55}
+  .flow li::before{content:counter(f);width:24px;height:24px;border-radius:50%;background:var(--sage-soft);color:var(--sage);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .flow li span{color:var(--sub);display:block;font-size:13px}
+  .rubric{width:100%;border-collapse:collapse;font-size:13px}
+  .rubric td{padding:7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  .rubric td:last-child{text-align:right;color:var(--sub);white-space:nowrap;padding-left:8px}
+  .rubric tr:last-child td{border-bottom:0}
+  .pass-line{margin-top:12px !important;font-size:13px !important;background:var(--sage-soft);color:var(--sage) !important;border-radius:10px;padding:8px 12px;font-weight:600}
+  .lens{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .lens li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:10px;font-size:14px;line-height:1.5}
+  .lens i{width:12px;height:12px;border-radius:50%;margin-top:5px;border:1px solid rgba(0,0,0,.15)}
+  .lens b{font-weight:700}
+  .lens span{color:var(--sub)}
+
+  .site-foot{margin-top:56px;padding:22px 0 0;border-top:1px solid var(--line);font-size:13px;color:var(--faint);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  .site-foot a{color:var(--sage);font-weight:600}
+
+  @media (max-width:960px){
+    .grid{grid-template-columns:minmax(0,1fr);gap:0}
+    aside{position:static;margin-top:52px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .mast-title{font-size:48px}
+  }
+  @media (max-width:600px){
+    .demo-strip .in,.page{padding-left:16px;padding-right:16px}
+    .masthead{padding-top:26px}
+    .mast-top{font-size:12px;letter-spacing:.02em}
+    .mast-top .hide-s{display:none}
+    .mast-title{font-size:34px;margin-top:18px}
+    .mast-sub{font-size:14px}
+    .mast-bar{font-size:13px;gap:4px 12px}
+    .mast-bar span+span::before{margin-right:6px}
+    .grid{margin-top:24px}
+    .hero{padding:26px 20px 22px;border-radius:16px}
+    .hook{font-size:27px}
+    .sec{margin-top:40px}
+    .sec-head h2{font-size:21px}
+    .sec-head .tag{display:none}
+    .three li{grid-template-columns:28px minmax(0,1fr);gap:8px;padding:14px 16px}
+    .three li .n{font-size:20px}
+    .card{padding:20px 18px;border-radius:16px}
+    .card h3{font-size:19px}
+    .stats{grid-template-columns:minmax(0,1fr)}
+    .stat b{font-size:26px}
+    .roles{grid-template-columns:minmax(0,1fr)}
+    .apply{flex-direction:column;gap:6px}
+    .apply .lab{margin-top:0}
+    .exec{padding:26px 20px 22px;border-radius:16px}
+    .exec q{font-size:19px}
+    .ideas li{grid-template-columns:36px minmax(0,1fr);gap:12px;padding:16px}
+    .ideas .num{width:34px;height:34px;font-size:16px}
+    .ideas h4{font-size:17px}
+    .event{grid-template-columns:minmax(0,1fr);gap:12px}
+    .date{display:inline-block;justify-self:start;padding:8px 14px}
+    .date b{display:inline;font-size:18px}
+    .date small{margin-left:6px}
+    .colophon dl{grid-template-columns:minmax(0,1fr);gap:0}
+    .colophon dd{margin-bottom:8px}
+    aside{grid-template-columns:minmax(0,1fr);margin-top:40px}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-strip">
+  <div class="in">
+    <span class="pill">스킬 데모</span>
+    <span>weekly-ai-leadership-news · 김정헌</span>
+    <span class="note">저장소의 샘플 뉴스레터를 바탕으로 만든 데모입니다. 기사 내용, 수치, 링크는 샘플(examples/sample-newsletter.html)에 실린 그대로입니다.</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="mast-top">
+      <span><b>FOR HRD</b> · 임원·팀장 AI 리더십 교육 설계자용</span>
+      <span class="hide-s">매주 월요일 발행</span>
+    </div>
+    <h1 class="mast-title">AI 리더십 주간 브리핑</h1>
+    <p class="mast-sub">글로벌·국내 AI 리더십 소식을 골라 교육 설계에 바로 쓰도록 정리합니다</p>
+    <div class="mast-bar">
+      <span>Vol.1</span>
+      <span>2026.10.26 (월)</span>
+      <span>읽는 시간 약 3분</span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <main>
+
+      <section class="hero" aria-label="이번 주 한 줄">
+        <p class="kicker">이번 주 한 줄</p>
+        <p class="hook">AI가 조직을 근본적으로 바꿨다는 CEO, <mark>단 9%</mark></p>
+        <p class="lead">그런데 CEO 81%는 직원 교육·개발을 다시 설계해야 한다고 답했습니다. (KPMG 2026 CEO 조사)<br><span class="time">읽는 시간 약 3분</span></p>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head"><span class="sec-no">01</span><h2>이번 주 핵심 3줄</h2><span class="tag">SUMMARY</span></div>
+        <ol class="three">
+          <li><span class="n">1</span><span><b>투자와 체감의 간극.</b> CEO 84%가 향후 3년 AI를 최우선 투자로 꼽았지만, 조직을 근본적으로 바꿨다는 응답은 9%였다.</span></li>
+          <li><span class="n">2</span><span><b>BCG(9/29 발표).</b> 준비된 리더와 성숙한 AI 체계가 함께할 때 경쟁 성과가 80% 더 오른다.</span></li>
+          <li><span class="n">3</span><span><b>국내.</b> 조선해양 인재개발 담당자 대상 특강에서 ‘중간관리자’와 ‘역할 기반 AI 역량’이 화두였다.</span></li>
+        </ol>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head"><span class="sec-no">02</span><h2>글로벌 트렌드</h2><span class="tag">GLOBAL</span></div>
+
+        <article class="card">
+          <div class="chips">
+            <span class="chip pass">선별 통과 (5점 이상)</span>
+            <span class="chip">리더·CEO AI 전략</span>
+          </div>
+          <h3><a href="https://hrdive.com/news/ceos-not-yet-seeing-transformational-change-from-ai/833691" target="_blank" rel="noopener">CEO들 “AI의 혁신적 변화, 아직은 아니다”</a></h3>
+          <p class="meta">HR Dive · 10/22 (KPMG 2026 CEO 조사, 10/15 발표)</p>
+          <div class="stats">
+            <div class="stat"><b>9%</b><small>AI 에이전트가 조직을 근본적으로 바꿨다</small></div>
+            <div class="stat"><b>81%</b><small>직원 교육·개발 재설계가 필요하다</small></div>
+            <div class="stat"><b>75%</b><small>신입 직무 요구 역량을 다시 고민했다</small></div>
+          </div>
+          <p>전 세계 CEO 1,300여 명 중 약 40%가 에이전트로 효율·성장이 크게 개선됐다고 답했지만, ‘혁신적’이라는 응답은 9%에 그쳤다. 84%는 향후 3년간 AI를 최우선 투자 과제로 꼽았다.</p>
+          <p class="apply"><span class="lab">교육 적용 포인트</span><span>CEO 81%가 교육·개발 재설계를 과제로 인정했다는 점을 경영진 설득 근거로 쓸 수 있다.</span></p>
+        </article>
+
+        <article class="card">
+          <div class="chips">
+            <span class="chip pass">선별 통과 (5점 이상)</span>
+            <span class="chip frame">기준틀 · 9/29 발표</span>
+            <span class="chip">컨설팅사 보고서</span>
+          </div>
+          <h3><a href="https://www.bcg.com/publications/2026/three-leadership-roles-ceos-ai" target="_blank" rel="noopener">AI 시대 CEO에게 필요한 세 가지 리더십 역할</a></h3>
+          <p class="meta">BCG · 9/29 (전 세계 임원 563명 조사) · 교육 설계의 기준틀로 함께 소개</p>
+          <ol class="roles">
+            <li><b>비전가</b>AI 투자를 측정 가능한 성과와 연결한다.</li>
+            <li><b>공동개발자</b>직원과 함께 설계하고, 리더 스스로 AI를 쓴다.</li>
+            <li><b>관리자</b>가드레일을 세우고 위험을 인식한 채 판단한다.</li>
+          </ol>
+          <div class="stats">
+            <div class="stat"><b>25%</b><small>리더가 AI 사용을 충분히 지원한다고 느끼는 직원</small></div>
+            <div class="stat"><b>1.7배</b><small>업무 시간 10% 이상을 AI 학습에 쓰는 임원이 성숙 조직을 이끌 확률</small></div>
+          </div>
+          <p class="apply"><span class="lab">교육 적용 포인트</span><span>세 역할을 리더십 과정의 역량 모델로 삼고, ‘리더의 AI 직접 사용’을 과제로 넣을 수 있다.</span></p>
+        </article>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head"><span class="sec-no">03</span><h2>국내 동향</h2><span class="tag">KOREA</span></div>
+        <article class="card">
+          <div class="chips">
+            <span class="chip pass">선별 통과 (5점 이상)</span>
+            <span class="chip local">국내 HRD 사례</span>
+          </div>
+          <h3><a href="https://www.mt.co.kr/industry/2026/10/23/2026102309544622570" target="_blank" rel="noopener">“AI 전환기, 다시 설계하는 리더십” 조선해양 인재개발 담당자 특강</a></h3>
+          <p class="meta">머니투데이 · 10/23 16:42 · 10/22 부산 ‘2026 인재양성협의회’</p>
+          <p>두을 AI 이서후 대표는 직무가 세분화된 조선해양 업종에 ‘역할 기반 AI 역량’을 제안하고, 현장과 경영진을 잇는 중간관리자의 역할을 강조했다. 역할을 창조자·설계자·통합자·실행자로 나누고 직급별 OJT, 역할별 과정, 사내 강사 교육과 연계하는 방안도 공유했다.</p>
+          <p class="apply"><span class="lab">교육 적용 포인트</span><span>전 직원 공통 과정 대신 ‘역할별 + 직급별’ 트랙으로 나누는 설계 방식의 참고 사례다.</span></p>
+        </article>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head"><span class="sec-no">04</span><h2>숫자로 보는 신호</h2><span class="tag">SIGNALS</span></div>
+        <article class="card">
+          <div class="stats">
+            <div class="stat"><b>85% → 58%</b><small>AI 실험을 권장받은 직원 vs. 도입 이유를 리더에게 들은 직원 (Culture Amp, HR Dive 인용)</small></div>
+            <div class="stat"><b>36%</b><small>고위 리더들이 현재 과제에 대비돼 있다고 답한 리더 비율 (BCG)</small></div>
+          </div>
+          <p class="apply"><span class="lab">교육 적용 포인트</span><span>리더의 준비 수준과 직원 체감 사이에 격차가 있다. 리더가 “왜 AI를 쓰는지” 설명하는 소통 훈련이 필요하다.</span></p>
+        </article>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head"><span class="sec-no">05</span><h2>경영진 보고용 한 문장</h2><span class="tag">FOR EXECUTIVES</span></div>
+        <div class="exec">
+          <span class="q-mark" aria-hidden="true">“</span>
+          <q>CEO 84%가 AI를 최우선 투자로 꼽지만 혁신을 체감한 곳은 9%이며, 81%가 교육 재설계를 과제로 인정했습니다.</q>
+          <p class="src">출처: KPMG, 10/15 발표</p>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head"><span class="sec-no">06</span><h2>이번 주 교육 설계 아이디어</h2><span class="tag">DESIGN IDEAS</span></div>
+        <ol class="ideas">
+          <li>
+            <span class="num">1</span>
+            <div>
+              <h4>리더 AI 실습 주 1시간</h4>
+              <p class="facts"><span><em>대상</em>임원·팀장</span><span><em>소요</em>주 1시간</span><span><em>근거</em>BCG의 ‘학습 시간 10% 이상’ 임원 1.7배 결과</span></p>
+            </div>
+          </li>
+          <li>
+            <span class="num">2</span>
+            <div>
+              <h4>“왜 AI인가” 설명 워크숍</h4>
+              <p class="facts"><span><em>대상</em>팀장</span><span><em>소요</em>반나절 롤플레이</span><span><em>근거</em>실험 권장 85% vs 도입 이유 청취 58%</span></p>
+            </div>
+          </li>
+          <li>
+            <span class="num">3</span>
+            <div>
+              <h4>역할×직급 트랙 설계</h4>
+              <p class="facts"><span><em>대상</em>교육팀</span><span><em>소요</em>다음 분기 과정 개편</span><span><em>근거</em>조선해양 인재개발 담당자 특강 사례</span></p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="sec">
+        <div class="sec-head"><span class="sec-no">07</span><h2>일정 참고</h2><span class="tag">CALENDAR</span></div>
+        <article class="card event">
+          <div class="date"><b>11/19~20</b><small>2일 과정</small></div>
+          <div>
+            <h4>한경협 AI 임원리더십스쿨</h4>
+            <p>IMI 국제경영원 · FKI타워 · 일반 기업 200만 원</p>
+            <span class="caution">검색 결과 기준 정보로, 신청 전 기관 안내 페이지에서 확인이 필요합니다.</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="colophon" aria-label="수집 정보">
+        <dl>
+          <dt>수집 기간</dt><dd>10/19~10/26 · 총 3건</dd>
+          <dt>한계</dt><dd>이번 주 신규 보고서가 제한적이어서 BCG(9/29)를 기준틀로 함께 실었고, 발행 시각은 날짜만 확인됩니다.</dd>
+          <dt>출처</dt><dd>
+            <a href="https://hrdive.com/news/ceos-not-yet-seeing-transformational-change-from-ai/833691" target="_blank" rel="noopener">HR Dive</a> ·
+            <a href="https://www.bcg.com/publications/2026/three-leadership-roles-ceos-ai" target="_blank" rel="noopener">BCG</a> ·
+            <a href="https://www.mt.co.kr/industry/2026/10/23/2026102309544622570" target="_blank" rel="noopener">머니투데이</a> ·
+            <a href="https://www.imi.or.kr/edu/edu_info.html?code=CD0129" target="_blank" rel="noopener">IMI 국제경영원</a>
+          </dd>
+        </dl>
+      </section>
+
+    </main>
+
+    <aside aria-label="이 뉴스레터를 만든 방식">
+      <div class="panel">
+        <h3>이 호가 만들어진 순서</h3>
+        <ol class="flow">
+          <li><div>주제별 병렬 검색<span>리더 역량, 조직 도입, HRD, 거버넌스, 컨설팅 보고서, 국내 사례</span></div></li>
+          <li><div>4항목 점수화<span>직전 호와 겹치는 기사는 제외합니다</span></div></li>
+          <li><div>기사 본문 확인<span>날짜와 수치를 확인하고, 못 하면 “(본문 미확인)” 표시</span></div></li>
+          <li><div>뉴스레터 작성<span>핵심 3줄과 후킹 문구는 마지막에 씁니다</span></div></li>
+          <li><div>5색 검토 최대 3회<span>각 관점 9.5점 이상이 목표입니다</span></div></li>
+        </ol>
+      </div>
+
+      <div class="panel">
+        <h3>기사 선별 기준</h3>
+        <table class="rubric">
+          <tr><td>관련성</td><td>0~2점</td></tr>
+          <tr><td>영향도</td><td>0~2점</td></tr>
+          <tr><td>신선도 (7일 이내)</td><td>0~2점</td></tr>
+          <tr><td>신뢰도</td><td>0~2점</td></tr>
+        </table>
+        <p class="pass-line">합계 5점 이상만 싣습니다. 신선도나 신뢰도가 0점이면 제외합니다.</p>
+      </div>
+
+      <div class="panel">
+        <h3>5색 편집 검토</h3>
+        <ul class="lens">
+          <li><i style="background:#22303A"></i><div><b>블랙</b> <span>기획 구성과 흐름</span></div></li>
+          <li><i style="background:#D9665B"></i><div><b>레드</b> <span>AI 리더십과의 연관성</span></div></li>
+          <li><i style="background:#D9B44A"></i><div><b>골드</b> <span>교육담당자에게 쓸모</span></div></li>
+          <li><i style="background:#8A72B8"></i><div><b>퍼플</b> <span>후킹 문구와 가독성</span></div></li>
+          <li><i style="background:#FFFFFF"></i><div><b>화이트</b> <span>눈이 편한 색</span></div></li>
+        </ul>
+        <p style="margin-top:12px">점수는 스킬이 역할을 나눠 매기는 자체 점검이며, 실제 독자 반응과 다를 수 있습니다.</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="site-foot">
+    <span>원본 스킬: 김정헌 · <a href="https://github.com/hbhrd/news-clipping" target="_blank" rel="noopener">GitHub</a></span>
+    <span>강의용 데모 페이지입니다.</span>
+  </footer>
+</div>
+
+</body>
+</html>
