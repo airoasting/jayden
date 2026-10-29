@@ -485,7 +485,7 @@ h1 .gradient{background-image:linear-gradient(105deg,#1f3560 0%,#2f5490 38%,#6f8
 #fullscreen-label,#fullscreen .key{display:none!important}
 #fullscreen .icon{width:18px;height:18px;margin:0}
 /* 마지막 장: HR Summit 마무리 장 구성을 커니 테마로 */
-#viewport[data-page="9"] .deck-nav{display:none!important}
+#viewport[data-page="10"] .deck-nav{display:none!important}
 .thanks-page{word-break:keep-all}
 .th-title{position:absolute;left:92px;top:330px;margin:0;font-size:112px;line-height:1.05;letter-spacing:-5px;font-weight:800;color:#1a1a1a}
 .th-bar{position:absolute;left:96px;top:478px;width:56px;height:6px;border-radius:3px;background:#7823dc}
@@ -504,6 +504,51 @@ h1 .gradient{background-image:linear-gradient(105deg,#1f3560 0%,#2f5490 38%,#6f8
 .assignment-book small{font-size:13px;font-weight:700;letter-spacing:.04em;color:#7a6a96}
 .assignment-book b{font-size:20px;font-weight:800;color:#7823dc}
 .assignment-book em{font-style:normal;font-size:16px;color:#7823dc}
+/* Operating Principles */
+.rules-page{word-break:keep-all}
+.op-grid{position:absolute;left:64px;right:64px;top:var(--body-top);height:584px;display:grid;grid-template-columns:1.45fr repeat(4,1fr);gap:16px}
+.op-card{position:relative;display:flex;flex-direction:column;padding:30px 28px 28px;border-radius:18px;background:#ffffffeb;border:1px solid #e7e2ef;box-shadow:0 1px 2px #0f172a0d,0 14px 34px -24px #3e117340;text-decoration:none;color:#1a1a1a}
+.op-no{font-size:15px;font-weight:700;letter-spacing:.1em;color:#9a8fb0}
+.op-tag{position:absolute;top:26px;right:26px;padding:5px 12px;border-radius:999px;background:#7823dc12;color:#7823dc;font-size:14px;font-weight:700}
+.op-card h2{margin:auto 0 18px;font-size:30px;line-height:1.3;letter-spacing:-1px;font-weight:780}
+.op-card p{margin:0;font-size:17px;line-height:1.5;color:#5f6472}
+.op-book{background:linear-gradient(150deg,#3e1173 0%,#7823dc 62%,#a35ae8 100%);border-color:transparent;color:#fff;box-shadow:0 26px 50px -26px rgba(62,17,115,.7)}
+.op-book .op-no{color:#d9c4f6}.op-book .op-tag{background:#ffffff26;color:#fff}
+.op-book h2{font-size:34px}.op-book h2 b{display:inline-block;margin-top:6px;font-size:52px;letter-spacing:-2px}
+.op-book p{color:#eadcfb}
+.op-book em{position:absolute;right:28px;bottom:24px;font-style:normal;font-size:26px;color:#fff;opacity:.85;transition:transform .2s}
+.op-book:hover em{transform:translate(3px,-3px)}
+.rules-page .cv-in{animation:cv-rise 1s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:var(--d,0s)}
+.motion-off .rules-page .cv-in{animation:none!important}
+.op-grid{grid-template-columns:1.25fr 1fr 1fr 1fr!important;grid-template-rows:1fr 1fr;gap:16px!important}
+.op-book{grid-row:1 / span 2}
+.op-time{grid-column:2 / span 2;background:#f6f0fe!important;border-color:#e4d4fa!important}
+.op-time h2 b{color:#7823dc;font-size:40px;letter-spacing:-1.4px}
+.op-card{padding:26px 26px 24px!important}
+.op-card h2{font-size:27px!important;margin:auto 0 12px!important}
+.op-card p{font-size:16px!important}
+.op-book h2{font-size:34px!important}
+/* 원칙 8개: 왼쪽 교재 카드 + 오른쪽 6칸 그리드 3줄 */
+.op-grid{grid-template-columns:1.2fr repeat(6,1fr)!important;grid-template-rows:repeat(3,1fr)!important;gap:14px!important}
+.op-book{grid-row:1 / span 3!important;grid-column:1}
+.op-s4{grid-column:span 4!important}.op-s3{grid-column:span 3!important}.op-s2{grid-column:span 2!important}
+.op-card{padding:20px 22px 18px!important}
+.op-tag{top:16px!important;right:18px!important;font-size:13px!important;padding:4px 10px!important}
+.op-no{font-size:13px!important}
+.op-card h2{font-size:22px!important;line-height:1.3!important;margin:auto 0 8px!important;letter-spacing:-.6px!important}
+.op-card p{font-size:14.5px!important;line-height:1.45!important}
+.op-time h2{font-size:24px!important}.op-time h2 b{font-size:34px!important}
+.op-day{background:#faf7ff!important;border-color:#ebe0fb!important}
+.op-day h2{font-size:24px!important}
+.op-book h2{font-size:32px!important}.op-book h2 b{font-size:46px!important}
+.op-book p{font-size:16px!important;padding-right:28px}
+.deck-nav{grid-template-columns:repeat(5,auto)!important}
+.op-s6{grid-column:span 6!important}
+.op-day h2{font-size:26px!important}
+.op-day p{font-size:15.5px!important;max-width:980px}
+.op-card.op-s3 h2{font-size:24px!important}
+.op-arrow{color:#7823dc;margin:0 4px}
+.op-book em{top:58px!important;bottom:auto!important;right:24px!important}
 </style>
 </head>
 <body>
@@ -513,7 +558,7 @@ h1 .gradient{background-image:linear-gradient(105deg,#1f3560 0%,#2f5490 38%,#6f8
 <main id="slide" aria-label="표지">
   <div class="atmosphere" aria-hidden="true"></div><div class="ambient-lens" aria-hidden="true"></div><div class="spotlight" aria-hidden="true"></div>
   <header class="topbar reveal">
-    <nav class="deck-nav" aria-label="슬라이드 페이지 선택"><button class="deck-tab" type="button" aria-controls="era-page" title="강사 소개 / Page Down"><small>01</small> 강사 소개</button><button class="deck-tab" type="button" aria-controls="tenure-page" title="사전설문 / Page Down"><small>02</small> 서베이</button><button class="deck-tab" type="button" aria-controls="curriculum-page" title="Day 1 커리큘럼 / Page Down"><small>03</small> Day 1 커리큘럼</button><button class="deck-tab" type="button" aria-controls="day2-page" title="Day 2 커리큘럼 / Page Down"><small>04</small> Day 2 커리큘럼</button></nav>
+    <nav class="deck-nav" aria-label="슬라이드 페이지 선택"><button class="deck-tab" type="button" aria-controls="era-page" title="강사 소개 / Page Down"><small>01</small> 강사 소개</button><button class="deck-tab" type="button" aria-controls="rules-page" title="운영 원칙 / Page Down"><small>02</small> 운영 원칙</button><button class="deck-tab" type="button" aria-controls="tenure-page" title="사전설문 / Page Down"><small>03</small> 서베이</button><button class="deck-tab" type="button" aria-controls="curriculum-page" title="Day 1 커리큘럼 / Page Down"><small>04</small> Day 1 커리큘럼</button><button class="deck-tab" type="button" aria-controls="day2-page" title="Day 2 커리큘럼 / Page Down"><small>05</small> Day 2 커리큘럼</button></nav>
     <div class="top-actions">
       
     </div>
@@ -745,6 +790,15 @@ h1 .gradient{background-image:linear-gradient(105deg,#1f3560 0%,#2f5490 38%,#6f8
     </div>
     <div class="award-zoom-caption" aria-hidden="true"><b>서울특별시장상</b><i></i>라이너<i></i>라이너(Liner)<i></i>AI 리서치 에이전트 플랫폼</div>
   </section>
+  <section class="deck-page rules-page" id="rules-page" hidden aria-labelledby="rules-title">
+    <div class="curriculum-heading">
+      <h1 class="curriculum-title" id="rules-title">Operating <span class="spectrum">Principles</span></h1>
+    </div>
+    <div class="op-grid">
+      <a class="op-card op-book cv-in" style="--d:.18s" href="https://airoasting.com" target="_blank" rel="noopener"><span class="op-no">01</span><span class="op-tag">교재</span><h2>강의 교재는<br><b>airoasting.com</b></h2><em aria-hidden="true">↗</em></a>
+      <div class="op-card op-time op-s6 cv-in" style="--d:.3s"><span class="op-no">02</span><span class="op-tag">시간</span><h2>점심 시간 없이 <b>5시간 30분</b> 진행합니다</h2><p>09:00부터 14:30까지 이어서 진행합니다.</p></div><div class="op-card op-s6 op-day cv-in" style="--d:0.46s"><span class="op-no">03</span><span class="op-tag">Day 1 · Day 2</span><h2>Day 1 기본기 정렬 <span class="op-arrow">→</span> Day 2 실전 적용</h2><p>참가자 간 AI 활용 편차를 고려해 Day 1은 공통 기본기를 맞추는 데 집중합니다. 숙련자께서는 본인의 활용 수준을 점검하는 기회로 삼으시고, Day 2에서는 이를 토대로 실제 데이터 기반 실습을 진행합니다.</p></div><div class="op-card op-s3 cv-in" style="--d:0.54s"><span class="op-no">04</span><span class="op-tag">실습 · 공유</span><h2>직접 해 보고, 실습 자료는 패들릿에 올립니다</h2><p>결과물은 패들릿에 업로드합니다.</p></div><div class="op-card op-s3 cv-in" style="--d:0.62s"><span class="op-no">05</span><span class="op-tag">질문</span><h2>막히면 바로 손을 듭니다</h2><p>손을 드시면 강사나 조교가 도와드릴 것입니다.</p></div>
+    </div>
+  </section>
   <section class="deck-page curriculum-page" id="curriculum-page" hidden aria-labelledby="curriculum-title">
     <div class="curriculum-grid-bg" aria-hidden="true"></div>
     <canvas id="constellation" width="1600" height="900" aria-hidden="true"></canvas>
@@ -924,19 +978,19 @@ let currentPage=0,awardZoomed=false;
 function setAwardZoom(on){awardZoomed=on;$('award-page').classList.toggle('is-zoomed',on);$('award-poster').setAttribute('aria-pressed',String(on));$('award-cta').tabIndex=on?-1:0;}
 $('award-poster').addEventListener('click',()=>setAwardZoom(!awardZoomed));$('award-cta').addEventListener('click',()=>setAwardZoom(true));
 // URL hash per page, so a link can open a page directly (#award kept as an alias of #liner).
-const pageHashes=['cover','era','intro','survey','tools','usage','wish','day1','day2','thanks'];
+const pageHashes=['cover','era','intro','rules','survey','tools','usage','wish','day1','day2','thanks'];
 const pageFromHash=()=>{const h=location.hash.slice(1).toLowerCase();return Math.max(0,pageHashes.indexOf(h));};
 function showPage(index){
- stop();setAwardZoom(false);currentPage=Math.max(0,Math.min(9,index));
+ stop();setAwardZoom(false);currentPage=Math.max(0,Math.min(10,index));
  if(location.hash!=='#'+pageHashes[currentPage])history.replaceState(null,'','#'+pageHashes[currentPage]);
- ['cover-page','era-page','profile-page','tenure-page','tools-page','usage-page','wish-page','curriculum-page','day2-page','thanks-page'].forEach((id,i)=>$(id).hidden=currentPage!==i);
- document.querySelectorAll('.deck-tab').forEach((button,i)=>{if(i===[-1,0,0,1,1,1,1,2,3,-1][currentPage])button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
- slide.setAttribute('aria-label',["표지","강사 소개, 시대 흐름, 1 / 4 페이지","강사 소개, 커리어, 1 / 4 페이지","서베이, 참가자 연차, 2 / 4 페이지","서베이, 유료 구독 툴, 2 / 4 페이지","서베이, AI 활용 방식, 2 / 4 페이지","서베이, 위임 희망 업무, 2 / 4 페이지","AI 에이전트 고용 기초, Day 1 커리큘럼, 3 / 4 페이지","AI 에이전트 고용 실전, Day 2 커리큘럼, 4 / 4 페이지","감사합니다"][currentPage]);
+ ['cover-page','era-page','profile-page','rules-page','tenure-page','tools-page','usage-page','wish-page','curriculum-page','day2-page','thanks-page'].forEach((id,i)=>$(id).hidden=currentPage!==i);
+ document.querySelectorAll('.deck-tab').forEach((button,i)=>{if(i===[-1,0,0,1,2,2,2,2,3,4,-1][currentPage])button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
+ slide.setAttribute('aria-label',["표지","강사 소개, 시대 흐름, 1 / 5 페이지","강사 소개, 커리어, 1 / 5 페이지","운영 원칙, 2 / 5 페이지","서베이, 참가자 연차, 3 / 5 페이지","서베이, 유료 구독 툴, 3 / 5 페이지","서베이, AI 활용 방식, 3 / 5 페이지","서베이, 위임 희망 업무, 3 / 5 페이지","AI 에이전트 고용 기초, Day 1 커리큘럼, 4 / 5 페이지","AI 에이전트 고용 실전, Day 2 커리큘럼, 5 / 5 페이지","감사합니다"][currentPage]);
  syncParticles();
  $('viewport').dataset.page=currentPage;
 }
-document.querySelectorAll('.deck-tab').forEach((button,i)=>button.addEventListener('click',()=>showPage([1,3,7,8][i])));
-document.querySelectorAll('.su-nav button').forEach(b=>b.addEventListener('click',()=>showPage(3+Number(b.dataset.survey))));
+document.querySelectorAll('.deck-tab').forEach((button,i)=>button.addEventListener('click',()=>showPage([1,3,4,8,9][i])));
+document.querySelectorAll('.su-nav button').forEach(b=>b.addEventListener('click',()=>showPage(4+Number(b.dataset.survey))));
 questionCards.forEach((card,i)=>{card.addEventListener('pointermove',e=>{if(!motion||e.pointerType==='touch')return;const r=card.getBoundingClientRect();card.style.setProperty('--qx',(e.clientX-r.left)/r.width*100+'%');card.style.setProperty('--qy',(e.clientY-r.top)/r.height*100+'%');});});
 // Agenda assets are inline SVG: the copied HTML works without a network.
 const artShell=body=>`<svg viewBox="0 0 240 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${body}</svg>`;
@@ -986,9 +1040,9 @@ function drawParticles(t){
  starContext.clearRect(0,0,1600,900);
  const positions=particles.map(p=>({x:p.x+Math.sin(t*.00013+p.phase)*24,y:p.y+Math.cos(t*.00017+p.phase)*17,r:p.r,phase:p.phase}));
  positions.forEach((p,i)=>{starContext.fillStyle=`rgba(70,105,160,${.22+Math.sin(t*.001+p.phase)*.06})`;starContext.beginPath();starContext.arc(p.x,p.y,p.r,0,Math.PI*2);starContext.fill();for(let j=i+1;j<positions.length;j++){const q=positions[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<180){starContext.strokeStyle=`rgba(70,105,160,${(1-d/180)*.14})`;starContext.beginPath();starContext.moveTo(q.x,q.y);starContext.lineTo(p.x,p.y);starContext.stroke();}}});
- if(motion&&currentPage===7&&!document.hidden)particleFrame=requestAnimationFrame(drawParticles);
+ if(motion&&currentPage===8&&!document.hidden)particleFrame=requestAnimationFrame(drawParticles);
 }
-function syncParticles(){cancelAnimationFrame(particleFrame);if(currentPage===7&&!document.hidden)drawParticles(motion?performance.now():0);}
+function syncParticles(){cancelAnimationFrame(particleFrame);if(currentPage===8&&!document.hidden)drawParticles(motion?performance.now():0);}
 
 // Light stage: the backdrop leans toward the pointer, cards get a sheen and a small click burst in their own color.
 const stage=$('viewport');
