@@ -173,24 +173,23 @@ h1 .gradient{background-image:linear-gradient(105deg,#1f3560 0%,#2f5490 38%,#6f8
 .motion-off .sk-card,.motion-off .sk-art *{animation:none!important}.motion-off .sk-card{transform:none!important}
 @media (prefers-reduced-motion:reduce){.sk-card,.sk-art *{animation:none!important}}
 
-/* Page 6 / motion graphics portfolio: three 16:9 videos in the curriculum card language */
-.mo-grid{position:absolute;top:250px;left:64px;right:64px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.mo-card{--c:#2e738a;position:relative;padding:20px 22px 22px;border-radius:18px;isolation:isolate;overflow:hidden;border:1px solid #dfe4ec;background:linear-gradient(170deg,#ffffff,color-mix(in srgb,var(--c) 4%,#fbfcfd) 80%);box-shadow:0 1px 2px #0f172a0d,0 14px 34px -24px #0f172a40;transition:transform .3s,border-color .3s,box-shadow .3s;animation:lesson-arrive .7s calc(var(--order)*.12s + .1s) backwards}
+/* Page 6 / motion graphics portfolio: six 16:9 videos as a 3x2 gallery in the curriculum card language */
+.motion-page .curriculum-heading{top:112px}
+.mo-grid{position:absolute;top:216px;left:64px;right:64px;height:664px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:16px 20px}
+.mo-card{--c:#2e738a;position:relative;display:flex;flex-direction:column;min-height:0;padding:10px 10px 12px;border-radius:16px;isolation:isolate;overflow:hidden;border:1px solid #dfe4ec;background:linear-gradient(170deg,#ffffff,color-mix(in srgb,var(--c) 4%,#fbfcfd) 80%);box-shadow:0 1px 2px #0f172a0d,0 14px 34px -24px #0f172a40;transition:transform .3s,border-color .3s,box-shadow .3s;animation:lesson-arrive .7s calc(var(--order)*.08s + .1s) backwards}
 .mo-card:after{content:"";position:absolute;top:0;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.5}
-.mo-card:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--c) 60%,#dfe4ec);box-shadow:0 1px 2px #0f172a0d,0 26px 50px -26px #0f172a59}
-.mo-meta{display:flex;align-items:center;justify-content:space-between;color:var(--c);margin-bottom:14px}
-.mo-num{font-size:13px;font-weight:650;letter-spacing:.13em}
-.mo-chips{display:flex;gap:6px}.mo-chips span{font-size:11px;padding:4px 8px;border-radius:4px;border:1px solid color-mix(in srgb,var(--c) 25%,transparent);background:color-mix(in srgb,var(--c) 6%,transparent)}
-.mo-frame{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0d1422;box-shadow:0 18px 40px -26px color-mix(in srgb,var(--c) 70%,#0f172a)}
-.mo-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#0d1422}
-.mo-card{display:flex;flex-direction:column}.mo-body{display:flex;flex-direction:column;flex:1;gap:16px;margin-top:16px}
-.mo-who{font-size:15px;font-weight:700;color:var(--c);letter-spacing:-.2px;margin:0 0 4px}
-.mo-title{margin:0;font-size:25px;line-height:1.25;letter-spacing:-.9px;font-weight:680;color:#01060f}
-.mo-desc{margin:8px 0 0;font-size:14px;line-height:1.6;letter-spacing:-.15px;color:#44576e;word-break:keep-all}
-.mo-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:auto}
-.mo-links a{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:9px;font-size:13px;font-weight:600;text-decoration:none;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 22%,transparent);background:color-mix(in srgb,var(--c) 5%,#ffffff);transition:background .2s,border-color .2s}
+.mo-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--c) 60%,#dfe4ec);box-shadow:0 1px 2px #0f172a0d,0 26px 50px -26px #0f172a59}
+.mo-frame{position:relative;flex:1;min-height:0;border-radius:10px;overflow:hidden;background:#0d1422}
+.mo-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;background:#0d1422}
+.mo-body{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 4px 0}
+.mo-text{min-width:0}
+.mo-who{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--c);letter-spacing:-.2px;margin:0 0 2px}
+.mo-num{font-size:11px;font-weight:650;letter-spacing:.13em;opacity:.75}
+.mo-title{margin:0;font-size:19px;line-height:1.3;letter-spacing:-.6px;font-weight:680;color:#01060f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mo-links{display:flex;gap:6px;flex:none}
+.mo-links a{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;font-size:12px;font-weight:600;text-decoration:none;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 22%,transparent);background:color-mix(in srgb,var(--c) 5%,#ffffff);transition:background .2s,border-color .2s}
 .mo-links a:hover{background:color-mix(in srgb,var(--c) 11%,#ffffff);border-color:color-mix(in srgb,var(--c) 50%,transparent)}
-.mo-links a b{font-weight:400;font-size:15px;line-height:1}
+.mo-links a b{font-weight:400;font-size:13px;line-height:1}
 .mo-card:hover .sheen{transform:translateX(130%);transition:transform 1.1s cubic-bezier(.2,.7,.3,1)}
 .motion-off .mo-card{animation:none!important;transform:none!important}
 @media (prefers-reduced-motion:reduce){.mo-card{animation:none!important}}
@@ -441,31 +440,52 @@ h1 .gradient{background-image:linear-gradient(105deg,#1f3560 0%,#2f5490 38%,#6f8
     <div class="curriculum-heading">
       <h1 class="curriculum-title" id="motion-title">모션 그래픽 <span class="spectrum">포트폴리오</span></h1>
     </div>
-    <div class="mo-grid" role="group" aria-label="모션 그래픽 세 편">
+    <div class="mo-grid" role="group" aria-label="모션 그래픽 여섯 편">
       <article class="mo-card" style="--c:#2e738a;--order:0">
-        <div class="mo-meta"><span class="mo-num">01</span><span class="mo-chips"><span>30초</span><span>1920×1080</span><span>HyperFrames</span></span></div>
-        <div class="mo-frame"><video class="mo-video" src="https://hbhrd.github.io/motion/october-morning.mp4#t=0.1" muted loop playsinline controls preload="metadata" aria-label="김정헌 님의 모션 그래픽 영상, 끝없는 ㅇ"></video></div>
+        <div class="mo-frame"><video class="mo-video" src="https://willofgodyejun.github.io/motiongrahpic/october-kinetic.mp4" poster="https://willofgodyejun.github.io/motiongrahpic/poster.jpg" muted loop playsinline controls preload="none" aria-label="구예준 님의 모션 그래픽 영상, 시월, 찢어지는 고요"></video></div>
         <div class="mo-body">
-          <div class="mo-text"><p class="mo-who">김정헌</p><h2 class="mo-title">끝없는 ㅇ</h2><p class="mo-desc">글자 ㅇ의 빈 공간을 창문 삼아 컷 없이 다음 세계로 다이브합니다. 120 BPM에 맞춰 다이브 간격이 짧아지고 글자는 점점 굵어집니다.</p></div>
-          <div class="mo-links"><a href="https://hbhrd.github.io/motion/" target="_blank" rel="noopener">포트폴리오 <b>↗</b></a><a href="https://github.com/hbhrd/motion" target="_blank" rel="noopener">GitHub <b>↗</b></a></div>
+          <div class="mo-text"><p class="mo-who"><span class="mo-num">01</span>구예준</p><h2 class="mo-title">시월, 찢어지는 고요</h2></div>
+          <div class="mo-links"><a href="https://willofgodyejun.github.io/motiongrahpic/" target="_blank" rel="noopener">페이지 <b>↗</b></a><a href="https://github.com/willofgodyejun/motiongrahpic" target="_blank" rel="noopener">GitHub <b>↗</b></a></div>
         </div>
         <span class="sheen" aria-hidden="true"></span>
       </article>
-      <article class="mo-card" style="--c:#4a7326;--order:1">
-        <div class="mo-meta"><span class="mo-num">02</span><span class="mo-chips"><span>30초</span><span>1920×1080</span><span>HyperFrames</span></span></div>
-        <div class="mo-frame"><video class="mo-video" src="https://jeewonhan7.github.io/motion/docs/trek-welcome.mp4#t=0.1" muted loop playsinline controls preload="metadata" aria-label="한지원 님의 모션 그래픽 영상, 트렉 환대 영상"></video></div>
+      <article class="mo-card" style="--c:#6e3db8;--order:1">
+        <div class="mo-frame"><video class="mo-video" src="https://lfsykim-boop.github.io/motion/october-morning.mp4" poster="https://lfsykim-boop.github.io/motion/poster.jpg" muted loop playsinline controls preload="none" aria-label="김소연 님의 모션 그래픽 영상, ㅇ 속으로"></video></div>
         <div class="mo-body">
-          <div class="mo-text"><p class="mo-who">한지원</p><h2 class="mo-title">트렉 환대 영상</h2><p class="mo-desc">트렉 매장 문을 연 순간부터 자전거를 끌고 나갈 때까지, 직원이 건네는 말을 박자에 맞춘 큰 글자로 보여 주는 키네틱 타이포그래피입니다.</p></div>
-          <div class="mo-links"><a href="https://jeewonhan7.github.io/motion/docs/" target="_blank" rel="noopener">포트폴리오 <b>↗</b></a><a href="https://github.com/jeewonhan7/motion" target="_blank" rel="noopener">GitHub <b>↗</b></a></div>
+          <div class="mo-text"><p class="mo-who"><span class="mo-num">02</span>김소연</p><h2 class="mo-title">ㅇ 속으로</h2></div>
+          <div class="mo-links"><a href="https://lfsykim-boop.github.io/motion/" target="_blank" rel="noopener">페이지 <b>↗</b></a><a href="https://github.com/lfsykim-boop/motion" target="_blank" rel="noopener">GitHub <b>↗</b></a></div>
         </div>
         <span class="sheen" aria-hidden="true"></span>
       </article>
       <article class="mo-card" style="--c:#a06c36;--order:2">
-        <div class="mo-meta"><span class="mo-num">03</span><span class="mo-chips"><span>30초</span><span>1920×1080</span><span>136 BPM</span></span></div>
-        <div class="mo-frame"><video class="mo-video" src="assets/october-tear.mp4#t=0.1" muted loop playsinline controls preload="metadata" aria-label="강정구 님의 모션 그래픽 영상, October Tear"></video></div>
+        <div class="mo-frame"><video class="mo-video" src="https://hbhrd.github.io/motion/october-morning.mp4#t=0.1" muted loop playsinline controls preload="metadata" aria-label="김정헌 님의 모션 그래픽 영상, 끝없는 ㅇ"></video></div>
         <div class="mo-body">
-          <div class="mo-text"><p class="mo-who">강정구</p><h2 class="mo-title">October Tear</h2><p class="mo-desc">고요하던 "고요" 두 글자가 136 BPM에 맞춰 찢어지고, 차갑다, 숨, 깨어나, 10월이 화면을 채웁니다. 마지막 문장은 "10월의 아침은 조용히 오지 않는다"입니다.</p></div>
-          <div class="mo-links"><a href="assets/october-tear.mp4" target="_blank" rel="noopener">영상 열기 <b>↗</b></a></div>
+          <div class="mo-text"><p class="mo-who"><span class="mo-num">03</span>김정헌</p><h2 class="mo-title">끝없는 ㅇ</h2></div>
+          <div class="mo-links"><a href="https://hbhrd.github.io/motion/" target="_blank" rel="noopener">페이지 <b>↗</b></a><a href="https://github.com/hbhrd/motion" target="_blank" rel="noopener">GitHub <b>↗</b></a></div>
+        </div>
+        <span class="sheen" aria-hidden="true"></span>
+      </article>
+      <article class="mo-card" style="--c:#2e6b60;--order:3">
+        <div class="mo-frame"><video class="mo-video" src="https://lfjepark-eng.github.io/motion/film/renders/october-paper.mp4" poster="https://lfjepark-eng.github.io/motion/film/renders/poster.jpg" muted loop playsinline controls preload="none" aria-label="박재은 님의 모션 그래픽 영상, 종이 한 장"></video></div>
+        <div class="mo-body">
+          <div class="mo-text"><p class="mo-who"><span class="mo-num">04</span>박재은</p><h2 class="mo-title">종이 한 장</h2></div>
+          <div class="mo-links"><a href="https://lfjepark-eng.github.io/motion/" target="_blank" rel="noopener">페이지 <b>↗</b></a><a href="https://github.com/lfjepark-eng/motion" target="_blank" rel="noopener">GitHub <b>↗</b></a></div>
+        </div>
+        <span class="sheen" aria-hidden="true"></span>
+      </article>
+      <article class="mo-card" style="--c:#4a7326;--order:4">
+        <div class="mo-frame"><video class="mo-video" src="https://jeewonhan7.github.io/motion/docs/trek-welcome.mp4#t=0.1" muted loop playsinline controls preload="metadata" aria-label="한지원 님의 모션 그래픽 영상, 트렉 환대 영상"></video></div>
+        <div class="mo-body">
+          <div class="mo-text"><p class="mo-who"><span class="mo-num">05</span>한지원</p><h2 class="mo-title">트렉 환대 영상</h2></div>
+          <div class="mo-links"><a href="https://jeewonhan7.github.io/motion/docs/" target="_blank" rel="noopener">페이지 <b>↗</b></a><a href="https://github.com/jeewonhan7/motion" target="_blank" rel="noopener">GitHub <b>↗</b></a></div>
+        </div>
+        <span class="sheen" aria-hidden="true"></span>
+      </article>
+      <article class="mo-card" style="--c:#1f3560;--order:5">
+        <div class="mo-frame"><video class="mo-video" src="assets/october-tear.mp4" poster="assets/october-tear-poster.jpg" muted loop playsinline controls preload="none" aria-label="강정구 님의 모션 그래픽 영상, October Tear"></video></div>
+        <div class="mo-body">
+          <div class="mo-text"><p class="mo-who"><span class="mo-num">06</span>강정구</p><h2 class="mo-title">October Tear</h2></div>
+          <div class="mo-links"><a href="assets/october-tear.mp4" target="_blank" rel="noopener">영상 <b>↗</b></a></div>
         </div>
         <span class="sheen" aria-hidden="true"></span>
       </article>
